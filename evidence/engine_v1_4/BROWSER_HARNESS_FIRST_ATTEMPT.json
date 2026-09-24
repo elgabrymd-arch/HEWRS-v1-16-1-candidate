@@ -1,0 +1,22 @@
+{
+  "schema": "hewrs.engine-wide.browser.v1_4",
+  "checks_passed": 0,
+  "checks_failed": 0,
+  "failure": "Page.evaluate: TypeError: Cannot read properties of null (reading 'manifest')\n    at create (<anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:297:18)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+  "checks": [],
+  "engine_render_comparisons": 0,
+  "engine_render_rows": [],
+  "original_route_controls": [],
+  "page_errors": [],
+  "external_requests": [],
+  "browser": "144.0.7559.96",
+  "elapsed_seconds": 15.95,
+  "transport": "Exact packaged template/CSS/JS and PNG bytes in memory; reference uses preserved V1.3 connection",
+  "test_data_only": true,
+  "not_tested": [
+    "Hosted delivery",
+    "Safari",
+    "Physical iPhone",
+    "Persistent browser restart"
+  ]
+}

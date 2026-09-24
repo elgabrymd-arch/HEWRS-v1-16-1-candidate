@@ -1,0 +1,24 @@
+'use strict';
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert/strict');
+const R=path.resolve(__dirname,'..'),data=JSON.parse(fs.readFileSync(R+'/data/inputs.json')),edge=JSON.parse(fs.readFileSync(R+'/data/ds035-edge.json')),coverage=JSON.parse(fs.readFileSync(R+'/data/ds035-coverage.json'));
+const output=[];const test=(name,fn)=>{try{fn();output.push({name,pass:true});}catch(e){output.push({name,pass:false,error:String(e)});}};
+const original={plan:req=>[{role:'INHERITED'}],render:async()=>({status:'ready'}),cancel:()=>{},stats:()=>({})};
+const sandbox={console,structuredClone,HEWRSDS035CoverageRenderer:{create:()=>original},HTMLCanvasElement:function(){},Image:function(){}};
+const cx=vm.createContext(sandbox);vm.runInContext(fs.readFileSync(R+'/src/ds035-edge-renderer.js','utf8'),cx);
+const canvas={getContext:()=>({})};
+function manifest(){const m=structuredClone(data.manifest);m.ds035_s11_edge={...structuredClone(edge),selected_suit_id:'S11'};m.ds035_s11_coverage={...structuredClone(coverage),selected_suit_id:'S11'};return m;}
+test('No edge processing for original S05 manifest',()=>assert.equal(cx.HEWRSDS035EdgeRenderer.create(canvas,data.manifest),original));
+test('No unsupported shirt-wide fallback in edge route',()=>{const r=cx.HEWRSDS035EdgeRenderer.create(canvas,manifest());assert.throws(()=>r.plan({shirtId:'DS036',state:'T017'}));});
+test('DS035 REFERENCE is not repainted under wider suits',()=>{const r=cx.HEWRSDS035EdgeRenderer.create(canvas,manifest());assert.throws(()=>r.plan({shirtId:'DS035',state:'REFERENCE'}));});
+test('Every DS035 selectable state uses its exact mode-specific patch',()=>{const r=cx.HEWRSDS035EdgeRenderer.create(canvas,manifest());for(const state of ['NO_TIE',...Object.keys(data.manifest.ties)]){const p=r.plan({shirtId:'DS035',state});assert.equal(p[0].sha256,edge.states[state==='NO_TIE'?'no_tie':'tied'].sha256);assert.equal(p[1].role,'INHERITED');if(state!=='NO_TIE')assert.equal(p[0].exclude_alpha_of.sha256,data.manifest.ties[state].display_layer.sha256);}});
+test('Unknown tie cannot enter correction',()=>assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,manifest()).plan({shirtId:'DS035',state:'T048'})));
+test('Missing edge contract fails closed on wider route',()=>{const m=manifest();delete m.ds035_s11_edge;assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('Unexpected edge schema rejected',()=>{const m=manifest();m.ds035_s11_edge.schema='wrong';assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('Mismatched suit bindings rejected',()=>{const m=manifest();m.ds035_s11_edge.selected_suit_id='S02';assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('Unregistered suit cannot acquire the correction',()=>{const m=manifest();m.ds035_s11_edge.selected_suit_id='S19';m.ds035_s11_coverage.selected_suit_id='S19';assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('Changed tied-body input fails closed',()=>{const m=manifest();m.shirts.DS035.states.tied.body.sha256='0'.repeat(64);assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('Changed no-tie body fails closed',()=>{const m=manifest();m.shirts.DS035.states.no_tie.body.sha256='0'.repeat(64);assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('Changed permitted bounds fail closed',()=>{const m=manifest();m.ds035_s11_edge.roi[0]=0;assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('Edge contract without wider-coverage route rejected',()=>{const m=manifest();delete m.ds035_s11_coverage;assert.throws(()=>cx.HEWRSDS035EdgeRenderer.create(canvas,m));});
+test('All fourteen authorised suit IDs are unchanged',()=>assert.deepEqual(edge.wider_suit_ids,coverage.wider_suit_ids));
+const result={passed:output.filter(t=>t.pass).length,failed:output.filter(t=>!t.pass).length,tests:output};fs.writeFileSync(R+'/evidence/edge_v1_5/ROUTING.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));if(result.failed)process.exit(1);

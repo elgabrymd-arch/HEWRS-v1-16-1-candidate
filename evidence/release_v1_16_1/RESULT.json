@@ -1,0 +1,30 @@
+{
+  "version": "1.16.1",
+  "status": "VALIDATED_WITH_DECLARED_LIMITS",
+  "functional": {
+    "passed": 27,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 20,
+    "failed": 0,
+    "actual_six_shirt_renders": 732,
+    "old_frames_pixel_equal": 127,
+    "scope": "Actual scripts/images in memory-loaded Chromium; not real-origin persistence or physical Safari/iPhone."
+  },
+  "clothing": {
+    "connected_non_suit_ids": 18,
+    "remaining_non_suit_ids": 32,
+    "new_ids_this_release": 0,
+    "v116_images_preserved": 699
+  },
+  "rollback": {
+    "verified_files": 1218,
+    "source_modified": false,
+    "browser_data_accessed": false
+  },
+  "real_origin": "BLOCKED_BEFORE_APPLICATION_LOAD",
+  "physical_device_certified": false,
+  "visual_review": "24 control frames at 120px width; inherited squared waist and sleeve transitions remain visible/unretouched. Other runtime exercises not all manually inspected.",
+  "deployment": false
+}

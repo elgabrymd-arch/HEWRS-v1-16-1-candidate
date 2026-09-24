@@ -1,0 +1,22 @@
+{
+  "initial_failures": 2,
+  "fixes": [
+    {
+      "type": "request_guard",
+      "finding": "prepare() validates request shape but permits a missing exact shirt reference until controller execution; new coverage required an explicit early exact-shirt check.",
+      "change": "Reject missing, retired, whitespace-altered and prototype-property shirt IDs in makeRequest(); valid queries remain unchanged."
+    },
+    {
+      "type": "test_fixture",
+      "finding": "Backup restore advances the receiving store local revision, not the exporting store revision.",
+      "change": "Compare preserved session, events and source lock plus expected receiving revision. No saved-data implementation change."
+    },
+    {
+      "type": "test_fixture",
+      "finding": "Some inherited shirt records omit mode_policy; the original runtime treats them as tie-capable.",
+      "change": "Browser matrix builder uses optional mode_policy lookup. No application/image changes."
+    }
+  ],
+  "browser_harness_initial_failures": 1,
+  "packaging_check": "Initial count check caught the archived parent PACKAGE_SHA256.json omitted by basename filtering. Final manifest excludes only its own root path; the parent manifest is explicitly hashed."
+}

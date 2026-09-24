@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+"""In-memory Chromium execution of the exact built standalone application.
+Default Chromium path is discovered; override with CHROMIUM_PATH when needed.
+This is NOT a hosted, Safari, or physical-iPhone test. Storage-interface tests
+are in functional.cjs. No network source is used by this test.
+"""
+from pathlib import Path
+import os,json,hashlib,time,sys,shutil
+from playwright.sync_api import sync_playwright
+R=Path(__file__).resolve().parents[1]
+S=Path(sys.argv[1]) if len(sys.argv)>1 else R.parent/'HEWRS_CONNECTED_APP_V1.html'
+checks=[];capture=[];errors=[];network=[];start=time.monotonic()
+def wait(expression, timeout=40000):
+ deadline=time.monotonic()+timeout/1000
+ while time.monotonic()<deadline:
+  if page.evaluate('() => ('+expression+')'):return
+  time.sleep(0.06)
+ raise TimeoutError(expression)
+def record(name,value,details=None):
+ checks.append({'name':name,'status':'PASS' if value else 'FAIL','details':details})
+ print(name,checks[-1]['status'], details if not value else '',flush=True)
+ (R/'evidence/BROWSER_PROGRESS.json').write_text(json.dumps({'checks':checks},indent=2))
+with sync_playwright() as pw:
+ browser=pw.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH') or shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+ context=browser.new_context(viewport={'width':390,'height':844},device_scale_factor=1,timezone_id='America/New_York',accept_downloads=True)
+ page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+ page.on('console',lambda m:print('BROWSER',m.type,m.text,flush=True) if m.type=='info' else None)
+ page.on('request',lambda r:network.append(r.url) if not r.url.startswith(('data:','blob:','about:')) else None)
+ try:
+  standalone_bytes=S.read_bytes();standalone_digest=hashlib.sha256(standalone_bytes).hexdigest()
+  page.set_content(standalone_bytes.decode(),wait_until='load',timeout=60000)
+  wait('window.HEWRS_READY || window.HEWRS_LOAD_ERROR',timeout=40000)
+  record('Exact standalone boots with real approved garment pixels',page.evaluate('!!window.HEWRS_READY'))
+  page.screenshot(path=str(R/'evidence/APP_PHONE_HOME.png'))
+  page.evaluate('''() => {window.pixelEqual=(a,b)=>{if(a.length!==b.length)return false;for(let i=0;i<a.length;i++)if(a[i]!==b[i])return false;return true;};window.pixels=()=>document.getElementById('avatar').getContext('2d').getImageData(0,0,996,2748).data;window.referenceCanvas=document.createElement('canvas');window.referenceRenderer=HEWRSActive50.create(referenceCanvas,HEWRS_INPUTS.manifest,HEWRSApp.resolveUrl);}''')
+  geometry=[]
+  for width,height in [(390,844),(375,667),(430,932),(1280,900)]:
+   page.set_viewport_size({'width':width,'height':height})
+   g=page.evaluate('''() => {const b=document.getElementById('avatar').getBoundingClientRect(),s=document.getElementById('stage').getBoundingClientRect(),n=document.querySelector('.bottom-nav').getBoundingClientRect();return {width:innerWidth,height:innerHeight,canvas:{x:b.x,y:b.y,width:b.width,height:b.height,bottom:b.bottom},stageBottom:s.bottom,navTop:n.top,horizontalOverflow:document.documentElement.scrollWidth>innerWidth,fullCanvasWithinViewport:b.y>=0&&b.bottom<=n.top&&b.right<=innerWidth,canvasSize:[document.getElementById('avatar').width,document.getElementById('avatar').height]};}''')
+   geometry.append(g)
+  record('Full native canvas stays above navigation at four screen sizes',all(g['fullCanvasWithinViewport'] and not g['horizontalOverflow'] and g['canvasSize']==[996,2748] for g in geometry),geometry)
+  page.set_viewport_size({'width':390,'height':844})
+  # Exercise selected source-profile families in tied/no-tie states, comparing real
+  # new-frame pixels to a separate instance of the unmodified source renderer.
+  rows=page.evaluate('''async () => {
+   const app=HEWRSApp,m=HEWRS_INPUTS.manifest,rows=[];
+   for(const id of ['DS001','DS006','DS015','DS035','DS036','DS047','DS051','DS040','DS041','DS042','DS043']){for(const state of m.shirts[id].mode_policy==='NO_TIE_ONLY'?['NO_TIE']:['T017','NO_TIE']){
+    console.info('COMPARING',id,state);const s={suitId:'S05',shirtId:id,state,shoeId:'shoe-8',watchId:null};await app.apply(s,{save:false});
+    const actual=pixels();await referenceRenderer.render({suitId:'S05',shirtId:id,state});
+    const expected=referenceCanvas.getContext('2d').getImageData(0,0,996,2748).data;
+    rows.push({shirtId:id,state,ready:app.state().selection.shirtId===id&&document.getElementById('avatar').dataset.status==='ready',sourcePixelsEqual:pixelEqual(actual,expected)});
+   }}return rows;
+  }''')
+  record('Eleven representative shirts execute through application binding; 18 frames match source pixels exactly',len(rows)==18 and all(x['ready'] and x['sourcePixelsEqual'] for x in rows),{'actual_frames':len(rows)})
+  capture.extend(rows)
+  ties=page.evaluate('''async () => {const out=[];for(const state of ['T001','T017','T022','T031','T044','T047']){await HEWRSApp.apply({suitId:'S05',shirtId:'DS035',state,shoeId:'shoe-8',watchId:null},{save:false});await referenceRenderer.render({suitId:'S05',shirtId:'DS035',state});out.push({shirtId:'DS035',state,sourcePixelsEqual:pixelEqual(pixels(),referenceCanvas.getContext('2d').getImageData(0,0,996,2748).data)});}return out;}''')
+  record('Six representative DS035 ties execute with exact source pixels',len(ties)==6 and all(t['sourcePixelsEqual'] for t in ties));capture.extend(ties)
+  refs=page.evaluate('''async () => {const out=[];for(const [shirtId,state] of [['DS035','REFERENCE'],['DS051','T001'],['DS051','T022'],['DS051','T031'],['DS051','T047']]){await HEWRSApp.apply({suitId:'S05',shirtId,state,shoeId:'shoe-8',watchId:null},{save:false});await referenceRenderer.render({suitId:'S05',shirtId,state});out.push({shirtId,state,sourcePixelsEqual:pixelEqual(pixels(),referenceCanvas.getContext('2d').getImageData(0,0,996,2748).data)});}return out;}''')
+  record('DS035 reference and DS051 special arithmetic preserve exact source output',all(t['sourcePixelsEqual'] for t in refs));capture.extend(refs)
+  plans=page.evaluate('''() => {let n=0,bad=0;for(const sid of HEWRS_INPUTS.manifest.shirt_order){const b=HEWRS_INPUTS.sourceBindings.items.find(x=>x.item_key==='shirts:'+sid);for(const state of b.available_modes){const a=HEWRSApp.renderer.plan({suitId:'S05',shirtId:sid,state,shoeId:'shoe-8',watchId:null}),p=referenceRenderer.plan({suitId:'S05',shirtId:sid,state});if(JSON.stringify(a)!==JSON.stringify(p))bad++;n++;}}return {plans:n,differing:bad};}''')
+  record('All 2213 original layer plans stay exactly unchanged at shoe-8',plans=={'plans':2213,'differing':0},plans)
+  shoes=page.evaluate('''async () => {
+   const a=HEWRSApp,s={suitId:'S05',shirtId:'DS036',state:'T017',shoeId:'shoe-8',watchId:null};await a.apply(s,{save:false});const base=pixels().slice();
+   async function alpha(d){const im=new Image();await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=reject;im.src=a.resolveUrl(d);});const c=document.createElement('canvas');c.width=996;c.height=2748;const x=c.getContext('2d');x.drawImage(im,0,0);const v=x.getImageData(0,0,996,2748).data;c.width=c.height=1;return v;}
+   const old=await alpha(HEWRS_INPUTS.manifest.static.shoe),rows=[];
+   for(const shoeId of Object.keys(a.connection.shoeLayers)){
+    await a.apply({...s,shoeId},{save:false});const now=pixels(),mask=await alpha(a.connection.shoeLayers[shoeId]);let changed=0,outside=0;
+    for(let i=0;i<now.length;i+=4){if(now[i]!==base[i]||now[i+1]!==base[i+1]||now[i+2]!==base[i+2]||now[i+3]!==base[i+3]){changed++;if(!old[i+3]&&!mask[i+3])outside++;}}
+    rows.push({shoeId,ready:document.getElementById('avatar').dataset.shoeId===shoeId,changedPixels:changed,changedOutsideShoeAlphaUnion:outside});
+   }return rows;
+  }''')
+  record('All 35 registered shoes switch by exact ID; no pixels change outside shoe coverage',len(shoes)==35 and all(r['ready'] and not r['changedOutsideShoeAlphaUnion'] for r in shoes),{'shoe_renders':len(shoes)})
+  atomic=page.evaluate('''async () => {const before=pixels().slice(),previous=HEWRSApp.state().selection;const pending=HEWRSApp.apply({suitId:'S05',shirtId:'DS035',state:'T022',shoeId:'shoe-8',watchId:null},{save:false});const during={pixelEqual:pixelEqual(before,pixels()),sameVisibleIdentity:document.getElementById('avatar').dataset.shirtId===previous.shirtId};await pending;return during;}''')
+  record('Previous complete visible frame and identity remain during loading',all(atomic.values()),atomic)
+  failure=page.evaluate('''async () => {
+   const target=document.createElement('canvas');let fail=false;const wrapper=HEWRSAtomicRenderer.create(target,HEWRSApp.connection,{resolveUrl:d=>{if(fail&&d.sha256===HEWRSApp.connection.shoeLayers['shoe-6'].sha256)throw Error('EXPECTED_TEST_MISSING_ASSET');return HEWRSApp.resolveUrl(d);}});
+   const s={suitId:'S05',shirtId:'DS036',state:'T017',shoeId:'shoe-8',watchId:null};await wrapper.render(s);const old=target.getContext('2d').getImageData(0,0,996,2748).data;fail=true;let rejected=false;try{await wrapper.render({...s,shoeId:'shoe-6'});}catch(e){rejected=e.message==='EXPECTED_TEST_MISSING_ASSET';}const out={rejected,retained:pixelEqual(old,target.getContext('2d').getImageData(0,0,996,2748).data),lastUnchanged:wrapper.last().shoeId==='shoe-8',status:target.dataset.status};wrapper.cancel();target.width=target.height=1;return out;
+  }''')
+  record('Missing replacement asset fails closed without erasing previous outfit',failure['rejected'] and failure['retained'] and failure['lastUnchanged'] and failure['status']=='error-retained',failure)
+  rapid=page.evaluate('''async () => {const list=HEWRS_INPUTS.manifest.shirt_order.filter(id=>!HEWRSApp.connection.records[id].no_tie_only),promises=[];for(let i=0;i<20;i++)promises.push(HEWRSApp.apply({suitId:'S05',shirtId:list[i],state:'T017',shoeId:'shoe-8',watchId:null},{save:false}));const r=await Promise.all(promises);return {ready:r.filter(x=>x.status==='ready').length,cancelled:r.filter(x=>x.cancelled).length,final:HEWRSApp.state().selection.shirtId,expected:list[19]};}''')
+  record('Rapid 20-selection sequence commits only the last requested frame',rapid['ready']==1 and rapid['cancelled']==19 and rapid['final']==rapid['expected'],rapid)
+  # Actual visible controls, not just an alternate test API.
+  page.get_by_role('button',name='Anchor',exact=True).click();page.locator('#shirt-select').select_option('DS042')
+  record('No-tie-only shirt selector exposes NO_TIE only',page.locator('#tie-select option').count()==1 and page.locator('#tie-select').input_value()=='NO_TIE')
+  page.locator('#apply-selection').click();wait('HEWRSApp.state().selection.shirtId==="DS042" && document.getElementById("avatar").dataset.status==="ready"')
+  record('No-tie source-description hold does not block actual manual UI preview',page.evaluate('HEWRSApp.state().selection.shirtId==="DS042"'))
+  page.get_by_role('button',name='Engine',exact=True).click();page.locator('#shirt-select').select_option('DS046');page.locator('#tie-select').select_option('ANY');page.locator('#shoe-select').select_option('shoe-8');page.locator('#watch-select').select_option('watch-R01');page.locator('#local-date').fill('2026-09-21');page.locator('#apply-selection').click()
+  wait('HEWRSApp.state().report && HEWRSApp.state().optionCount>0 && !document.getElementById("stage").classList.contains("busy")',timeout=40000)
+  eng=page.evaluate('({selection:HEWRSApp.state().selection,status:HEWRSApp.state().report.status,options:HEWRSApp.state().optionCount,events:HEWRSApp.store.snapshot().events.length,display:document.getElementById("representation").textContent})')
+  record('Engine UI uses live controller result and real approved rendered selection',eng['selection']['shirtId']=='DS046' and eng['options']>0 and eng['selection']['watchId']=='watch-R01',eng)
+  record('Watch metadata explicitly says selected, not rendered', 'selected, not rendered' in eng['display'])
+  record('Generate and browsing never manufacture wear events',eng['events']==0)
+  page.screenshot(path=str(R/'evidence/APP_PHONE_ENGINE.png'))
+  page.get_by_role('button',name='Outfits',exact=True).click();record('Outfits tab has one rendered-selection action per actual result',page.locator('#results article').count()==eng['options']);page.locator('#results article button').nth(1).click();wait('!document.getElementById("stage").classList.contains("busy")')
+  page.get_by_role('button',name='Record wear',exact=True).click();record('Opening confirmation dialog does not log wear',page.evaluate('HEWRSApp.store.snapshot().events.length===0'));page.locator('#wear-date').fill('2026-09-21');page.get_by_role('button',name='Confirm worn',exact=True).click();record('Explicit UI wear confirmation adds one exact-ID record',page.evaluate('HEWRSApp.store.snapshot().events.length===1'))
+  record('Logging wear invalidates old rotation recommendations without clearing the avatar',page.evaluate('HEWRSApp.state().optionCount===0 && HEWRSApp.state().origin==="manual" && document.getElementById("avatar").dataset.status==="ready"'))
+  page.get_by_role('button',name='Rotation',exact=True).click();record('Rotation tab shows the actual local wear entry',page.locator('#history-list article').count()==1)
+  page.get_by_role('button',name='Backup',exact=True).click()
+  with page.expect_download() as d:
+   page.get_by_role('button',name='Export local backup',exact=True).click()
+  temp=R/'evidence/BROWSER_TEST_BACKUP.json';d.value.save_as(str(temp));exported=json.loads(temp.read_text());record('Export uses actual JSON download with the recorded IDs',len(exported['events'])==1 and exported['events'][0]['items']['topwear']['id']=='suit-4')
+  page.locator('#backup-file').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':b'{"__hewrs_backup":1,"ledger":"[]"}'})
+  wait('document.getElementById("backup-error").textContent.length>0');record('Legacy backup is rejected by the real upload handler without overwriting records',page.locator('#confirm-restore').is_disabled() and page.evaluate('HEWRSApp.store.snapshot().events.length===1'))
+  page.locator('#backup-file').set_input_files(str(temp));wait('!document.getElementById("confirm-restore").disabled');record('Valid import preview does not alter records',page.evaluate('HEWRSApp.store.snapshot().events.length===1'));page.locator('#confirm-restore').click();wait('!document.getElementById("backup-dialog").open');record('Explicit restore returns the validated local selection and ledger',page.evaluate('HEWRSApp.store.snapshot().events.length===1'))
+  page.get_by_role('button',name='Wardrobe',exact=True).click();record('Wardrobe tab contains all 50 shirt records',page.locator('#wardrobe-list article').count()==50);page.locator('#wardrobe-category').select_option('shoes');record('Wardrobe displays exactly 35 registered-shoe bindings without filling gaps',page.locator('#wardrobe-list article').count()==35);page.locator('#wardrobe-category').select_option('pants');record('24 trouser records stay visible as bindings rather than inferred physical scores',page.locator('#wardrobe-list article').count()==24)
+  record('No unexpected JavaScript errors',not errors,errors);record('Standalone has no external resource requests',not network,network)
+  result={'schema':'hewrs.connected-app.browser-tests.v1','passed':sum(c['status']=='PASS' for c in checks),'failed':sum(c['status']=='FAIL' for c in checks),'checks':checks,
+   'transport':'Exact standalone HTML loaded with Playwright set_content; assets embedded; no page resource replacement',
+   'browser_version':browser.version,'elapsed_seconds':round(time.monotonic()-start,2),'render_comparisons':capture,'registered_shoe_checks':shoes,
+   'storage_scope':'Real UI export/import/wear handlers executed in memory-only opaque origin; native persistence tested through interface unit tests, not claimed as hosted reload.',
+   'standalone_sha256':standalone_digest,'not_tested':['Hosted delivery','Physical iPhone','Safari','Full 2213-state new browser sweep','Other suit/blazer combinations','Watch image layers']}
+  (R/'evidence/BROWSER_TESTS.json').write_text(json.dumps(result,indent=2));print(json.dumps({k:result[k] for k in ['passed','failed','elapsed_seconds','standalone_sha256']}),flush=True)
+ finally:
+  browser.close()
+if any(c['status']=='FAIL' for c in checks):raise SystemExit(1)

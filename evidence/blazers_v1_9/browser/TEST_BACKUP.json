@@ -1,0 +1,59 @@
+{
+  "schema": "hewrs.connected-app.local.v1",
+  "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "revision": 4,
+  "session": {
+    "selection": {
+      "blazerId": "B14",
+      "pantId": "PN007",
+      "shirtId": "DS001",
+      "state": "T022",
+      "shoeId": "shoe-8",
+      "watchId": null
+    },
+    "origin": "manual",
+    "mode": "anchor",
+    "localDate": "2026-09-23",
+    "context": {
+      "occasion": "clinic",
+      "requiredFormality": "any"
+    }
+  },
+  "events": [
+    {
+      "id": "wear_1790129572649_8ad3c8eb8fda4",
+      "localDate": "2026-09-23",
+      "date": "2026-09-23",
+      "confirmed": true,
+      "origin": "manual",
+      "controlledRepetition": false,
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14"
+        },
+        "shirt": {
+          "id": "shirt-DS001"
+        },
+        "tie": {
+          "id": "T022"
+        },
+        "shoes": {
+          "id": "shoe-8"
+        },
+        "watch": null,
+        "pants": {
+          "id": "pants-PN007"
+        }
+      },
+      "canonical_selection": {
+        "blazerId": "B14",
+        "pantId": "PN007",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516"
+    }
+  ]
+}

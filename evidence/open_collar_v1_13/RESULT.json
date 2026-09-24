@@ -1,0 +1,74 @@
+{
+  "release": "V1.13",
+  "complete_product_release": false,
+  "connected_shirts_outside_suits": [
+    "DS001",
+    "DS014"
+  ],
+  "new_modes": {
+    "blazers": "All14, both shirts, NO_TIE plus47ties; Engine and Anchor",
+    "shirt_only": "Both shirts, NO_TIE plus47ties, Anchor only"
+  },
+  "source_identity": "Exact CP25 full-shirt and all12 current component pairs match; separate IDs retained.",
+  "new_image_operation": "One source-derived no-tie full-shirt layer. It reconstructs original DS001 pre-tie chest and uses the current open collar; not a recovered original, not model-generated imagery.",
+  "new_asset": {
+    "path": "assets/bf144ba9d31a8f1234bf5a308d98b44facd495d2b53c5b4383e256ea35bfa3df.png",
+    "sha256": "bf144ba9d31a8f1234bf5a308d98b44facd495d2b53c5b4383e256ea35bfa3df",
+    "bytes": 459577,
+    "canvas": [
+      996,
+      2748
+    ],
+    "role": "DS001_DS014_SOURCE_DERIVED_OPEN_COLLAR_FULL_SHIRT"
+  },
+  "functional": {
+    "passed": 21,
+    "failed": 0,
+    "blazer_route_requests": 1344,
+    "shirt_only_route_requests": 96,
+    "no_tie_engine_comparisons": 420,
+    "profile_bound_trousers": 15,
+    "unscored_manual_trousers": 9
+  },
+  "browser": {
+    "passed": 18,
+    "failed": 0,
+    "new_no_tie_native_component_comparisons": 87,
+    "shared_tie_visual_alias_comparisons": 94,
+    "previous_route_pixel_equalities": 36,
+    "page_errors": [],
+    "transport": "Actual packaged scripts and image bytes in Chromium via in-memory loader; no hosted/physical device or browser restart certification.",
+    "script": "tests/open-collar-browser.py",
+    "first_attempt": "Native comparisons completed; string wait predicate was blocked by CSP. Changed harness to function predicate, without changing app CSP, and reran the full suite."
+  },
+  "preservation": {
+    "unchanged_original_asset_and_assembly_pngs": 610,
+    "new_runtime_asset_pngs": 1,
+    "original_score_data_unchanged": true,
+    "current_avatar_unchanged": true,
+    "existing_suit_renderers_unchanged": true,
+    "facelift_files_unchanged": true,
+    "saved_data_schema_and_code_unchanged": true,
+    "physical_IDs_renumbered": false,
+    "watch_ID_name_display": "preserved; images deferred"
+  },
+  "implementation_changes": [
+    "README.md",
+    "data/blazer-connection.js",
+    "data/blazer-connection.json",
+    "data/shirt-only.js",
+    "data/shirt-only.json",
+    "src/b01-b02-renderer.js",
+    "src/blazer-connection.js",
+    "src/shirt-only-connection.js"
+  ],
+  "remaining": [
+    "Other48 shirts in blazer and shirt-only modes",
+    "Shirt-only numerical ranking not installed",
+    "Existing score-source and previously documented UI limitations",
+    "Hosted and physical-iPhone/Safari tests, real-origin browser-restart persistence"
+  ],
+  "visual_limit": "Original sleeve transitions and upper-trouser waistband are unretouched. Pixel agreement with reference composition is not owner visual approval.",
+  "github_write": false,
+  "deployment": false
+}

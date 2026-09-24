@@ -1,0 +1,110 @@
+'use strict';
+// Tests of the V1.4 Engine connection. No new scorer or image transformation.
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const R=path.resolve(__dirname,'..'),E=R+'/evidence/engine_v1_4';
+const data=JSON.parse(fs.readFileSync(R+'/data/inputs.json'));
+const scripts=['vendor/hewrs-logic.js','vendor/approved-scores.js','vendor/ensemble-completion.js','vendor/release-guards.js','vendor/request-contract.js','src/controller.js','vendor/watch-classification.js','src/canonical-bindings-browser.js','data/approved-suits.js','src/suit-resolver97-browser.js','src/approved-suit-sources.js','data/suit-assembly.js','data/ds035-coverage.js','data/ds035-edge.js','src/suit-assemblies.js','src/connection.js','src/local-state.js'];
+function environment(baseline=false){
+ const c=vm.createContext({console,structuredClone,Date,Math,JSON,setTimeout,clearTimeout,Uint8ClampedArray});
+ for(const file of scripts){const f=baseline&&file==='src/connection.js'?E+'/baseline_connection.js.txt':R+'/'+file;vm.runInContext(fs.readFileSync(f,'utf8'),c,{filename:file});}
+ c.HEWRS_INPUT_SHA256=crypto.createHash('sha256').update(fs.readFileSync(R+'/data/inputs.json')).digest('hex');
+ return {c,app:c.HEWRSCleanConnection.create(data)};
+}
+const {c,app}=environment(),original=environment(true).app,checks=[],rows=[];
+const eq=(a,b)=>assert.equal(JSON.stringify(a),JSON.stringify(b));
+function check(name,fn){try{fn();checks.push({name,pass:true});}catch(e){checks.push({name,pass:false,error:e.stack});}}
+async function asyncCheck(name,fn){try{await fn();checks.push({name,pass:true});}catch(e){checks.push({name,pass:false,error:e.stack});}}
+const base={shirt:'DS035',tie:'ANY',shoeId:'shoe-8',watchId:null,localDate:'2026-09-22',occasion:'clinic',formality:'any',style:'AUTO'};
+const before=JSON.stringify(data),wide=app.assemblies.widerDS035SuitIds;
+check('Exact 18 suit order exposed to Engine; four unrestricted routes retained',()=>{
+ eq(app.limits.engine_suit_ids,app.suitSources.ids);eq(app.limits.suits,['S01','S04','S05','S16']);assert.equal(app.limits.engine_wider_shirt_lock,'DS035');assert.equal(wide.length,14);
+});
+let evaluated=0,accepted=0,held=0,anyOptions=0;
+for(const suitId of wide){
+ check(suitId+' Engine selects only exact DS035; old controller numerical results unchanged',()=>{
+  const q=app.makeRequest({...base,suitId});const r=app.controller.generate(q,app.catalogue,[]),old=original.controller.generate(q,original.catalogue,[]);
+  assert.equal(q.topwear.id,app.aliases.get(suitId));assert.equal(q.shirt.mode,'item');assert.equal(q.shirt.id,'shirt-DS035');
+  assert.equal(r.diagnostics.examined,48);assert.ok(r.options.length>0);eq(r,old);
+  for(const o of r.options){const b=app.selectionFromOption(o,q);assert.equal(b.selection.suitId,suitId);assert.equal(b.selection.shirtId,'DS035');assert.equal(b.selection.shoeId,base.shoeId);eq(b.binding.compatibility,o._hewrsConnected.compatibility);}
+  anyOptions+=r.options.length;rows.push({suitId,examined:r.diagnostics.examined,options:r.options.length,first:r.options[0]._hewrsConnected.compatibility.ids,baseline_report_equal:true});
+ });
+ check(suitId+' all 48 explicit modes keep existing scoring outcomes and exact identities',()=>{
+  for(const tie of ['NO_TIE',...Object.keys(data.manifest.ties)]){
+   const q=app.makeRequest({...base,suitId,tie});const r=app.controller.generate(q,app.catalogue,[]),old=original.controller.generate(q,original.catalogue,[]);eq(r,old);assert.equal(r.diagnostics.examined,1);evaluated++;
+   if(r.options.length){assert.equal(r.options.length,1);const b=app.selectionFromOption(r.options[0],q);eq(b.selection,{suitId,shirtId:'DS035',state:tie,shoeId:'shoe-8',watchId:null});accepted++;}else held++;
+  }
+ });
+}
+let invalid=0;
+check('686 other-shirt, 42 unspecified/category, and 14 retained-reference Engine requests reject before generation',()=>{
+ for(const suitId of wide){
+  for(const shirt of data.manifest.shirt_order.filter(x=>x!=='DS035')){assert.throws(()=>app.makeRequest({...base,suitId,shirt}));invalid++;}
+  for(const shirt of [undefined,'ANY','FAMILY:cream']){assert.throws(()=>app.makeRequest({...base,suitId,shirt}));invalid++;}
+  assert.throws(()=>app.makeRequest({...base,suitId,tie:'REFERENCE'}));invalid++;
+ }
+ assert.equal(invalid,742);
+});
+check('Known historical DS035 alias is explicit, never inferred from category',()=>{
+ const q=app.makeRequest({...base,suitId:'S11',shirt:'shirt-DS035'});assert.equal(q.shirt.id,'shirt-DS035');
+ for(const shirt of ['ds035','DS35','DS035 ','shirt-DS036','__proto__','FAMILY:white'])assert.throws(()=>app.makeRequest({...base,suitId:'S11',shirt}));
+});
+check('Unknown suits, ties and footwear are rejected',()=>{
+ for(const x of [{suitId:'S19'},{tie:'T048'},{shoeId:'shoe-50'},{watchId:'watch-unknown'}])assert.throws(()=>app.makeRequest({...base,suitId:'S11',...x}),JSON.stringify(x));
+});
+check('Existing four Engine routes preserve request and full result with free shirt selection',()=>{
+ for(const suitId of app.limits.suits){const cfg={...base,suitId,shirt:'ANY',tie:'T017'},q=app.makeRequest(cfg);eq(q,original.makeRequest(cfg));eq(app.controller.generate(q,app.catalogue,[]),original.controller.generate(q,original.catalogue,[]));}
+});
+check('Explicit tie family filter reaches old controller unchanged',()=>{
+ const q=app.makeRequest({...base,suitId:'S11',tie:'FAMILY:navy'});assert.equal(q.tie.mode,'category');assert.equal(q.tie.category,'navy');const r=app.controller.generate(q,app.catalogue,[]);eq(r,original.controller.generate(q,original.catalogue,[]));for(const o of r.options)assert.equal(o.items.tie.colorFamily,'navy');
+});
+check('No numerical candidate is fabricated for a forbidden setting',()=>{
+ const q=app.makeRequest({...base,suitId:'S11',tie:'NO_TIE',formality:'tie_required'});const r=app.controller.generate(q,app.catalogue,[]);assert.equal(r.options.length,0);eq(r,original.controller.generate(q,original.catalogue,[]));
+});
+check('Cached candidates reject changed suit, shirt, tie, shoe, watch and context locks',()=>{
+ const q=app.makeRequest({...base,suitId:'S11'}),r=app.controller.generate(q,app.catalogue,[]),o=r.options[0];
+ for(const cfg of [{suitId:'S02'},{suitId:'S05',shirt:'DS036'},{tie:'NO_TIE'},{shoeId:'shoe-6'},{watchId:'watch-R01'},{occasion:'hospital'}]){
+  const changed=app.makeRequest({...base,suitId:'S11',...cfg});assert.throws(()=>app.selectionFromOption(o,changed));
+ }
+});
+check('Forged output canonical identity and score cannot be rebound',()=>{
+ const q=app.makeRequest({...base,suitId:'S11'}),r=app.controller.generate(q,app.catalogue,[]);
+ for(const mutate of [o=>o.items.shirt.id='shirt-DS036',o=>o.items.topwear.id='suit-4',o=>o._hewrsConnected.compatibility.score=0,o=>o._hewrsConnected.compatibility.ids.topwear='S05']){
+  const o=structuredClone(r.options[0]);mutate(o);assert.throws(()=>app.selectionFromOption(o,q));
+ }
+});
+check('All 35 explicit footwear choices and selected watch metadata bind without score change',()=>{
+ for(const shoeId of Object.keys(app.shoeLayers)){
+  const q=app.makeRequest({...base,suitId:'S11',tie:'T017',shoeId,watchId:'watch-R01'}),r=app.controller.generate(q,app.catalogue,[]);eq(r,original.controller.generate(q,original.catalogue,[]));
+  for(const o of r.options){const s=app.selectionFromOption(o,q);assert.equal(s.selection.shoeId,shoeId);assert.equal(s.selection.watchId,'watch-R01');assert.equal(s.representation.selected_watch_rendered,false);}
+ }
+});
+function db(){const map=new Map([['hewrs:production:sentinel','unchanged']]);return {map,getItem(k){return map.get(k)??null},setItem(k,v){map.set(k,v)}};}
+check('Engine wear recording and backup keep canonical IDs, historical IDs and existing source lock',()=>{
+ const backend=db(),store=c.HEWRSLocalState.create(app,c.HEWRS_INPUT_SHA256,backend);
+ for(const suitId of wide){
+  const q=app.makeRequest({...base,suitId}),r=app.controller.generate(q,app.catalogue,[]),s=app.selectionFromOption(r.options[0],q).selection;
+  store.saveSession({selection:s,origin:'engine',mode:'engine',localDate:base.localDate,context:q.context});assert.equal(store.snapshot().events.length,wide.indexOf(suitId));
+  const event=app.createHistoryEvent(s,{id:'test_engine_'+suitId,localDate:base.localDate,origin:'engine'});store.addEvent(event);assert.equal(event.items.topwear.id,app.aliases.get(suitId));assert.equal(event.canonical_selection.suitId,suitId);
+ }
+ const saved=store.exportText(),reopened=c.HEWRSLocalState.create(app,c.HEWRS_INPUT_SHA256,backend);eq(reopened.snapshot(),store.snapshot());eq(store.previewImport(saved).events,store.snapshot().events);assert.equal(store.snapshot().events.length,14);assert.equal(backend.map.get('hewrs:production:sentinel'),'unchanged');
+});
+check('V1.3 Anchor backup restores unchanged in V1.4; original backup accepted on return',()=>{
+ const prior=c.HEWRSLocalState.create(original,c.HEWRS_INPUT_SHA256,null),now=c.HEWRSLocalState.create(app,c.HEWRS_INPUT_SHA256,null);
+ prior.saveSession({selection:{suitId:'S11',shirtId:'DS035',state:'T017',shoeId:'shoe-8',watchId:null},origin:'manual',mode:'anchor',localDate:base.localDate,context:{occasion:'clinic',requiredFormality:'any'}});
+ now.restore(now.previewImport(prior.exportText()));eq(now.snapshot().session,prior.snapshot().session);assert.equal(now.snapshot().events.length,0);eq(prior.previewImport(now.exportText()).session,prior.snapshot().session);
+});
+check('Existing local rotation report unchanged for confirmed wider-suit wear history',()=>{
+ const q=app.makeRequest({...base,suitId:'S11'}),r=app.controller.generate(q,app.catalogue,[]),s=app.selectionFromOption(r.options[0],q).selection,history=[app.createHistoryEvent(s,{id:'test_previous_wear',localDate:'2026-09-21',origin:'engine'})];
+ eq(app.controller.generate(q,app.catalogue,history),original.controller.generate(q,original.catalogue,history));
+});
+check('No asset, scoring, or source input changes induced by any test',()=>assert.equal(JSON.stringify(data),before));
+(async()=>{
+ await asyncCheck('Async Engine result is identical to synchronous result on every wider suit',async()=>{
+  for(const suitId of wide){const q=app.makeRequest({...base,suitId});eq(await app.controller.generateAsync(q,app.catalogue,[]),app.controller.generate(q,app.catalogue,[]));}
+ });
+ await asyncCheck('Already cancelled generation produces no options',async()=>{
+  const q=app.makeRequest({...base,suitId:'S11'}),r=await app.controller.generateAsync(q,app.catalogue,[],{isCancelled:()=>true});assert.equal(r.status,'cancelled');assert.equal(r.options.length,0);
+ });
+ const out={schema:'hewrs.engine-wide.tests.v1_4',passed:checks.filter(x=>x.pass).length,failed:checks.filter(x=>!x.pass).length,checks,request_rows:rows,explicit_mode_requests_evaluated:evaluated,explicit_mode_requests_with_candidate:accepted,explicit_mode_requests_without_candidate:held,ANY_returned_options:anyOptions,invalid_request_cases:invalid,baseline_comparison:'Identical original V1.3 controller and scoring fed the same validated request; numerical behavior not changed',new_image_operations:0};
+ fs.writeFileSync(E+'/FUNCTIONAL.json',JSON.stringify(out,null,2)+'\n');console.log(JSON.stringify({passed:out.passed,failed:out.failed,evaluated,accepted,held,invalid,failures:checks.filter(x=>!x.pass)}));if(out.failed)process.exitCode=1;
+})();

@@ -1,0 +1,8 @@
+{
+  "first_launch": "Stopped during in-memory asset injection; no browser pass was recorded",
+  "cause": "Test injection expression returned the entire growing base64 map unnecessarily",
+  "change": "Use a statement body with no return for batched injection; no application, CSP, renderer or asset changes",
+  "second_launch": "Active source test entry point uses the corrected harness",
+  "oracle_conversion": "The initial comparator returned pre-canvas CPU bytes. It now round-trips through a canvas, as the actual displayed renderer does. Equality remains exact; no pixel tolerance was added. The diagnostic failure is retained in BROWSER_ORACLE_PRE_CANVAS.json. No application code changed for this comparator fix.",
+  "ui_wait": "After all 690 pixel comparisons passed, a test wait using string eval was blocked by the unchanged app CSP. Wait predicates were changed to functions; CSP and app code were not weakened. RENDER_SWEEP_RUN.json retains the complete original run. UI-only retry does not repeat or claim a second 690-render sweep."
+}

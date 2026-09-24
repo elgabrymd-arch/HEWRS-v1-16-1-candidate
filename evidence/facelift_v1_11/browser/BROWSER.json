@@ -1,0 +1,557 @@
+{
+  "scope": "Actual packaged scripts and PNG bytes in memory-loaded Chromium. Reopen tests use an explicit memory-backed storage fixture; not hosted, native iOS/Safari or real-browser restart persistence.",
+  "passed": 48,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V1.11 loads without errors",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Opening writes no storage or production key",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "One router nav, one native canvas, unique DOM identifiers",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Original palette tokens match handoff",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "No ancestor filter/blend/opacity changes garment colors",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Item click remains draft until Apply",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Escape cancels and restores tile focus",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Apply changes only the selected category",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Incompatible exact draft is cleared on filter change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "No Tie stays distinct from Engine",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Context Cancel does not commit",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Style maps to existing CLASSIC value",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "All 36 directed category-opening pairs keep current identities isolated",
+      "pass_": true,
+      "detail": 36
+    },
+    {
+      "name": "Picker browsing/cancel creates no anchors or wear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Watch accepts ID/name without photo",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Suit includes trousers but preserves dormant separate selection",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Blazer restores same independent Bottoms",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Reset Cancel preserves preferences",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Anchor without choices does not invent S05/shoes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Generate uses real Engine and current renderer",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Actual /10 score and watch ID/name displayed",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Returning Home restores producing preferences",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Regenerate retains same producing inputs",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Generation/navigation never log wear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "All nine current catalogue groups remain, including Jeans/T-Shirts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Watch details show name/ID without made-up image",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Wardrobe browse leaves preferences/history unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Both Log controls share one confirmation",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Repeated same-confirmation activation creates one event",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Logged event retains current exact IDs",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Import preview does not write",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Cancelling import retains exact saved bytes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Invalid import keeps history unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit restore uses inherited validation and keeps event identities",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Clear Cancel preserves wear data",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Production sentinel unaffected",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Fresh document restores existing schema via memory storage fixture",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "All 17 native render comparisons match V1.10 pixel-for-pixel",
+      "pass_": true,
+      "detail": {
+        "count": 17,
+        "canvas": [
+          996,
+          2748
+        ]
+      }
+    },
+    {
+      "name": "Unsupported source request retains prior native frame",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Empty scoring output hides the previous frame as a new result",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Cancellation uses existing generator tokens",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Nine normal portrait Home layouts fit without clipping/scroll",
+      "pass_": true,
+      "detail": [
+        {
+          "width": 320,
+          "height": 640,
+          "homeWidth": 284.796875,
+          "client": 516,
+          "scroll": 516,
+          "generateBottom": 531.90625,
+          "navTop": 585,
+          "docWidth": 320
+        },
+        {
+          "width": 360,
+          "height": 740,
+          "homeWidth": 320.390625,
+          "client": 602,
+          "scroll": 602,
+          "generateBottom": 583.609375,
+          "navTop": 685,
+          "docWidth": 360
+        },
+        {
+          "width": 375,
+          "height": 667,
+          "homeWidth": 333.75,
+          "client": 543,
+          "scroll": 543,
+          "generateBottom": 546.296875,
+          "navTop": 612,
+          "docWidth": 375
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "homeWidth": 347.09375,
+          "client": 706,
+          "scroll": 706,
+          "generateBottom": 583.609375,
+          "navTop": 789,
+          "docWidth": 390
+        },
+        {
+          "width": 393,
+          "height": 852,
+          "homeWidth": 349.765625,
+          "client": 714,
+          "scroll": 714,
+          "generateBottom": 583.609375,
+          "navTop": 797,
+          "docWidth": 393
+        },
+        {
+          "width": 402,
+          "height": 874,
+          "homeWidth": 357.765625,
+          "client": 736,
+          "scroll": 736,
+          "generateBottom": 583.609375,
+          "navTop": 819,
+          "docWidth": 402
+        },
+        {
+          "width": 414,
+          "height": 896,
+          "homeWidth": 368.453125,
+          "client": 758,
+          "scroll": 758,
+          "generateBottom": 583.609375,
+          "navTop": 841,
+          "docWidth": 414
+        },
+        {
+          "width": 430,
+          "height": 932,
+          "homeWidth": 382.6875,
+          "client": 794,
+          "scroll": 794,
+          "generateBottom": 583.609375,
+          "navTop": 877,
+          "docWidth": 430
+        },
+        {
+          "width": 440,
+          "height": 956,
+          "homeWidth": 391.59375,
+          "client": 818,
+          "scroll": 818,
+          "generateBottom": 583.609375,
+          "navTop": 901,
+          "docWidth": 440
+        }
+      ]
+    },
+    {
+      "name": "Approved 89% Home column retained",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Native modal keyboard focus stays contained",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Short landscape sheet keeps Apply reachable",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Synthetic large text preserves access to Apply via scrolling",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "No unexpected script errors",
+      "pass_": true,
+      "detail": []
+    },
+    {
+      "name": "No-script Home remains visible and honestly unavailable",
+      "pass_": true,
+      "detail": null
+    }
+  ],
+  "native_render_comparisons": [
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "9a6c873adbbd2b196169041b46adec5674eba4c3555ab2ed2eb50a42b9457896",
+      "after_rgba_sha256": "9a6c873adbbd2b196169041b46adec5674eba4c3555ab2ed2eb50a42b9457896",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "3600886a06d8ce1974a7076c68af167698fec49a3df7407f6a5513a87f6ff90a",
+      "after_rgba_sha256": "3600886a06d8ce1974a7076c68af167698fec49a3df7407f6a5513a87f6ff90a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "REFERENCE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "3071097d30b9901cb74b1423fd5787220f42c9f4ff6e01f8c958c8a20c21b7ab",
+      "after_rgba_sha256": "3071097d30b9901cb74b1423fd5787220f42c9f4ff6e01f8c958c8a20c21b7ab",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS051",
+        "state": "T001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "2efaf7948f28f5c9840e57c094fe84a8d919277055340888a994857575d20785",
+      "after_rgba_sha256": "2efaf7948f28f5c9840e57c094fe84a8d919277055340888a994857575d20785",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS017",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "4cc8a7053a3447628f2abb104805fda576e964e9095609eeb3dbe2670c4bac05",
+      "after_rgba_sha256": "4cc8a7053a3447628f2abb104805fda576e964e9095609eeb3dbe2670c4bac05",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "6785af20df139902c46048c7952d60283cb53d6b2e91aa7375f2f00dc0851121",
+      "after_rgba_sha256": "6785af20df139902c46048c7952d60283cb53d6b2e91aa7375f2f00dc0851121",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "cef7fe4532ceb8d67b144c64427048fd21f38e5f2b2360fdc88dd3cab90b54eb",
+      "after_rgba_sha256": "cef7fe4532ceb8d67b144c64427048fd21f38e5f2b2360fdc88dd3cab90b54eb",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS036",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "1ad6f8e3a5a97f78c4e8a01ec4e6c92d251abe831570b4454041f285e93f2186",
+      "after_rgba_sha256": "1ad6f8e3a5a97f78c4e8a01ec4e6c92d251abe831570b4454041f285e93f2186",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS041",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "60cc97d4a6a4d1245c0b86c981f0740a85f72c99f8c06d4d6ebdadc1136e0b02",
+      "after_rgba_sha256": "60cc97d4a6a4d1245c0b86c981f0740a85f72c99f8c06d4d6ebdadc1136e0b02",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS047",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "6ff5d59378f5ae2707405caf087a58467314099d66518a19e3302fcd6a5d1aae",
+      "after_rgba_sha256": "6ff5d59378f5ae2707405caf087a58467314099d66518a19e3302fcd6a5d1aae",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS015",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "ea8cfc74cb6fd4abd382fe2ed03d74c159b955ae3ff9f72450fcedd02abe3cda",
+      "after_rgba_sha256": "ea8cfc74cb6fd4abd382fe2ed03d74c159b955ae3ff9f72450fcedd02abe3cda",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS051",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "75ed887851e87c46aa53e04ac268db9b2c7229b0d32d9b459f08b78ff514ce6a",
+      "after_rgba_sha256": "75ed887851e87c46aa53e04ac268db9b2c7229b0d32d9b459f08b78ff514ce6a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "after_rgba_sha256": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B06",
+        "pantId": "PN007",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-6",
+        "watchId": "watch-P05"
+      },
+      "before_rgba_sha256": "ea50a1eef31daae4c585e6859d1214e81e411d3b900d8ec906faae7f6e3c6201",
+      "after_rgba_sha256": "ea50a1eef31daae4c585e6859d1214e81e411d3b900d8ec906faae7f6e3c6201",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PT001",
+        "shirtId": "DS001",
+        "state": "T001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "545e6ad630b6a9f9cec51023d539aef3ecc4aecf0b7f332ae0216e94bc324181",
+      "after_rgba_sha256": "545e6ad630b6a9f9cec51023d539aef3ecc4aecf0b7f332ae0216e94bc324181",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_rgba_sha256": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "after_rgba_sha256": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PN007",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-6",
+        "watchId": null
+      },
+      "before_rgba_sha256": "b691969df8ca16b5acb585813a44e5e0b57a59674be9fb155993d9855aba2de5",
+      "after_rgba_sha256": "b691969df8ca16b5acb585813a44e5e0b57a59674be9fb155993d9855aba2de5",
+      "equal": true
+    }
+  ],
+  "page_errors": [],
+  "seconds": 56.55
+}

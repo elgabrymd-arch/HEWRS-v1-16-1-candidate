@@ -1,0 +1,44 @@
+{
+  "scope": "Actual UI callbacks in in-memory Chromium; download capture and explicit storage fixture, not a physical phone or browser restart. Test event only; not owner wear data.",
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Backdrop discards draft without modifying Home",
+      "passed": true
+    },
+    {
+      "name": "Real confirmation records one exact event",
+      "passed": true
+    },
+    {
+      "name": "Actual export button downloads exact current-format backup",
+      "passed": true
+    },
+    {
+      "name": "Confirmed Clear changes only local events and retains session",
+      "passed": true
+    },
+    {
+      "name": "Exported backup restores the exact event after explicit confirmation",
+      "passed": true
+    },
+    {
+      "name": "Concurrent source revision prevents stale Clear",
+      "passed": true
+    },
+    {
+      "name": "No prototype weather is substituted",
+      "passed": true
+    },
+    {
+      "name": "No prototype season eligibility is introduced",
+      "passed": true
+    },
+    {
+      "name": "No JavaScript errors",
+      "passed": true
+    }
+  ],
+  "page_errors": []
+}

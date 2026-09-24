@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Connected application V1.10</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<link rel="stylesheet" href="src/application.css"></head><body><div id="app">
+<header class="app-header"><div><div class="brand">HEWRS</div><div class="version">CONNECTED APPLICATION · V1.10</div></div><div class="header-tools"><button class="small-btn" id="details-button">Details</button><button class="small-btn" id="data-button">Backup</button></div></header>
+<main class="tab-page home-page" id="page-home">
+<div class="mode-bar"><div class="mode-buttons" role="group" aria-label="Selection workflow"><button id="mode-engine" aria-pressed="false">Engine</button><button id="mode-anchor" aria-pressed="true">Anchor</button></div><button id="open-controls" class="primary">Choose</button></div>
+<div class="identity"><strong id="selection-ids">S05 · DS036 · T017</strong><span id="selection-origin">Your selection</span></div>
+<p class="status" id="status" role="status" aria-live="polite">Loading approved source layers…</p>
+<div class="canvas-stage" id="stage"><canvas id="avatar" width="996" height="2748" aria-label="Full-body HEWRS avatar with selected garments"></canvas><span class="loading-chip">Loading next outfit</span></div>
+<div class="stage-controls"><button id="full-view" aria-pressed="true">Full avatar</button><button id="detail-view" aria-pressed="false">Collar</button><button id="record-wear">Record wear</button></div>
+<p class="source-note" id="representation">Registered suit connection · original layers and coordinates. Watches are selection records, not rendered layers.</p>
+</main>
+<main class="tab-page" id="page-outfits" hidden><h1>Outfits</h1><p class="caption" id="outfit-summary">Engine results appear here. No score is needed to view a valid manual selection.</p><div id="results" class="cards"></div></main>
+<main class="tab-page" id="page-wardrobe" hidden><h1>Wardrobe</h1><p class="caption">Approved inventory remains intact. All 18 suits connect to the 50 existing shirts in Engine and Anchor. Four shirts are no-tie-only. B03–B14 connect through their existing DS001 tied assemblies to 24 physical trouser IDs. B01/B02 and other blazer shirt modes remain unconnected. Watches are metadata only.</p><div class="control-row search-row"><select id="wardrobe-category" aria-label="Wardrobe category"><option value="shirts">Shirts · 50</option><option value="ties">Ties · 47</option><option value="shoes">Registered shoes · 35</option><option value="watches">Watch source records · 50</option><option value="suits">Suit bindings · 18</option><option value="blazers">Blazer bindings · 14</option><option value="pants">Trouser bindings · 24</option></select><input id="wardrobe-search" type="search" placeholder="Find an ID or description" aria-label="Search wardrobe"></div><div id="wardrobe-list" class="cards"></div></main>
+<main class="tab-page" id="page-rotation" hidden><h1>Rotation</h1><p class="caption">Only wear you explicitly record in this application is included. Existing production history is neither read nor replaced.</p><p><span id="wear-count" class="history-count">0</span> local wear records</p><p id="storage-banner" class="caption"></p><div id="history-list" class="cards"></div><p class="footer-note">Generate does not log wear. Rotation reuses the recovered policy on this local ledger; it is not a claim about your complete historical rotation.</p></main>
+<nav class="bottom-nav" aria-label="Main navigation"><button data-page="home" aria-current="page">Home</button><button data-page="outfits">Outfits</button><button data-page="wardrobe">Wardrobe</button><button data-page="rotation">Rotation</button></nav>
+</div>
+<dialog id="selection-dialog"><div class="dialog-heading"><h2 id="selection-heading">Anchor selection</h2><button class="small-btn" data-close="selection-dialog" aria-label="Close selection controls">Close</button></div><p class="caption" id="selection-help">Choose exact pieces. A score-source hold does not block the approved visual.</p><div class="fields">
+<div class="field full"><label for="topwear-kind">Outfit type</label><select id="topwear-kind"><option value="suit">Suit</option><option value="blazer">Blazer + separate trousers</option><option value="shirt-only">Shirt + trousers — DS001 tied</option></select></div>
+<div class="field full" id="suit-field"><label for="suit-select">Suit / anchor</label><select id="suit-select"></select></div>
+<div class="field full" id="blazer-field" hidden><label for="blazer-select">Blazer / anchor</label><select id="blazer-select"></select></div>
+<div class="field full" id="pant-field" hidden><label for="pant-select">Physical trousers / anchor</label><select id="pant-select"></select></div>
+<div class="field full-mobile"><label for="shirt-select">Shirt / anchor</label><select id="shirt-select"></select></div><div class="field full-mobile"><label for="tie-select">Tie / collar mode</label><select id="tie-select"></select></div>
+<div class="field full"><label for="shoe-select">Registered footwear</label><select id="shoe-select"></select></div><div class="field full"><label for="watch-select">Watch selection — not rendered on avatar</label><select id="watch-select"></select></div>
+<div class="field"><label for="occasion-select">Setting</label><select id="occasion-select"><option value="clinic">Clinic</option><option value="hospital">Hospital</option><option value="work">Work</option></select></div><div class="field"><label for="style-select">Style</label><select id="style-select"><option value="AUTO">Auto</option><option value="CLASSIC">Classic</option><option value="HYBRID">Hybrid</option><option value="MODERN">Modern</option></select></div>
+<div class="field"><label for="formality-select">Required formality</label><select id="formality-select"><option value="any">Unspecified</option><option value="tie_required">Tie required</option><option value="suit_required">Suit required</option><option value="open_collar_allowed">Open collar allowed</option></select></div><div class="field"><label for="local-date">Wear / rotation date</label><input id="local-date" type="date"></div></div>
+<p class="caption">All 18 suits connect to the 50 existing shirts. Engine accepts exact shirts, shirt families or free shirt selection, using the existing scoring rules. DS040–DS043 remain no-tie-only. Footwear choices bind exact registered pairs. No automatic accessory ranking is inferred. Season and weather are not assessed. The supplied B03–B14 assemblies use DS001 with the existing common-knot ties; incomplete source combinations are never substituted. Shirt-only Anchor uses the existing full-length DS001 tied source; other shirts and no-tie are not supplied in that route.</p><p class="warning" id="selection-error" role="alert"></p><div class="form-actions"><button id="cancel-work">Cancel pending work</button><button id="apply-selection" class="primary">Show selection</button></div></dialog>
+<dialog id="details-dialog"><div class="dialog-heading"><h2>Selection & source</h2><button class="small-btn" data-close="details-dialog">Close</button></div><p class="notice">Garments, layers and geometry stay approved. Technical source holds below refer to scoring or assembly, not visual reapproval.</p><pre id="details-text"></pre></dialog>
+<dialog id="wear-dialog"><div class="dialog-heading"><h2>Record actual wear</h2><button class="small-btn" data-close="wear-dialog">Cancel</button></div><p id="wear-description"></p><div class="field"><label for="wear-date">Local calendar date</label><input id="wear-date" type="date"></div><p class="caption">Confirm only an outfit actually worn. This adds one record to this candidate’s separate local ledger, not to production history.</p><label class="caption"><input type="checkbox" id="repeat-incident"> Record this wear as a controlled-repeat incident</label><p class="warning" id="wear-error" role="alert"></p><button id="confirm-wear" class="primary">Confirm worn</button></dialog>
+<dialog id="backup-dialog"><div class="dialog-heading"><h2>Local data</h2><button class="small-btn" data-close="backup-dialog">Close</button></div><p class="caption" id="backup-status"></p><button id="export-backup">Export local backup</button><h2>Restore this version’s backup</h2><input type="file" id="backup-file" accept=".json,application/json" aria-label="Select backup file"><p class="caption">The file is validated before anything changes. Legacy backups and different source revisions are not silently migrated.</p><pre id="import-preview" hidden></pre><p class="warning" id="backup-error" role="alert"></p><button id="confirm-restore" class="primary" disabled>Replace local data with validated backup</button></dialog>
+<dialog id="registered-dialog"><div class="dialog-heading"><h2 id="registered-heading">Saved suit assembly</h2><button class="small-btn" data-close="registered-dialog">Close</button></div><p id="registered-caption" class="caption"></p><p id="registered-error" role="status"></p><img id="registered-image" hidden alt="Saved registered suit assembly"></dialog>
+<script src="data/inputs.js"></script>
+<script src="vendor/hewrs-logic.js"></script>
+<script src="vendor/approved-scores.js"></script>
+<script src="vendor/ensemble-completion.js"></script>
+<script src="vendor/release-guards.js"></script>
+<script src="vendor/request-contract.js"></script>
+<script src="src/controller.js"></script>
+<script src="vendor/watch-classification.js"></script>
+<script src="src/canonical-bindings-browser.js"></script>
+<script src="vendor/active50-renderer.js"></script>
+<script src="data/approved-suits.js"></script>
+<script src="src/suit-resolver97-browser.js"></script>
+<script src="src/approved-suit-sources.js"></script>
+<script src="data/suit-assembly.js"></script>
+<script src="data/ds035-coverage.js"></script>
+<script src="data/ds035-edge.js"></script>
+<script src="src/suit-assemblies.js"></script>
+<script src="src/connection.js"></script>
+<script src="data/blazer-connection.js"></script>
+<script src="data/trouser-profiles.js"></script>
+<script src="src/trouser-profiles.js"></script>
+<script src="src/blazer-connection.js"></script>
+<script src="data/shirt-only.js"></script>
+<script src="src/shirt-only-connection.js"></script>
+<script src="src/ds035-coverage-renderer.js"></script>
+<script src="src/ds035-edge-renderer.js"></script>
+<script src="src/atomic-renderer.js"></script>
+<script src="src/blazer-renderer.js"></script>
+<script src="src/shirt-only-renderer.js"></script>
+<script src="src/mixed-renderer.js"></script>
+<script src="src/local-state.js"></script>
+<script src="src/application.js"></script></body></html>

@@ -1,0 +1,151 @@
+{
+  "schema": "hewrs.release.functional.v1_16_1",
+  "passed": 27,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Sixteen exact registered donors, eighteen connected non-suit IDs, thirty-two gated",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "11,520 registered shirt-state-mode selections validate without substitutions",
+      "passed": true,
+      "result": 11520
+    },
+    {
+      "name": "26,880 exact registered shirt/pant/footwear mode selections validate",
+      "passed": true,
+      "result": 26880
+    },
+    {
+      "name": "All 39,817 suit/state routes remain valid, including single REFERENCE route",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "All 576 original component references remain hash-matching",
+      "passed": true,
+      "result": 576
+    },
+    {
+      "name": "Every registered runtime path contains exact declared bytes",
+      "passed": true,
+      "result": 87
+    },
+    {
+      "name": "Uploaded donors retain their exact bytes and separate catalogue identities",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Sixty-four exact current front-collar references are unchanged",
+      "passed": true,
+      "result": 64
+    },
+    {
+      "name": "Only DS002/DS004/DS005/DS015/DS022 use disclosed derived cuffs for empty current parts",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 32 source-only shirts remain blocked in both modes",
+      "passed": true,
+      "result": 64
+    },
+    {
+      "name": "Suit, blazer and shirt-only pickers keep all 50 IDs with correct enablement",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Apply changes exactly one preference; Cancel changes nothing",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "New Anchor selections round-trip through existing picker model",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Every new shirt has explicit No Tie and all 47 independent tied selections",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Four existing NO_TIE-only restrictions, DS035 mask and DS051 profile survive",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "New exact blazer Engine queries preserve shirt/tie identities",
+      "passed": true,
+      "result": {
+        "requests": 32,
+        "options": 30
+      }
+    },
+    {
+      "name": "Added numerical results use the unchanged raw blazer model, including holds",
+      "passed": true,
+      "result": 32
+    },
+    {
+      "name": "Nine unbound trouser profiles remain visual, not fabricated numerical values",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Shirt-only ranking remains absent; manual rendering is independent",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Watch ID/name and physical wearer history are retained",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "New events export/reload/import without ID changes in isolated test storage",
+      "passed": true,
+      "result": {
+        "events": 16,
+        "backend": "synthetic Map, not real-origin/browser restart"
+      }
+    },
+    {
+      "name": "Tampered added ID, current collar, and missing renderer are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unsupported or mixed requests do not mutate the isolated ledger",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "V1.16 rollback can retain and render all 18 exact-ID ledger entries",
+      "passed": true,
+      "result": {
+        "events": 18,
+        "storage": "isolated synthetic Map; no device/origin claim"
+      }
+    },
+    {
+      "name": "Registration order preserves the ten prior IDs and appends the six additions",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Only six new shirt identities were added relative to V1.15; DS001/DS014 remain separate",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Synthetic concurrent writer is detected without overwriting external storage",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

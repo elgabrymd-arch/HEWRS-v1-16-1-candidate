@@ -1,0 +1,30 @@
+{
+  "version": "V1.6",
+  "passed": 1,
+  "failed": 1,
+  "checks": [
+    {
+      "name": "V1.6 exact packaged code starts",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "wider_suit_comparisons": [],
+  "original_route_comparisons": [],
+  "footwear_comparisons": [],
+  "engine_requests": [],
+  "failure": "Traceback (most recent call last):\n  File \"/mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits-browser.py\", line 76, in <module>\n    for shirt in m['shirt_order']:add(suit,shirt,'NO_TIE' if m['shirts'][shirt]['mode_policy']=='NO_TIE_ONLY' else 'T017')\n                                                             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nKeyError: 'mode_policy'\n",
+  "errors": [],
+  "external_requests": [],
+  "seconds": 10.75,
+  "browser_version": "144.0.7559.96",
+  "transport": "Exact packaged code and original PNG bytes supplied in memory to Chromium. No generated/replacement garment imagery.",
+  "not_claimed": [
+    "All 39,817 states rendered in browser",
+    "New garment approval",
+    "Physical iPhone",
+    "Safari",
+    "Hosted delivery",
+    "Real-origin persistent restart"
+  ]
+}

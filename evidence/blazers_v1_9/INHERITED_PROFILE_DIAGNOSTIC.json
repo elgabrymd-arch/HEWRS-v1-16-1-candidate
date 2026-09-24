@@ -1,0 +1,167 @@
+{
+  "passed": 36,
+  "failed": 1,
+  "tests": [
+    {
+      "name": "Recovered 15859-byte source matches its original recorded SHA256",
+      "pass": true
+    },
+    {
+      "name": "24 source rows including original prose and states are identical to the exact source",
+      "pass": true
+    },
+    {
+      "name": "15 existing local bindings and nine nulls retained",
+      "pass": true
+    },
+    {
+      "name": "No production approval or new frozen profile judgments added",
+      "pass": true
+    },
+    {
+      "name": "All source physical IDs/history IDs and asset hashes match current representations",
+      "pass": true
+    },
+    {
+      "name": "Raw V1.7 crosswalk retained separately without overwriting proposals",
+      "pass": true
+    },
+    {
+      "name": "PN002 uses its existing P07 textual binding, not the shared tan image as evidence",
+      "pass": true
+    },
+    {
+      "name": "Brown shade proposals remain null rather than being promoted to P03",
+      "pass": true
+    },
+    {
+      "name": "Registry rejects tampered source field asset_sha256",
+      "pass": true
+    },
+    {
+      "name": "Registry rejects tampered source field profile_id",
+      "pass": true
+    },
+    {
+      "name": "Registry rejects tampered source field app_id",
+      "pass": true
+    },
+    {
+      "name": "Registry rejects tampered source field state",
+      "pass": true
+    },
+    {
+      "name": "705 exact B03/DS001/physical-trouser/tie requests match original controller calculations",
+      "pass": true,
+      "detail": {
+        "requests": 705,
+        "returnedOptions": 705,
+        "result_sha256": "5852c13f9cc4ebd5ea0a19562cbf1e6d9fe48517dd9089bebc83bbab33b41517"
+      }
+    },
+    {
+      "name": "Free-tie generation evaluates only the 47 existing tied configurations before ranking",
+      "pass": true,
+      "detail": {
+        "queries": 15
+      }
+    },
+    {
+      "name": "Tie-family request retains exact pants and returns only the selected family",
+      "pass": true
+    },
+    {
+      "name": "Classic/Hybrid/Modern requests preserve inherited style gate",
+      "pass": true
+    },
+    {
+      "name": "Nine unknown bindings remain mapping_required and retain manual display and physical wear identities",
+      "pass": true
+    },
+    {
+      "name": "Reject wrong_profile without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject wrong_physical without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject wrong_source without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject wrong_source_hash without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject missing_binding without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject duplicate_binding without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject no_tie without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject wrong_shirt without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject unknown_promotion without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Reject production without a fallback or stale candidate reuse",
+      "pass": true
+    },
+    {
+      "name": "Returned bindings are defensive copies; source fields cannot be changed",
+      "pass": true
+    },
+    {
+      "name": "24 physical identities remain distinct despite shared colors/profiles",
+      "pass": true
+    },
+    {
+      "name": "All 188 approved shirt-tie records remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "All 98 frozen blazer-pant values preserved",
+      "pass": true
+    },
+    {
+      "name": "18 representative suit Engine requests remain exactly equal to V1.7",
+      "pass": true
+    },
+    {
+      "name": "V1.7 mixed suit/blazer backup reopens without any source-lock change or writes",
+      "pass": true
+    },
+    {
+      "name": "Engine candidate wear event preserves exact physical pants through export/preview/restore",
+      "pass": true
+    },
+    {
+      "name": "Source inputs, catalogue, and source lock preserved after calculations",
+      "pass": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '{\"suits\":[{\"id\":\"suit-0\",\"name\":\"Dark chocolate brown solid; double-breasted; peak lapels\",\"brand\":\"Dior\",\"palette\":\"warm\",\"seasons\":[\"All Year\"],\"score\":9,\"modes\":[\"Hospital/Clinic\",\"Office Only\"],\"lavender\":false,\"formal\":true,\"color\":\"Dark chocolate brown\",\"pattern\":\"Solid\",\"_canonical\":{\"id\":\"S01\",\"source\":\"FEATURE_INPUTS.json\"}},{\"id\":\"suit-1\",\"name\":\"Warm charcoal brown Prince of Wales / glen plaid\",\"brand\":\"Tom James\",\"palette\":\"warm\",\"seasons\":[\"All Year\"],\"score\":9,\"modes\":[\"Hospital/Clinic\",\"Office Only\"],\"lavender\":false,\"formal\":true,\"color\":\"Warm charcoal brown\",\"pattern\":\"Prince of Wales / glen plaid\",\"_canonical\":{\"id\":\"S02\",\"source\":\"FEATURE_INPUTS.json\"}},{\"id\":\"suit-2\",\"name\":\"Mushroom beige / warm greige solid\",\"brand\":\"Brioni\",\"palette\":\"warm\",\"seasons\":[\"Summer\",\"Spring\"],\"score\":8,\"modes\":[\"Hospital/Clinic\",\"Office Only\"],\"lavender\":false,\"formal\":true,\"color\":\"Mushroom beige\",\"pattern\":\"Solid\",\"_canonical\":{\"id\":\"S03\",\"source\":\"FEATURE_INPUTS.json\"}},{\"id\":\"suit-3\",\"name\":\"Approved grey double-breasted solid appearance\",\"brand\":\"Louis Vuitton\",\"palette\":\"neutral\",\"se"
+    },
+    {
+      "name": "Asynchronous generation equals synchronous exact result",
+      "pass": true
+    },
+    {
+      "name": "Cancellation returns no candidate or fabricated wear",
+      "pass": true
+    }
+  ],
+  "exact_queries": 705,
+  "pooled_queries": 15,
+  "source_hash": "538cdf147e1af4c83c88a5b7bfbc6cf9bc5128b6461200be3ea01588348cb960",
+  "historical_assertion_explanation": "One V1.8 equality assertion expects no appended runtime catalogue keys. V1.9 deliberately adds ten distinct source keys without changing existing records. The V1.9 active suite separately tests exact old records plus the explicit append-only set."
+}

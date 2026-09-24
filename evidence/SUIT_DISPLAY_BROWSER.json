@@ -1,0 +1,982 @@
+{
+  "schema": "hewrs.suit-display-browser.v1_2",
+  "passed": 36,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Actual application starts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Eleven S05 frames exactly match the unchanged original renderer",
+      "pass": true,
+      "detail": [
+        {
+          "shirtId": "DS035",
+          "state": "T017",
+          "equal": true
+        },
+        {
+          "shirtId": "DS035",
+          "state": "NO_TIE",
+          "equal": true
+        },
+        {
+          "shirtId": "DS035",
+          "state": "REFERENCE",
+          "equal": true
+        },
+        {
+          "shirtId": "DS036",
+          "state": "T017",
+          "equal": true
+        },
+        {
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "equal": true
+        },
+        {
+          "shirtId": "DS051",
+          "state": "T001",
+          "equal": true
+        },
+        {
+          "shirtId": "DS051",
+          "state": "T047",
+          "equal": true
+        },
+        {
+          "shirtId": "DS051",
+          "state": "NO_TIE",
+          "equal": true
+        },
+        {
+          "shirtId": "DS027",
+          "state": "NO_TIE",
+          "equal": true
+        },
+        {
+          "shirtId": "DS047",
+          "state": "T022",
+          "equal": true
+        },
+        {
+          "shirtId": "DS041",
+          "state": "NO_TIE",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "name": "S01 changes only the selected garment coverage",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S01",
+          "shirtId": "DS036",
+          "state": "T017",
+          "changed": 1165541,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S01",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "changed": 1165541,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S01",
+          "shirtId": "DS035",
+          "state": "T017",
+          "changed": 1165541,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S01",
+          "shirtId": "DS035",
+          "state": "NO_TIE",
+          "changed": 1165541,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S01",
+          "shirtId": "DS051",
+          "state": "T001",
+          "changed": 1162981,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S01",
+          "shirtId": "DS051",
+          "state": "T047",
+          "changed": 1162981,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S01",
+          "shirtId": "DS051",
+          "state": "NO_TIE",
+          "changed": 1162981,
+          "outside": 0,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "S04 changes only the selected garment coverage",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S04",
+          "shirtId": "DS036",
+          "state": "T017",
+          "changed": 1163561,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S04",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "changed": 1163561,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S04",
+          "shirtId": "DS035",
+          "state": "T017",
+          "changed": 1163559,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S04",
+          "shirtId": "DS035",
+          "state": "NO_TIE",
+          "changed": 1163559,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S04",
+          "shirtId": "DS051",
+          "state": "T001",
+          "changed": 1160017,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S04",
+          "shirtId": "DS051",
+          "state": "T047",
+          "changed": 1160017,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S04",
+          "shirtId": "DS051",
+          "state": "NO_TIE",
+          "changed": 1160016,
+          "outside": 0,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "S16 changes only the selected garment coverage",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S16",
+          "shirtId": "DS036",
+          "state": "T017",
+          "changed": 1165358,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S16",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "changed": 1165358,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S16",
+          "shirtId": "DS035",
+          "state": "T017",
+          "changed": 1165358,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S16",
+          "shirtId": "DS035",
+          "state": "NO_TIE",
+          "changed": 1165358,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S16",
+          "shirtId": "DS051",
+          "state": "T001",
+          "changed": 1162731,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S16",
+          "shirtId": "DS051",
+          "state": "T047",
+          "changed": 1162731,
+          "outside": 0,
+          "ready": true
+        },
+        {
+          "suitId": "S16",
+          "shirtId": "DS051",
+          "state": "NO_TIE",
+          "changed": 1162731,
+          "outside": 0,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "All fifty shirt choices actually render through S01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Suit selector retains eighteen IDs and enables four connected assemblies",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Anchor UI commits S16 with selected tie and footwear",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Engine UI renders the actual S01 result instead of an S05 fallback",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Full avatar fits above navigation at three phone viewports",
+      "pass": true,
+      "detail": [
+        {
+          "width": 390,
+          "height": 844,
+          "fits": true,
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 667,
+          "fits": true,
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 932,
+          "fits": true,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "Previous complete outfit and label remain while the next pair loads",
+      "pass": true,
+      "detail": {
+        "pixels": true,
+        "id": true
+      }
+    },
+    {
+      "name": "Unconnected S11-template request cannot replace the current outfit",
+      "pass": true,
+      "detail": {
+        "rejected": true,
+        "retained": true,
+        "selection": true
+      }
+    },
+    {
+      "name": "Twelve rapid suit switches commit only the last complete pair",
+      "pass": true,
+      "detail": {
+        "ready": 1,
+        "cancelled": 11,
+        "last": "S16"
+      }
+    },
+    {
+      "name": "Wardrobe retains all eighteen suit records",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S01 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S02 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S03 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S04 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S05 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S06 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S07 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S08 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S09 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S10 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S11 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S12 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S13 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S14 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S15 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S16 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S17 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S18 opens its saved fixed-control assembly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Saved assembly views do not change outfit or manufacture wear",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Confirmed wear keeps actual suit ID and historical crosswalk",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No external requests",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "render_samples": [
+    {
+      "suitId": "S01",
+      "shirtId": "DS036",
+      "state": "T017",
+      "changed": 1165541,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS036",
+      "state": "NO_TIE",
+      "changed": 1165541,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS035",
+      "state": "T017",
+      "changed": 1165541,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "changed": 1165541,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS051",
+      "state": "T001",
+      "changed": 1162981,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS051",
+      "state": "T047",
+      "changed": 1162981,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS051",
+      "state": "NO_TIE",
+      "changed": 1162981,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS036",
+      "state": "T017",
+      "changed": 1163561,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS036",
+      "state": "NO_TIE",
+      "changed": 1163561,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS035",
+      "state": "T017",
+      "changed": 1163559,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "changed": 1163559,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS051",
+      "state": "T001",
+      "changed": 1160017,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS051",
+      "state": "T047",
+      "changed": 1160017,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS051",
+      "state": "NO_TIE",
+      "changed": 1160016,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS036",
+      "state": "T017",
+      "changed": 1165358,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS036",
+      "state": "NO_TIE",
+      "changed": 1165358,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS035",
+      "state": "T017",
+      "changed": 1165358,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "changed": 1165358,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS051",
+      "state": "T001",
+      "changed": 1162731,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS051",
+      "state": "T047",
+      "changed": 1162731,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS051",
+      "state": "NO_TIE",
+      "changed": 1162731,
+      "outside": 0,
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS017",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS035",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS036",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS051",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS034",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS037",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS038",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS032",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS033",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS046",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS003",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS020",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS045",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS010",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS011",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS028",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS029",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS030",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS044",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS013",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS026",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS031",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS009",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS012",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS050",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS016",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS048",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS039",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS042",
+      "state": "NO_TIE",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS043",
+      "state": "NO_TIE",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS040",
+      "state": "NO_TIE",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS041",
+      "state": "NO_TIE",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS001",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS002",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS004",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS005",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS006",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS007",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS008",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS014",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS015",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS018",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS019",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS021",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS022",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS023",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS024",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS025",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS027",
+      "state": "T017",
+      "ready": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS047",
+      "state": "T017",
+      "ready": true
+    }
+  ],
+  "S05_reference_comparisons": [
+    {
+      "shirtId": "DS035",
+      "state": "T017",
+      "equal": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "equal": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "REFERENCE",
+      "equal": true
+    },
+    {
+      "shirtId": "DS036",
+      "state": "T017",
+      "equal": true
+    },
+    {
+      "shirtId": "DS036",
+      "state": "NO_TIE",
+      "equal": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "T001",
+      "equal": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "T047",
+      "equal": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "NO_TIE",
+      "equal": true
+    },
+    {
+      "shirtId": "DS027",
+      "state": "NO_TIE",
+      "equal": true
+    },
+    {
+      "shirtId": "DS047",
+      "state": "T022",
+      "equal": true
+    },
+    {
+      "shirtId": "DS041",
+      "state": "NO_TIE",
+      "equal": true
+    }
+  ],
+  "browser_version": "144.0.7559.96",
+  "elapsed_seconds": 167.73,
+  "transport": "Exact packaged template, CSS and JavaScript; original PNG bytes supplied incrementally in memory. Not hosted or exact standalone transport.",
+  "not_tested": [
+    "Hosted delivery",
+    "Safari",
+    "Physical iPhone",
+    "Persistent browser restart",
+    "All 8849 supported states rendered in browser",
+    "S11-template dynamic combinations"
+  ]
+}

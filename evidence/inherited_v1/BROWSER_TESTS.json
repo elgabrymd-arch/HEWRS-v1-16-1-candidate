@@ -1,0 +1,651 @@
+{
+  "schema": "hewrs.connected-app.browser-tests.v1",
+  "passed": 29,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Exact standalone boots with real approved garment pixels",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Full native canvas stays above navigation at four screen sizes",
+      "status": "PASS",
+      "details": [
+        {
+          "width": 390,
+          "height": 844,
+          "canvas": {
+            "x": 94.40625,
+            "y": 156.890625,
+            "width": 201.1875,
+            "height": 555.109375,
+            "bottom": 712
+          },
+          "stageBottom": 713,
+          "navTop": 792,
+          "horizontalOverflow": false,
+          "fullCanvasWithinViewport": true,
+          "canvasSize": [
+            996,
+            2748
+          ]
+        },
+        {
+          "width": 375,
+          "height": 667,
+          "canvas": {
+            "x": 110.28125,
+            "y": 134.890625,
+            "width": 154.4375,
+            "height": 426.109375,
+            "bottom": 561
+          },
+          "stageBottom": 562,
+          "navTop": 630,
+          "horizontalOverflow": false,
+          "fullCanvasWithinViewport": true,
+          "canvasSize": [
+            996,
+            2748
+          ]
+        },
+        {
+          "width": 430,
+          "height": 932,
+          "canvas": {
+            "x": 98.453125,
+            "y": 156.890625,
+            "width": 233.078125,
+            "height": 643.109375,
+            "bottom": 800
+          },
+          "stageBottom": 801,
+          "navTop": 880,
+          "horizontalOverflow": false,
+          "fullCanvasWithinViewport": true,
+          "canvasSize": [
+            996,
+            2748
+          ]
+        },
+        {
+          "width": 1280,
+          "height": 900,
+          "canvas": {
+            "x": 534.59375,
+            "y": 179.34375,
+            "width": 210.8125,
+            "height": 581.65625,
+            "bottom": 761
+          },
+          "stageBottom": 762,
+          "navTop": 844,
+          "horizontalOverflow": false,
+          "fullCanvasWithinViewport": true,
+          "canvasSize": [
+            996,
+            2748
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Eleven representative shirts execute through application binding; 18 frames match source pixels exactly",
+      "status": "PASS",
+      "details": {
+        "actual_frames": 18
+      }
+    },
+    {
+      "name": "Six representative DS035 ties execute with exact source pixels",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "DS035 reference and DS051 special arithmetic preserve exact source output",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "All 2213 original layer plans stay exactly unchanged at shoe-8",
+      "status": "PASS",
+      "details": {
+        "plans": 2213,
+        "differing": 0
+      }
+    },
+    {
+      "name": "All 35 registered shoes switch by exact ID; no pixels change outside shoe coverage",
+      "status": "PASS",
+      "details": {
+        "shoe_renders": 35
+      }
+    },
+    {
+      "name": "Previous complete visible frame and identity remain during loading",
+      "status": "PASS",
+      "details": {
+        "pixelEqual": true,
+        "sameVisibleIdentity": true
+      }
+    },
+    {
+      "name": "Missing replacement asset fails closed without erasing previous outfit",
+      "status": "PASS",
+      "details": {
+        "rejected": true,
+        "retained": true,
+        "lastUnchanged": true,
+        "status": "error-retained"
+      }
+    },
+    {
+      "name": "Rapid 20-selection sequence commits only the last requested frame",
+      "status": "PASS",
+      "details": {
+        "ready": 1,
+        "cancelled": 19,
+        "final": "DS013",
+        "expected": "DS013"
+      }
+    },
+    {
+      "name": "No-tie-only shirt selector exposes NO_TIE only",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "No-tie source-description hold does not block actual manual UI preview",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Engine UI uses live controller result and real approved rendered selection",
+      "status": "PASS",
+      "details": {
+        "selection": {
+          "suitId": "S05",
+          "shirtId": "DS046",
+          "state": "T045",
+          "shoeId": "shoe-8",
+          "watchId": "watch-R01"
+        },
+        "status": "candidate_recommendation",
+        "options": 15,
+        "events": 0,
+        "display": "Rendered: shoe-8 \u00b7 Gucci Loafers \u2014 Black Horsebit | watch-R01 selected, not rendered."
+      }
+    },
+    {
+      "name": "Watch metadata explicitly says selected, not rendered",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Generate and browsing never manufacture wear events",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Outfits tab has one rendered-selection action per actual result",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Opening confirmation dialog does not log wear",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Explicit UI wear confirmation adds one exact-ID record",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Logging wear invalidates old rotation recommendations without clearing the avatar",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Rotation tab shows the actual local wear entry",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Export uses actual JSON download with the recorded IDs",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Legacy backup is rejected by the real upload handler without overwriting records",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Valid import preview does not alter records",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Explicit restore returns the validated local selection and ledger",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Wardrobe tab contains all 50 shirt records",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Wardrobe displays exactly 35 registered-shoe bindings without filling gaps",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "24 trouser records stay visible as bindings rather than inferred physical scores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "No unexpected JavaScript errors",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Standalone has no external resource requests",
+      "status": "PASS",
+      "details": []
+    }
+  ],
+  "transport": "Exact standalone HTML loaded with Playwright set_content; assets embedded; no page resource replacement",
+  "browser_version": "144.0.7559.96",
+  "elapsed_seconds": 45.32,
+  "render_comparisons": [
+    {
+      "shirtId": "DS001",
+      "state": "T017",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS001",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS006",
+      "state": "T017",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS006",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS015",
+      "state": "T017",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS015",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "T017",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS036",
+      "state": "T017",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS036",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS047",
+      "state": "T017",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS047",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "T017",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS040",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS041",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS042",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS043",
+      "state": "NO_TIE",
+      "ready": true,
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "T001",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "T017",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "T022",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "T031",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "T044",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "T047",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS035",
+      "state": "REFERENCE",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "T001",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "T022",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "T031",
+      "sourcePixelsEqual": true
+    },
+    {
+      "shirtId": "DS051",
+      "state": "T047",
+      "sourcePixelsEqual": true
+    }
+  ],
+  "registered_shoe_checks": [
+    {
+      "shoeId": "shoe-0",
+      "ready": true,
+      "changedPixels": 64495,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-1",
+      "ready": true,
+      "changedPixels": 63986,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-2",
+      "ready": true,
+      "changedPixels": 64971,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-3",
+      "ready": true,
+      "changedPixels": 64590,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-4",
+      "ready": true,
+      "changedPixels": 64973,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-5",
+      "ready": true,
+      "changedPixels": 64362,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-6",
+      "ready": true,
+      "changedPixels": 65769,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-8",
+      "ready": true,
+      "changedPixels": 0,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-9",
+      "ready": true,
+      "changedPixels": 63170,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-10",
+      "ready": true,
+      "changedPixels": 63628,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-11",
+      "ready": true,
+      "changedPixels": 64431,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-12",
+      "ready": true,
+      "changedPixels": 63231,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-13",
+      "ready": true,
+      "changedPixels": 64723,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-14",
+      "ready": true,
+      "changedPixels": 64388,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-15",
+      "ready": true,
+      "changedPixels": 68525,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-16",
+      "ready": true,
+      "changedPixels": 68527,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-17",
+      "ready": true,
+      "changedPixels": 67860,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-18",
+      "ready": true,
+      "changedPixels": 64156,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-19",
+      "ready": true,
+      "changedPixels": 65989,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-20",
+      "ready": true,
+      "changedPixels": 65223,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-21",
+      "ready": true,
+      "changedPixels": 65222,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-22",
+      "ready": true,
+      "changedPixels": 66880,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-23",
+      "ready": true,
+      "changedPixels": 64422,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-24",
+      "ready": true,
+      "changedPixels": 64406,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-25",
+      "ready": true,
+      "changedPixels": 65060,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-26",
+      "ready": true,
+      "changedPixels": 65395,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-33",
+      "ready": true,
+      "changedPixels": 66946,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-34",
+      "ready": true,
+      "changedPixels": 65471,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-35",
+      "ready": true,
+      "changedPixels": 65664,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-39",
+      "ready": true,
+      "changedPixels": 65737,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-41",
+      "ready": true,
+      "changedPixels": 65819,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-42",
+      "ready": true,
+      "changedPixels": 65854,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-43",
+      "ready": true,
+      "changedPixels": 65854,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-44",
+      "ready": true,
+      "changedPixels": 65855,
+      "changedOutsideShoeAlphaUnion": 0
+    },
+    {
+      "shoeId": "shoe-49",
+      "ready": true,
+      "changedPixels": 63702,
+      "changedOutsideShoeAlphaUnion": 0
+    }
+  ],
+  "storage_scope": "Real UI export/import/wear handlers executed in memory-only opaque origin; native persistence tested through interface unit tests, not claimed as hosted reload.",
+  "standalone_sha256": "8d521716d99471760331ac3be0e075d77b2643620d9af72bcae34ac52d04e160",
+  "not_tested": [
+    "Hosted delivery",
+    "Physical iPhone",
+    "Safari",
+    "Full 2213-state new browser sweep",
+    "Other suit/blazer combinations",
+    "Watch image layers"
+  ]
+}

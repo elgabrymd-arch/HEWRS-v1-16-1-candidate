@@ -1,0 +1,111 @@
+{
+  "version": "V1.9",
+  "passed": 15,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "App opens with twelve connected blazers and eighteen suits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Engine controls display requested B06/PG002/DS001/T017",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Outfits contains selectable generated alternatives",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Unconnected shirt cannot silently substitute DS001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Anchor displays an unscored trouser without blocking its approved image",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Generation and viewing never fabricate wear",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Confirmed wear retains exact namespaced blazer and physical pants",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Backup import preview is read-only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Backup restoration retains canonical blazer and physical pants",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Rapid cross-blazer requests commit only the latest selection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Cancellation retains previous complete outfit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Invalid selection leaves pixels and visible identity intact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Wardrobe retains all fourteen canonical blazer records",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Full avatar fits at three phone viewport sizes",
+      "pass": true,
+      "detail": [
+        {
+          "width": 375,
+          "height": 667,
+          "bottom": 561,
+          "navTop": 630,
+          "scrollWidth": 375,
+          "viewport": 375
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "bottom": 712,
+          "navTop": 792,
+          "scrollWidth": 390,
+          "viewport": 390
+        },
+        {
+          "width": 430,
+          "height": 932,
+          "bottom": 800,
+          "navTop": 880,
+          "scrollWidth": 430,
+          "viewport": 430
+        }
+      ]
+    },
+    {
+      "name": "No script errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "renders": [],
+  "page_errors": [],
+  "seconds": 15.1,
+  "scope": "Exact packaged code and PNGs supplied to Chromium in memory. Not hosted, Safari, physical iPhone or real-origin restart persistence."
+}

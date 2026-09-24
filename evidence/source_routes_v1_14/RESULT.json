@@ -1,0 +1,68 @@
+{
+  "schema": "hewrs.connected-app.delivery.v1_14",
+  "version": "1.14",
+  "scope": "source-routing-and-picker-guards",
+  "complete_clothing_build": false,
+  "new_visual_non_suit_ids": 0,
+  "existing_non_suit_ids": [
+    "DS001",
+    "DS014"
+  ],
+  "remaining_non_suit_ids": 48,
+  "garment_approvals_reopened": false,
+  "generated_garment_images": 0,
+  "source_registry": {
+    "physical_ids": 50,
+    "exact_groups": 44,
+    "actual_component_references": 576,
+    "supported_per_shirt_state_component_plans": 2212
+  },
+  "fresh_functional": {
+    "passed": 20,
+    "failed": 0,
+    "evidence": "FUNCTIONAL.json"
+  },
+  "fresh_v113_functional_regression": {
+    "passed": 21,
+    "failed": 0,
+    "evidence": "BASELINE_FUNCTIONAL.json"
+  },
+  "fresh_browser": {
+    "passed": 16,
+    "failed": 0,
+    "pixel_equalities": 87,
+    "scope": "Actual packaged scripts and image bytes in Chromium through the in-memory loader. Synthetic Map storage only: not hosted, Safari/iPhone or restart persistence certification.",
+    "evidence": "browser/RESULT.json"
+  },
+  "fresh_real_origin": {
+    "status": "BLOCKED_BEFORE_APPLICATION_LOAD",
+    "application_loaded": false,
+    "evidence": "REAL_ORIGIN.json"
+  },
+  "fresh_rollback": {
+    "status": "PASS",
+    "source": "new packaged rollback tool",
+    "original_payload_files_verified": 1021,
+    "restored_total_files": 1022,
+    "original_manifest_byte_identical": true,
+    "original_source_tree_unchanged": true,
+    "browser_data_accessed": false
+  },
+  "preservation": {
+    "original_runtime_images_byte_identical": 611,
+    "source_input_lock_unchanged": true,
+    "physical_ids_unchanged": true,
+    "storage_schema_and_key_unchanged": true,
+    "original_controller_and_facelift_styles_unchanged": true,
+    "legacy_original_source_tree_still_unchanged": true
+  },
+  "source_identity_boundary": "The nine transfer ZIPs restored the 1,022-file V1.13 tree and its 1,021 payload hashes were checked. This does not remeasure the original full ZIP container hash.",
+  "historical_receipts": "Earlier evidence paths remain historical and were not substituted for fresh test results.",
+  "shirt_only_ranking_installed": false,
+  "watch_images_required": false,
+  "deployment_performed": false,
+  "github_write_performed": false,
+  "physical_iphone_safari_accepted": false,
+  "source_dependency_evidence": "SOURCE_DEPENDENCIES.json",
+  "rejected_diagnostic": "REJECTED_INSERT_ONLY_DIAGNOSTIC.png is an insufficient-insert-only experiment, not an installed app render or approval candidate."
+}

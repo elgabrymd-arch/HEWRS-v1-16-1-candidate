@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+"""Historical V1.3 sweep is preserved in evidence/inherited_v1_3.
+The code-only V1.4 regression entry point is tests/engine-wider-browser.py.
+"""
+import runpy
+from pathlib import Path
+runpy.run_path(str(Path(__file__).with_name("engine-wider-browser.py")), run_name="__main__")

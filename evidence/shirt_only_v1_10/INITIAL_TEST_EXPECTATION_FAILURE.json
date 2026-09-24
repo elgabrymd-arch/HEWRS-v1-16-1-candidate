@@ -1,0 +1,120 @@
+{
+  "schema": "hewrs.shirt-only-functional.v1_10",
+  "passed": 26,
+  "failed": 1,
+  "tests": [
+    {
+      "name": "Exactly one pre-existing full-shirt ID and all 47 ties bound",
+      "pass": true
+    },
+    {
+      "name": "39,480 exact DS001/trouser/tie/shoe selections validate",
+      "pass": true,
+      "detail": 39480
+    },
+    {
+      "name": "No input data, catalogue, scores or asset map changed by the additive connection",
+      "pass": true
+    },
+    {
+      "name": "Original 39,817 suit requests retain exact validation/history identities",
+      "pass": true,
+      "detail": 39817
+    },
+    {
+      "name": "Original 13,536 blazer requests retain exact validation and history identities",
+      "pass": true,
+      "detail": 13536
+    },
+    {
+      "name": "Reject no tie without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject reference without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject different shirt without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject retired shirt without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject unknown shoe without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject unknown trousers without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject unknown watch without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject mixed suit without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject mixed blazer without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject false discriminator without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject string discriminator without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject extra score without fallback",
+      "pass": true
+    },
+    {
+      "name": "Reject missing key without fallback",
+      "pass": true
+    },
+    {
+      "name": "No shirt-only numerical score is invented",
+      "pass": true
+    },
+    {
+      "name": "History has no fabricated topwear and preserves physical trouser identity",
+      "pass": true
+    },
+    {
+      "name": "Viewing/session saving does not fabricate wear",
+      "pass": true
+    },
+    {
+      "name": "Explicit wear adds exact shirt-only event",
+      "pass": true
+    },
+    {
+      "name": "Existing suit/blazer backup structure remains readable in new validator",
+      "pass": true
+    },
+    {
+      "name": "Fresh storage-interface instance reopens mixed ledger exactly",
+      "pass": true
+    },
+    {
+      "name": "Preview is read-only; explicit restore writes only candidate namespace",
+      "pass": true
+    },
+    {
+      "name": "Reject fake Engine shirt-only session/event and injected identities",
+      "pass": true
+    },
+    {
+      "name": "Suit and blazer scoring/requests unchanged, including after shirt-only wear",
+      "pass": false,
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(aa.options.length>0)\n\n    at /mnt/data/continue_v110/HEWRS_CONNECTED_APP_V1_10/tests/shirt-only.cjs:27:580\n    at check (/mnt/data/continue_v110/HEWRS_CONNECTED_APP_V1_10/tests/shirt-only.cjs:7:42)\n    at Object.<anonymous> (/mnt/data/continue_v110/HEWRS_CONNECTED_APP_V1_10/tests/shirt-only.cjs:27:1)\n    at Module._compile (node:internal/modules/cjs/loader:1730:14)\n    at Object..js (node:internal/modules/cjs/loader:1895:10)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)\n    at Function._load (node:internal/modules/cjs/loader:1282:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)"
+    }
+  ],
+  "scope": "Application wiring and isolated storage interface; not native device persistence or garment reapproval"
+}

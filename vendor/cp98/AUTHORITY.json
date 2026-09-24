@@ -1,0 +1,34 @@
+{
+  "handoff": 98,
+  "owner_confirmation_utc": "2026-09-08T01:09:40Z",
+  "wardrobe71_categories": [
+    "shirts",
+    "ties",
+    "blazers",
+    "pants",
+    "shoes"
+  ],
+  "wardrobe71_unchanged": true,
+  "suit_authority": "HEWRS_SUIT_STATIC_INTEGRATION_97",
+  "s09_authority": "CHECKPOINT95_PRESERVED_IN_CHECKPOINT97",
+  "no_documented_suit_correction_after97_in_available_approval_sequence": true,
+  "superseding_during_handoff": false,
+  "reopen_visual_approvals": false,
+  "renumber": false,
+  "live_repository_write_allowed": false,
+  "source_archives": {
+    "wardrobe71": {
+      "file": "originals/HEWRS_WARDROBE71_UNMODIFIED.zip",
+      "original_filename": "HEWRS_REPOSITORY_HANDOFF_WARDROBE_ASSETS_71(1).zip",
+      "sha256": "a068c9e50ac8b9188236f882eac126bc79a9252c2d0e2045fdd3346b8b3d2557",
+      "bytes": 116169113
+    },
+    "suits97": {
+      "file": "originals/HEWRS_SUITS97_UNMODIFIED.zip",
+      "original_filename": "HEWRS_SUIT_STATIC_INTEGRATION_97.zip",
+      "sha256": "9442c1be24357d194f0a6ea06718527d9d6188e4ad58d8cbea4fedcd5d779c5a",
+      "bytes": 148178604
+    }
+  },
+  "avatar_geometry_controls": "Retain suit97 controls/templates in their own namespace; do not override them with similarly named wardrobe71 controls."
+}

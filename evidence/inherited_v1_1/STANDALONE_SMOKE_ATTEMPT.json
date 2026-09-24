@@ -1,0 +1,15 @@
+{
+  "status": "NOT_COMPLETED",
+  "attempts": [
+    {
+      "transport": "110535060-byte standalone submitted through Playwright set_content",
+      "outcome": "First execution exceeded command timeout; second attempt stopped during submission before load confirmation."
+    },
+    {
+      "transport": "Memory-fulfilled static-source navigation at synthetic local origin",
+      "outcome": "Chromium returned ERR_BLOCKED_BY_ADMINISTRATOR before app navigation completed"
+    }
+  ],
+  "not_an_application_failure_diagnosis": true,
+  "browser_success_not_claimed": true
+}

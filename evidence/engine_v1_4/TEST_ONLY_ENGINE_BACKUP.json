@@ -1,0 +1,57 @@
+{
+  "schema": "hewrs.connected-app.local.v1",
+  "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "revision": 48,
+  "session": {
+    "selection": {
+      "suitId": "S11",
+      "shirtId": "DS035",
+      "state": "T017",
+      "shoeId": "shoe-6",
+      "watchId": "watch-R01"
+    },
+    "origin": "engine",
+    "mode": "engine",
+    "localDate": "2026-09-22",
+    "context": {
+      "occasion": "clinic",
+      "requiredFormality": "any"
+    }
+  },
+  "events": [
+    {
+      "id": "wear_1790084057881_91b23b679cdde8",
+      "localDate": "2026-09-22",
+      "date": "2026-09-22",
+      "confirmed": true,
+      "origin": "engine",
+      "controlledRepetition": false,
+      "items": {
+        "topwear": {
+          "id": "suit-10"
+        },
+        "shirt": {
+          "id": "shirt-DS035"
+        },
+        "tie": {
+          "id": "T017"
+        },
+        "shoes": {
+          "id": "shoe-6"
+        },
+        "watch": {
+          "id": "watch-R01"
+        },
+        "pants": null
+      },
+      "canonical_selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-6",
+        "watchId": "watch-R01"
+      },
+      "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516"
+    }
+  ]
+}

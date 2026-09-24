@@ -1,0 +1,67 @@
+{
+  "schema": "hewrs.shirt-only-result.v1_10",
+  "implemented": "ANCHOR_DS001_TIED_SHIRT_ONLY_WITH_REGISTERED_TROUSERS_AND_FOOTWEAR",
+  "shirt_only_ids": [
+    "DS001"
+  ],
+  "ties": 47,
+  "physical_trousers": 24,
+  "registered_shoe_pairs": 35,
+  "shader_or_garment_generation": false,
+  "new_garment_images": 0,
+  "original_runtime_images_preserved": 607,
+  "source_input_files_preserved": true,
+  "storage_source_lock_preserved": true,
+  "storage_schema_change": "Added explicit shirtOnly selection shape and matching null topwear identities. Old schemas/keys/source lock retained; older V1.9 readers are not claimed to accept new-mode events.",
+  "existing_suits": 18,
+  "existing_connected_blazers": [
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14"
+  ],
+  "functional_passed": 27,
+  "functional_failed": 0,
+  "browser_passed": 21,
+  "browser_failed": 0,
+  "source_composition_comparisons": 106,
+  "prior_mode_pixel_comparisons": 34,
+  "all_render_comparisons_exact": true,
+  "changed_original_paths": [
+    "index.html",
+    "app.template.html",
+    "README.md",
+    "app.html",
+    "PACKAGE_SHA256.json",
+    "tools/build.py",
+    "src/mixed-renderer.js",
+    "src/local-state.js",
+    "src/application.js"
+  ],
+  "render_scope": "Exact original CP49 full-shirt tie variants; no legacy CP25 underlayer is substituted for newer Active50 suit components.",
+  "visual_limits": [
+    "Native shirt panel/sleeve transitions and flat upper-trouser color band remain visible; not retouched or certified as a completed visual repair.",
+    "This newly connected shirt-only composition has not received a new owner visual ruling. Original garment approvals are preserved."
+  ],
+  "remaining": [
+    "Final B01/B02 wearable bindings",
+    "Other blazer shirt/no-tie modes",
+    "Other shirt-only/no-tie sources",
+    "Watch display",
+    "Existing numerical-source holds",
+    "Hosted/Safari/physical-iPhone validation and explicitly authorized deployment"
+  ],
+  "shirt_only_engine": false,
+  "hosted_navigation": "Attempted; ERR_BLOCKED_BY_ADMINISTRATOR",
+  "physical_iphone_tested": false,
+  "github_changed": false,
+  "deployed": false
+}

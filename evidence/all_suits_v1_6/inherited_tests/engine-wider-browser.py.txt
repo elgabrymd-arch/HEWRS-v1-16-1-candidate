@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+"""V1.4 Engine connection regression: exact packaged source and PNG bytes in memory."""
+from pathlib import Path
+import base64, importlib.util, json, shutil, sys, time
+from playwright.sync_api import sync_playwright
+R=Path(__file__).resolve().parents[1];E=R/'evidence/engine_v1_4';E.mkdir(exist_ok=True)
+spec=importlib.util.spec_from_file_location('build',R/'tools/build.py');build=importlib.util.module_from_spec(spec);spec.loader.exec_module(build)
+checks=[];errors=[];network=[];frames=[];controls=[];failure=None;t0=time.monotonic()
+def check(name,ok,detail=None):
+ checks.append({'name':name,'pass':bool(ok),'detail':detail});print(('PASS ' if ok else 'FAIL ')+name,flush=True)
+ if not ok:raise AssertionError(name+': '+str(detail))
+def snap(p,name):p.screenshot(path=str(E/name))
+def wait(p,expression,timeout=30000):
+ # Poll through a callable evaluated by DevTools; do not relax application CSP.
+ deadline=time.monotonic()+timeout/1000
+ while time.monotonic()<deadline:
+  if p.evaluate('()=>Boolean('+expression+')'):return
+  time.sleep(0.03)
+ raise TimeoutError(expression)
+with sync_playwright() as pw:
+ browser=pw.chromium.launch(headless=True,executable_path=shutil.which('chromium'),args=['--no-sandbox','--disable-dev-shm-usage'])
+ p=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1)
+ p.on('pageerror',lambda e:errors.append(str(e)));p.on('request',lambda r:network.append(r.url) if r.url.startswith(('http:','https:')) else None)
+ try:
+  html=(R/'app.template.html').read_text().replace('<!--STYLE-->','<style>'+(R/'src/application.css').read_text()+'</style>').replace('<!--SCRIPTS-->','')
+  p.set_content(html,wait_until='load');p.evaluate('globalThis.HEWRS_EMBEDDED_IMAGES={}');batch={};size=0
+  for f in sorted([*(R/'assets').glob('*.png'),*(R/'assemblies').glob('*.png')]):
+   s=base64.b64encode(f.read_bytes()).decode();batch[f.stem]=s;size+=len(s)
+   if size>4_000_000:p.evaluate('(v)=>{Object.assign(HEWRS_EMBEDDED_IMAGES,v);return true}',batch);batch={};size=0
+  if batch:p.evaluate('(v)=>{Object.assign(HEWRS_EMBEDDED_IMAGES,v);return true}',batch)
+  for f in build.SCRIPTS:
+   if f=='src/connection.js':
+    p.add_script_tag(content=(E/'baseline_connection.js.txt').read_text());p.evaluate('()=>{globalThis.HEWRS_V13_FACTORY=HEWRSCleanConnection.create;return true}')
+   p.add_script_tag(content=(R/f).read_text())
+  wait(p,'globalThis.HEWRS_READY===true',timeout=45000)
+  check('Exact V1.4 code starts',p.evaluate("HEWRSApp.version==='HEWRS_CONNECTED_APP_V1_4'") and 'V1.4' in p.locator('.version').inner_text())
+  p.evaluate('''()=>{
+   globalThis.readPixels=c=>c.getContext('2d',{willReadFrequently:true}).getImageData(0,0,996,2748).data;
+   globalThis.same=(a,b)=>a.length===b.length&&a.every((v,i)=>v===b[i]);
+   globalThis.currentPixels=()=>readPixels(document.getElementById('avatar'));
+   globalThis.cfg={shirt:'DS035',tie:'ANY',shoeId:'shoe-8',watchId:null,localDate:'2026-09-22',occasion:'clinic',formality:'any',style:'AUTO'};
+   globalThis.refCanvas=document.createElement('canvas');
+   globalThis.refConnection=HEWRS_V13_FACTORY(HEWRS_INPUTS);
+   globalThis.refRenderer=HEWRSAtomicRenderer.create(refCanvas,refConnection,{resolveUrl:HEWRSApp.resolveUrl});
+  }''')
+  p.locator('#mode-engine').click()
+  ids=p.locator('#suit-select option').evaluate_all('(a)=>a.map(o=>({id:o.value,disabled:o.disabled}))')
+  check('All 18 Engine suit options enabled',len(ids)==18 and all(not x['disabled'] for x in ids),ids)
+  p.locator('#suit-select').select_option('S11')
+  ui=p.evaluate("()=>({shirt:document.getElementById('shirt-select').value,disabled:document.getElementById('apply-selection').disabled,shown:HEWRSApp.state().selection.suitId,enabled:[...document.getElementById('shirt-select').options].filter(o=>!o.disabled).map(o=>o.value)})")
+  check('Wider suit does not silently choose DS035',ui=={'shirt':'ANY','disabled':True,'shown':'S05','enabled':['DS035']},ui)
+  p.locator('#shirt-select').select_option('DS035');p.locator('#tie-select').select_option('ANY');p.locator('#local-date').fill('2026-09-22')
+  check('Explicit DS035 enables Generate',not p.locator('#apply-selection').is_disabled());snap(p,'ENGINE_CONTROLS_PHONE.png')
+  p.locator('#apply-selection').click();wait(p,"HEWRSApp.state().origin==='engine'&&HEWRSApp.state().selection.suitId==='S11'&&document.getElementById('avatar').dataset.loading==='false'",timeout=45000)
+  result=p.evaluate("()=>({selection:HEWRSApp.state().selection,examined:HEWRSApp.state().report.diagnostics.examined,options:HEWRSApp.state().optionCount,events:HEWRSApp.store.snapshot().events.length,lock:HEWRSApp.state().request.shirt.id})")
+  check('UI generates 48 DS035 modes and displays a result without logging wear',result['examined']==48 and result['options']>0 and result['events']==0 and result['lock']=='shirt-DS035' and result['selection']['shirtId']=='DS035',result)
+  snap(p,'ENGINE_S11_RESULT_PHONE.png');p.evaluate("HEWRSApp.showPage('outfits')");snap(p,'ENGINE_S11_OUTFITS_PHONE.png')
+  check('Outfits displays the returned Engine options',p.locator('#results .card').count()==result['options'])
+  p.locator('#results .card').nth(1).get_by_role('button',name='View this outfit').click();wait(p,"document.getElementById('avatar').dataset.loading==='false'")
+  check('Viewing another result retains selected wider suit',p.evaluate("HEWRSApp.state().selection.suitId==='S11'&&HEWRSApp.state().selection.shirtId==='DS035'&&HEWRSApp.state().origin==='engine'"))
+  p.locator('#mode-engine').click()
+  check('Reopening Engine preserves explicit wider suit and DS035',p.locator('#suit-select').input_value()=='S11' and p.locator('#shirt-select').input_value()=='DS035' and not p.locator('#apply-selection').is_disabled())
+  p.locator('#suit-select').select_option('S05')
+  check('Original-suit selection restores free shirt options',p.locator('#shirt-select option').evaluate_all('(a)=>a.every(o=>!o.disabled)'))
+  p.locator('#shirt-select').select_option('DS036');p.locator('#suit-select').select_option('S02')
+  check('Incompatible exact shirt stays selected but blocked',p.locator('#shirt-select').input_value()=='DS036' and p.locator('#apply-selection').is_disabled())
+  p.locator('[data-close="selection-dialog"]').click()
+  for suit in p.evaluate('HEWRSApp.connection.assemblies.widerDS035SuitIds'):
+   rows=p.evaluate('''async suitId=>{
+    const a=HEWRSApp,rows=[];a.setMode('engine');
+    for(const tie of ['ANY','T017','NO_TIE']){
+     const b=currentPixels().slice(),pending=a.generate({...cfg,suitId,tie}),held=same(b,currentPixels()),r=await pending;
+     if(!r.options?.length)throw Error('No Engine result '+suitId+'/'+tie);
+     const s=a.state().selection;await refRenderer.render(s);
+     rows.push({suitId,requestedMode:tie,selection:s,examined:r.diagnostics.examined,options:r.options.length,exact:same(currentPixels(),readPixels(refCanvas)),held,label:document.getElementById('selection-ids').textContent.includes(suitId+' · DS035 · '+s.state),wear:a.store.snapshot().events.length});
+    }return rows;
+   }''',suit)
+   frames.extend(rows);check(suit+' Engine ANY/T017/NO_TIE match V1.3 rendered pixels',len(rows)==3 and all(x['exact'] and x['held'] and x['label'] and x['wear']==0 for x in rows),rows)
+  controls=p.evaluate('''async()=>{
+   const a=HEWRSApp,rows=[];
+   for(const [suitId,shirtId,state]of [['S05','DS035','REFERENCE'],['S05','DS035','T017'],['S05','DS035','NO_TIE'],['S05','DS051','T022'],['S05','DS027','NO_TIE'],['S05','DS041','NO_TIE'],['S01','DS036','T017'],['S04','DS035','T017'],['S16','DS035','NO_TIE']]){
+    const s={suitId,shirtId,state,shoeId:'shoe-8',watchId:null};await refRenderer.render(s);await a.apply(s,{save:false});rows.push({...s,exact:same(currentPixels(),readPixels(refCanvas))});
+   }return rows;
+  }''')
+  check('Nine original-route controls remain pixel-identical',len(controls)==9 and all(x['exact'] for x in controls),controls)
+  invalid=p.evaluate('''async()=>{
+   const a=HEWRSApp;await a.generate({...cfg,suitId:'S11',tie:'T017'});const old=a.state(),b=currentPixels().slice(),rows=[];
+   for(const extra of [{shirt:'ANY'},{shirt:'FAMILY:cream'},{shirt:'DS036'},{tie:'REFERENCE'},{tie:'T048'},{shoeId:'shoe-50'},{suitId:'S19'}]){
+    let rejected=false;try{await a.generate({...cfg,suitId:'S11',...extra});}catch{rejected=true;}
+    rows.push({extra,rejected,retained:same(b,currentPixels()),identity:JSON.stringify(old.selection)===JSON.stringify(a.state().selection),request:JSON.stringify(old.request)===JSON.stringify(a.state().request)});
+   }return rows;
+  }''')
+  check('Invalid Engine requests retain prior frame, identity and request',all(x['rejected'] and x['retained'] and x['identity'] and x['request'] for x in invalid),invalid)
+  rapid=p.evaluate('''async()=>{const a=HEWRSApp,b=currentPixels().slice(),p=[];for(const suitId of ['S02','S11','S18'])p.push(a.generate({...cfg,suitId}));const held=same(b,currentPixels()),r=await Promise.all(p);return {held,cancelled:r.filter(x=>x.cancelled).length,selection:a.state().selection,ready:document.getElementById('avatar').dataset.status}}''')
+  check('Rapid Engine generation commits only last request',rapid['held'] and rapid['cancelled']==2 and rapid['selection']['suitId']=='S18' and rapid['ready']=='ready',rapid)
+  cancelled=p.evaluate('''async()=>{const a=HEWRSApp,s=a.state().selection,b=currentPixels().slice(),p=a.generate({...cfg,suitId:'S02'});a.cancel();const r=await p;return {cancelled:r.cancelled,unchanged:same(b,currentPixels()),identity:JSON.stringify(s)===JSON.stringify(a.state().selection)}}''')
+  check('Cancellation preserves last complete outfit',all(cancelled.values()),cancelled)
+  zero=p.evaluate('''async()=>{const a=HEWRSApp,s=a.state().selection,b=currentPixels().slice(),r=await a.generate({...cfg,suitId:'S11',tie:'NO_TIE',formality:'tie_required'});return {count:r.options.length,unchanged:same(b,currentPixels()),identity:JSON.stringify(s)===JSON.stringify(a.state().selection)}}''')
+  check('No eligible result does not substitute an outfit',zero['count']==0 and zero['unchanged'] and zero['identity'],zero)
+  p.evaluate("async()=>{HEWRSApp.showPage('home');HEWRSApp.setMode('engine');await HEWRSApp.generate({...cfg,suitId:'S11',tie:'T017',shoeId:'shoe-6',watchId:'watch-R01'})}")
+  accessory=p.evaluate("()=>({s:HEWRSApp.state().selection,shoe:document.getElementById('avatar').dataset.shoeId,text:document.getElementById('representation').textContent})")
+  check('Explicit shoe renders and selected watch remains labelled metadata',accessory['s']['shoeId']=='shoe-6' and accessory['shoe']=='shoe-6' and accessory['s']['watchId']=='watch-R01' and 'not rendered' in accessory['text'],accessory)
+  check('No wear events created by generation or viewing',p.evaluate('HEWRSApp.store.snapshot().events.length===0'))
+  p.locator('#record-wear').click();p.locator('#wear-date').fill('2026-09-22');p.locator('#confirm-wear').click();wait(p,'HEWRSApp.store.snapshot().events.length===1')
+  event=p.evaluate('HEWRSApp.store.snapshot().events[0]')
+  check('Explicit Engine wear records exact canonical and historic IDs',event['origin']=='engine' and event['canonical_selection']==accessory['s'] and event['items']['shirt']['id']=='shirt-DS035' and event['items']['tie']['id']=='T017' and event['items']['topwear']['id']==p.evaluate("HEWRSApp.connection.aliases.get('S11')"),event)
+  p.locator('#data-button').click()
+  with p.expect_download(timeout=15000) as di:p.locator('#export-backup').click()
+  file=E/'TEST_ONLY_ENGINE_BACKUP.json';di.value.save_as(str(file));backup=json.loads(file.read_text());rev=p.evaluate('HEWRSApp.store.snapshot().revision')
+  p.locator('#backup-file').set_input_files(str(file));wait(p,"!document.getElementById('confirm-restore').disabled")
+  check('Import preview remains read-only',p.evaluate('HEWRSApp.store.snapshot().revision')==rev and p.evaluate('HEWRSApp.store.snapshot().events.length')==1)
+  p.locator('#confirm-restore').click();wait(p,"!document.getElementById('backup-dialog').open&&document.getElementById('avatar').dataset.loading==='false'")
+  restored=p.evaluate('HEWRSApp.store.snapshot()')
+  check('Explicit restore keeps one exact Engine wear record',restored['events']==backup['events'] and len(restored['events'])==1 and restored['session']['selection']==backup['session']['selection'])
+  check('Unavailable persistence is labelled memory-only',p.evaluate('HEWRSApp.store.status().persistent===false') and 'memory' in p.locator('#storage-banner').inner_text().lower())
+  p.evaluate("async()=>{HEWRSApp.setMode('engine');HEWRSApp.showPage('home');await HEWRSApp.generate({...cfg,suitId:'S11',tie:'T017'})}")
+  sizes=[]
+  for w,h in [(390,844),(375,667),(430,932)]:
+   p.set_viewport_size({'width':w,'height':h});sizes.append(p.evaluate("()=>{const a=document.getElementById('avatar').getBoundingClientRect(),n=document.querySelector('.bottom-nav').getBoundingClientRect();return {w:innerWidth,h:innerHeight,fits:a.top>=0&&a.bottom<=n.top,overflow:document.documentElement.scrollWidth>innerWidth}}"))
+  check('Three phone viewport layouts retain full-avatar visibility',all(x['fits'] and not x['overflow'] for x in sizes),sizes)
+  p.set_viewport_size({'width':390,'height':844});snap(p,'APP_V1_4_S11_DS035_ENGINE_PHONE.png')
+  check('No JavaScript page errors',not errors,errors);check('No external requests in memory run',not network,network)
+ except Exception as ex:
+  failure=str(ex);print('ERROR',repr(ex),flush=True)
+  try:snap(p,'FAILED_BROWSER_STATE.png')
+  except Exception:pass
+ finally:
+  out={'schema':'hewrs.engine-wide.browser.v1_4','checks_passed':sum(x['pass'] for x in checks),'checks_failed':sum(not x['pass'] for x in checks),'failure':failure,'checks':checks,'engine_render_comparisons':len(frames),'engine_render_rows':frames,'original_route_controls':controls,'page_errors':errors,'external_requests':network,'browser':browser.version,'elapsed_seconds':round(time.monotonic()-t0,2),'transport':'Exact packaged template/CSS/JS and PNG bytes in memory; reference uses preserved V1.3 connection','test_data_only':True,'not_tested':['Hosted delivery','Safari','Physical iPhone','Persistent browser restart']}
+  (E/'BROWSER.json').write_text(json.dumps(out,indent=2)+'\n');browser.close()
+print(json.dumps({k:out[k] for k in ['checks_passed','checks_failed','failure','engine_render_comparisons','elapsed_seconds']}),flush=True)
+if failure or out['checks_failed']:sys.exit(1)

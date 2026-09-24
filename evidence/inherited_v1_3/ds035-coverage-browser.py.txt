@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""New-code browser regression; inherited garment approvals are not retested.
+Runs exact packaged HTML template/CSS/JS with PNG bytes supplied in memory.
+"""
+from pathlib import Path
+import base64,json,time,importlib.util,shutil
+from playwright.sync_api import sync_playwright
+R=Path(__file__).resolve().parents[1];B=R/'evidence';checks=[];errors=[];network=[];started=time.monotonic()
+spec=importlib.util.spec_from_file_location('build',R/'tools/build.py');build=importlib.util.module_from_spec(spec);spec.loader.exec_module(build)
+def check(name,ok,detail=None):
+ checks.append({'name':name,'pass':bool(ok),'detail':detail});print(('PASS ' if ok else 'FAIL ')+name,flush=True)
+ if not ok:raise AssertionError(name+': '+str(detail))
+def capture(page,mode):
+ raw=page.evaluate("document.getElementById('avatar').toDataURL('image/png')").split(',')[1]
+ (B/f'DS035_S11_{mode}_AFTER.png').write_bytes(base64.b64decode(raw))
+ before=page.evaluate("globalThis.originalControl.toDataURL('image/png')").split(',')[1]
+ (B/f'DS035_S11_{mode}_BEFORE.png').write_bytes(base64.b64decode(before))
+ page.screenshot(path=str(B/f'APP_DS035_S11_{mode}_PHONE.png'))
+with sync_playwright() as pw:
+ browser=pw.chromium.launch(headless=True,executable_path=shutil.which('chromium'),args=['--no-sandbox','--disable-dev-shm-usage'])
+ page=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1)
+ page.on('pageerror',lambda e:errors.append(str(e)));page.on('request',lambda r:network.append(r.url) if r.url.startswith(('https:','http:')) else None)
+ try:
+  text=(R/'app.template.html').read_text().replace('<!--STYLE-->','<style>'+(R/'src/application.css').read_text()+'</style>').replace('<!--SCRIPTS-->','')
+  page.set_content(text,wait_until='load');page.evaluate('globalThis.HEWRS_EMBEDDED_IMAGES={}');batch={};size=0
+  for f in sorted(list((R/'assets').glob('*.png'))+list((R/'assemblies').glob('*.png'))):
+   s=base64.b64encode(f.read_bytes()).decode();batch[f.stem]=s;size+=len(s)
+   if size>4_000_000:page.evaluate('(d)=>{Object.assign(HEWRS_EMBEDDED_IMAGES,d);return true}',batch);batch={};size=0
+  if batch:page.evaluate('(d)=>{Object.assign(HEWRS_EMBEDDED_IMAGES,d);return true}',batch)
+  for script in build.SCRIPTS:page.add_script_tag(content=(R/script).read_text())
+  page.wait_for_function('globalThis.HEWRS_READY===true',timeout=45000)
+  check('Exact packaged V1.3 source starts in Chromium',page.evaluate("HEWRSApp.version==='HEWRS_CONNECTED_APP_V1_3'") and 'V1.3' in page.locator('.version').inner_text())
+  page.evaluate('''globalThis.fullPixels=c=>c.getContext('2d',{willReadFrequently:true}).getImageData(0,0,996,2748).data;
+  globalThis.same=(a,b)=>a.length===b.length&&a.every((v,i)=>v===b[i]);
+  globalThis.decodeLayer=async d=>{const im=new Image();await new Promise((r,j)=>{im.onload=r;im.onerror=j;im.src=HEWRSApp.resolveUrl(d)});const c=document.createElement('canvas');c.width=996;c.height=2748;const ctx=c.getContext('2d');ctx.drawImage(im,0,0);const a=fullPixels(c);c.width=c.height=1;return a};void 0;''')
+  # Supply test-only strict gap support as a compact row list. RGB never used.
+  strict=json.loads((R/'evidence/STRICT_OPENING_MASK.json').read_text())
+  page.evaluate('(indices)=>{globalThis.requiredGapIndices=indices}',strict['rgba_pixel_indices'])
+  original=page.evaluate('''async()=>{const c=document.createElement('canvas'),r=HEWRSActive50.create(c,HEWRS_INPUTS.manifest,HEWRSApp.resolveUrl),rows=[];
+   for(const [shirtId,state] of [['DS035','T017'],['DS035','NO_TIE'],['DS035','REFERENCE'],['DS036','T017'],['DS036','NO_TIE'],['DS051','T001'],['DS051','T047'],['DS051','NO_TIE'],['DS027','NO_TIE'],['DS047','T022'],['DS041','NO_TIE']]){
+    await r.render({suitId:'S05',shirtId,state});await HEWRSApp.apply({suitId:'S05',shirtId,state,shoeId:'shoe-8',watchId:null},{save:false});rows.push({shirtId,state,exact:same(fullPixels(c),fullPixels(document.getElementById('avatar')))});
+   }c.width=c.height=1;return rows;}''')
+  check('Eleven original S05 frames unchanged pixel-for-pixel',all(r['exact'] for r in original),original)
+  # Validate all actual new 14 x 48 render requests, not just plans.
+  rows=[]
+  suits=page.evaluate('HEWRSApp.connection.assemblies.widerDS035SuitIds')
+  for suit in suits:
+   out=page.evaluate('''async suitId=>{
+    const app=HEWRSApp,con=app.connection,m=con.assemblies.forSelection(suitId,'shoe-8','DS035'),c=document.createElement('canvas'),r=HEWRSActive50.create(c,m,app.resolveUrl),rows=[];
+    const patches={no_tie:await decodeLayer(HEWRS_DS035_COVERAGE.states.no_tie),tied:await decodeLayer(HEWRS_DS035_COVERAGE.states.tied)};
+    for(const state of ['NO_TIE',...Object.keys(con.manifest.ties)]){
+     await r.render({suitId:'S05',shirtId:'DS035',state});const before=fullPixels(c);
+     const result=await app.apply({suitId,shirtId:'DS035',state,shoeId:'shoe-8',watchId:null},{save:false});
+     const after=fullPixels(document.getElementById('avatar')),patch=patches[state==='NO_TIE'?'no_tie':'tied'],tie=state==='NO_TIE'?null:await decodeLayer(con.manifest.ties[state].display_layer);
+     let changed=0,outside=0,opaqueChanged=0,tieChanged=0,beforeHoles=0,afterHoles=0;
+     for(let i=0;i<after.length;i+=4){if(before[i]===after[i]&&before[i+1]===after[i+1]&&before[i+2]===after[i+2]&&before[i+3]===after[i+3])continue;
+      changed++;if(!patch[i+3])outside++;if(before[i+3]===255)opaqueChanged++;if(tie&&tie[i+3])tieChanged++;}
+     for(const i of requiredGapIndices){if(!before[i+3])beforeHoles++;if(!after[i+3])afterHoles++;}
+     const d=document.getElementById('avatar').dataset;
+     rows.push({suitId,state,ready:result.status==='ready'&&d.suitId===suitId&&d.shirtId==='DS035'&&d.state===state,changed_pixels:changed,changes_outside_authorized_mask:outside,previously_opaque_pixels_changed:opaqueChanged,selected_tie_pixels_changed:tieChanged,before_empty_pixels:beforeHoles,after_empty_pixels:afterHoles});
+    }c.width=c.height=1;return rows;
+   }''',suit)
+   rows+=out
+   check(suit+' / DS035: 48 actual renders; gaps closed; protected pixels unchanged',len(out)==48 and all(r['ready'] and r['after_empty_pixels']==0 and r['changes_outside_authorized_mask']==0 and r['previously_opaque_pixels_changed']==0 and r['selected_tie_pixels_changed']==0 for r in out),{'renders':len(out)})
+   (B/'DS035_BROWSER_PROGRESS.json').write_text(json.dumps({'completed':len(rows),'lastSuit':suit}))
+  page.evaluate('''globalThis.originalControl=document.createElement('canvas');globalThis.controlRenderer=HEWRSActive50.create(originalControl,HEWRSApp.connection.assemblies.forSelection('S11','shoe-8','DS035'),HEWRSApp.resolveUrl);void 0;''')
+  for state in ['T017','NO_TIE']:
+   page.evaluate('''async state=>{await controlRenderer.render({suitId:'S05',shirtId:'DS035',state});await HEWRSApp.apply({suitId:'S11',shirtId:'DS035',state,shoeId:'shoe-8',watchId:null},{save:false});}''',state)
+   capture(page,state)
+  # UI scope and explicit choice, no auto-substitution.
+  page.evaluate("HEWRSApp.apply({suitId:'S05',shirtId:'DS036',state:'T017',shoeId:'shoe-8',watchId:null},{save:false})")
+  page.get_by_role('button',name='Anchor',exact=True).click()
+  check('Anchor lists all eighteen suits',page.locator('#suit-select option:not([disabled])').count()==18)
+  page.locator('#suit-select').select_option('S11')
+  check('Wider suit selection requires explicit DS035; previous outfit retained',page.locator('#apply-selection').is_disabled() and page.evaluate("HEWRSApp.state().selection.shirtId==='DS036'"))
+  page.locator('#shirt-select').select_option('DS035');page.locator('#tie-select').select_option('T017');page.locator('#apply-selection').click()
+  page.wait_for_function("HEWRSApp.state().selection.suitId==='S11' && !document.getElementById('stage').classList.contains('busy')")
+  check('Anchor applies S11 / DS035 / T017',page.evaluate("HEWRSApp.state().selection.shirtId==='DS035' && HEWRSApp.state().selection.state==='T017'"))
+  page.get_by_role('button',name='Engine',exact=True).click()
+  check('Engine asks for an original connected suit instead of silently changing S11',page.locator('#suit-select').input_value()=='' and page.locator('#apply-selection').is_disabled())
+  page.locator('#cancel-work').click()
+  invalid=page.evaluate('''async()=>{const old=HEWRSApp.state().selection,b=fullPixels(document.getElementById('avatar')),rows=[];
+   for(const extra of [{shirtId:'DS036'},{state:'REFERENCE'},{state:'T048'},{shirtId:'DS049'},{suitId:'S19'},{shoeId:'shoe-50'}]){let rejected=false;try{await HEWRSApp.apply({...old,...extra},{save:false})}catch{rejected=true}rows.push({extra,rejected,retained:same(b,fullPixels(document.getElementById('avatar'))),identity:JSON.stringify(old)===JSON.stringify(HEWRSApp.state().selection)});}return rows}''')
+  check('Unsupported selections reject and retain the last complete frame',all(r['rejected'] and r['retained'] and r['identity'] for r in invalid),invalid)
+  rapid=page.evaluate('''async()=>{const a=HEWRSApp,b=fullPixels(document.getElementById('avatar')),pending=[];for(let i=0;i<12;i++)pending.push(a.apply({suitId:['S02','S11','S18'][i%3],shirtId:'DS035',state:i%2?'T022':'NO_TIE',shoeId:'shoe-8',watchId:null},{save:false}));const held=same(b,fullPixels(document.getElementById('avatar'))),r=await Promise.all(pending);return{held,ready:r.filter(x=>x.status==='ready').length,cancelled:r.filter(x=>x.cancelled).length,last:a.state().selection}}''')
+  check('Rapid wider-suit switches retain old pixels and commit only the last',rapid['held'] and rapid['ready']==1 and rapid['cancelled']==11 and rapid['last']['suitId']=='S18',rapid)
+  shoes=page.evaluate('''async()=>{const a=HEWRSApp,rows=[];for(const shoeId of Object.keys(a.connection.shoeLayers)){await a.apply({suitId:'S11',shirtId:'DS035',state:'T017',shoeId,watchId:null},{save:false});rows.push({shoeId,ready:document.getElementById('avatar').dataset.shoeId===shoeId});}return rows}''')
+  check('All 35 registered footwear choices execute with DS035 wider suit',len(shoes)==35 and all(r['ready'] for r in shoes))
+  geometry=[]
+  for w,h in [(390,844),(375,667),(430,932)]:
+   page.set_viewport_size({'width':w,'height':h});geometry.append(page.evaluate("()=>{const a=document.getElementById('avatar').getBoundingClientRect(),n=document.querySelector('.bottom-nav').getBoundingClientRect();return {width:innerWidth,height:innerHeight,fits:a.top>=0&&a.bottom<=n.top,overflow:document.documentElement.scrollWidth>innerWidth}}"))
+  check('Full avatar fits at three phone viewport sizes',all(r['fits'] and not r['overflow'] for r in geometry),geometry)
+  check('Rendering and switching created no wear records',page.evaluate('HEWRSApp.store.snapshot().events.length===0'))
+  check('No JavaScript errors',not errors,errors);check('No external requests',not network,network)
+  result={'schema':'hewrs.ds035.coverage.browser-validation.v1_3','checks_passed':sum(r['pass'] for r in checks),'checks_failed':sum(not r['pass'] for r in checks),'checks':checks,'new_combination_renders':len(rows),'new_combination_rows':rows,'S05_exact_reference_rows':original,'shoe_choice_rows':shoes,'browser_version':browser.version,'elapsed_seconds':round(time.monotonic()-started,2),'transport':'Exact packaged template, CSS and JavaScript; original and derivative PNG bytes supplied in memory','not_tested':['Hosted delivery','Safari','Physical iPhone','Real persistent browser restart','Other shirts under S11-template suits']}
+  (B/'DS035_COVERAGE_BROWSER.json').write_text(json.dumps(result,indent=2)+'\n');print('DONE',json.dumps({k:result[k] for k in ['checks_passed','checks_failed','new_combination_renders','elapsed_seconds']}),flush=True)
+ finally:browser.close()

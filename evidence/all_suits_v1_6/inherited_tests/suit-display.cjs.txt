@@ -1,0 +1,53 @@
+/* New display-connection behavior, not garment appearance approval. */
+'use strict';
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert/strict'),crypto=require('crypto');
+const R=path.resolve(__dirname,'..'),p=JSON.parse(fs.readFileSync(R+'/data/inputs.json'));
+const sandbox={console,structuredClone,Date,Math,JSON,setTimeout,clearTimeout,Uint8ClampedArray};
+class Canvas{constructor(){this.dataset={};}getContext(){return{};}}
+sandbox.HTMLCanvasElement=Canvas;sandbox.document={createElement:()=>new Canvas()};
+const c=vm.createContext(sandbox);
+for(const f of ['vendor/hewrs-logic.js','vendor/approved-scores.js','vendor/ensemble-completion.js','vendor/release-guards.js','vendor/request-contract.js','src/controller.js','vendor/watch-classification.js','src/canonical-bindings-browser.js','data/approved-suits.js','src/suit-resolver97-browser.js','src/approved-suit-sources.js','data/suit-assembly.js','data/ds035-coverage.js','data/ds035-edge.js','src/suit-assemblies.js','src/connection.js','src/local-state.js','vendor/active50-renderer.js'])vm.runInContext(fs.readFileSync(R+'/'+f,'utf8'),c,{filename:f});
+c.HEWRS_INPUT_SHA256=crypto.createHash('sha256').update(fs.readFileSync(R+'/data/inputs.json')).digest('hex');
+const app=c.HEWRSCleanConnection.create(p),tests=[];let plans=0,rejected=0;
+const same=(a,b)=>assert.equal(JSON.stringify(a),JSON.stringify(b));
+function check(name,fn){try{fn();tests.push({name,status:'PASS'});}catch(e){tests.push({name,status:'FAIL',error:e.stack});}}
+const base={suitId:'S05',shirtId:'DS036',state:'T017',shoeId:'shoe-8',watchId:null};
+check('Explicit template registration enables S01/S04/S05/S16 only',()=>same(app.limits.suits,['S01','S04','S05','S16']));
+check('S05 manifest remains descriptor-identical at the original shoe control',()=>same(app.assemblies.forSelection('S05','shoe-8'),p.manifest));
+check('Every supported state uses the exact selected suit pair; other descriptors preserved',()=>{
+ const parent=c.HEWRSActive50.create(new Canvas(),p.manifest);
+ for(const suitId of app.limits.suits){
+  const m=app.assemblies.forSelection(suitId,'shoe-8'),renderer=c.HEWRSActive50.create(new Canvas(),m),pair=app.suitSources.resolveCanonical(suitId);
+  for(const shirtId of p.manifest.shirt_order)for(const state of p.manifest.shirts[shirtId].available_modes){
+   if(state==='REFERENCE'&&suitId!=='S05')continue;
+   const selection={...base,suitId,shirtId,state};app.validateSelection(selection);
+   const old=parent.plan({suitId:'S05',shirtId,state}),out=renderer.plan({suitId:'S05',shirtId,state});assert.equal(out.length,old.length);
+   for(let i=0;i<out.length;i++){
+    if(i===1){assert.equal(out[i].sha256,pair.trousers.sha256);same(out[i].rect,[0,0,996,2748]);}
+    else if(old[i].sha256===p.manifest.static.jacket.sha256){assert.equal(out[i].sha256,pair.jacket.sha256);same(out[i].display_alpha_mask,old[i].display_alpha_mask);}
+    else same(out[i],old[i]);
+   }
+   plans++;
+  }
+ }
+ assert.equal(plans,8849);
+});
+check('No-tie-only restrictions and the S05 retained-reference identity remain exact',()=>{
+ for(const suitId of app.limits.suits){for(const shirtId of ['DS040','DS041','DS042','DS043'])for(const state of Object.keys(p.manifest.ties)){assert.throws(()=>app.validateSelection({...base,suitId,shirtId,state}));rejected++;}
+ if(suitId!=='S05')assert.throws(()=>app.validateSelection({...base,suitId,shirtId:'DS035',state:'REFERENCE'}));}
+ assert.equal(rejected,752);
+});
+check('Wider-aperture suit requests reject, rather than masquerade as S05',()=>{for(const id of app.suitSources.ids.filter(id=>!app.limits.suits.includes(id))){assert.throws(()=>app.validateSelection({...base,suitId:id}));assert.throws(()=>app.makeRequest({suitId:id,shoeId:'shoe-8',localDate:'2026-09-21'}));}});
+check('All 18 archived views bind exact saved composites, not current selections',()=>{assert.equal(Object.keys(app.assemblies.contract.registered_views).length,18);for(const id of app.suitSources.ids){const d=app.assemblies.registeredView(id);assert.equal(d.suitId,id);assert.equal(d.current_selection_applied,false);assert.equal(d.role,'PRESERVED_REGISTERED_CONTROL_VIEW_NOT_SELECTED_OUTFIT');assert.equal(crypto.createHash('sha256').update(fs.readFileSync(R+'/'+d.url)).digest('hex'),d.sha256);}});
+for(const suitId of app.limits.suits)check(suitId+' is carried through actual Engine result, display, and history IDs',()=>{
+ const q=app.makeRequest({suitId,shirt:'DS036',tie:'T017',shoeId:'shoe-8',watchId:null,localDate:'2026-09-21',occasion:'clinic',style:'AUTO'});
+ assert.equal(q.topwear.id,app.aliases.get(suitId));const result=app.controller.generate(q,app.catalogue,[]);assert.ok(result.options.length);
+ const b=app.selectionFromOption(result.options[0],q);assert.equal(b.selection.suitId,suitId);assert.equal(b.suit_source.suitId,suitId);same(b.binding.compatibility,result.options[0]._hewrsConnected.compatibility);
+ const e=app.createHistoryEvent(b.selection,{id:'wear_'+suitId,localDate:'2026-09-21'});assert.equal(e.items.topwear.id,app.aliases.get(suitId));assert.equal(e.canonical_selection.suitId,suitId);
+ const store=c.HEWRSLocalState.create(app,c.HEWRS_INPUT_SHA256,null);store.addEvent(e);same(store.previewImport(store.exportText()).events[0],e);
+});
+check('Selected suit cannot be changed in a cached result without rejection',()=>{const q=app.makeRequest({suitId:'S01',shirt:'DS036',tie:'T017',shoeId:'shoe-8',localDate:'2026-09-21'}),r=app.controller.generate(q,app.catalogue,[]);const bad=structuredClone(r.options[0]);bad.items.topwear.id='suit-4';assert.throws(()=>app.selectionFromOption(bad,q));});
+check('Registered source template cannot be forged into a dynamic route',()=>{const d=structuredClone(c.HEWRS_SUIT_ASSEMBLY_DATA);d.dynamic_suits.push('S02');assert.throws(()=>c.HEWRSSuitAssemblies.create(app.suitSources,p.manifest,p.shoeLayers,d));});
+check('Original input data and score modules were not changed by the extension',()=>{assert.equal(crypto.createHash('sha256').update(fs.readFileSync(R+'/data/inputs.json')).digest('hex'),JSON.parse(fs.readFileSync(R+'/evidence/SOURCE_ORIGINS.json')).input_sha256);});
+const out={schema:'hewrs.suit-display-tests.v1_2',passed:tests.filter(t=>t.status==='PASS').length,failed:tests.filter(t=>t.status==='FAIL').length,layer_plans_checked:plans,prohibited_tied_requests_rejected:rejected,tests,not_an_all_state_browser_run:true,garment_approval_reopened:false};
+fs.writeFileSync(R+'/evidence/SUIT_DISPLAY_TESTS.json',JSON.stringify(out,null,2));console.log(JSON.stringify(out));if(out.failed)process.exitCode=1;

@@ -1,0 +1,80 @@
+{
+  "schema": "hewrs.ds035.coverage.scope-verification.v1_3",
+  "status": "PASS",
+  "extension_rows": [
+    {
+      "mode": "no_tie",
+      "extension_pixels": 5370,
+      "outside_authorized_geometry": 0,
+      "protected_body_collar_cuff_hand_neck_overlap": 0,
+      "matches_deterministic_build": true
+    },
+    {
+      "mode": "tied",
+      "extension_pixels": 5833,
+      "outside_authorized_geometry": 0,
+      "protected_body_collar_cuff_hand_neck_overlap": 0,
+      "matches_deterministic_build": true
+    }
+  ],
+  "base_preservation": {
+    "base_archive_sha256": "22974d55553251edd48295cee07e646b4f428318e8bf786dd1a132ae13f5ee49",
+    "original_asset_png_files_unchanged": 496,
+    "preserved_critical_files": [
+      "data/inputs.json",
+      "data/inputs.js",
+      "vendor/active50-renderer.js",
+      "src/local-state.js",
+      "src/controller.js",
+      "vendor/hewrs-logic.js",
+      "vendor/approved-scores.js",
+      "vendor/ensemble-completion.js",
+      "vendor/cp98/REGISTER97.json",
+      "data/approved-suits.json",
+      "data/approved-suits.js",
+      "data/suit-assembly.json",
+      "data/suit-assembly.js"
+    ],
+    "changed_or_relocated_files": [
+      "PACKAGE_SHA256.json",
+      "README.md",
+      "app.html",
+      "app.template.html",
+      "src/application.js",
+      "src/atomic-renderer.js",
+      "src/canonical-bindings-browser.js",
+      "src/connection.js",
+      "src/suit-assemblies.js",
+      "tests/browser.py",
+      "tests/functional.cjs",
+      "tests/suit-display-browser.py",
+      "tests/suit-display.cjs",
+      "tests/suit-source-smoke.py",
+      "tools/build.py",
+      "tools/verify.py"
+    ],
+    "preserved_existing_file_count": 573
+  },
+  "superseded_candidate": {
+    "archive_sha256": "4b57f7910cebc66b57024a166f650605744030978581eff2f6f2e1eb830352fb",
+    "not_used_in_new_build": true,
+    "asset_checks": [
+      {
+        "mode": "no_tie",
+        "nontransparent_pixels": 54778,
+        "outside_registered_new_opening": 53243,
+        "remaining_previously_demonstrated_empty_pixels": 839
+      },
+      {
+        "mode": "tied",
+        "nontransparent_pixels": 54914,
+        "outside_registered_new_opening": 53282,
+        "remaining_previously_demonstrated_empty_pixels": 860
+      }
+    ],
+    "changed_inputs_json_without_synchronized_inputs_js": true
+  },
+  "file_operations": "Read-only; rebuild compared in memory",
+  "source_rgb_note": "Only DS035 NO_TIE shirt-body RGB supplies new cloth; old S11 control is alpha-only geometry",
+  "boundary": "The new underfill removes transparency, not baked-in source-edge outlines. Original opaque pixels remain unchanged."
+}

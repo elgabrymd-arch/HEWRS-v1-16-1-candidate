@@ -1,0 +1,85 @@
+{
+  "schema": "hewrs.ds035.coverage.routing-tests.v1_3",
+  "passed": 19,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "S05 original descriptor tree and masks unchanged",
+      "pass": true
+    },
+    {
+      "name": "Four original connected suit IDs unchanged",
+      "pass": true
+    },
+    {
+      "name": "Fourteen wider suits use explicit registered identities",
+      "pass": true
+    },
+    {
+      "name": "All 672 DS035 wider-suit requests validate without substitute shirt or tie",
+      "pass": true
+    },
+    {
+      "name": "All wider-suit manifests preserve source shirt components and selected paired suit",
+      "pass": true
+    },
+    {
+      "name": "Other shirts stay outside authorized wider-suit routes",
+      "pass": true
+    },
+    {
+      "name": "REFERENCE remains S05 only, never an alternate tied selection",
+      "pass": true
+    },
+    {
+      "name": "Unknown tie ID and retired shirt reject",
+      "pass": true
+    },
+    {
+      "name": "Unknown suit and registered-shoe mismatch reject",
+      "pass": true
+    },
+    {
+      "name": "Engine request scope unchanged",
+      "pass": true
+    },
+    {
+      "name": "Original component hash mappings do not change",
+      "pass": true
+    },
+    {
+      "name": "Exactly two coverage variants are bound separately",
+      "pass": true
+    },
+    {
+      "name": "S05 and other original-template suits have no coverage metadata",
+      "pass": true
+    },
+    {
+      "name": "Wider suit cannot inherit a coverage layer without exact DS035 request",
+      "pass": true
+    },
+    {
+      "name": "Wear event binds the actual canonical and historical suit identity",
+      "pass": true
+    },
+    {
+      "name": "Unchanged source lock retains valid V1.2-format saved sessions",
+      "pass": true
+    },
+    {
+      "name": "New DS035 wider-suit session validates with the same storage contract",
+      "pass": true
+    },
+    {
+      "name": "All 188 approved score records unchanged",
+      "pass": true
+    },
+    {
+      "name": "Input data are not mutated by coverage routing",
+      "pass": true
+    }
+  ],
+  "new_requests": 672,
+  "other_shirt_rejections": 686
+}

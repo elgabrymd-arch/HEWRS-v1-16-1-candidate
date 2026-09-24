@@ -1,0 +1,98 @@
+--- V1.3/src/connection.js
++++ V1.4/src/connection.js
+@@ -83,7 +83,17 @@
+   return evaluate(q);
+  }
+  function makeRequest(c){
+-  const suitId=c.suitId??'S05';assemblies.requireDynamic(suitId);
++  const suitId=c.suitId??'S05';
++  suitSources.resolveCanonical(suitId);
++  const wider=assemblies.widerDS035SuitIds.includes(suitId);
++  if(wider)need(c.shirt==='DS035'||c.shirt==='shirt-DS035',
++   'Select DS035 explicitly for this wider-opening Engine route. ANY, shirt families and other shirts are not substituted.');
++  assemblies.requireDynamic(suitId,wider?'DS035':null);
++  need(c.tie!=='REFERENCE','REFERENCE is a retained S05 control, not an Engine tie selection');
++  need(Object.hasOwn(p.shoeLayers,c.shoeId),'No registered layer for this exact Engine footwear selection');
++  if(c.tie&&c.tie!=='ANY'&&c.tie!=='NO_TIE'&&!c.tie.startsWith('FAMILY:'))
++   need(Object.hasOwn(m.ties,c.tie),'No source for this exact Engine tie selection');
++  if(c.watchId)need(catalogue.watches.some(w=>w.id===c.watchId),'Unknown exact Engine watch selection');
+   const q={mode:'candidate',dressMode:'work',topwear:{mode:'item',id:aliases.get(suitId),formal:true},
+    shoes:{mode:'item',id:c.shoeId},executiveStyle:c.style||'AUTO',context:{occasion:c.occasion||'clinic',requiredFormality:c.formality||'any'},localDate:c.localDate,limit:15};
+   if(c.watchId)q.watch={mode:'item',id:c.watchId};
+@@ -99,7 +109,7 @@
+  }
+  return Object.freeze({catalogue,records,features,aliases,source,registry,rawEngine,engine,controller,bridge,makeRequest,validateSelection,selectionFromOption,historyIds,scoreSelection,createHistoryEvent,
+   manifest:m,suitSources,assemblies,shoeLayers:p.shoeLayers,assetPaths:Object.freeze({...p.assets,...suitSources.assetPaths,...assemblies.viewAssets,...assemblies.coverageAssets}),sourceBindings:p.sourceBindings,
+-  limits:{suits:assemblies.dynamicSuitIds,wider_ds035_suits:assemblies.widerDS035SuitIds,approved_suit_source_ids:suitSources.ids,registered_shoes:Object.keys(p.shoeLayers).length,watch_layers:0,scoring_policy:'Current approved lookup first; unchanged strict historical fallback; no conflicting value selected',text_score_holds:[...textHolds]}});
++  limits:{suits:assemblies.dynamicSuitIds,wider_ds035_suits:assemblies.widerDS035SuitIds,engine_suit_ids:suitSources.ids,engine_wider_shirt_lock:'DS035',approved_suit_source_ids:suitSources.ids,registered_shoes:Object.keys(p.shoeLayers).length,watch_layers:0,scoring_policy:'Current approved lookup first; unchanged strict historical fallback; no conflicting value selected',text_score_holds:[...textHolds]}});
+ }
+ root.HEWRSCleanConnection=Object.freeze({create});
+ })(globalThis);
+--- V1.3/src/application.js
++++ V1.4/src/application.js
+@@ -29,10 +29,12 @@
+ function openControls(){
+  $('selection-heading').textContent=mode==='engine'?'Engine selection':'Anchor selection';$('selection-help').textContent=mode==='engine'?'Rank supported clothing combinations around your selected anchors. Accessories remain exact selections.':'Choose exact pieces. A score-source hold never blocks the approved visual.';
+  const currentSuit=current?.suitId||'S05';
+- const suitRows=connection.suitSources.ids.map(id=>({value:id,label:id+' — '+(connection.features.get(id)?.description||id)+(connection.assemblies.widerDS035SuitIds.includes(id)?' [DS035 only]':''),disabled:mode==='engine'&&!connection.assemblies.dynamicSuitIds.includes(id)}));
+- if(mode==='engine'&&!connection.assemblies.dynamicSuitIds.includes(currentSuit))suitRows.unshift({value:'',label:'Select a connected Engine suit'});
+- fill($('suit-select'),suitRows,mode==='engine'&&!connection.assemblies.dynamicSuitIds.includes(currentSuit)?'':currentSuit);
+- fill($('shirt-select'),shirtChoices(),mode==='engine'?'ANY':current?.shirtId||'DS036');tieChoices();selectOption($('tie-select'),mode==='engine'?'ANY':current?.state||'T017');
++ const suitRows=connection.suitSources.ids.map(id=>({value:id,label:id+' — '+(connection.features.get(id)?.description||id)+(connection.assemblies.widerDS035SuitIds.includes(id)?' [DS035 only]':'')}));
++ fill($('suit-select'),suitRows,currentSuit);
++ // Preserve a prior explicit DS035 anchor when opening Engine from a wider suit.
++ // Changing suits in an open dialog never changes the selected shirt.
++ const keepWiderAnchor=connection.assemblies.widerDS035SuitIds.includes(currentSuit)&&current?.shirtId==='DS035';
++ fill($('shirt-select'),shirtChoices(),mode==='engine'&&!keepWiderAnchor?'ANY':current?.shirtId||'DS036');tieChoices();selectOption($('tie-select'),mode==='engine'?'ANY':current?.state||'T017');
+  fill($('shoe-select'),Object.keys(connection.shoeLayers).map(id=>({value:id,label:id+' — '+connection.catalogue.shoes.find(s=>s.id===id).name})),current?.shoeId||'shoe-8');
+  fill($('watch-select'),[{value:'',label:'No watch selected'},...connection.catalogue.watches.map(w=>({value:w.id,label:w.id+' — '+w.name}))],current?.watchId||'');
+  $('occasion-select').value=context.occasion;$('formality-select').value=context.requiredFormality;$('local-date').value=formLocalDate;
+@@ -40,8 +42,8 @@
+ }
+ function syncCoverageControls(){
+  const sid=$('suit-select').value,wider=connection.assemblies.widerDS035SuitIds.includes(sid);
+- for(const option of $('shirt-select').options)option.disabled=mode==='anchor'&&wider&&option.value!=='DS035';
+- const invalid=!sid||(mode==='anchor'&&wider&&$('shirt-select').value!=='DS035');
++ for(const option of $('shirt-select').options)option.disabled=wider&&option.value!=='DS035';
++ const invalid=!sid||(wider&&$('shirt-select').value!=='DS035');
+  $('apply-selection').disabled=invalid;
+  $('selection-error').textContent=invalid?(wider?'Select DS035 for this wider-opening suit. Your displayed outfit has not changed.':'Select a connected suit.'):'';
+ }
+@@ -135,7 +137,7 @@
+ $('confirm-restore').onclick=async()=>{try{if(!pendingImport)throw Error('No validated backup');store.restore(pendingImport);invalidateRecommendations();pendingImport=null;$('confirm-restore').disabled=true;$('backup-dialog').close();updateStoreViews();const s=store.snapshot().session;if(s){setMode(s.mode);await apply(s.selection,{origin:'manual',localDate:s.localDate,context:s.context,save:false});}status('Validated local backup restored. Existing production data was not accessed.');}catch(e){$('backup-error').textContent=e.message;}};
+ // Expose the exact application paths for reproducible tests; not an alternate
+ // test-only renderer or scorer. These methods perform the same UI operations.
+-root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_3',connection,store,renderer,apply,generate,cancel,showPage,setMode,
++root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_4',connection,store,renderer,apply,generate,cancel,showPage,setMode,
+  state:()=>({selection:clone(current),origin,mode,report:clone(report),request:clone(lastRequest),optionCount:options.length,sourceLock:root.HEWRS_INPUT_SHA256}),resolveUrl});
+ updateStoreViews();const saved=store.snapshot().session;if(saved)setMode(saved.mode);
+ apply(saved?.selection||defaultSelection,{origin:'manual',localDate:saved?.localDate||formLocalDate,context:saved?.context||context,save:false}).then(()=>{root.HEWRS_READY=true;if(saved)status('Saved selection restored from this candidate namespace; scores recomputed from current pinned inputs.');}).catch(e=>{status('Initial view failed: '+e.message);root.HEWRS_LOAD_ERROR=e.message;});
+--- V1.3/app.template.html
++++ V1.4/app.template.html
+@@ -1,6 +1,6 @@
+-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Connected application V1.3</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
++<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Connected application V1.4</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+ <!--STYLE--></head><body><div id="app">
+-<header class="app-header"><div><div class="brand">HEWRS</div><div class="version">CONNECTED APPLICATION · V1.3</div></div><div class="header-tools"><button class="small-btn" id="details-button">Details</button><button class="small-btn" id="data-button">Backup</button></div></header>
++<header class="app-header"><div><div class="brand">HEWRS</div><div class="version">CONNECTED APPLICATION · V1.4</div></div><div class="header-tools"><button class="small-btn" id="details-button">Details</button><button class="small-btn" id="data-button">Backup</button></div></header>
+ <main class="tab-page home-page" id="page-home">
+ <div class="mode-bar"><div class="mode-buttons" role="group" aria-label="Selection workflow"><button id="mode-engine" aria-pressed="false">Engine</button><button id="mode-anchor" aria-pressed="true">Anchor</button></div><button id="open-controls" class="primary">Choose</button></div>
+ <div class="identity"><strong id="selection-ids">S05 · DS036 · T017</strong><span id="selection-origin">Your selection</span></div>
+@@ -10,7 +10,7 @@
+ <p class="source-note" id="representation">Registered suit connection · original layers and coordinates. Watches are selection records, not rendered layers.</p>
+ </main>
+ <main class="tab-page" id="page-outfits" hidden><h1>Outfits</h1><p class="caption" id="outfit-summary">Engine results appear here. No score is needed to view a valid manual selection.</p><div id="results" class="cards"></div></main>
+-<main class="tab-page" id="page-wardrobe" hidden><h1>Wardrobe</h1><p class="caption">Approved inventory remains intact. S01, S04, S05 and S16 retain all connected shirts. DS035 is additionally connected to the other 14 suits in Anchor. All 18 saved suit assemblies remain accessible separately. Watches are metadata only.</p><div class="control-row search-row"><select id="wardrobe-category" aria-label="Wardrobe category"><option value="shirts">Shirts · 50</option><option value="ties">Ties · 47</option><option value="shoes">Registered shoes · 35</option><option value="watches">Watch source records · 50</option><option value="suits">Suit bindings · 18</option><option value="blazers">Blazer references · 14</option><option value="pants">Trouser bindings · 24</option></select><input id="wardrobe-search" type="search" placeholder="Find an ID or description" aria-label="Search wardrobe"></div><div id="wardrobe-list" class="cards"></div></main>
++<main class="tab-page" id="page-wardrobe" hidden><h1>Wardrobe</h1><p class="caption">Approved inventory remains intact. S01, S04, S05 and S16 retain all connected shirts. DS035 is additionally connected to the other 14 suits in Engine and Anchor. All 18 saved suit assemblies remain accessible separately. Watches are metadata only.</p><div class="control-row search-row"><select id="wardrobe-category" aria-label="Wardrobe category"><option value="shirts">Shirts · 50</option><option value="ties">Ties · 47</option><option value="shoes">Registered shoes · 35</option><option value="watches">Watch source records · 50</option><option value="suits">Suit bindings · 18</option><option value="blazers">Blazer references · 14</option><option value="pants">Trouser bindings · 24</option></select><input id="wardrobe-search" type="search" placeholder="Find an ID or description" aria-label="Search wardrobe"></div><div id="wardrobe-list" class="cards"></div></main>
+ <main class="tab-page" id="page-rotation" hidden><h1>Rotation</h1><p class="caption">Only wear you explicitly record in this application is included. Existing production history is neither read nor replaced.</p><p><span id="wear-count" class="history-count">0</span> local wear records</p><p id="storage-banner" class="caption"></p><div id="history-list" class="cards"></div><p class="footer-note">Generate does not log wear. Rotation reuses the recovered policy on this local ledger; it is not a claim about your complete historical rotation.</p></main>
+ <nav class="bottom-nav" aria-label="Main navigation"><button data-page="home" aria-current="page">Home</button><button data-page="outfits">Outfits</button><button data-page="wardrobe">Wardrobe</button><button data-page="rotation">Rotation</button></nav>
+ </div>
+@@ -20,7 +20,7 @@
+ <div class="field full"><label for="shoe-select">Registered footwear</label><select id="shoe-select"></select></div><div class="field full"><label for="watch-select">Watch selection — not rendered on avatar</label><select id="watch-select"></select></div>
+ <div class="field"><label for="occasion-select">Setting</label><select id="occasion-select"><option value="clinic">Clinic</option><option value="hospital">Hospital</option><option value="work">Work</option></select></div><div class="field"><label for="style-select">Style</label><select id="style-select"><option value="AUTO">Auto</option><option value="CLASSIC">Classic</option><option value="HYBRID">Hybrid</option><option value="MODERN">Modern</option></select></div>
+ <div class="field"><label for="formality-select">Required formality</label><select id="formality-select"><option value="any">Unspecified</option><option value="tie_required">Tie required</option><option value="suit_required">Suit required</option><option value="open_collar_allowed">Open collar allowed</option></select></div><div class="field"><label for="local-date">Wear / rotation date</label><input id="local-date" type="date"></div></div>
+-<p class="caption">S01, S04, S05 and S16 retain all connected shirts. Anchor adds DS035, with any of its 47 ties or no tie, for the other 14 suits. Engine remains limited to the original four suit routes. Footwear choices bind exact registered pairs. No automatic accessory ranking is inferred. Season and weather are not assessed.</p><p class="warning" id="selection-error" role="alert"></p><div class="form-actions"><button id="cancel-work">Cancel pending work</button><button id="apply-selection" class="primary">Show selection</button></div></dialog>
++<p class="caption">S01, S04, S05 and S16 retain all connected shirts. Engine and Anchor connect the other 14 suits with an explicit DS035 selection. Engine ranks the available ties or no tie using the existing scoring rules. Footwear choices bind exact registered pairs. No automatic accessory ranking is inferred. Season and weather are not assessed.</p><p class="warning" id="selection-error" role="alert"></p><div class="form-actions"><button id="cancel-work">Cancel pending work</button><button id="apply-selection" class="primary">Show selection</button></div></dialog>
+ <dialog id="details-dialog"><div class="dialog-heading"><h2>Selection & source</h2><button class="small-btn" data-close="details-dialog">Close</button></div><p class="notice">Garments, layers and geometry stay approved. Technical source holds below refer to scoring or assembly, not visual reapproval.</p><pre id="details-text"></pre></dialog>
+ <dialog id="wear-dialog"><div class="dialog-heading"><h2>Record actual wear</h2><button class="small-btn" data-close="wear-dialog">Cancel</button></div><p id="wear-description"></p><div class="field"><label for="wear-date">Local calendar date</label><input id="wear-date" type="date"></div><p class="caption">Confirm only an outfit actually worn. This adds one record to this candidate’s separate local ledger, not to production history.</p><label class="caption"><input type="checkbox" id="repeat-incident"> Record this wear as a controlled-repeat incident</label><p class="warning" id="wear-error" role="alert"></p><button id="confirm-wear" class="primary">Confirm worn</button></dialog>
+ <dialog id="backup-dialog"><div class="dialog-heading"><h2>Local data</h2><button class="small-btn" data-close="backup-dialog">Close</button></div><p class="caption" id="backup-status"></p><button id="export-backup">Export local backup</button><h2>Restore this version’s backup</h2><input type="file" id="backup-file" accept=".json,application/json" aria-label="Select backup file"><p class="caption">The file is validated before anything changes. Legacy backups and different source revisions are not silently migrated.</p><pre id="import-preview" hidden></pre><p class="warning" id="backup-error" role="alert"></p><button id="confirm-restore" class="primary" disabled>Replace local data with validated backup</button></dialog>

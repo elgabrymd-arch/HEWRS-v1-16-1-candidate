@@ -1,0 +1,169 @@
+--- V1.14/src/blazer-connection.js
++++ V1.15/src/blazer-connection.js
+@@ -4,7 +4,9 @@
+ const original=root.HEWRSCleanConnection,clone=x=>structuredClone(x),need=(ok,msg)=>{if(!ok)throw Error(msg);};
+ function freeze(x){if(x&&typeof x==='object'){Object.values(x).forEach(freeze);Object.freeze(x);}return x;}
+ function create(inputs){
+- const d=freeze(clone(root.HEWRS_BLAZER_CONNECTION_DATA));
++ const batch=root.HEWRSBatch10.contract(inputs),raw=clone(root.HEWRS_BLAZER_CONNECTION_DATA);
++ for(const id of batch.ids){need(!raw.available_shirts.includes(id),'Duplicate batch source identity');raw.available_shirts.push(id);}
++ const d=freeze(raw);
+  // Filter unavailable blazer collar configurations before ranking. The inherited
+  // equations and tie scores are not changed; suit requests use their original path.
+  const base=original.create(inputs,{blazerMappings:[...inputs.blazerAliases,...(d.new_source_aliases||[])],configurationFilter:req=>!/^B\d+$/.test(req.topwearId)||(d.blazers[req.topwearId]?.availability==='CONNECTED'&&d.available_shirts.includes(String(req.shirtId).replace(/^shirt-/,''))&&(req.tieId===null||Object.hasOwn(d.assembly.ties,req.tieId)))});
+@@ -82,7 +84,7 @@
+   verifyCachedOption(o,q,cat){return !queryIssue(q)&&base.controller.verifyCachedOption(o,q,cat);}
+  });
+  const blazerConnection=Object.freeze({data:d,ids:Object.keys(d.blazers),pantIds:Object.keys(d.pants),knownBlazer,knownPant,requireAssembly,isBlazer,availableIds:Object.keys(d.blazers).filter(k=>d.blazers[k].availability==='CONNECTED')});
+- return Object.freeze({...base,catalogue,trouserProfiles:profiles,controller,validateSelection,historyIds:identity,makeRequest,selectionFromOption,scoreSelection,createHistoryEvent,blazerConnection,assetPaths:Object.freeze({...base.assetPaths,...d.assetPaths}),limits:{...base.limits,blazer_ids:Object.keys(d.blazers),connected_blazer_ids:blazerConnection.availableIds,physical_trouser_ids:Object.keys(d.pants),connected_blazer_shirts:d.available_shirts,blazer_numerical_profile_status:'15_EXISTING_LOCAL_BINDINGS_RESTORED_9_NULLS_PRESERVED'}});
++ return Object.freeze({...base,batch10:batch,catalogue,trouserProfiles:profiles,controller,validateSelection,historyIds:identity,makeRequest,selectionFromOption,scoreSelection,createHistoryEvent,blazerConnection,assetPaths:Object.freeze({...base.assetPaths,...d.assetPaths,...batch.assetPaths}),limits:{...base.limits,blazer_ids:Object.keys(d.blazers),connected_blazer_ids:blazerConnection.availableIds,physical_trouser_ids:Object.keys(d.pants),connected_blazer_shirts:d.available_shirts,blazer_numerical_profile_status:'15_EXISTING_LOCAL_BINDINGS_RESTORED_9_NULLS_PRESERVED'}});
+ }
+ root.HEWRSSuitConnectionV16=original;root.HEWRSCleanConnection=Object.freeze({create});
+ })(globalThis);
+--- V1.14/src/shirt-only-connection.js
++++ V1.15/src/shirt-only-connection.js
+@@ -9,14 +9,14 @@
+  const base=previous.create(inputs),data=frozen(clone(root.HEWRS_SHIRT_ONLY_DATA));
+  need(data?.schema==='hewrs.shirt-only-connection.v1_10'&&data.canvas.join(',')==='996,2748','Missing exact shirt-only source contract');
+  const isShirtOnly=s=>!!s&&Object.hasOwn(s,'shirtOnly');
+- const ids=Object.keys(data.shirts);
+- for(const id of ids){need(base.blazerConnection.data.available_shirts.includes(id)&&base.records[id],'Unsupported shirt-only source identity');
++ const ids=[...Object.keys(data.shirts),...base.batch10.ids];
++ for(const id of Object.keys(data.shirts)){need(base.blazerConnection.data.available_shirts.includes(id)&&base.records[id],'Unsupported shirt-only source identity');
+   need(JSON.stringify(data.states)===JSON.stringify(base.blazerConnection.data.available_states),'Changed source tie universe');
+   for(const state of data.states){const layer=data.shirts[id].layers[state];need(layer.sha256===(state==='NO_TIE'?base.blazerConnection.data.assembly.no_tie:base.blazerConnection.data.assembly.ties[state]).sha256&&Object.hasOwn(base.assetPaths,layer.sha256),'Unbound original full-shirt source');}}
+  function validateSelection(s){
+   if(!isShirtOnly(s))return base.validateSelection(s);
+   need(s&&!Array.isArray(s)&&Object.keys(s).length===fields.length&&fields.every(k=>Object.hasOwn(s,k))&&s.shirtOnly===true,'Incomplete or mixed shirt-only selection');
+-  need(Object.hasOwn(data.shirts,s.shirtId),'No complete source assembly for this exact shirt-only selection');
++  need(ids.includes(s.shirtId),'No complete source assembly for this exact shirt-only selection');
+   need(data.states.includes(s.state),'Unknown full-shirt tie/no-tie state');
+   base.blazerConnection.knownPant(s.pantId);
+   need(Object.hasOwn(base.shoeLayers,s.shoeId)&&base.catalogue.shoes.some(x=>x.id===s.shoeId&&!x.disabled),'Unknown exact footwear');
+--- V1.14/src/non-suit-sources.js
++++ V1.15/src/non-suit-sources.js
+@@ -13,7 +13,14 @@
+ }
+ function same(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+ function create(inputs) {
+-  const base = prior.create(inputs), registry = freeze(clone(root.HEWRS_NON_SUIT_SOURCES));
++  const base = prior.create(inputs), working = clone(root.HEWRS_NON_SUIT_SOURCES);
++  for(const id of base.batch10.ids){
++    const r=working.shirts[id];need(r,'Missing exact batch source ID');
++    r.registration=clone(base.batch10.shirts[id]);
++    for(const mode of ['blazer','shirt-only'])r.modes[mode]={...r.modes[mode],visual_available:true,status:'CONNECTED_SOURCE_DERIVED_REGISTRATION',missing_components:[]};
++  }
++  working.counts={...working.counts,existing_full_shirt_ids:12,source_component_only_ids:38,newly_connected_visual_ids:10};
++  const registry = freeze(working);
+   need(registry?.schema === 'hewrs.non-suit-source-registry.v1_14', 'Missing non-suit source registry');
+   need(registry.canvas.join(',') === '996,2748', 'Non-suit source geometry mismatch');
+   need(registry.source_input_sha256 === root.HEWRS_INPUT_SHA256, 'Changed source input lock');
+@@ -36,7 +43,13 @@
+     }
+     const linked = r.modes.blazer.visual_available;
+     need(linked === r.modes['shirt-only'].visual_available, 'Unsupported partial activation: ' + id);
+-    if (linked) {
++    if (linked && base.batch10.ids.includes(id)) {
++      need(root.HEWRSBatch10Renderer?.implementationVersion==='1.15-batch10','Missing batch renderer implementation');
++      need(base.blazerConnection.data.available_shirts.includes(id)&&base.shirtOnlyConnection.ids.includes(id),'Incomplete batch route');
++      need(r.registration.id===id&&r.registration.history_id===base.records[id].history_id,'Changed batch identity');
++      for(const [mode,parts]of Object.entries(r.registration.modes))for(const role of ['left','right'])
++        need(parts[role].sha256===base.manifest.shirts[id].states[mode][role].sha256,'Replaced current collar');
++    } else if (linked) {
+       need(['DS001','DS014'].includes(id), 'A new full-shirt route requires an implemented renderer, not an allowlist edit');
+       need(base.blazerConnection.data.available_shirts.includes(id) && base.shirtOnlyConnection.ids.includes(id), 'Missing V1.13 full-shirt route');
+       for (const state of r.states) {
+@@ -106,7 +119,7 @@
+   const nonSuitSources=Object.freeze({registry,ids:Object.freeze([...registry.id_order]),
+     groups:registry.groups,inspect,requireVisual,componentPlan,explain,
+     connectedIds:Object.freeze(registry.id_order.filter(id => registry.shirts[id].modes.blazer.visual_available))});
+-  return Object.freeze({...base,validateSelection,makeRequest,nonSuitSources,implementationVersion:'1.14-source-routing'});
++  return Object.freeze({...base,validateSelection,makeRequest,nonSuitSources,implementationVersion:'1.15-batch10'});
+ }
+ root.HEWRSConnectionV113=prior;
+ root.HEWRSCleanConnection=Object.freeze({create});
+--- V1.14/tools/build.py
++++ V1.15/tools/build.py
+@@ -5,7 +5,7 @@
+ from pathlib import Path
+ import argparse,base64,json,re
+ R=Path(__file__).resolve().parents[1]
+-SCRIPTS=['data/inputs.js','vendor/hewrs-logic.js','vendor/approved-scores.js','vendor/ensemble-completion.js','vendor/release-guards.js','vendor/request-contract.js','src/controller.js','vendor/watch-classification.js','src/canonical-bindings-browser.js','vendor/active50-renderer.js','data/approved-suits.js','src/suit-resolver97-browser.js','src/approved-suit-sources.js','data/suit-assembly.js','data/ds035-coverage.js','data/ds035-edge.js','src/suit-assemblies.js','src/connection.js','data/blazer-connection.js','data/trouser-profiles.js','src/trouser-profiles.js','src/blazer-connection.js','data/shirt-only.js','src/shirt-only-connection.js','data/non-suit-sources.js','src/non-suit-sources.js','src/ds035-coverage-renderer.js','src/ds035-edge-renderer.js','src/atomic-renderer.js','src/blazer-renderer.js','src/b01-b02-renderer.js','src/shirt-only-renderer.js','src/mixed-renderer.js','src/local-state.js','src/facelift-state.js','src/source-aware-pickers.js','src/application.js']
++SCRIPTS=['data/inputs.js','vendor/hewrs-logic.js','vendor/approved-scores.js','vendor/ensemble-completion.js','vendor/release-guards.js','vendor/request-contract.js','src/controller.js','vendor/watch-classification.js','src/canonical-bindings-browser.js','vendor/active50-renderer.js','data/approved-suits.js','src/suit-resolver97-browser.js','src/approved-suit-sources.js','data/suit-assembly.js','data/ds035-coverage.js','data/ds035-edge.js','src/suit-assemblies.js','src/connection.js','data/blazer-connection.js','data/trouser-profiles.js','src/trouser-profiles.js','data/batch10.js','src/batch10-contract.js','src/blazer-connection.js','data/shirt-only.js','src/shirt-only-connection.js','data/non-suit-sources.js','src/non-suit-sources.js','src/ds035-coverage-renderer.js','src/ds035-edge-renderer.js','src/atomic-renderer.js','src/blazer-renderer.js','src/b01-b02-renderer.js','src/shirt-only-renderer.js','src/batch10-renderer.js','src/mixed-renderer.js','src/local-state.js','src/facelift-state.js','src/source-aware-pickers.js','src/application.js']
+ def build(standalone=None):
+  t=(R/'app.template.html').read_text()
+  html=t.replace('<!--STYLE-->','<link rel="stylesheet" href="src/application.css">').replace('<!--SCRIPTS-->','\n'.join('<script src="'+p+'"></script>' for p in SCRIPTS))
+--- /dev/null
++++ V1.15/src/batch10-contract.js
+@@ -0,0 +1,28 @@
++/* V1.15: exact original-cohort source registrations, not a replacement wardrobe.
++ * V11's 32-ID manifest is provenance only; these ten use current Active50
++ * components. No garment approval, score, history or frozen source is replaced.
++ */
++(function(root){'use strict';
++const EXPECTED=['DS004','DS005','DS007','DS015','DS018','DS019','DS023','DS024','DS025','DS047'];
++const need=(v,m)=>{if(!v)throw Error(m);};
++const freeze=x=>{if(x&&typeof x==='object'){Object.values(x).forEach(freeze);Object.freeze(x);}return x;};
++function contract(inputs){
++ const d=structuredClone(root.HEWRS_BATCH10);
++ need(d?.schema==='hewrs.non-suit-batch10.v1_15'&&d.canvas.join(',')==='996,2748','Missing batch source registration');
++ need(d.source_input_sha256===root.HEWRS_INPUT_SHA256,'Changed current input identity');
++ need(JSON.stringify(d.ids)===JSON.stringify(EXPECTED)&&Object.keys(d.shirts).length===10,'Changed batch identity universe');
++ function descriptor(v){need(v&&/^[a-f0-9]{64}$/.test(v.sha256)&&v.rect?.join(',')==='0,0,996,2748','Malformed batch layer');need(d.assetPaths[v.sha256]||inputs.assets[v.sha256],'Unbound batch layer');}
++ for(const id of d.ids){const r=d.shirts[id],s=inputs.manifest.shirts[id];need(r.id===id&&r.history_id==='shirt-'+id&&s,'Mismatched batch ID');
++  need(r.states.length===48&&r.states.every(x=>s.available_modes.includes(x)),'Changed source tie universe');
++  for(const mode of ['no_tie','tied']){const p=r.modes[mode];descriptor(p.base);for(const role of ['left','right','left_cuff','right_cuff']){descriptor(p[role]);
++   const current=s.states[mode][role];
++   if(p[role].sha256!==current.sha256)need(['left_cuff','right_cuff'].includes(role)&&['DS004','DS005','DS015'].includes(id)&&r.derived_cuffs_for_empty_current_components[role]?.sha256===p[role].sha256,'Replaced current component without declared source derivation');
++  }}
++ }
++ need(Object.keys(d.ties).length===47,'Incomplete tie registrations');
++ for(let n=1;n<=47;n++){const id='T'+String(n).padStart(3,'0');need(inputs.manifest.ties[id],'Unknown tie ID');descriptor(d.ties[id]);}
++ for(const [hash,path]of Object.entries(d.assetPaths))need(path==='assets/'+hash+'.png','Unexpected registration asset path');
++ return freeze(d);
++}
++root.HEWRSBatch10=Object.freeze({contract});
++})(globalThis);
+--- /dev/null
++++ V1.15/src/batch10-renderer.js
+@@ -0,0 +1,40 @@
++/* Deterministic source registrations for the exact ten supplied IDs only.
++ * Existing DS001/DS014 and all suit renderers are delegated without changes.
++ * Runtime uses registered source pixels at fixed coordinates. No generation,
++ * recolouring, substitution, new silhouette, score or history transformation.
++ */
++(function(root){'use strict';
++const W=996,H=2748,oldBlazer=root.HEWRSBlazerRenderer,oldShirt=root.HEWRSShirtOnlyRenderer;
++function create(canvas,connection,resolveUrl,kind){
++ const inherited=(kind==='blazer'?oldBlazer:oldShirt).create(canvas,connection,resolveUrl);
++ const d=connection.batch10;canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d',{willReadFrequently:true});let epoch=0;const cache=new Map();
++ const applies=s=>!!s&&d.ids.includes(s.shirtId);
++ function plan(s){if(!applies(s))return inherited.plan(s);connection.validateSelection(s);
++  if(kind==='blazer'&&!connection.blazerConnection.isBlazer(s)||kind==='shirt-only'&&!connection.shirtOnlyConnection.isShirtOnly(s))throw Error('Wrong batch renderer mode');
++  const parts=d.shirts[s.shirtId].modes[s.state==='NO_TIE'?'no_tie':'tied'],a=connection.blazerConnection.data.assembly;
++  const p={operation:'SOURCE_REGISTERED_BATCH10',kind,selection:structuredClone(s),avatar:connection.manifest.static.avatar,shoes:connection.shoeLayers[s.shoeId],pants:connection.blazerConnection.knownPant(s.pantId).layer,body:parts.base,tie:s.state==='NO_TIE'?null:d.ties[s.state],leaves:[parts.left,parts.right],hands:a.hands,cuffs:[]};
++  if(kind==='blazer'){const b=connection.blazerConnection.knownBlazer(s.blazerId),r=b.assembly||a;p.jacket=r.jacket;p.ownership=r.ownership||connection.blazerConnection.knownBlazer('B02').assembly.ownership;p.cuffOwnershipStart=r.sourceCuffOwnershipStart??1339;p.cuffs=[parts.left_cuff,parts.right_cuff];}
++  return p;
++ }
++ function load(v){if(!v||v.rect?.join(',')!=='0,0,996,2748'||!Object.hasOwn(connection.assetPaths,v.sha256))throw Error('Unbound batch source');
++  if(cache.has(v.sha256)){const x=cache.get(v.sha256);cache.delete(v.sha256);cache.set(v.sha256,x);return x;}
++  const p=new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>im.naturalWidth===W&&im.naturalHeight===H?resolve(im):reject(Error('Wrong batch source dimensions'));im.onerror=()=>reject(Error('Batch source failed to load; no garment substitution'));try{im.src=resolveUrl(v);}catch(e){reject(e);}});
++  cache.set(v.sha256,p);p.catch(()=>{if(cache.get(v.sha256)===p)cache.delete(v.sha256);});while(cache.size>16)cache.delete(cache.keys().next().value);return p;
++ }
++ async function render(s){const token=++epoch;inherited.cancel();if(!applies(s))return inherited.render(s);const p=plan(s),descs=[p.avatar,p.shoes,p.pants,p.body,...(p.tie?[p.tie]:[]),...p.leaves,...p.hands,...p.cuffs,...(p.jacket?[p.jacket,p.ownership]:[])];
++  const images=await Promise.all(descs.map(load));if(token!==epoch)return {cancelled:true};const at=v=>images[descs.findIndex(x=>x.sha256===v.sha256)];
++  const frame=document.createElement('canvas'),shirt=document.createElement('canvas');frame.width=shirt.width=W;frame.height=shirt.height=H;const fc=frame.getContext('2d',{willReadFrequently:true}),sc=shirt.getContext('2d',{willReadFrequently:true});
++  try{
++   let own=null;if(p.ownership){sc.drawImage(at(p.ownership),0,0);own=sc.getImageData(0,0,W,H).data;sc.clearRect(0,0,W,H);}
++   sc.drawImage(at(p.body),0,0);if(p.tie)sc.drawImage(at(p.tie),0,0);for(const v of p.leaves)sc.drawImage(at(v),0,0);
++   if(own){const px=sc.getImageData(0,0,W,H);for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=(y*W+x)*4;if(own[i]||y>=p.cuffOwnershipStart)px.data[i]=px.data[i+1]=px.data[i+2]=px.data[i+3]=0;}sc.putImageData(px,0,0);}
++   for(const v of [p.avatar,p.shoes,p.pants])fc.drawImage(at(v),0,0);fc.drawImage(shirt,0,0);if(p.jacket)fc.drawImage(at(p.jacket),0,0);for(const v of [...p.cuffs,...p.hands])fc.drawImage(at(v),0,0);
++   if(token!==epoch)return {cancelled:true};ctx.putImageData(fc.getImageData(0,0,W,H),0,0);return {status:'ready',selection:structuredClone(s),source_assembly:'V115_BATCH10_SOURCE_REGISTRATION',source_registration:d.shirts[s.shirtId].source_sha256,derivative_not_original:true};
++  }finally{frame.width=frame.height=shirt.width=shirt.height=1;}
++ }
++ return Object.freeze({plan,render,cancel(){epoch++;inherited.cancel();},stats:()=>({...inherited.stats(),batch10Cache:cache.size,maxBatch10Images:16})});
++}
++root.HEWRSBatch10Renderer=Object.freeze({implementationVersion:'1.15-batch10'});
++root.HEWRSBlazerRenderer=Object.freeze({create:(c,n,u)=>create(c,n,u,'blazer')});
++root.HEWRSShirtOnlyRenderer=Object.freeze({create:(c,n,u)=>create(c,n,u,'shirt-only')});
++})(globalThis);

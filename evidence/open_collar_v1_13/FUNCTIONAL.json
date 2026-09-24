@@ -1,0 +1,114 @@
+{
+  "passed": 21,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "Exact shared-body alias, not deduplicated catalogue IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 14 blazers accept both explicitly bound shirts and 48 states",
+      "passed": true,
+      "result": 1344
+    },
+    {
+      "name": "Both shirts work in shirt-only mode in all 48 states",
+      "passed": true,
+      "result": 96
+    },
+    {
+      "name": "No Tie is distinct from ANY in actual Engine requests",
+      "passed": true,
+      "result": 28
+    },
+    {
+      "name": "No-tie calculations and returned candidates use unchanged raw engine",
+      "passed": true,
+      "result": {
+        "requests": 420,
+        "ranked": 396
+      }
+    },
+    {
+      "name": "DS014 exact ties and families carry the selected shirt ID",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Null-profile trousers remain visual selections without invented scores",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reject unsupported request {\"blazerId\":\"B03\",\"shirtId\":\"DS035\",\"state\":\"NO_TIE\",\"pantId\":\"PG002\",\"shoeId\":\"shoe-8\",\"watchId\":\"watch-P05\"}",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reject unsupported request {\"blazerId\":\"B03\",\"shirtId\":\"DS001\",\"state\":\"REFERENCE\",\"pantId\":\"PG002\",\"shoeId\":\"shoe-8\",\"watchId\":\"watch-P05\"}",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reject unsupported request {\"blazerId\":\"B03\",\"shirtId\":\"DS049\",\"state\":\"NO_TIE\",\"pantId\":\"PG002\",\"shoeId\":\"shoe-8\",\"watchId\":\"watch-P05\"}",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reject unsupported request {\"blazerId\":\"B03\",\"shirtId\":\"DS001\",\"state\":\"T048\",\"pantId\":\"PG002\",\"shoeId\":\"shoe-8\",\"watchId\":\"watch-P05\"}",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reject unsupported request {\"blazerId\":\"B03\",\"shirtId\":\"DS001\",\"state\":\"NO_TIE\",\"pantId\":\"PG002\",\"shoeId\":\"shoe-8\",\"watchId\":\"watch-P05\",\"suitId\":\"S05\"}",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reject unsupported request {\"shirtOnly\":true,\"shirtId\":\"DS036\",\"state\":\"NO_TIE\",\"pantId\":\"PG002\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reject unsupported request {\"shirtOnly\":true,\"shirtId\":\"DS001\",\"state\":\"REFERENCE\",\"pantId\":\"PG002\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Canonical No Tie selection persists through the six-picker model",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Engine picker serializes explicit No Tie without resetting other anchors",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All physical trouser and shoe identities validate in both new modes",
+      "passed": true,
+      "result": 1680
+    },
+    {
+      "name": "No Tie records null tie and preserves separate DS001/DS014 IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "New no-tie and DS014 events round trip through original storage code",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Shirt-only Engine is still not represented as installed",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Original suit, scoring, facelift and storage sources unchanged",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

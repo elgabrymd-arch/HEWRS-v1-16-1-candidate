@@ -1,0 +1,1479 @@
+{
+  "schema": "hewrs.shirt-only-browser.v1_10",
+  "passed": 21,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Updated app loads; existing suit and blazer source sets remain intact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Native shirt-only ties selectors match exact-source composition",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "Native shirt-only pants selectors match exact-source composition",
+      "pass": true,
+      "detail": 24
+    },
+    {
+      "name": "Native shirt-only shoes selectors match exact-source composition",
+      "pass": true,
+      "detail": 35
+    },
+    {
+      "name": "All previous suit/blazer rendering controls match unmodified V1.9 renderer",
+      "pass": true,
+      "detail": 34
+    },
+    {
+      "name": "Shirt-only controls expose trousers, not suit or blazer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Anchor displays exact requested no-jacket selection without fake topwear",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Viewing new and prior modes never creates wear",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Engine cannot present shirt-only as a ranked outfit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Another shirt is not silently replaced by DS001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Unsupported no-tie does not reuse a tied collar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Invalid direct requests retain last pixels, identity and history",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Cross-mode race commits only the last selection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Cancelled request leaves previous complete frame intact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Confirmed wear keeps topwear null and actual physical trousers",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Import preview makes no state change",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit restoration preserves shirt-only state",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Wardrobe trouser choice retains shirt-only identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Shirt-only image cache bounded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Native full-shirt frame fits three phone-size viewports",
+      "pass": true,
+      "detail": [
+        {
+          "width": 375,
+          "height": 667,
+          "bottom": 561,
+          "navTop": 630,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "bottom": 712,
+          "navTop": 792,
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 932,
+          "bottom": 800,
+          "navTop": 880,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "renders": [
+    {
+      "category": "ties",
+      "value": "T001",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T002",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T003",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T004",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T005",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T006",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T007",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T008",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T009",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T010",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T011",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T012",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T013",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T014",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T015",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T016",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T017",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T018",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T019",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T020",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T021",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T022",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T023",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T024",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T025",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T026",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T027",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T028",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T029",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T030",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T031",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T032",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T033",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T034",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T035",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T036",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T037",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T038",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T039",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T040",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T041",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T042",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T043",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T044",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T045",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T046",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "ties",
+      "value": "T047",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PT001",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PT002",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PT003",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PT004",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PT005",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PT006",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PT007",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PB001",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PB002",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PB003",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PB004",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PBR001",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PBR002",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PG001",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PG002",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PN001",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PN002",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PN003",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PN004",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PN005",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PN006",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PG003",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PN007",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "pants",
+      "value": "PW002",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-0",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-1",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-2",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-3",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-4",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-5",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-6",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-8",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-9",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-10",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-11",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-12",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-13",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-14",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-15",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-16",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-17",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-18",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-19",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-20",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-21",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-22",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-23",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-24",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-25",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-26",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-33",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-34",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-35",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-39",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-41",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-42",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-43",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-44",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "shoes",
+      "value": "shoe-49",
+      "exact": true,
+      "held": true,
+      "identity": true,
+      "noWear": true,
+      "kind": "shirt-only"
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS036",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "REFERENCE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS051",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS041",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B04",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B05",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B06",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B07",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B08",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B09",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B10",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B11",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B12",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B13",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    },
+    {
+      "category": "previous_mode",
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "exact": true
+    }
+  ],
+  "page_errors": [],
+  "seconds": 40.31,
+  "scope": "Exact packaged scripts and PNG bytes in memory-loaded Chromium, not hosted navigation, Safari, physical iPhone or persistent-browser restart."
+}

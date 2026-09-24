@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Browser smoke test of added app wiring; not a garment approval/geometry audit."""
+from pathlib import Path
+import json,sys,time,shutil
+from playwright.sync_api import sync_playwright
+R=Path(__file__).resolve().parents[1]
+S=Path(sys.argv[1]);results=[];errors=[];external=[]
+def check(name,ok,detail=None):
+ results.append({'name':name,'status':'PASS' if ok else 'FAIL','detail':detail})
+ print(name,ok,flush=True)
+with sync_playwright() as p:
+ browser=p.chromium.launch(executable_path=shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+ ctx=browser.new_context(viewport={'width':390,'height':844},device_scale_factor=1)
+ ctx.route('**/*',lambda route:route.abort())
+ page=ctx.new_page();page.on('pageerror',lambda err:errors.append(str(err)))
+ page.on('request',lambda r:external.append(r.url) if not r.url.startswith(('data:','blob:','about:')) else None)
+ print('BEFORE_SET_CONTENT',flush=True)
+ page.set_content(S.read_text(),wait_until='load',timeout=60000)
+ print('AFTER_SET_CONTENT',flush=True)
+ # Do not call the garment verification suites, recompute canonical measurements,
+ # or make assertions about appearance approvals.
+ end=time.monotonic()+30
+ while time.monotonic()<end:
+  status=page.evaluate('({ready:!!window.HEWRS_READY,error:window.HEWRS_LOAD_ERROR||null})')
+  if status['ready'] or status['error']:break
+  time.sleep(.08)
+ check('Updated source app boots through existing S05 path',status['ready'],status)
+ rows=page.evaluate('HEWRSApp.connection.suitSources.ids.map(id=>HEWRSApp.connection.suitSources.resolveCanonical(id))')
+ check('18 source pairs reachable through the actual application connection',len(rows)==18 and all(x['jacket']['url'] and x['trousers']['url'] for x in rows))
+ binding=page.evaluate('''async()=>{const app=HEWRSApp,commits=[];const select=app.connection.suitSources.createSelector(async d=>{const response=await fetch(app.resolveUrl(d));if(!response.ok)throw Error('Load failed');return {hash:d.sha256,bytes:(await response.arrayBuffer()).byteLength};},pair=>commits.push(pair));const result=await select.selectLegacy('suit-8');return {result,commits};}''')
+ check('New exact S09 source loader commits a complete pair without drawing it',binding['result']['committed'] and len(binding['commits'])==1 and binding['commits'][0]['suitId']=='S09' and binding['commits'][0]['jacket']['bytes']>0 and binding['commits'][0]['trousers']['bytes']>0)
+ comparison=page.evaluate('''async()=>{const c=document.createElement('canvas'),r=HEWRSActive50.create(c,HEWRS_INPUTS.manifest,HEWRSApp.resolveUrl),s=HEWRSApp.state().selection;await r.render({suitId:s.suitId,shirtId:s.shirtId,state:s.state});const a=c.getContext('2d').getImageData(0,0,996,2748).data,b=document.getElementById('avatar').getContext('2d').getImageData(0,0,996,2748).data;let changed=0;for(let i=0;i<a.length;i++)if(a[i]!==b[i])changed++;return {changedChannelValues:changed};}''')
+ check('New source connection leaves initial S05 frame exactly unchanged',comparison['changedChannelValues']==0,comparison)
+ page.get_by_role('button',name='Wardrobe',exact=True).click()
+ page.select_option('#wardrobe-category','suits')
+ check('Wardrobe consumes 18 new executable source records',page.locator('#wardrobe-list article').count()==18)
+ card=page.locator('#wardrobe-list article').filter(has=page.locator('.card-id',has_text='S09'))
+ card.get_by_role('button',name='Source binding').click()
+ detail=json.loads(page.locator('#details-text').inner_text())
+ check('Actual S09 details show its original template and exact paired source',detail['suitId']=='S09' and detail['historyId']=='suit-8' and detail['template']==rows[8]['template'])
+ check('No page errors or external requests',not errors and not external,{'page_errors':errors,'external_requests':external})
+ ctx.close();browser.close()
+out={'schema':'hewrs.suit-source-wiring.browser-smoke.v1','passed':sum(x['status']=='PASS' for x in results),'failed':sum(x['status']=='FAIL' for x in results),'checks':results,
+ 'transport':'Exact built standalone via set_content in Chromium; external requests blocked',
+ 'source_loader_scope':'One actual S09 paired byte load; all 18 source records accessed; S09 not drawn',
+ 'garment_review':False,'canonical_measurement_tests':False,'historical_approval_reopened':False,
+ 'hosted':False,'physical_iPhone':False,'all_suit_compositor_complete':False}
+(R/'evidence/SUIT_SOURCE_BROWSER_SMOKE.json').write_text(json.dumps(out,indent=2))
+print(json.dumps(out));sys.exit(bool(out['failed']))

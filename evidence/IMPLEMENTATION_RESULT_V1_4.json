@@ -1,0 +1,117 @@
+{
+  "schema": "hewrs.connected-app.implementation.v1_4",
+  "version": "HEWRS_CONNECTED_APP_V1_4",
+  "scope": "Code-only Engine connection to existing wider-suit DS035 display routes",
+  "baseline": {
+    "version": "HEWRS_CONNECTED_APP_V1_3",
+    "sha256": "a85acda6454e8650bdd251d5f1bff29f4c19adf8683d2ec9d180e9ae05e7ac38"
+  },
+  "engine_suit_ids": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S16",
+    "S17",
+    "S18"
+  ],
+  "original_full_shirt_suit_routes": [
+    "S01",
+    "S04",
+    "S05",
+    "S16"
+  ],
+  "wider_engine_routes_require": "Explicit DS035; ANY, family, another shirt and REFERENCE reject; no automatic shirt substitution",
+  "modes": "47 existing ties and NO_TIE, subject to unchanged controller/context/rotation eligibility",
+  "functional_suites": [
+    {
+      "suite": "functional.cjs",
+      "passed": 40,
+      "failed": 0
+    },
+    {
+      "suite": "suit-source-routing.cjs",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "suite": "suit-display.cjs",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "suite": "ds035-coverage-routing.cjs",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "suite": "engine-wider.cjs",
+      "passed": 44,
+      "failed": 0
+    }
+  ],
+  "functional_total_passed": 137,
+  "engine_explicit_mode_requests_compared": 672,
+  "complete_reports_equal_to_prior_controller": true,
+  "new_engine_grouped_checks_passed": 44,
+  "invalid_wider_requests_rejected": 742,
+  "browser_grouped_checks_passed": 38,
+  "browser_engine_render_comparisons": 42,
+  "browser_engine_render_comparisons_pixel_identical": true,
+  "browser_original_route_controls": 9,
+  "browser_original_route_controls_pixel_identical": true,
+  "new_full_672_state_browser_sweep": false,
+  "source_preservation": {
+    "schema": "hewrs.engine-wide.preservation.v1_4",
+    "status": "PASS",
+    "baseline_zip_sha256": "a85acda6454e8650bdd251d5f1bff29f4c19adf8683d2ec9d180e9ae05e7ac38",
+    "protected_source_files_matched": 547,
+    "asset_PNGs_unchanged": 498,
+    "saved_assembly_PNGs_unchanged": 18,
+    "changed_original_paths": [
+      "README.md",
+      "app.html",
+      "app.template.html",
+      "evidence/DS035_COVERAGE_ROUTING.json",
+      "src/application.js",
+      "src/connection.js",
+      "tests/ds035-coverage-browser.py",
+      "tests/ds035-coverage-routing.cjs"
+    ],
+    "original_inputs_unchanged": true,
+    "original_renderer_and_DS035_extension_unchanged": true,
+    "scoring_and_history_code_unchanged": true,
+    "source_lock_unchanged": true,
+    "new_image_derivatives": 0
+  },
+  "source_lock_unchanged": true,
+  "score_values_unchanged": true,
+  "new_image_derivatives": 0,
+  "selector_no_automatic_DS035": true,
+  "previous_frame_retention": true,
+  "wear_requires_explicit_confirmation": true,
+  "backup_test": "Export, validate preview and explicit restore executed through UI in memory-only origin; synthetic test records only",
+  "browser_transport": "Exact packaged template/CSS/JS and PNG bytes in memory; reference uses preserved V1.3 connection",
+  "browser_engine": "144.0.7559.96",
+  "not_tested": [
+    "Hosted delivery",
+    "Safari",
+    "Physical iPhone",
+    "Persistent browser restart"
+  ],
+  "watch_scope": "Selected metadata only; not rendered",
+  "blazer_shirt_only_scope": "Unchanged; not connected by V1.4",
+  "github_write": false,
+  "deployment": false
+}

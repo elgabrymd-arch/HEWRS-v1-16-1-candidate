@@ -1,0 +1,19 @@
+{
+  "schema": "hewrs.real-origin-check.v1_14",
+  "status": "BLOCKED_BEFORE_APPLICATION_LOAD",
+  "scope": "Separate temporary Chromium profile, actual localhost HTTP, actual localStorage; no physical Safari/iPhone claim.",
+  "url": "http://127.0.0.1:39059/index.html",
+  "checks": [],
+  "requests": [],
+  "application_loaded": false,
+  "storage_mocked": false,
+  "policy_modified": false,
+  "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:39059/index.html\nCall log:\n  - navigating to \"http://127.0.0.1:39059/index.html\", waiting until \"load\"\n",
+  "blocked_checks": [
+    "hosted_static_loading",
+    "actual_localStorage",
+    "reload_persistence",
+    "browser_process_restart_persistence"
+  ],
+  "seconds": 1.24
+}

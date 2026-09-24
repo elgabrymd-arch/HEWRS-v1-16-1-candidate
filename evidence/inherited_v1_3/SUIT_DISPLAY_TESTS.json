@@ -1,0 +1,63 @@
+{
+  "schema": "hewrs.suit-display-tests.v1_2",
+  "passed": 13,
+  "failed": 0,
+  "layer_plans_checked": 8849,
+  "prohibited_tied_requests_rejected": 752,
+  "tests": [
+    {
+      "name": "Explicit template registration enables S01/S04/S05/S16 only",
+      "status": "PASS"
+    },
+    {
+      "name": "S05 manifest remains descriptor-identical at the original shoe control",
+      "status": "PASS"
+    },
+    {
+      "name": "Every supported state uses the exact selected suit pair; other descriptors preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "No-tie-only restrictions and the S05 retained-reference identity remain exact",
+      "status": "PASS"
+    },
+    {
+      "name": "Wider-aperture suit requests reject, rather than masquerade as S05",
+      "status": "PASS"
+    },
+    {
+      "name": "All 18 archived views bind exact saved composites, not current selections",
+      "status": "PASS"
+    },
+    {
+      "name": "S01 is carried through actual Engine result, display, and history IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "S04 is carried through actual Engine result, display, and history IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "S05 is carried through actual Engine result, display, and history IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "S16 is carried through actual Engine result, display, and history IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "Selected suit cannot be changed in a cached result without rejection",
+      "status": "PASS"
+    },
+    {
+      "name": "Registered source template cannot be forged into a dynamic route",
+      "status": "PASS"
+    },
+    {
+      "name": "Original input data and score modules were not changed by the extension",
+      "status": "PASS"
+    }
+  ],
+  "not_an_all_state_browser_run": true,
+  "garment_approval_reopened": false
+}

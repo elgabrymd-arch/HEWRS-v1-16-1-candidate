@@ -1,0 +1,37 @@
+/* Tests of NEW application wiring only. No suit measurement/appearance tests. */
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const R=path.resolve(__dirname,'..');
+const cx={structuredClone,console,TextEncoder,TextDecoder,crypto:crypto.webcrypto};cx.globalThis=cx;vm.createContext(cx);
+for(const f of ['data/approved-suits.js','src/suit-resolver97-browser.js','src/approved-suit-sources.js'])vm.runInContext(fs.readFileSync(path.join(R,f),'utf8'),cx,{filename:f});
+const input=JSON.parse(fs.readFileSync(R+'/data/inputs.json','utf8')),data=JSON.parse(JSON.stringify(cx.HEWRS_APPROVED_SUITS_DATA));
+const before=JSON.stringify(data),aliasBefore=JSON.stringify(input.suitAliases),routes=cx.HEWRSApprovedSuitSources.create(data,input.suitAliases);
+const expected=data.registry.items,tests=[];const equal=(a,b)=>assert.deepEqual(JSON.parse(JSON.stringify(a)),JSON.parse(JSON.stringify(b)));
+function check(name,fn){try{fn();tests.push({name,status:'PASS'});}catch(e){tests.push({name,status:'FAIL',error:e.stack});}}
+async function asyncCheck(name,fn){try{await fn();tests.push({name,status:'PASS'});}catch(e){tests.push({name,status:'FAIL',error:e.stack});}}
+check('New app route accepts all 18 existing canonical IDs without altering order',()=>equal(routes.ids,data.registry.ids));
+check('Each new route binds its inherited matching jacket, trouser and template',()=>{for(const r of expected){const a=routes.resolveCanonical(r.suit_id);assert.equal(a.jacket.sha256,r.jacket.sha256);assert.equal(a.trousers.sha256,r.trousers.sha256);assert.equal(a.template,r.template_in_cp93);assert.equal(a.jacket.source_path,r.jacket.path);assert.equal(a.trousers.source_path,r.trousers.path);}});
+check('Explicit historical aliases are used, not calculated from position',()=>{for(const row of input.suitAliases)assert.equal(routes.resolveLegacy(row.app_id).suitId,row.source_id);const shuffled=[...input.suitAliases].reverse();const r=cx.HEWRSApprovedSuitSources.create(data,shuffled);for(const a of shuffled)assert.equal(r.resolveLegacy(a.app_id).suitId,a.source_id);});
+check('Unknown canonical IDs reject without fallback',()=>{for(const id of ['S00','S19','S5','suit-4',null,{},'__proto__'])assert.throws(()=>routes.resolveCanonical(id));});
+check('Unknown historical IDs reject without numeric inference',()=>{for(const id of ['suit-18','S05','suit-04',null])assert.throws(()=>routes.resolveLegacy(id));});
+check('Duplicate or incomplete crosswalks reject',()=>{assert.throws(()=>cx.HEWRSApprovedSuitSources.create(data,input.suitAliases.slice(1)));const a=structuredClone(input.suitAliases);a[1].app_id=a[0].app_id;assert.throws(()=>cx.HEWRSApprovedSuitSources.create(data,a));});
+check('Same exact candidate identity resolves its paired source',()=>{for(const row of input.suitAliases){const c={items:{topwear:{formal:true,id:row.app_id}},_hewrsConnected:{compatibility:{ids:{topwear:row.source_id}}}};assert.equal(routes.resolveCandidate(c).suitId,row.source_id);}});
+check('Candidate source/history disagreement rejects',()=>assert.throws(()=>routes.resolveCandidate({items:{topwear:{formal:true,id:'suit-4'}},_hewrsConnected:{compatibility:{ids:{topwear:'S04'}}}})));
+check('Blazer result is not treated as a suit source',()=>assert.throws(()=>routes.resolveCandidate({items:{topwear:{formal:false,id:'suit-4'}},_hewrsConnected:{compatibility:{ids:{topwear:'S05'}}}})));
+check('Missing packaged asset mapping rejects',()=>{const d=structuredClone(data);delete d.assetPaths[expected[0].jacket.sha256];assert.throws(()=>cx.HEWRSApprovedSuitSources.create(d,input.suitAliases).resolveCanonical('S01'));});
+check('Path traversal and mismatched image mappings reject',()=>{const d=structuredClone(data);d.assetPaths[expected[0].jacket.sha256]='../other.png';assert.throws(()=>cx.HEWRSApprovedSuitSources.create(d,input.suitAliases).resolveCanonical('S01'));});
+check('Original S05 manifest object, descriptors and masks are not replaced',()=>{const m=structuredClone(input.manifest),b=JSON.stringify(m);assert.equal(routes.bindCurrentManifest(m,'S05'),m);assert.equal(JSON.stringify(m),b);});
+check('A different suit cannot be sent through S05 masking accidentally',()=>assert.throws(()=>routes.bindCurrentManifest(input.manifest,'S02')));
+check('Changed S05 jacket hash is rejected before composition',()=>{const m=structuredClone(input.manifest);m.static.jacket.sha256=expected[0].jacket.sha256;assert.throws(()=>routes.bindCurrentManifest(m,'S05'));});
+check('Resolved source records are read-only',()=>{const r=routes.resolveCanonical('S05');assert.ok(Object.isFrozen(r)&&Object.isFrozen(r.jacket));assert.throws(()=>{r.jacket.sha256='wrong';});});
+check('Mechanical wrapper retains inherited resolver function bodies',()=>{const src=fs.readFileSync(R+'/vendor/cp98/suit_resolver97.mjs','utf8').replaceAll('export function ','function ').replaceAll('export async function ','async function ');assert.ok(fs.readFileSync(R+'/src/suit-resolver97-browser.js','utf8').includes(src));});
+(async()=>{
+ await asyncCheck('Both source descriptors reach the atomic consumer as one pair',async()=>{const log=[],loads=[];const q=routes.createSelector(async d=>{loads.push(d);return {hash:d.sha256};},p=>log.push(p));const out=await q.selectLegacy('suit-8');assert.equal(out.committed,true);assert.equal(log.length,1);assert.equal(log[0].suitId,'S09');assert.equal(log[0].historyId,'suit-8');assert.equal(loads.length,2);assert.equal(log[0].jacket.hash,routes.resolveCanonical('S09').jacket.sha256);});
+ await asyncCheck('Late source load cannot overwrite a more recent suit selection',async()=>{const waiters=[],log=[];const q=routes.createSelector(d=>new Promise(resolve=>waiters.push(()=>resolve({hash:d.sha256}))),p=>log.push(p));const old=q.selectCanonical('S01'),recent=q.selectCanonical('S02');waiters[2]();waiters[3]();assert.equal((await recent).committed,true);waiters[0]();waiters[1]();assert.equal((await old).committed,false);assert.equal(log.length,1);assert.equal(log[0].suitId,'S02');});
+ await asyncCheck('Failed paired load never commits a half suit',async()=>{const log=[];const q=routes.createSelector(async d=>{if(d.source_path.endsWith('TROUSERS.png'))throw Error('simulated missing source');return d;},p=>log.push(p));await assert.rejects(q.selectCanonical('S03'));assert.equal(log.length,0);});
+ await asyncCheck('Invalid later request cancels a pending valid source selection',async()=>{const waiters=[],log=[];const q=routes.createSelector(d=>new Promise(resolve=>waiters.push(()=>resolve(d))),p=>log.push(p));const old=q.selectCanonical('S01');await assert.rejects(q.selectLegacy('not-a-suit'));waiters.forEach(f=>f());assert.equal((await old).committed,false);assert.equal(log.length,0);});
+ check('Original input objects and crosswalk remain unchanged',()=>{assert.equal(JSON.stringify(data),before);assert.equal(JSON.stringify(input.suitAliases),aliasBefore);});
+ const out={schema:'hewrs.application.suit-source-routing-tests.v1',passed:tests.filter(x=>x.status==='PASS').length,failed:tests.filter(x=>x.status==='FAIL').length,tests,
+  garment_appearance_review:false,geometry_remeasurement:false,suit_reconstruction:false,new_approval_gate:false,all_suit_dynamic_rendering_claim:false};
+ fs.writeFileSync(R+'/evidence/SUIT_SOURCE_ROUTING_TESTS.json',JSON.stringify(out,null,2));console.log(JSON.stringify(out));if(out.failed)process.exitCode=1;
+})();

@@ -1,0 +1,62 @@
+{
+  "version": "HEWRS_CONNECTED_APP_V1_8",
+  "operation": "Restore the existing 15 local physical-trouser/profile bindings to the B03 Engine path.",
+  "source_recovery": {
+    "file": "source/HEWRS_Trouser_Profile_Bindings.json",
+    "bytes": 15859,
+    "sha256": "538cdf147e1af4c83c88a5b7bfbc6cf9bc5128b6461200be3ea01588348cb960",
+    "exact_original_identity": true,
+    "new_profile_assignments": 0,
+    "production_approval_changed": false
+  },
+  "scope": {
+    "connected_blazer": "B03",
+    "shirt": "DS001",
+    "tie_states": 47,
+    "physical_trouser_ids": 24,
+    "existing_mapped_trousers": 15,
+    "unmapped_trousers_retained": 9,
+    "registered_shoes": 35,
+    "free_tie_search": "Existing tied routes only; unavailable no-tie filtered before ranking",
+    "other_blazer_routes_changed": false
+  },
+  "functional": {
+    "passed": 37,
+    "failed": 0,
+    "exact_controller_comparisons": 705,
+    "free_tie_queries": 15,
+    "exact_result_reference": "Copied unmodified V1.7 controller + original engine using identical explicit source bindings"
+  },
+  "browser": {
+    "passed": 20,
+    "failed": 0,
+    "pixel_comparisons_against_V1_7": 31,
+    "equal_pixel_comparisons": 31,
+    "breakdown": {
+      "mapped_engine_outputs": 15,
+      "outfit_alternative": 1,
+      "unmapped_manual_outputs": 9,
+      "suit_controls": 6
+    },
+    "page_errors": [],
+    "exact_origin": "scripts and PNGs supplied in memory to Chromium",
+    "hosted_tested": false,
+    "safari_tested": false,
+    "physical_iphone_tested": false,
+    "real_origin_persistence_tested": false
+  },
+  "preservation": {
+    "original_garment_image_files_unchanged": 584,
+    "new_garment_images": 0,
+    "renderers_masks_coordinates_unchanged": true,
+    "score_input_files_unchanged": true,
+    "stored_approved_shirt_tie_records": 188,
+    "stored_blazer_pant_foundation_records": 98,
+    "saved_data_code_unchanged": true,
+    "source_lock_unchanged": true,
+    "old_crosswalk_preserved_separately": true
+  },
+  "github_write": false,
+  "deployment": false,
+  "remaining": "Other blazer assemblies, independent blazer-shirt modes, watches and existing unmapped profile rows are not changed by this update."
+}

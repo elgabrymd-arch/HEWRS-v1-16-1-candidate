@@ -1,0 +1,34 @@
+{
+  "scope": "One failing application assembly interface demonstrated, not a garment approval or broad appearance audit",
+  "cases": [
+    {
+      "shirtId": "DS035",
+      "state": "T017",
+      "opaque_S05_jacket_pixels_exposed_as_empty_under_S11": 2439,
+      "example_xy": [
+        523,
+        755
+      ]
+    },
+    {
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "opaque_S05_jacket_pixels_exposed_as_empty_under_S11": 2325,
+      "example_xy": [
+        524,
+        760
+      ]
+    }
+  ],
+  "suit_template_map_source": "vendor/cp98/REGISTER97.json",
+  "decision": "Do not enable the S11 dynamic path based on S05 inserts; keep all original garment approvals and exact archived assemblies.",
+  "image_generation": false,
+  "source_pixels_changed": 0,
+  "use_old_shirt_to_fill_current_pixels": false,
+  "sources": {
+    "S11_jacket_template_sha256": "f8b9003a5bc194b642f996c0fadcf1c2e8e97dba0cfc3c6260e5555ee0835ba4",
+    "S11_fixed_shirt_control_sha256": "cf4c5053a572a72cd0cb4942319b159d9ac749155c5f7048cbba5028425c034d",
+    "DS035_tied_body": "134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212",
+    "DS035_no_tie_body": "319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407"
+  }
+}

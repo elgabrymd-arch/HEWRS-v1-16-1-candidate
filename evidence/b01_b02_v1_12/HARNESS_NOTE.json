@@ -1,0 +1,11 @@
+{
+  "initial_run": "Stopped during image preload before the new render sweep; not counted as a completed browser test.",
+  "reason": "Inherited harness.supply returned the entire growing base64 image dictionary after each Object.assign, causing unnecessary repeated serialization.",
+  "correction": "New test wrapper supplies identical image bytes with a no-return callback. Application source and CSP unchanged.",
+  "completed_checks_in_initial_run": 1,
+  "second_attempt": {
+    "completed_native_comparisons": 151,
+    "failure": "Test looked up the historical key in a UI data-item-id attribute that correctly displays canonical B01/B02.",
+    "change": "Test selector corrected to the existing canonical UI identifier. No application change."
+  }
+}

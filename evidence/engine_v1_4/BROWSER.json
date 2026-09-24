@@ -1,0 +1,2039 @@
+{
+  "schema": "hewrs.engine-wide.browser.v1_4",
+  "checks_passed": 38,
+  "checks_failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "Exact V1.4 code starts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "All 18 Engine suit options enabled",
+      "pass": true,
+      "detail": [
+        {
+          "id": "S01",
+          "disabled": false
+        },
+        {
+          "id": "S02",
+          "disabled": false
+        },
+        {
+          "id": "S03",
+          "disabled": false
+        },
+        {
+          "id": "S04",
+          "disabled": false
+        },
+        {
+          "id": "S05",
+          "disabled": false
+        },
+        {
+          "id": "S06",
+          "disabled": false
+        },
+        {
+          "id": "S07",
+          "disabled": false
+        },
+        {
+          "id": "S08",
+          "disabled": false
+        },
+        {
+          "id": "S09",
+          "disabled": false
+        },
+        {
+          "id": "S10",
+          "disabled": false
+        },
+        {
+          "id": "S11",
+          "disabled": false
+        },
+        {
+          "id": "S12",
+          "disabled": false
+        },
+        {
+          "id": "S13",
+          "disabled": false
+        },
+        {
+          "id": "S14",
+          "disabled": false
+        },
+        {
+          "id": "S15",
+          "disabled": false
+        },
+        {
+          "id": "S16",
+          "disabled": false
+        },
+        {
+          "id": "S17",
+          "disabled": false
+        },
+        {
+          "id": "S18",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "name": "Wider suit does not silently choose DS035",
+      "pass": true,
+      "detail": {
+        "shirt": "ANY",
+        "disabled": true,
+        "shown": "S05",
+        "enabled": [
+          "DS035"
+        ]
+      }
+    },
+    {
+      "name": "Explicit DS035 enables Generate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UI generates 48 DS035 modes and displays a result without logging wear",
+      "pass": true,
+      "detail": {
+        "selection": {
+          "suitId": "S11",
+          "shirtId": "DS035",
+          "state": "T006",
+          "shoeId": "shoe-8",
+          "watchId": null
+        },
+        "examined": 48,
+        "options": 15,
+        "events": 0,
+        "lock": "shirt-DS035"
+      }
+    },
+    {
+      "name": "Outfits displays the returned Engine options",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Viewing another result retains selected wider suit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Reopening Engine preserves explicit wider suit and DS035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Original-suit selection restores free shirt options",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Incompatible exact shirt stays selected but blocked",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S02 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S02",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S02",
+            "shirtId": "DS035",
+            "state": "T030",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S02",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S02",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S02",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S02",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S03 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S03",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S03",
+            "shirtId": "DS035",
+            "state": "T010",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S03",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S03",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S03",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S03",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S06 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S06",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S06",
+            "shirtId": "DS035",
+            "state": "T022",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S06",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S06",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S06",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S06",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S07 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S07",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S07",
+            "shirtId": "DS035",
+            "state": "T006",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S07",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S07",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S07",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S07",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S08 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S08",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S08",
+            "shirtId": "DS035",
+            "state": "T030",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S08",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S08",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S08",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S08",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S09 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S09",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S09",
+            "shirtId": "DS035",
+            "state": "T022",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S09",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S09",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S09",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S09",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S10 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S10",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S10",
+            "shirtId": "DS035",
+            "state": "T006",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S10",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S10",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S10",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S10",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S11 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S11",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S11",
+            "shirtId": "DS035",
+            "state": "T006",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S11",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S11",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S11",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S11",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S12 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S12",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S12",
+            "shirtId": "DS035",
+            "state": "T030",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S12",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S12",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S12",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S12",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S13 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S13",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S13",
+            "shirtId": "DS035",
+            "state": "T006",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S13",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S13",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S13",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S13",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S14 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S14",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S14",
+            "shirtId": "DS035",
+            "state": "T030",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S14",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S14",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S14",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S14",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S15 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S15",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S15",
+            "shirtId": "DS035",
+            "state": "T024",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S15",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S15",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S15",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S15",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S17 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S17",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S17",
+            "shirtId": "DS035",
+            "state": "T030",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S17",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S17",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S17",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S17",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "S18 Engine ANY/T017/NO_TIE match V1.3 rendered pixels",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S18",
+          "requestedMode": "ANY",
+          "selection": {
+            "suitId": "S18",
+            "shirtId": "DS035",
+            "state": "T022",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 48,
+          "options": 15,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S18",
+          "requestedMode": "T017",
+          "selection": {
+            "suitId": "S18",
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        },
+        {
+          "suitId": "S18",
+          "requestedMode": "NO_TIE",
+          "selection": {
+            "suitId": "S18",
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "examined": 1,
+          "options": 1,
+          "exact": true,
+          "held": true,
+          "label": true,
+          "wear": 0
+        }
+      ]
+    },
+    {
+      "name": "Nine original-route controls remain pixel-identical",
+      "pass": true,
+      "detail": [
+        {
+          "suitId": "S05",
+          "shirtId": "DS035",
+          "state": "REFERENCE",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S05",
+          "shirtId": "DS035",
+          "state": "T017",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S05",
+          "shirtId": "DS035",
+          "state": "NO_TIE",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S05",
+          "shirtId": "DS051",
+          "state": "T022",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S05",
+          "shirtId": "DS027",
+          "state": "NO_TIE",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S05",
+          "shirtId": "DS041",
+          "state": "NO_TIE",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S01",
+          "shirtId": "DS036",
+          "state": "T017",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S04",
+          "shirtId": "DS035",
+          "state": "T017",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        },
+        {
+          "suitId": "S16",
+          "shirtId": "DS035",
+          "state": "NO_TIE",
+          "shoeId": "shoe-8",
+          "watchId": null,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "name": "Invalid Engine requests retain prior frame, identity and request",
+      "pass": true,
+      "detail": [
+        {
+          "extra": {
+            "shirt": "ANY"
+          },
+          "rejected": true,
+          "retained": true,
+          "identity": true,
+          "request": true
+        },
+        {
+          "extra": {
+            "shirt": "FAMILY:cream"
+          },
+          "rejected": true,
+          "retained": true,
+          "identity": true,
+          "request": true
+        },
+        {
+          "extra": {
+            "shirt": "DS036"
+          },
+          "rejected": true,
+          "retained": true,
+          "identity": true,
+          "request": true
+        },
+        {
+          "extra": {
+            "tie": "REFERENCE"
+          },
+          "rejected": true,
+          "retained": true,
+          "identity": true,
+          "request": true
+        },
+        {
+          "extra": {
+            "tie": "T048"
+          },
+          "rejected": true,
+          "retained": true,
+          "identity": true,
+          "request": true
+        },
+        {
+          "extra": {
+            "shoeId": "shoe-50"
+          },
+          "rejected": true,
+          "retained": true,
+          "identity": true,
+          "request": true
+        },
+        {
+          "extra": {
+            "suitId": "S19"
+          },
+          "rejected": true,
+          "retained": true,
+          "identity": true,
+          "request": true
+        }
+      ]
+    },
+    {
+      "name": "Rapid Engine generation commits only last request",
+      "pass": true,
+      "detail": {
+        "held": true,
+        "cancelled": 2,
+        "selection": {
+          "suitId": "S18",
+          "shirtId": "DS035",
+          "state": "T022",
+          "shoeId": "shoe-8",
+          "watchId": null
+        },
+        "ready": "ready"
+      }
+    },
+    {
+      "name": "Cancellation preserves last complete outfit",
+      "pass": true,
+      "detail": {
+        "cancelled": true,
+        "unchanged": true,
+        "identity": true
+      }
+    },
+    {
+      "name": "No eligible result does not substitute an outfit",
+      "pass": true,
+      "detail": {
+        "count": 0,
+        "unchanged": true,
+        "identity": true
+      }
+    },
+    {
+      "name": "Explicit shoe renders and selected watch remains labelled metadata",
+      "pass": true,
+      "detail": {
+        "s": {
+          "suitId": "S11",
+          "shirtId": "DS035",
+          "state": "T017",
+          "shoeId": "shoe-6",
+          "watchId": "watch-R01"
+        },
+        "shoe": "shoe-6",
+        "text": "Rendered: shoe-6 \u00b7 Allen Edmonds Dress Shoes \u2014 Brown Double Monk Strap | watch-R01 selected, not rendered."
+      }
+    },
+    {
+      "name": "No wear events created by generation or viewing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit Engine wear records exact canonical and historic IDs",
+      "pass": true,
+      "detail": {
+        "id": "wear_1790084057881_91b23b679cdde8",
+        "localDate": "2026-09-22",
+        "date": "2026-09-22",
+        "confirmed": true,
+        "origin": "engine",
+        "controlledRepetition": false,
+        "items": {
+          "topwear": {
+            "id": "suit-10"
+          },
+          "shirt": {
+            "id": "shirt-DS035"
+          },
+          "tie": {
+            "id": "T017"
+          },
+          "shoes": {
+            "id": "shoe-6"
+          },
+          "watch": {
+            "id": "watch-R01"
+          },
+          "pants": null
+        },
+        "canonical_selection": {
+          "suitId": "S11",
+          "shirtId": "DS035",
+          "state": "T017",
+          "shoeId": "shoe-6",
+          "watchId": "watch-R01"
+        },
+        "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516"
+      }
+    },
+    {
+      "name": "Import preview remains read-only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit restore keeps one exact Engine wear record",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Unavailable persistence is labelled memory-only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Three phone viewport layouts retain full-avatar visibility",
+      "pass": true,
+      "detail": [
+        {
+          "w": 390,
+          "h": 844,
+          "fits": true,
+          "overflow": false
+        },
+        {
+          "w": 375,
+          "h": 667,
+          "fits": true,
+          "overflow": false
+        },
+        {
+          "w": 430,
+          "h": 932,
+          "fits": true,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "No JavaScript page errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No external requests in memory run",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "engine_render_comparisons": 42,
+  "engine_render_rows": [
+    {
+      "suitId": "S02",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS035",
+        "state": "T030",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S02",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S02",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S03",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS035",
+        "state": "T010",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S03",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S03",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S06",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS035",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S06",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S06",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S07",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS035",
+        "state": "T006",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S07",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S07",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S08",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "T030",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S08",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S08",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S09",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS035",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S09",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S09",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S10",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T006",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S10",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S10",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S11",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T006",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S11",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S11",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S12",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS035",
+        "state": "T030",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S12",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S12",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S13",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "T006",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S13",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S13",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S14",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS035",
+        "state": "T030",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S14",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S14",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S15",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS035",
+        "state": "T024",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S15",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S15",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S17",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS035",
+        "state": "T030",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S17",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S17",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S18",
+      "requestedMode": "ANY",
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS035",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 48,
+      "options": 15,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S18",
+      "requestedMode": "T017",
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    },
+    {
+      "suitId": "S18",
+      "requestedMode": "NO_TIE",
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "examined": 1,
+      "options": 1,
+      "exact": true,
+      "held": true,
+      "label": true,
+      "wear": 0
+    }
+  ],
+  "original_route_controls": [
+    {
+      "suitId": "S05",
+      "shirtId": "DS035",
+      "state": "REFERENCE",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S05",
+      "shirtId": "DS035",
+      "state": "T017",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S05",
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S05",
+      "shirtId": "DS051",
+      "state": "T022",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S05",
+      "shirtId": "DS027",
+      "state": "NO_TIE",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S05",
+      "shirtId": "DS041",
+      "state": "NO_TIE",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S01",
+      "shirtId": "DS036",
+      "state": "T017",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S04",
+      "shirtId": "DS035",
+      "state": "T017",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    },
+    {
+      "suitId": "S16",
+      "shirtId": "DS035",
+      "state": "NO_TIE",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "exact": true
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "browser": "144.0.7559.96",
+  "elapsed_seconds": 33.73,
+  "transport": "Exact packaged template/CSS/JS and PNG bytes in memory; reference uses preserved V1.3 connection",
+  "test_data_only": true,
+  "not_tested": [
+    "Hosted delivery",
+    "Safari",
+    "Physical iPhone",
+    "Persistent browser restart"
+  ]
+}

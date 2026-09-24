@@ -1,0 +1,97 @@
+{
+  "version": "HEWRS_CONNECTED_APP_V1_9",
+  "status": "B04_B14_SOURCE_ASSEMBLIES_CONNECTED",
+  "newly_connected_blazers": [
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14"
+  ],
+  "connected_blazers": [
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14"
+  ],
+  "assembly_scope": {
+    "shirt": "DS001 existing registered full assembly",
+    "ties": 47,
+    "physical_trousers": 24,
+    "shared_trouser_color_layers": 9,
+    "registered_shoe_pairs": 35,
+    "engine_trouser_profiles": 15,
+    "unscored_manual_trousers": 9
+  },
+  "approval_proof": {
+    "source": "CP47 approval freeze retained inside checkpoint98",
+    "exact_phone_reference_matches": 11,
+    "new_approval_round": false
+  },
+  "functional": {
+    "passed": 26,
+    "failed": 0,
+    "new_state_plans": 12408,
+    "exact_engine_queries": 7755,
+    "existing_scores_or_profiles_created": 0
+  },
+  "browser": {
+    "recorded_pixel_comparisons": 690,
+    "pixel_identical": 690,
+    "source_phase_checks_passed": 16,
+    "final_ui_checks_passed": 15,
+    "final_ui_checks_failed": 0,
+    "final_ui_page_errors": [],
+    "comparison_breakdown": {
+      "all_ties": 517,
+      "pants": 99,
+      "shoes": 35,
+      "v18_regression": 28,
+      "engine": 11
+    },
+    "source_run_stopped_after_complete_sweep_due_to_test_wait_CSP": true,
+    "ui_retried_with_function_predicates_and_unchanged_CSP": true,
+    "runtime_or_asset_changes_between_completed_sweep_and_ui_retry": 0,
+    "scope": "Exact scripts and PNGs supplied in memory to Chromium. Not hosted or physical iPhone/Safari; no browser restart persistence test."
+  },
+  "http_delivery": {
+    "status": "PASS",
+    "checked_files": 639,
+    "scope": "Temporary localhost file-delivery verification only"
+  },
+  "preservation": {
+    "original_runtime_images_preserved": 584,
+    "new_runtime_image_files_copied_unchanged_from_cp46": 23,
+    "new_garment_generation": 0,
+    "garment_pixels_modified": 0,
+    "original_scoring_inputs_source_lock_and_storage_code_unchanged": true,
+    "legacy_item_ids_or_order_modified": false,
+    "new_isolated_candidate_identity_keys": 10,
+    "legacy_wear_records_reassigned": false
+  },
+  "remaining_scope": [
+    "Final B01/B02 wearable bindings",
+    "Other blazer shirt/no-tie assemblies",
+    "Full shirt-only display",
+    "Wearable watch images",
+    "Pre-existing numerical-source limitations",
+    "Physical iPhone/Safari and hosted release validation"
+  ],
+  "entrypoint": "index.html (same application as app.html)",
+  "github_write": false,
+  "deployment": false
+}

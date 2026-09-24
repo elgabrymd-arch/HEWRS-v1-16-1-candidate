@@ -1,0 +1,705 @@
+--- V1.10/src/application.js
++++ V1.11/src/application.js
+@@ -1,166 +1,170 @@
+-(function(root){
+-'use strict';
+-const $=id=>document.getElementById(id),clone=x=>structuredClone(x),node=(tag,text,cls)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;};
++/* V1.11 presentation adapter for the approved original-palette facelift.
++ * Source authority: V1.10 connection, renderer, catalogue and local-state module.
++ * This file does not score outfits, modify garment data or own a storage schema. */
++(function(root){'use strict';
++const $=id=>document.getElementById(id),copy=x=>structuredClone(x),el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
++const need=(v,m)=>{if(!v)throw Error(m);};
+ const connection=root.HEWRSCleanConnection.create(root.HEWRS_INPUTS);
+ let backend;try{backend=root.localStorage;}catch{backend=null;}
+-const store=root.HEWRSLocalState.create(connection,root.HEWRS_INPUT_SHA256,backend);
+-const urlCache=new Map();
+-function resolveUrl(d){
+- if(!Object.hasOwn(connection.assetPaths,d.sha256))throw Error('Unbound image hash; no fallback');
+- if(root.HEWRS_EMBEDDED_IMAGES){if(!urlCache.has(d.sha256)){const b64=root.HEWRS_EMBEDDED_IMAGES[d.sha256];if(!b64)throw Error('Embedded image missing');urlCache.set(d.sha256,'data:image/png;base64,'+b64);}return urlCache.get(d.sha256);}
+- return connection.assetPaths[d.sha256];
+-}
++const store=root.HEWRSLocalState.create(connection,root.HEWRS_INPUT_SHA256,backend),ui=root.HEWRSFaceliftModel.create(connection),urlCache=new Map();
++function resolveUrl(d){need(Object.hasOwn(connection.assetPaths,d.sha256),'Unbound image hash; no fallback');if(root.HEWRS_EMBEDDED_IMAGES){if(!urlCache.has(d.sha256)){const v=root.HEWRS_EMBEDDED_IMAGES[d.sha256];need(v,'Embedded image missing');urlCache.set(d.sha256,'data:image/png;base64,'+v);}return urlCache.get(d.sha256);}return connection.assetPaths[d.sha256];}
+ const renderer=root.HEWRSAtomicRenderer.create($('avatar'),connection,{resolveUrl});
+ const defaultSelection={suitId:'S05',shirtId:'DS036',state:'T017',shoeId:'shoe-8',watchId:null};
+-let current=null,score=null,origin='manual',mode='anchor',generation=0,lastRequest=null,options=[],report=null,pendingImport=null,detail=false,formLocalDate=localToday(),context={occasion:'clinic',requiredFormality:'any'};
+-let currentOption=null;
++const names={topwear:'Suit / Blazer',shirt:'Shirt',tie:'Tie',shoes:'Shoes',bottoms:'Bottoms',watch:'Watch'};
++const groupLabels={suits:'Suits',blazers:'Blazers',shirts:'Dress Shirts',ties:'Ties',shoes:'Shoes',pants:'Pants',jeans:'Jeans',tshirts:'T-Shirts',watches:'Watches'};
++const styleLabels={AUTO:'Automatic',CLASSIC:'Classical',HYBRID:'Hybrid',MODERN:'Modern'};
++let current=null,currentOption=null,score=null,origin='manual',mode='anchor',pageName='home',generation=0,report=null,lastRequest=null,options=[],optionIndex=-1,producing=null,restorePreview=null,modal=null,modalEpoch=0,logTransaction=null,busy=false;
++let ctx={occasion:'clinic',formality:'any',style:'AUTO',localDate:localToday()};
+ function localToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+-function ids(s){return (s.shirtOnly?'Shirt only · '+s.pantId:s.blazerId?s.blazerId+' · '+s.pantId:s.suitId)+' · '+s.shirtId+' · '+s.state;}
+-function blazerMode(){return $('topwear-kind').value==='blazer';}
+-function shirtOnlyMode(){return $('topwear-kind').value==='shirt-only';}
+-function exactSuit(s,id){return {suitId:id,shirtId:s.shirtId,state:s.state,shoeId:s.shoeId,watchId:s.watchId};}
+-function status(text){$('status').textContent=text;}
+-function updateStoreViews(){const s=store.snapshot(),st=store.status();$('wear-count').textContent=String(s.events.length);$('storage-banner').textContent=st.blocked||(st.persistent?'Saved in this browser’s separate candidate namespace.':'Session memory only. Persistent storage is unavailable; export to retain data.');$('backup-status').textContent=$('storage-banner').textContent+' No production data is accessed.';
+- const list=$('history-list');list.replaceChildren();if(!s.events.length)list.append(node('div','No wear recorded here. Generating or viewing an outfit never adds a wear event.','empty'));
+- for(const e of [...s.events].reverse()){const card=node('article',undefined,'card');card.append(node('div',e.localDate+' · '+e.origin,'card-id'),node('p',ids(e.canonical_selection)),node('p',e.items.shoes.id+(e.items.watch?' · '+e.items.watch.id:''),'caption'));const b=node('button','View recorded selection');b.onclick=()=>{showPage('home');apply(e.canonical_selection,{origin:'manual',localDate:e.localDate});};card.append(b);list.append(card);}}
+-function showPage(name){for(const id of ['home','outfits','wardrobe','rotation'])$('page-'+id).hidden=name!==id;for(const b of document.querySelectorAll('[data-page]')){if(b.dataset.page===name)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}if(name==='wardrobe')renderWardrobe();if(name==='rotation')updateStoreViews();}
+-function setMode(value){mode=value;for(const k of ['engine','anchor'])$('mode-'+k).setAttribute('aria-pressed',String(value===k));}
+-function selectOption(select,value){if([...select.options].some(x=>x.value===value))select.value=value;}
+-function fill(select,rows,value){select.replaceChildren();for(const r of rows){const o=new Option(r.label,r.value);if(r.disabled)o.disabled=true;select.add(o);}if(value!==undefined)selectOption(select,value);}
+-function shirtChoices(){const a=connection.manifest.shirt_order.map(id=>({value:id,label:id+' — '+connection.records[id].label}));return mode==='engine'?[{value:'ANY',label:'Engine chooses shirt'},...['white','cream','blue','navy','pink','lavender','brown','grey','black'].map(f=>({value:'FAMILY:'+f,label:f+' family'})),...a]:a;}
+-function tieChoices(){const noTie=connection.records[$('shirt-select').value]?.no_tie_only;let a=[{value:'NO_TIE',label:'No tie'}];if(!noTie){a.push(...Object.keys(connection.manifest.ties).map(id=>({value:id,label:id+' — '+connection.features.get(id).description})));if(mode==='engine')a=[{value:'ANY',label:'Engine chooses tie / no tie'},...['navy','burgundy','grey','blue','pink','brown','gold'].map(f=>({value:'FAMILY:'+f,label:f+' family'})),...a];}const old=$('tie-select').value;fill($('tie-select'),a,old||'T017');if(noTie)$('tie-select').value='NO_TIE';}
+-function openControls(){
+- $('topwear-kind').value=current?.shirtOnly?'shirt-only':current?.blazerId?'blazer':'suit';
+- fill($('blazer-select'),connection.blazerConnection.ids.map(id=>{const b=connection.blazerConnection.knownBlazer(id);return {value:id,label:id+' — '+b.label+(b.availability==='CONNECTED'?'':' [source binding unavailable]'),disabled:b.availability!=='CONNECTED'};}),current?.blazerId||'B03');
+- fill($('pant-select'),connection.blazerConnection.pantIds.map(id=>({value:id,label:id+' — '+connection.blazerConnection.knownPant(id).label})),current?.pantId||'PG002');
+- $('selection-heading').textContent=mode==='engine'?'Engine selection':'Anchor selection';$('selection-help').textContent=mode==='engine'?'Rank supported clothing combinations around your selected anchors. Accessories remain exact selections.':'Choose exact pieces. A score-source hold never blocks the approved visual.';
+- const currentSuit=current?.suitId||'S05';
+- const suitRows=connection.suitSources.ids.map(id=>({value:id,label:id+' — '+(connection.features.get(id)?.description||id)}));
+- fill($('suit-select'),suitRows,currentSuit);
+- // Keep the existing DS035 Engine anchor. No suit change selects a shirt.
+- const keepExistingAnchor=connection.assemblies.widerTemplateSuitIds.includes(currentSuit)&&current?.shirtId==='DS035';
+- fill($('shirt-select'),shirtChoices(),mode==='engine'&&!keepExistingAnchor?'ANY':current?.shirtId||'DS036');tieChoices();selectOption($('tie-select'),mode==='engine'?'ANY':current?.state||'T017');
+- fill($('shoe-select'),Object.keys(connection.shoeLayers).map(id=>({value:id,label:id+' — '+connection.catalogue.shoes.find(s=>s.id===id).name})),current?.shoeId||'shoe-8');
+- fill($('watch-select'),[{value:'',label:'No watch selected'},...connection.catalogue.watches.map(w=>({value:w.id,label:w.id+' — '+w.name}))],current?.watchId||'');
+- $('occasion-select').value=context.occasion;$('formality-select').value=context.requiredFormality;$('local-date').value=formLocalDate;
+- $('style-select').disabled=mode!=='engine';$('apply-selection').textContent=mode==='engine'?'Generate outfits':'Show selection';$('selection-error').textContent='';syncCoverageControls();$('selection-dialog').showModal();
++function icon(name){const n=document.createElementNS('http://www.w3.org/2000/svg','svg');for(const[k,v]of Object.entries({class:'fx-icon',viewBox:'0 0 24 24',fill:'none',stroke:'currentColor','stroke-width':'1.5','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true'}))n.setAttribute(k,v);const u=document.createElementNS(n.namespaceURI,'use');u.setAttribute('href','#fx-icon-'+name);n.append(u);return n;}
++function ids(s){if(!s)return 'No outfit selected';return (s.shirtOnly?'Shirt only · '+s.pantId:s.blazerId?s.blazerId+' · '+s.pantId:s.suitId)+' · '+s.shirtId+' · '+(s.state==='NO_TIE'?'No Tie':s.state);}
++function status(text,error=false){$('status').textContent=text;$('home-notice').textContent=text;$('home-notice').dataset.error=String(error);}
++function errorText(error){return error instanceof Error?error.message:String(error);}
++function setMode(v){need(['anchor','engine'].includes(v),'Unknown selection workflow');mode=v;for(const k of ['anchor','engine'])$('mode-'+k).setAttribute('aria-pressed',String(v===k));}
++function updateHome(){
++ for(const cat of ui.categories){const q=ui.label(cat),b=$('pref-'+cat);b.dataset.choice=q.mode;$('pref-'+cat+'-mode').textContent=q.mode==='any'?'Engine':q.mode==='family'?'Category preference':q.mode==='included'?'Matching trousers':'My selection';$('pref-'+cat+'-id').textContent=q.id||'';$('pref-'+cat+'-value').textContent=q.name;b.title=names[cat]+': '+(q.id?q.id+' — ':'')+q.name;b.disabled=q.mode==='included';b.setAttribute('aria-label',b.title+(q.mode==='included'?'; separate Bottoms inactive':''));}
++ $('lock-count').textContent=ui.lockCount()+' selected';$('work-label').textContent={clinic:'Clinic',hospital:'Hospital',work:'Work'}[ctx.occasion]||ctx.occasion;$('style-label').textContent=styleLabels[ctx.style]||ctx.style;$('header-date').textContent=ctx.localDate;$('view-current').hidden=!current;
+ }
+-function syncCoverageControls(){
+- const isShirtOnly=shirtOnlyMode(),isBlazer=blazerMode();$('suit-field').hidden=isBlazer||isShirtOnly;$('blazer-field').hidden=!isBlazer;$('pant-field').hidden=!(isBlazer||isShirtOnly);
+- const sid=$('suit-select').value,shirt=$('shirt-select').value;
+- if(isShirtOnly){
+-  const bad=mode!=='anchor'||shirt!=='DS001'||!connection.shirtOnlyConnection.states.includes($('tie-select').value)||!$('pant-select').value;
+-  $('apply-selection').disabled=bad;$('selection-error').textContent=mode==='engine'?'Shirt-only uses exact Anchor selection; no shirt-only ensemble ranking is installed.':bad?'Choose DS001, an exact tie and physical trousers. Other shirt-only sources are not substituted.':'DS001 native full-shirt assembly; exact selection without an outfit ranking.';return;
++function showPage(name){need(['home','outfits','wardrobe','rotation'].includes(name),'Unknown route');pageName=name;for(const k of ['home','outfits','wardrobe','rotation'])$('page-'+k).hidden=k!==name;for(const n of document.querySelectorAll('[data-page]')){if(n.dataset.page===name)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');}$('back-home').hidden=name==='home';$('weather-button').hidden=name!=='home';$('quick-log').hidden=name!=='outfits';if(name==='wardrobe')renderGroups();if(name==='rotation')refreshHistory();if(name==='home')updateHome();}
++function dismissSheet(cancel=true){if(!modal){if($('fx-sheet').open)$('fx-sheet').close();return;}const old=modal;modal=null;modalEpoch++;if(cancel)old.cancel?.();if($('fx-sheet').open)$('fx-sheet').close();old.focus?.focus?.();}
++function openSheet(title,{cancel}={}){dismissSheet();const focus=document.activeElement,token=++modalEpoch;modal={token,cancel,focus};$('fx-sheet-title').textContent=title;$('fx-sheet-body').replaceChildren();$('fx-sheet-actions').replaceChildren();$('fx-sheet-error').textContent='';$('fx-sheet').showModal();return {body:$('fx-sheet-body'),actions:$('fx-sheet-actions'),token};}
++function sheetError(e){$('fx-sheet-error').textContent=errorText(e);}
++function button(text,fn,primary=false){const n=el('button',text,primary?'fx-primary':'');n.type='button';n.onclick=async()=>{try{await fn();}catch(e){sheetError(e);}};return n;}
++function message(title,text){const{body,actions}=openSheet(title);body.append(el('p',text,'fx-caption'));actions.append(button('Close',()=>dismissSheet()));}
++function selectField(label,rows,value,id){const wrap=el('label',label),sel=el('select');if(id)sel.id=id;for(const r of rows){const o=new Option(r.label,r.value);o.disabled=!!r.disabled;sel.add(o);}sel.value=value;wrap.append(sel);return {wrap,input:sel};}
++function currentContext(){return {occasion:ctx.occasion,requiredFormality:ctx.formality};}
++function contextSheet(kind){
++ if(kind==='weather'||kind==='season'){message(kind==='weather'?'Weather':'Season','The current application has no connected '+kind+' provider or manual-band handler. No sample reading is shown and no '+kind+' eligibility rule is added by the facelift.');return;}
++ const{body,actions}=openSheet(kind==='style'?'Style':'Work & date'),form=el('div',undefined,'fx-context-form'),draft=copy(ctx);body.append(form);
++ if(kind==='style'){const s=selectField('Existing style profile',Object.entries(styleLabels).map(([value,label])=>({value,label})),draft.style,'style-select');form.append(s.wrap);s.input.onchange=()=>draft.style=s.input.value;}
++ else{const s=selectField('Setting',[{value:'clinic',label:'Clinic'},{value:'hospital',label:'Hospital'},{value:'work',label:'Work'},{value:'dinner',label:'Dinner — not connected in current build',disabled:true},{value:'weekend',label:'Weekend — not connected in current build',disabled:true}],draft.occasion,'occasion-select');const f=selectField('Required formality',[{value:'any',label:'Unspecified'},{value:'tie_required',label:'Tie required'},{value:'suit_required',label:'Suit required'},{value:'open_collar_allowed',label:'Open collar allowed'}],draft.formality,'formality-select');const l=el('label','Wear / rotation date'),d=el('input');d.type='date';d.id='local-date';d.value=draft.localDate;l.append(d);form.append(s.wrap,f.wrap,l);s.input.onchange=()=>draft.occasion=s.input.value;f.input.onchange=()=>draft.formality=f.input.value;d.onchange=()=>draft.localDate=d.value;}
++ actions.append(button('Cancel',()=>dismissSheet()),button('Apply',()=>{need(root.HEWRSLocalState.date(draft.localDate),'Enter a valid local calendar date');ctx=draft;dismissSheet(false);updateHome();},true));
++}
++function openPicker(cat){
++ if(cat==='bottoms'&&ui.included())return;
++ const{body,actions}=openSheet(names[cat],{cancel:()=>ui.cancel()});ui.begin(cat);
++ const seg=el('div',undefined,'fx-segment'),engine=button('Engine Choice',()=>{ui.choose({mode:'any'});setSegment(true);renderChoices();}),mine=button('My Selection',()=>{if(ui.draft().choice?.mode==='any')ui.choose(null);setSegment(false);renderChoices();});engine.id='picker-engine';mine.id='picker-mine';seg.append(engine,mine);body.append(seg);
++ const note=el('p','Apply changes only this preference. Cancel discards the draft.','fx-caption');body.append(note);
++ const search=el('input',undefined,'fx-search');search.type='search';search.id='picker-search';search.placeholder='Search actual name or ID';search.setAttribute('aria-label','Search '+names[cat]);
++ const filters=el('div',undefined,'fx-picker-filter');let filter={query:'',type:'',brand:'',color:''};
++ const typeRows=[{value:'',label:'All types'},...([...new Set(ui.rows[cat].map(x=>x.kind))].map(v=>({value:v,label:({'suit':'Suits',blazer:'Blazers','shirt-only':'Shirt only'})[v]||v})))];const types=selectField('Type',typeRows,'','picker-type');
++ const brands=selectField('Brand',[{value:'',label:'All brands'},...[...new Set(ui.rows[cat].map(x=>x.brand).filter(Boolean))].sort().map(v=>({value:v,label:v}))],'','picker-brand');filters.append(types.wrap,brands.wrap);
++ const family=ui.families[cat]?selectField('Color',[{value:'',label:'All colors'},...ui.families[cat].map(v=>({value:v,label:v.charAt(0).toUpperCase()+v.slice(1)}))],'','picker-color'):null;if(family)filters.append(family.wrap);
++ const list=el('div',undefined,'fx-picker-list');list.id='picker-list';const count=el('p','', 'fx-caption');count.id='picker-count';body.append(search,filters,count,list);
++ const apply=button('Apply',()=>{ui.commit();dismissSheet(false);updateHome();status('Preference applied. Generate to display the resulting outfit.');},true);apply.id='picker-apply';actions.append(button('Cancel',()=>dismissSheet()),apply);
++ function setSegment(isEngine){engine.setAttribute('aria-pressed',String(isEngine));mine.setAttribute('aria-pressed',String(!isEngine));}
++ function addChoice(c,label,id,extra='',disabled=false){const n=el('button',undefined,'fx-choice');n.type='button';if(id){n.dataset.itemId=id;n.append(el('span',id,'fx-choice-id'));}n.append(el('span',label,'fx-choice-name'));if(extra)n.append(el('small',extra));n.disabled=disabled;n.setAttribute('aria-pressed',String(JSON.stringify(c)===JSON.stringify(ui.draft()?.choice)));n.onclick=()=>{ui.choose(c);setSegment(c.mode==='any');renderChoices();};list.append(n);}
++ function renderChoices(){const d=ui.draft();if(!d)return;list.replaceChildren();const selected=d.choice;setSegment(selected?.mode==='any');apply.disabled=!selected;
++  if(cat==='tie')addChoice({mode:'none'},'No Tie','NO_TIE','Intentional open-collar selection; not Engine / Any');
++  if(cat==='watch')addChoice({mode:'none'},'No watch selected','NO_WATCH','Watch ID and name are sufficient for this release');
++  if(family&&filter.color)addChoice({mode:'family',id:filter.color},'Engine chooses within '+filter.color+' family','CATEGORY: '+filter.color,'Category preference, not an exact item');
++  const found=ui.filter(cat,filter);count.textContent=found.length+' current items. '+(cat==='shoes'?'An exact registered shoe is required by the current generator.':cat==='topwear'?'An exact outfit type/item is required by the current generator.':cat==='watch'?'Watch photos are deferred.':'Filters narrow this list; Apply a family preference explicitly to constrain Engine.');
++  for(const r of found)addChoice({mode:'item',id:r.id},r.label,r.sourceId||r.id,r.available?'':'Source connection unavailable; catalogue identity retained',!r.available);
++  if(!found.length)list.append(el('div','No current item matches these filters.','fx-empty'));
+  }
+- if(isBlazer){
+-  // Preserve the prior control values. Do not pick DS001 on the user's behalf.
+-  const tie=$('tie-select').value;const b=connection.blazerConnection.knownBlazer($('blazer-select').value);
+-  const bad=b.availability!=='CONNECTED'||shirt!=='DS001'||tie==='NO_TIE'||tie==='REFERENCE'||!$('pant-select').value;
+-  $('apply-selection').disabled=bad;$('selection-error').textContent=bad?'Select DS001 and a tie for the existing DS001 blazer assembly. No clothing selection is substituted.':(mode==='engine'?(connection.trouserProfiles.binding($('pant-select').value)?'Uses the existing '+connection.trouserProfiles.record($('pant-select').value).profile_label+' scoring profile; exact physical trouser ID retained.':'No existing scoring profile for these trousers. Anchor remains available; Engine will not invent a score.'):'');return;
++ function changed(){filter={query:search.value,type:types.input.value,brand:brands.input.value,color:family?.input.value||''};const chosen=ui.draft()?.choice;if(chosen?.mode==='item'&&!ui.filter(cat,filter).some(x=>x.id===chosen.id)){ui.choose(null);$('fx-sheet-error').textContent='The previous draft item is outside these filters. Choose an item or family before Apply.';}else if(chosen?.mode==='family'&&filter.color!==chosen.id){ui.choose(null);}renderChoices();}
++ search.oninput=changed;types.input.onchange=changed;brands.input.onchange=changed;if(family)family.input.onchange=changed;renderChoices();search.focus();
++}
++function setBusy(value){busy=value;$('cancel-work').hidden=!value;$('generate-options').disabled=value;$('generate-options').textContent=value?'Building outfits…':'Generate Options →';$('stage').classList.toggle('busy',value);$('regenerate').disabled=value||!producing;updateLogButtons();}
++function updateLogButtons(){const blocked=busy||!current||current.state==='REFERENCE'||!!logTransaction?.pending||$('outfit-output').hidden;$('record-wear').disabled=blocked;$('quick-log').disabled=blocked;}
++function itemsFor(s){if(!s)return [];
++ const top=s.shirtOnly?{id:null,name:'Shirt only — no jacket'}:s.blazerId?{id:s.blazerId,name:connection.blazerConnection.knownBlazer(s.blazerId).label}:{id:s.suitId,name:connection.features.get(s.suitId)?.description||s.suitId};
++ const pants=s.pantId?{id:s.pantId,name:connection.blazerConnection.knownPant(s.pantId).label}:{id:null,name:'Included with suit'};
++ const shoe=connection.catalogue.shoes.find(x=>x.id===s.shoeId),watch=connection.catalogue.watches.find(x=>x.id===s.watchId);
++ return [{role:'Suit / Blazer',...top},{role:'Shirt',id:s.shirtId,name:connection.records[s.shirtId].label},{role:'Tie',id:s.state==='NO_TIE'?null:s.state,name:s.state==='NO_TIE'?'No Tie':s.state==='REFERENCE'?'Retained reference':connection.features.get(s.state)?.description||s.state},{role:'Shoes',id:s.shoeId,name:shoe?.name||s.shoeId},{role:'Bottoms',...pants},{role:'Watch',id:s.watchId,name:watch?.name||'No watch selected'}];
++}
++function selectionKey(s){return JSON.stringify(connection.historyIds(s));}
++function displayCurrent(){if(!current)return;
++ $('selection-ids').textContent=ids(current);$('selection-origin').textContent=origin==='engine'?(currentOption?._hewrsConnected?.is_recommendation?'Local rotation choice':'Compatibility option'):'Your selection';
++ $('score-value').textContent=Number.isFinite(score?.display_score)?score.display_score.toFixed(2):'—';$('score-label').textContent=score?.style?.classification||score?.status||'Unavailable';
++ const summary=$('item-summary');summary.replaceChildren();for(const r of itemsFor(current)){const t=el('span',undefined,'fx-item-mini');t.title=r.role+': '+(r.id?r.id+' — ':'')+r.name;t.append(el('span',r.id||r.role,'fx-mini-id'),el('span',r.name,'fx-mini-name'));summary.append(t);}
++ const w=itemsFor(current).find(x=>x.role==='Watch');$('representation').textContent=w.id?w.id+' · '+w.name:'No watch selected';
++ $('option-count').textContent=options.length&&optionIndex>=0?'Option '+(optionIndex+1)+' of '+options.length:'Current selection';$('prev-option').disabled=busy||options.length<2||optionIndex<=0;$('next-option').disabled=busy||options.length<2||optionIndex>=options.length-1;$('open-results').disabled=!options.length;
++ updateLogButtons();$('view-current').hidden=false;
++}
++function presentFrame(){ $('outfit-empty').hidden=true;$('outfit-output').hidden=false; }
++function presentEmpty(text){$('outfit-empty').textContent=text;$('outfit-empty').hidden=false;$('outfit-output').hidden=true;$('option-count').textContent='0 options';updateLogButtons();}
++function sessionValue(s,o,date,context){return {selection:copy(s),origin:o,mode,localDate:date,context:copy(context)};}
++async function apply(s,opts={}){
++ const token=opts.token??++generation;if(opts.token===undefined)renderer.cancel();connection.validateSelection(s);if(s.shirtOnly&&opts.origin&&opts.origin!=='manual')throw Error('Shirt-only is an exact manual selection');
++ const priorBusy=busy;setBusy(true);status(current?'Loading next outfit…':'Loading approved source layers…');
++ try{const out=await renderer.render(s);if(token!==generation||out.cancelled)return {cancelled:true};
++  current=copy(s);origin=opts.origin||'manual';currentOption=opts.option||null;score=opts.score||connection.scoreSelection(s,opts.context||currentContext());
++  if(s.shirtOnly)setMode('anchor');if(opts.localDate)ctx.localDate=opts.localDate;if(opts.context){ctx.occasion=opts.context.occasion;ctx.formality=opts.context.requiredFormality;}
++  if(!opts.keepPreferences)ui.fromSelection(s);presentFrame();displayCurrent();updateHome();
++  if(opts.save!==false){try{store.saveSession(sessionValue(s,origin,ctx.localDate,opts.context||currentContext()));}catch(e){status('Outfit ready. '+e.message,true);refreshHistory();return out;}}
++  refreshHistory();status(origin==='engine'?'Engine result ready.':'Selection ready.');return out;
++ }catch(e){if(token===generation)status('Selection not applied: '+e.message,true);throw e;}
++ finally{if(token===generation){setBusy(priorBusy&&opts.token!==undefined);displayCurrent();}}
++}
++async function selectOption(index){need(index>=0&&index<options.length,'Option unavailable');const o=options[index],q=lastRequest;need(connection.controller.verifyCachedOption(o,q,connection.catalogue),'Results are no longer current; generate again');const b=connection.selectionFromOption(o,q);const out=await apply(b.selection,{origin:'engine',option:o,score:o._hewrsConnected.compatibility,context:q.context,localDate:q.localDate,keepPreferences:true});if(!out.cancelled){optionIndex=index;displayCurrent();}return out;}
++async function generate(c,extra={}){
++ const q=connection.makeRequest(c),previousKey=current?selectionKey(current):null,previousRequest=lastRequest?JSON.stringify(lastRequest):null,token=++generation;renderer.cancel();lastRequest=copy(q);options=[];report=null;optionIndex=-1;currentOption=null;
++ producing={kind:'engine',config:copy(c),prefs:copy(extra.prefs||ui.snapshot()),mode,context:copy(ctx)};setBusy(true);status('Building outfits…');
++ try{const r=await connection.controller.generateAsync(q,connection.catalogue,store.snapshot().events,{isCancelled:()=>token!==generation,onProgress:p=>{if(token===generation)status('Building outfits… '+p.examined+' combinations evaluated.');}});if(token!==generation||r.status==='cancelled')return {cancelled:true};
++  report=r;options=r.options||[];$('outfit-summary').textContent=options.length+' options · '+(r.diagnostics?.examined||0)+' combinations evaluated. Existing local-history rules.';
++  if(!options.length){presentEmpty(r.reason||(r.status==='mapping_required'?'No recorded numeric profile for these exact trousers. Anchor remains available.':'No scored result for these preferences. No item was substituted.'));status('No scored result. Preferences retained.');showPage('outfits');return r;}
++  let index=0;if(previousKey&&previousRequest===JSON.stringify(q)){const match=options.findIndex(o=>selectionKey(connection.selectionFromOption(o,q).selection)===previousKey);if(match>=0)index=match;}
++  const o=options[index],b=connection.selectionFromOption(o,q);const frame=await apply(b.selection,{token,origin:'engine',option:o,score:o._hewrsConnected.compatibility,context:q.context,localDate:q.localDate,keepPreferences:true});if(token!==generation||frame.cancelled)return {cancelled:true};optionIndex=index;presentFrame();displayCurrent();showPage('outfits');return r;
++ }catch(e){if(token===generation){options=[];report={status:'error',reason:e.message};optionIndex=-1;presentEmpty('Generation failed: '+e.message);status('Generation failed: '+e.message,true);showPage('outfits');}throw e;}
++ finally{if(token===generation){setBusy(false);displayCurrent();}}
++}
++async function submit(){if(busy)return;try{need(root.HEWRSLocalState.date(ctx.localDate),'Enter a valid local date');const op=ui.operation(mode,ctx);if(op.kind==='manual'){options=[];optionIndex=-1;lastRequest=null;report=null;producing={kind:'manual',selection:copy(op.selection),prefs:copy(op.prefs),mode,context:copy(ctx)};$('outfit-summary').textContent='Exact manual selection; existing score-source holds do not block supported rendering.';const r=await apply(op.selection,{origin:'manual',keepPreferences:true,context:currentContext(),localDate:ctx.localDate});if(!r.cancelled)showPage('outfits');}else await generate(op.config,{prefs:op.prefs});}catch(e){status(e.message,true);}}
++function cancel(){generation++;renderer.cancel();setBusy(false);status('Pending work cancelled. Previous complete outfit retained.');if(current){presentFrame();displayCurrent();}}
++function invalidateRecommendations(){options=[];lastRequest=null;report=null;optionIndex=-1;currentOption=null;origin='manual';producing=null;$('outfit-summary').textContent='Local history changed. Generate again for a current rotation recommendation.';displayCurrent();}
++function details(){if(!current)return;const{body,actions}=openSheet('Outfit details');for(const r of itemsFor(current)){const row=el('div',undefined,'fx-details-item');row.append(el('strong',r.role+(r.id?' · '+r.id:'')),el('span',r.name));body.append(row);}body.append(el('p','Watch ID and name are shown; watch imagery is deferred.','fx-caption'));actions.append(button('Close',()=>dismissSheet()));}
++function scoreDetails(){const{body,actions}=openSheet('Score details');body.append(el('p',Number.isFinite(score?.display_score)?score.display_score.toFixed(2)+' / 10 — '+(score.style?.classification||score.status):'A score is unavailable for this selection. It is not zero.','fx-caption'),el('pre',JSON.stringify(score,null,2)));actions.append(button('Close',()=>dismissSheet()));}
++function resultSheet(){const{body,actions}=openSheet('Outfit options');if(!options.length)body.append(el('p',report?.reason||'No current Engine options.','fx-caption'));for(const [i,o]of options.entries()){const s=connection.selectionFromOption(o,lastRequest).selection;const b=el('button',undefined,'fx-choice');b.append(el('span',(i+1)+' · '+ids(s),'fx-choice-id'),el('span',connection.records[s.shirtId].label,'fx-choice-name'),el('span',o._hewrsConnected.compatibility.display_score.toFixed(2)+' / 10','fx-option-score'));b.onclick=async()=>{try{dismissSheet();await selectOption(i);showPage('outfits');}catch(e){status(e.message,true);}};body.append(b);}actions.append(button('Close',()=>dismissSheet()));}
++function canLog(){return !!current&&!busy&&!$('outfit-output').hidden&&current.state!=='REFERENCE';}
++function startLog(){if(!canLog()||logTransaction?.pending)return;if(modal?.kind==='wear')return;
++ const sel=copy(current),o=origin,date=ctx.localDate,id='wear_'+(root.crypto?.randomUUID?.()||Date.now()+'_'+Math.random().toString(16).slice(2));const{body,actions,token}=openSheet('Log This Outfit',{cancel:()=>{if(!logTransaction?.pending)logTransaction=null;updateLogButtons();}});modal.kind='wear';
++ logTransaction={id,selection:sel,origin:o,done:false,pending:false,token};body.append(el('p',ids(sel),'fx-caption'));const label=el('label','Actual wear date','fx-context-form'),d=el('input');d.type='date';d.id='wear-date';d.value=date;label.append(d);const check=el('label',undefined,'fx-check-row'),c=el('input');c.type='checkbox';c.id='repeat-incident';check.append(c,el('span','Record a controlled repetition incident'));body.append(label,check,el('p','Confirm only an outfit actually worn. Viewing or generating never logs wear.','fx-caption'));
++ const confirm=button('Confirm actual wear',async()=>{const tx=logTransaction;if(!tx||tx.done||tx.pending||tx.token!==token)return;need(root.HEWRSLocalState.date(d.value),'Enter a valid wear date');tx.pending=true;confirm.disabled=true;updateLogButtons();try{store.addEvent(connection.createHistoryEvent(tx.selection,{id:tx.id,localDate:d.value,origin:tx.origin==='engine'?'engine':'manual',controlledRepetition:c.checked}));tx.done=true;dismissSheet(false);logTransaction=null;invalidateRecommendations();refreshHistory();status(store.status().persistent?'Wear recorded.':'Wear recorded in session memory. Export to retain it.');}catch(e){tx.pending=false;confirm.disabled=false;sheetError(e);}finally{updateLogButtons();}},true);confirm.id='confirm-wear';actions.append(button('Cancel',()=>dismissSheet()),confirm);
++}
++function wardrobeRows(group){
++ if(group==='suits')return ui.rows.topwear.filter(r=>r.kind==='suit').map(r=>({...r,id:r.sourceId,category:'topwear',choiceId:r.id,view:connection.assemblies.registeredView(r.sourceId),detail:connection.suitSources.resolveCanonical(r.sourceId)}));
++ if(group==='blazers')return ui.rows.topwear.filter(r=>r.kind==='blazer').map(r=>({...r,id:r.sourceId,category:'topwear',choiceId:r.id,detail:connection.blazerConnection.knownBlazer(r.sourceId)}));
++ if(group==='shirts')return ui.rows.shirt.map(r=>({...r,category:'shirt',choiceId:r.id}));
++ if(group==='ties')return ui.rows.tie.map(r=>({...r,category:'tie',choiceId:r.id}));
++ if(group==='watches')return ui.rows.watch.map(r=>({...r,category:'watch',choiceId:r.id}));
++ if(group==='pants'){
++  const active=new Map(ui.rows.bottoms.map(r=>[connection.blazerConnection.knownPant(r.id).historyId,r]));
++  return connection.catalogue.pants.map(r=>active.has(r.id)?{...active.get(r.id),historyId:r.id,category:'bottoms',choiceId:active.get(r.id).id}:({id:r.id,label:r.name||r.id,available:false,detail:r,kind:'retained catalogue record'}));
+  }
+- // No enabled native select may auto-pick a different shirt when suit changes.
+- for(const option of $('shirt-select').options)option.disabled=false;
+- const validSuit=connection.assemblies.supported(sid);
+- const validShirt=mode==='engine'?(shirt==='ANY'||shirt.startsWith('FAMILY:')||Object.hasOwn(connection.records,shirt)):Object.hasOwn(connection.records,shirt);
+- const validState=mode==='engine'||connection.assemblies.supported(sid,shirt,$('tie-select').value);
+- const invalid=!validSuit||!validShirt||!validState;
+- $('apply-selection').disabled=invalid;
+- $('selection-error').textContent=invalid?'Choose a supported suit, shirt and collar/tie mode. Your displayed outfit has not changed.':'';
++ if(group==='shoes'){const registered=new Map(ui.rows.shoes.map(r=>[r.id,r]));return connection.catalogue.shoes.map(r=>registered.has(r.id)?({...registered.get(r.id),category:'shoes',choiceId:r.id}):({id:r.id,label:r.name||r.id,available:false,detail:r,kind:r.disabled?'Inactive / retained record':'No registered image connection'}));}
++ return (connection.catalogue[group]||[]).map(r=>({id:r.id,label:r.name||r.brand||r.id,available:false,detail:r,kind:'Catalogue record; rendering unconnected'}));
+ }
+-function sessionValue(s,o,localDate,c){return {selection:clone(s),origin:o,mode,localDate,context:clone(c)};}
+-async function apply(s,opts={}){
+- const token=opts.token??++generation;if(opts.token===undefined)renderer.cancel();
+- try{connection.validateSelection(s);if(s.shirtOnly&&opts.origin&&opts.origin!=='manual')throw Error('Shirt-only is a manual selection, not an Engine result');}catch(e){status(e.message);throw e;}
+- $('stage').classList.add('busy');$('record-wear').disabled=true;status(current?'Loading selection; previous complete outfit remains visible.':'Loading approved source layers…');
+- try{const result=await renderer.render(s);if(token!==generation||result.cancelled)return {cancelled:true};
+-  current=clone(s);if(s.shirtOnly)setMode('anchor');origin=opts.origin||'manual';context=clone(opts.context||context);formLocalDate=opts.localDate||formLocalDate;
+-  currentOption=opts.option||null;score=opts.score||connection.scoreSelection(s,context);
+-  $('selection-ids').textContent=ids(s);$('selection-origin').textContent=origin==='engine'?(currentOption?._hewrsConnected.is_recommendation?'Local rotation choice':'Compatibility option'):'Your selection';
+-  const n=Number.isFinite(score?.display_score)?' · computed '+score.display_score.toFixed(2)+'/10':'';
+-  status(connection.records[s.shirtId].label+(score?.candidate_eligible?n:' · '+(score?.status||'unscored')));
+-  const shoe=connection.catalogue.shoes.find(x=>x.id===s.shoeId);
+-  $('representation').textContent='Rendered: '+s.shoeId+' · '+shoe.name+(s.watchId?' | '+s.watchId+' selected, not rendered.':' | No watch selected.');
+-  $('record-wear').disabled=s.state==='REFERENCE';
+-  if(opts.save!==false){try{store.saveSession(sessionValue(s,origin,formLocalDate,context));}catch(e){status('Visual ready. '+e.message);}}
+-  updateStoreViews();return result;
+- }catch(e){if(token===generation){status('Selection not applied: '+e.message+'. Previous outfit retained.');$('record-wear').disabled=true;}throw e;}
+- finally{if(token===generation)$('stage').classList.remove('busy');}
++function wardrobeGroups(){const preferred=Object.keys(groupLabels);return [...preferred,...Object.keys(connection.catalogue).filter(k=>Array.isArray(connection.catalogue[k])&&!preferred.includes(k))];}
++function renderGroups(){const box=$('wardrobe-groups');box.replaceChildren();const groups=wardrobeGroups();$('group-count').textContent=groups.length+' groups';for(const k of groups){const rows=wardrobeRows(k),b=el('button',undefined,'fx-category-card');b.type='button';b.dataset.category=k;const txt=el('span');txt.append(el('strong',groupLabels[k]||k),el('small',rows.length+' records'));b.append(icon(groupLabels[k]?k:'wardrobe'),txt,el('span','›'));b.onclick=()=>browseCategory(k);box.append(b);}}
++function browseCategory(group){const{body,actions}=openSheet(groupLabels[group]||group),search=el('input',undefined,'fx-search'),list=el('div',undefined,'fx-picker-list');search.type='search';search.placeholder='Search actual name or ID';search.id='wardrobe-search';search.setAttribute('aria-label','Search wardrobe');list.id='wardrobe-list';const rows=wardrobeRows(group);body.append(search,list);function draw(){list.replaceChildren();const q=search.value.trim().toLowerCase();for(const r of rows.filter(x=>(x.id+' '+x.label).toLowerCase().includes(q))){const b=el('button',undefined,'fx-choice');b.type='button';b.dataset.recordId=r.id;b.append(el('span',r.id,'fx-choice-id'),el('span',r.label,'fx-choice-name'));if(!r.available)b.append(el('small',r.kind||'Image route not connected'));b.onclick=()=>itemDetails(r,group);list.append(b);}if(!list.children.length)list.append(el('p','No current item matches.','fx-caption'));}search.oninput=draw;draw();actions.append(button('Close',()=>dismissSheet()));search.focus();}
++function itemDetails(r,group){const{body,actions,token}=openSheet((groupLabels[group]||group)+' · '+r.id);body.append(el('h3',r.label),el('p',r.id,'fx-caption'));if(r.view){const img=el('img',undefined,'fx-bound-image');img.alt=r.id+' saved suit control; not current selection';img.src=resolveUrl(r.view);body.append(img,el('p','Saved DS001 / T001 / shoe-8 assembly. This is a read-only reference, not a newly selected outfit.','fx-caption'));}
++ else body.append(el('p',group==='watches'?'Watch ID/name display; images deferred.':'This item detail view does not substitute an unbound image.','fx-caption'));
++ if(r.detail){const d=el('details'),summary=el('summary','Source record');d.append(summary,el('pre',JSON.stringify(r.detail,null,2)));body.append(d);}
++ if(r.category&&r.available){actions.append(button('Use exact item',()=>{ui.set(r.category,{mode:'item',id:r.choiceId});setMode('anchor');dismissSheet(false);showPage('home');updateHome();status('Exact '+(groupLabels[group]||group)+' preference applied. Generate to display the resulting outfit.');},true));}
++ actions.append(button('Back to category',()=>browseCategory(group)));body.append(el('p','Renaming is unavailable: the current build has no persistent rename handler.','fx-caption'));
+ }
+-function renderResults(){
+- const list=$('results');list.replaceChildren();
+- if(!options.length){list.append(node('div',report?.reason||'No scored candidate for these locks. Manual preview remains available; nothing is substituted.','empty'));return;}
+- for(const [i,o]of options.entries()){
+-  const b=connection.selectionFromOption(o,lastRequest),r=o._hewrsConnected.compatibility,card=node('article',undefined,'card');
+-  card.append(node('span',r.display_score.toFixed(2),'score'),node('div',ids(b.selection),'card-id'),node('p',connection.records[b.selection.shirtId].label),node('p',b.display.tie),node('p',(o._hewrsConnected.is_recommendation?'Local rotation choice':'Compatibility option')+' · '+r.style.classification,'caption'));
+-  const btn=node('button','View this outfit');btn.onclick=async()=>{try{showPage('home');await apply(b.selection,{origin:'engine',option:o,score:r,context:lastRequest.context,localDate:lastRequest.localDate});}catch(e){status(e.message);}};card.append(btn);list.append(card);
+- }
++function historyRow(event,withButton=false){const row=el('article',undefined,'fx-history-row');row.append(el('strong',event.localDate+' · '+event.origin),el('p',ids(event.canonical_selection)));const watch=connection.catalogue.watches.find(w=>w.id===event.items.watch?.id);row.append(el('p',event.items.shoes.id+(watch?' · '+watch.id+' — '+watch.name:'')));if(withButton)row.append(button('View recorded selection',async()=>{dismissSheet();options=[];optionIndex=-1;report=null;lastRequest=null;producing=null;await apply(event.canonical_selection,{origin:'manual',localDate:event.localDate});showPage('outfits');}));return row;}
++function refreshHistory(){const s=store.snapshot(),st=store.status();$('wear-count').textContent=s.events.length;$('repeat-limit').textContent=Number.isFinite(root.HEWRS_INPUTS.logicData.rotationPolicy?.maxMonthlyRepeatIncidents)?String(root.HEWRS_INPUTS.logicData.rotationPolicy.maxMonthlyRepeatIncidents):'—';$('storage-banner').textContent=st.blocked||(st.persistent?'Saved in this browser’s existing candidate ledger.':'Session memory only. Export to retain records.');const list=$('history-preview');list.replaceChildren();if(!s.events.length)list.append(el('p','No wear recorded in this application.','fx-caption'));for(const e of s.events.slice(-2).reverse())list.append(historyRow(e));$('clear-log').disabled=!s.events.length||!!st.blocked;}
++function logSheet(){const{body,actions}=openSheet('Recent Log');const s=store.snapshot();if(!s.events.length)body.append(el('p','No confirmed wear records.','fx-caption'));for(const e of [...s.events].reverse())body.append(historyRow(e,true));actions.append(button('Close',()=>dismissSheet()));}
++function confirmClear(){const before=store.snapshot();const{body,actions}=openSheet('Clear Wear Log');body.append(el('p','Remove '+before.events.length+' confirmed wear records from this application’s ledger? This does not alter the catalogue, current outfit or production history.','fx-warning'));actions.append(button('Cancel',()=>dismissSheet()),button('Confirm clear',()=>{const now=store.snapshot();need(now.revision===before.revision,'History changed; reopen Clear before proceeding');const preview=store.previewImport(JSON.stringify({...now,events:[]}));store.restore(preview);dismissSheet(false);invalidateRecommendations();refreshHistory();status('Local wear log cleared.');}));}
++function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
++function backup(){restorePreview=null;const{body,actions,token}=openSheet('Backup & Restore');const st=store.status();body.append(el('p',st.blocked||(st.persistent?'Using the existing application ledger and source lock.':'Session memory only. Export to retain current records.'),'fx-caption'));
++ const exportButton=button('Export current backup',()=>download('HEWRS_LOCAL_BACKUP_'+localToday()+'.json',store.exportText()));exportButton.id='export-backup';const f=el('input');f.type='file';f.accept='.json,application/json';f.id='backup-file';f.setAttribute('aria-label','Select existing application backup');const pre=el('pre');pre.id='import-preview';pre.hidden=true;const restore=button('Confirm restore',async()=>{need(restorePreview,'Select a validated backup first');const preview=restorePreview;store.restore(preview);restorePreview=null;restore.disabled=true;dismissSheet(false);invalidateRecommendations();refreshHistory();const s=store.snapshot().session;if(s){setMode(s.mode);ctx={occasion:s.context.occasion,formality:s.context.requiredFormality,style:'AUTO',localDate:s.localDate};await apply(s.selection,{origin:'manual',context:s.context,localDate:s.localDate,save:false});}updateHome();status('Validated backup restored through the existing application handler.');},true);restore.id='confirm-restore';restore.disabled=true;
++ f.onchange=async()=>{restorePreview=null;restore.disabled=true;pre.hidden=true;try{const file=f.files[0];if(!file)return;const v=store.previewImport(await file.text());if(modal?.token!==token)return;restorePreview=v;pre.textContent=JSON.stringify({current_records:store.snapshot().events.length,backup_records:v.events.length,selection:v.session?.selection||null,action:'Replace this candidate ledger only after confirmation; no merge or production migration.'},null,2);pre.hidden=false;restore.disabled=false;$('fx-sheet-error').textContent='';}catch(e){sheetError(e);}};
++ const content=el('div',undefined,'fx-data-actions');content.append(exportButton,el('label','Import a current-format backup'),f,pre);body.append(content);actions.append(button('Cancel',()=>dismissSheet()),restore);
+ }
+-async function generate(c){
+- const q=connection.makeRequest(c),token=++generation;renderer.cancel();lastRequest=clone(q);options=[];report=null;currentOption=null;
+- $('stage').classList.add('busy');$('record-wear').disabled=true;status('Evaluating supported clothing combinations…');
+- try{
+-  const r=await connection.controller.generateAsync(q,connection.catalogue,store.snapshot().events,{isCancelled:()=>token!==generation,onProgress:x=>{if(token===generation)status('Evaluating '+x.examined+' clothing combinations; current frame retained.');}});
+-  if(token!==generation||r.status==='cancelled')return {cancelled:true};report=r;options=r.options||[];renderResults();
+-  const d=r.diagnostics||{};const holds=Object.entries(d.states||{}).filter(([s])=>['conflict','premise_mismatch','unknown','canonical_data_hold'].includes(s)).reduce((n,[,v])=>n+v,0);
+-  $('outfit-summary').textContent=options.length+' options from '+(d.examined||0)+' evaluated combinations. '+holds+' source-held combinations were not assigned a score. Only this candidate’s local history is used.';
+-  if(options.length){const o=options[0],b=connection.selectionFromOption(o,q);await apply(b.selection,{token,origin:'engine',option:o,score:o._hewrsConnected.compatibility,context:q.context,localDate:q.localDate});}
+-  else{status(r.status==='mapping_required'?'No active numeric profile is supplied for these exact physical trousers. No score was assigned; the exact Anchor view remains available.':'No scored result for these locks. Use Anchor to view the exact approved selection.');showPage('outfits');}
+-  return r;
+- }finally{if(token===generation)$('stage').classList.remove('busy');}
+-}
+-function invalidateRecommendations(){options=[];report=null;lastRequest=null;currentOption=null;origin='manual';$('selection-origin').textContent='Your selection';$('outfit-summary').textContent='Local wear history changed. Generate again before using a rotation recommendation.';renderResults();}
+-function cancel(){generation++;renderer.cancel();$('stage').classList.remove('busy');$('record-wear').disabled=!current||current.state==='REFERENCE';status('Pending work cancelled; last complete outfit retained.');}
+-function renderWardrobe(){
+- const group=$('wardrobe-category').value,term=$('wardrobe-search').value.trim().toLowerCase();let rows=[];
+- if(group==='shirts')rows=connection.manifest.shirt_order.map(id=>({id,label:connection.records[id].label,select:()=>({...current,shirtId:id,state:connection.records[id].no_tie_only?'NO_TIE':current.state==='REFERENCE'?'NO_TIE':current.state})}));
+- else if(group==='ties')rows=Object.keys(connection.manifest.ties).map(id=>({id,label:connection.features.get(id).description,select:()=>({...current,state:id})}));
+- else if(group==='shoes')rows=Object.keys(connection.shoeLayers).map(id=>({id,label:connection.catalogue.shoes.find(x=>x.id===id).name,select:()=>({...current,shoeId:id})}));
+- else if(group==='watches')rows=connection.catalogue.watches.map(w=>({id:w.id,label:w.name+' · source metadata; no rendered watch layer',select:()=>({...current,watchId:w.id})}));
+- else if(group==='suits')rows=connection.suitSources.ids.map(id=>({id,label:connection.features.get(id)?.description||id,record:connection.suitSources.resolveCanonical(id),registeredView:()=>openRegisteredView(id),select:connection.assemblies.supported(id,current?.shirtId,current?.state)?()=>exactSuit(current,id):null}));
+- else if(group==='pants')rows=connection.blazerConnection.pantIds.map(id=>({id,label:connection.blazerConnection.knownPant(id).label,record:connection.blazerConnection.knownPant(id),select:(current?.blazerId||current?.shirtOnly)?()=>({...current,pantId:id}):null,configure:()=>{setMode('anchor');openControls();$('topwear-kind').value='blazer';$('pant-select').value=id;syncCoverageControls();}}));
+- else if(group==='blazers')rows=connection.blazerConnection.ids.map(id=>({id,label:connection.blazerConnection.knownBlazer(id).label,record:connection.blazerConnection.knownBlazer(id),configure:()=>{setMode('anchor');openControls();$('topwear-kind').value='blazer';$('blazer-select').value=id;syncCoverageControls();}}));
+- else{const category=group;rows=connection.sourceBindings.items.filter(x=>x.category===category).map(r=>({id:r.item_id,label:connection.features.get(r.item_id)?.description||r.historical_cp98_metadata?.owner_correction||r.scope,record:r}));}
+- const list=$('wardrobe-list');list.replaceChildren();for(const r of rows.filter(r=>(r.id+' '+r.label).toLowerCase().includes(term))){const card=node('article',undefined,'card');card.append(node('div',r.id,'card-id'),node('p',r.label));
+-  if(r.registeredView){const view=node('button','View saved suit assembly');view.onclick=r.registeredView;card.append(view);}
+-  const btn=node('button',r.select?'Use this selection':r.configure?'Choose outfit':'Source binding');btn.onclick=async()=>{if(r.configure&&!r.select){r.configure();return;}if(!r.select){$('details-text').textContent=JSON.stringify(r.record,null,2);$('details-dialog').showModal();return;}try{setMode('anchor');const s=r.select();connection.validateSelection(s);showPage('home');await apply(s,{origin:'manual'});}catch(e){status(e.message);$('details-text').textContent=e.message+'\nThe current outfit and all approved source assets are unchanged.';$('details-dialog').showModal();}};card.append(btn);list.append(card);
+- }if(!list.children.length)list.append(node('div','No exact match in this source group.','empty'));
+-}
+-function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));const a=node('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
+-for(const b of document.querySelectorAll('[data-page]'))b.onclick=()=>showPage(b.dataset.page);
+-for(const b of document.querySelectorAll('[data-close]'))b.onclick=()=>$(b.dataset.close).close();
+-let registeredEpoch=0;
+-async function openRegisteredView(suitId){
+- const token=++registeredEpoch,d=connection.assemblies.registeredView(suitId),dialog=$('registered-dialog'),im=$('registered-image');
+- im.hidden=true;im.removeAttribute('src');$('registered-heading').textContent=suitId+' · saved suit assembly';
+- $('registered-caption').textContent='Previously registered checkpoint-97 control: DS001 / T001 / shoe-8. This saved assembly uses its original control avatar. It is not the current selected outfit and cannot record wear.';
+- $('registered-error').textContent='Loading saved assembly…';if(!dialog.open)dialog.showModal();
+- try{
+-  const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Saved assembly image could not load'));img.src=resolveUrl(d);});
+-  if(token!==registeredEpoch||!dialog.open)return;
+-  if(img.naturalWidth!==996||img.naturalHeight!==2748)throw Error('Wrong registered assembly dimensions');
+-  im.src=img.src;im.alt=suitId+' preserved DS001 / T001 registered control';im.hidden=false;$('registered-error').textContent='';
+- }catch(e){if(token===registeredEpoch)$('registered-error').textContent=e.message;}
+-}
+-$('registered-dialog').addEventListener('close',()=>{registeredEpoch++;$('registered-image').removeAttribute('src');});
+-$('mode-engine').onclick=()=>{setMode('engine');openControls();};$('mode-anchor').onclick=()=>{setMode('anchor');openControls();};$('open-controls').onclick=openControls;$('shirt-select').onchange=()=>{tieChoices();syncCoverageControls();};$('suit-select').onchange=syncCoverageControls;$('topwear-kind').onchange=()=>{tieChoices();syncCoverageControls();};$('blazer-select').onchange=syncCoverageControls;$('pant-select').onchange=syncCoverageControls;$('tie-select').onchange=syncCoverageControls;
+-$('full-view').onclick=()=>{detail=false;$('stage').classList.remove('detail');$('full-view').setAttribute('aria-pressed','true');$('detail-view').setAttribute('aria-pressed','false');};
+-$('detail-view').onclick=()=>{detail=true;$('stage').classList.add('detail');$('detail-view').setAttribute('aria-pressed','true');$('full-view').setAttribute('aria-pressed','false');};
+-$('apply-selection').onclick=async()=>{
+- const config={...(shirtOnlyMode()?{shirtOnly:true,pantId:$('pant-select').value}:blazerMode()?{blazerId:$('blazer-select').value,pantId:$('pant-select').value}:{suitId:$('suit-select').value}),shirt:$('shirt-select').value,tie:$('tie-select').value,shoeId:$('shoe-select').value,watchId:$('watch-select').value||null,localDate:$('local-date').value,occasion:$('occasion-select').value,formality:$('formality-select').value,style:$('style-select').value};
+- try{if(!root.HEWRSLocalState.date(config.localDate))throw Error('A valid local calendar date is required');if(mode==='anchor'){const s={...(config.shirtOnly?{shirtOnly:true,pantId:config.pantId}:config.blazerId?{blazerId:config.blazerId,pantId:config.pantId}:{suitId:config.suitId}),shirtId:config.shirt,state:config.tie,shoeId:config.shoeId,watchId:config.watchId};connection.validateSelection(s);$('selection-dialog').close();showPage('home');await apply(s,{origin:'manual',localDate:config.localDate,context:{occasion:config.occasion,requiredFormality:config.formality}});}else{connection.makeRequest(config);$('selection-dialog').close();showPage('home');await generate(config);}}catch(e){$('selection-error').textContent=e.message;status(e.message);}
+-};
+-$('cancel-work').onclick=()=>{cancel();$('selection-dialog').close();};
+-$('wardrobe-category').onchange=renderWardrobe;$('wardrobe-search').oninput=renderWardrobe;
+-$('details-button').onclick=()=>{$('details-text').textContent=JSON.stringify({selection:current,history_ids:current?connection.historyIds(current):null,compatibility:score,limits:connection.limits,source_lock:root.HEWRS_INPUT_SHA256,history_scope:store.status(),source_metadata_notice:'Historical source-approval labels are preserved provenance, not a new approval queue.'},null,2);$('details-dialog').showModal();};
+-$('record-wear').onclick=()=>{if(!current)return;$('wear-description').textContent=ids(current)+' · '+current.shoeId+(current.watchId?' · '+current.watchId+' (selection record only)':'')+(origin==='engine'&&!currentOption?._hewrsConnected?.is_recommendation?' · This option was not selected by local rotation. Confirmation records your manual choice.':'');$('wear-date').value=formLocalDate;$('repeat-incident').checked=false;$('wear-error').textContent='';$('wear-dialog').showModal();};
+-$('confirm-wear').onclick=()=>{try{const d=$('wear-date').value;if(!root.HEWRSLocalState.date(d))throw Error('Invalid wear date');const id='wear_'+(root.crypto?.randomUUID?.()||Date.now()+'_'+Math.random().toString(16).slice(2));store.addEvent(connection.createHistoryEvent(current,{id,localDate:d,origin:origin==='engine'?'engine':'manual',controlledRepetition:$('repeat-incident').checked}));invalidateRecommendations();$('wear-dialog').close();updateStoreViews();status(store.status().persistent?'Wear recorded in this browser’s separate local ledger.':'Wear recorded in memory only; export is required to retain it.');}catch(e){$('wear-error').textContent=e.message;}};
+-$('data-button').onclick=()=>{updateStoreViews();$('backup-dialog').showModal();};$('export-backup').onclick=()=>download('HEWRS_LOCAL_BACKUP_'+localToday()+'.json',store.exportText());
+-$('backup-file').onchange=async()=>{pendingImport=null;$('confirm-restore').disabled=true;$('backup-error').textContent='';$('import-preview').hidden=true;try{const f=$('backup-file').files[0];if(!f)return;pendingImport=store.previewImport(await f.text());$('import-preview').textContent=JSON.stringify({source_lock_matches:true,current_records:store.snapshot().events.length,backup_records:pendingImport.events.length,selection:pendingImport.session?.selection||null,action:'Replace only this candidate namespace after confirmation. No legacy history migration.'},null,2);$('import-preview').hidden=false;$('confirm-restore').disabled=false;}catch(e){$('backup-error').textContent=e.message;}};
+-$('confirm-restore').onclick=async()=>{try{if(!pendingImport)throw Error('No validated backup');store.restore(pendingImport);invalidateRecommendations();pendingImport=null;$('confirm-restore').disabled=true;$('backup-dialog').close();updateStoreViews();const s=store.snapshot().session;if(s){setMode(s.mode);await apply(s.selection,{origin:'manual',localDate:s.localDate,context:s.context,save:false});}status('Validated local backup restored. Existing production data was not accessed.');}catch(e){$('backup-error').textContent=e.message;}};
+-// Expose the exact application paths for reproducible tests; not an alternate
+-// test-only renderer or scorer. These methods perform the same UI operations.
+-root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_10',connection,store,renderer,apply,generate,cancel,showPage,setMode,
+- state:()=>({selection:clone(current),origin,mode,report:clone(report),request:clone(lastRequest),optionCount:options.length,sourceLock:root.HEWRS_INPUT_SHA256}),resolveUrl});
+-updateStoreViews();const saved=store.snapshot().session;if(saved)setMode(saved.mode);
+-apply(saved?.selection||defaultSelection,{origin:'manual',localDate:saved?.localDate||formLocalDate,context:saved?.context||context,save:false}).then(()=>{root.HEWRS_READY=true;if(saved)status('Saved selection restored from this candidate namespace; scores recomputed from current pinned inputs.');}).catch(e=>{status('Initial view failed: '+e.message);root.HEWRS_LOAD_ERROR=e.message;});
++function resetPreferences(){const{body,actions}=openSheet('Reset preferences');body.append(el('p','Clear all six Home preferences? Your current outfit and wear history will remain unchanged.','fx-caption'));actions.append(button('Cancel',()=>dismissSheet()),button('Confirm reset',()=>{ui.reset();producing=null;dismissSheet(false);updateHome();status('Preferences cleared. Choose the topwear and footwear required by this build; no garment is selected automatically.');}));}
++// One modal owner, one router and one logging transaction for both buttons.
++$('fx-sheet-close').onclick=()=>dismissSheet();$('fx-sheet').addEventListener('cancel',e=>{e.preventDefault();dismissSheet();});$('fx-sheet').addEventListener('click',e=>{if(e.target!==$('fx-sheet'))return;const r=$('fx-sheet').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dismissSheet();});
++for(const n of document.querySelectorAll('[data-page]'))n.onclick=()=>showPage(n.dataset.page);$('back-home').onclick=()=>showPage('home');for(const n of document.querySelectorAll('[data-picker]'))n.onclick=()=>openPicker(n.dataset.picker);
++$('mode-engine').onclick=()=>{setMode('engine');status('Engine Choice. Existing preferences are kept; Reset clears them explicitly.');};$('mode-anchor').onclick=()=>{setMode('anchor');status(ui.lockCount()?'Anchor Choice. Exact pieces or category preferences remain selected.':'Choose at least one preference; switching modes does not select an item.');};
++$('cancel-work').onclick=cancel;$('reset-preferences').onclick=resetPreferences;$('work-button').onclick=()=>contextSheet('work');$('style-button').onclick=()=>contextSheet('style');$('weather-button').onclick=()=>contextSheet('weather');$('season-button').onclick=()=>contextSheet('season');$('generate-options').onclick=submit;
++$('view-current').onclick=()=>{if(current){presentFrame();displayCurrent();showPage('outfits');}};$('prev-option').onclick=()=>selectOption(optionIndex-1).catch(e=>status(e.message,true));$('next-option').onclick=()=>selectOption(optionIndex+1).catch(e=>status(e.message,true));$('open-results').onclick=resultSheet;
++$('full-view').onclick=()=>{$('stage').classList.remove('detail');$('full-view').setAttribute('aria-pressed','true');$('detail-view').setAttribute('aria-pressed','false');};$('detail-view').onclick=()=>{$('stage').classList.add('detail');$('full-view').setAttribute('aria-pressed','false');$('detail-view').setAttribute('aria-pressed','true');};
++$('details-button').onclick=details;$('score-button').onclick=scoreDetails;$('record-wear').onclick=startLog;$('quick-log').onclick=startLog;
++$('regenerate').onclick=async()=>{if(busy||!producing)return;const p=copy(producing);ui.replace(p.prefs);ctx=copy(p.context);setMode(p.mode);updateHome();try{if(p.kind==='engine')await generate(p.config,{prefs:p.prefs});else{await apply(p.selection,{origin:'manual',keepPreferences:true});showPage('outfits');}}catch(e){status(e.message,true);}};
++$('data-button').onclick=backup;$('open-log').onclick=logSheet;$('clear-log').onclick=confirmClear;$('favorites-button').onclick=()=>message('Favorites','The current source has no connected Favorites persistence handler. This view does not invent favorites or log wear.');$('insights-button').onclick=()=>{const{body,actions}=openSheet('Insights');body.append(el('p','Existing engine output; no additional rotation statistics are calculated by this view.','fx-caption'),el('pre',JSON.stringify(report?.rotation||{status:'unavailable',reason:'No current computed rotation report'},null,2)));actions.append(button('Close',()=>dismissSheet()));};
++root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_11',connection,store,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
++const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:saved.context.occasion,formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}ui.fromSelection(saved?.selection||defaultSelection);setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
++apply(saved?.selection||defaultSelection,{origin:'manual',context:saved?.context||currentContext(),localDate:saved?.localDate||ctx.localDate,save:false,keepPreferences:true}).then(()=>{root.HEWRS_READY=true;setBusy(false);updateHome();status(saved?'Saved outfit restored. Full generating preferences are not stored by the current source schema.':'');showPage('home');}).catch(e=>{root.HEWRS_LOAD_ERROR=e.message;status('Initial view failed: '+e.message,true);setBusy(false);});
+ })(globalThis);
+--- V1.10/src/application.css
++++ V1.11/src/application.css
+@@ -1,3 +1,17 @@
+-:root{color-scheme:dark;--bg:#161513;--panel:#23211d;--ink:#f1eadc;--muted:#b2ab9e;--line:#514837;--gold:#dbc99c;--field:#1b1916;--bad:#f1ba9c}*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button,input,select{color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;min-height:42px;padding:8px 12px}button:disabled{opacity:.45;cursor:default}button[aria-pressed=true],.primary{border-color:var(--gold);background:#302b22;color:var(--ink)}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}a{color:var(--gold)}#app{height:100vh;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;max-width:1060px;margin:auto;padding-top:env(safe-area-inset-top)}.app-header{padding:12px 16px 9px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}.brand{font:26px/1 Georgia,serif;letter-spacing:.06em}.version{font-size:10px;color:var(--muted);letter-spacing:.03em}.header-tools{display:flex;gap:6px;align-items:center}.small-btn{min-height:34px;padding:4px 8px;font-size:12px}.tab-page{min-height:0;overflow:auto;padding:16px}.tab-page[hidden], [hidden]{display:none!important}.home-page{height:100%;padding:10px 12px 7px;display:flex;flex-direction:column;overflow:hidden;gap:6px}.mode-bar{display:flex;gap:8px;align-items:center}.mode-buttons{display:grid;grid-template-columns:1fr 1fr;gap:4px;flex:1}.mode-buttons button{font-size:13px;min-height:36px;padding:5px 12px}.mode-bar>.primary{font-size:13px;min-height:36px}.identity{display:flex;justify-content:space-between;align-items:center;font-size:12px;min-height:20px;gap:8px}.identity strong{color:var(--gold);font-weight:500}.status{color:var(--muted);font-size:11px;line-height:1.3;min-height:15px;margin:0}.canvas-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#000;border:1px solid #3b362e;border-radius:10px}.canvas-stage canvas{display:block;height:100%;max-height:100%;max-width:100%;width:auto;object-fit:contain;aspect-ratio:996/2748}.canvas-stage .loading-chip{display:none;position:absolute;top:8px;right:8px;background:#161513e8;padding:4px 8px;border:1px solid var(--line);border-radius:5px;color:var(--gold);font-size:11px}.canvas-stage.busy .loading-chip{display:block}.canvas-stage.detail canvas{position:absolute;height:245%;max-height:none;width:auto;max-width:none;top:-16%}.stage-controls{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:35px}.stage-controls button{font-size:12px;min-height:32px;padding:4px 10px}.source-note{font-size:10px;color:var(--muted);line-height:1.25;margin:0;min-height:25px}.bottom-nav{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);padding:6px 8px max(6px,env(safe-area-inset-bottom));gap:5px;background:var(--bg)}.bottom-nav button{font-size:12px;border-color:transparent;min-height:39px;background:transparent;padding:6px}.bottom-nav button[aria-current=page]{background:var(--panel);color:var(--gold);border-color:var(--line)}h1{font:26px/1.25 Georgia,serif;margin:0 0 12px}h2{font-size:16px;font-weight:500;margin:18px 0 9px}p{margin:8px 0}.muted{color:var(--muted)}.caption{font-size:12px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}.card .card-id{font-size:12px;letter-spacing:.02em;color:var(--gold)}.card p{margin:6px 0;font-size:13px}.card button{margin-top:5px;min-height:34px;font-size:12px}.card .score{font:22px Georgia,serif;float:right}.control-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.control-row>*{flex:1}.search-row{margin:8px 0 14px}.empty{padding:18px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}dialog{color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px;max-width:650px;width:calc(100% - 24px);max-height:88dvh;overflow:auto}dialog::backdrop{background:#000b}.dialog-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.dialog-heading h2{font:24px Georgia,serif;margin:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:12px;color:var(--gold);margin-bottom:5px}.field input,.field select{width:100%;max-width:100%;font-size:13px}.field.full{grid-column:1/-1}.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:15px}.form-actions button{flex:1}.warning{color:var(--bad);font-size:12px;line-height:1.4}pre{white-space:pre-wrap;word-break:break-word;font:11px/1.55 ui-monospace,monospace;max-height:50dvh;overflow:auto;border:1px solid var(--line);padding:10px;background:var(--field)}.history-count{font:30px Georgia,serif;color:var(--gold)}#storage-banner{color:var(--bad)}.notice{padding:10px 12px;border-left:2px solid var(--gold);background:var(--field);font-size:12px}.footer-note{font-size:12px;color:var(--muted);margin-top:18px}details{font-size:12px;color:var(--muted)}@media(min-width:751px){.home-page{padding:14px 24px 10px;max-width:720px;width:100%;margin:0 auto}.canvas-stage{min-height:0}.app-header{padding:16px 24px 14px}.brand{font-size:29px}.bottom-nav{padding:8px 20px;}.source-note{font-size:11px}.stage-controls button{font-size:13px}.identity{font-size:13px}}@media(max-width:430px){.fields{gap:10px}.field.full-mobile{grid-column:1/-1}.version{font-size:9px}.brand{font-size:24px}.app-header{padding:10px 12px 8px}}@media(max-height:690px){.app-header{padding:6px 12px}.brand{font-size:22px}.home-page{gap:3px;padding-top:5px}.source-note{min-height:20px;font-size:9px}.bottom-nav{padding-top:2px;padding-bottom:2px}.bottom-nav button{min-height:32px}}
+-
+-#registered-image{display:block;max-width:100%;max-height:64dvh;width:auto;height:auto;margin:12px auto;object-fit:contain;background:#000}#registered-image[hidden]{display:none}
++/* Approved original-palette facelift. Only UI chrome is colored. The native
++   canvas, garment images, swatches and their ancestors have no color filters. */
++html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
++.hewrs-ui{--bg:#060E19;--panel:#081527;--raised:#0B1D30;--ink:#F1E4CB;--secondary:#D6C7AE;--muted:#918C84;--gold:#D8A247;--gold-light:#F0C36A;--selected:#B77CFF;--strong:#3A4E61;--line:rgba(32,53,74,.55);--danger:#F3BCA5;color:var(--ink);font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
++.hewrs-ui,.hewrs-ui *{box-sizing:border-box}.hewrs-ui [hidden],[hidden]{display:none!important}.fx-symbols{width:0;height:0;position:absolute;pointer-events:none}.fx-icon{width:22px;height:22px;flex:none;display:block}.hewrs-ui button,.hewrs-ui input,.hewrs-ui select{font:inherit;color:inherit}.hewrs-ui button{cursor:pointer;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:10px 12px;min-height:40px}.hewrs-ui button:disabled{cursor:not-allowed;color:var(--muted);border-color:var(--line)}.hewrs-ui input,.hewrs-ui select{background:var(--bg);border:1px solid var(--strong);border-radius:8px;min-height:43px;padding:9px;min-width:0;max-width:100%}.hewrs-ui button:focus-visible,.hewrs-ui input:focus-visible,.hewrs-ui select:focus-visible,.hewrs-ui a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}.hewrs-ui .fx-icon-button{background:transparent;border-color:transparent;width:40px;min-width:40px;padding:8px;display:inline-flex;align-items:center;justify-content:center;color:var(--gold);font-size:25px}.hewrs-ui .fx-text-button{border:0;background:transparent;padding:6px 3px;color:var(--gold);font-size:12px}.hewrs-ui .fx-primary{border-color:var(--gold);background:linear-gradient(160deg,var(--gold),var(--gold-light));color:#090F17;font-weight:700;letter-spacing:.025em}.hewrs-ui .fx-primary:disabled{color:#69635B;background:var(--panel);border-color:var(--line)}
++#app{width:100%;max-width:540px;height:100vh;height:100dvh;min-height:360px;margin:0 auto;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top);background:var(--bg)}.fx-header{width:89%;margin:0 auto;padding:14px 0 16px;display:flex;align-items:flex-start;gap:9px}.fx-brand-block{flex:1;min-width:0}.fx-brand{font:600 30px/1.1 Georgia,"Times New Roman",serif;letter-spacing:.085em}.fx-tagline{font:italic 12px/1.5 Georgia,serif;color:var(--gold);margin-top:2px}.hewrs-ui .fx-weather{font-size:11px;line-height:1.5;text-align:right;border:0;background:transparent;padding:0;min-height:40px;color:var(--secondary);max-width:135px}.fx-weather strong{display:block;font-size:11px;font-weight:500}.fx-weather span{color:var(--muted);font-size:10px}.fx-header:has(#back-home:not([hidden])){align-items:center;text-align:center;padding:10px 0}.fx-header:has(#back-home:not([hidden])) .fx-brand{font-size:25px}.fx-header #quick-log{min-width:40px}
++.fx-page{min-height:0;overflow:auto;padding:0 5.5% 12px;overscroll-behavior:contain}.fx-home{width:89%;padding:0 0 14px;margin:0 auto;overflow:auto}.fx-context{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:11px}.hewrs-ui .fx-context-tile{display:flex;flex-direction:column;text-align:left;padding:9px 10px;min-height:67px;border-radius:14px;min-width:0}.fx-kicker{display:block;font-size:10px;letter-spacing:.105em;text-transform:uppercase;color:var(--gold);font-weight:500}.fx-context-tile strong{font-size:13px;line-height:1.35;font-weight:650;overflow-wrap:anywhere;margin-top:3px}.fx-context-tile small{font-size:10px;color:var(--secondary)}.fx-segment{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--strong);border-radius:12px;overflow:hidden;background:var(--panel)}.hewrs-ui .fx-segment button{border:0;border-radius:0;background:transparent;color:var(--secondary);font-size:12px;font-weight:650}.hewrs-ui .fx-segment button[aria-pressed=true]{background:rgba(216,162,71,.12);box-shadow:inset 0 0 0 1px rgba(216,162,71,.25);color:var(--ink)}.fx-mode{margin-bottom:8px}.fx-mode button{text-transform:uppercase;min-height:38px}.fx-section-heading{display:flex;align-items:center;gap:8px;margin:8px 0}.fx-section-heading h1,.fx-section-heading h2{margin:0;flex:1}.fx-section-heading>span{font-size:10px;color:var(--muted)}.fx-section-heading #lock-count{color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.05em}.hewrs-ui h1{font:26px/1.2 Georgia,serif;margin:0 0 14px}.hewrs-ui h2{font:20px/1.3 Georgia,serif;margin:0 0 12px}.fx-home h2{font-size:15px;letter-spacing:.04em}.fx-section-heading #reset-preferences{font-size:10px;min-height:28px}.fx-pref-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}.hewrs-ui .fx-pref{position:relative;border-radius:14px;min-height:78px;display:flex;flex-direction:column;text-align:left;padding:9px 27px 9px 11px;min-width:0;gap:2px}.fx-pref .fx-pref-mode{font-size:10px;line-height:1.15;color:var(--secondary)}.fx-pref .fx-pref-id{font-size:10px;color:var(--ink);font-weight:600;line-height:1.1}.fx-pref .fx-pref-value{font-size:12px;line-height:1.2;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;min-height:15px}.fx-pref .fx-arrow{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:22px}.fx-pref[data-choice=item],.fx-pref[data-choice=family],.fx-pref[data-choice=none]{border-color:rgba(183,124,255,.65)}.fx-pref[data-choice=included]{border-style:dashed}.fx-pref[data-choice=included] .fx-arrow{display:none}.hewrs-ui .fx-generate{width:100%;font-size:12px;text-transform:uppercase;border-radius:14px;min-height:45px}.fx-inline-notice{font-size:11px;color:var(--secondary);line-height:1.4;margin:12px 0 0;overflow-wrap:anywhere}.fx-inline-notice:empty{display:none}.fx-inline-notice[data-error=true]{color:var(--danger)}.fx-current-link{display:block;margin:3px auto 0}.bottom-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);padding:5px 5.5% max(5px,env(safe-area-inset-bottom));background:var(--bg);gap:4px}.hewrs-ui .bottom-nav button{border:0;background:transparent;min-height:44px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:3px 1px;color:var(--secondary);font-size:10px;border-radius:6px}.bottom-nav .fx-icon{width:18px;height:18px}.hewrs-ui .bottom-nav button[aria-current=page]{color:var(--gold)}
++/* Keep the same canvas node and unchanged native dimensions. */
++.fx-outfits{display:flex;flex-direction:column;padding-left:4%;padding-right:4%;gap:3px}.fx-outfit-heading h1{font-size:19px}.fx-output{display:flex;flex-direction:column;gap:6px;flex:1;min-height:530px}.fx-stage-row{display:flex;flex:1;min-height:250px;gap:0;position:relative;align-items:stretch}.canvas-stage{flex:1;min-height:250px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#000;border:1px solid var(--line);border-radius:16px}.canvas-stage canvas{display:block;height:100%;max-height:100%;max-width:100%;width:auto;object-fit:contain;aspect-ratio:996/2748}.canvas-stage .loading-chip{display:none;position:absolute;top:8px;right:8px;background:#060e19e8;padding:4px 8px;border:1px solid var(--line);border-radius:5px;color:var(--gold);font-size:11px}.canvas-stage.busy .loading-chip{display:block}.canvas-stage.detail canvas{position:absolute;height:245%;max-height:none;width:auto;max-width:none;top:-16%}.hewrs-ui .fx-step{width:25px;min-width:25px;align-self:center;padding:3px;color:var(--secondary)}.fx-view-switch{display:flex;justify-content:center;gap:18px}.hewrs-ui .fx-view-switch button{font-size:10px;letter-spacing:.07em;text-transform:uppercase;min-height:27px;padding:3px;background:transparent;border:0;color:var(--secondary)}.hewrs-ui .fx-view-switch button[aria-pressed=true]{color:var(--gold)}.fx-selection-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;padding:0 5px;min-height:14px}.fx-selection-heading strong{color:var(--secondary);font-weight:500}.fx-selection-heading span{color:var(--muted);font-size:10px}.hewrs-ui .fx-score-card{display:flex;justify-content:space-between;align-items:center;text-align:left;gap:12px;min-height:55px;border-radius:13px;padding:8px 12px}.fx-score-card>span:first-child{flex:1;min-width:0}.fx-score-card #score-label{font:italic 12px Georgia,serif;color:var(--secondary)}.fx-score-card strong{font:26px Georgia,serif}.fx-score-card small{font:12px Arial,sans-serif;color:var(--muted)}.hewrs-ui .fx-items-card{display:flex;align-items:center;gap:6px;text-align:left;padding:7px 10px;border-radius:12px;font-size:10px}.fx-items-card #item-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;flex:1;min-width:0}.fx-item-mini{min-width:0}.fx-item-mini .fx-mini-id{color:var(--gold);display:block;font-size:9px}.fx-item-mini .fx-mini-name{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--secondary);font-size:9px}.fx-caption{font-size:11px;color:var(--muted);line-height:1.4;margin:6px 0}.fx-outfits #representation{font-size:10px;color:var(--secondary);margin:0 5px;min-height:14px;overflow-wrap:anywhere}.fx-output-actions{display:grid;grid-template-columns:1.3fr 1fr;gap:8px}.fx-output-actions button{min-height:42px;font-size:12px}.fx-status{font-size:11px;line-height:1.35;color:var(--secondary);margin:3px 3px;overflow-wrap:anywhere}.fx-outfits #outfit-summary{font-size:10px;margin:0 3px;color:var(--muted)}
++.fx-category-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.hewrs-ui .fx-category-card{border-radius:13px;display:flex;align-items:center;text-align:left;gap:11px;min-height:86px;padding:14px 12px;min-width:0}.fx-category-card .fx-icon{color:var(--gold);width:22px;height:22px}.fx-category-card strong{font-size:12px;font-weight:600;display:block}.fx-category-card small{color:var(--muted);font-size:10px}.fx-category-card:last-child:nth-child(odd){grid-column:1/-1}.fx-category-card>span{min-width:0}.hewrs-ui .fx-wide-card{width:100%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:5px;text-align:left;padding:14px;min-height:66px;font-size:13px;border-radius:13px}.fx-wide-card small{display:block;font-size:10px;color:var(--muted);width:100%}.fx-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.fx-card{padding:15px;background:var(--panel);border:1px solid var(--line);border-radius:13px;min-width:0}.fx-stat-number{display:block;color:var(--gold);font:30px Georgia,serif;margin:8px 0}.fx-card small{display:block;color:var(--muted);font-size:10px}.fx-history-preview{background:var(--panel);border:1px solid var(--line);border-radius:14px;min-height:120px;padding:15px}.fx-history-row{padding:11px 0;border-bottom:1px solid var(--line)}.fx-history-row:last-child{border-bottom:0}.fx-history-row strong{display:block;font-size:12px}.fx-history-row p{font-size:11px;color:var(--secondary);margin:5px 0}.fx-clear{display:block;margin:10px auto}.fx-empty{padding:22px 15px;border:1px dashed var(--strong);border-radius:12px;color:var(--secondary);font-size:13px;line-height:1.6;margin:12px 0;overflow-wrap:anywhere}.fx-warning{color:var(--danger);font-size:12px;line-height:1.5;margin:10px 0;overflow-wrap:anywhere}.fx-warning:empty{display:none}
++/* One centrally managed, scoped bottom sheet; long content scrolls inside it. */
++.hewrs-ui.fx-sheet{position:fixed;inset:auto 0 0;margin:0 auto;width:min(540px,100%);max-width:100%;max-height:90vh;max-height:90dvh;padding:11px 5.5% max(16px,env(safe-area-inset-bottom));background:var(--panel);border:1px solid var(--strong);border-bottom:0;border-radius:20px 20px 0 0;overflow:auto}.hewrs-ui.fx-sheet::backdrop{background:rgba(0,0,0,.55)}.fx-sheet[open]{display:flex;flex-direction:column}.fx-handle{width:38px;min-height:4px;border-radius:5px;background:var(--strong);margin:0 auto 8px}.fx-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.fx-sheet-head h2{margin:0;font-size:23px}.fx-sheet-body{min-height:0;overflow:auto;overscroll-behavior:contain;flex:1;padding:5px 2px}.fx-sheet-actions{display:flex;gap:8px;flex-shrink:0;margin-top:10px}.fx-sheet-actions>button{flex:1;min-height:44px}.fx-sheet-actions:empty{display:none}.fx-sheet-error{flex-shrink:0}.fx-picker-filter{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.fx-picker-filter label,.fx-context-form label{font-size:11px;color:var(--secondary);display:flex;flex-direction:column;gap:4px}.fx-picker-filter label:last-child:nth-child(odd){grid-column:1/-1}.fx-search{display:block;width:100%;margin:9px 0;font-size:16px!important}.fx-picker-list{display:flex;flex-direction:column;gap:7px;margin-top:10px;max-height:40dvh;overflow:auto}.hewrs-ui .fx-choice{display:flex;flex-direction:column;text-align:left;padding:10px 12px;min-height:55px;border:1px solid var(--strong);background:var(--bg)}.fx-choice[aria-pressed=true]{border-color:var(--selected);box-shadow:inset 0 0 0 1px var(--selected)}.fx-choice .fx-choice-id{font-size:11px;color:var(--gold);font-weight:600}.fx-choice .fx-choice-name{font-size:13px;color:var(--ink);overflow-wrap:anywhere}.fx-choice small{font-size:10px;color:var(--muted)}.fx-context-form{display:grid;gap:12px;margin:12px 0}.fx-details-list{display:grid;gap:12px;margin:15px 0}.fx-details-item strong{display:block;color:var(--gold);font-size:12px}.fx-details-item span{display:block;font-size:14px;overflow-wrap:anywhere}.fx-details-item small{color:var(--muted);font-size:11px}.fx-sheet pre{white-space:pre-wrap;word-break:break-word;font:11px/1.6 ui-monospace,monospace;border:1px solid var(--strong);padding:12px;background:var(--bg);max-height:38dvh;overflow:auto}.fx-sheet .fx-bound-image{max-width:100%;max-height:52dvh;width:auto;height:auto;display:block;margin:12px auto;background:#000;object-fit:contain}.fx-data-actions{display:grid;gap:10px;margin:15px 0}.fx-data-actions input[type=file]{font-size:12px;max-width:100%;width:100%}.fx-check-row{display:flex;align-items:flex-start;gap:8px;font-size:12px}.fx-check-row input{min-height:20px;width:20px;height:20px}.fx-option-score{color:var(--gold);font-size:18px}.fx-version-note{font-size:10px;color:var(--muted)}
++@media(min-width:600px){.hewrs-ui.fx-sheet{padding-left:24px;padding-right:24px}#app{border-inline:1px solid var(--line)}}
++@media(max-height:730px){.fx-home{padding-bottom:6px}.fx-header{padding-top:9px;padding-bottom:10px}.fx-brand{font-size:27px}.fx-context-tile{min-height:57px!important;padding-top:7px!important;padding-bottom:7px!important}.fx-pref{min-height:72px!important;padding-top:8px!important;padding-bottom:8px!important}.fx-context,.fx-mode{margin-bottom:7px}.fx-home .fx-section-heading{margin:4px 0}.fx-home .fx-inline-notice{margin-top:9px}.fx-output{min-height:520px}.fx-outfits{overflow:auto}}
++@media(max-width:350px){.hewrs-ui{font-size:13px}.fx-pref-grid{gap:6px}.fx-pref{padding-left:8px!important}.fx-pref-value{font-size:11px!important}.fx-mode button{font-size:10px!important}.fx-context-tile{padding-left:8px!important}.fx-weather{max-width:105px!important}.fx-context-tile strong{font-size:12px}.fx-category-card{padding:12px 10px!important}.fx-kicker{font-size:9px}.fx-sheet{padding-left:4%!important;padding-right:4%!important}}
++@media(max-height:520px){.fx-sheet{max-height:100dvh}.fx-picker-list{max-height:none}.fx-sheet-body{min-height:40px}.fx-header .fx-tagline{display:none}.fx-context{margin-top:2px}}
++@media(prefers-reduced-motion:reduce){.hewrs-ui *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+--- V1.10/app.template.html
++++ V1.11/app.template.html
+@@ -1,31 +1,35 @@
+-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Connected application V1.10</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+-<!--STYLE--></head><body><div id="app">
+-<header class="app-header"><div><div class="brand">HEWRS</div><div class="version">CONNECTED APPLICATION · V1.10</div></div><div class="header-tools"><button class="small-btn" id="details-button">Details</button><button class="small-btn" id="data-button">Backup</button></div></header>
+-<main class="tab-page home-page" id="page-home">
+-<div class="mode-bar"><div class="mode-buttons" role="group" aria-label="Selection workflow"><button id="mode-engine" aria-pressed="false">Engine</button><button id="mode-anchor" aria-pressed="true">Anchor</button></div><button id="open-controls" class="primary">Choose</button></div>
+-<div class="identity"><strong id="selection-ids">S05 · DS036 · T017</strong><span id="selection-origin">Your selection</span></div>
+-<p class="status" id="status" role="status" aria-live="polite">Loading approved source layers…</p>
+-<div class="canvas-stage" id="stage"><canvas id="avatar" width="996" height="2748" aria-label="Full-body HEWRS avatar with selected garments"></canvas><span class="loading-chip">Loading next outfit</span></div>
+-<div class="stage-controls"><button id="full-view" aria-pressed="true">Full avatar</button><button id="detail-view" aria-pressed="false">Collar</button><button id="record-wear">Record wear</button></div>
+-<p class="source-note" id="representation">Registered suit connection · original layers and coordinates. Watches are selection records, not rendered layers.</p>
++<!doctype html>
++<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Connected application V1.11</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
++<!--STYLE--></head>
++<body><svg class="fx-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="fx-icon-suits" viewBox="0 0 24 24"><path d="m8 3-5 3-1 13 4 1 1-11v12h10V9l1 11 4-1-1-13-5-3-4 7zM8 3l4 7 4-7M12 10v11M8 3l-1 5 3 3M16 3l1 5-3 3"></path></symbol><symbol id="fx-icon-blazers" viewBox="0 0 24 24"><path d="m8 3-5 3-1 13 4 1 1-11v12h10V9l1 11 4-1-1-13-5-3-4 7zM8 3l4 7 4-7M12 10v11M8 3l-1 5 3 3M16 3l1 5-3 3"></path></symbol><symbol id="fx-icon-shirts" viewBox="0 0 24 24"><path d="m8 3-5 3-1 14h4l1-11v12h10V9l1 11h4L21 6l-5-3zM8 3l4 5 4-5M12 8v13"></path></symbol><symbol id="fx-icon-ties" viewBox="0 0 24 24"><path d="M8 3h8l-2 5 3 11-5 3-5-3 3-11zM10 8h4"></path></symbol><symbol id="fx-icon-shoes" viewBox="0 0 24 24"><path d="M3 12c4 0 7-2 9-6l4 4 4 1c2 1 2 3 1 6H3zM3 17v3h18v-3M11 9l2 2m-5 0 2 2"></path></symbol><symbol id="fx-icon-pants" viewBox="0 0 24 24"><path d="M6 3h12l2 18h-6L12 8l-2 13H4zM6 6h12M12 3v5"></path></symbol><symbol id="fx-icon-jeans" viewBox="0 0 24 24"><path d="M6 3h12l2 18h-6L12 9l-2 12H4zM6 6h12M12 3v6M6 6c0 3 2 3 3 3M18 6c0 3-2 3-3 3"></path></symbol><symbol id="fx-icon-tshirts" viewBox="0 0 24 24"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4M8 3a4 4 0 0 0 8 0"></path></symbol><symbol id="fx-icon-watches" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle><path d="M8 6V2h8v4M8 18v4h8v-4M12 8v4l3 2"></path></symbol><symbol id="fx-icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></symbol><symbol id="fx-icon-outfits" viewBox="0 0 24 24"><path d="M9 6a3 3 0 0 1 6 0c0 2-3 2-3 4v1L3 17v3h18v-3l-9-6"></path></symbol><symbol id="fx-icon-wardrobe" viewBox="0 0 24 24"><rect height="18" rx="1" width="16" x="4" y="3"></rect><path d="M12 3v18M9 11v3m6-3v3"></path></symbol><symbol id="fx-icon-rotation" viewBox="0 0 24 24"><path d="M4 8a8 8 0 0 1 13-3l3 3M20 3v5h-5M20 16a8 8 0 0 1-13 3l-3-3M4 21v-5h5"></path></symbol><symbol id="fx-icon-back" viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"></path></symbol><symbol id="fx-icon-next" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></symbol></svg>
++<div id="app" class="hewrs-ui" data-facelift="v1_11">
++<header class="fx-header"><button id="back-home" class="fx-icon-button" aria-label="Back to Home" hidden><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-back"></use></svg></button><div class="fx-brand-block"><div class="fx-brand">HEWRS</div><div class="fx-tagline">Dress with intention</div></div><button class="fx-weather" id="weather-button" type="button"><strong>Weather unavailable</strong><span id="header-date">Current date</span></button><button id="quick-log" class="fx-text-button" hidden>Log</button></header>
++<main class="fx-page fx-home" id="page-home">
++<noscript><p class="fx-warning">JavaScript is required for outfit selection and saved data. This file is not a static outfit preview.</p></noscript>
++<div class="fx-context"><button type="button" id="work-button" class="fx-context-tile"><span class="fx-kicker">Work</span><strong id="work-label">Not loaded</strong><small>Setting</small></button><button type="button" id="style-button" class="fx-context-tile"><span class="fx-kicker">Style</span><strong id="style-label">Not loaded</strong><small>Profile</small></button><button type="button" id="season-button" class="fx-context-tile"><span class="fx-kicker">Season</span><strong>Unavailable</strong><small>Not connected</small></button></div>
++<div class="fx-segment fx-mode" role="group" aria-label="Selection workflow"><button type="button" id="mode-engine" aria-pressed="false">Engine Choice</button><button type="button" id="mode-anchor" aria-pressed="true">Anchor Choice</button></div>
++<div class="fx-section-heading"><h2>Preferences</h2><span id="lock-count">0 selected</span><button id="reset-preferences" type="button" class="fx-text-button">Reset</button></div>
++<div class="fx-pref-grid"><button class="fx-pref" type="button" data-picker="topwear" id="pref-topwear" disabled data-runtime><span class="fx-kicker">Suit / Blazer</span><span class="fx-pref-mode" id="pref-topwear-mode">Not loaded</span><span class="fx-pref-id" id="pref-topwear-id"></span><span class="fx-pref-value" id="pref-topwear-value">Current app data</span><span class="fx-arrow" aria-hidden="true">›</span></button><button class="fx-pref" type="button" data-picker="shirt" id="pref-shirt" disabled data-runtime><span class="fx-kicker">Shirt</span><span class="fx-pref-mode" id="pref-shirt-mode">Not loaded</span><span class="fx-pref-id" id="pref-shirt-id"></span><span class="fx-pref-value" id="pref-shirt-value">Current app data</span><span class="fx-arrow" aria-hidden="true">›</span></button><button class="fx-pref" type="button" data-picker="tie" id="pref-tie" disabled data-runtime><span class="fx-kicker">Tie</span><span class="fx-pref-mode" id="pref-tie-mode">Not loaded</span><span class="fx-pref-id" id="pref-tie-id"></span><span class="fx-pref-value" id="pref-tie-value">Current app data</span><span class="fx-arrow" aria-hidden="true">›</span></button><button class="fx-pref" type="button" data-picker="shoes" id="pref-shoes" disabled data-runtime><span class="fx-kicker">Shoes</span><span class="fx-pref-mode" id="pref-shoes-mode">Not loaded</span><span class="fx-pref-id" id="pref-shoes-id"></span><span class="fx-pref-value" id="pref-shoes-value">Current app data</span><span class="fx-arrow" aria-hidden="true">›</span></button><button class="fx-pref" type="button" data-picker="bottoms" id="pref-bottoms" disabled data-runtime><span class="fx-kicker">Bottoms</span><span class="fx-pref-mode" id="pref-bottoms-mode">Not loaded</span><span class="fx-pref-id" id="pref-bottoms-id"></span><span class="fx-pref-value" id="pref-bottoms-value">Current app data</span><span class="fx-arrow" aria-hidden="true">›</span></button><button class="fx-pref" type="button" data-picker="watch" id="pref-watch" disabled data-runtime><span class="fx-kicker">Watch</span><span class="fx-pref-mode" id="pref-watch-mode">Not loaded</span><span class="fx-pref-id" id="pref-watch-id"></span><span class="fx-pref-value" id="pref-watch-value">Current app data</span><span class="fx-arrow" aria-hidden="true">›</span></button></div>
++<button id="generate-options" type="button" class="fx-primary fx-generate" disabled data-runtime>Generate Options <span aria-hidden="true">→</span></button>
++<button id="cancel-work" type="button" class="fx-text-button" hidden>Cancel pending generation</button>
++<p id="home-notice" class="fx-inline-notice" role="status" aria-live="polite">Loading current application…</p><button id="view-current" class="fx-text-button fx-current-link" hidden type="button">View current outfit</button>
+ </main>
+-<main class="tab-page" id="page-outfits" hidden><h1>Outfits</h1><p class="caption" id="outfit-summary">Engine results appear here. No score is needed to view a valid manual selection.</p><div id="results" class="cards"></div></main>
+-<main class="tab-page" id="page-wardrobe" hidden><h1>Wardrobe</h1><p class="caption">Approved inventory remains intact. All 18 suits connect to the 50 existing shirts in Engine and Anchor. Four shirts are no-tie-only. B03–B14 connect through their existing DS001 tied assemblies to 24 physical trouser IDs. B01/B02 and other blazer shirt modes remain unconnected. Watches are metadata only.</p><div class="control-row search-row"><select id="wardrobe-category" aria-label="Wardrobe category"><option value="shirts">Shirts · 50</option><option value="ties">Ties · 47</option><option value="shoes">Registered shoes · 35</option><option value="watches">Watch source records · 50</option><option value="suits">Suit bindings · 18</option><option value="blazers">Blazer bindings · 14</option><option value="pants">Trouser bindings · 24</option></select><input id="wardrobe-search" type="search" placeholder="Find an ID or description" aria-label="Search wardrobe"></div><div id="wardrobe-list" class="cards"></div></main>
+-<main class="tab-page" id="page-rotation" hidden><h1>Rotation</h1><p class="caption">Only wear you explicitly record in this application is included. Existing production history is neither read nor replaced.</p><p><span id="wear-count" class="history-count">0</span> local wear records</p><p id="storage-banner" class="caption"></p><div id="history-list" class="cards"></div><p class="footer-note">Generate does not log wear. Rotation reuses the recovered policy on this local ledger; it is not a claim about your complete historical rotation.</p></main>
+-<nav class="bottom-nav" aria-label="Main navigation"><button data-page="home" aria-current="page">Home</button><button data-page="outfits">Outfits</button><button data-page="wardrobe">Wardrobe</button><button data-page="rotation">Rotation</button></nav>
++<main class="fx-page fx-outfits" id="page-outfits" hidden>
++<div class="fx-section-heading fx-outfit-heading"><h1>Today's Options</h1><button id="open-results" class="fx-text-button" type="button"><span id="option-count">—</span></button></div>
++<div id="outfit-empty" class="fx-empty" hidden></div>
++<div class="fx-output" id="outfit-output">
++<div class="fx-stage-row"><button type="button" class="fx-icon-button fx-step" id="prev-option" aria-label="Previous outfit"><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-back"></use></svg></button><div class="canvas-stage" id="stage"><canvas id="avatar" width="996" height="2748" aria-label="Current full-body HEWRS avatar with selected garments"></canvas><span class="loading-chip">Loading next outfit</span></div><button type="button" class="fx-icon-button fx-step" id="next-option" aria-label="Next outfit"><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-next"></use></svg></button></div>
++<div class="fx-view-switch"><button id="full-view" aria-pressed="true" type="button">Full outfit</button><button id="detail-view" aria-pressed="false" type="button">Collar detail</button></div>
++<div class="fx-selection-heading"><strong id="selection-ids">No selection</strong><span id="selection-origin"></span></div>
++<button class="fx-score-card" id="score-button" type="button"><span><span class="fx-kicker">Score</span><span id="score-label">Unavailable</span></span><strong><span id="score-value">—</span><small> / 10</small></strong><span aria-hidden="true">›</span></button>
++<button class="fx-items-card" id="details-button" type="button"><span id="item-summary">Current item details</span><span aria-hidden="true">›</span></button>
++<p id="representation" class="fx-caption"></p>
++<div class="fx-output-actions"><button type="button" id="record-wear" class="fx-primary" disabled>Log This Outfit</button><button type="button" id="regenerate">Regenerate</button></div>
++</div><p id="status" class="fx-status" role="status" aria-live="polite">Loading source layers…</p><p id="outfit-summary" class="fx-caption"></p>
++</main>
++<main class="fx-page" id="page-wardrobe" hidden><span class="fx-kicker">Your catalogue</span><div class="fx-section-heading"><h1>Wardrobe</h1><span id="group-count"></span></div><div id="wardrobe-groups" class="fx-category-grid"></div><p class="fx-caption">Names and IDs come from the current catalogue. Image coverage is separate from inventory.</p><button type="button" id="data-button" class="fx-wide-card"><span>Backup &amp; Restore<small>Current application format · validation before restore</small></span><span aria-hidden="true">›</span></button></main>
++<main class="fx-page" id="page-rotation" hidden><span class="fx-kicker">Wear history</span><div class="fx-section-heading"><h1>Rotation</h1><span>Local ledger</span></div><div class="fx-stat-grid"><article class="fx-card"><span class="fx-kicker">Confirmed wear</span><strong id="wear-count" class="fx-stat-number">0</strong><small>Records in this application</small></article><article class="fx-card"><span class="fx-kicker">Repetition policy</span><strong id="repeat-limit" class="fx-stat-number">—</strong><small>Existing monthly incident limit</small></article></div><p id="storage-banner" class="fx-caption"></p><div class="fx-section-heading"><h2>Recent Log</h2><button id="open-log" class="fx-text-button" type="button">Open log ›</button></div><div id="history-preview" class="fx-history-preview"></div><div class="fx-stat-grid"><button type="button" id="favorites-button" class="fx-wide-card">Favorites<small>Not connected</small></button><button type="button" id="insights-button" class="fx-wide-card">Insights<small>Current engine report</small></button></div><button type="button" id="clear-log" class="fx-text-button fx-clear">Clear Wear Log</button></main>
++<nav class="bottom-nav" aria-label="Main navigation"><button type="button" data-page="home" aria-current="page"><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-home"></use></svg><span>Home</span></button><button type="button" data-page="outfits" ><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-outfits"></use></svg><span>Outfits</span></button><button type="button" data-page="wardrobe" ><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-wardrobe"></use></svg><span>Wardrobe</span></button><button type="button" data-page="rotation" ><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-rotation"></use></svg><span>Rotation</span></button></nav>
+ </div>
+-<dialog id="selection-dialog"><div class="dialog-heading"><h2 id="selection-heading">Anchor selection</h2><button class="small-btn" data-close="selection-dialog" aria-label="Close selection controls">Close</button></div><p class="caption" id="selection-help">Choose exact pieces. A score-source hold does not block the approved visual.</p><div class="fields">
+-<div class="field full"><label for="topwear-kind">Outfit type</label><select id="topwear-kind"><option value="suit">Suit</option><option value="blazer">Blazer + separate trousers</option><option value="shirt-only">Shirt + trousers — DS001 tied</option></select></div>
+-<div class="field full" id="suit-field"><label for="suit-select">Suit / anchor</label><select id="suit-select"></select></div>
+-<div class="field full" id="blazer-field" hidden><label for="blazer-select">Blazer / anchor</label><select id="blazer-select"></select></div>
+-<div class="field full" id="pant-field" hidden><label for="pant-select">Physical trousers / anchor</label><select id="pant-select"></select></div>
+-<div class="field full-mobile"><label for="shirt-select">Shirt / anchor</label><select id="shirt-select"></select></div><div class="field full-mobile"><label for="tie-select">Tie / collar mode</label><select id="tie-select"></select></div>
+-<div class="field full"><label for="shoe-select">Registered footwear</label><select id="shoe-select"></select></div><div class="field full"><label for="watch-select">Watch selection — not rendered on avatar</label><select id="watch-select"></select></div>
+-<div class="field"><label for="occasion-select">Setting</label><select id="occasion-select"><option value="clinic">Clinic</option><option value="hospital">Hospital</option><option value="work">Work</option></select></div><div class="field"><label for="style-select">Style</label><select id="style-select"><option value="AUTO">Auto</option><option value="CLASSIC">Classic</option><option value="HYBRID">Hybrid</option><option value="MODERN">Modern</option></select></div>
+-<div class="field"><label for="formality-select">Required formality</label><select id="formality-select"><option value="any">Unspecified</option><option value="tie_required">Tie required</option><option value="suit_required">Suit required</option><option value="open_collar_allowed">Open collar allowed</option></select></div><div class="field"><label for="local-date">Wear / rotation date</label><input id="local-date" type="date"></div></div>
+-<p class="caption">All 18 suits connect to the 50 existing shirts. Engine accepts exact shirts, shirt families or free shirt selection, using the existing scoring rules. DS040–DS043 remain no-tie-only. Footwear choices bind exact registered pairs. No automatic accessory ranking is inferred. Season and weather are not assessed. The supplied B03–B14 assemblies use DS001 with the existing common-knot ties; incomplete source combinations are never substituted. Shirt-only Anchor uses the existing full-length DS001 tied source; other shirts and no-tie are not supplied in that route.</p><p class="warning" id="selection-error" role="alert"></p><div class="form-actions"><button id="cancel-work">Cancel pending work</button><button id="apply-selection" class="primary">Show selection</button></div></dialog>
+-<dialog id="details-dialog"><div class="dialog-heading"><h2>Selection & source</h2><button class="small-btn" data-close="details-dialog">Close</button></div><p class="notice">Garments, layers and geometry stay approved. Technical source holds below refer to scoring or assembly, not visual reapproval.</p><pre id="details-text"></pre></dialog>
+-<dialog id="wear-dialog"><div class="dialog-heading"><h2>Record actual wear</h2><button class="small-btn" data-close="wear-dialog">Cancel</button></div><p id="wear-description"></p><div class="field"><label for="wear-date">Local calendar date</label><input id="wear-date" type="date"></div><p class="caption">Confirm only an outfit actually worn. This adds one record to this candidate’s separate local ledger, not to production history.</p><label class="caption"><input type="checkbox" id="repeat-incident"> Record this wear as a controlled-repeat incident</label><p class="warning" id="wear-error" role="alert"></p><button id="confirm-wear" class="primary">Confirm worn</button></dialog>
+-<dialog id="backup-dialog"><div class="dialog-heading"><h2>Local data</h2><button class="small-btn" data-close="backup-dialog">Close</button></div><p class="caption" id="backup-status"></p><button id="export-backup">Export local backup</button><h2>Restore this version’s backup</h2><input type="file" id="backup-file" accept=".json,application/json" aria-label="Select backup file"><p class="caption">The file is validated before anything changes. Legacy backups and different source revisions are not silently migrated.</p><pre id="import-preview" hidden></pre><p class="warning" id="backup-error" role="alert"></p><button id="confirm-restore" class="primary" disabled>Replace local data with validated backup</button></dialog>
+-<dialog id="registered-dialog"><div class="dialog-heading"><h2 id="registered-heading">Saved suit assembly</h2><button class="small-btn" data-close="registered-dialog">Close</button></div><p id="registered-caption" class="caption"></p><p id="registered-error" role="status"></p><img id="registered-image" hidden alt="Saved registered suit assembly"></dialog>
+-<!--SCRIPTS--></body></html>
++<dialog id="fx-sheet" class="hewrs-ui fx-sheet" aria-labelledby="fx-sheet-title"><div class="fx-handle" aria-hidden="true"></div><div class="fx-sheet-head"><h2 id="fx-sheet-title"></h2><button id="fx-sheet-close" class="fx-icon-button" type="button" aria-label="Close panel">×</button></div><div id="fx-sheet-body" class="fx-sheet-body"></div><p id="fx-sheet-error" class="fx-warning" role="alert"></p><div id="fx-sheet-actions" class="fx-sheet-actions"></div></dialog>
++<!--SCRIPTS--></body></html>--- V1.10/tools/build.py
++++ V1.11/tools/build.py
+@@ -5,7 +5,7 @@
+ from pathlib import Path
+ import argparse,base64,json,re
+ R=Path(__file__).resolve().parents[1]
+-SCRIPTS=['data/inputs.js','vendor/hewrs-logic.js','vendor/approved-scores.js','vendor/ensemble-completion.js','vendor/release-guards.js','vendor/request-contract.js','src/controller.js','vendor/watch-classification.js','src/canonical-bindings-browser.js','vendor/active50-renderer.js','data/approved-suits.js','src/suit-resolver97-browser.js','src/approved-suit-sources.js','data/suit-assembly.js','data/ds035-coverage.js','data/ds035-edge.js','src/suit-assemblies.js','src/connection.js','data/blazer-connection.js','data/trouser-profiles.js','src/trouser-profiles.js','src/blazer-connection.js','data/shirt-only.js','src/shirt-only-connection.js','src/ds035-coverage-renderer.js','src/ds035-edge-renderer.js','src/atomic-renderer.js','src/blazer-renderer.js','src/shirt-only-renderer.js','src/mixed-renderer.js','src/local-state.js','src/application.js']
++SCRIPTS=['data/inputs.js','vendor/hewrs-logic.js','vendor/approved-scores.js','vendor/ensemble-completion.js','vendor/release-guards.js','vendor/request-contract.js','src/controller.js','vendor/watch-classification.js','src/canonical-bindings-browser.js','vendor/active50-renderer.js','data/approved-suits.js','src/suit-resolver97-browser.js','src/approved-suit-sources.js','data/suit-assembly.js','data/ds035-coverage.js','data/ds035-edge.js','src/suit-assemblies.js','src/connection.js','data/blazer-connection.js','data/trouser-profiles.js','src/trouser-profiles.js','src/blazer-connection.js','data/shirt-only.js','src/shirt-only-connection.js','src/ds035-coverage-renderer.js','src/ds035-edge-renderer.js','src/atomic-renderer.js','src/blazer-renderer.js','src/shirt-only-renderer.js','src/mixed-renderer.js','src/local-state.js','src/facelift-state.js','src/application.js']
+ def build(standalone=None):
+  t=(R/'app.template.html').read_text()
+  html=t.replace('<!--STYLE-->','<link rel="stylesheet" href="src/application.css">').replace('<!--SCRIPTS-->','\n'.join('<script src="'+p+'"></script>' for p in SCRIPTS))
+--- V1.10/README.md
++++ V1.11/README.md
+@@ -1,99 +1,143 @@
+-# HEWRS connected application V1.10
++# HEWRS connected application V1.11 — original-palette facelift
+ 
+-## New connection
++## What this update changes
+ 
+-Anchor has a **Shirt + trousers — DS001 tied** outfit type. It combines the
+-existing CP49 DS001 full-shirt layer for the exact selected T001–T047 tie, the
+-current visible-avatar source, the original registered hands, an exact physical
+-trouser selection and a registered shoe pair. No jacket is rendered or recorded.
++This is the actual V1.10 application with a new presentation adapter, not a
++concatenation of the supplied standalone prototypes. It applies the original
++palette and approved Home / Outfits / Wardrobe / Rotation design from
++`HEWRS_FACELIFT_HANDOFF_2026-09-23(1).zip`.
+ 
+-This exposes the existing native full-shirt source; it does not regenerate,
+-retouch, extend, resize or recolor a garment. In particular, the native shirt's
+-sleeve/panel transitions and the trouser source's flat upper color band are
+-retained. They are not presented as repaired or as a newly owner-approved
+-shirt-only composition. The selected full-shirt layer is the CP49 source already
+-used by V1.9, not an older CP25 replacement for the later Active-50 suit module.
++Home keeps its 89%-width column, Work / Style / Season controls, Engine Choice /
++Anchor Choice, six preference tiles and one bottom navigation bar. Each category
++opens the same bottom-sheet implementation with a separate draft, Apply, Cancel,
++search and applicable type / brand / color filters. No Tie is distinct from
++Engine / Any. Exact items show their current names and IDs. Suit trousers are
++included; a previously selected separate bottom remains inactive until a blazer
++or shirt-only outfit is selected.
+ 
+-The connection has 47 tied modes, 24 distinct physical trouser IDs using the nine
+-accepted color layers, and the same 35 registered shoe pairs. The source API
+-validates 39,480 combinations. That count is routing coverage, not an exhaustive
+-rendered or owner-approval count. Other shirts, NO_TIE and REFERENCE are rejected
+-in this route rather than replaced with DS001 or a tied collar.
++Generate calls the existing controller and opens actual Outfits. The same native
++996 × 2748 canvas and protected renderers display the result. Scores use the
++existing /10 values, not illustrative fixture scores. Previous / next, outfit
++options, details, score explanations and Regenerate use current results. Both
++Log controls share a confirmation and pending guard; only confirmation records
++actual wear through the existing ledger.
+ 
+-**Shirt-only is Anchor-only.** No full shirt-only ensemble-ranking model has been
+-recovered or invented. The score field is null, not zero. Existing suit and blazer
+-Engine calculations are unchanged. Watch selection remains metadata-only.
++Wardrobe retains all nine current catalogue groups, including unconnected and
++inactive records. Browsing is read-only; explicit Use Item changes only a Home
++preference. Watch ID and name are sufficient for this release. No watch image
++is requested, invented or required.
+ 
+-## Existing application
++Backup preview / restoration reuse the current parser, schema and source lock.
++Rotation reads actual ledger records and the existing policy value; it does not
++create a new cooldown, history window, ranking or repetition algorithm. Clear
++Wear Log requires confirmation and uses the current store's validation and
++transactional restore operation.
+ 
+-All previous V1.9 suit and blazer connections are retained. Suits S01–S18 use the
+-later Active-50 components. B03–B14 retain their existing DS001 tied assemblies,
+-all 47 ties, 24 physical trousers and 35 registered shoe pairs. Blazer Engine keeps
+-its existing 15 numerical-profile mappings; nine unscored trousers remain
+-available manually. B01/B02 final wearable bindings are still unresolved.
++## Protection and source authority
+ 
+-No source image, scoring data, catalogue ID, profile binding, original garment
+-approval or historical event has been changed. The approved DS035 corrections
+-are not used or modified by the shirt-only route.
++Baseline archive:
++`HEWRS_CONNECTED_APP_V1_10_SOURCE.zip`
++SHA-256: `5327c78092a33ec8176a9645d4c902b0437872b4360c28e4eb19d21da1f51859`
+ 
+-## History and backups
++Design source:
++`HEWRS_FACELIFT_HANDOFF_2026-09-23(1).zip`
++SHA-256: `a1ac6be13930d55ad13080c2825e4c6cd71ce07db441a76fd9073100939fd19e`
+ 
+-Shirt-only selections have an explicit `shirtOnly: true` discriminator and no
+-`suitId` or `blazerId`. Confirmed wear has `items.topwear: null`; the actual
+-`shirt-DS001`, `Tnnn`, `pants-Pnnn`, shoe and optional watch IDs are retained.
+-Only a manual confirmation creates an event. Merely viewing a selection does not.
++Only these original runtime paths change:
++`src/application.js`, `src/application.css`, `app.template.html`, `app.html`,
++`index.html`, `tools/build.py`. The new `src/facelift-state.js` owns only UI drafts;
++it neither replaces a scorer nor creates a persistent schema. Documentation and
++package manifests also change. `evidence/facelift_v1_11/UI_DIFF.patch` records the
++exact source differences, including new UI code.
+ 
+-The candidate storage key and existing source lock remain unchanged. Earlier
+-suit/blazer backups still validate. A backup containing a new shirt-only event
+-requires V1.10 or a later reader that supports that explicit selection shape;
+-V1.9 is not claimed to understand it. No production history is read, reset,
+-migrated or overwritten. New shirt-only sessions and events cannot label
+-an unranked manual selection as an Engine recommendation.
++All garment assets, native layer relationships, current renderers, connection
++modules, catalogue records, scoring inputs, profile assignments and
++`src/local-state.js` remain byte-identical to V1.10. The storage key is still
++`hewrs:connected-app:v1`. No current or historical production data is imported,
++seeded, reset or remapped merely by loading the application.
++
++Original fonts use system fallbacks. SVG paths come from the handoff; no external
++icon provider or font binaries are included. Palette changes apply to chrome,
++not image filters, tints or altered native image pixels.
++
++## Existing runtime limits, not new UI or garment holds
++
++The facelift does not finish incomplete clothing connections. V1.10's existing
++suit routes remain; B03–B14 still use DS001 tied assemblies. Shirt-only remains
++DS001 tied / Anchor-only. B01/B02 and remaining blazer shirt/no-tie connections
++are not enabled by this UI update. Existing owner approvals are not reopened.
++
++The current generator requires exact topwear and registered footwear. Their
++Engine / Any preferences can be represented, but generation asks for the
++required current input rather than silently choosing a default. Existing
++shirt/tie family and free selection are carried through when that route supports
++them. Unscored trouser profiles remain unscored and usable manually.
++
++Weather, season, Dinner/Weekend eligibility, rename persistence and Favorites
++handlers are not provided by this baseline. The corresponding UI preserves their
++place and explicitly reports unavailability; no prototype readings, demo data,
++new ranking policy or fake-success callbacks are introduced. Formal/casual rolling
++summaries are not guessed from a ledger with no corresponding current API.
++
++Producing settings are preserved when returning Home and regenerating in the same
++document. Across reload, the unchanged store restores its exact saved outfit,
++date, mode and context. It does not persist full generating families / Any
++preferences / style; this update does not add undocumented fields or another
++storage namespace to claim that missing capability is complete.
++
++Watch imagery is deferred by the owner's explicit decision. The existing 50
++watch records are selectable and displayed by ID and name.
+ 
+ ## Run and verify
+ 
+-Keep `index.html` beside the `data`, `src`, `vendor`, `assets` and `assemblies`
+-directories. It is not a standalone HTML file.
++Keep `index.html` beside `src`, `vendor`, `data`, `assets` and `assemblies`. It is
++not a single-file application. `app.html` and `index.html` contain the same bytes.
+ 
+ ```sh
+-python tools/verify_v110.py
+-node tests/shirt-only.cjs
++python tools/verify_v111.py
++node tests/facelift-state.cjs
+ python tools/build.py
+ python -m http.server 8080
+ ```
+ 
+-The active package verifier is `verify_v110.py`. Older tests and verification
+-reports remain historical. The new test checks earlier suit/blazer behavior
+-against the unchanged V1.9 connection and rendering paths.
++The active package verifier is `verify_v111.py`. Older version-specific reports
++and assertions remain historical; they are not relabeled as newly passed.
+ 
+ ```sh
+-python tests/shirt-only-browser.py
++python tests/facelift-browser.py
+ ```
+ 
+-The browser suite uses Python Playwright and `/usr/bin/chromium`. It loads the
+-actual scripts and PNG bytes in memory. Direct local HTTP navigation was attempted
+-and returned `ERR_BLOCKED_BY_ADMINISTRATOR`; that is not a hosted/Safari/iPhone
+-pass. Storage-interface tests and UI backup handlers do not certify persistence
+-across a real browser restart.
++Browser tests require Python Playwright, Pillow and `/usr/bin/chromium`. This
++suite loads exact packaged scripts and the selected original PNG bytes in memory
++because local HTTP navigation was blocked by the execution browser's policy.
++It does not weaken the application's CSP or import prototype controllers.
+ 
+-`HEWRS_TEST_OUTPUT` and `HEWRS_BROWSER_OUTPUT` redirect test results outside a clean
+-extraction. Evidence backups contain test events only and are not read at startup.
++`HEWRS_FACELIFT_TEST_OUTPUT` and `HEWRS_FACELIFT_BROWSER_OUTPUT` redirect test
++outputs outside a clean extraction. Reopening tests use an explicit memory-backed
++storage fixture and do not certify persistence across a real browser restart.
++Native Safari, physical iPhone, real hosted delivery, browser chrome and actual
++accessibility text scaling remain untested. No source package was uploaded to
++GitHub or deployed by this operation.
+ 
+-## Evidence and limits
++## Rollback
+ 
+-`evidence/shirt_only_v1_10/BASELINE_V1_9.json` pins all original V1.9 files.
+-`FUNCTIONAL.json` records the executed exact-ID and history tests;
+-`browser/BROWSER.json` records the new renders and earlier-mode comparisons.
+-`RESULT.json` consolidates counts and preservation checks after execution.
++`python tools/rollback_facelift.py --check` verifies the old UI copies without
++writing. `python tools/rollback_facelift.py --apply` restores only the original
++V1.10 UI/entry/build/readme paths and disables the new adapter by restoring the
++original script list. It verifies that protected core files have not changed
++before proceeding. It never reads or writes a browser's ledger, backups or
++storage. Legitimate wear records added after the facelift remain intact.
+ 
+-The first functional test incorrectly demanded a nonempty recommendation even
+-when the unchanged cooldown policy could withhold all options after a wear event.
+-Its original failure is retained. The corrected test requires equality with the
+-original controller, including the same withheld results; it does not modify
+-scoring or cooldown behavior.
++A rollback intentionally changes package hashes. Use the preserved original
++V1.10 archive for a fully manifest-identical old source tree; do not restore an
++old user-data backup merely to roll back the interface.
+ 
+-This is an additional application connection, **not the finished production
+-release**. Final B01/B02 layers, independent blazer shirt/no-tie connections,
+-other shirt-only sources, watch images, outstanding numerical-source holds and
+-physical-device/release validation remain outside this change. Nothing is
+-uploaded or deployed by this package.
++## Evidence
++
++`evidence/facelift_v1_11/RESULT.json` summarizes executed tests and source
++preservation. `FUNCTIONAL.json` and `browser/BROWSER.json` record individual
++checks. `ACCEPTANCE_RESULT.json` distinguishes implemented presentation behavior
++from unavailable current-backend functions and native-device limits. The initial
++4-pixel smallest-viewport overflow finding is retained with its CSS correction;
++it is not counted as a passing test. Final package delivery verification is
++provided alongside this source ZIP, avoiding a self-referential archive hash.
+--- /dev/null
++++ V1.11/src/facelift-state.js
+@@ -0,0 +1,59 @@
++/* UI-only draft preferences. No scorer, persistent schema, garment renderer,
++ * identity remapping, automatic selections, or wear-history writes. */
++(function(root){'use strict';
++const copy=x=>structuredClone(x),assert=(x,s)=>{if(!x)throw Error(s);};
++const CATEGORIES=Object.freeze(['topwear','shirt','tie','shoes','bottoms','watch']);
++const FAMILIES=Object.freeze({shirt:['white','cream','blue','navy','pink','lavender','brown','grey','black'],tie:['navy','burgundy','grey','blue','pink','brown','gold']});
++function create(connection){
++ const rows={topwear:[],shirt:[],tie:[],shoes:[],bottoms:[],watch:[]};
++ for(const id of connection.suitSources.ids){const item=connection.catalogue.suits.find(x=>x.id===connection.aliases.get(id));assert(item,'Missing exact suit alias');rows.topwear.push({id:item.id,sourceId:id,kind:'suit',label:connection.features.get(id)?.description||item.name,brand:item.brand||'',color:item.color||'',available:connection.assemblies.supported(id)});}
++ for(const id of connection.blazerConnection.ids){const b=connection.blazerConnection.knownBlazer(id),item=connection.catalogue.blazers.find(x=>x.id===b.historyId);rows.topwear.push({id:b.historyId,sourceId:id,kind:'blazer',label:b.label,brand:item?.brand||'',color:item?.color||'',available:b.availability==='CONNECTED'});}
++ rows.topwear.push({id:'ui:shirt-only',sourceId:null,kind:'shirt-only',label:'Shirt + separate trousers',brand:'',color:'',available:connection.shirtOnlyConnection.ids.length>0});
++ for(const id of connection.manifest.shirt_order){const r=connection.records[id],item=connection.catalogue.shirts.find(x=>x.id===r.history_id);rows.shirt.push({id,sourceId:id,kind:'shirt',label:r.label,brand:item?.brand||'',color:connection.features.get(id)?.primary_text||'',available:true});}
++ for(const [id]of Object.entries(connection.manifest.ties)){const r=connection.features.get(id),item=connection.catalogue.ties.find(x=>x.id===id);rows.tie.push({id,sourceId:id,kind:'tie',label:r?.description||item?.name||id,brand:item?.brand||'',color:r?.primary_text||'',available:true});}
++ for(const id of Object.keys(connection.shoeLayers)){const item=connection.catalogue.shoes.find(x=>x.id===id);assert(item,'Missing shoe source identity');rows.shoes.push({id,sourceId:id,kind:item.subcategory||'shoe',label:item.name,brand:item.brand||'',color:item.color||'',available:!item.disabled});}
++ for(const id of connection.blazerConnection.pantIds){const r=connection.blazerConnection.knownPant(id);rows.bottoms.push({id,sourceId:id,kind:'pants',label:r.label,brand:r.record.brand||'',color:r.record.shade||'',available:true});}
++ for(const item of connection.catalogue.watches)rows.watch.push({id:item.id,sourceId:item.id,kind:'watch',label:item.name,brand:item.brand||'',color:item.color||'',available:!item.disabled});
++ for(const [k,v]of Object.entries(rows)){assert(new Set(v.map(x=>x.id)).size===v.length,'Duplicate view identity in '+k);v.forEach(Object.freeze);Object.freeze(v);}Object.freeze(rows);
++ const maps=Object.fromEntries(CATEGORIES.map(k=>[k,new Map(rows[k].map(r=>[r.id,r]))]));
++ let prefs=Object.fromEntries(CATEGORIES.map(k=>[k,{mode:'any'}])),draft=null;
++ function valid(cat,choice){assert(CATEGORIES.includes(cat),'Unknown preference category');assert(choice&&typeof choice==='object','A preference is required');
++  assert(['any','item','family','none'].includes(choice.mode),'Invalid preference mode');
++  if(choice.mode==='item')assert(maps[cat].has(choice.id),'Unknown exact '+cat+' ID');
++  if(choice.mode==='family')assert(FAMILIES[cat]?.includes(choice.id),'This category constraint is not supported by the current engine');
++  if(choice.mode==='none')assert(cat==='tie'||cat==='watch','None is not a valid '+cat+' choice');
++  assert(Object.keys(choice).every(k=>['mode','id'].includes(k)),'Unexpected preference fields');return copy(choice);
++ }
++ function set(cat,choice){prefs[cat]=valid(cat,choice);return snapshot();}
++ function snapshot(){return copy(prefs);}
++ function replace(p){assert(p&&CATEGORIES.every(k=>Object.hasOwn(p,k))&&Object.keys(p).length===CATEGORIES.length,'Incomplete Home preferences');const next={};for(const c of CATEGORIES)next[c]=valid(c,p[c]);prefs=next;return snapshot();}
++ function fromSelection(s){connection.validateSelection(s);const top=s.shirtOnly?rows.topwear.find(x=>x.kind==='shirt-only'):s.blazerId?rows.topwear.find(x=>x.kind==='blazer'&&x.sourceId===s.blazerId):rows.topwear.find(x=>x.kind==='suit'&&x.sourceId===s.suitId);assert(top,'No view binding for selected topwear');
++  const next=snapshot();next.topwear={mode:'item',id:top.id};next.shirt={mode:'item',id:s.shirtId};next.tie=s.state==='NO_TIE'?{mode:'none'}:s.state==='REFERENCE'?{mode:'any'}:{mode:'item',id:s.state};next.shoes={mode:'item',id:s.shoeId};next.watch=s.watchId?{mode:'item',id:s.watchId}:{mode:'none'};if(s.pantId)next.bottoms={mode:'item',id:s.pantId};return replace(next);
++ }
++ function selectedTop(p=prefs){return p.topwear.mode==='item'?maps.topwear.get(p.topwear.id):null;}
++ function included(p=prefs){return selectedTop(p)?.kind==='suit';}
++ function label(cat,choice=prefs[cat]){if(cat==='bottoms'&&included())return {name:'Included with suit',id:null,mode:'included'};if(choice.mode==='any')return {name:'HEWRS chooses',id:null,mode:'any'};if(choice.mode==='none')return {name:cat==='tie'?'No Tie':'No watch selected',id:null,mode:'none'};if(choice.mode==='family')return {name:choice.id.charAt(0).toUpperCase()+choice.id.slice(1)+' family',id:null,mode:'family'};const r=maps[cat].get(choice.id);return {name:r.label,id:r.sourceId||null,mode:'item'};}
++ function begin(cat){assert(CATEGORIES.includes(cat),'Unknown picker');assert(!(cat==='bottoms'&&included()),'Matching trousers are included with the selected suit');draft={category:cat,choice:copy(prefs[cat])};return copy(draft);}
++ function choose(value){assert(draft,'No open picker');draft.choice=value===null?null:valid(draft.category,value);return copy(draft);}
++ function commit(){assert(draft&&draft.choice,'Choose an item, supported family, or Engine Choice');const d=draft;draft=null;return set(d.category,d.choice);}
++ function cancel(){draft=null;}
++ function reset(){draft=null;prefs=Object.fromEntries(CATEGORIES.map(k=>[k,{mode:'any'}]));return snapshot();}
++ function filter(cat,{query='',type='',brand='',color=''}={}){assert(maps[cat],'Unknown category');const q=query.trim().toLocaleLowerCase();return rows[cat].filter(r=>(!q||(r.id+' '+(r.sourceId||'')+' '+r.label+' '+r.brand).toLocaleLowerCase().includes(q))&&(!type||r.kind===type)&&(!brand||r.brand===brand)&&(!color||String(r.color).toLowerCase().includes(color.toLowerCase())));}
++ function operation(mode,ctx){assert(['anchor','engine'].includes(mode),'Unknown selection intent');const p=snapshot(),top=selectedTop(p);assert(top,'Choose an exact Suit, Blazer or Shirt-only mode. This build requires a topwear anchor.');assert(top.available,'This exact topwear binding is not connected in the current application.');
++  assert(p.shoes.mode==='item','Choose an exact registered shoe pair. Automatic footwear selection is not installed in this build.');
++  assert(p.watch.mode!=='family','Watch families are not supported');
++  const shirt=p.shirt.mode==='item'?p.shirt.id:p.shirt.mode==='family'?'FAMILY:'+p.shirt.id:'ANY';
++  const tie=p.tie.mode==='none'?'NO_TIE':p.tie.mode==='item'?p.tie.id:p.tie.mode==='family'?'FAMILY:'+p.tie.id:'ANY';
++  const base=top.kind==='suit'?{suitId:top.sourceId}:top.kind==='blazer'?{blazerId:top.sourceId}:{shirtOnly:true};
++  if(top.kind!=='suit'){assert(p.bottoms.mode==='item','Choose the exact physical trousers for this outfit');base.pantId=p.bottoms.id;}
++  const c={...base,shirt,tie,shoeId:p.shoes.id,watchId:p.watch.mode==='item'?p.watch.id:null,localDate:ctx.localDate,occasion:ctx.occasion,formality:ctx.formality,style:ctx.style};
++  const exact=p.shirt.mode==='item'&&['none','item'].includes(p.tie.mode);
++  if(mode==='anchor'&&exact){const s={...base,shirtId:shirt,state:tie,shoeId:c.shoeId,watchId:c.watchId};connection.validateSelection(s);return {kind:'manual',selection:s,config:c,prefs:p};}
++  assert(!base.shirtOnly,'Shirt-only uses exact Anchor selection in this build');
++  return {kind:'engine',config:c,request:connection.makeRequest(c),prefs:p};
++ }
++ function lockCount(){return CATEGORIES.filter(k=>!(k==='bottoms'&&included())&&prefs[k].mode!=='any').length;}
++ return Object.freeze({rows,categories:CATEGORIES,families:FAMILIES,set,snapshot,replace,fromSelection,selectedTop,included,label,begin,choose,commit,cancel,reset,filter,operation,lockCount,draft:()=>copy(draft)});
++}
++root.HEWRSFaceliftModel=Object.freeze({create,CATEGORIES});
++})(globalThis);

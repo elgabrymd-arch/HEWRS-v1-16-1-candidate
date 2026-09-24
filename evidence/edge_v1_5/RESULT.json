@@ -1,0 +1,52 @@
+{
+  "version": "HEWRS_CONNECTED_APP_V1_5",
+  "scope": "DS035 image-right shirt/lapel extraction-edge correction on the 14 S11-template suits, NO_TIE and 47 selected ties. No other shirt or route expanded.",
+  "functional_checks_passed": 151,
+  "functional_checks_failed": 0,
+  "browser_checks_passed": 23,
+  "browser_checks_failed": 0,
+  "actual_wider_suit_comparisons": 672,
+  "original_route_DS035_comparisons": 193,
+  "all_original_route_outputs_pixel_identical": true,
+  "other_shirt_controls": 5,
+  "changes_outside_permitted_masks": 0,
+  "protected_pixels_changed": 0,
+  "selected_tie_pixels_changed": 0,
+  "fully_opaque_jacket_pixels_changed": 0,
+  "residual_empty_edge_pixels": 0,
+  "original_asset_PNGs_unchanged": 498,
+  "saved_suit_assemblies_unchanged": 18,
+  "new_masked_RGB_derivatives": 2,
+  "visual_samples": {
+    "tied": {
+      "changed_pixels": 7055,
+      "outside_mask_changes": 0,
+      "alpha_changes_inside_mask": 436,
+      "dark_or_transparent_core_pixels_before": 1782,
+      "dark_or_transparent_core_pixels_after": 0,
+      "input_after_image_sha256": "caf863341422493593d05e422e825ba857dd4b921428a072da64265e1cc85782"
+    },
+    "no_tie": {
+      "changed_pixels": 9758,
+      "outside_mask_changes": 0,
+      "alpha_changes_inside_mask": 413,
+      "dark_or_transparent_core_pixels_before": 601,
+      "dark_or_transparent_core_pixels_after": 0,
+      "input_after_image_sha256": "6005c2a2feb97b821567926a8053eeac4c8884841b0f93f28cb8f8712ef01986"
+    }
+  },
+  "source_collars": "Actual light collar fabric and contour preserved. Non-fabric outer grey fringe in the right-collar cutout is explicitly included in the cleanup, not misreported as an unchanged full collar-layer output.",
+  "original_image_files_modified": false,
+  "scoring_data_modified": false,
+  "saved_data_module_modified": false,
+  "source_lock_modified": false,
+  "github_write": false,
+  "deployment": false,
+  "browser_transport": "Exact packaged source and images supplied in memory to Chromium; compared with inherited V1.4 coverage compositor",
+  "not_tested": [
+    "Physical iPhone",
+    "Safari",
+    "Hosted delivery",
+    "Persistent browser restart"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "hewrs.application.suit-source-routing-tests.v1",
+  "passed": 21,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "New app route accepts all 18 existing canonical IDs without altering order",
+      "status": "PASS"
+    },
+    {
+      "name": "Each new route binds its inherited matching jacket, trouser and template",
+      "status": "PASS"
+    },
+    {
+      "name": "Explicit historical aliases are used, not calculated from position",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown canonical IDs reject without fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown historical IDs reject without numeric inference",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate or incomplete crosswalks reject",
+      "status": "PASS"
+    },
+    {
+      "name": "Same exact candidate identity resolves its paired source",
+      "status": "PASS"
+    },
+    {
+      "name": "Candidate source/history disagreement rejects",
+      "status": "PASS"
+    },
+    {
+      "name": "Blazer result is not treated as a suit source",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing packaged asset mapping rejects",
+      "status": "PASS"
+    },
+    {
+      "name": "Path traversal and mismatched image mappings reject",
+      "status": "PASS"
+    },
+    {
+      "name": "Original S05 manifest object, descriptors and masks are not replaced",
+      "status": "PASS"
+    },
+    {
+      "name": "A different suit cannot be sent through S05 masking accidentally",
+      "status": "PASS"
+    },
+    {
+      "name": "Changed S05 jacket hash is rejected before composition",
+      "status": "PASS"
+    },
+    {
+      "name": "Resolved source records are read-only",
+      "status": "PASS"
+    },
+    {
+      "name": "Mechanical wrapper retains inherited resolver function bodies",
+      "status": "PASS"
+    },
+    {
+      "name": "Both source descriptors reach the atomic consumer as one pair",
+      "status": "PASS"
+    },
+    {
+      "name": "Late source load cannot overwrite a more recent suit selection",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed paired load never commits a half suit",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid later request cancels a pending valid source selection",
+      "status": "PASS"
+    },
+    {
+      "name": "Original input objects and crosswalk remain unchanged",
+      "status": "PASS"
+    }
+  ],
+  "garment_appearance_review": false,
+  "geometry_remeasurement": false,
+  "suit_reconstruction": false,
+  "new_approval_gate": false,
+  "all_suit_dynamic_rendering_claim": false
+}

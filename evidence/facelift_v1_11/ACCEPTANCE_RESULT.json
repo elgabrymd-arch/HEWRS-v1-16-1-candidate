@@ -1,0 +1,90 @@
+{
+  "scope": "Facelift handoff requirements mapped to this actual V1.10-based update, not a claim all current-product gaps are closed.",
+  "items": [
+    {
+      "id": "H01",
+      "status": "IMPLEMENTED",
+      "result": "One shared scoped picker, current category lookup; all 36 directed category opening pairs tested."
+    },
+    {
+      "id": "H02",
+      "status": "PARTIAL_CURRENT_RUNTIME_LIMIT",
+      "result": "Actual current Work/Style, filters, search and generator connected; current runtime supplies no weather/season or Dinner/Weekend handler. They remain explicitly unavailable."
+    },
+    {
+      "id": "H03",
+      "status": "IMPLEMENTED",
+      "result": "Authoritative topwear type controls included trousers; separate preference is retained inactive and restored for blazer. No independent pants in effective suit request."
+    },
+    {
+      "id": "H04",
+      "status": "PRESERVED_CURRENT_SCHEMA_LIMIT",
+      "result": "Existing exact outfit/session/context restore preserved. Full generation preferences/style are in-session only because the unchanged source schema has no fields for them. No new storage added. Memory-fixture reopen tested, not real browser restart."
+    },
+    {
+      "id": "H05",
+      "status": "IMPLEMENTED",
+      "result": "Engine/Anchor intent preserves independent preferences. Confirmed explicit Reset and cancel implemented. Empty Anchor never fabricates a garment lock."
+    },
+    {
+      "id": "H06",
+      "status": "IMPLEMENTED",
+      "result": "Current generator, in-place pending, cancellation, actual Outfits, failure/empty states connected."
+    },
+    {
+      "id": "O01",
+      "status": "IMPLEMENTED",
+      "result": "Both Log buttons share pending and confirmation transaction. Actual repeated same-confirmation clicks add one existing-format event."
+    },
+    {
+      "id": "O02",
+      "status": "IMPLEMENTED",
+      "result": "Empty/error output explicitly hides old result. Identical producing request attempts stable option identity retention; source result identity remains validated."
+    },
+    {
+      "id": "O03",
+      "status": "IMPLEMENTED",
+      "result": "Same native canvas and original renderers retained; 17 native comparisons pixel-identical."
+    },
+    {
+      "id": "W01",
+      "status": "IMPLEMENTED_FOR_CURRENT_CATALOGUE",
+      "result": "All nine existing groups retained. All catalogue records remain, including inactive/unconnected ones. No substitute photos."
+    },
+    {
+      "id": "W02",
+      "status": "PARTIAL_CURRENT_RUNTIME_LIMIT",
+      "result": "Current backup/export/import validation and acknowledgement wired and tested. Rename persistence does not exist in current runtime and is explicitly unavailable."
+    },
+    {
+      "id": "R01",
+      "status": "PARTIAL_CURRENT_RUNTIME_LIMIT",
+      "result": "Current source repetition policy, confirmed ledger, recent log, Clear confirmation and existing engine rotation report connected. Missing Favorites and formal/casual rolling-summary API not invented."
+    },
+    {
+      "id": "C01",
+      "status": "IMPLEMENTED",
+      "result": "One actual navigation controller, shared modal controller, unique IDs, scoped chrome CSS; no prototype initialization."
+    },
+    {
+      "id": "C02",
+      "status": "IMPLEMENTED",
+      "result": "No iframe/screenshots pretending to be live app. Source entry files load actual current renderer/data."
+    },
+    {
+      "id": "C03",
+      "status": "IMPLEMENTED",
+      "result": "Exact palette applied to chrome only. Native canvas ancestors have no filters, blend modes or opacity changes."
+    },
+    {
+      "id": "C04",
+      "status": "IMPLEMENTED",
+      "result": "Current IDs/names/date/source outputs only; prototype fixture/weather data not imported."
+    },
+    {
+      "id": "C05",
+      "status": "NOT_VERIFIED_NATIVE",
+      "result": "Chromium rendering at nine portrait viewports, keyboard dialog focus, short-landscape and synthetic enlarged text tested. No physical iPhone/Safari/native browser chrome test."
+    }
+  ]
+}

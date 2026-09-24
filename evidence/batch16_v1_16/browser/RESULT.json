@@ -1,0 +1,35 @@
+{
+  "schema": "hewrs.batch16.browser.smoke.v1_16",
+  "passed": 5,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V1.16 loads",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS002 blazer render ready",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS022 shirt-only tied render ready",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Blazer picker enablement is 18/50",
+      "passed": true,
+      "detail": {
+        "count": 50,
+        "enabled": 18
+      }
+    },
+    {
+      "name": "Synthetic sentinel unchanged",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

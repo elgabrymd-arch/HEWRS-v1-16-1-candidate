@@ -1,0 +1,107 @@
+{
+  "schema": "hewrs.non-suit-sources.functional.v1_14",
+  "passed": 20,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "All 50 exact physical IDs; 44 hash-defined groups; no activation by grouping",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 576 bound current components point to hash-matching packaged bytes",
+      "passed": true,
+      "result": 576
+    },
+    {
+      "name": "2,212 per-shirt/state component plans preserve actual shirt/tie/mask selections",
+      "passed": true,
+      "result": 2212
+    },
+    {
+      "name": "DS051 stored-RGB compatibility and DS035 body keep mask are retained",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Four NO_TIE-only shirts never gain tied component plans",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "48 source-only IDs stay blocked in both modes with exact dependencies",
+      "passed": true,
+      "result": 96
+    },
+    {
+      "name": "Every preserved suit/state validates, including the single S05 DS035 REFERENCE",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "All 1,440 existing blazer and shirt-only state routes still validate",
+      "passed": true,
+      "result": 1440
+    },
+    {
+      "name": "Suit picker retains all 50 shirts; blazer and shirt-only retain all IDs but disable 48 unavailable routes",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Numerical score holds do not disable supported suit visuals",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "NO_TIE-only selection disables exact ties without silently editing the chosen tie",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Apply edits one selected item; Cancel restores all prior preferences",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Source-only picker write fails before commit and retains current selection",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Changing topwear preserves independent shirt/tie preferences; generation reports the exact limitation",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Existing exact No Tie Engine request preserves null tie and exact DS014",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Shirt-only remains manual with null numerical score",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Malformed and retired IDs never enter a component group or selector",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Swapping a component hash cannot initialize an apparently connected application",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Marking a source-only shirt ready cannot activate a renderer by metadata alone",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Rejected route attempts do not mutate an isolated existing ledger",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

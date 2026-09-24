@@ -1,0 +1,85 @@
+{
+  "schema": "hewrs.ds035.s11.coverage.v1_3",
+  "source_shirt_id": "DS035",
+  "canvas": [
+    996,
+    2748
+  ],
+  "roi": [
+    340,
+    350,
+    660,
+    950
+  ],
+  "owner_authorization_utc": "2026-09-22T04:42:10Z",
+  "new_integration_derivative": true,
+  "owner_appearance_approval_claim": false,
+  "wider_suit_ids": [
+    "S02",
+    "S03",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S17",
+    "S18"
+  ],
+  "source_no_tie_body_sha256": "319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407",
+  "operation": "Destination-underfill of nonopaque pixels in authorized masks; selected tie alpha support excluded at runtime. No scaling. No source modification.",
+  "allowed_region_rule": "Within fixed S11 shirt-alpha support AND original S05 jacket alpha 255 AND S11 jacket alpha less than 255; subtract avatar/hands/collar/cuff support and fully opaque current body. Selected tie support is excluded at runtime.",
+  "method": {
+    "name": "reflected DS035 opaque neutral cloth with derived-field-only smoothing",
+    "erosion_pixels": 3,
+    "min_channel_gt": 180,
+    "max_channel_range_lt": 9,
+    "smoothing_sigma": 1.1
+  },
+  "states": {
+    "no_tie": {
+      "url": "assets/a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e.png",
+      "sha256": "a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e",
+      "rect": [
+        0,
+        0,
+        996,
+        2748
+      ],
+      "role": "DS035_S11_NO_TIE_COVERAGE_EXTENSION",
+      "nontransparent_pixels": 5370,
+      "bbox_xyxy": [
+        374,
+        409,
+        622,
+        852
+      ]
+    },
+    "tied": {
+      "url": "assets/47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918.png",
+      "sha256": "47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918",
+      "rect": [
+        0,
+        0,
+        996,
+        2748
+      ],
+      "role": "DS035_S11_TIED_COVERAGE_EXTENSION",
+      "nontransparent_pixels": 5833,
+      "bbox_xyxy": [
+        374,
+        409,
+        622,
+        852
+      ]
+    }
+  },
+  "assetPaths": {
+    "a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e": "assets/a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e.png",
+    "47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918": "assets/47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918.png"
+  }
+}

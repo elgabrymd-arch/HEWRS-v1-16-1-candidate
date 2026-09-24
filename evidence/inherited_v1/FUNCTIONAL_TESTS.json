@@ -1,0 +1,175 @@
+{
+  "schema": "hewrs.connected-app.functional-tests.v1",
+  "passed": 40,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "Input catalogue, features, score payload and manifests unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "50 distinct current shirt identities remain active; DS049 excluded",
+      "status": "PASS"
+    },
+    {
+      "name": "18 suit aliases and legacy identifiers unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Old S05 and DS047 descriptions are not used in live catalogue names",
+      "status": "PASS"
+    },
+    {
+      "name": "Original inconsistent text records retained without invented replacement DNA",
+      "status": "PASS"
+    },
+    {
+      "name": "All 188 approved score values and components returned unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "DS023 and DS047 historical conflicts are not silently selected",
+      "status": "PASS"
+    },
+    {
+      "name": "All 2213 original defined requests remain render-bindable",
+      "status": "PASS"
+    },
+    {
+      "name": "All 188 prohibited tied states remain rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Other suit cannot silently substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Retired shirt cannot silently substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown tie cannot silently substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Unregistered shoe cannot silently substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown watch cannot silently substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Wrong reference cannot silently substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "All 35 actual footwear bindings accept their exact IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "Real controller result connects to renderer: DS046/ANY/null",
+      "status": "PASS"
+    },
+    {
+      "name": "Real controller result connects to renderer: DS046/T017/watch-R01",
+      "status": "PASS"
+    },
+    {
+      "name": "Real controller result connects to renderer: DS036/NO_TIE/null",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale controller results rejected against a changed request",
+      "status": "PASS"
+    },
+    {
+      "name": "Forged candidate identity rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown source score does not block manual approved rendering",
+      "status": "PASS"
+    },
+    {
+      "name": "Opening a candidate does not synthesize wear or touch production storage",
+      "status": "PASS"
+    },
+    {
+      "name": "Session save retains explicit canonical and legacy IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "Wear record requires an explicit add operation",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate wear ID rejected without changing data",
+      "status": "PASS"
+    },
+    {
+      "name": "Fresh store instance reopens exact session and wear data from the storage interface",
+      "status": "PASS"
+    },
+    {
+      "name": "Valid import preview is read-only; explicit restore replaces candidate namespace only",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid JSON import rejected without any write",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy backup import rejected without any write",
+      "status": "PASS"
+    },
+    {
+      "name": "Different source lock import rejected without any write",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate event import rejected without any write",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid calendar date import rejected without any write",
+      "status": "PASS"
+    },
+    {
+      "name": "Tampered historic ID import rejected without any write",
+      "status": "PASS"
+    },
+    {
+      "name": "Stored score injection import rejected without any write",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed saved data is retained and not reset on startup",
+      "status": "PASS"
+    },
+    {
+      "name": "Unavailable persistence is labeled memory-only",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed writes do not mutate the in-memory accepted state",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent-tab update is not silently overwritten",
+      "status": "PASS"
+    },
+    {
+      "name": "No source input mutated after all calculations and storage tests",
+      "status": "PASS"
+    }
+  ],
+  "original_requests": 2213,
+  "prohibited_requests": 188,
+  "approved_rows_checked": 188,
+  "limits": [
+    "Storage persistence tested through deterministic storage-interface implementation; not physical-browser restart",
+    "Source ambiguity is kept distinct from visual rendering",
+    "No production or GitHub operations"
+  ]
+}

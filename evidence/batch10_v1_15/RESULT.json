@@ -1,0 +1,74 @@
+{
+  "schema": "hewrs.batch10.delivery.v1_15",
+  "status": "INTEGRATED_TEN_NEW_NON_SUIT_SHIRTS",
+  "version": "1.15",
+  "baseline": {
+    "bytes": 210444634,
+    "sha256": "4b00bebb2be233393ff0c58656037b02a1e8bb6a7ab93c66a19c193a94cadbad"
+  },
+  "new_ids": [
+    "DS004",
+    "DS005",
+    "DS007",
+    "DS015",
+    "DS018",
+    "DS019",
+    "DS023",
+    "DS024",
+    "DS025",
+    "DS047"
+  ],
+  "connected_ids_total": 12,
+  "remaining_non_suit_ids": 38,
+  "new_valid_shirt_state_mode_selections": 7200,
+  "each_new_id_states": 48,
+  "new_functional_checks": {
+    "passed": 24,
+    "failed": 0
+  },
+  "baseline_functional_checks": {
+    "passed": 21,
+    "failed": 0
+  },
+  "main_browser_checks": {
+    "passed": 16,
+    "failed": 0
+  },
+  "edge_browser_checks": {
+    "passed": 4,
+    "failed": 0
+  },
+  "baseline_pixel_equal_frames": 87,
+  "new_render_exercises": 807,
+  "new_render_exercises_distinctness": "Exercises are not all distinct. 760 batch exercises plus47 additional B06/DS023 tie exercises.",
+  "existing_suit_routes_validated": 39817,
+  "current_component_references_preserved": 576,
+  "original_runtime_image_files_preserved": 611,
+  "unchanged_source_uploads": 10,
+  "new_unique_pngs": 72,
+  "new_body_state_bindings": 20,
+  "new_unique_body_bases": 18,
+  "new_cuff_derivatives": 6,
+  "new_full_tie_derivatives": 47,
+  "new_source_masks": 1,
+  "garment_generation": false,
+  "source_derived_registrations": true,
+  "new_derivative_owner_device_acceptance": false,
+  "approved_original_images_overwritten": false,
+  "new_shirt_only_numerical_model": false,
+  "score_or_history_ids_changed": false,
+  "geometry_checks": "Exact existing lower exterior alpha retained; existing native upper sources and knot pixels preserved; no avatar/suit/trouser geometry change.",
+  "visual_check": "Actual final phone-size runtime contact sheet inspected. Inherited straight waist and some sleeve transitions deliberately unretouched; no new source-insert-only lower-torso gaps accepted.",
+  "watch_images_deferred": true,
+  "real_origin_result": "BLOCKED_BEFORE_APPLICATION_LOAD: ERR_BLOCKED_BY_ADMINISTRATOR",
+  "actual_origin_persistence_certified": false,
+  "physical_safari_iphone_certified": false,
+  "hosted_delivery_certified": false,
+  "public_deployment_performed": false,
+  "github_write_performed": false,
+  "owner_browser_history_accessed": false,
+  "rollback_source_files_verified": 1053,
+  "rollback_data_limit": "V1.14 preserves raw new-event ledger but blocks writes when unsupported records occur; reopen V1.15 to interpret them. No deletion or migration.",
+  "new_test_directory": "evidence/batch10_v1_15",
+  "historical_test_directories": "Earlier evidence remains preserved; it is not newly rerun except the explicitly recorded baseline suite and87 new pixel comparisons."
+}

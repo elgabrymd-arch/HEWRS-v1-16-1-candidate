@@ -1,0 +1,126 @@
+{
+  "passed": 30,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "Source input lock unchanged",
+      "pass": true
+    },
+    {
+      "name": "All 24 physical trouser IDs remain distinct",
+      "pass": true
+    },
+    {
+      "name": "Physical ID registry uses nine approved shared layers",
+      "pass": true
+    },
+    {
+      "name": "Original 28 historical trouser records remain in original order",
+      "pass": true
+    },
+    {
+      "name": "Only the three known appended IDs added",
+      "pass": true
+    },
+    {
+      "name": "All 1128 exact B03/DS001/tie/pant state requests bind",
+      "pass": true
+    },
+    {
+      "name": "All 35 registered shoes validate",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":null,\"suitId\":\"S05\"}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"suitId\":\"S05\",\"shirtId\":\"DS036\",\"state\":\"T017\",\"shoeId\":\"shoe-8\",\"watchId\":null,\"pantId\":\"PG002\"}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"PW001\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"P01\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B01\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B02\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B04\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"PG002\",\"shirtId\":\"DS035\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"NO_TIE\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"REFERENCE\",\"shoeId\":\"shoe-8\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-50\",\"watchId\":null}",
+      "pass": true
+    },
+    {
+      "name": "Reject exact unsupported selection {\"blazerId\":\"B03\",\"pantId\":\"PG002\",\"shirtId\":\"DS001\",\"state\":\"T001\",\"shoeId\":\"shoe-8\",\"watchId\":\"UNKNOWN\"}",
+      "pass": true
+    },
+    {
+      "name": "Blazer wear identity includes physical trousers not profile",
+      "pass": true
+    },
+    {
+      "name": "Suited wear identity unchanged",
+      "pass": true
+    },
+    {
+      "name": "Every existing 39817 suit state remains bindable",
+      "pass": true
+    },
+    {
+      "name": "All 188 stored approved score rows unchanged",
+      "pass": true
+    },
+    {
+      "name": "Engine request carries explicit blazer and physical trouser IDs",
+      "pass": true
+    },
+    {
+      "name": "Engine preserves missing profile without scoring a guess",
+      "pass": true
+    },
+    {
+      "name": "Request cannot promote a proposed profile",
+      "pass": true
+    },
+    {
+      "name": "Different-color trouser IDs are not collapsed into canonical profile IDs",
+      "pass": true
+    },
+    {
+      "name": "Existing V1.6 backups reopen unchanged",
+      "pass": true
+    },
+    {
+      "name": "Blazer exact physical identity survives wear/save/preview/restore",
+      "pass": true
+    },
+    {
+      "name": "Tampered physical trouser ID cannot be imported",
+      "pass": true
+    }
+  ]
+}

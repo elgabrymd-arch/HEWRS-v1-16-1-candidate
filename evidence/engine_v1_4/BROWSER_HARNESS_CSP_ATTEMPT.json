@@ -1,0 +1,123 @@
+{
+  "schema": "hewrs.engine-wide.browser.v1_4",
+  "checks_passed": 4,
+  "checks_failed": 0,
+  "failure": "Page.wait_for_function: EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'\".\n\n    at eval (<anonymous>)\n    at predicate (eval at evaluate (:290:30), <anonymous>:4:56)\n    at next (eval at evaluate (:290:30), <anonymous>:29:29)",
+  "checks": [
+    {
+      "name": "Exact V1.4 code starts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "All 18 Engine suit options enabled",
+      "pass": true,
+      "detail": [
+        {
+          "id": "S01",
+          "disabled": false
+        },
+        {
+          "id": "S02",
+          "disabled": false
+        },
+        {
+          "id": "S03",
+          "disabled": false
+        },
+        {
+          "id": "S04",
+          "disabled": false
+        },
+        {
+          "id": "S05",
+          "disabled": false
+        },
+        {
+          "id": "S06",
+          "disabled": false
+        },
+        {
+          "id": "S07",
+          "disabled": false
+        },
+        {
+          "id": "S08",
+          "disabled": false
+        },
+        {
+          "id": "S09",
+          "disabled": false
+        },
+        {
+          "id": "S10",
+          "disabled": false
+        },
+        {
+          "id": "S11",
+          "disabled": false
+        },
+        {
+          "id": "S12",
+          "disabled": false
+        },
+        {
+          "id": "S13",
+          "disabled": false
+        },
+        {
+          "id": "S14",
+          "disabled": false
+        },
+        {
+          "id": "S15",
+          "disabled": false
+        },
+        {
+          "id": "S16",
+          "disabled": false
+        },
+        {
+          "id": "S17",
+          "disabled": false
+        },
+        {
+          "id": "S18",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "name": "Wider suit does not silently choose DS035",
+      "pass": true,
+      "detail": {
+        "shirt": "ANY",
+        "disabled": true,
+        "shown": "S05",
+        "enabled": [
+          "DS035"
+        ]
+      }
+    },
+    {
+      "name": "Explicit DS035 enables Generate",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "engine_render_comparisons": 0,
+  "engine_render_rows": [],
+  "original_route_controls": [],
+  "page_errors": [],
+  "external_requests": [],
+  "browser": "144.0.7559.96",
+  "elapsed_seconds": 13.87,
+  "transport": "Exact packaged template/CSS/JS and PNG bytes in memory; reference uses preserved V1.3 connection",
+  "test_data_only": true,
+  "not_tested": [
+    "Hosted delivery",
+    "Safari",
+    "Physical iPhone",
+    "Persistent browser restart"
+  ]
+}

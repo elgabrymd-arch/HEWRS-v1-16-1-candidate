@@ -1,0 +1,74 @@
+{
+  "version": "HEWRS_CONNECTED_APP_V1_11",
+  "operation": "Reversible UI-only original-palette facelift connected to actual V1.10 source",
+  "source_baseline": {
+    "archive": "HEWRS_CONNECTED_APP_V1_10_SOURCE.zip",
+    "sha256": "5327c78092a33ec8176a9645d4c902b0437872b4360c28e4eb19d21da1f51859",
+    "files": 909
+  },
+  "tests": {
+    "functional_passed": 44,
+    "functional_failed": 0,
+    "browser_passed": 57,
+    "browser_failed": 0,
+    "native_render_comparisons": 17,
+    "native_rgba_equal": true,
+    "canvas": [
+      996,
+      2748
+    ],
+    "portrait_layouts": 9,
+    "category_opening_pairs": 36,
+    "script_errors": [],
+    "storage_reopening": "Explicit memory-backed fixture, same existing schema; not physical browser restart",
+    "actual_export_button_download_and_confirmed_restore_tested": true,
+    "confirmed_clear_and_concurrent_revision_guard_tested": true
+  },
+  "preservation": {
+    "protected_baseline_files": 901,
+    "original_asset_pngs_unchanged": 589,
+    "original_saved_assembly_pngs_unchanged": 18,
+    "all_original_renderers_unchanged": true,
+    "source_scoring_catalogue_profile_files_unchanged": true,
+    "storage_code_key_schema_source_lock_unchanged": true,
+    "new_garment_images": 0
+  },
+  "implemented_presentation": [
+    "Original palette and Home 89% content width",
+    "Six shared draft/Apply/Cancel pickers, current ID/name and filters",
+    "No Tie separate from Engine; dormant independent Bottoms for suits",
+    "Actual current Engine/Anchor generation and renderer inside Outfits",
+    "Shared explicit Log confirmation and pending guard",
+    "All nine existing catalogue groups; read-only browsing",
+    "Current backup validation, download, confirmation and restore",
+    "Current local ledger, policy and engine report; confirmation for Clear",
+    "Watch ID and name, no required image"
+  ],
+  "current_runtime_limits_preserved": [
+    "Incomplete clothing paths from V1.10 are not completed by this UI patch",
+    "Exact topwear and registered footwear remain required by current generator",
+    "Weather/season/Dinner/Weekend eligibility handlers not supplied",
+    "Rename/Favorites and precomputed rolling formal/casual summary handlers not supplied",
+    "Full generating preference/style persistence absent from existing strict store schema; only in-session settings and existing exact-session restore preserved",
+    "No new score assignments or held-profile decisions"
+  ],
+  "release_validation": {
+    "chromium_memory_loaded": true,
+    "physical_iphone": false,
+    "safari": false,
+    "hosted_browser_navigation": false,
+    "real_origin_restart_persistence": false,
+    "deployment": false,
+    "github_write": false
+  },
+  "evidence": {
+    "functional": "FUNCTIONAL.json",
+    "browser": "browser/BROWSER.json",
+    "extra_callbacks": "browser_extra/EXTRA_BROWSER.json",
+    "scope": "ACCEPTANCE_RESULT.json",
+    "diff": "UI_DIFF.patch",
+    "source_inputs": "ORIGINAL_INPUTS.json",
+    "test_notes": "TEST_NOTES.json",
+    "rollback": "../../tools/rollback_facelift.py"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "passed": 14,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "No edge processing for original S05 manifest",
+      "pass": true
+    },
+    {
+      "name": "No unsupported shirt-wide fallback in edge route",
+      "pass": true
+    },
+    {
+      "name": "DS035 REFERENCE is not repainted under wider suits",
+      "pass": true
+    },
+    {
+      "name": "Every DS035 selectable state uses its exact mode-specific patch",
+      "pass": true
+    },
+    {
+      "name": "Unknown tie cannot enter correction",
+      "pass": true
+    },
+    {
+      "name": "Missing edge contract fails closed on wider route",
+      "pass": true
+    },
+    {
+      "name": "Unexpected edge schema rejected",
+      "pass": true
+    },
+    {
+      "name": "Mismatched suit bindings rejected",
+      "pass": true
+    },
+    {
+      "name": "Unregistered suit cannot acquire the correction",
+      "pass": true
+    },
+    {
+      "name": "Changed tied-body input fails closed",
+      "pass": true
+    },
+    {
+      "name": "Changed no-tie body fails closed",
+      "pass": true
+    },
+    {
+      "name": "Changed permitted bounds fail closed",
+      "pass": true
+    },
+    {
+      "name": "Edge contract without wider-coverage route rejected",
+      "pass": true
+    },
+    {
+      "name": "All fourteen authorised suit IDs are unchanged",
+      "pass": true
+    }
+  ]
+}

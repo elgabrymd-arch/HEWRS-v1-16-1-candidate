@@ -1,0 +1,104 @@
+{
+  "schema": "hewrs.b01-b02.appearance-bindings.v1_12",
+  "authorization": {
+    "owner_message": "I approve b01/b02",
+    "owner_message_utc": "2026-09-23T03:57:47Z",
+    "scope": "Reconcile the existing layers with final B01 medium-navy appearance and B02 midnight micro-check/no-pocket-square references; use existing frozen garment masks and original IDs."
+  },
+  "sources": [
+    {
+      "id": "B01",
+      "source_reference_sha256": "1ba95b711c267a1aa7f47086d44d36540e62dddf34e3f0e8684d283954dc04f6",
+      "original_layer_sha256": "e05843344fbeee61576f7f195562fa7d47b25f39a4d8df9f1d2026b636b03b27",
+      "source_reference_size": [
+        724,
+        2172
+      ],
+      "cloth_rgb_registration_matrix": [
+        [
+          1.33439605,
+          -0.00306439043,
+          16.0669734
+        ],
+        [
+          0.00306439043,
+          1.33439605,
+          3.59149961
+        ]
+      ],
+      "geometry_transform_applied": false,
+      "original_alpha_sha256": "9a0a9b22c1ad64b56d02f8d8a1a6883ae8fddacbd7f6b2906da440afe976d30d",
+      "output_alpha_sha256": "9a0a9b22c1ad64b56d02f8d8a1a6883ae8fddacbd7f6b2906da440afe976d30d",
+      "alpha_pixels_changed": 0,
+      "nontransparent_coat_pixels": 701593,
+      "direct_registered_reference_pixels": 686512,
+      "edge_source_resample_pixels": 15081,
+      "max_edge_resample_distance_px": 17.0,
+      "rgb_sampling": "Fixed affine of this item\u2019s approved reference only; invalid edge samples copy nearest valid same-item cloth. No skin, shirt, tie, shoe, background or another blazer sample.",
+      "output": {
+        "url": "assets/7e772b95f1268946fc0f23ba9d12428869117d086167636d470350008edb2387.png",
+        "sha256": "7e772b95f1268946fc0f23ba9d12428869117d086167636d470350008edb2387",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "B01_APPROVED_REFERENCE_RGB_EXISTING_WEARABLE_ALPHA"
+      },
+      "new_layer_bytes": 804132,
+      "status": "OWNER_AUTHORIZED_RECONCILIATION_DERIVATIVE_NOT_AN_UNMODIFIED_ORIGINAL"
+    },
+    {
+      "id": "B02",
+      "source_reference_sha256": "f4e06e9bd497cd275901e9619604f6699c7252a525a45e4fbd4653231fde1747",
+      "original_layer_sha256": "e3678d1d2e3c66d987def7c3f86181ee2edc61bf77c9de63c6345165012a57f1",
+      "source_reference_size": [
+        724,
+        2172
+      ],
+      "cloth_rgb_registration_matrix": [
+        [
+          1.38532327,
+          0.00698141,
+          -2.30857509
+        ],
+        [
+          -0.00698141,
+          1.38532327,
+          1.05864965
+        ]
+      ],
+      "geometry_transform_applied": false,
+      "original_alpha_sha256": "9a0a9b22c1ad64b56d02f8d8a1a6883ae8fddacbd7f6b2906da440afe976d30d",
+      "output_alpha_sha256": "9a0a9b22c1ad64b56d02f8d8a1a6883ae8fddacbd7f6b2906da440afe976d30d",
+      "alpha_pixels_changed": 0,
+      "nontransparent_coat_pixels": 701593,
+      "direct_registered_reference_pixels": 680542,
+      "edge_source_resample_pixels": 21051,
+      "max_edge_resample_distance_px": 27.892651361962706,
+      "rgb_sampling": "Fixed affine of this item\u2019s approved reference only; invalid edge samples copy nearest valid same-item cloth. No skin, shirt, tie, shoe, background or another blazer sample.",
+      "output": {
+        "url": "assets/a28e524a79fe8c0699e6cf19a819b29ce7be99d7616706669259b469db467095.png",
+        "sha256": "a28e524a79fe8c0699e6cf19a819b29ce7be99d7616706669259b469db467095",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "B02_APPROVED_REFERENCE_RGB_EXISTING_WEARABLE_ALPHA"
+      },
+      "new_layer_bytes": 925257,
+      "status": "OWNER_AUTHORIZED_RECONCILIATION_DERIVATIVE_NOT_AN_UNMODIFIED_ORIGINAL"
+    }
+  ],
+  "original_images_modified": 0,
+  "face_body_measurements_modified": false,
+  "font_files_added": false,
+  "dependencies": {
+    "opencv": "4.13.0",
+    "numpy": "2.3.5"
+  },
+  "scope": "Clothing appearance connection, separate from the previously completed V1.11 UI-only facelift; no promotion of historical engine or avatar."
+}

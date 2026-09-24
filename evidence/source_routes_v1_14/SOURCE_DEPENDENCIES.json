@@ -1,0 +1,1709 @@
+{
+  "schema": "hewrs.source-dependencies.v1_14",
+  "source_files_examined": [
+    "data/inputs.json",
+    "data/blazer-connection.json",
+    "data/shirt-only.json",
+    "assets/*.png",
+    "assemblies/*.png"
+  ],
+  "current_components_verified": 576,
+  "runtime_image_files_examined": 611,
+  "source_bytes_outside_v113_examined": false,
+  "missing_full_length_source_ids": 48,
+  "image_generation_used": false,
+  "approvals_reopened": false,
+  "library_materialization_attempts": [
+    {
+      "file_name": "HEWRS_32_SHIRT_REPLACEMENT_COMPLETION_CHECKPOINT_V11.zip",
+      "file_id": "file_000000006b5081f5a0471bc98da11495",
+      "returned_error": "This Project file does not have an authorized raw-byte materialization path.",
+      "archive_contents_examined": false
+    },
+    {
+      "file_name": "HEWRS_ACTIVE50_STAGING_V1(1).zip",
+      "file_id": "file_000000001c4081f59771ec848ffae905",
+      "returned_error": "This Project file does not have an authorized raw-byte materialization path.",
+      "archive_contents_examined": false
+    }
+  ],
+  "per_shirt": {
+    "DS017": {
+      "group_id": "G002",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS017_T001_V4_PLUS6.png",
+          "sha256": "c1f555137ffbf123c3c9e38c7817980077a89a30a4441d5c3804b0067b111488",
+          "bytes": 949079,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS035": {
+      "group_id": "G003",
+      "current_body_bounds": {
+        "no_tie": [
+          396,
+          373,
+          614,
+          791
+        ],
+        "tied": [
+          398,
+          377,
+          610,
+          791
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS035_T001_V4_PLUS6.png",
+          "sha256": "75df90ede5dc935e1af71bdaf5fcef46b38c3c19c9410436630dda1613dd3e4d",
+          "bytes": 924806,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS036": {
+      "group_id": "G004",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS036_T001_V4_PLUS6.png",
+          "sha256": "1a4bf207a66bb24ded4b4ae56b4492d1edaf4ef41a819a358414db9f2d13a5bb",
+          "bytes": 841635,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS051": {
+      "group_id": "G005",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          423,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS051_T001_V4_PLUS6.png",
+          "sha256": "f3c2dc717fdb5ed5ff04f806edf0e4ee40e959432ff7579c66bc92dda500bfa9",
+          "bytes": 867228,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS034": {
+      "group_id": "G006",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS034_T001_V4_PLUS6.png",
+          "sha256": "42404eedc3bcb1142f038361047cf5907e1881e91c2a66fd391367aba5898158",
+          "bytes": 520543,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS037": {
+      "group_id": "G007",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS037_T001_V4_PLUS6.png",
+          "sha256": "9eb2ab59312dfe6d78d910e377611cee30df6e4d945b07ec7324580143b41e6d",
+          "bytes": 624212,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS038": {
+      "group_id": "G008",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS038_T001_V4_PLUS6.png",
+          "sha256": "ccadc481562effbe1c7c1fbc0d9f31f2d3ebbc352503a9eff2d693540ac2e457",
+          "bytes": 595482,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS032": {
+      "group_id": "G009",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS032_T001_V4_PLUS6.png",
+          "sha256": "43dce29ecd4ff6e8a4a0834fa0948371b7806a7603aabbe93b1ce062b4b75465",
+          "bytes": 634292,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS033": {
+      "group_id": "G009",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS033_T001_V4_PLUS6.png",
+          "sha256": "43dce29ecd4ff6e8a4a0834fa0948371b7806a7603aabbe93b1ce062b4b75465",
+          "bytes": 634292,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS046": {
+      "group_id": "G009",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS046_T001_V4_PLUS6.png",
+          "sha256": "43dce29ecd4ff6e8a4a0834fa0948371b7806a7603aabbe93b1ce062b4b75465",
+          "bytes": 634292,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS003": {
+      "group_id": "G010",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS003_T001_V4_PLUS6.png",
+          "sha256": "0e9c8e443dde9e67fdce4debec45b9e1ae49ad891e695af169627b8bcd9a2b34",
+          "bytes": 1108100,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS020": {
+      "group_id": "G011",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS020_T001_V4_PLUS6.png",
+          "sha256": "a8fcb0fed902136ed6485813d38a0dbfde8c260e98d47714d08edd2791b1165a",
+          "bytes": 865213,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS045": {
+      "group_id": "G012",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS045_T001_V4_PLUS6.png",
+          "sha256": "c9538fdda96fe8678593723351e9d07143cf83285f2189b9e73fbe7ef2e0a98f",
+          "bytes": 1044033,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS010": {
+      "group_id": "G013",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS010_T001_V4_PLUS6.png",
+          "sha256": "bb93f4d9bbcc8e503c1a9f28cb0e7c087125f2f02d8e2a45a85d6de47ee79a89",
+          "bytes": 1163379,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS011": {
+      "group_id": "G014",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS011_T001_V4_PLUS6.png",
+          "sha256": "3f927aac89fc3c79d6d9e11c86a0ff7bef1ec7de074eab7f55fa6944a7578ba0",
+          "bytes": 1502821,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS028": {
+      "group_id": "G015",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS028_T001_V4_PLUS6.png",
+          "sha256": "723e1949672417f230e0da202cff2e80774da7dc2b5f9aaff672af1f0257708a",
+          "bytes": 1077322,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS029": {
+      "group_id": "G016",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS029_T001_V4_PLUS6.png",
+          "sha256": "b1f4ae371de2d96cae79842789fe579e196e574648908adf5a81256e0eb7b5ac",
+          "bytes": 1286172,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS030": {
+      "group_id": "G017",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS030_T001_V4_PLUS6.png",
+          "sha256": "34df9776884ca395345757d8b805b8d3a7d9ac55aee06d0bb8d3f35688288743",
+          "bytes": 1704486,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS044": {
+      "group_id": "G018",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS044_T001_V4_PLUS6.png",
+          "sha256": "a25ab5075a92345650ebc1343997528100cdb32aced56c3e505a6fcacaeeec1e",
+          "bytes": 1599016,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS013": {
+      "group_id": "G019",
+      "current_body_bounds": {
+        "no_tie": [
+          310,
+          403,
+          690,
+          837
+        ],
+        "tied": [
+          310,
+          396,
+          690,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS013_T001_V4_PLUS6.png",
+          "sha256": "f37765e3242701bd37b062401b46995e50aaf903df27cbd608b2c4837b20eb11",
+          "bytes": 1089575,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS026": {
+      "group_id": "G020",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS026_T001_V4_PLUS6.png",
+          "sha256": "9f0848ab7f991ae61b0f3b86bda132587c62b158d02cbf63934fabbacc771aaa",
+          "bytes": 1382962,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS031": {
+      "group_id": "G021",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS031_T001_V4_PLUS6.png",
+          "sha256": "f9a84ccedfc2ce8d83bbd9013a7fe0a4ece51e2534557360ef783c26517f6bc7",
+          "bytes": 1187036,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS009": {
+      "group_id": "G022",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS009_T001_V4_PLUS6.png",
+          "sha256": "c110094537186af9faffd31eb466e6866deb27131911026983968d456281fe53",
+          "bytes": 599600,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS012": {
+      "group_id": "G023",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS012_T001_V4_PLUS6.png",
+          "sha256": "42404eedc3bcb1142f038361047cf5907e1881e91c2a66fd391367aba5898158",
+          "bytes": 520543,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS050": {
+      "group_id": "G024",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS050_T001_V4_PLUS6.png",
+          "sha256": "6b9beb68a6a31496c3e182e6951a83b2c062fbcabf21506eb0dbde6c7553601a",
+          "bytes": 818978,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS016": {
+      "group_id": "G025",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS016_T001_V4_PLUS6.png",
+          "sha256": "c344f9ad7cd267b02c1034b190f5acd1dbfb71dfce6b8e421b86b609f976a0c7",
+          "bytes": 985148,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS048": {
+      "group_id": "G026",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          476,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          462,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS048_T001_V4_PLUS6.png",
+          "sha256": "8c3d41a78939c84b9026c30d166cb1e37e075acaa6a7c68d51c5559d47c5443f",
+          "bytes": 1377655,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS039": {
+      "group_id": "G027",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS039_T001_V4_PLUS6.png",
+          "sha256": "6415eacffdcabd96b03e6156f4427c0e136346dcba89810b6e0600ef589fdb56",
+          "bytes": 673046,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS042": {
+      "group_id": "G028",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS042_T001_V4_PLUS6.png",
+          "sha256": "88950dcfc20883a4f24822f14d7c9f792894ea6b82c34296388173cff3009c12",
+          "bytes": 1046652,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS043": {
+      "group_id": "G029",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS043_T001_V4_PLUS6.png",
+          "sha256": "acdd13a7f52e10a1dc4e82d8b70c6f944e9cbbddcd0fb9c52be1d8def12940fa",
+          "bytes": 1535623,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS040": {
+      "group_id": "G030",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS040_T001_V4_PLUS6.png",
+          "sha256": "353296d34fa814abb84077509792d84336f89f33908580cd81b1467fbc149f95",
+          "bytes": 1543861,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS041": {
+      "group_id": "G031",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS041_T001_V4_PLUS6.png",
+          "sha256": "bc6b831864e9055c2ce20da9dd3ddf649ac1c1ef5b7c93a368bf6000de267e85",
+          "bytes": 1614019,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS002": {
+      "group_id": "G032",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS002_T001_V4_PLUS6.png",
+          "sha256": "8c872c9abab455b7e3da150ecbc8d71c727bd447f4c00a1a2edbdd61745c6da3",
+          "bytes": 1158599,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS004": {
+      "group_id": "G033",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS004_T001_V4_PLUS6.png",
+          "sha256": "65f65101827c07af2a53571eed448b483bff81339e0cb912ccc03ee48861426e",
+          "bytes": 965596,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS005": {
+      "group_id": "G034",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS005_T001_V4_PLUS6.png",
+          "sha256": "8ac8cc1205476833f57a08b23d6a22025774d60bad030194f9336a5649519acd",
+          "bytes": 927242,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS006": {
+      "group_id": "G022",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS006_T001_V4_PLUS6.png",
+          "sha256": "5ef82043a61ad46b957f3aba05691c34f145ac58659673c7339098330b37c769",
+          "bytes": 599527,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS007": {
+      "group_id": "G035",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS007_T001_V4_PLUS6.png",
+          "sha256": "43263a73d2d9ba2189505df65ec45cbe4466e42bac08063f98b839793b52ea0f",
+          "bytes": 1607628,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS008": {
+      "group_id": "G036",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS008_T001_V4_PLUS6.png",
+          "sha256": "555a1ad1a98abc662340dfbd6e01b64c68718cd53f41d8a3ba78509e41b34892",
+          "bytes": 917156,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS015": {
+      "group_id": "G037",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS015_T001_V4_PLUS6.png",
+          "sha256": "ac5e97a031b6eae3e04829f74d2ed1949f992c70c859377a2fb0f1616246e94c",
+          "bytes": 1079955,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS018": {
+      "group_id": "G038",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS018_T001_V4_PLUS6.png",
+          "sha256": "75cdf7ece669f8e94d4c5077e0987db3606e06c69264a317e9a5ddd21119935d",
+          "bytes": 1258976,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS019": {
+      "group_id": "G039",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS019_T001_V4_PLUS6.png",
+          "sha256": "0a2832b82fc825ef905ad956c9a244dd56668d3e0e1a691864e8d6302d4ebc98",
+          "bytes": 775150,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS021": {
+      "group_id": "G040",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS021_T001_V4_PLUS6.png",
+          "sha256": "90e9a505525e6306431113bba146a930048d8f4a945a07cc933340881110794b",
+          "bytes": 875145,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS022": {
+      "group_id": "G041",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve",
+        "current_left_cuff",
+        "current_right_cuff"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS022_T001_V4_PLUS6.png",
+          "sha256": "8576b5ff5d225cade987d9aa4d95c70f1acbc5026a6a802b9bf8d74c84ac059d",
+          "bytes": 794848,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS023": {
+      "group_id": "G042",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS023_T001_V4_PLUS6.png",
+          "sha256": "3aff1fc7c07a6771fb5e6bdc5ba9161ac241aad8f4582279f75886616d86cbb4",
+          "bytes": 951042,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS024": {
+      "group_id": "G043",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS024_T001_V4_PLUS6.png",
+          "sha256": "2ce70cd4329a25ea73a8daeb44e5d6d26f56639309d03a9b15a88c4d0469f010",
+          "bytes": 671970,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS025": {
+      "group_id": "G043",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS025_T001_V4_PLUS6.png",
+          "sha256": "2ce70cd4329a25ea73a8daeb44e5d6d26f56639309d03a9b15a88c4d0469f010",
+          "bytes": 671970,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS027": {
+      "group_id": "G044",
+      "current_body_bounds": {
+        "no_tie": [
+          106,
+          372,
+          918,
+          836
+        ],
+        "tied": [
+          106,
+          372,
+          918,
+          836
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS027_T001_V4_PLUS6.png",
+          "sha256": "9a8013c20d60ebe6469aba2e5ee69a08b047f0427815e0c9a8c4aad935dcaada",
+          "bytes": 906144,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    },
+    "DS047": {
+      "group_id": "G040",
+      "current_body_bounds": {
+        "no_tie": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "tied": [
+          350,
+          416,
+          650,
+          837
+        ]
+      },
+      "missing_blazer_components": [
+        "current_lower_torso_coverage_for_blazer_opening"
+      ],
+      "missing_shirt_only_components": [
+        "current_full_length_torso",
+        "current_left_sleeve",
+        "current_right_sleeve"
+      ],
+      "historical_metadata_not_current_authority": [
+        {
+          "source_path": "checkpoint98_unpacked/wardrobe71/shirts/registered_layers/DS047_T001_V4_PLUS6.png",
+          "sha256": "eda7886e6f19e5e896c02d98ed145f134786d73ee7ec0f8960a78d318efecda8",
+          "bytes": 851370,
+          "role": "REGISTERED_SHIRT_WITH_FIXED_T001",
+          "materialized_in_v113": false,
+          "automatically_authorized_as_current_body": false
+        }
+      ]
+    }
+  },
+  "boundary": "The historical registered full-shirt paths are actual metadata found in V1.13, not guessed filenames. Their hashes do not identify materialized runtime bytes here. Even if later supplied, fixed-T001 historical appearances must be reconciled with the current per-shirt sources; no automatic restoration is authorized."
+}

@@ -1,0 +1,4 @@
+{
+  "accepted": false,
+  "reason": "Visual inspection of actual browser output showed transparent dotted pixels remained after RGB-only cleanup. The final implementation must repair their opacity inside the same mask. The previous grey-only result is not the delivered result."
+}

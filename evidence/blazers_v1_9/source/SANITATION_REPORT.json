@@ -1,0 +1,108 @@
+{
+  "operation": "Common background/edge sanitation for B04-B14, B06 owner-color correction, B09 source verification",
+  "approved_checkpoints_modified": false,
+  "approved_checkpoints_untouched": [
+    "B01",
+    "B02",
+    "B03"
+  ],
+  "invalid_generated_B06_B09_images_used": false,
+  "image_generation_used": false,
+  "dark_blue_painted_into_assets": false,
+  "ids_processed": [
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14"
+  ],
+  "B06": {
+    "reference": "46C3633F-D2F7-402F-AEAF-F8D5EA7BB5A7.jpeg",
+    "target_rgb_median": [
+      200,
+      201,
+      186
+    ],
+    "ruling": "very, very light sage; thin, lightweight, fine-textured cloth"
+  },
+  "B09": {
+    "verified": "charcoal herringbone with taupe suede elbow patches and dark horn button",
+    "full_frontal_geometry": "absent; B03 construction proxy remains provisional"
+  },
+  "records": [
+    {
+      "id": "B04",
+      "pixels_changed_by_sanitation": 224789,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B05",
+      "pixels_changed_by_sanitation": 240992,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B06",
+      "pixels_changed_by_sanitation": 229618,
+      "transparent_rgb_zero": true,
+      "status": "B06 owner-color corrected"
+    },
+    {
+      "id": "B07",
+      "pixels_changed_by_sanitation": 235132,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B08",
+      "pixels_changed_by_sanitation": 211470,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B09",
+      "pixels_changed_by_sanitation": 226944,
+      "transparent_rgb_zero": true,
+      "status": "B09 source-verified provisional"
+    },
+    {
+      "id": "B10",
+      "pixels_changed_by_sanitation": 257719,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B11",
+      "pixels_changed_by_sanitation": 236845,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B12",
+      "pixels_changed_by_sanitation": 240354,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B13",
+      "pixels_changed_by_sanitation": 235806,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    },
+    {
+      "id": "B14",
+      "pixels_changed_by_sanitation": 247960,
+      "transparent_rgb_zero": true,
+      "status": "sanitized first-pass"
+    }
+  ],
+  "status": "clean batch triage candidates; no new blazer approved",
+  "next_sequence": "review clean contact sheet; repair only visible failures"
+}

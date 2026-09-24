@@ -1,0 +1,360 @@
+{
+  "schema": "hewrs.engine-wide.tests.v1_4",
+  "passed": 44,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Exact 18 suit order exposed to Engine; four unrestricted routes retained",
+      "pass": true
+    },
+    {
+      "name": "S02 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S02 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S03 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S03 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S06 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S06 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S07 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S07 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S08 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S08 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S09 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S09 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S10 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S10 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S11 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S11 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S12 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S12 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S13 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S13 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S14 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S14 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S15 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S15 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S17 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S17 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "S18 Engine selects only exact DS035; old controller numerical results unchanged",
+      "pass": true
+    },
+    {
+      "name": "S18 all 48 explicit modes keep existing scoring outcomes and exact identities",
+      "pass": true
+    },
+    {
+      "name": "686 other-shirt, 42 unspecified/category, and 14 retained-reference Engine requests reject before generation",
+      "pass": true
+    },
+    {
+      "name": "Known historical DS035 alias is explicit, never inferred from category",
+      "pass": true
+    },
+    {
+      "name": "Unknown suits, ties and footwear are rejected",
+      "pass": true
+    },
+    {
+      "name": "Existing four Engine routes preserve request and full result with free shirt selection",
+      "pass": true
+    },
+    {
+      "name": "Explicit tie family filter reaches old controller unchanged",
+      "pass": true
+    },
+    {
+      "name": "No numerical candidate is fabricated for a forbidden setting",
+      "pass": true
+    },
+    {
+      "name": "Cached candidates reject changed suit, shirt, tie, shoe, watch and context locks",
+      "pass": true
+    },
+    {
+      "name": "Forged output canonical identity and score cannot be rebound",
+      "pass": true
+    },
+    {
+      "name": "All 35 explicit footwear choices and selected watch metadata bind without score change",
+      "pass": true
+    },
+    {
+      "name": "Engine wear recording and backup keep canonical IDs, historical IDs and existing source lock",
+      "pass": true
+    },
+    {
+      "name": "V1.3 Anchor backup restores unchanged in V1.4; original backup accepted on return",
+      "pass": true
+    },
+    {
+      "name": "Existing local rotation report unchanged for confirmed wider-suit wear history",
+      "pass": true
+    },
+    {
+      "name": "No asset, scoring, or source input changes induced by any test",
+      "pass": true
+    },
+    {
+      "name": "Async Engine result is identical to synchronous result on every wider suit",
+      "pass": true
+    },
+    {
+      "name": "Already cancelled generation produces no options",
+      "pass": true
+    }
+  ],
+  "request_rows": [
+    {
+      "suitId": "S02",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S02",
+        "shirt": "DS035",
+        "tie": "T030",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S03",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S03",
+        "shirt": "DS035",
+        "tie": "T010",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S06",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S06",
+        "shirt": "DS035",
+        "tie": "T022",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S07",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S07",
+        "shirt": "DS035",
+        "tie": "T006",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S08",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S08",
+        "shirt": "DS035",
+        "tie": "T030",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S09",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S09",
+        "shirt": "DS035",
+        "tie": "T022",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S10",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S10",
+        "shirt": "DS035",
+        "tie": "T006",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S11",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S11",
+        "shirt": "DS035",
+        "tie": "T006",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S12",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S12",
+        "shirt": "DS035",
+        "tie": "T030",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S13",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S13",
+        "shirt": "DS035",
+        "tie": "T006",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S14",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S14",
+        "shirt": "DS035",
+        "tie": "T030",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S15",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S15",
+        "shirt": "DS035",
+        "tie": "T024",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S17",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S17",
+        "shirt": "DS035",
+        "tie": "T030",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    },
+    {
+      "suitId": "S18",
+      "examined": 48,
+      "options": 15,
+      "first": {
+        "topwear": "S18",
+        "shirt": "DS035",
+        "tie": "T022",
+        "pant_profile": null
+      },
+      "baseline_report_equal": true
+    }
+  ],
+  "explicit_mode_requests_evaluated": 672,
+  "explicit_mode_requests_with_candidate": 672,
+  "explicit_mode_requests_without_candidate": 0,
+  "ANY_returned_options": 210,
+  "invalid_request_cases": 742,
+  "baseline_comparison": "Identical original V1.3 controller and scoring fed the same validated request; numerical behavior not changed",
+  "new_image_operations": 0
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "hewrs.connected-app.b01-b02.v1_12",
+  "status": "B01_B02_CONNECTED_LOCAL_TESTED_NOT_DEPLOYED",
+  "baseline": {
+    "name": "HEWRS_CONNECTED_APP_V1_11_SOURCE.zip",
+    "sha256": "4e2be9ac4d1ec80a9fabef23a35d8f5be2e2f2f553b6f91c254f9d36b6cf10e5",
+    "files": 949
+  },
+  "new_scope": {
+    "blazers": [
+      "B01",
+      "B02"
+    ],
+    "all_connected_blazers": 14,
+    "shirt": "DS001",
+    "tie_modes": 47,
+    "physical_trouser_ids": 24,
+    "registered_shoe_pairs": 35,
+    "ranked_trouser_profiles": 15,
+    "manual_only_null_profiles": 9,
+    "engine_anchor_history_backup": true
+  },
+  "tests": {
+    "functional_passed": 21,
+    "functional_failed": 0,
+    "native_browser_comparisons": 151,
+    "prior_route_pixel_comparisons": 34,
+    "browser_group_checks_passed": 17,
+    "browser_failed": 0,
+    "exact_new_engine_requests": 1410,
+    "new_layer_plans": 2256
+  },
+  "preservation": {
+    "original_asset_and_assembly_pngs": 607,
+    "changed_original_image_files": 0,
+    "coat_alpha_checks": [
+      {
+        "id": "B01",
+        "alpha_pixels_changed": 0,
+        "outside_original_alpha_added_pixels": 0,
+        "canvas": [
+          996,
+          2748
+        ]
+      },
+      {
+        "id": "B02",
+        "alpha_pixels_changed": 0,
+        "outside_original_alpha_added_pixels": 0,
+        "canvas": [
+          996,
+          2748
+        ]
+      }
+    ],
+    "facelift_application_js_unchanged": true,
+    "facelift_css_unchanged": true,
+    "input_data_unchanged": true,
+    "saved_data_code_unchanged": true,
+    "source_lock_unchanged": true
+  },
+  "new_images": {
+    "appearance_derivatives": 2,
+    "existing_original_ownership_mask_added_to_asset_map": 1,
+    "source_person_images_used_as_avatar": false,
+    "appearance_source": "Later approved reference cloth RGB with original wearable alpha, separate derivatives, not unmodified originals."
+  },
+  "changed_baseline_paths_without_manifest": [
+    "README.md",
+    "app.html",
+    "app.template.html",
+    "data/blazer-connection.js",
+    "data/blazer-connection.json",
+    "index.html",
+    "tools/build.py"
+  ],
+  "visual_inspection": {
+    "images": [
+      "browser/B01_ENGINE_390x844.png",
+      "browser/B02_ENGINE_390x844.png"
+    ],
+    "assessment": "B01 medium navy and B02 dark micro-check without the earlier pocket square display at phone size. Existing DS001 cuffs/hands used; no duplicate cuff protrusions observed in inspected phone captures. Not a physical-device or all-zoom assessment."
+  },
+  "http_browser_probe": {
+    "tested": true,
+    "loaded": false,
+    "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:34619/index.html\nCall log:\n  - navigating to \"http://127.0.0.1:34619/index.html\", waiting until \"load\"\n",
+    "fallback": "In-memory exact code and asset bytes"
+  },
+  "tested_environment": "Chromium; exact source and PNG bytes provided in memory with explicit isolated storage fixture after loopback navigation was blocked.",
+  "not_tested": [
+    "Physical iPhone",
+    "Native Safari",
+    "Public hosted delivery",
+    "Persistent real-origin browser restart"
+  ],
+  "remaining_clothing_scope": [
+    "Independent other-shirt/no-tie blazer assemblies",
+    "Additional shirt-only modes"
+  ],
+  "watch_images": "Deferred by owner; ID and name sufficient and unchanged.",
+  "original_uploads_modified": false,
+  "github_write": false,
+  "deployment": false,
+  "runtime_patch_check": "git apply --check against untouched V1.11 passed; source-only change diff, separate image payloads in this archive."
+}

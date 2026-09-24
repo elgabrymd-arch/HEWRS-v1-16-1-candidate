@@ -1,0 +1,183 @@
+{
+  "scope": "UI draft/identity adapter only; no rendered/device certification",
+  "passed": 44,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "All six preference categories present",
+      "status": "PASS"
+    },
+    {
+      "name": "33 explicit topwear view records: 18 suits, 14 blazers, 1 no-jacket route",
+      "status": "PASS"
+    },
+    {
+      "name": "Topwear IDs map through current aliases, not position arithmetic",
+      "status": "PASS"
+    },
+    {
+      "name": "Current 50 active shirts; no retired DS049",
+      "status": "PASS"
+    },
+    {
+      "name": "47 current ties and 35 exact registered shoes",
+      "status": "PASS"
+    },
+    {
+      "name": "24 individual trouser IDs retained despite shared images",
+      "status": "PASS"
+    },
+    {
+      "name": "Every current watch ID and name retained without images",
+      "status": "PASS"
+    },
+    {
+      "name": "No sample/demo IDs are created for garments",
+      "status": "PASS"
+    },
+    {
+      "name": "Read-only construction does not mutate current engine/catalogue data",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft/Cancel leaves topwear unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft/Cancel leaves shirt unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft/Cancel leaves tie unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft/Cancel leaves shoes unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft/Cancel leaves bottoms unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft/Cancel leaves watch unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Apply changes only topwear",
+      "status": "PASS"
+    },
+    {
+      "name": "Apply changes only shirt",
+      "status": "PASS"
+    },
+    {
+      "name": "Apply changes only tie",
+      "status": "PASS"
+    },
+    {
+      "name": "Apply changes only shoes",
+      "status": "PASS"
+    },
+    {
+      "name": "Apply changes only bottoms",
+      "status": "PASS"
+    },
+    {
+      "name": "Apply changes only watch",
+      "status": "PASS"
+    },
+    {
+      "name": "Cancel after an empty draft does not choose a fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "No Tie differs from Engine / Any in exact effective engine request",
+      "status": "PASS"
+    },
+    {
+      "name": "Category preference retains FAMILY semantics",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid family does not become a current score attribute",
+      "status": "PASS"
+    },
+    {
+      "name": "Any topwear does not silently fall back to S05",
+      "status": "PASS"
+    },
+    {
+      "name": "Any shoes do not silently fall back to shoe-8",
+      "status": "PASS"
+    },
+    {
+      "name": "Anchor after Reset fabricates no clothing lock",
+      "status": "PASS"
+    },
+    {
+      "name": "Reset does not touch source data",
+      "status": "PASS"
+    },
+    {
+      "name": "Suit includes trousers without consuming saved separate preference",
+      "status": "PASS"
+    },
+    {
+      "name": "Blazer restores the same physical separate trousers",
+      "status": "PASS"
+    },
+    {
+      "name": "Blazer Engine uses exact inherited request unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Nine null scoring mappings stay null; Anchor still accepts PN007",
+      "status": "PASS"
+    },
+    {
+      "name": "Unsupported B01 remains explicit, not another blazer",
+      "status": "PASS"
+    },
+    {
+      "name": "Shirt-only route carries no fictitious topwear identifier",
+      "status": "PASS"
+    },
+    {
+      "name": "Unimplemented shirt-only ranking is not invented by facade",
+      "status": "PASS"
+    },
+    {
+      "name": "Unsupported no-tie source is rejected, not forced to T001",
+      "status": "PASS"
+    },
+    {
+      "name": "No-tie-only shirt restrictions remain current engine rules",
+      "status": "PASS"
+    },
+    {
+      "name": "Search by current ID and current name",
+      "status": "PASS"
+    },
+    {
+      "name": "Cross-category lookups never reuse a Shirt result as Suit",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown category fails explicitly",
+      "status": "PASS"
+    },
+    {
+      "name": "Model returns isolated copies of preferences",
+      "status": "PASS"
+    },
+    {
+      "name": "Replacing malformed preferences is atomic",
+      "status": "PASS"
+    },
+    {
+      "name": "No source catalogue, scoring rule or numerical mapping was changed",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,523 @@
+{
+  "passed": 20,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Packaged V1.8 starts with 15 restored bindings and nine nulls",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "15 exact Engine outputs preserve physical IDs and match V1.7 pixels",
+      "pass": true,
+      "details": 15
+    },
+    {
+      "name": "Free tie search excludes unsupported NO_TIE before ranking",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Outfits shows scored selectable alternatives",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Selected alternative carries the matching exact source image",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Tie-family Engine candidates satisfy the selected family",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Nine unscored trousers retain manual exact images without invented scores",
+      "pass": true,
+      "details": 9
+    },
+    {
+      "name": "Engine controls report the recovered Medium Grey profile",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Unmapped trouser selection explicitly reports missing profile",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Native Engine controls display the requested B03/PG002/DS001/T017 outfit",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Generation and viewing do not fabricate wear",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Explicit wear stores physical trouser and blazer IDs, not P01",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Backup import preview is read-only",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Explicit backup restoration keeps exact confirmed wear",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Forged numeric evidence cannot replace displayed outfit",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Rapid competing Engine requests commit the latest physical trouser",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Cancellation retains the last complete image and identity",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "Six suit controls remain pixel-identical to V1.7",
+      "pass": true,
+      "details": 6
+    },
+    {
+      "name": "Only the explicit wear confirmation added a record",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "No page errors",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "render_results": [
+    {
+      "kind": "exact_engine",
+      "pantId": "PT001",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PT001",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PT002",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PT002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PT003",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PT003",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PT004",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PT004",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PT005",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PT005",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PT006",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PT006",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PT007",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PT007",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PB001",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PB001",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PB002",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PB002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PB003",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PB003",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PB004",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PB004",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PG001",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PG001",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PG002",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PN002",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PN002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "exact_engine",
+      "pantId": "PG003",
+      "status": "candidate_recommendation",
+      "selected": {
+        "blazerId": "B03",
+        "pantId": "PG003",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "held": true,
+      "referencePixelsEqual": true,
+      "historyUnchanged": true,
+      "requestedIdentity": true,
+      "numeric": true
+    },
+    {
+      "kind": "outfits_selection",
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PBR001",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PBR002",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PN001",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PN003",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PN004",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PN005",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PN006",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PN007",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "unbound_anchor",
+      "pantId": "PW002",
+      "status": "mapping_required",
+      "noOptions": true,
+      "retained": true,
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "suit_regression",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "suit_regression",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "REFERENCE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "suit_regression",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS051",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "suit_regression",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "suit_regression",
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS036",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "referencePixelsEqual": true
+    },
+    {
+      "kind": "suit_regression",
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS017",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "referencePixelsEqual": true
+    }
+  ],
+  "page_errors": [],
+  "seconds": 21.77,
+  "transport": "Chromium packaged scripts and unchanged original PNGs supplied in memory. No hosted/device/persistent-origin validation."
+}

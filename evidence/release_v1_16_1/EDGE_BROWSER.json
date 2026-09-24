@@ -1,0 +1,53 @@
+{
+  "schema": "hewrs.release.edge-browser.v1_16_1",
+  "scope": "Actual browser/image decoding with memory-loaded files and synthetic storage; not hosted/restart acceptance",
+  "passed": 4,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Failed new image decode retains the previous whole frame and selection",
+      "passed": true,
+      "detail": {
+        "rejected": true,
+        "pixels_preserved": true,
+        "last": {
+          "shirtOnly": true,
+          "pantId": "PG002",
+          "shirtId": "DS006",
+          "state": "NO_TIE",
+          "shoeId": "shoe-8",
+          "watchId": null
+        },
+        "status": "error-retained"
+      }
+    },
+    {
+      "name": "Superseded new batch render cancels; latest request alone commits",
+      "passed": true,
+      "detail": {
+        "first": {
+          "cancelled": true
+        },
+        "second": "ready",
+        "last": {
+          "shirtOnly": true,
+          "pantId": "PG002",
+          "shirtId": "DS027",
+          "state": "NO_TIE",
+          "shoeId": "shoe-8",
+          "watchId": null
+        },
+        "pixels_equal": true
+      }
+    },
+    {
+      "name": "Watch ID and name display without requiring an image",
+      "passed": true,
+      "detail": "watch-P05 \u00b7 Patek Philippe \u2014 Nautilus 5712"
+    },
+    {
+      "name": "Renderer-only edge tests create no wear events or sentinel changes",
+      "passed": true
+    }
+  ]
+}

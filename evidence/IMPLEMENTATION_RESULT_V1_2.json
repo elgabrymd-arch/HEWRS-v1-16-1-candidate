@@ -1,0 +1,129 @@
+{
+  "schema": "hewrs.connected-app.implementation.v1_2",
+  "dynamic_suits": [
+    "S01",
+    "S04",
+    "S05",
+    "S16"
+  ],
+  "all_18_dynamic_suits_complete": false,
+  "saved_registered_control_views": 18,
+  "preserved_existing_image_files": 496,
+  "preserved_original_top_level_inputs": 18,
+  "current_input_and_scoring_files_changed": false,
+  "current_local_state_module_changed": false,
+  "garment_pixels_changed": 0,
+  "new_garment_generation": false,
+  "approvals_reopened": false,
+  "tests": {
+    "functional": {
+      "passed": 40,
+      "failed": 0
+    },
+    "suit_source_routing": {
+      "passed": 21,
+      "failed": 0
+    },
+    "suit_display": {
+      "passed": 13,
+      "failed": 0,
+      "layer_plans": 8849,
+      "prohibited_tied_requests": 752
+    },
+    "browser": {
+      "passed": 36,
+      "failed": 0,
+      "S05_exact_control_comparisons": 11,
+      "additional_sample_records": 71,
+      "all50_shirts_actually_rendered_with": "S01",
+      "all18_saved_views_opened": true,
+      "transport": "Exact packaged template, CSS and JavaScript; original PNG bytes supplied incrementally in memory. Not hosted or exact standalone transport.",
+      "not_tested": [
+        "Hosted delivery",
+        "Safari",
+        "Physical iPhone",
+        "Persistent browser restart",
+        "All 8849 supported states rendered in browser",
+        "S11-template dynamic combinations"
+      ]
+    }
+  },
+  "completed_behaviour": [
+    "Selected suit is passed through Anchor and Engine to paired source layers, display identity, and confirmed history",
+    "Last complete outfit is retained through pending, failed, and cancelled selection changes",
+    "All 18 existing static assemblies viewable separately without changing the actual selected outfit",
+    "Inherited S05 controls preserve exact browser pixels"
+  ],
+  "remaining_connection_failure": "The wider S11-template opening exposes empty pixels in transferred S05-specific shirt inserts. No fabric completion, old-shirt substitution, or S05-mask application to S11 was performed.",
+  "current_limits": [
+    "S11-template independent shirt composition is not enabled",
+    "Watch image layers, blazer and shirt-only integration remain outside this update",
+    "Existing score-source disagreements unchanged",
+    "Hosted, Safari, physical-iPhone and real-origin persistence validation not performed"
+  ],
+  "source_changes": [
+    "README.md",
+    "app.html",
+    "app.template.html",
+    "evidence/FUNCTIONAL_TESTS.json",
+    "src/application.css",
+    "src/application.js",
+    "src/approved-suit-sources.js",
+    "src/atomic-renderer.js",
+    "src/canonical-bindings-browser.js",
+    "src/connection.js",
+    "tests/browser.py",
+    "tests/functional.cjs",
+    "tests/suit-source-smoke.py",
+    "tools/build.py",
+    "tools/verify.py"
+  ],
+  "added_paths": [
+    "assemblies/1f101b4b9dc9101c36dc890deb7ef49464ae39f490ca93fd768ec3e7f7e073f5.png",
+    "assemblies/3c2d7cf6a337286d7be5beab8d8af041359bea71987a6771991e4b7797542a85.png",
+    "assemblies/3e898f3fe7e1fbc5e4ab654b15d0b69164e1899804dab201c180d49f993db87e.png",
+    "assemblies/48e17f42df6ed7e434ab7435fca7b6e26f5e98c4d6cbd816625ec586d9a95adf.png",
+    "assemblies/66d21219aafe6d62130527ee70943348b94aac1320b539b948bfe3cb169dae3c.png",
+    "assemblies/6db569c7db1089fd607f453bab6e428e0e751f6daf25f47c280f606909a9b86f.png",
+    "assemblies/724754b27e9341ed2fc25f9458ee5c6565067f825c6fb9774404cbcf88b7d696.png",
+    "assemblies/76e041a107b63e52d4e76c6e2c30a7b677d8988cd6772ca97f689a33ce3ad735.png",
+    "assemblies/7b0ef7166d0d60e5cd75927a9527834e9281b170a67b071e5ed5a228fa2b045d.png",
+    "assemblies/7c6db80669f405256e0dcef67e3ddf0a1de871a9902c1ea81a4b2fb9f3acd684.png",
+    "assemblies/7ff87d85da857226a5ef88406797fb0bfd036d1b1c5ed4b9da076c2c998281cc.png",
+    "assemblies/a391d7ba4264dbc28d331c43921c8870a29022940c0f6ac04eb1ee80ac82463d.png",
+    "assemblies/aac67aba7d98c77074d4560dd8d3722cf65ab3e6636abd6a74af53777115b0d7.png",
+    "assemblies/c7d81a209feb1a0740227e7f3982f0c20ab227b32488a8ade127a9df748477bf.png",
+    "assemblies/cf6e1d3a331e2a3581fe733dd7f80be5294e330d350f6c68d3d5ffab0910d528.png",
+    "assemblies/d1268173e45b98f31ff1b1f577844aca6ab886fe24dd92e47ebf10fc166b8de6.png",
+    "assemblies/d26c5e4eda754b1172e6c31352b47d4ab46850245a7476e1b098f9e8190c6fd7.png",
+    "assemblies/fc8b418ff075ff959577a01a64ecbd386f0810327d18db362a285cf628e23c4c.png",
+    "data/suit-assembly.js",
+    "data/suit-assembly.json",
+    "evidence/APP_V1_2_S01_PHONE.png",
+    "evidence/APP_V1_2_S02_REGISTERED_VIEW.png",
+    "evidence/BROWSER_HARNESS_FIRST_ATTEMPT.log",
+    "evidence/INPUTS_BEFORE.json",
+    "evidence/INTEGRATION_APERTURE_CHECK.json",
+    "evidence/REGISTERED_VIEW_ORIGINS.json",
+    "evidence/SOURCE_ROUTING_EXECUTION.log",
+    "evidence/SUIT_DISPLAY_BROWSER.json",
+    "evidence/SUIT_DISPLAY_BROWSER_EXECUTION.log",
+    "evidence/SUIT_DISPLAY_EXECUTION.log",
+    "evidence/SUIT_DISPLAY_TESTS.json",
+    "evidence/inherited_v1_1/FUNCTIONAL_TESTS.json",
+    "evidence/inherited_v1_1/IMPLEMENTATION_RESULT_V1_1.json",
+    "evidence/inherited_v1_1/ORIGINAL_INPUT_PRESERVATION.json",
+    "evidence/inherited_v1_1/SOURCE_ORIGINS.json",
+    "evidence/inherited_v1_1/STANDALONE_SMOKE_ATTEMPT.json",
+    "evidence/inherited_v1_1/SUIT_SOURCE_ORIGINS.json",
+    "evidence/inherited_v1_1/SUIT_SOURCE_ROUTING_TESTS.json",
+    "evidence/inherited_v1_1/tests/browser.py.txt",
+    "evidence/inherited_v1_1/tests/suit-source-smoke.py.txt",
+    "src/suit-assemblies.js",
+    "tests/suit-display-browser.py",
+    "tests/suit-display.cjs"
+  ],
+  "production_app_changed": false,
+  "github_write": false,
+  "deployment": false
+}

@@ -1,0 +1,904 @@
+{
+  "version": "V1.6",
+  "passed": 48,
+  "failed": 2,
+  "checks": [
+    {
+      "name": "All 18 suits and 50 exact shirts enabled; original source-order preserved",
+      "pass": true
+    },
+    {
+      "name": "S01 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S02 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S03 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S04 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S05 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S06 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S07 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S08 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S09 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S10 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S11 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S12 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S13 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S14 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S15 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S16 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S17 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "S18 all valid source-layer plans match the declared unmodified components",
+      "pass": true
+    },
+    {
+      "name": "Complete supported universe: 39,817 plans; 9,521 old unchanged + 30,296 newly connected",
+      "pass": true
+    },
+    {
+      "name": "All 3,384 no-tie-only tied requests remain rejected across all 18 suits",
+      "pass": true
+    },
+    {
+      "name": "Retired/unknown IDs, selected reference misuse and shoe/watch mismatches reject",
+      "pass": true
+    },
+    {
+      "name": "DS035-only corrections never leak to another shirt or the original suit-template group",
+      "pass": true
+    },
+    {
+      "name": "S01 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S02 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S03 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S04 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S05 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S06 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S07 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S08 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S09 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S10 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S11 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S12 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S13 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S14 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S15 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S16 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S17 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "S18 Engine accepts exact shirts, free selection and families without changing numerical results",
+      "pass": true
+    },
+    {
+      "name": "All historical DS035 Engine modes preserve original results across wider suits",
+      "pass": true
+    },
+    {
+      "name": "Malformed exact Engine selections do not silently become category or free selection",
+      "pass": false,
+      "error": "AssertionError [ERR_ASSERTION]: Missing expected exception.\n    at /mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits.cjs:52:266\n    at check (/mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits.cjs:13:29)\n    at Object.<anonymous> (/mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits.cjs:52:1)\n    at Module._compile (node:internal/modules/cjs/loader:1730:14)\n    at Object..js (node:internal/modules/cjs/loader:1895:10)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)\n    at Function._load (node:internal/modules/cjs/loader:1282:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)"
+    },
+    {
+      "name": "Score holds do not block exact Anchor visuals or invent scoring evidence",
+      "pass": true
+    },
+    {
+      "name": "All 188 approved scores and component evidence remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "Modified/forged candidates and stale requests reject",
+      "pass": true
+    },
+    {
+      "name": "New exact wear sessions preserve source-lock, old IDs and isolated storage",
+      "pass": true
+    },
+    {
+      "name": "V1.5 sessions import without migration or resetting any existing IDs",
+      "pass": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '{\"schema\":\"hewrs.connected-app.local.v1\",\"source_lock\":\"3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516\",\"revision\":1,\"session\":{\"selection\":{\"suitId\":\"S11\",\"shirtId\":\"DS035\",\"state\":\"T017\",\"shoeId\":\"shoe-8\",\"watchId\":null},\"origin\":\"manual\",\"mode\":\"anchor\",\"localDate\":\"2026-09-22\",\"context\":{\"occasion\":\"clinic\",\"requiredFormality\":\"any\"}},\"events\":[{\"id\":\"prior_approved\",\"localDate\":\"2026-09-22\",\"date\":\"2026-09-22\",\"confirmed\":true,\"origin\":\"manual\",\"controlledRepetition\":false,\"items\":{\"topwear\":{\"id\":\"suit-10\"},\"shirt\":{\"id\":\"shirt-DS035\"},\"tie\":{\"id\":\"T017\"},\"shoes\":{\"id\":\"shoe-8\"},\"watch\":null,\"pants\":null},\"canonical_selection\":{\"suitId\":\"S11\",\"shirtId\":\"DS035\",\"state\":\"T017\",\"shoeId\":\"shoe-8\",\"watchId\":null},\"source_lock\":\"3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516\"}]}'\n- '{\"schema\":\"hewrs.connected-app.local.v1\",\"source_lock\":\"3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516\",\"revision\":2,\"session\":{\"selection\":{\"suitId\":\"S11\",\"shirtId\":\"DS035\",\"state\":\"T017\",\"shoeId\":\"shoe-8\",\"watchId\":null},\"origin\":\"manual\",\"mode\":\"anchor\",\"localDate\":\"2026-09-22\",\"context\":{\"occasion\":\"clinic\",\"requiredFormality\":\"any\"}},\"events\":[{\"id\":\"prior_approved\",\"localDate\":\"2026-09-22\",\"date\":\"2026-09-22\",\"confirmed\":true,\"origin\":\"manual\",\"controlledRepetition\":false,\"items\":{\"topwear\":{\"id\":\"suit-10\"},\"shirt\":{\"id\":\"shirt-DS035\"},\"tie\":{\"id\":\"T017\"},\"shoes\":{\"id\":\"shoe-8\"},\"watch\":null,\"pants\":null},\"canonical_selection\":{\"suitId\":\"S11\",\"shirtId\":\"DS035\",\"state\":\"T017\",\"shoeId\":\"shoe-8\",\"watchId\":null},\"source_lock\":\"3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516\"}]}'\n\n    at eq (/mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits.cjs:12:24)\n    at /mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits.cjs:58:564\n    at check (/mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits.cjs:13:29)\n    at Object.<anonymous> (/mnt/data/HEWRS_CONNECTED_APP_V1_6/tests/all-suits.cjs:58:1)\n    at Module._compile (node:internal/modules/cjs/loader:1730:14)\n    at Object..js (node:internal/modules/cjs/loader:1895:10)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)\n    at Function._load (node:internal/modules/cjs/loader:1282:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)"
+    },
+    {
+      "name": "Async free-shirt Engine agrees with synchronous result and cancellation",
+      "pass": true
+    },
+    {
+      "name": "Input objects unchanged after every routing and calculation operation",
+      "pass": true
+    }
+  ],
+  "plans": 39817,
+  "previous_plan_matches": 9521,
+  "newly_connected_plans": 30296,
+  "prohibited_requests": 3384,
+  "engine_requests_compared": 2473,
+  "engine_options_bound": 2931,
+  "planRows": [
+    {
+      "suitId": "S01",
+      "template": "S05",
+      "count": 2212
+    },
+    {
+      "suitId": "S02",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S03",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S04",
+      "template": "S05",
+      "count": 2212
+    },
+    {
+      "suitId": "S05",
+      "template": "S05",
+      "count": 2213
+    },
+    {
+      "suitId": "S06",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S07",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S08",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S09",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S10",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S11",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S12",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S13",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S14",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S15",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S16",
+      "template": "S05",
+      "count": 2212
+    },
+    {
+      "suitId": "S17",
+      "template": "S11",
+      "count": 2212
+    },
+    {
+      "suitId": "S18",
+      "template": "S11",
+      "count": 2212
+    }
+  ],
+  "engineRows": [
+    {
+      "suitId": "S01",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S02",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S03",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S04",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S05",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S06",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S07",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S08",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S09",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S10",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S11",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S12",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S13",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S14",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S15",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S16",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S17",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    },
+    {
+      "suitId": "S18",
+      "rows": [
+        {
+          "shirt": "ANY",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 2400,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:cream",
+          "tie": "ANY",
+          "options": 15,
+          "examined": 288,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "FAMILY:blue",
+          "tie": "T017",
+          "options": 4,
+          "examined": 5,
+          "status": "candidate_recommendation"
+        },
+        {
+          "shirt": "DS036",
+          "tie": "FAMILY:navy",
+          "options": 10,
+          "examined": 10,
+          "status": "candidate_recommendation"
+        }
+      ]
+    }
+  ],
+  "browser_render_claim": false
+}

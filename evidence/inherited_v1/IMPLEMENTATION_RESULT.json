@@ -1,0 +1,110 @@
+{
+  "schema": "hewrs.connected-app.implementation-result.v1",
+  "status": "RUNNABLE_CONNECTED_APPLICATION_CANDIDATE_NOT_PRODUCTION_RELEASE",
+  "standalone": {
+    "filename": "HEWRS_CONNECTED_APP_V1.html",
+    "bytes": 74395217,
+    "sha256": "8d521716d99471760331ac3be0e075d77b2643620d9af72bcae34ac52d04e160"
+  },
+  "input_sha256": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "implemented": [
+    "Actual controller result to canonical crosswalk to source renderer",
+    "Engine and exact manual selection workflows",
+    "Native 996x2748 full-frame atomic replacement",
+    "All 35 registered shoe pairs selectable without new fitting",
+    "Home Outfits Wardrobe Rotation application tabs",
+    "Explicit local wear confirmation, validated export and two-step import",
+    "Isolated candidate storage; no automatic production-history access or migration"
+  ],
+  "render_scope": {
+    "suit": "S05",
+    "active_shirts": 50,
+    "tie_designs": 47,
+    "no_tie_only_shirts": [
+      "DS040",
+      "DS041",
+      "DS042",
+      "DS043"
+    ],
+    "registered_shoe_pairs": 35,
+    "native_canvas": [
+      996,
+      2748
+    ],
+    "watches": "Selected metadata only; explicitly not rendered",
+    "other_suit_blazer_shirt_only_assemblies": "Not yet connected; no substitution or approval reset"
+  },
+  "verified": {
+    "functional_checks_passed": 40,
+    "functional_checks_failed": 0,
+    "browser_checks_passed": 29,
+    "browser_checks_failed": 0,
+    "actual_original_renderer_pixel_comparisons": 29,
+    "original_renderer_comparisons_with_differences": 0,
+    "layer_plans_compared": 2213,
+    "layer_plan_differences": 0,
+    "actual_registered_shoe_renders": 35,
+    "shoe_comparisons_with_changes_outside_original_and_selected_shoe_alpha": 0,
+    "unaltered_unique_source_pngs": 462,
+    "unaltered_copied_vendor_modules": 8,
+    "unchanged_current_approved_score_records": 188,
+    "viewport_sizes": [
+      [
+        390,
+        844
+      ],
+      [
+        375,
+        667
+      ],
+      [
+        430,
+        932
+      ],
+      [
+        1280,
+        900
+      ]
+    ]
+  },
+  "numerical_boundaries": {
+    "approved_and_historical_source_values_modified": false,
+    "competing_DS023_DS047_historical_records_silently_selected": false,
+    "new_narrative_ranking_hold_ids": [
+      "DS011",
+      "DS040",
+      "DS042",
+      "DS043"
+    ],
+    "hold_reason": "Conflicting text inputs not silently resolved. Exact approved manual visuals remain usable; no new approval or replacement garment is implied."
+  },
+  "testing_scope": {
+    "browser": "144.0.7559.96",
+    "transport": "Exact standalone HTML loaded with Playwright set_content; assets embedded; no page resource replacement",
+    "local_storage": "Persistence/reopen/error semantics tested with interface backends; actual UI handlers tested in memory-only browser origin. Not a browser restart/hosted persistence certification.",
+    "not_tested": [
+      "Hosted delivery",
+      "Physical iPhone",
+      "Safari",
+      "Full 2213-state new browser sweep",
+      "Other suit/blazer combinations",
+      "Watch image layers"
+    ],
+    "prior_full_2213_browser_validation": "Preserved historical evidence, not rerun or reset by this operation"
+  },
+  "preserved": {
+    "original_archives_and_html": "All four rehashed unchanged after implementation and tests",
+    "production_application_modified": false,
+    "github_write": false,
+    "deployment": false,
+    "garments_regenerated": false,
+    "approval_queue_reopened": false,
+    "production_history_read_or_reset": false
+  },
+  "test_evidence": [
+    "evidence/FUNCTIONAL_TESTS.json",
+    "evidence/BROWSER_TESTS.json",
+    "evidence/SOURCE_ORIGINS.json",
+    "evidence/ORIGINAL_INPUT_PRESERVATION.json"
+  ]
+}

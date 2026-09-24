@@ -1,0 +1,256 @@
+{
+  "schema": "hewrs.open-collar-source-derivation.v1_13",
+  "new_runtime_asset": {
+    "path": "assets/bf144ba9d31a8f1234bf5a308d98b44facd495d2b53c5b4383e256ea35bfa3df.png",
+    "sha256": "bf144ba9d31a8f1234bf5a308d98b44facd495d2b53c5b4383e256ea35bfa3df",
+    "bytes": 459577,
+    "canvas": [
+      996,
+      2748
+    ],
+    "role": "DS001_DS014_SOURCE_DERIVED_OPEN_COLLAR_FULL_SHIRT"
+  },
+  "status": "NEW_SOURCE_DERIVED_INTEGRATION_ASSET_NOT_RECOVERED_ORIGINAL",
+  "source_basis": {
+    "full_shirt_tied_sha256": "9ee19fbd0fead02dd4e0b8d89d26d89052810d7b9bee4fdf17f3b470983602c7",
+    "original_pre_tie_reconstruction_sha256": "ca2129644fd1bf6cc110215b89818abdb6003f7a0348b9c973c213d2dbdd053c",
+    "pre_tie_original_inputs": {
+      "avatar/avatar-armL.webp": "1f770695d5b6b243138e4cb54c97a887847eae7038eb1de33278a649ba263f97",
+      "avatar/avatar-armR.webp": "69d2db5041903f849de0a087f31205f6767b2b429c1ecddac69fef83576d83a2",
+      "avatar/base-front_CANONICAL_996x2748_FROM_PRODUCTION.png": "3342a604ab2128bce3bcb4993da8258d2823da17f0bd144d5e0b3ead160736f4",
+      "catalogue.json": "d14835a00b107ab4edd66255693cf402befd32e192678a68213c0448bdd7cc53",
+      "catalogue_photos/sh-002-000.jpg": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015"
+    },
+    "original_code_hashes": {
+      "all47.py": "2e0968ef43444b57b1e9bb90f1685a2d1464fa7018845e6192467caa4cd933eb",
+      "all47_PRE_BLADEFIX.py": "41aea27de54187d982edde05cbcc83c7af366806d39f77a4d736326f02a3d6f8",
+      "assemble_shirt.py": "c3c2d92061bf48eaee7cc72d9e72405ef6dead2fc80fa9ad770c0136b7dce563",
+      "blade_fix.py": "12ed0a3fa0988ddc4b2f59f5f3f790d9a596abddc92176ed8ca1432d4dc97240",
+      "collar3.py": "c1aed502fd07de3fc1b3d797c94b75912e765f163ce42b01c13bad9000b0adf1",
+      "knot6.py": "92d231eff108b7bdf43417f45e0ab988ddae60e2449707c9e9e34dd7bd0aae93",
+      "knot7.py": "c1d9772682cc4ff14fd4c78f4e60ff7038db3cd788379eb2528611437cae68e8",
+      "knot_r3.py": "8df86b7d7276a7a17b171803ade341cd349ce032a293952bd747000589b41853",
+      "preflight.py": "a369dca6b611dc0b176a07fc8500e48545c94dd08dfdd1ef193218be8f3b8492",
+      "shirt_addendum.py": "f889d4ae2d31f54410d842d836c365c5d95747536382d94d0f7117d76db3a474",
+      "shirt_cloth.py": "bef06a39b90654410610c51178cebe0818d54fcbb3611cd6fd60cef611277669",
+      "shirt_hires.py": "075f278561f1ca22906dbf384a42e16ef6de83706ff446513c257716b2559cda",
+      "shirt_hires_PRE_COVER.py": "228d666b6fba8e69ce988c3aa22a4a19e12dacfd8ae72cca3f755c353707a11d",
+      "shirt_photo_cloth.py": "9a7f211314f5ca09901d44b1653b31b164ac2233552e4c7715849c7c761cc16f",
+      "sleeve.py": "144b7854efca6fb21b4b08a4afd10cb1fe10c7c20cf70f5c3189a3ac6e0140bf",
+      "sleeve_render.py": "ad6710bfbf18e532b78866475b623c93fd1ce4d40d38e9caf0295632de1dbee8",
+      "test_guards.py": "604d2b2046323edf8e091b9a2453304d632f788cf2baab4055ee9b7036a84329",
+      "tie_source.py": "4b78d1081270f54b447647edc9699a498177ed3a07831b88b2197fb8b9464785",
+      "torso.py": "ba72ac53d8bed9984cf1785ef1f706a27f26f13b6ff0e2c5959a9b95529d5e03"
+    },
+    "current_open_collar_components": {
+      "body": {
+        "url": "assets/original_ids/DS001/no_tie/DS001_BODY.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "sha256": "da5bb883ad62277c394a8f7196514c1315467193b5170c017cb1fd0914fc5476",
+        "role": "body",
+        "alpha_bounds": [
+          350,
+          416,
+          650,
+          837
+        ],
+        "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE"
+      },
+      "rear": {
+        "url": "assets/original_ids/DS001/no_tie/DS001_REAR.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "role": "rear",
+        "alpha_bounds": null,
+        "evidence_status": "NO_SOURCE_REAR_FABRIC"
+      },
+      "left": {
+        "url": "assets/original_ids/DS001/no_tie/DS001_LEFT.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "sha256": "fcfc66292f61b65ce5b9669d2acc254d847d809be0f90efcf89bd317f7c38a9e",
+        "role": "left",
+        "alpha_bounds": [
+          376,
+          405,
+          484,
+          525
+        ],
+        "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE"
+      },
+      "right": {
+        "url": "assets/original_ids/DS001/no_tie/DS001_RIGHT.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "sha256": "7dc82da051699dd24fe7ffc5971185f324167dce06ae8202782f05e470eaac9f",
+        "role": "right",
+        "alpha_bounds": [
+          528,
+          415,
+          607,
+          525
+        ],
+        "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE"
+      },
+      "left_cuff": {
+        "url": "assets/original_ids/DS001/no_tie/DS001_LEFT_CUFF.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "role": "left_cuff",
+        "alpha_bounds": null,
+        "evidence_status": "UNAVAILABLE_CUFF_NO_SUBSTITUTE"
+      },
+      "right_cuff": {
+        "url": "assets/original_ids/DS001/no_tie/DS001_RIGHT_CUFF.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "role": "right_cuff",
+        "alpha_bounds": null,
+        "evidence_status": "UNAVAILABLE_CUFF_NO_SUBSTITUTE"
+      }
+    }
+  },
+  "shared_identity_proof": {
+    "CP25_DS001_fullshirt_sha256": "eebc1e38a45646a3c2eebf457ed657f20a2ff221172a155bdb0a31bc62349345",
+    "CP25_DS014_fullshirt_sha256": "eebc1e38a45646a3c2eebf457ed657f20a2ff221172a155bdb0a31bc62349345",
+    "current_components": [
+      {
+        "mode": "tied",
+        "component": "body",
+        "DS001_sha256": "6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902",
+        "DS014_sha256": "6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902"
+      },
+      {
+        "mode": "tied",
+        "component": "rear",
+        "DS001_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "DS014_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0"
+      },
+      {
+        "mode": "tied",
+        "component": "left",
+        "DS001_sha256": "8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2",
+        "DS014_sha256": "8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2"
+      },
+      {
+        "mode": "tied",
+        "component": "right",
+        "DS001_sha256": "1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca",
+        "DS014_sha256": "1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca"
+      },
+      {
+        "mode": "tied",
+        "component": "left_cuff",
+        "DS001_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "DS014_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0"
+      },
+      {
+        "mode": "tied",
+        "component": "right_cuff",
+        "DS001_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "DS014_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0"
+      },
+      {
+        "mode": "no_tie",
+        "component": "body",
+        "DS001_sha256": "da5bb883ad62277c394a8f7196514c1315467193b5170c017cb1fd0914fc5476",
+        "DS014_sha256": "da5bb883ad62277c394a8f7196514c1315467193b5170c017cb1fd0914fc5476"
+      },
+      {
+        "mode": "no_tie",
+        "component": "rear",
+        "DS001_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "DS014_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0"
+      },
+      {
+        "mode": "no_tie",
+        "component": "left",
+        "DS001_sha256": "fcfc66292f61b65ce5b9669d2acc254d847d809be0f90efcf89bd317f7c38a9e",
+        "DS014_sha256": "fcfc66292f61b65ce5b9669d2acc254d847d809be0f90efcf89bd317f7c38a9e"
+      },
+      {
+        "mode": "no_tie",
+        "component": "right",
+        "DS001_sha256": "7dc82da051699dd24fe7ffc5971185f324167dce06ae8202782f05e470eaac9f",
+        "DS014_sha256": "7dc82da051699dd24fe7ffc5971185f324167dce06ae8202782f05e470eaac9f"
+      },
+      {
+        "mode": "no_tie",
+        "component": "left_cuff",
+        "DS001_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "DS014_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0"
+      },
+      {
+        "mode": "no_tie",
+        "component": "right_cuff",
+        "DS001_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+        "DS014_sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0"
+      }
+    ],
+    "IDs_merged": false
+  },
+  "derivation_steps": [
+    "Run the supplied original DS001 White solid construction code against its exact original inputs to recover pre-tie shirt pixels. The old avatar in that intermediate is not used as the displayed avatar.",
+    "Replace the old baked tie RGB only inside the chest window using that pre-tie source, retaining the old full-shirt exterior.",
+    "Replace the old closed neckline with the current native DS001/DS014 open-collar components; native collar leaves are not rescaled.",
+    "Blend only the lower/lateral source-photo crop transition into the existing full white shirt body.",
+    "Retain all original pixels outside x345..656/y330..1197 and all rows at/below1198. Runtime uses the unchanged current avatar, existing native jacket/ownership masks, cuffs, hands, selected trousers and shoes."
+  ],
+  "pixel_scope": {
+    "permitted_box_xyxy_exclusive": [
+      345,
+      330,
+      657,
+      1198
+    ],
+    "different_pixels_vs_CP49_tied_fullshirt": 161824,
+    "different_pixels_outside_permitted_box": 0,
+    "rows_1198_to_end_unchanged": true,
+    "new_nonzero_alpha_positions_outside_old_exterior": 5,
+    "global_alpha_equality_claim": false
+  },
+  "preservation": {
+    "original_sources_overwritten": false,
+    "original_avatar_geometry_modified": false,
+    "original_suit_composition_modified": false,
+    "model_image_generation_used": false,
+    "whole_wardrobe_regenerated": false
+  },
+  "commands": [
+    "python tools/reconstruct_ds001_pre_tie.py",
+    "python tools/build_open_collar.py --check"
+  ],
+  "limits": [
+    "Original sleeve shading and upper-trouser waistband remain; this operation does not cosmetically repair them.",
+    "This source connection supports DS001/DS014 only outside suits. It is not 50 full-shirt/open-collar connections.",
+    "Pixel equality to an independent composition tests assembly, not newly granted owner approval."
+  ]
+}

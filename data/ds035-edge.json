@@ -1,0 +1,130 @@
+{
+  "schema": "hewrs.ds035.s11.edge.v1_5",
+  "canvas": [
+    996,
+    2748
+  ],
+  "roi": [
+    340,
+    350,
+    660,
+    950
+  ],
+  "source_shirt_id": "DS035",
+  "owner_instruction_utc": "2026-09-22T17:07:54Z",
+  "owner_appearance_approval_claim": false,
+  "wider_suit_ids": [
+    "S02",
+    "S03",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S17",
+    "S18"
+  ],
+  "original_body_hashes": {
+    "tied": "134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212",
+    "no_tie": "319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407"
+  },
+  "operation": "Local RGB edge cleanup after existing coverage; residual transparent dots filled only inside the same edge mask; selected tie support excluded; true jacket antialiasing recomposed with its original RGB and alpha.",
+  "limits": [
+    "DS035 only",
+    "S11-template suits only",
+    "NO_TIE and 47 selectable ties only",
+    "No change to source images, wardrobe IDs, geometry, scoring or history"
+  ],
+  "method": {
+    "mask": "14-pixel inward corridor from prior S05 edge to S11 opening, image-right x>=490,y=430..820; 3-pixel inner feather",
+    "collar_protection": "All collar supports except the recorded outer non-fabric fringe of the right-collar cutout are excluded. White collar shape and all neck/head pixels stay unchanged.",
+    "right_collar_fringe_rule": "x>=570, y=438..518, within four source pixels of the old jacket edge, nonzero right-collar alpha and minimum RGB <175",
+    "donor": "Current mode DS035 body; DS035 NO_TIE body below y=656 for tied mode where tied cloth is absent; opaque neutral pixels minRGB>185 and channel spread<7, more than 16 pixels inside original jacket boundary, x>480",
+    "interpolation": "Nearest admissible donor with 1.25-pixel Gaussian smoothing of derived colour field only; original RGB is not blurred"
+  },
+  "states": {
+    "tied": {
+      "url": "assets/b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393.png",
+      "sha256": "b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393",
+      "rect": [
+        0,
+        0,
+        996,
+        2748
+      ],
+      "role": "DS035_S11_TIED_RIGHT_EDGE_CLEANUP"
+    },
+    "no_tie": {
+      "url": "assets/ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81.png",
+      "sha256": "ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81",
+      "rect": [
+        0,
+        0,
+        996,
+        2748
+      ],
+      "role": "DS035_S11_NO_TIE_RIGHT_EDGE_CLEANUP"
+    }
+  },
+  "measurements": {
+    "tied": {
+      "patch_pixels": 8684,
+      "opaque_patch_pixels": 8382,
+      "bbox_xyxy": [
+        490,
+        430,
+        622,
+        821
+      ],
+      "right_collar_nonfabric_fringe_pixels": 778,
+      "protected_support_overlap": 0,
+      "donor_pixels": 3849,
+      "minimum_donor_RGB": 186,
+      "maximum_donor_channel_spread": 6
+    },
+    "no_tie": {
+      "patch_pixels": 10645,
+      "opaque_patch_pixels": 9738,
+      "bbox_xyxy": [
+        490,
+        430,
+        622,
+        821
+      ],
+      "right_collar_nonfabric_fringe_pixels": 85,
+      "protected_support_overlap": 0,
+      "donor_pixels": 11491,
+      "minimum_donor_RGB": 186,
+      "maximum_donor_channel_spread": 6
+    }
+  },
+  "assetPaths": {
+    "b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393": "assets/b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393.png",
+    "ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81": "assets/ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81.png"
+  },
+  "input_hashes": {
+    "assets/91191f4b2729b7451683e870fc715862392f4b35b4afc34d19591ce48740f80a.png": "91191f4b2729b7451683e870fc715862392f4b35b4afc34d19591ce48740f80a",
+    "assets/f8b9003a5bc194b642f996c0fadcf1c2e8e97dba0cfc3c6260e5555ee0835ba4.png": "f8b9003a5bc194b642f996c0fadcf1c2e8e97dba0cfc3c6260e5555ee0835ba4",
+    "data/reference/S11_CONTROL_ALPHA.png": "d9e2ed2da81b8fa8305a4bbccbb039e1e38af9745e8571ee4d96b1b81e4e1e76",
+    "assets/134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212.png": "134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212",
+    "assets/63dc1c4431fd24c1422d6b53c401c118d1e18bf3187bc1a2f9ef1147461feb90.png": "63dc1c4431fd24c1422d6b53c401c118d1e18bf3187bc1a2f9ef1147461feb90",
+    "assets/8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34.png": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+    "assets/3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9.png": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+    "assets/d5ea70b559aa5aacde9a6d2c01359e2623cf47a58b3297ac18b69ea154d56058.png": "d5ea70b559aa5aacde9a6d2c01359e2623cf47a58b3297ac18b69ea154d56058",
+    "assets/c432067c66236c3eb7de5b5cfdbcdce4ab6d2cbda6625e622cf260ed53d6f096.png": "c432067c66236c3eb7de5b5cfdbcdce4ab6d2cbda6625e622cf260ed53d6f096",
+    "assets/a79f69dc1f31ea956d77e83d96e496235e012188bd6799275b8854c00e582726.png": "a79f69dc1f31ea956d77e83d96e496235e012188bd6799275b8854c00e582726",
+    "assets/fc36f9d5e8bb62a39265e6504f6d95498cbea2b9222e0837047e6aebe3e2ffcb.png": "fc36f9d5e8bb62a39265e6504f6d95498cbea2b9222e0837047e6aebe3e2ffcb",
+    "assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+    "assets/47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918.png": "47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918",
+    "assets/319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407.png": "319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407",
+    "assets/c21b07a9dc31e11f2f5b211400a65d81ca24408af375398599520cfd3dec6da1.png": "c21b07a9dc31e11f2f5b211400a65d81ca24408af375398599520cfd3dec6da1",
+    "assets/f8580cdca4073f1e09bad276ad5d09f80602b4f2159a6a7f4cc50398cc4421a3.png": "f8580cdca4073f1e09bad276ad5d09f80602b4f2159a6a7f4cc50398cc4421a3",
+    "assets/733414fa9d8d65171f3d8d235fea76de2da88dacc3b4df68bcdecd428c4351a5.png": "733414fa9d8d65171f3d8d235fea76de2da88dacc3b4df68bcdecd428c4351a5",
+    "assets/a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e.png": "a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e"
+  }
+}

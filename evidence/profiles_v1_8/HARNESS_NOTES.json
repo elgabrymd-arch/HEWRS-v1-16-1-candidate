@@ -1,0 +1,13 @@
+{
+  "preliminary_attempts": [
+    {
+      "status": "aborted",
+      "cause": "Image preload evaluate returned accumulated map, causing excessive serialization. Changed test helper to return undefined; no application change."
+    },
+    {
+      "status": "test-harness failure",
+      "cause": "Playwright wait_for_function passed a string expression that required CSP-disallowed eval. Changed waits to function predicates. Application CSP not weakened."
+    }
+  ],
+  "only_complete_final_browser_run_counted": true
+}
