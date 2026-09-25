@@ -1,0 +1,3169 @@
+{
+  "schema": "hewrs.picker-layout.chromium.v1_16_4",
+  "scope": "Actual scripts/images in Chromium. Simulated mobile dimensions and explicit synthetic VisualViewport. Not physical Safari, keyboard, hosted or browser-restart certification.",
+  "passed": 25,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Updated application and existing renderer load",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "16 original outfit frames including DS023 remain pixel-identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Home page remains pixel-identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zero-basis stress recreates collapsed body in the old build",
+      "passed": true,
+      "detail": {
+        "sheet": {
+          "x": 0,
+          "y": 543,
+          "width": 390,
+          "height": 157,
+          "bottom": 700,
+          "right": 390,
+          "client": 156,
+          "scroll": 156
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 620,
+          "width": 345.125,
+          "height": 10,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 10,
+          "scroll": 529
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 697.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 740.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 863.5625,
+          "width": 341.125,
+          "height": 280,
+          "bottom": 1143.5625,
+          "right": 365.5625,
+          "client": 280,
+          "scroll": 2039
+        },
+        "active": "picker-search",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      }
+    },
+    {
+      "name": "Definite picker height remains usable under the same zero-basis stress",
+      "passed": true,
+      "detail": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 390,
+          "height": 684,
+          "bottom": 700,
+          "right": 390,
+          "client": 683,
+          "scroll": 683
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "width": 345.125,
+          "height": 537,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 537,
+          "scroll": 2543
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 170.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 336.5625,
+          "width": 341.125,
+          "height": 2294.515625,
+          "bottom": 2631.078125,
+          "right": 365.5625,
+          "client": 2295,
+          "scroll": 2295
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      }
+    },
+    {
+      "name": "All six pickers are scrollable with visible actions at 320x568",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All six pickers are scrollable with visible actions at 375x667",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All six pickers are scrollable with visible actions at 390x700",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All six pickers are scrollable with visible actions at 430x820",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All six pickers are scrollable with visible actions at 844x390",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All six pickers are scrollable with visible actions at 390x320",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Desktop search still receives keyboard focus",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Search/select then Cancel preserves every preference",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Apply changes only the selected shirt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Empty filter results remain explicit; Apply is disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Picker identity count and gating for suit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Picker identity count and gating for blazer",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Picker identity count and gating for shirt-only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Wardrobe uses the same definite, scrollable list sheet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Non-list dialogs keep content-sized panels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Modal interactions do not change wear/session storage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Synthetic keyboard open, panned viewport and keyboard close preserve usable list/actions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pinch zoom does not trigger counter-scaling of the sheet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Closing removes temporary viewport properties",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No uncaught runtime errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "layout_cases": [
+    {
+      "category": "topwear",
+      "viewport": [
+        320,
+        568
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 320,
+          "height": 552,
+          "bottom": 568,
+          "right": 320,
+          "client": 551,
+          "scroll": 551
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "width": 292.40625,
+          "height": 405,
+          "bottom": 498,
+          "right": 306.203125,
+          "client": 405,
+          "scroll": 2649
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "width": 292.40625,
+          "height": 44,
+          "bottom": 552,
+          "right": 306.203125,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 15.796875,
+          "y": 185.78125,
+          "width": 288.40625,
+          "height": 43,
+          "bottom": 228.78125,
+          "right": 304.203125,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 15.796875,
+          "y": 351.953125,
+          "width": 288.40625,
+          "height": 2385.453125,
+          "bottom": 2737.40625,
+          "right": 304.203125,
+          "client": 2385,
+          "scroll": 2385
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        320,
+        568
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 320,
+          "height": 552,
+          "bottom": 568,
+          "right": 320,
+          "client": 551,
+          "scroll": 551
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "width": 292.40625,
+          "height": 405,
+          "bottom": 498,
+          "right": 306.203125,
+          "client": 405,
+          "scroll": 4123
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "width": 292.40625,
+          "height": 44,
+          "bottom": 552,
+          "right": 306.203125,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 15.796875,
+          "y": 185.78125,
+          "width": 288.40625,
+          "height": 43,
+          "bottom": 228.78125,
+          "right": 304.203125,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 15.796875,
+          "y": 422.34375,
+          "width": 288.40625,
+          "height": 3788.15625,
+          "bottom": 4210.5,
+          "right": 304.203125,
+          "client": 3788,
+          "scroll": 3788
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        320,
+        568
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 320,
+          "height": 552,
+          "bottom": 568,
+          "right": 320,
+          "client": 551,
+          "scroll": 551
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "width": 292.40625,
+          "height": 405,
+          "bottom": 498,
+          "right": 306.203125,
+          "client": 405,
+          "scroll": 3345
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "width": 292.40625,
+          "height": 44,
+          "bottom": 552,
+          "right": 306.203125,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 15.796875,
+          "y": 185.78125,
+          "width": 288.40625,
+          "height": 43,
+          "bottom": 228.78125,
+          "right": 304.203125,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 15.796875,
+          "y": 422.34375,
+          "width": 288.40625,
+          "height": 3010.75,
+          "bottom": 3433.09375,
+          "right": 304.203125,
+          "client": 3011,
+          "scroll": 3011
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        320,
+        568
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 320,
+          "height": 552,
+          "bottom": 568,
+          "right": 320,
+          "client": 551,
+          "scroll": 551
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "width": 292.40625,
+          "height": 405,
+          "bottom": 498,
+          "right": 306.203125,
+          "client": 405,
+          "scroll": 2756
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "width": 292.40625,
+          "height": 44,
+          "bottom": 552,
+          "right": 306.203125,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 15.796875,
+          "y": 185.78125,
+          "width": 288.40625,
+          "height": 43,
+          "bottom": 228.78125,
+          "right": 304.203125,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 15.796875,
+          "y": 351.953125,
+          "width": 288.40625,
+          "height": 2492.421875,
+          "bottom": 2844.375,
+          "right": 304.203125,
+          "client": 2492,
+          "scroll": 2492
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        320,
+        568
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 320,
+          "height": 552,
+          "bottom": 568,
+          "right": 320,
+          "client": 551,
+          "scroll": 551
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "width": 292.40625,
+          "height": 405,
+          "bottom": 498,
+          "right": 306.203125,
+          "client": 405,
+          "scroll": 1777
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "width": 292.40625,
+          "height": 44,
+          "bottom": 552,
+          "right": 306.203125,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 15.796875,
+          "y": 185.78125,
+          "width": 288.40625,
+          "height": 43,
+          "bottom": 228.78125,
+          "right": 304.203125,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 15.796875,
+          "y": 351.953125,
+          "width": 288.40625,
+          "height": 1513.0625,
+          "bottom": 1865.015625,
+          "right": 304.203125,
+          "client": 1513,
+          "scroll": 1513
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        320,
+        568
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 320,
+          "height": 552,
+          "bottom": 568,
+          "right": 320,
+          "client": 551,
+          "scroll": 551
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "width": 292.40625,
+          "height": 405,
+          "bottom": 498,
+          "right": 306.203125,
+          "client": 405,
+          "scroll": 3593
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "width": 292.40625,
+          "height": 44,
+          "bottom": 552,
+          "right": 306.203125,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 15.796875,
+          "y": 185.78125,
+          "width": 288.40625,
+          "height": 43,
+          "bottom": 228.78125,
+          "right": 304.203125,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 15.796875,
+          "y": 336.5625,
+          "width": 288.40625,
+          "height": 3343.984375,
+          "bottom": 3680.546875,
+          "right": 304.203125,
+          "client": 3344,
+          "scroll": 3344
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        375,
+        667
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 375,
+          "height": 651,
+          "bottom": 667,
+          "right": 375,
+          "client": 650,
+          "scroll": 650
+        },
+        "body": {
+          "x": 21.625,
+          "y": 93,
+          "width": 331.75,
+          "height": 504,
+          "bottom": 597,
+          "right": 353.375,
+          "client": 504,
+          "scroll": 2598
+        },
+        "actions": {
+          "x": 21.625,
+          "y": 607,
+          "width": 331.75,
+          "height": 44,
+          "bottom": 651,
+          "right": 353.375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 23.625,
+          "y": 170.390625,
+          "width": 327.75,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 351.375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 23.625,
+          "y": 336.5625,
+          "width": 327.75,
+          "height": 2349.078125,
+          "bottom": 2685.640625,
+          "right": 351.375,
+          "client": 2349,
+          "scroll": 2349
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        375,
+        667
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 375,
+          "height": 651,
+          "bottom": 667,
+          "right": 375,
+          "client": 650,
+          "scroll": 650
+        },
+        "body": {
+          "x": 21.625,
+          "y": 93,
+          "width": 331.75,
+          "height": 504,
+          "bottom": 597,
+          "right": 353.375,
+          "client": 504,
+          "scroll": 4034
+        },
+        "actions": {
+          "x": 21.625,
+          "y": 607,
+          "width": 331.75,
+          "height": 44,
+          "bottom": 651,
+          "right": 353.375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 23.625,
+          "y": 170.390625,
+          "width": 327.75,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 351.375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 23.625,
+          "y": 406.953125,
+          "width": 327.75,
+          "height": 3715.40625,
+          "bottom": 4122.359375,
+          "right": 351.375,
+          "client": 3715,
+          "scroll": 3715
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        375,
+        667
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 375,
+          "height": 651,
+          "bottom": 667,
+          "right": 375,
+          "client": 650,
+          "scroll": 650
+        },
+        "body": {
+          "x": 21.625,
+          "y": 93,
+          "width": 331.75,
+          "height": 504,
+          "bottom": 597,
+          "right": 353.375,
+          "client": 504,
+          "scroll": 3330
+        },
+        "actions": {
+          "x": 21.625,
+          "y": 607,
+          "width": 331.75,
+          "height": 44,
+          "bottom": 651,
+          "right": 353.375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 23.625,
+          "y": 170.390625,
+          "width": 327.75,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 351.375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 23.625,
+          "y": 406.953125,
+          "width": 327.75,
+          "height": 3010.75,
+          "bottom": 3417.703125,
+          "right": 351.375,
+          "client": 3011,
+          "scroll": 3011
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        375,
+        667
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 375,
+          "height": 651,
+          "bottom": 667,
+          "right": 375,
+          "client": 650,
+          "scroll": 650
+        },
+        "body": {
+          "x": 21.625,
+          "y": 93,
+          "width": 331.75,
+          "height": 504,
+          "bottom": 597,
+          "right": 353.375,
+          "client": 504,
+          "scroll": 2650
+        },
+        "actions": {
+          "x": 21.625,
+          "y": 607,
+          "width": 331.75,
+          "height": 44,
+          "bottom": 651,
+          "right": 353.375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 23.625,
+          "y": 170.390625,
+          "width": 327.75,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 351.375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 23.625,
+          "y": 336.5625,
+          "width": 327.75,
+          "height": 2401.484375,
+          "bottom": 2738.046875,
+          "right": 351.375,
+          "client": 2401,
+          "scroll": 2401
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        375,
+        667
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 375,
+          "height": 651,
+          "bottom": 667,
+          "right": 375,
+          "client": 650,
+          "scroll": 650
+        },
+        "body": {
+          "x": 21.625,
+          "y": 93,
+          "width": 331.75,
+          "height": 504,
+          "bottom": 597,
+          "right": 353.375,
+          "client": 504,
+          "scroll": 1762
+        },
+        "actions": {
+          "x": 21.625,
+          "y": 607,
+          "width": 331.75,
+          "height": 44,
+          "bottom": 651,
+          "right": 353.375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 23.625,
+          "y": 170.390625,
+          "width": 327.75,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 351.375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 23.625,
+          "y": 336.5625,
+          "width": 327.75,
+          "height": 1513.0625,
+          "bottom": 1849.625,
+          "right": 351.375,
+          "client": 1513,
+          "scroll": 1513
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        375,
+        667
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 375,
+          "height": 651,
+          "bottom": 667,
+          "right": 375,
+          "client": 650,
+          "scroll": 650
+        },
+        "body": {
+          "x": 21.625,
+          "y": 93,
+          "width": 331.75,
+          "height": 504,
+          "bottom": 597,
+          "right": 353.375,
+          "client": 504,
+          "scroll": 3486
+        },
+        "actions": {
+          "x": 21.625,
+          "y": 607,
+          "width": 331.75,
+          "height": 44,
+          "bottom": 651,
+          "right": 353.375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 23.625,
+          "y": 170.390625,
+          "width": 327.75,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 351.375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 23.625,
+          "y": 321.171875,
+          "width": 327.75,
+          "height": 3253.046875,
+          "bottom": 3574.21875,
+          "right": 351.375,
+          "client": 3253,
+          "scroll": 3253
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        390,
+        700
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 390,
+          "height": 684,
+          "bottom": 700,
+          "right": 390,
+          "client": 683,
+          "scroll": 683
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "width": 345.125,
+          "height": 537,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 537,
+          "scroll": 2543
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 170.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 336.5625,
+          "width": 341.125,
+          "height": 2294.515625,
+          "bottom": 2631.078125,
+          "right": 365.5625,
+          "client": 2295,
+          "scroll": 2295
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        390,
+        700
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 390,
+          "height": 684,
+          "bottom": 700,
+          "right": 390,
+          "client": 683,
+          "scroll": 683
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "width": 345.125,
+          "height": 537,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 537,
+          "scroll": 3962
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 170.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 406.953125,
+          "width": 341.125,
+          "height": 3642.65625,
+          "bottom": 4049.609375,
+          "right": 365.5625,
+          "client": 3643,
+          "scroll": 3643
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        390,
+        700
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 390,
+          "height": 684,
+          "bottom": 700,
+          "right": 390,
+          "client": 683,
+          "scroll": 683
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "width": 345.125,
+          "height": 537,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 537,
+          "scroll": 3330
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 170.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 406.953125,
+          "width": 341.125,
+          "height": 3010.75,
+          "bottom": 3417.703125,
+          "right": 365.5625,
+          "client": 3011,
+          "scroll": 3011
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        390,
+        700
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 390,
+          "height": 684,
+          "bottom": 700,
+          "right": 390,
+          "client": 683,
+          "scroll": 683
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "width": 345.125,
+          "height": 537,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 537,
+          "scroll": 2632
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 170.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 336.5625,
+          "width": 341.125,
+          "height": 2383.296875,
+          "bottom": 2719.859375,
+          "right": 365.5625,
+          "client": 2383,
+          "scroll": 2383
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        390,
+        700
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 390,
+          "height": 684,
+          "bottom": 700,
+          "right": 390,
+          "client": 683,
+          "scroll": 683
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "width": 345.125,
+          "height": 537,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 537,
+          "scroll": 1762
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 170.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 336.5625,
+          "width": 341.125,
+          "height": 1513.0625,
+          "bottom": 1849.625,
+          "right": 365.5625,
+          "client": 1513,
+          "scroll": 1513
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        390,
+        700
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "width": 390,
+          "height": 684,
+          "bottom": 700,
+          "right": 390,
+          "client": 683,
+          "scroll": 683
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "width": 345.125,
+          "height": 537,
+          "bottom": 630,
+          "right": 367.5625,
+          "client": 537,
+          "scroll": 3468
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 684,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 170.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 213.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 321.171875,
+          "width": 341.125,
+          "height": 3234.859375,
+          "bottom": 3556.03125,
+          "right": 365.5625,
+          "client": 3235,
+          "scroll": 3235
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 700,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        430,
+        820
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "width": 430,
+          "height": 760,
+          "bottom": 820,
+          "right": 430,
+          "client": 759,
+          "scroll": 759
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "width": 380.71875,
+          "height": 613,
+          "bottom": 750,
+          "right": 405.359375,
+          "client": 613,
+          "scroll": 2416
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "width": 380.71875,
+          "height": 44,
+          "bottom": 804,
+          "right": 405.359375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 26.640625,
+          "y": 214.390625,
+          "width": 376.71875,
+          "height": 43,
+          "bottom": 257.390625,
+          "right": 403.359375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 26.640625,
+          "y": 380.5625,
+          "width": 376.71875,
+          "height": 2167.203125,
+          "bottom": 2547.765625,
+          "right": 403.359375,
+          "client": 2167,
+          "scroll": 2167
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 820,
+          "width": 430
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        430,
+        820
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "width": 430,
+          "height": 760,
+          "bottom": 820,
+          "right": 430,
+          "client": 759,
+          "scroll": 759
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "width": 380.71875,
+          "height": 613,
+          "bottom": 750,
+          "right": 405.359375,
+          "client": 613,
+          "scroll": 3925
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "width": 380.71875,
+          "height": 44,
+          "bottom": 804,
+          "right": 405.359375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 26.640625,
+          "y": 214.390625,
+          "width": 376.71875,
+          "height": 43,
+          "bottom": 257.390625,
+          "right": 403.359375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 26.640625,
+          "y": 450.953125,
+          "width": 376.71875,
+          "height": 3606.28125,
+          "bottom": 4057.234375,
+          "right": 403.359375,
+          "client": 3606,
+          "scroll": 3606
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 820,
+          "width": 430
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        430,
+        820
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "width": 430,
+          "height": 760,
+          "bottom": 820,
+          "right": 430,
+          "client": 759,
+          "scroll": 759
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "width": 380.71875,
+          "height": 613,
+          "bottom": 750,
+          "right": 405.359375,
+          "client": 613,
+          "scroll": 3330
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "width": 380.71875,
+          "height": 44,
+          "bottom": 804,
+          "right": 405.359375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 26.640625,
+          "y": 214.390625,
+          "width": 376.71875,
+          "height": 43,
+          "bottom": 257.390625,
+          "right": 403.359375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 26.640625,
+          "y": 450.953125,
+          "width": 376.71875,
+          "height": 3010.75,
+          "bottom": 3461.703125,
+          "right": 403.359375,
+          "client": 3011,
+          "scroll": 3011
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 820,
+          "width": 430
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        430,
+        820
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "width": 430,
+          "height": 760,
+          "bottom": 820,
+          "right": 430,
+          "client": 759,
+          "scroll": 759
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "width": 380.71875,
+          "height": 613,
+          "bottom": 750,
+          "right": 405.359375,
+          "client": 613,
+          "scroll": 2577
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "width": 380.71875,
+          "height": 44,
+          "bottom": 804,
+          "right": 405.359375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 26.640625,
+          "y": 214.390625,
+          "width": 376.71875,
+          "height": 43,
+          "bottom": 257.390625,
+          "right": 403.359375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 26.640625,
+          "y": 380.5625,
+          "width": 376.71875,
+          "height": 2328.734375,
+          "bottom": 2709.296875,
+          "right": 403.359375,
+          "client": 2329,
+          "scroll": 2329
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 820,
+          "width": 430
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        430,
+        820
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "width": 430,
+          "height": 760,
+          "bottom": 820,
+          "right": 430,
+          "client": 759,
+          "scroll": 759
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "width": 380.71875,
+          "height": 613,
+          "bottom": 750,
+          "right": 405.359375,
+          "client": 613,
+          "scroll": 1743
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "width": 380.71875,
+          "height": 44,
+          "bottom": 804,
+          "right": 405.359375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 26.640625,
+          "y": 214.390625,
+          "width": 376.71875,
+          "height": 43,
+          "bottom": 257.390625,
+          "right": 403.359375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 26.640625,
+          "y": 380.5625,
+          "width": 376.71875,
+          "height": 1494.875,
+          "bottom": 1875.4375,
+          "right": 403.359375,
+          "client": 1495,
+          "scroll": 1495
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 820,
+          "width": 430
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        430,
+        820
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "width": 430,
+          "height": 760,
+          "bottom": 820,
+          "right": 430,
+          "client": 759,
+          "scroll": 759
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "width": 380.71875,
+          "height": 613,
+          "bottom": 750,
+          "right": 405.359375,
+          "client": 613,
+          "scroll": 3432
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "width": 380.71875,
+          "height": 44,
+          "bottom": 804,
+          "right": 405.359375,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 26.640625,
+          "y": 214.390625,
+          "width": 376.71875,
+          "height": 43,
+          "bottom": 257.390625,
+          "right": 403.359375,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 26.640625,
+          "y": 365.171875,
+          "width": 376.71875,
+          "height": 3198.484375,
+          "bottom": 3563.65625,
+          "right": 403.359375,
+          "client": 3198,
+          "scroll": 3198
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 820,
+          "width": 430
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        844,
+        390
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "width": 540,
+          "height": 382,
+          "bottom": 390,
+          "right": 692,
+          "client": 381,
+          "scroll": 381
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "width": 490,
+          "height": 235,
+          "bottom": 320,
+          "right": 667,
+          "client": 235,
+          "scroll": 2309
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "width": 490,
+          "height": 44,
+          "bottom": 374,
+          "right": 667,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 179,
+          "y": 162.390625,
+          "width": 486,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 665,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 179,
+          "y": 313.171875,
+          "width": 486,
+          "height": 2076.265625,
+          "bottom": 2389.4375,
+          "right": 665,
+          "client": 2076,
+          "scroll": 2076
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 390,
+          "width": 844
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        844,
+        390
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "width": 540,
+          "height": 382,
+          "bottom": 390,
+          "right": 692,
+          "client": 381,
+          "scroll": 381
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "width": 490,
+          "height": 235,
+          "bottom": 320,
+          "right": 667,
+          "client": 235,
+          "scroll": 3873
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "width": 490,
+          "height": 44,
+          "bottom": 374,
+          "right": 667,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 179,
+          "y": 162.390625,
+          "width": 486,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 665,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 179,
+          "y": 383.5625,
+          "width": 486,
+          "height": 3569.90625,
+          "bottom": 3953.46875,
+          "right": 665,
+          "client": 3570,
+          "scroll": 3570
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 390,
+          "width": 844
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        844,
+        390
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "width": 540,
+          "height": 382,
+          "bottom": 390,
+          "right": 692,
+          "client": 381,
+          "scroll": 381
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "width": 490,
+          "height": 235,
+          "bottom": 320,
+          "right": 667,
+          "client": 235,
+          "scroll": 3314
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "width": 490,
+          "height": 44,
+          "bottom": 374,
+          "right": 667,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 179,
+          "y": 162.390625,
+          "width": 486,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 665,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 179,
+          "y": 383.5625,
+          "width": 486,
+          "height": 3010.75,
+          "bottom": 3394.3125,
+          "right": 665,
+          "client": 3011,
+          "scroll": 3011
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 390,
+          "width": 844
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        844,
+        390
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "width": 540,
+          "height": 382,
+          "bottom": 390,
+          "right": 692,
+          "client": 381,
+          "scroll": 381
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "width": 490,
+          "height": 235,
+          "bottom": 320,
+          "right": 667,
+          "client": 235,
+          "scroll": 2453
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "width": 490,
+          "height": 44,
+          "bottom": 374,
+          "right": 667,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 179,
+          "y": 162.390625,
+          "width": 486,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 665,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 179,
+          "y": 313.171875,
+          "width": 486,
+          "height": 2219.609375,
+          "bottom": 2532.78125,
+          "right": 665,
+          "client": 2220,
+          "scroll": 2220
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 390,
+          "width": 844
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        844,
+        390
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "width": 540,
+          "height": 382,
+          "bottom": 390,
+          "right": 692,
+          "client": 381,
+          "scroll": 381
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "width": 490,
+          "height": 235,
+          "bottom": 320,
+          "right": 667,
+          "client": 235,
+          "scroll": 1728
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "width": 490,
+          "height": 44,
+          "bottom": 374,
+          "right": 667,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 179,
+          "y": 162.390625,
+          "width": 486,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 665,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 179,
+          "y": 313.171875,
+          "width": 486,
+          "height": 1494.875,
+          "bottom": 1808.046875,
+          "right": 665,
+          "client": 1495,
+          "scroll": 1495
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 390,
+          "width": 844
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        844,
+        390
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "width": 540,
+          "height": 382,
+          "bottom": 390,
+          "right": 692,
+          "client": 381,
+          "scroll": 381
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "width": 490,
+          "height": 235,
+          "bottom": 320,
+          "right": 667,
+          "client": 235,
+          "scroll": 3432
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "width": 490,
+          "height": 44,
+          "bottom": 374,
+          "right": 667,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 179,
+          "y": 162.390625,
+          "width": 486,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 665,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 179,
+          "y": 313.171875,
+          "width": 486,
+          "height": 3198.484375,
+          "bottom": 3511.65625,
+          "right": 665,
+          "client": 3198,
+          "scroll": 3198
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 390,
+          "width": 844
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        390,
+        320
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "width": 390,
+          "height": 312,
+          "bottom": 320,
+          "right": 390,
+          "client": 311,
+          "scroll": 311
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "width": 345.125,
+          "height": 165,
+          "bottom": 250,
+          "right": 367.5625,
+          "client": 165,
+          "scroll": 2543
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 304,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 162.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 328.5625,
+          "width": 341.125,
+          "height": 2294.515625,
+          "bottom": 2623.078125,
+          "right": 365.5625,
+          "client": 2295,
+          "scroll": 2295
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 320,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        390,
+        320
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "width": 390,
+          "height": 312,
+          "bottom": 320,
+          "right": 390,
+          "client": 311,
+          "scroll": 311
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "width": 345.125,
+          "height": 165,
+          "bottom": 250,
+          "right": 367.5625,
+          "client": 165,
+          "scroll": 3962
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 304,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 162.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 398.953125,
+          "width": 341.125,
+          "height": 3642.65625,
+          "bottom": 4041.609375,
+          "right": 365.5625,
+          "client": 3643,
+          "scroll": 3643
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 320,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        390,
+        320
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "width": 390,
+          "height": 312,
+          "bottom": 320,
+          "right": 390,
+          "client": 311,
+          "scroll": 311
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "width": 345.125,
+          "height": 165,
+          "bottom": 250,
+          "right": 367.5625,
+          "client": 165,
+          "scroll": 3330
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 304,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 162.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 398.953125,
+          "width": 341.125,
+          "height": 3010.75,
+          "bottom": 3409.703125,
+          "right": 365.5625,
+          "client": 3011,
+          "scroll": 3011
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 320,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        390,
+        320
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "width": 390,
+          "height": 312,
+          "bottom": 320,
+          "right": 390,
+          "client": 311,
+          "scroll": 311
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "width": 345.125,
+          "height": 165,
+          "bottom": 250,
+          "right": 367.5625,
+          "client": 165,
+          "scroll": 2632
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 304,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 162.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 328.5625,
+          "width": 341.125,
+          "height": 2383.296875,
+          "bottom": 2711.859375,
+          "right": 365.5625,
+          "client": 2383,
+          "scroll": 2383
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 320,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        390,
+        320
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "width": 390,
+          "height": 312,
+          "bottom": 320,
+          "right": 390,
+          "client": 311,
+          "scroll": 311
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "width": 345.125,
+          "height": 165,
+          "bottom": 250,
+          "right": 367.5625,
+          "client": 165,
+          "scroll": 1762
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 304,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 162.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 328.5625,
+          "width": 341.125,
+          "height": 1513.0625,
+          "bottom": 1841.625,
+          "right": 365.5625,
+          "client": 1513,
+          "scroll": 1513
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 320,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        390,
+        320
+      ],
+      "keyboard_simulated": false,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "width": 390,
+          "height": 312,
+          "bottom": 320,
+          "right": 390,
+          "client": 311,
+          "scroll": 311
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "width": 345.125,
+          "height": 165,
+          "bottom": 250,
+          "right": 367.5625,
+          "client": 165,
+          "scroll": 3468
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 304,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 162.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 313.171875,
+          "width": 341.125,
+          "height": 3234.859375,
+          "bottom": 3548.03125,
+          "right": 365.5625,
+          "client": 3235,
+          "scroll": 3235
+        },
+        "active": "fx-sheet-close",
+        "viewport": {
+          "height": 320,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "last_choice_reachable": true,
+      "touch_opens_without_search_focus": true
+    },
+    {
+      "category": "shirt",
+      "synthetic_visual_viewport": {
+        "height": 340,
+        "offsetTop": 0
+      },
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "width": 390,
+          "height": 332,
+          "bottom": 340,
+          "right": 390,
+          "client": 331,
+          "scroll": 331
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "width": 345.125,
+          "height": 185,
+          "bottom": 270,
+          "right": 367.5625,
+          "client": 185,
+          "scroll": 375
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 280,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 324,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 162.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 205.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 398.953125,
+          "width": 341.125,
+          "height": 55.578125,
+          "bottom": 454.53125,
+          "right": 365.5625,
+          "client": 56,
+          "scroll": 56
+        },
+        "active": "picker-search",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "choice_reachable": true
+    },
+    {
+      "category": "shirt",
+      "synthetic_visual_viewport": {
+        "height": 340,
+        "offsetTop": 60
+      },
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 68,
+          "width": 390,
+          "height": 332,
+          "bottom": 400,
+          "right": 390,
+          "client": 331,
+          "scroll": 331
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 145,
+          "width": 345.125,
+          "height": 185,
+          "bottom": 330,
+          "right": 367.5625,
+          "client": 185,
+          "scroll": 375
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 340,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 384,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 32.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 75.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 268.953125,
+          "width": 341.125,
+          "height": 55.578125,
+          "bottom": 324.53125,
+          "right": 365.5625,
+          "client": 56,
+          "scroll": 56
+        },
+        "active": "picker-search",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "choice_reachable": true
+    },
+    {
+      "category": "shirt",
+      "synthetic_visual_viewport": {
+        "height": 260,
+        "offsetTop": 100
+      },
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 108,
+          "width": 390,
+          "height": 252,
+          "bottom": 360,
+          "right": 390,
+          "client": 251,
+          "scroll": 251
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 185,
+          "width": 345.125,
+          "height": 105,
+          "bottom": 290,
+          "right": 367.5625,
+          "client": 105,
+          "scroll": 375
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 300,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 344,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 72.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 115.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 308.953125,
+          "width": 341.125,
+          "height": 55.578125,
+          "bottom": 364.53125,
+          "right": 365.5625,
+          "client": 56,
+          "scroll": 56
+        },
+        "active": "picker-search",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "choice_reachable": true
+    },
+    {
+      "category": "shirt",
+      "synthetic_visual_viewport": {
+        "height": 844,
+        "offsetTop": 0
+      },
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 84,
+          "width": 390,
+          "height": 760,
+          "bottom": 844,
+          "right": 390,
+          "client": 759,
+          "scroll": 759
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 161,
+          "width": 345.125,
+          "height": 613,
+          "bottom": 774,
+          "right": 367.5625,
+          "client": 613,
+          "scroll": 613
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 784,
+          "width": 345.125,
+          "height": 44,
+          "bottom": 828,
+          "right": 367.5625,
+          "client": 44,
+          "scroll": 44
+        },
+        "search": {
+          "x": 24.4375,
+          "y": 238.390625,
+          "width": 341.125,
+          "height": 43,
+          "bottom": 281.390625,
+          "right": 365.5625,
+          "client": 41,
+          "scroll": 41
+        },
+        "list": {
+          "x": 24.4375,
+          "y": 474.953125,
+          "width": 341.125,
+          "height": 55.578125,
+          "bottom": 530.53125,
+          "right": 365.5625,
+          "client": 56,
+          "scroll": 56
+        },
+        "active": "picker-search",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "sideways": false
+      },
+      "choice_reachable": true
+    }
+  ],
+  "outfit_frames": [
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "a817fee1265ae8d9f5f58d2a28a1ab5e8ad4f8d31d6ce5a8599c7bef915e889d",
+      "after": "a817fee1265ae8d9f5f58d2a28a1ab5e8ad4f8d31d6ce5a8599c7bef915e889d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "c9f7d4c7e558e4f6e244eec7675c858a717f45383c02daf0365cd70a73e04f10",
+      "after": "c9f7d4c7e558e4f6e244eec7675c858a717f45383c02daf0365cd70a73e04f10",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "b04a44081f308be044a5dc24389c83e4f93a916c08554b111e8f8dc2d9e7fad8",
+      "after": "b04a44081f308be044a5dc24389c83e4f93a916c08554b111e8f8dc2d9e7fad8",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "3600886a06d8ce1974a7076c68af167698fec49a3df7407f6a5513a87f6ff90a",
+      "after": "3600886a06d8ce1974a7076c68af167698fec49a3df7407f6a5513a87f6ff90a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "947a50c40cee2e76eea8fdaf01a5d82fb05fa14718d8651ecafb3ac77a27e0b1",
+      "after": "947a50c40cee2e76eea8fdaf01a5d82fb05fa14718d8651ecafb3ac77a27e0b1",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "e14608abe36d94cc576a71a73637652952c253c74153549bf4b5d28fbf442e21",
+      "after": "e14608abe36d94cc576a71a73637652952c253c74153549bf4b5d28fbf442e21",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "5a6e414d29cd27eb2a2195f1e8e84dfc64b63c66e97b517ccaa6fb33f3e35ac5",
+      "after": "5a6e414d29cd27eb2a2195f1e8e84dfc64b63c66e97b517ccaa6fb33f3e35ac5",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "e26db3b8585e213259de9d3b00aec995534c0ce20216b2db0f5adb5b7be45841",
+      "after": "e26db3b8585e213259de9d3b00aec995534c0ce20216b2db0f5adb5b7be45841",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "1a3863813c9dc70699a6e3bbd23a9ca89c2333656c0c7872efab94d729ce8b9e",
+      "after": "1a3863813c9dc70699a6e3bbd23a9ca89c2333656c0c7872efab94d729ce8b9e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "942101f77636f6ad159d749f068cb14182edd78db0432058622c0cc2df3a4749",
+      "after": "942101f77636f6ad159d749f068cb14182edd78db0432058622c0cc2df3a4749",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "7a65b7265570a579804d284af061bbef456c42afa556deb033ac027c2928107d",
+      "after": "7a65b7265570a579804d284af061bbef456c42afa556deb033ac027c2928107d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d7dbffcd90157b02db895cbfc9c382eee26af969de8eea0386f1a479bcd7609b",
+      "after": "d7dbffcd90157b02db895cbfc9c382eee26af969de8eea0386f1a479bcd7609b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "53eb6c3f85eca5295a339b79e6fb432f245014d844b46ba83e1e0970a57a4119",
+      "after": "53eb6c3f85eca5295a339b79e6fb432f245014d844b46ba83e1e0970a57a4119",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "37595380b69177a305a885061fd6592bab5636190f45a796081f40f30c29ee13",
+      "after": "37595380b69177a305a885061fd6592bab5636190f45a796081f40f30c29ee13",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "after": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "after": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "equal": true
+    }
+  ],
+  "errors": [],
+  "seconds": 29.88
+}

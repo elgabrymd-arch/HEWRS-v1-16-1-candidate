@@ -15,39 +15,3 @@ html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
 @media(max-width:350px){.hewrs-ui{font-size:13px}.fx-pref-grid{gap:6px}.fx-pref{padding-left:8px!important}.fx-pref-value{font-size:11px!important}.fx-mode button{font-size:10px!important}.fx-context-tile{padding-left:8px!important}.fx-weather{max-width:105px!important}.fx-context-tile strong{font-size:12px}.fx-category-card{padding:12px 10px!important}.fx-kicker{font-size:9px}.fx-sheet{padding-left:4%!important;padding-right:4%!important}}
 @media(max-height:520px){.fx-sheet{max-height:100dvh}.fx-picker-list{max-height:none}.fx-sheet-body{min-height:40px}.fx-header .fx-tagline{display:none}.fx-context{margin-top:2px}}
 @media(prefers-reduced-motion:reduce){.hewrs-ui *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-
-/* V1.16.4: modal sizing only. Preserve the original palette and all pages.
- * Content uses an explicit auto flex basis. List sheets have a definite height
- * and one scrolling body instead of two nested, potentially zero-height panes.
- */
-.hewrs-ui.fx-sheet {
-  max-height: var(--fx-visible-height, 90dvh);
-  bottom: var(--fx-keyboard-bottom, 0px);
-  overflow: hidden;
-}
-.hewrs-ui.fx-sheet[data-list-sheet="true"] {
-  height: var(--fx-list-height, min(760px, 90dvh));
-}
-.hewrs-ui.fx-sheet > .fx-sheet-head,
-.hewrs-ui.fx-sheet > .fx-handle,
-.hewrs-ui.fx-sheet > #fx-sheet-error { flex: 0 0 auto; }
-.hewrs-ui.fx-sheet > #fx-sheet-error { max-height: 64px; overflow: auto; }
-.hewrs-ui.fx-sheet > .fx-sheet-body {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  scroll-padding-block: 8px;
-}
-.hewrs-ui.fx-sheet .fx-picker-list {
-  max-height: none;
-  overflow: visible;
-}
-.hewrs-ui.fx-sheet .fx-choice { flex: 0 0 auto; }
-.hewrs-ui.fx-sheet .fx-sheet-actions { flex: 0 0 auto; }
-.hewrs-ui.fx-sheet .fx-picker-filter {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.hewrs-ui.fx-sheet .fx-picker-filter label,
-.hewrs-ui.fx-sheet .fx-picker-filter select { min-width: 0; width: 100%; }

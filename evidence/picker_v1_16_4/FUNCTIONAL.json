@@ -1,0 +1,87 @@
+{
+  "schema": "hewrs.picker-layout.functional.v1_16_4",
+  "passed": 16,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "No existing runtime image changed and no new garment artwork",
+      "passed": true,
+      "result": 705
+    },
+    {
+      "name": "All baseline source inputs, scoring, layer renderers and storage are byte-identical",
+      "passed": true,
+      "result": 73
+    },
+    {
+      "name": "Accepted original CSS is retained as an unchanged prefix",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "18 enabled non-suit IDs, 32 gated IDs, no identity order change",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "39,817 exact suit-state routes remain valid",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "Every connected non-suit ID retains all 47 ties and No Tie",
+      "passed": true,
+      "result": 1728
+    },
+    {
+      "name": "Gating and four NO_TIE-only shirt restrictions unchanged",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Picker Apply and Cancel retain exact IDs and single-preference semantics",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Shirt-only numerical policy remains absent",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "DS023 approved cleanup and edge flags still selected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Full viewport and keyboard dimensions remain inside the visible viewport",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Missing VisualViewport uses finite window height",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Invalid sizing inputs cannot produce NaN or negative panel sizes",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Existing score-source, body mask and stored-RGB routes retained",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Synthetic ledger export/reopen preserves data and sentinel",
+      "passed": true,
+      "result": "synthetic Map only; no owner data"
+    },
+    {
+      "name": "HTML references the new helper and fresh UI resource URLs",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

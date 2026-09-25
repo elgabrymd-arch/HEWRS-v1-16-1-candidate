@@ -1,0 +1,14 @@
+{
+  "baseline_zip": "HEWRS_CONNECTED_APP_V1_16_3_SOURCE.zip",
+  "baseline_zip_sha256": "98a2d9af5c7652249701e111870f5fba5880009a5145896386b675db1809818b",
+  "baseline_payload_hash_check": "PASS: 1340 payloads plus original self-manifest",
+  "native_safari_reproduced": false,
+  "chromium_zero_basis_stress_explicitly_injected": true,
+  "screen_evidence": "Owner screenshot shows picker collapse after keyboard dismissed",
+  "source_reasoning": "auto-height flex dialog + zero-basis flexible body; exact WebKit cause not certified",
+  "primary_reference_titles": [
+    "CSS Flexible Box Layout Module Level 1, section 7: flex and flex-basis",
+    "CSSOM View, VisualViewport interface and viewport resize events"
+  ],
+  "no_garment_assets_changed": true
+}
