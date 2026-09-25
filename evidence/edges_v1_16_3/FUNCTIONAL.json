@@ -1,0 +1,57 @@
+{
+  "schema": "hewrs.ds023-edges.functional.v1_16_3",
+  "passed": 10,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Four exact original descriptors and unchanged source input lock",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Four added layer files resolve by exact SHA256; zero source RGB edits in derivation receipt",
+      "passed": true,
+      "result": 4
+    },
+    {
+      "name": "DS023 T017 uses all four new edge mattes in both non-suit render plans",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Other DS023 ties use the neck mattes but retain each exact existing tie",
+      "passed": true,
+      "result": 46
+    },
+    {
+      "name": "DS023 NO_TIE retains the V1.16.2 base and current collar leaves",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "T017 for every other registered donor remains the original batch tie",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "701 V1.16.2 runtime image files retain exact bytes",
+      "passed": true,
+      "result": 701
+    },
+    {
+      "name": "No changes to source data, scoring, masks, storage, or facelift styling",
+      "passed": true,
+      "result": 12
+    },
+    {
+      "name": "Malformed edge ID, source, scope, and layer transforms are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Current supported IDs and gating remain 18 connected plus 32 unavailable non-suit",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

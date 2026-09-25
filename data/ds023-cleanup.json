@@ -1,0 +1,70 @@
+{
+  "schema": "hewrs.ds023-alpha-composite.v1_16_2",
+  "id": "DS023",
+  "history_id": "shirt-DS023",
+  "canvas": [
+    996,
+    2748
+  ],
+  "source_input_sha256": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "baseline_registration_sha256": "0cf1678f18dca05c2b3fee042f34d5c8c48986f767022d015df95a8bc5a5806a",
+  "owner_source_file": "shirt-DS023-generated(1).webp",
+  "owner_source_sha256": "92ac23ddfe17f26f95d36ff8c74f30130e8a5e8f78e07f07d9f36832d905822d",
+  "modes": {
+    "tied": {
+      "baseline": {
+        "sha256": "826608bc872aae8c538c7f94d218ac0e893e3a54a9c1e2e735528915bae3e3cb",
+        "url": "assets/826608bc872aae8c538c7f94d218ac0e893e3a54a9c1e2e735528915bae3e3cb.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "DS023_TIED_SOURCE_REGISTERED_BASE_WITHOUT_FRONT_LEAVES"
+      },
+      "base": {
+        "url": "assets/2d185ef4ad746d2c19c38bfbd3742e0d894f4b73c2c767d161791b8c31b904ae.png",
+        "sha256": "2d185ef4ad746d2c19c38bfbd3742e0d894f4b73c2c767d161791b8c31b904ae",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "DS023_TIED_ALPHA_CLEANUP_V1162"
+      }
+    },
+    "no_tie": {
+      "baseline": {
+        "sha256": "b9a60d2e4c42e1cf5dfd8af468bad60f5582b31bdd2a65790999ae81b79a9fb6",
+        "url": "assets/b9a60d2e4c42e1cf5dfd8af468bad60f5582b31bdd2a65790999ae81b79a9fb6.png",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "DS023_NO_TIE_SOURCE_REGISTERED_BASE_WITHOUT_FRONT_LEAVES"
+      },
+      "base": {
+        "url": "assets/3a9113eafbc75661f003bfacbaa23ef237466efab394c9ed8268a26d5fbc683e.png",
+        "sha256": "3a9113eafbc75661f003bfacbaa23ef237466efab394c9ed8268a26d5fbc683e",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "DS023_NO_TIE_ALPHA_CLEANUP_V1162"
+      }
+    }
+  },
+  "shirt_only_trouser_ownership": "EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST",
+  "scope": "Only DS023 blazer/shirt-only body registrations. Suit renderer, other shirts, collar leaves, ties, trousers, avatar and hands unchanged.",
+  "limits": "Existing trousers have a straight upper edge and no separately supplied belt/waistband detail. Correct layer ownership does not reconstruct missing waistband detail. Small inherited source-collar/cuff transitions remain.",
+  "assetPaths": {
+    "2d185ef4ad746d2c19c38bfbd3742e0d894f4b73c2c767d161791b8c31b904ae": "assets/2d185ef4ad746d2c19c38bfbd3742e0d894f4b73c2c767d161791b8c31b904ae.png",
+    "3a9113eafbc75661f003bfacbaa23ef237466efab394c9ed8268a26d5fbc683e": "assets/3a9113eafbc75661f003bfacbaa23ef237466efab394c9ed8268a26d5fbc683e.png"
+  }
+}

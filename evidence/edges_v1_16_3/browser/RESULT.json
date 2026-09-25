@@ -1,0 +1,4421 @@
+{
+  "schema": "hewrs.ds023-edges.chromium.v1_16_3",
+  "loading": "Memory-loaded actual scripts and PNGs in Chromium; isolated Map storage, not hosted/restart/physical-device acceptance.",
+  "passed": 14,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V1.16.3 loads with exact current controller and version",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual Collar Detail and Full Outfit controls switch on corrected render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "200 unaffected frames exactly match V1.16.2 including all 18 suit and DS023 NO_TIE blazer controls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "130 changed-route exercises complete; all changes within the local neck/knot region",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Protected upper face and lower outfit pixels remain exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancel keeps complete preferences",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Apply changes only requested tie",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Picker remains 18 connected / 32 gated / 50 IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unsupported selection keeps last good frame and raw ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Failed edge image load cannot publish partial output",
+      "passed": true,
+      "detail": {
+        "failed": true,
+        "retained": true
+      }
+    },
+    {
+      "name": "Rapid tied/open selection publishes latest complete state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Synthetic ledger and sentinel unchanged by render tests",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Home remains one screen at 390x844",
+      "passed": true,
+      "detail": {
+        "h": 844,
+        "sh": 844,
+        "w": 390,
+        "sw": 390
+      }
+    },
+    {
+      "name": "No uncaught runtime errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "unaffected_frames": [
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "74eadf75a23ebc25443c953488f1bbc455c77f71813d384335acf0314f430931",
+      "after_sha256": "74eadf75a23ebc25443c953488f1bbc455c77f71813d384335acf0314f430931",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2a3e7436cb3b6161edb7a700a04d601632bb2d27ed427b802564a7dcee0ece15",
+      "after_sha256": "2a3e7436cb3b6161edb7a700a04d601632bb2d27ed427b802564a7dcee0ece15",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2996099e0b355e8a34100c6f532284f6d3aa3fc5527c793dff1182c23ce48890",
+      "after_sha256": "2996099e0b355e8a34100c6f532284f6d3aa3fc5527c793dff1182c23ce48890",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c31a515fd2506e81f1c2e34627dbc2cdadcf1b9d232bd1a1b5fa8529d3784902",
+      "after_sha256": "c31a515fd2506e81f1c2e34627dbc2cdadcf1b9d232bd1a1b5fa8529d3784902",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "71b5ef6c05c6620bf44d52471f3e431c8f66894eabcc5c794492adb4d3af2a21",
+      "after_sha256": "71b5ef6c05c6620bf44d52471f3e431c8f66894eabcc5c794492adb4d3af2a21",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a980af4d8b91331c048faab56571a13a6bf8200980e9d8d08a1bb93bd8b3246d",
+      "after_sha256": "a980af4d8b91331c048faab56571a13a6bf8200980e9d8d08a1bb93bd8b3246d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "30b715533ca62b8828cc3ea6c903f586c7cb0487e446265109ea0ef0fc561dba",
+      "after_sha256": "30b715533ca62b8828cc3ea6c903f586c7cb0487e446265109ea0ef0fc561dba",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0ab78faebef078f78463ac43e5df8b442f0153f6e33552ac4ac3d8af15091c2b",
+      "after_sha256": "0ab78faebef078f78463ac43e5df8b442f0153f6e33552ac4ac3d8af15091c2b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "bc600710764c2f13610875ad31b01ce6c41d28d3526e5c7ca40d30190196963f",
+      "after_sha256": "bc600710764c2f13610875ad31b01ce6c41d28d3526e5c7ca40d30190196963f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a49e9dff699f118c83653acb9a4db587c52c6088d93c002a89d6d66bb5665524",
+      "after_sha256": "a49e9dff699f118c83653acb9a4db587c52c6088d93c002a89d6d66bb5665524",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2f1772a348a000b82815574447514ba616a8bd16d41b343d299d192cadee0161",
+      "after_sha256": "2f1772a348a000b82815574447514ba616a8bd16d41b343d299d192cadee0161",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "319f2f32d72276cc9acfd58ddfba30b59348fab7a8b79b11d95b8bf8e7a74314",
+      "after_sha256": "319f2f32d72276cc9acfd58ddfba30b59348fab7a8b79b11d95b8bf8e7a74314",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "36733104321255464f26d2430c3a2b417fc36eaf8dffaa1312e6a01b144180be",
+      "after_sha256": "36733104321255464f26d2430c3a2b417fc36eaf8dffaa1312e6a01b144180be",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0e4242f2d06195959780886e336c2e05f8815d3bbb5d401c559c8fed829a35ef",
+      "after_sha256": "0e4242f2d06195959780886e336c2e05f8815d3bbb5d401c559c8fed829a35ef",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "7dee7055307b3ae35bf1ae5f890f5da9daa06afe90c5223ff9f56a0250ec3979",
+      "after_sha256": "7dee7055307b3ae35bf1ae5f890f5da9daa06afe90c5223ff9f56a0250ec3979",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "88bb3d6bdf54b70df0f7381426e0d2ae2293a2d8e24850ceeeb3c5b9770f7193",
+      "after_sha256": "88bb3d6bdf54b70df0f7381426e0d2ae2293a2d8e24850ceeeb3c5b9770f7193",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "672e2ea538840792caa831bc7df386cb4f38298d364d7c7b3979fcec5b062193",
+      "after_sha256": "672e2ea538840792caa831bc7df386cb4f38298d364d7c7b3979fcec5b062193",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c41f87e095f4b4711c2e1fcfefdb682980dee1e96ae8da7a9348ba90d4c9e941",
+      "after_sha256": "c41f87e095f4b4711c2e1fcfefdb682980dee1e96ae8da7a9348ba90d4c9e941",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "faf37a1ecaa0da17e3c5338b17aa189ebc5951e188f60e19eb3105565e0ea4e5",
+      "after_sha256": "faf37a1ecaa0da17e3c5338b17aa189ebc5951e188f60e19eb3105565e0ea4e5",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "307a5725b10f7ff34271abef93396f6f8ab87e0f67a701e22620ddc9a184706f",
+      "after_sha256": "307a5725b10f7ff34271abef93396f6f8ab87e0f67a701e22620ddc9a184706f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a817fee1265ae8d9f5f58d2a28a1ab5e8ad4f8d31d6ce5a8599c7bef915e889d",
+      "after_sha256": "a817fee1265ae8d9f5f58d2a28a1ab5e8ad4f8d31d6ce5a8599c7bef915e889d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c9f7d4c7e558e4f6e244eec7675c858a717f45383c02daf0365cd70a73e04f10",
+      "after_sha256": "c9f7d4c7e558e4f6e244eec7675c858a717f45383c02daf0365cd70a73e04f10",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b04a44081f308be044a5dc24389c83e4f93a916c08554b111e8f8dc2d9e7fad8",
+      "after_sha256": "b04a44081f308be044a5dc24389c83e4f93a916c08554b111e8f8dc2d9e7fad8",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "3600886a06d8ce1974a7076c68af167698fec49a3df7407f6a5513a87f6ff90a",
+      "after_sha256": "3600886a06d8ce1974a7076c68af167698fec49a3df7407f6a5513a87f6ff90a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "43b3f0343c7bafd679557f7e55d9fdaee3a1c955c730453d8c1caaa7b701850f",
+      "after_sha256": "43b3f0343c7bafd679557f7e55d9fdaee3a1c955c730453d8c1caaa7b701850f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "201d8f451531329a9d7aad16b6be89e76371e47ee94609ae5127053642286527",
+      "after_sha256": "201d8f451531329a9d7aad16b6be89e76371e47ee94609ae5127053642286527",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "22330bdcd12f0ba900226c34b3e37c4d314c94befb212188a247278d3304982d",
+      "after_sha256": "22330bdcd12f0ba900226c34b3e37c4d314c94befb212188a247278d3304982d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b96dfca4afd77080d8566be3ba582c842737845d65c72a1d8b3191f12fbfba18",
+      "after_sha256": "b96dfca4afd77080d8566be3ba582c842737845d65c72a1d8b3191f12fbfba18",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "4b482c8031c71b33bc161add7c82378813706300b3e73236d32c5f19f802ad71",
+      "after_sha256": "4b482c8031c71b33bc161add7c82378813706300b3e73236d32c5f19f802ad71",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a65b5638eda4e69bea523a850d91156f8a700f3defc03153393e62bea53d66d9",
+      "after_sha256": "a65b5638eda4e69bea523a850d91156f8a700f3defc03153393e62bea53d66d9",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1e183dfe4671eb193172afd122c9513c8f75838204d0fbbb9aa11c8cfb098b38",
+      "after_sha256": "1e183dfe4671eb193172afd122c9513c8f75838204d0fbbb9aa11c8cfb098b38",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "3a79499ee7d20cfaf672eb3800408e3a9e0892d0fe63964908f881da6fef20dd",
+      "after_sha256": "3a79499ee7d20cfaf672eb3800408e3a9e0892d0fe63964908f881da6fef20dd",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "76a375ab2e19010f1ffb9e80bb9a977050738a4d8663e5fd88454ad476f7e698",
+      "after_sha256": "76a375ab2e19010f1ffb9e80bb9a977050738a4d8663e5fd88454ad476f7e698",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "aeafc3184f613b2b4df1b7f4bd8ee94099eedd92e3ce48cfda38f997c84fb05b",
+      "after_sha256": "aeafc3184f613b2b4df1b7f4bd8ee94099eedd92e3ce48cfda38f997c84fb05b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "5769360bab5f7d787328e56cfa1a7d7272c0fbe41c7905138572644e6acc95c6",
+      "after_sha256": "5769360bab5f7d787328e56cfa1a7d7272c0fbe41c7905138572644e6acc95c6",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "4ee4a2d3213903c8db1ada10c663b722e38b5d79c844496e202a25f1b8283c9c",
+      "after_sha256": "4ee4a2d3213903c8db1ada10c663b722e38b5d79c844496e202a25f1b8283c9c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c6e5f2e376cda89f7fb0efbab735524cef38e4ea38ab017b69dedd4ce1ad6101",
+      "after_sha256": "c6e5f2e376cda89f7fb0efbab735524cef38e4ea38ab017b69dedd4ce1ad6101",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "3c86ebc4d3e371a4c96a5cfb80a5ec13faefe6da576c499fba3744c4c98c5213",
+      "after_sha256": "3c86ebc4d3e371a4c96a5cfb80a5ec13faefe6da576c499fba3744c4c98c5213",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9e04e8416daefedca327b8358cf5b7b8bf6ced2375655fd8fff1c90243960361",
+      "after_sha256": "9e04e8416daefedca327b8358cf5b7b8bf6ced2375655fd8fff1c90243960361",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "7e88f2d560877bcd0f35af82d605a7e868778963d012479066be39412c585a11",
+      "after_sha256": "7e88f2d560877bcd0f35af82d605a7e868778963d012479066be39412c585a11",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "79d11aa5521e5cf3cb0ec66723296d4aab2343186439f28422309a84f9e48819",
+      "after_sha256": "79d11aa5521e5cf3cb0ec66723296d4aab2343186439f28422309a84f9e48819",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1418734d4958d23b7b3cebc2c17c82c1e0a401be901031fdb730730a265daa97",
+      "after_sha256": "1418734d4958d23b7b3cebc2c17c82c1e0a401be901031fdb730730a265daa97",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "541f867d0b9aec8418b4d9427c7cbbd034a8ff8f614dba078e9c7b993b25f41a",
+      "after_sha256": "541f867d0b9aec8418b4d9427c7cbbd034a8ff8f614dba078e9c7b993b25f41a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1533c2efe9e93cc042becedadbdb705139487a95a92bd38f90a00f154da5f6dc",
+      "after_sha256": "1533c2efe9e93cc042becedadbdb705139487a95a92bd38f90a00f154da5f6dc",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "ba96310f37ad0caba07737bf0059714b910591c6225369a5d5d9e6fdc5f2b6fc",
+      "after_sha256": "ba96310f37ad0caba07737bf0059714b910591c6225369a5d5d9e6fdc5f2b6fc",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "aa0fe9236a8c509e020effa8ee4de87ebe977a08df489f9cec0d2c7d8fada36a",
+      "after_sha256": "aa0fe9236a8c509e020effa8ee4de87ebe977a08df489f9cec0d2c7d8fada36a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "90b82a1ce0475029635cab7833ecd11d4bcf57b48190f9be2dce75dd5f2e7151",
+      "after_sha256": "90b82a1ce0475029635cab7833ecd11d4bcf57b48190f9be2dce75dd5f2e7151",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c6f4fae386c85354eb6d97929e52cd8a34b5f0c66759ba776e0cfdb4a623078f",
+      "after_sha256": "c6f4fae386c85354eb6d97929e52cd8a34b5f0c66759ba776e0cfdb4a623078f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0a566ff266b19849beb0ff74dbd764250c70351ffba80f9c66e07a02b8f6248f",
+      "after_sha256": "0a566ff266b19849beb0ff74dbd764250c70351ffba80f9c66e07a02b8f6248f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "37409298ee884b5c8ab6856ad38b41774713e56f2f3a0392943a6de88a516580",
+      "after_sha256": "37409298ee884b5c8ab6856ad38b41774713e56f2f3a0392943a6de88a516580",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "71df26075dc3f14d874e71f24f11b5d7649169f9752fab62bbad96dbad6f39d7",
+      "after_sha256": "71df26075dc3f14d874e71f24f11b5d7649169f9752fab62bbad96dbad6f39d7",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "e39f3571171cc7543117d749d711a681e5a4dbe5651d9ac20af25667ae435368",
+      "after_sha256": "e39f3571171cc7543117d749d711a681e5a4dbe5651d9ac20af25667ae435368",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "6785af20df139902c46048c7952d60283cb53d6b2e91aa7375f2f00dc0851121",
+      "after_sha256": "6785af20df139902c46048c7952d60283cb53d6b2e91aa7375f2f00dc0851121",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "cef7fe4532ceb8d67b144c64427048fd21f38e5f2b2360fdc88dd3cab90b54eb",
+      "after_sha256": "cef7fe4532ceb8d67b144c64427048fd21f38e5f2b2360fdc88dd3cab90b54eb",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "646c37501a623f53a5f2b25ef92bdc0600c87bd4499d5b8232141e33afb9d9a9",
+      "after_sha256": "646c37501a623f53a5f2b25ef92bdc0600c87bd4499d5b8232141e33afb9d9a9",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "883a246f8da87cff052bc9d189443dc7f7d99157b64d9d87fbf8226c05088e65",
+      "after_sha256": "883a246f8da87cff052bc9d189443dc7f7d99157b64d9d87fbf8226c05088e65",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "34b37cfa37dca123beb1e4f2747cb935bf51445449dcab7fc366614e123175b5",
+      "after_sha256": "34b37cfa37dca123beb1e4f2747cb935bf51445449dcab7fc366614e123175b5",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9b30ad59255f3b34dbfdf7e1f8b5882b966025a286d046988f8d775e00038a65",
+      "after_sha256": "9b30ad59255f3b34dbfdf7e1f8b5882b966025a286d046988f8d775e00038a65",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d4531dfa26cb45ca84a2f63c6ceaa0fbfca7cb51b791fa1c849f615ed2e7da38",
+      "after_sha256": "d4531dfa26cb45ca84a2f63c6ceaa0fbfca7cb51b791fa1c849f615ed2e7da38",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9ea46627589d3c8b764091a32ba873a12d37b699cfc240a06c0348ceeb524301",
+      "after_sha256": "9ea46627589d3c8b764091a32ba873a12d37b699cfc240a06c0348ceeb524301",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2ce4f86dd4cecc3135eb7dd448846d66c203a5f736ff26bc83d46c9516ef6d9f",
+      "after_sha256": "2ce4f86dd4cecc3135eb7dd448846d66c203a5f736ff26bc83d46c9516ef6d9f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b225164c928909570c4fd0e38a25c2186e5dc9f17355491277d1b99f0ecb6222",
+      "after_sha256": "b225164c928909570c4fd0e38a25c2186e5dc9f17355491277d1b99f0ecb6222",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "00382059c812b89a61013725fe7f49f727a1dac46e8e16e62b3ab2bbe641e8f2",
+      "after_sha256": "00382059c812b89a61013725fe7f49f727a1dac46e8e16e62b3ab2bbe641e8f2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "da9a22021ca08d8a9c85f81861a88b7747dd55d6fcc7d6e4239dd42705b94025",
+      "after_sha256": "da9a22021ca08d8a9c85f81861a88b7747dd55d6fcc7d6e4239dd42705b94025",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b8f89e62469cfba897ca9b347be01cf04141ccf7c67c911ea2d865164c28088d",
+      "after_sha256": "b8f89e62469cfba897ca9b347be01cf04141ccf7c67c911ea2d865164c28088d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d4682ebda74c4f76a7801dd3317634fe1fea1eb95ad517c5628cd699a637ccc0",
+      "after_sha256": "d4682ebda74c4f76a7801dd3317634fe1fea1eb95ad517c5628cd699a637ccc0",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "e089a21ca5cb58eea3d74dfc4f60dde49d4950b3d79cf1fa7e99331345ebcb56",
+      "after_sha256": "e089a21ca5cb58eea3d74dfc4f60dde49d4950b3d79cf1fa7e99331345ebcb56",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a19e591b38af79ec06f028bfaad26a409c96f662ee35254962679f38fa5add1b",
+      "after_sha256": "a19e591b38af79ec06f028bfaad26a409c96f662ee35254962679f38fa5add1b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "f71c6fa8cde57060ba3cc7dd666dba467dec49aae5ea16a40713d61bfeef3535",
+      "after_sha256": "f71c6fa8cde57060ba3cc7dd666dba467dec49aae5ea16a40713d61bfeef3535",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "546b73213db348d07d792b484ed14f25959f75bddf090958fe978024a126d791",
+      "after_sha256": "546b73213db348d07d792b484ed14f25959f75bddf090958fe978024a126d791",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "8d0a273e09c6a70c880f8c27d29709634c595882d3a420b36500db31d358d44f",
+      "after_sha256": "8d0a273e09c6a70c880f8c27d29709634c595882d3a420b36500db31d358d44f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d9e922f785ad66b29229411af83b84b91bd1f94933d7432b904503ba16b2326a",
+      "after_sha256": "d9e922f785ad66b29229411af83b84b91bd1f94933d7432b904503ba16b2326a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "aa1ec85c56ca2c0517803fd394289e5781aec3bd856b0c4ee40fd351146e6774",
+      "after_sha256": "aa1ec85c56ca2c0517803fd394289e5781aec3bd856b0c4ee40fd351146e6774",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "326708ff6f8dc8f2d33b70800663da35e327b7114a20f237cc1faf1118261345",
+      "after_sha256": "326708ff6f8dc8f2d33b70800663da35e327b7114a20f237cc1faf1118261345",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1dec678ab1ad3f1c8c809c9f8411144cfa468e507e512f0e5e3dd66cb93d9814",
+      "after_sha256": "1dec678ab1ad3f1c8c809c9f8411144cfa468e507e512f0e5e3dd66cb93d9814",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "8cc14485a5ef437688f9ac2ee66872dbdf22616ebfecc58761223ab5920ffefd",
+      "after_sha256": "8cc14485a5ef437688f9ac2ee66872dbdf22616ebfecc58761223ab5920ffefd",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9f91108c1a47895cfbd85dbc50f8a2e0c7b7ba8dec247c97e59ec9f94e45cd1f",
+      "after_sha256": "9f91108c1a47895cfbd85dbc50f8a2e0c7b7ba8dec247c97e59ec9f94e45cd1f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "907bc1ce7be0d36995b18e94dfd73378c3578986c2cc61caade66cd7a0a0bac3",
+      "after_sha256": "907bc1ce7be0d36995b18e94dfd73378c3578986c2cc61caade66cd7a0a0bac3",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "73a162910cb8443272e48c0cf026bcfc7116aafaaead916751d55c8c9742328e",
+      "after_sha256": "73a162910cb8443272e48c0cf026bcfc7116aafaaead916751d55c8c9742328e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "24ece3ca5c45d879a6ded8f3554646af9f096620f5a577e6f16de81ce5ed0533",
+      "after_sha256": "24ece3ca5c45d879a6ded8f3554646af9f096620f5a577e6f16de81ce5ed0533",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "3b4c3e7c6c84e185ed1241bf0e2d037f6a1a949025e112047a749d1fd2435901",
+      "after_sha256": "3b4c3e7c6c84e185ed1241bf0e2d037f6a1a949025e112047a749d1fd2435901",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2296c145ac81cc3a6b7667a75d4a5b18c15f7c4c12b9332707def3642434ded2",
+      "after_sha256": "2296c145ac81cc3a6b7667a75d4a5b18c15f7c4c12b9332707def3642434ded2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0beade3b2c98992e2bdd27eeb213c437513125329d803152a5f20973544c6882",
+      "after_sha256": "0beade3b2c98992e2bdd27eeb213c437513125329d803152a5f20973544c6882",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "223a8f02b3f86e3198dc1f0ec26d8dda869274de7d4b7c365d5109597b548a6c",
+      "after_sha256": "223a8f02b3f86e3198dc1f0ec26d8dda869274de7d4b7c365d5109597b548a6c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "90e5979996d4a2b30ad1925d776be5f2715a21a2e63adef759de2a6fea652d66",
+      "after_sha256": "90e5979996d4a2b30ad1925d776be5f2715a21a2e63adef759de2a6fea652d66",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a23e8202341d660a965bd12642cf57c9cec04c2a33955295b5c58a3bc9acf72b",
+      "after_sha256": "a23e8202341d660a965bd12642cf57c9cec04c2a33955295b5c58a3bc9acf72b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "28e0448da695929f2aa8562ef80a2f31eb6c4748a0719f7bd8f0f8af6d554fc8",
+      "after_sha256": "28e0448da695929f2aa8562ef80a2f31eb6c4748a0719f7bd8f0f8af6d554fc8",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d98475c7089be777eb13eb457b96a1be2df8e663dbb2af1fbe2d37c37afb727f",
+      "after_sha256": "d98475c7089be777eb13eb457b96a1be2df8e663dbb2af1fbe2d37c37afb727f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "83a36178bf34779ca0d8e2bd51dbf93cc2b475907919cb403f84279e054d6a74",
+      "after_sha256": "83a36178bf34779ca0d8e2bd51dbf93cc2b475907919cb403f84279e054d6a74",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS051",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "bf4bb78c775bbae2b9270eeca8b210f194264f812ab0230f61352aa22c9e08f8",
+      "after_sha256": "bf4bb78c775bbae2b9270eeca8b210f194264f812ab0230f61352aa22c9e08f8",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "after_sha256": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "after_sha256": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS001",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "after_sha256": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS001",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "after_sha256": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "after_sha256": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "after_sha256": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "after_sha256": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "after_sha256": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS002",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "5ffc67cfc4809ae0c6a2407180f7c1aa195a8eb2ac6097c0951767b239f93357",
+      "after_sha256": "5ffc67cfc4809ae0c6a2407180f7c1aa195a8eb2ac6097c0951767b239f93357",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS002",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "4875faa0a3c16cf17fb9a5d0d3655f978495510c1dd32093712006a478705d21",
+      "after_sha256": "4875faa0a3c16cf17fb9a5d0d3655f978495510c1dd32093712006a478705d21",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS002",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a69982c5024af63c2bdb1977d4eadf7ed213d16de24e74c01fe7ef285b87a2de",
+      "after_sha256": "a69982c5024af63c2bdb1977d4eadf7ed213d16de24e74c01fe7ef285b87a2de",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS002",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "063a168b276e4638f965d6359ef8c5a8ff4c68f4df8d2ddfc6d28851f19a5a5b",
+      "after_sha256": "063a168b276e4638f965d6359ef8c5a8ff4c68f4df8d2ddfc6d28851f19a5a5b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d709aa0a51b563c8cb11910d266238cf72c388e6a5b8a7287382e0d45b37d4c2",
+      "after_sha256": "d709aa0a51b563c8cb11910d266238cf72c388e6a5b8a7287382e0d45b37d4c2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9a6da9048c7d03aaf909a7e6728fac67962393151a718a68d7c64fbb50063eec",
+      "after_sha256": "9a6da9048c7d03aaf909a7e6728fac67962393151a718a68d7c64fbb50063eec",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS004",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "00a22bb57f9add56fac16404d0641131175ed7b4640a796dccf7703db246f3bf",
+      "after_sha256": "00a22bb57f9add56fac16404d0641131175ed7b4640a796dccf7703db246f3bf",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS004",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "094afd744deaa8053e97862a8ca7bae2218cdd027880781c72ff0078fbe2d9d6",
+      "after_sha256": "094afd744deaa8053e97862a8ca7bae2218cdd027880781c72ff0078fbe2d9d6",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS005",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "be752b7237afdd4d4a4255e11c31eb9e5b204151e2ee215367cea5e1edd24506",
+      "after_sha256": "be752b7237afdd4d4a4255e11c31eb9e5b204151e2ee215367cea5e1edd24506",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS005",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "3a38763151cae7da9cc48f9beea6b4c590e4403da22f9cc6f1e29e6128351b2b",
+      "after_sha256": "3a38763151cae7da9cc48f9beea6b4c590e4403da22f9cc6f1e29e6128351b2b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS005",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "7a625006354dffd806dc2fa1354c503a96549fa614e5b5b560104c2dc569d435",
+      "after_sha256": "7a625006354dffd806dc2fa1354c503a96549fa614e5b5b560104c2dc569d435",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS005",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0e57eb651f267148bf7ec6ca7ac6805ddbf2e8c0120209a8877efb89051d1681",
+      "after_sha256": "0e57eb651f267148bf7ec6ca7ac6805ddbf2e8c0120209a8877efb89051d1681",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS006",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d0cdd8fd1ac02be200fd951bd3ffb75ce29bd1ba855d23504db382f195e332b2",
+      "after_sha256": "d0cdd8fd1ac02be200fd951bd3ffb75ce29bd1ba855d23504db382f195e332b2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS006",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "7653b1a770fc2b16664e34a1a6be48ffe084aebb02f5f804b6020327bd906a7b",
+      "after_sha256": "7653b1a770fc2b16664e34a1a6be48ffe084aebb02f5f804b6020327bd906a7b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS006",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "a87bef9e0673f9ef0038a29a5e61727ad7be13563f2853b63540be75e1aca6b9",
+      "after_sha256": "a87bef9e0673f9ef0038a29a5e61727ad7be13563f2853b63540be75e1aca6b9",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS006",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "f136d2cb5126b6afde57af8ee172c5ea2edbf1b37f682d6147dee0eed4e3c840",
+      "after_sha256": "f136d2cb5126b6afde57af8ee172c5ea2edbf1b37f682d6147dee0eed4e3c840",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0faca15a61cc068b2285846bb46bd041e8d5a771c7645798dc6c6f868eba765e",
+      "after_sha256": "0faca15a61cc068b2285846bb46bd041e8d5a771c7645798dc6c6f868eba765e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "ad94abb71c1303d18fdc97eea8caec0ef4ff9e5a872bf8a7a6d540240555a5db",
+      "after_sha256": "ad94abb71c1303d18fdc97eea8caec0ef4ff9e5a872bf8a7a6d540240555a5db",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS007",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b650b2a8b1a898901946820cb0182835bdeade6a323c998d8d2d830f9bab40ac",
+      "after_sha256": "b650b2a8b1a898901946820cb0182835bdeade6a323c998d8d2d830f9bab40ac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS007",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "21213ed02aa08d26ed798dd00b62dd4b5a41ca0b77640e4d6af34093cb865acd",
+      "after_sha256": "21213ed02aa08d26ed798dd00b62dd4b5a41ca0b77640e4d6af34093cb865acd",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "e639ccb78ea984dd8fba0ba2065b21072540cc591d526ef43b13d1bd47dc4632",
+      "after_sha256": "e639ccb78ea984dd8fba0ba2065b21072540cc591d526ef43b13d1bd47dc4632",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "6336b1a47210e153af188fd10f042b214f3bc495b2668ff71aeaaefc9531e980",
+      "after_sha256": "6336b1a47210e153af188fd10f042b214f3bc495b2668ff71aeaaefc9531e980",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS008",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "005b5e92690811d050c25fa28217c65a0e3e4b2dbb7ffd58d9c908d73405158b",
+      "after_sha256": "005b5e92690811d050c25fa28217c65a0e3e4b2dbb7ffd58d9c908d73405158b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS008",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "cac3bec0cb3646c41064e9d48103cd3e7993956f19ad8d96860e413fe4d20cac",
+      "after_sha256": "cac3bec0cb3646c41064e9d48103cd3e7993956f19ad8d96860e413fe4d20cac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS015",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0262aed43a3ee94d3f711ff9d0ec76fd4f7339d706245c8be9f4db7e34ec044d",
+      "after_sha256": "0262aed43a3ee94d3f711ff9d0ec76fd4f7339d706245c8be9f4db7e34ec044d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS015",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "21929c96c5d4eb4e00efb5e040c889e0743dd76954f50f143d7e7d3eb42c715c",
+      "after_sha256": "21929c96c5d4eb4e00efb5e040c889e0743dd76954f50f143d7e7d3eb42c715c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS015",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c757d8cd3172fc816d29bd46e4141270bd4e2bf103e59954714fd3a27202dec6",
+      "after_sha256": "c757d8cd3172fc816d29bd46e4141270bd4e2bf103e59954714fd3a27202dec6",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS015",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0645d0af456c8f97639d006f9f513cdd77d5705dfa1a111aa8ccc8e34ed07250",
+      "after_sha256": "0645d0af456c8f97639d006f9f513cdd77d5705dfa1a111aa8ccc8e34ed07250",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "89cf721c76d87bb5ed79d4ab8edcdd53ae4da766b302dbed41c3a944d5c38ae2",
+      "after_sha256": "89cf721c76d87bb5ed79d4ab8edcdd53ae4da766b302dbed41c3a944d5c38ae2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c31f684c10c80acb18eb157360038552d441558216510a170cecbfa4497cd82c",
+      "after_sha256": "c31f684c10c80acb18eb157360038552d441558216510a170cecbfa4497cd82c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS018",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b42ddcda9d563ef0c2942a7153b1e9ea8073fbe635aa52c23bf6ee6c3d656712",
+      "after_sha256": "b42ddcda9d563ef0c2942a7153b1e9ea8073fbe635aa52c23bf6ee6c3d656712",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS018",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "07c263ea5663a4f5594339a343ba1acc4c8986d83116a2b386b868986edec913",
+      "after_sha256": "07c263ea5663a4f5594339a343ba1acc4c8986d83116a2b386b868986edec913",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "91b4fe2d09f4f0a50ad6ab3b71646325d9efe2253dc5fcb69e896efae5330a1f",
+      "after_sha256": "91b4fe2d09f4f0a50ad6ab3b71646325d9efe2253dc5fcb69e896efae5330a1f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "26cc8f63edd9faad224ed360f685a7c46e9a6ec7347481827d04275646a5b885",
+      "after_sha256": "26cc8f63edd9faad224ed360f685a7c46e9a6ec7347481827d04275646a5b885",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS019",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "6f590660fa47ae9ca5fac8f6f6251d5e9864236647ffbe60938cd41e92a2d449",
+      "after_sha256": "6f590660fa47ae9ca5fac8f6f6251d5e9864236647ffbe60938cd41e92a2d449",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS019",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2ae083cfc183bdf6bd9b6b9ee728223206421504a75706a52ec8bcd1ec8c2a04",
+      "after_sha256": "2ae083cfc183bdf6bd9b6b9ee728223206421504a75706a52ec8bcd1ec8c2a04",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS021",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1fc7dfd447c2ca22b22f822f5e7eeca1fdf425da129dddb054447e6654bc029d",
+      "after_sha256": "1fc7dfd447c2ca22b22f822f5e7eeca1fdf425da129dddb054447e6654bc029d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS021",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "be8b6def5e81b4b1709e21149b3fc74100ece134f73b850628dcc3e4924f80a1",
+      "after_sha256": "be8b6def5e81b4b1709e21149b3fc74100ece134f73b850628dcc3e4924f80a1",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS021",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "fe6f2a1ee74235f00da61e2099420b86ed0fd87939d894f6656d7e5c886f781b",
+      "after_sha256": "fe6f2a1ee74235f00da61e2099420b86ed0fd87939d894f6656d7e5c886f781b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS021",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2284fee9f2b220083c378d7809b6c7fc2f2b4b8c044a9941eda9690c740e5a0b",
+      "after_sha256": "2284fee9f2b220083c378d7809b6c7fc2f2b4b8c044a9941eda9690c740e5a0b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "781ab58ea87e2805e171473c608be5175275d6cb83d315471c3af3739393ed16",
+      "after_sha256": "781ab58ea87e2805e171473c608be5175275d6cb83d315471c3af3739393ed16",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "fd06dfc2578f7dfcc596b62147f2cb1f8e0a6352ea164c1ff5fb9c5111d834a0",
+      "after_sha256": "fd06dfc2578f7dfcc596b62147f2cb1f8e0a6352ea164c1ff5fb9c5111d834a0",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS022",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "0dbf760e4cfab03565ec4b64c470e851281a5e97eb743d852859a3cf2bc01044",
+      "after_sha256": "0dbf760e4cfab03565ec4b64c470e851281a5e97eb743d852859a3cf2bc01044",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS022",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "ba39a6ecbbab50a27e6d2c49cc152b0ab49151c5c6df89c7af251852d2f14ab7",
+      "after_sha256": "ba39a6ecbbab50a27e6d2c49cc152b0ab49151c5c6df89c7af251852d2f14ab7",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS024",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "after_sha256": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS024",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "after_sha256": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS024",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "after_sha256": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS024",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "after_sha256": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS025",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "after_sha256": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS025",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "after_sha256": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS025",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "after_sha256": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS025",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "after_sha256": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "37595380b69177a305a885061fd6592bab5636190f45a796081f40f30c29ee13",
+      "after_sha256": "37595380b69177a305a885061fd6592bab5636190f45a796081f40f30c29ee13",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9b9d4b49b376982e4548f4364a2c1cf5be6f3da458235db779e5885a0e09162e",
+      "after_sha256": "9b9d4b49b376982e4548f4364a2c1cf5be6f3da458235db779e5885a0e09162e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS027",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "53eb6c3f85eca5295a339b79e6fb432f245014d844b46ba83e1e0970a57a4119",
+      "after_sha256": "53eb6c3f85eca5295a339b79e6fb432f245014d844b46ba83e1e0970a57a4119",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS027",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "947288a9f0e466c6320f2174fbd4108cec6f3938ed37642e5099bcc3a25adb98",
+      "after_sha256": "947288a9f0e466c6320f2174fbd4108cec6f3938ed37642e5099bcc3a25adb98",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS047",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "cfb41887ed85baeb9be3a7bfbe960e683cb4960f62bcfcf960d6e47f0ba40e4a",
+      "after_sha256": "cfb41887ed85baeb9be3a7bfbe960e683cb4960f62bcfcf960d6e47f0ba40e4a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS047",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "eac2385c84c6f1badecb12f34682180427310135346aaa104abb4a77e6be5d1a",
+      "after_sha256": "eac2385c84c6f1badecb12f34682180427310135346aaa104abb4a77e6be5d1a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS047",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "5f489fb68a0d606649cf305b5ded22683d1caaf6b4011cf7ea6e29a55adf9da4",
+      "after_sha256": "5f489fb68a0d606649cf305b5ded22683d1caaf6b4011cf7ea6e29a55adf9da4",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS047",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d46c8d8ca982559be3a7b00f311a2499b754d2fe116c553d5f3e376989b0606d",
+      "after_sha256": "d46c8d8ca982559be3a7b00f311a2499b754d2fe116c553d5f3e376989b0606d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "951c5365e5c1a357c6188eb70ed05865165d71384950300029c7d1f4a2a4222a",
+      "after_sha256": "951c5365e5c1a357c6188eb70ed05865165d71384950300029c7d1f4a2a4222a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "cf61081d001896c66ff217f2c16e81eee101e64f20bd91d36f7356daec34259c",
+      "after_sha256": "cf61081d001896c66ff217f2c16e81eee101e64f20bd91d36f7356daec34259c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b91f2fb0b2294b0c2986de94fea2f24848b3a3852f21cfcf1eeff3c568d2ed3c",
+      "after_sha256": "b91f2fb0b2294b0c2986de94fea2f24848b3a3852f21cfcf1eeff3c568d2ed3c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "41d88dbe1b72a5de27796c94a3c482bf70b04569b57a07e28eb1870718884fc6",
+      "after_sha256": "41d88dbe1b72a5de27796c94a3c482bf70b04569b57a07e28eb1870718884fc6",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B04",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "87decb658bb945f474ed58ef3cc972b55ae2a5ace54c25969c639153cf2c985b",
+      "after_sha256": "87decb658bb945f474ed58ef3cc972b55ae2a5ace54c25969c639153cf2c985b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B04",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "bee2e39a6a12dfb5ebeb8afdc51ad8514757406032d1ec82d71d955575850648",
+      "after_sha256": "bee2e39a6a12dfb5ebeb8afdc51ad8514757406032d1ec82d71d955575850648",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B05",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "e5472f4042d4b7f62ebeb0574f553601b2f7673a6e7c30536f00939d2e094fcd",
+      "after_sha256": "e5472f4042d4b7f62ebeb0574f553601b2f7673a6e7c30536f00939d2e094fcd",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B05",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "f2d01737dbfef31a1d950fd58d83102cd9cf309c44c3336cc5b25208a5d0ea9e",
+      "after_sha256": "f2d01737dbfef31a1d950fd58d83102cd9cf309c44c3336cc5b25208a5d0ea9e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B06",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "046fb4c7f7484ba8d998c5314646d33197265c5862a604079e9b3c53485bc88c",
+      "after_sha256": "046fb4c7f7484ba8d998c5314646d33197265c5862a604079e9b3c53485bc88c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B06",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1b2c462d69223bfbcf75da5702151d4ba0e1dd27c87d7f24c0412edbb355be58",
+      "after_sha256": "1b2c462d69223bfbcf75da5702151d4ba0e1dd27c87d7f24c0412edbb355be58",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B07",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "8263662198e9366cffcf33bbea0e3d3d707f6c3e2fceb7256d7288f5b202deaf",
+      "after_sha256": "8263662198e9366cffcf33bbea0e3d3d707f6c3e2fceb7256d7288f5b202deaf",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B07",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "9d3b46276c0009d29ef05440979358c4925535f0766fd3bfe6f1fb274f9bad2a",
+      "after_sha256": "9d3b46276c0009d29ef05440979358c4925535f0766fd3bfe6f1fb274f9bad2a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B08",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "355691d924b0a3a35e72b2b9379a3aedd5b83598a6c8df3e7e75ea8d81ce81ac",
+      "after_sha256": "355691d924b0a3a35e72b2b9379a3aedd5b83598a6c8df3e7e75ea8d81ce81ac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B08",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b7cd7fbe5116cbc8dac96067b06aa33eaaf7af1f05490206335b8d746b65f030",
+      "after_sha256": "b7cd7fbe5116cbc8dac96067b06aa33eaaf7af1f05490206335b8d746b65f030",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B09",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "aea9d73fce53486aeaa77c3cf39a3ed613cddf498df254bc6d5572cc4547e33c",
+      "after_sha256": "aea9d73fce53486aeaa77c3cf39a3ed613cddf498df254bc6d5572cc4547e33c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B09",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "74890c4744fec336740932169daedf2a15794c3c1f324bdeaf6f5781bc5451f2",
+      "after_sha256": "74890c4744fec336740932169daedf2a15794c3c1f324bdeaf6f5781bc5451f2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B10",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "ef57f33d2a3fd7c03a1bb6bb25341999138f523cd2ae1f6e626ac89f8f30a864",
+      "after_sha256": "ef57f33d2a3fd7c03a1bb6bb25341999138f523cd2ae1f6e626ac89f8f30a864",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B10",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c323fce2927bf10e7801ded58500fff5fad37da7924b9d4d0ca3ab11ac9b798a",
+      "after_sha256": "c323fce2927bf10e7801ded58500fff5fad37da7924b9d4d0ca3ab11ac9b798a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B11",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "5ddbeb40f8f95182799aa4c829e0fdd8910de791f5e09ca64eb32d889a80e0e3",
+      "after_sha256": "5ddbeb40f8f95182799aa4c829e0fdd8910de791f5e09ca64eb32d889a80e0e3",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B11",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "079aada4cc1fa6ba01749c325fb6af376df64f4d5609bdcf11902828da0af29a",
+      "after_sha256": "079aada4cc1fa6ba01749c325fb6af376df64f4d5609bdcf11902828da0af29a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B12",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "6b0d3936428665fb5b5eb5cceca6a329897d0661dbdce530052c443b819ea730",
+      "after_sha256": "6b0d3936428665fb5b5eb5cceca6a329897d0661dbdce530052c443b819ea730",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B12",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d6d04c01ea7266a167b88aa8647b51a9eac0c711d2004f363620d5386df54b93",
+      "after_sha256": "d6d04c01ea7266a167b88aa8647b51a9eac0c711d2004f363620d5386df54b93",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B13",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "84404723ed2c8652387091122689af1628fe066147d1f79fabef0403bacdc846",
+      "after_sha256": "84404723ed2c8652387091122689af1628fe066147d1f79fabef0403bacdc846",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B13",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "18ffb5657e7dd6e4e308b61f03510bd9b3098df068078e666c0cef10d1b6d5ce",
+      "after_sha256": "18ffb5657e7dd6e4e308b61f03510bd9b3098df068078e666c0cef10d1b6d5ce",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B14",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "1d9d0015d82ddf4e62f7f664c18b2e1e749227fa7c4715a5e1a445815a710d20",
+      "after_sha256": "1d9d0015d82ddf4e62f7f664c18b2e1e749227fa7c4715a5e1a445815a710d20",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B14",
+        "shirtId": "DS014",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "12495b6acc819014208c3d9b594140eb49146c3eefd698bfb3a62ff017b145c1",
+      "after_sha256": "12495b6acc819014208c3d9b594140eb49146c3eefd698bfb3a62ff017b145c1",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "REFERENCE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "3071097d30b9901cb74b1423fd5787220f42c9f4ff6e01f8c958c8a20c21b7ab",
+      "after_sha256": "3071097d30b9901cb74b1423fd5787220f42c9f4ff6e01f8c958c8a20c21b7ab",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "d7dbffcd90157b02db895cbfc9c382eee26af969de8eea0386f1a479bcd7609b",
+      "after_sha256": "d7dbffcd90157b02db895cbfc9c382eee26af969de8eea0386f1a479bcd7609b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "e14608abe36d94cc576a71a73637652952c253c74153549bf4b5d28fbf442e21",
+      "after_sha256": "e14608abe36d94cc576a71a73637652952c253c74153549bf4b5d28fbf442e21",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "e26db3b8585e213259de9d3b00aec995534c0ce20216b2db0f5adb5b7be45841",
+      "after_sha256": "e26db3b8585e213259de9d3b00aec995534c0ce20216b2db0f5adb5b7be45841",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "942101f77636f6ad159d749f068cb14182edd78db0432058622c0cc2df3a4749",
+      "after_sha256": "942101f77636f6ad159d749f068cb14182edd78db0432058622c0cc2df3a4749",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B04",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "2694d9ab6bcaee331c211a3d187043756ebab705773a6a92beb6170a82e08a67",
+      "after_sha256": "2694d9ab6bcaee331c211a3d187043756ebab705773a6a92beb6170a82e08a67",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B05",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "c8c442fe140feac7e2621e67dc3e2618712843dc345b260d7dcc1ef9cbe8c64e",
+      "after_sha256": "c8c442fe140feac7e2621e67dc3e2618712843dc345b260d7dcc1ef9cbe8c64e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B06",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "afa38ddcf946d7dbe366e22d40420c9a6a1f830b945424f88304413173df3d54",
+      "after_sha256": "afa38ddcf946d7dbe366e22d40420c9a6a1f830b945424f88304413173df3d54",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B07",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "3ce97606cb717853b78b228e9b7fc420b7a50e781670fa6665a2208ad0c7ab1c",
+      "after_sha256": "3ce97606cb717853b78b228e9b7fc420b7a50e781670fa6665a2208ad0c7ab1c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B08",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "23380638c750cadb4bce78f609d8478f39fb74302f6c29fd9c4bcc83f3d01ab5",
+      "after_sha256": "23380638c750cadb4bce78f609d8478f39fb74302f6c29fd9c4bcc83f3d01ab5",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B09",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "90e5500d0061f6eda84c19b32da649407776c3a9acb019839e9fb5ef66ab6434",
+      "after_sha256": "90e5500d0061f6eda84c19b32da649407776c3a9acb019839e9fb5ef66ab6434",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B10",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "4b0f4c6fd217cc6b4e47ebe57636dc2d3de2a50b154991eb577260924bb65a5d",
+      "after_sha256": "4b0f4c6fd217cc6b4e47ebe57636dc2d3de2a50b154991eb577260924bb65a5d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B11",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "91c984c4c5a16f70a3fe82466c8b193f715e2b6381ad7a81636686fabbe6c7c7",
+      "after_sha256": "91c984c4c5a16f70a3fe82466c8b193f715e2b6381ad7a81636686fabbe6c7c7",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B12",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "8a5a498d4d37fd41af905e502ec47d2770da132af1b614a4e63c75f2eb65e0a0",
+      "after_sha256": "8a5a498d4d37fd41af905e502ec47d2770da132af1b614a4e63c75f2eb65e0a0",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B13",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "5c89bfd891dd6bcf8bd318ddf160dd77094af8e98e7f4dda1302c4abacaf0003",
+      "after_sha256": "5c89bfd891dd6bcf8bd318ddf160dd77094af8e98e7f4dda1302c4abacaf0003",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B14",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before_sha256": "b44b4d4cafe8bf4ed57b68f69a4961f12525cb70b705a51bc998764198154608",
+      "after_sha256": "b44b4d4cafe8bf4ed57b68f69a4961f12525cb70b705a51bc998764198154608",
+      "equal": true
+    }
+  ],
+  "changed_route_frames": [
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T001",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T001",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T002",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T002",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T003",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T003",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T004",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T004",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T005",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T005",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T006",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T006",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T007",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T007",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T008",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T008",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T009",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T009",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T010",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T010",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T011",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T011",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T012",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T012",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T013",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T013",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T014",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T014",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T015",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T015",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T016",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T016",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1431,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T018",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T018",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T019",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T019",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T020",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T020",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T021",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T021",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T022",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T022",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T023",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T023",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T024",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T024",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T025",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T025",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T026",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T026",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T027",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T027",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T028",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T028",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T029",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T029",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T030",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T030",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T031",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T031",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T032",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T032",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T033",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T033",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T034",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T034",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T035",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T035",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T036",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T036",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T037",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T037",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T038",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T038",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T039",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T039",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T040",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T040",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T041",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T041",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T042",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T042",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T043",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T043",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T044",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T044",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T045",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T045",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T046",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T046",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T047",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1040,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "shirtId": "DS023",
+        "state": "T047",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1014,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1149,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1149,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B04",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B05",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B06",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B07",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B08",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B09",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B10",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B11",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B12",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B13",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B14",
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1392,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PT001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PT002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PT003",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PT004",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PT005",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PT006",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PT007",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PB001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PB002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PB003",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PB004",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PBR001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PBR002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PN001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PN002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PN003",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PN004",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PN005",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PN006",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG003",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PN007",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PW002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_pixels": 1457,
+      "outside_local_region_changed": 0,
+      "face_above_y398_equal": true,
+      "all_pixels_y586_and_below_equal": true
+    }
+  ],
+  "errors": [],
+  "elapsed_seconds": 349.74
+}
