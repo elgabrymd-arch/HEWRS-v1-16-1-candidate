@@ -1,0 +1,24 @@
+{
+  "schema": "hewrs.favorites.extra-browser.v1_16_6",
+  "scope": "Additional actual DOM failure/cancellation guards; all storage synthetic.",
+  "passed": 4,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Missing favorite image fails without substituting an outfit or writing wear",
+      "passed": true
+    },
+    {
+      "name": "Duplicate-only file is previewed but cannot trigger a redundant write",
+      "passed": true
+    },
+    {
+      "name": "Retained reference cannot be saved as an exact favorite outfit",
+      "passed": true
+    },
+    {
+      "name": "Existing wear backup dialog explains separate Favorites backup",
+      "passed": true
+    }
+  ]
+}

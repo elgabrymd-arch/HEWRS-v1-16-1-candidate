@@ -1,0 +1,11 @@
+{
+  "schema": "hewrs.favorites.local-origin.v1_16_6",
+  "scope": "One genuine local HTTP-origin / persistent-profile test of Favorites.\nAll records are synthetic. No external hosting, device or owner-data claim.\nA blocked navigation is reported as BLOCKED, not bypassed or counted as a pass.\n",
+  "status": "BLOCKED",
+  "checks": [],
+  "owner_data_accessed": false,
+  "deployment_performed": false,
+  "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:39623/\nCall log:\n  - navigating to \"http://127.0.0.1:39623/\", waiting until \"domcontentloaded\"\n",
+  "http_request_count": 0,
+  "requests": []
+}

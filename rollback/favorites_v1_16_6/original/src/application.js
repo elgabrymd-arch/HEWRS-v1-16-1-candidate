@@ -6,7 +6,6 @@ const $=id=>document.getElementById(id),copy=x=>structuredClone(x),el=(tag,text,
 const need=(v,m)=>{if(!v)throw Error(m);};
 const connection=root.HEWRSCleanConnection.create(root.HEWRS_INPUTS);
 let backend;try{backend=root.localStorage;}catch{backend=null;}
-const favorites=root.HEWRSFavorites.create(connection,root.HEWRS_INPUT_SHA256,backend);
 const store=root.HEWRSLocalState.create(connection,root.HEWRS_INPUT_SHA256,backend),ui=root.HEWRSFaceliftModel.create(connection),urlCache=new Map();
 function resolveUrl(d){need(Object.hasOwn(connection.assetPaths,d.sha256),'Unbound image hash; no fallback');if(root.HEWRS_EMBEDDED_IMAGES){if(!urlCache.has(d.sha256)){const v=root.HEWRS_EMBEDDED_IMAGES[d.sha256];need(v,'Embedded image missing');urlCache.set(d.sha256,'data:image/png;base64,'+v);}return urlCache.get(d.sha256);}return connection.assetPaths[d.sha256];}
 const renderer=root.HEWRSAtomicRenderer.create($('avatar'),connection,{resolveUrl});
@@ -146,84 +145,11 @@ function itemDetails(r,group){const{body,actions,token}=openSheet((groupLabels[g
  actions.append(button('Back to category',()=>browseCategory(group)));body.append(el('p','Renaming is unavailable: the current build has no persistent rename handler.','fx-caption'));
 }
 function historyRow(event,withButton=false){const row=el('article',undefined,'fx-history-row');row.append(el('strong',event.localDate+' · '+event.origin),el('p',ids(event.canonical_selection)));const watch=connection.catalogue.watches.find(w=>w.id===event.items.watch?.id);row.append(el('p',event.items.shoes.id+(watch?' · '+watch.id+' — '+watch.name:'')));if(withButton)row.append(button('View recorded selection',async()=>{dismissSheet();options=[];optionIndex=-1;report=null;lastRequest=null;producing=null;await apply(event.canonical_selection,{origin:'manual',localDate:event.localDate});showPage('outfits');}));return row;}
-function refreshHistory(){refreshFavoriteCount();const s=store.snapshot(),st=store.status();$('wear-count').textContent=s.events.length;$('repeat-limit').textContent=Number.isFinite(root.HEWRS_INPUTS.logicData.rotationPolicy?.maxMonthlyRepeatIncidents)?String(root.HEWRS_INPUTS.logicData.rotationPolicy.maxMonthlyRepeatIncidents):'—';$('storage-banner').textContent=st.blocked||(st.persistent?'Saved in this browser’s existing candidate ledger.':'Session memory only. Export to retain records.');const list=$('history-preview');list.replaceChildren();if(!s.events.length)list.append(el('p','No wear recorded in this application.','fx-caption'));for(const e of s.events.slice(-2).reverse())list.append(historyRow(e));$('clear-log').disabled=!s.events.length||!!st.blocked;}
+function refreshHistory(){const s=store.snapshot(),st=store.status();$('wear-count').textContent=s.events.length;$('repeat-limit').textContent=Number.isFinite(root.HEWRS_INPUTS.logicData.rotationPolicy?.maxMonthlyRepeatIncidents)?String(root.HEWRS_INPUTS.logicData.rotationPolicy.maxMonthlyRepeatIncidents):'—';$('storage-banner').textContent=st.blocked||(st.persistent?'Saved in this browser’s existing candidate ledger.':'Session memory only. Export to retain records.');const list=$('history-preview');list.replaceChildren();if(!s.events.length)list.append(el('p','No wear recorded in this application.','fx-caption'));for(const e of s.events.slice(-2).reverse())list.append(historyRow(e));$('clear-log').disabled=!s.events.length||!!st.blocked;}
 function logSheet(){const{body,actions}=openSheet('Recent Log');const s=store.snapshot();if(!s.events.length)body.append(el('p','No confirmed wear records.','fx-caption'));for(const e of [...s.events].reverse())body.append(historyRow(e,true));actions.append(button('Close',()=>dismissSheet()));}
 function confirmClear(){const before=store.snapshot();const{body,actions}=openSheet('Clear Wear Log');body.append(el('p','Remove '+before.events.length+' confirmed wear records from this application’s ledger? This does not alter the catalogue, current outfit or production history.','fx-warning'));actions.append(button('Cancel',()=>dismissSheet()),button('Confirm clear',()=>{const now=store.snapshot();need(now.revision===before.revision,'History changed; reopen Clear before proceeding');const preview=store.previewImport(JSON.stringify({...now,events:[]}));store.restore(preview);dismissSheet(false);invalidateRecommendations();refreshHistory();status('Local wear log cleared.');}));}
 function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
-
-// Favorites use a separate namespace. Saving/removing/importing one never
-// records wear, changes a recommendation or rewrites the existing ledger.
-function refreshFavoriteCount(){
- const label=$('favorites-button').querySelector('small'),st=favorites.status();
- label.textContent=st.blocked?'Saved data needs review':favorites.snapshot().items.length+' saved outfits';
-}
-function favoriteDescription(s){return itemsFor(s).map(i=>i.role+': '+(i.id?i.id+' — ':'')+i.name).join('\n');}
-function canFavoriteCurrent(){return !!current&&!busy&&!$('outfit-output').hidden&&current.state!=='REFERENCE'&&$('avatar').dataset.status==='ready'&&JSON.stringify(renderer.last())===JSON.stringify(current);}
-function saveCurrentFavorite(){
- need(canFavoriteCurrent(),'Display a complete outfit before saving it');
- const result=favorites.add(current,{id:'favorite_'+(root.crypto?.randomUUID?.()||Date.now().toString(36)+'_'+Math.random().toString(36).slice(2)),created_at:new Date().toISOString()});
- refreshFavoriteCount();return result;
-}
-function showFavorites(notice=''){
- const {body,actions}=openSheet('Favorites',{list:true}),st=favorites.status();
- body.append(el('p',st.blocked||(st.persistent?'Saved in this browser. Favorites do not count as wear and do not sync automatically between devices.':'Session memory only. Export Favorites to retain them.'),'fx-caption'));
- const live=el('p',notice,'fx-caption');live.id='favorite-notice';live.setAttribute('role','status');body.append(live);
- const savedCurrent=canFavoriteCurrent()?favorites.find(current):null;
- const save=button(savedCurrent?'Current outfit already saved':'Save current outfit',()=>{const result=saveCurrentFavorite();showFavorites(result.added?(result.persistent?'Outfit saved as a Favorite. Wear count unchanged.':'Favorite kept in session memory only. Export to retain it.'):'This exact outfit is already saved; no duplicate added.');},true);
- save.id='save-favorite';save.disabled=!!st.blocked||!canFavoriteCurrent()||!!savedCurrent;body.append(save);
- if(current)body.append(el('p','Current: '+ids(current)+' · '+current.shoeId+(current.watchId?' · '+current.watchId:''),'fx-caption'));
- const search=el('input',undefined,'fx-search');search.type='search';search.placeholder='Search saved outfits by ID or name';search.id='favorite-search';search.setAttribute('aria-label','Search Favorites');body.append(search);
- const list=el('div');list.id='favorites-list';body.append(list);
- function draw(){
-  list.replaceChildren();const q=search.value.trim().toLowerCase();
-  const rows=[...favorites.snapshot().items].reverse().filter(i=>favoriteDescription(i.selection).toLowerCase().includes(q));
-  if(!rows.length)list.append(el('p',q?'No matching Favorites.':'No favorite outfits saved yet.','fx-caption'));
-  for(const item of rows){
-   const row=el('article',undefined,'fx-history-row');row.dataset.favoriteId=item.id;
-   row.append(el('strong',ids(item.selection)),el('p',connection.records[item.selection.shirtId].label));
-   const watch=connection.catalogue.watches.find(w=>w.id===item.selection.watchId);
-   row.append(el('p',item.selection.shoeId+(watch?' · '+watch.id+' — '+watch.name:'')));
-   const view=button('Open outfit',()=>openFavorite(item.id));view.dataset.favoriteOpen=item.id;view.disabled=busy;
-   const remove=button('Remove favorite',()=>confirmRemoveFavorite(item.id));remove.dataset.favoriteRemove=item.id;remove.disabled=!!st.blocked;
-   row.append(view,remove);list.append(row);
-  }
- }
- search.oninput=draw;draw();
- const data=button('Export / Import favorites',favoriteBackup);data.id='favorite-data';actions.append(button('Close',()=>dismissSheet()),data);
-}
-async function openFavorite(id){
- need(!busy,'Finish or cancel the current render first');
- const item=favorites.snapshot().items.find(x=>x.id===id);need(item,'Favorite is no longer present');
- // A favorite is an exact manual selection, never a saved score or recommendation.
- // Render atomically before changing the remembered session. Persist only
- // the current selection through the existing handler; never add a wear event.
- const token=modal?.token;
- const out=await apply(item.selection,{origin:'manual',save:false});if(out.cancelled)return;
- options=[];optionIndex=-1;lastRequest=null;report=null;producing=null;currentOption=null;
- setMode('anchor');displayCurrent();updateHome();
- $('outfit-summary').textContent='Favorite opened as an exact manual selection. No wear recorded and no saved recommendation score reused.';
- if(modal?.token===token)dismissSheet(false);showPage('outfits');
- try{store.saveSession(sessionValue(item.selection,'manual',ctx.localDate,currentContext()));refreshHistory();status(store.status().persistent?'Favorite opened and current outfit saved. Wear history unchanged.':'Favorite opened in session memory. Export to retain it. Wear history unchanged.');}catch(e){refreshHistory();status('Favorite displayed. '+e.message,true);}
-}
-function confirmRemoveFavorite(id){
- const snap=favorites.snapshot(),item=snap.items.find(i=>i.id===id);need(item,'Favorite is no longer present');
- const{body,actions}=openSheet('Remove favorite');body.append(el('p','Remove '+ids(item.selection)+' from Favorites only? Your current outfit and wear history stay unchanged.','fx-caption'));
- const confirm=button('Confirm removal',()=>{favorites.remove(id,snap.revision);refreshFavoriteCount();showFavorites('Favorite removed. Wear history unchanged.');},true);confirm.id='confirm-favorite-removal';
- actions.append(button('Cancel',()=>showFavorites()),confirm);
-}
-function favoriteBackup(){
- let preview=null;const {body,actions,token}=openSheet('Favorites backup');
- body.append(el('p','Favorites only—not a wear-history backup. Import adds new exact outfits and keeps existing favorites. It does not overwrite wear history or the current outfit.','fx-caption'));
- const exp=button('Export favorites',()=>download('HEWRS_FAVORITES_'+localToday()+'.json',favorites.exportText()));exp.id='export-favorites';
- const file=el('input');file.type='file';file.accept='.json,application/json';file.id='favorites-file';file.setAttribute('aria-label','Select Favorites backup');
- const pre=el('pre');pre.id='favorites-import-preview';pre.hidden=true;
- const confirm=button('Confirm import',()=>{need(preview,'Select a validated Favorites backup first');const result=favorites.merge(preview);preview=null;refreshFavoriteCount();showFavorites(result.added+' favorites imported; '+result.already_saved+' already saved. Wear history unchanged.');},true);confirm.id='confirm-favorites-import';confirm.disabled=true;
- file.onchange=async()=>{preview=null;confirm.disabled=true;pre.hidden=true;try{const f=file.files[0];if(!f)return;need(f.size<=1000000,'Favorites backup is too large');const candidate=favorites.previewImport(await f.text());if(modal?.token!==token)return;preview=candidate;pre.textContent=JSON.stringify({existing:candidate.existing,incoming:candidate.incoming,add:candidate.added,already_saved:candidate.already_saved,total:candidate.total,action:'Add new exact favorites; keep existing IDs. No changes to wear or current outfit.'},null,2);pre.hidden=false;confirm.disabled=!candidate.added;$('fx-sheet-error').textContent='';}catch(e){if(modal?.token===token)sheetError(e);}};
- const content=el('div',undefined,'fx-data-actions');content.append(exp,el('label','Import a Favorites backup'),file,pre);body.append(content);
- actions.append(button('Back',()=>showFavorites()),confirm);
-}
-
-function backup(){restorePreview=null;const{body,actions,token}=openSheet('Backup & Restore');body.append(el('p','This backup contains the current outfit and wear history. Favorites have a separate export/import inside Favorites.','fx-caption'));const st=store.status();body.append(el('p',st.blocked||(st.persistent?'Using the existing application ledger and source lock.':'Session memory only. Export to retain current records.'),'fx-caption'));
+function backup(){restorePreview=null;const{body,actions,token}=openSheet('Backup & Restore');const st=store.status();body.append(el('p',st.blocked||(st.persistent?'Using the existing application ledger and source lock.':'Session memory only. Export to retain current records.'),'fx-caption'));
  const exportButton=button('Export current backup',()=>download('HEWRS_LOCAL_BACKUP_'+localToday()+'.json',store.exportText()));exportButton.id='export-backup';const f=el('input');f.type='file';f.accept='.json,application/json';f.id='backup-file';f.setAttribute('aria-label','Select existing application backup');const pre=el('pre');pre.id='import-preview';pre.hidden=true;const restore=button('Confirm restore',async()=>{need(restorePreview,'Select a validated backup first');const preview=restorePreview;store.restore(preview);restorePreview=null;restore.disabled=true;dismissSheet(false);invalidateRecommendations();refreshHistory();const s=store.snapshot().session;if(s){setMode(s.mode);ctx={occasion:s.context.occasion,formality:s.context.requiredFormality,style:'AUTO',localDate:s.localDate};await apply(s.selection,{origin:'manual',context:s.context,localDate:s.localDate,save:false});}updateHome();status('Validated backup restored through the existing application handler.');},true);restore.id='confirm-restore';restore.disabled=true;
  f.onchange=async()=>{restorePreview=null;restore.disabled=true;pre.hidden=true;try{const file=f.files[0];if(!file)return;const v=store.previewImport(await file.text());if(modal?.token!==token)return;restorePreview=v;pre.textContent=JSON.stringify({current_records:store.snapshot().events.length,backup_records:v.events.length,selection:v.session?.selection||null,action:'Replace this candidate ledger only after confirmation; no merge or production migration.'},null,2);pre.hidden=false;restore.disabled=false;$('fx-sheet-error').textContent='';}catch(e){sheetError(e);}};
  const content=el('div',undefined,'fx-data-actions');content.append(exportButton,el('label','Import a current-format backup'),f,pre);body.append(content);actions.append(button('Cancel',()=>dismissSheet()),restore);
@@ -238,8 +164,8 @@ $('view-current').onclick=()=>{if(current){presentFrame();displayCurrent();showP
 $('full-view').onclick=()=>{$('stage').classList.remove('detail');$('full-view').setAttribute('aria-pressed','true');$('detail-view').setAttribute('aria-pressed','false');};$('detail-view').onclick=()=>{$('stage').classList.add('detail');$('full-view').setAttribute('aria-pressed','false');$('detail-view').setAttribute('aria-pressed','true');};
 $('details-button').onclick=details;$('score-button').onclick=scoreDetails;$('record-wear').onclick=startLog;$('quick-log').onclick=startLog;
 $('regenerate').onclick=async()=>{if(busy||!producing)return;const p=copy(producing);ui.replace(p.prefs);ctx=copy(p.context);setMode(p.mode);updateHome();try{if(p.kind==='engine')await generate(p.config,{prefs:p.prefs});else{await apply(p.selection,{origin:'manual',keepPreferences:true});showPage('outfits');}}catch(e){status(e.message,true);}};
-$('data-button').onclick=backup;$('open-log').onclick=logSheet;$('clear-log').onclick=confirmClear;$('favorites-button').onclick=()=>showFavorites();$('insights-button').onclick=()=>{const{body,actions}=openSheet('Insights');body.append(el('p','Existing engine output; no additional rotation statistics are calculated by this view.','fx-caption'),el('pre',JSON.stringify(report?.rotation||{status:'unavailable',reason:'No current computed rotation report'},null,2)));actions.append(button('Close',()=>dismissSheet()));};
-root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_16_6',connection,store,favorites,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
+$('data-button').onclick=backup;$('open-log').onclick=logSheet;$('clear-log').onclick=confirmClear;$('favorites-button').onclick=()=>message('Favorites','The current source has no connected Favorites persistence handler. This view does not invent favorites or log wear.');$('insights-button').onclick=()=>{const{body,actions}=openSheet('Insights');body.append(el('p','Existing engine output; no additional rotation statistics are calculated by this view.','fx-caption'),el('pre',JSON.stringify(report?.rotation||{status:'unavailable',reason:'No current computed rotation report'},null,2)));actions.append(button('Close',()=>dismissSheet()));};
+root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_16_5',connection,store,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
 const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:saved.context.occasion,formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}ui.fromSelection(saved?.selection||defaultSelection);setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
 apply(saved?.selection||defaultSelection,{origin:'manual',context:saved?.context||currentContext(),localDate:saved?.localDate||ctx.localDate,save:false,keepPreferences:true}).then(()=>{root.HEWRS_READY=true;setBusy(false);updateHome();status(saved?'Saved outfit restored. Full generating preferences are not stored by the current source schema.':'');showPage('home');}).catch(e=>{root.HEWRS_LOAD_ERROR=e.message;status('Initial view failed: '+e.message,true);setBusy(false);});
 })(globalThis);

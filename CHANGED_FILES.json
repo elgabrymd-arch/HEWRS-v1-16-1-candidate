@@ -1,235 +1,271 @@
 {
-  "version": "1.16.5",
-  "baseline": "1.16.4",
+  "schema": "hewrs.changed-files.v1",
+  "version": "1.16.6",
+  "baseline": "1.16.5",
+  "scope": "18-shirt-only; persistent Favorites; no image or wear-record changes",
+  "self_exclusions": [
+    "CHANGED_FILES.json",
+    "PACKAGE_SHA256.json"
+  ],
   "changes": [
     {
-      "path": "DELIVERY_V1_16_5.md",
-      "status": "added",
+      "path": "DELIVERY_V1_16_6.md",
+      "operation": "add",
       "before_sha256": null,
-      "after_sha256": "5d84f989b4940f927e5db3520a06ece327c72818e35042c6e106642aa34d9d96",
-      "bytes": 5851
+      "after_sha256": "5e7f9ecc240f014f4f85b2de6bdcfa67cde8a1f7ee3aad003ddd8399381aaed4",
+      "bytes": 7501
     },
     {
       "path": "README.md",
-      "status": "modified",
-      "before_sha256": "2a1bbca40e374959480f1ffebd5135de3ca65d596ce492124da44198be193250",
+      "operation": "modify",
+      "before_sha256": "2a1029082ce1476bec2abc358ec225234b05c9fbfa9fbe1ec6d822e581111b6b",
+      "after_sha256": "2fadcc22ffe675ceea35be4239c0b08f0c64ed9e50d8a60e91216d4976277be6",
+      "bytes": 2657
+    },
+    {
+      "path": "RELEASE_SCOPE.json",
+      "operation": "modify",
+      "before_sha256": "c0c67f69475308b2e35f481cdd2c3b887605fd14058f6833230eda89cd21398b",
+      "after_sha256": "f83df98f22c88d208e54c8731abb7fc7b1102f2cb7a2a3ab99c4aa4e5f9c19a1",
+      "bytes": 2019
+    },
+    {
+      "path": "RELEASE_STATUS.json",
+      "operation": "modify",
+      "before_sha256": "119a7f1a3e44ceb852e6a76b66250a6c272272e50245b4d9c9b3152978c9373c",
+      "after_sha256": "6ea47e0cfe4fe534d62e9b1030430404ceb8d0e344f300d4c2b229db7abcc453",
+      "bytes": 4514
+    },
+    {
+      "path": "app.html",
+      "operation": "modify",
+      "before_sha256": "5c044532349c9756efab91f69cf8951d5da04922c199c1dadc1ae0c86afb00a0",
+      "after_sha256": "76570d21939ddefcfa42e963ab1f0f8b4fd2a314575e0db5f3e56fff6bec43f7",
+      "bytes": 15316
+    },
+    {
+      "path": "app.template.html",
+      "operation": "modify",
+      "before_sha256": "742e418b01bf5bc070eca8e07012049214e273077616eab82c618ba8f3afca35",
+      "after_sha256": "872ba7e1c42beea57c587bfb0bbba3bbf7748adfd9c63fbee5642b21f8918611",
+      "bytes": 13037
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/EXTRA_BROWSER.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "47bee55d77b42f5cebd90fab89419c9d1515e007fee47d51db198f05f18b6048",
+      "bytes": 668
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/FUNCTIONAL.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "9ec08192cd5d859d595935432bd72c9fd3283d7ec77969ed16fd9985cd49d29b",
+      "bytes": 4410
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/HTTP.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "1f63d10ae254408fbe0e187a5f8f988f41d2148a978f46fac3ef4fec2fa69180",
+      "bytes": 8916
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/LOCAL_ORIGIN.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "17a6c1c3815ac23952c8a60927424ee32204c94dfef05f5fb47530b2386bd2eb",
+      "bytes": 630
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/ROLLBACK.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "43cd3de08ccecba290876ea19b7995eae458261b6ed84486ffcbfba0f1d4d944",
+      "bytes": 223
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/TESTED_RUNTIME_SHA256.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "98e4d3f1828191064e79f59aae070667d67fb70efdc5261185584010b5114369",
+      "bytes": 9439
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/browser/FAVORITES_390x700.png",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "21e3539f44590173903793087851c14013d5727effe5e9278c543938c65cc39e",
+      "bytes": 47440
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/browser/RESULT.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "1d837f4d42ae1769922ccc525aac6c41afb183ca0f6937920db992e0d3460a8e",
+      "bytes": 39481
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/browser/SYNTHETIC_FAVORITES_EXPORT.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "01e3dda4a97abbb1908d766d47914af9e51200b244b7673d64859c31a868f74c",
+      "bytes": 759
+    },
+    {
+      "path": "index.html",
+      "operation": "modify",
+      "before_sha256": "5c044532349c9756efab91f69cf8951d5da04922c199c1dadc1ae0c86afb00a0",
+      "after_sha256": "76570d21939ddefcfa42e963ab1f0f8b4fd2a314575e0db5f3e56fff6bec43f7",
+      "bytes": 15316
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/BASELINE_FILES.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "ca508347ccec50dedb3acc6c13b745e30847e33247f642b8b5bb2e9bb583bfbb",
+      "bytes": 252033
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/CHANGED_FILES.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "71526f07fff974a38f85d43099f2cf0b69f96c8ae034471c659634e91854d896",
+      "bytes": 8084
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/PACKAGE_SHA256.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "61929f1056f1865efa6323695af14180b8f8f7f89dddbdf8d57a493d487d8343",
+      "bytes": 271319
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/README.md",
+      "operation": "add",
+      "before_sha256": null,
       "after_sha256": "2a1029082ce1476bec2abc358ec225234b05c9fbfa9fbe1ec6d822e581111b6b",
       "bytes": 1882
     },
     {
-      "path": "RELEASE_SCOPE.json",
-      "status": "added",
+      "path": "rollback/favorites_v1_16_6/original/RELEASE_SCOPE.json",
+      "operation": "add",
       "before_sha256": null,
       "after_sha256": "c0c67f69475308b2e35f481cdd2c3b887605fd14058f6833230eda89cd21398b",
       "bytes": 1906
     },
     {
-      "path": "RELEASE_STATUS.json",
-      "status": "modified",
-      "before_sha256": "21779553c2c1d676cec206721e029ce3bacc7f5d23ac7ef880e7a66cf1525c7f",
+      "path": "rollback/favorites_v1_16_6/original/RELEASE_STATUS.json",
+      "operation": "add",
+      "before_sha256": null,
       "after_sha256": "119a7f1a3e44ceb852e6a76b66250a6c272272e50245b4d9c9b3152978c9373c",
       "bytes": 3978
     },
     {
-      "path": "app.html",
-      "status": "modified",
-      "before_sha256": "3f0bbf100401c3b743e83716cfc11efc041e75efee24fa546881a846c13f6f1a",
+      "path": "rollback/favorites_v1_16_6/original/app.html",
+      "operation": "add",
+      "before_sha256": null,
       "after_sha256": "5c044532349c9756efab91f69cf8951d5da04922c199c1dadc1ae0c86afb00a0",
       "bytes": 15260
     },
     {
-      "path": "app.template.html",
-      "status": "modified",
-      "before_sha256": "612c7b2b3ea6af3a9c613c3dc0abc06a809ab26efd9a561408cadd5205721134",
+      "path": "rollback/favorites_v1_16_6/original/app.template.html",
+      "operation": "add",
+      "before_sha256": null,
       "after_sha256": "742e418b01bf5bc070eca8e07012049214e273077616eab82c618ba8f3afca35",
       "bytes": 13035
     },
     {
-      "path": "evidence/scope18_v1_16_5/FUNCTIONAL.json",
-      "status": "added",
+      "path": "rollback/favorites_v1_16_6/original/index.html",
+      "operation": "add",
       "before_sha256": null,
-      "after_sha256": "208c428ed5eb5b72b89a3a13b65c130504495b14b0c00044371ccf9943a9ec9e",
-      "bytes": 3735
-    },
-    {
-      "path": "evidence/scope18_v1_16_5/ROLLBACK.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "a41e10a67238c14df800a5863793055db6adc079e5312504549f8df479d90b4a",
-      "bytes": 177
-    },
-    {
-      "path": "evidence/scope18_v1_16_5/SOURCE_BOUNDARY.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "5fec45125e963ac3f3ca7d35444909f86305bb07b96e3f100753bc907bb050fa",
-      "bytes": 378
-    },
-    {
-      "path": "evidence/scope18_v1_16_5/TESTED_RUNTIME_SHA256.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "0dc5e61c4cea0ddb55e033fda273bb98b62a85427a9f53d75325bd4f88bdcd61",
-      "bytes": 8274
-    },
-    {
-      "path": "evidence/scope18_v1_16_5/browser/18_SHIRT_PICKER_390x700.png",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "87239f6f7250c9c6e72b7ab68405b5e61b8e56f9f1710d849f81c374c2ba941a",
-      "bytes": 42793
-    },
-    {
-      "path": "evidence/scope18_v1_16_5/browser/DS023_COLLAR_DETAIL.png",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "8db474ba296fd34a7991af63a64e1ec8eaeff4e5debcc242ef94662e5c805770",
-      "bytes": 115353
-    },
-    {
-      "path": "evidence/scope18_v1_16_5/browser/RESULT.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "135d2fc6178b07e869b59411eab46e888c694591fa7d06082231968bd71464a2",
-      "bytes": 61317
-    },
-    {
-      "path": "index.html",
-      "status": "modified",
-      "before_sha256": "3f0bbf100401c3b743e83716cfc11efc041e75efee24fa546881a846c13f6f1a",
       "after_sha256": "5c044532349c9756efab91f69cf8951d5da04922c199c1dadc1ae0c86afb00a0",
       "bytes": 15260
     },
     {
-      "path": "rollback/scope18_v1_16_5/BASELINE_FILES.json",
-      "status": "added",
+      "path": "rollback/favorites_v1_16_6/original/src/application.js",
+      "operation": "add",
       "before_sha256": null,
-      "after_sha256": "5c1c209422bf816adc2240e3887355cdb82d4220ede272f4f34f9e6ac5129ed3",
-      "bytes": 248008
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/CHANGED_FILES.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "29f856485475c9e5e65cd25f4258892db790c240ddc390c2db8babdc5a4c53bb",
-      "bytes": 8253
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/PACKAGE_SHA256.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "0b87482c68e20ca9b2a5519bdd53175271219b03db9e2b66f8744a0cbfd1ce04",
-      "bytes": 267091
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/README.md",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "2a1bbca40e374959480f1ffebd5135de3ca65d596ce492124da44198be193250",
-      "bytes": 860
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/RELEASE_STATUS.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "21779553c2c1d676cec206721e029ce3bacc7f5d23ac7ef880e7a66cf1525c7f",
-      "bytes": 2844
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/app.html",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "3f0bbf100401c3b743e83716cfc11efc041e75efee24fa546881a846c13f6f1a",
-      "bytes": 15253
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/app.template.html",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "612c7b2b3ea6af3a9c613c3dc0abc06a809ab26efd9a561408cadd5205721134",
-      "bytes": 13035
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/index.html",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "3f0bbf100401c3b743e83716cfc11efc041e75efee24fa546881a846c13f6f1a",
-      "bytes": 15253
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/src/application.js",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "474461f7630c58aa342da6fa76259f95317e7f22bc235a1c64bcf0552e0f686b",
-      "bytes": 38475
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/src/source-aware-pickers.js",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "9452a9db460f56e081dad650550d0ba20dd6f54dad0606c829d2f1a6b008f4ef",
-      "bytes": 2372
-    },
-    {
-      "path": "rollback/scope18_v1_16_5/original/tools/build.py",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "3db0c4f185e048589daece17a83539bd071ea3633c4d125a6880053c21d8fdb1",
-      "bytes": 2760
-    },
-    {
-      "path": "src/application.js",
-      "status": "modified",
-      "before_sha256": "474461f7630c58aa342da6fa76259f95317e7f22bc235a1c64bcf0552e0f686b",
       "after_sha256": "85b2453abe1f4fdd7369100c9d11a85a9d78bb24ea44f95b3718dfad62b609f0",
       "bytes": 39087
     },
     {
-      "path": "src/source-aware-pickers.js",
-      "status": "modified",
-      "before_sha256": "9452a9db460f56e081dad650550d0ba20dd6f54dad0606c829d2f1a6b008f4ef",
-      "after_sha256": "acb64bd2b91b80fcb0c182eb08de805fda452ea2e699c9bfa07db0dfda6e6cd7",
-      "bytes": 3086
-    },
-    {
-      "path": "tests/release-scope-browser.py",
-      "status": "added",
+      "path": "rollback/favorites_v1_16_6/original/tools/build.py",
+      "operation": "add",
       "before_sha256": null,
-      "after_sha256": "a41814e9b3f7cc03781078ed98304829d4e13791469232f14a69eb6ab549560c",
-      "bytes": 8959
-    },
-    {
-      "path": "tests/release-scope.cjs",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "7733f485b42aa571fffac6c71b9f107b0e3822c12335c0bc3db9faf86fdc8d58",
-      "bytes": 10637
-    },
-    {
-      "path": "tools/build.py",
-      "status": "modified",
-      "before_sha256": "3db0c4f185e048589daece17a83539bd071ea3633c4d125a6880053c21d8fdb1",
       "after_sha256": "2cb3cd5ef0d154af8d94b1d341e9629f80fc60f19f3e813d68b600afacbda8dc",
       "bytes": 2811
     },
     {
-      "path": "tools/rollback_v1165.py",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "66d727542ad17ec33df0783282c274bc2c9f6707972be861722df578714501f7",
-      "bytes": 1785
+      "path": "src/application.js",
+      "operation": "modify",
+      "before_sha256": "85b2453abe1f4fdd7369100c9d11a85a9d78bb24ea44f95b3718dfad62b609f0",
+      "after_sha256": "6e3025e69581feb70e056b449a0dcb50b83920f76aeeca14f9336746cb70741b",
+      "bytes": 46712
     },
     {
-      "path": "tools/verify_v1165.py",
-      "status": "added",
+      "path": "src/favorites-state.js",
+      "operation": "add",
       "before_sha256": null,
-      "after_sha256": "3c368e3261355048168384ddf1aeabbb1f0b5642581f0f7c1d0b8d93fa6e17f9",
-      "bytes": 4531
+      "after_sha256": "84c7790ba9d4ac373dc880fbfaa390cb031bd84a3cf0314dfd18bc8186465bad",
+      "bytes": 5709
+    },
+    {
+      "path": "tests/favorites-browser.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "8fd860db0f0e56b6f5933f57b050d37faacb3504ba6a566bd02b3d26df61db66",
+      "bytes": 12437
+    },
+    {
+      "path": "tests/favorites-extra-browser.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "44b7b6ff98719acbfadba3c9eba6b5304fd1b94a82c4f46b7f59992826bae7ef",
+      "bytes": 3510
+    },
+    {
+      "path": "tests/favorites-http.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "201c252477413f6c15fdac3946bdb7d104789baadfa7afdcd642484b02a24490",
+      "bytes": 1467
+    },
+    {
+      "path": "tests/favorites-local-origin.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "cf26f2f2ac2b3d95ec80802e217f3ba134b980ebbb66ec0d6cf66e7781884bb3",
+      "bytes": 3755
+    },
+    {
+      "path": "tests/favorites.cjs",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "91d6e7ca7a836c90adeae2c2b63f85b45e517c0b67705214d31a0d6a9969ee85",
+      "bytes": 13068
+    },
+    {
+      "path": "tools/build.py",
+      "operation": "modify",
+      "before_sha256": "2cb3cd5ef0d154af8d94b1d341e9629f80fc60f19f3e813d68b600afacbda8dc",
+      "after_sha256": "b85602716f54df2af232c3953beaa46e7ea6fb7b062150aaa6b11947667c64da",
+      "bytes": 2882
+    },
+    {
+      "path": "tools/rollback_v1166.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "7ce87abb9b2457796fbb01465c43fe976ee627b0a57a70ef38e25a9796d4737f",
+      "bytes": 1900
+    },
+    {
+      "path": "tools/verify_v1166.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "ad81744cfa1ad023d1513090e9e23bdfe8c8bed6362905e6346e0ab41bda4225",
+      "bytes": 4753
     }
-  ],
-  "deleted_files": [],
-  "self_hash_exclusions": [
-    "CHANGED_FILES.json",
-    "PACKAGE_SHA256.json"
   ]
 }
