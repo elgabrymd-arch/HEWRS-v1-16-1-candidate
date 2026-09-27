@@ -1,0 +1,11 @@
+{
+  "schema": "hewrs.insights.local-origin.v1_16_7",
+  "scope": "One genuine localhost/persistent-profile attempt using synthetic records.\nA blocked navigation is reported, not bypassed. No public site or owner data.",
+  "status": "BLOCKED",
+  "checks": [],
+  "owner_data_accessed": false,
+  "deployment_performed": false,
+  "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:39323/\nCall log:\n  - navigating to \"http://127.0.0.1:39323/\", waiting until \"domcontentloaded\"\n",
+  "http_request_count": 0,
+  "requests": []
+}

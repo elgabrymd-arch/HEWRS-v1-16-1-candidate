@@ -11,7 +11,6 @@ const store=root.HEWRSLocalState.create(connection,root.HEWRS_INPUT_SHA256,backe
 function resolveUrl(d){need(Object.hasOwn(connection.assetPaths,d.sha256),'Unbound image hash; no fallback');if(root.HEWRS_EMBEDDED_IMAGES){if(!urlCache.has(d.sha256)){const v=root.HEWRS_EMBEDDED_IMAGES[d.sha256];need(v,'Embedded image missing');urlCache.set(d.sha256,'data:image/png;base64,'+v);}return urlCache.get(d.sha256);}return connection.assetPaths[d.sha256];}
 const renderer=root.HEWRSAtomicRenderer.create($('avatar'),connection,{resolveUrl});
 const defaultSelection={suitId:'S05',shirtId:'DS036',state:'T017',shoeId:'shoe-8',watchId:null};
-const usage=root.HEWRSRotationInsights.create(connection,root.HEWRS_INPUT_SHA256);
 const names={topwear:'Suit / Blazer',shirt:'Shirt',tie:'Tie',shoes:'Shoes',bottoms:'Bottoms',watch:'Watch'};
 const groupLabels={suits:'Suits',blazers:'Blazers',shirts:'Dress Shirts',ties:'Ties',shoes:'Shoes',pants:'Pants',jeans:'Jeans',tshirts:'T-Shirts',watches:'Watches'};
 const styleLabels={AUTO:'Automatic',CLASSIC:'Classical',HYBRID:'Hybrid',MODERN:'Modern'};
@@ -229,60 +228,6 @@ function backup(){restorePreview=null;const{body,actions,token}=openSheet('Backu
  f.onchange=async()=>{restorePreview=null;restore.disabled=true;pre.hidden=true;try{const file=f.files[0];if(!file)return;const v=store.previewImport(await file.text());if(modal?.token!==token)return;restorePreview=v;pre.textContent=JSON.stringify({current_records:store.snapshot().events.length,backup_records:v.events.length,selection:v.session?.selection||null,action:'Replace this candidate ledger only after confirmation; no merge or production migration.'},null,2);pre.hidden=false;restore.disabled=false;$('fx-sheet-error').textContent='';}catch(e){sheetError(e);}};
  const content=el('div',undefined,'fx-data-actions');content.append(exportButton,el('label','Import a current-format backup'),f,pre);body.append(content);actions.append(button('Cancel',()=>dismissSheet()),restore);
 }
-
-// Factual counts only. This panel has no wear, preference, Favorite or storage writes.
-function showInsights(){
- const {body,actions}=openSheet('Rotation Insights',{list:true}),st=store.status();
- if(st.blocked){body.append(el('p','Wear records unavailable: '+st.blocked+' No usage counts are claimed.','fx-warning'));actions.append(button('Close',()=>dismissSheet()));return;}
- const snapshot=store.snapshot();
- body.append(el('p',(st.persistent?'Recorded in this browser only.':'Session-memory records only.')+' Counts are confirmed log entries, not all actual wear. Favorites and viewed outfits are excluded.','fx-caption'));
- const filter=el('div',undefined,'fx-context-form');
- const range=selectField('Records in range',[{value:'30',label:'Last 30 calendar days'},{value:'90',label:'Last 90 calendar days'},{value:'all',label:'All recorded dates through cutoff'}],'30','insights-range');
- const dateLabel=el('label','Through (inclusive)'),cutoff=el('input');cutoff.type='date';cutoff.id='insights-through';cutoff.value=ctx.localDate;dateLabel.append(cutoff);filter.append(range.wrap,dateLabel);body.append(filter);
- const totals=el('div');totals.id='insights-summary';totals.setAttribute('aria-live','polite');body.append(totals);
- const category=selectField('Garment group',usage.categories.map(r=>({value:r.id,label:r.label+' ('+r.count+')'})),'shirts','insights-category');
- const sort=selectField('Order',[{value:'catalogue',label:'Catalogue order'},{value:'count',label:'Most recorded in range'},{value:'last',label:'Oldest last-recorded date; unrecorded last'}],'catalogue','insights-sort');
- const search=el('input',undefined,'fx-search');search.type='search';search.id='insights-search';search.placeholder='Search physical ID or item name';search.setAttribute('aria-label','Search recorded wear');
- const check=el('label',undefined,'fx-check-row'),recorded=el('input');recorded.type='checkbox';recorded.id='insights-recorded-only';check.append(recorded,el('span','Only items with records in this range'));
- const filters=el('div',undefined,'fx-context-form');filters.append(category.wrap,sort.wrap,search,check);body.append(filters);
- const count=el('p','', 'fx-caption');count.id='insights-count';count.setAttribute('role','status');
- const list=el('div');list.id='insights-list';body.append(count,list);
- let result=null;
- function drawRows(){
-  list.replaceChildren();count.textContent='';if(!result)return;
-  const rows=usage.rows(result,category.input.value,{query:search.value,sort:sort.input.value,recordedOnly:recorded.checked});
-  count.textContent=rows.length+' items · record counts in range; last recorded date through '+result.as_of;
-  if(!rows.length)list.append(el('p','No matching records or items for these filters.','fx-caption'));
-  for(const r of rows){
-   const row=el('article',undefined,'fx-history-row');row.dataset.usageId=r.id;row.dataset.usageHistoryId=r.history_id;
-   const plural=r.record_count===1?'record':'records',span=el('strong',r.id+' · '+r.record_count+' '+plural);row.append(span,el('p',r.label));
-   row.append(el('p',r.last_recorded_through_cutoff?'Last recorded: '+r.last_recorded_through_cutoff+' · '+r.calendar_days_since_record+' calendar days before cutoff':'No wear recorded through '+result.as_of+'. This does not mean never worn.','fx-caption'));
-   if(r.category==='shirts'||r.category==='pants')row.append(el('p',r.scope,'fx-caption'));list.append(row);
-  }
- }
- function calculate(){
-  result=null;totals.replaceChildren();list.replaceChildren();count.textContent='';
-  try{
-   result=usage.build(snapshot,{asOf:cutoff.value,window:range.input.value});const s=result.summary;
-   totals.append(el('p',(result.from?result.from+' to '+result.as_of:'Through '+result.as_of)+' · ledger revision '+result.ledger_revision,'fx-caption'));
-   const grid=el('div',undefined,'fx-stat-grid');
-   for(const [title,n,sub]of [['Confirmed records',s.records,'Entries, not distinct days'],['Recorded days',s.recorded_days,'Distinct dates with a record']]){const card=el('div',undefined,'fx-card');card.append(el('small',title),el('strong',String(n),'fx-stat-number'),el('small',sub));grid.append(card);}totals.append(grid);
-   totals.append(el('p',s.exact_outfits+' exact outfits · '+s.suit_records+' suit / '+s.blazer_records+' blazer / '+s.shirt_only_records+' shirt-only records.','fx-caption'));
-   totals.append(el('p',s.manual_records+' manual / '+s.engine_records+' Engine-origin records · '+s.tied_records+' tied / '+s.no_tie_records+' No Tie.','fx-caption'));
-   if(s.recorded_repeat_flags)totals.append(el('p',s.recorded_repeat_flags+' records marked as controlled repetition. These are saved flags, not newly inferred incidents.','fx-caption'));
-   if(s.future_excluded||s.older_excluded)totals.append(el('p','Excluded from this range: '+s.future_excluded+' records after cutoff; '+s.older_excluded+' earlier records. No records were removed.','fx-caption'));
-   if(!s.records)totals.append(el('p',s.ledger_records?'No confirmed records in this range. Change the range or cutoff to inspect existing records.':'No confirmed wear logged in this browser. No usage is inferred from Favorites or outfit views.','fx-caption'));
-   $('fx-sheet-error').textContent='';drawRows();
-  }catch(e){sheetError(e);}
- }
- for(const input of [range.input,cutoff])input.onchange=calculate;
- for(const input of [category.input,sort.input,recorded])input.onchange=drawRows;search.oninput=drawRows;
- const details=el('details'),summary=el('summary','Existing Engine rotation report');details.id='insights-engine-report';
- details.append(summary,el('p','Preserved output from the current generation, when available. The usage counts above do not recompute it or add ranking policies.','fx-caption'),el('pre',JSON.stringify(report?.rotation||{status:'unavailable',reason:'No current computed rotation report'},null,2)));body.append(details);
- body.append(el('p','Read-only snapshot. Last-recorded dates use all confirmed dates through cutoff; counts use the chosen range. Separate trousers are counted only when their physical ID was logged. No scores, cooldown decisions or automatic device sync are added.','fx-caption'));
- actions.append(button('Close',()=>dismissSheet()));calculate();
-}
-
 function resetPreferences(){const{body,actions}=openSheet('Reset preferences');body.append(el('p','Clear all six Home preferences? Your current outfit and wear history will remain unchanged.','fx-caption'));actions.append(button('Cancel',()=>dismissSheet()),button('Confirm reset',()=>{ui.reset();producing=null;dismissSheet(false);updateHome();status('Preferences cleared. Choose the topwear and footwear required by this build; no garment is selected automatically.');}));}
 // One modal owner, one router and one logging transaction for both buttons.
 $('fx-sheet-close').onclick=()=>dismissSheet();$('fx-sheet').addEventListener('cancel',e=>{e.preventDefault();dismissSheet();});$('fx-sheet').addEventListener('click',e=>{if(e.target!==$('fx-sheet'))return;const r=$('fx-sheet').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dismissSheet();});
@@ -293,8 +238,8 @@ $('view-current').onclick=()=>{if(current){presentFrame();displayCurrent();showP
 $('full-view').onclick=()=>{$('stage').classList.remove('detail');$('full-view').setAttribute('aria-pressed','true');$('detail-view').setAttribute('aria-pressed','false');};$('detail-view').onclick=()=>{$('stage').classList.add('detail');$('full-view').setAttribute('aria-pressed','false');$('detail-view').setAttribute('aria-pressed','true');};
 $('details-button').onclick=details;$('score-button').onclick=scoreDetails;$('record-wear').onclick=startLog;$('quick-log').onclick=startLog;
 $('regenerate').onclick=async()=>{if(busy||!producing)return;const p=copy(producing);ui.replace(p.prefs);ctx=copy(p.context);setMode(p.mode);updateHome();try{if(p.kind==='engine')await generate(p.config,{prefs:p.prefs});else{await apply(p.selection,{origin:'manual',keepPreferences:true});showPage('outfits');}}catch(e){status(e.message,true);}};
-$('data-button').onclick=backup;$('open-log').onclick=logSheet;$('clear-log').onclick=confirmClear;$('favorites-button').onclick=()=>showFavorites();$('insights-button').onclick=showInsights;
-root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_16_7',connection,store,favorites,usage,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
+$('data-button').onclick=backup;$('open-log').onclick=logSheet;$('clear-log').onclick=confirmClear;$('favorites-button').onclick=()=>showFavorites();$('insights-button').onclick=()=>{const{body,actions}=openSheet('Insights');body.append(el('p','Existing engine output; no additional rotation statistics are calculated by this view.','fx-caption'),el('pre',JSON.stringify(report?.rotation||{status:'unavailable',reason:'No current computed rotation report'},null,2)));actions.append(button('Close',()=>dismissSheet()));};
+root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_16_6',connection,store,favorites,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
 const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:saved.context.occasion,formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}ui.fromSelection(saved?.selection||defaultSelection);setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
 apply(saved?.selection||defaultSelection,{origin:'manual',context:saved?.context||currentContext(),localDate:saved?.localDate||ctx.localDate,save:false,keepPreferences:true}).then(()=>{root.HEWRS_READY=true;setBusy(false);updateHome();status(saved?'Saved outfit restored. Full generating preferences are not stored by the current source schema.':'');showPage('home');}).catch(e=>{root.HEWRS_LOAD_ERROR=e.message;status('Initial view failed: '+e.message,true);setBusy(false);});
 })(globalThis);

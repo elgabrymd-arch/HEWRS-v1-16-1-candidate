@@ -1,0 +1,174 @@
+{
+  "schema": "hewrs.insights.functional.v1_16_7",
+  "scope": "Isolated synthetic fixtures; no owner data or browser storage",
+  "passed": 32,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Confirmed dated events aggregate across existing outfit modes without invented scores",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Thirty-day range includes first and final dates; future entries are separately disclosed",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All-recorded range excludes future dates, preserves older entries and leaves source untouched",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Ninety-day inclusive start is a calendar date",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Same date and exact outfit count as separate confirmed entries, one recorded day",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Last recorded date uses dated chronology, not array insertion order",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Old record is outside counts but still available as last-recorded evidence",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Missing last-recorded date remains null, not never worn or a fabricated elapsed value",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Leap-day arithmetic and daylight-saving dates use civil calendar differences",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Earliest supported dates clamp range start rather than generating malformed years",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Invalid date, unrecognized range and malformed ledger are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unconfirmed, mismatched, duplicate-ID, unsupported and REFERENCE records are rejected, not silently skipped",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Source lock conflicts are rejected without using a different wardrobe",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Image-sharing DS001/DS014, DS024/DS025 and DS021/DS047 retain independent physical counts",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Different physical trouser IDs remain independent when their image color is shared",
+      "passed": true,
+      "result": [
+        "PT001",
+        "PT002"
+      ]
+    },
+    {
+      "name": "Matching suit trousers are not invented as separate physical pant events",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Intentional No Tie and no watch are not garment IDs or fabricated utilization",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Watches use exact existing IDs/names with no image requirement",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Only stored repetition flags are counted; repeated outfits do not create extra incidents",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 50 shirts retained in Insights, with 18 non-suit connected and 32 deferred labels",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Deferred DS041 can have a suit No Tie record without becoming a non-suit option",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Search matches current names and exact stored identity text, without renaming",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Factual count sort is stable for ties; default catalogue order is unchanged",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Last-recorded sort puts unrecorded items last, not oldest by assumption",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Recorded-only filtering means recorded in selected window, not before it",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unsupported groups, tampered report objects and invalid filters are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reports and roster are immutable; returned filtered rows cannot alter the model",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Read-only calculation never touches browser storage, scores, session or Favorites",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Current outfit and Favorites-only histories produce no wear metrics",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Ledger reconciliation: counted + older + future equals original events",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "10,000-event supported ledger is counted without new scores or synthetic de-duplication",
+      "passed": true,
+      "result": {
+        "records": 10000,
+        "milliseconds": 552
+      }
+    },
+    {
+      "name": "All existing garment, scorer, renderer, CSS, Favorites and storage sources are byte-identical",
+      "passed": true,
+      "result": 705
+    }
+  ]
+}
