@@ -1,0 +1,121 @@
+{
+  "version": "1.17.1",
+  "scope": "Synthetic provider/permission/error fixtures; not real phone GPS or live provider verification",
+  "passed": 22,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "HTTPS failure distinguished without making GPS/network requests",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Permission denial exposes precise code and city-search fallback",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Unavailable position and native timeout remain different errors",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Synchronous browser location exception is caught and categorized",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Missing native callback has a bounded timeout",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Cancelling a pending native location prevents any later network request",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GPS-to-weather phase updates and source dates stay explicit",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "NETWORK_UNREACHABLE distinguished from permission errors",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Timeout remains bounded even when fetch ignores AbortSignal",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Unreadable JSON and provider error are not interpreted as weather",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "HTTP 429 retains status instead of generic GPS failure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Stale restored work date yields actionable DATE_OUTSIDE_FORECAST",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Choosing today succeeds without rewriting old date or storing draft",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Future daily forecast remains labelled forecast with existing high rule",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "City/ZIP search preserves matching ambiguity, coordinates, credentials policy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Cancellation during fetch discards late provider response",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Cancel before search/locate never contacts device or provider",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Apply and reload write weather key only; no wear/Favorites mutation",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Storage write failure is surfaced and previous state retained",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "No implicit network/location request on construction or stored-state reads",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "Exact weather eligibility/material/season policy code is preserved",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "All 705 runtime images and frozen data/engine/renderer files are byte-identical",
+      "passed": true,
+      "value": {
+        "images": 705,
+        "protected_data_logic_files": 68
+      }
+    }
+  ]
+}

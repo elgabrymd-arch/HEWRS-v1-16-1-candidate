@@ -1,13 +1,3 @@
-# HEWRS V1.17.1 — phone weather and larger outfit view
-
-Current version: **1.17.1**, based on 1.17.0. Read `DELIVERY_V1_17_1.md`.
-
-The default outfit view is larger and includes Enlarge/Fit. Weather now has explicit date/Today controls, keyboard-search submission, cancellation, selected-location refresh and readable failure codes. The exact owner-phone weather failure is not yet identified; live device/provider success remains unverified. No DNA, score, image, physical ID or wear/Favorites data was changed.
-
-Verify: `python -B tools/verify_v1171.py`. Exact V1.17.0 rollback: `python -B tools/rollback_v1171.py --output NEW_FOLDER`.
-
-## Prior baseline documentation (historical)
-
 # HEWRS V1.17.0 — Engine Choice, 15 options, location and weather
 
 Continuation of the existing V1.16.7 18-shirt non-suit application. Not a new wardrobe,

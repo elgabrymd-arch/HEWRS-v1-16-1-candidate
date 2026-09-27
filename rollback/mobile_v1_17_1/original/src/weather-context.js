@@ -1,4 +1,4 @@
-/* V1.17.1 location/weather transport and phone feedback; eligibility unchanged. No garment DNA, compatibility or wear writes.
+/* V1.17.0 location/weather adapter. No garment DNA, compatibility or wear writes.
  * API contract: Open-Meteo forecast/geocoding documentation, checked 2026-09-27.
  * Suitability rules: recovered index.html Phase 9 (Ch.129-162), separately named
  * from frozen clothing scores. Unknown material/sole facts are never invented.
@@ -21,77 +21,16 @@ function parseForecast(j,p,date,now){need(validDate(date)&&j&&!j.error,'Invalid 
  else{need(i>=0,'Selected work date is outside this forecast; set manual conditions');need(j.daily_units?.temperature_2m_max==='°F'&&j.daily_units?.apparent_temperature_max==='°F'&&j.daily_units?.precipitation_sum==='mm','Unexpected forecast units');airF=j.daily.temperature_2m_max[i];feelsF=j.daily.apparent_temperature_max[i];mm=j.daily.precipitation_sum[i];code=j.daily.weather_code[i];source='forecast';observedAt=date;}
  const s={source,date,place:place(p),fetchedAt:now,observedAt,timezone:j.timezone||'provider local time',airF,feelsF,highF,lowF,temperatureBand:band(feelsF),precipitation:precipitation(code,mm),season:season(date,p.latitude),provider:'Open-Meteo',providerBasis:source==='live'?'Current model estimate; feels-like temperature determines clothing band':'Daily forecast; feels-like HIGH and daily weather code determine clothing band',weatherCode:code,precipitationMm:mm};return validate(s);
 }
-// Transport and permission errors are reported separately. No fallback fabric,
-// default weather, proxy, permission bypass or compatibility change is used.
-function fault(code,message){const e=Error(message);e.code=code;return e;}
-function create({backend=null,fetchFn=root.fetch?.bind(root),geolocation=root.navigator?.geolocation,now=()=>Date.now(),secureContext=root.isSecureContext!==false,requestTimeoutMs=20000,locationTimeoutMs=45000}={}){
- let selected=null,raw=null,blocked=null,lastDiagnostic=null;
+function create({backend=null,fetchFn=root.fetch?.bind(root),geolocation=root.navigator?.geolocation,now=()=>Date.now()}={}){
+ let selected=null,raw=null,blocked=null;
  try{if(backend){raw=backend.getItem(KEY);if(raw!==null){const r=JSON.parse(raw);need(r.schema===SCHEMA,'Different weather storage schema');selected=validate(r.selection);}}}catch(e){blocked='Weather data retained, not reset: '+e.message;}
- const cancelled=()=>fault('CANCELLED','Lookup cancelled');
- function remember(e,phase){if(e.code!=='CANCELLED')lastDiagnostic={code:e.code||'INVALID_RESPONSE',phase,message:e.message};return e;}
- async function get(url,{signal,phase='weather'}={}){
-  if(!fetchFn)throw remember(fault('NETWORK_UNAVAILABLE','Network access is unavailable. Enter weather manually.'),phase);
-  if(signal?.aborted)throw cancelled();
-  const a=new AbortController();let timer,onAbort;
-  const stop=new Promise((resolve,reject)=>{
-   onAbort=()=>{a.abort();reject(cancelled());};signal?.addEventListener('abort',onAbort,{once:true});
-   timer=setTimeout(()=>{a.abort();reject(fault('NETWORK_TIMEOUT','Weather service did not respond in time. Retry or enter weather manually.'));},requestTimeoutMs);
-  });
-  try{
-   const work=(async()=>{
-    let r;try{r=await fetchFn(url,{signal:a.signal,credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store'});}
-    catch(e){if(signal?.aborted)throw cancelled();if(e.name==='AbortError')throw fault('NETWORK_TIMEOUT','Weather request timed out. Retry or enter weather manually.');throw fault('NETWORK_UNREACHABLE','The weather service could not be reached from this browser. Check the connection or a content blocker, retry, or enter weather manually.');}
-    if(!r.ok){let reason='';try{const j=await r.json();if(typeof j?.reason==='string')reason=': '+j.reason.slice(0,180);}catch{}throw fault('HTTP_'+r.status,'Weather service returned HTTP '+r.status+reason+'. Retry later or use manual conditions.');}
-    let j;try{j=await r.json();}catch{throw fault('INVALID_JSON','Weather service returned unreadable data. Retry or enter weather manually.');}
-    if(j?.error)throw fault('PROVIDER_ERROR','Weather service rejected this request'+(typeof j.reason==='string'?': '+j.reason.slice(0,180):'.'));
-    return j;
-   })();
-   const out=await Promise.race([work,stop]);lastDiagnostic=null;return out;
-  }catch(e){throw remember(e,phase);}finally{clearTimeout(timer);signal?.removeEventListener('abort',onAbort);}
- }
- async function search(term,{signal}={}){
-  need(typeof term==='string'&&term.trim().length>=2&&term.length<=120,'Enter a city or postal code');
-  const u=new URL('https://geocoding-api.open-meteo.com/v1/search');u.search=new URLSearchParams({name:term.trim(),count:'8',language:'en',format:'json'}).toString();
-  const r=await get(u.href,{signal,phase:'city-search'});need(!r.results||Array.isArray(r.results),'Location service returned invalid results');
-  return (r.results||[]).slice(0,8).map(x=>place({label:[x.name,x.admin1,x.country].filter(Boolean).join(', '),latitude:x.latitude,longitude:x.longitude}));
- }
- async function fetchAt(p,date,{signal,onProgress}={}){
-  p=place(p);need(validDate(date),'Select a valid weather/work date');
-  onProgress?.({phase:'weather',message:'Location selected. Loading weather for '+date+'…'});
-  const u=new URL('https://api.open-meteo.com/v1/forecast');
-  u.search=new URLSearchParams({latitude:String(p.latitude),longitude:String(p.longitude),current:'temperature_2m,apparent_temperature,precipitation,weather_code',daily:'temperature_2m_max,temperature_2m_min,apparent_temperature_max,precipitation_sum,weather_code',temperature_unit:'fahrenheit',precipitation_unit:'mm',timezone:'auto',forecast_days:'7'}).toString();
-  try{
-   const j=await get(u.href,{signal});if(signal?.aborted)throw cancelled();
-   // A restored outfit may have an older work date. Never mislabel today's
-   // conditions as that historical date, or silently change the work date.
-   const available=Array.isArray(j?.daily?.time)?j.daily.time.filter(validDate):[];
-   if(j?.current?.time?.slice(0,10)!==date&&!available.includes(date))throw fault('DATE_OUTSIDE_FORECAST','Weather/work date '+date+' is outside this forecast'+(available.length?' ('+available[0]+' to '+available[available.length-1]+')':'')+'. Tap Today, choose an available date, or enter conditions manually.');
-   const result=parseForecast(j,p,date,now());lastDiagnostic=null;return result;
-  }catch(e){throw remember(e,'weather');}
- }
- async function locate(date,{signal,onProgress}={}){
-  need(validDate(date),'Select a valid weather/work date');
-  if(signal?.aborted)throw cancelled();
-  if(!secureContext)throw remember(fault('HTTPS_REQUIRED','Location requires the HTTPS HEWRS website. Open it directly in Safari or use city search.'),'location');
-  if(!geolocation?.getCurrentPosition)throw remember(fault('LOCATION_UNAVAILABLE','Location is unavailable in this browser. Use city search or enter weather manually.'),'location');
-  onProgress?.({phase:'location',message:'Waiting for location permission or a device position. Allow the browser request, or use city search.'});
-  let position;
-  try{position=await new Promise((resolve,reject)=>{
-   let done=false,timer;
-   function finish(fn,value){if(done)return;done=true;clearTimeout(timer);signal?.removeEventListener('abort',onAbort);fn(value);}
-   const onAbort=()=>finish(reject,cancelled());
-   timer=setTimeout(()=>finish(reject,fault('LOCATION_TIMEOUT','No device location was returned. Use city search without GPS permission, or retry location.')),locationTimeoutMs);
-   signal?.addEventListener('abort',onAbort,{once:true});
-   try{geolocation.getCurrentPosition(p=>finish(resolve,p),e=>finish(reject,fault(e.code===1?'LOCATION_DENIED':e.code===3?'LOCATION_TIMEOUT':'LOCATION_UNAVAILABLE',e.code===1?'Location permission denied. Allow location for this website in the browser settings, or use city search without GPS.':e.code===3?'Location timed out. Use city search or retry location.':'The device could not determine its location. Use city search or retry.')),{enableHighAccuracy:false,timeout:20000,maximumAge:300000});}
-   catch{finish(reject,fault('LOCATION_UNAVAILABLE','The browser could not start location. Open the HTTPS website directly in Safari or use city search.'));}
-  });}catch(e){throw remember(e,'location');}
-  if(signal?.aborted)throw cancelled();
-  const p=place({label:'Device location ('+(Math.round(position.coords.latitude*100)/100)+', '+(Math.round(position.coords.longitude*100)/100)+')',latitude:position.coords.latitude,longitude:position.coords.longitude});
-  return fetchAt(p,date,{signal,onProgress});
- }
+ async function get(url){need(fetchFn,'Network access is unavailable; use manual weather');const a=new AbortController(),t=setTimeout(()=>a.abort(),12000);try{const r=await fetchFn(url,{signal:a.signal,credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store'});need(r.ok,'Weather service returned HTTP '+r.status);return await r.json();}catch(e){throw Error(e.name==='AbortError'?'Weather request timed out. Manual settings remain available.':'Weather request failed: '+e.message);}finally{clearTimeout(t);}}
+ async function search(term){need(typeof term==='string'&&term.trim().length>=2&&term.length<=120,'Enter a city or postal code');const u=new URL('https://geocoding-api.open-meteo.com/v1/search');u.search=new URLSearchParams({name:term.trim(),count:'8',language:'en',format:'json'}).toString();const r=await get(u.href);return (r.results||[]).slice(0,8).map(x=>place({label:[x.name,x.admin1,x.country].filter(Boolean).join(', '),latitude:x.latitude,longitude:x.longitude}));}
+ async function fetchAt(p,date){p=place(p);const u=new URL('https://api.open-meteo.com/v1/forecast');u.search=new URLSearchParams({latitude:String(p.latitude),longitude:String(p.longitude),current:'temperature_2m,apparent_temperature,precipitation,weather_code',daily:'temperature_2m_max,temperature_2m_min,apparent_temperature_max,precipitation_sum,weather_code',temperature_unit:'fahrenheit',precipitation_unit:'mm',timezone:'auto',forecast_days:'7'}).toString();return parseForecast(await get(u.href),p,date,now());}
+ async function locate(date){need(geolocation,'Location is unavailable; search a city or enter weather manually');const position=await new Promise((resolve,reject)=>{let done=false;const timer=setTimeout(()=>{if(!done){done=true;reject(Error('Location timed out; search a city or use manual weather'));}},15000);function end(fn,x){if(done)return;done=true;clearTimeout(timer);fn(x);}geolocation.getCurrentPosition(p=>end(resolve,p),e=>end(reject,Error(e.code===1?'Location permission denied; search a city or use manual weather':'Location unavailable; search a city or use manual weather')),{enableHighAccuracy:false,timeout:12000,maximumAge:300000});});const p=place({label:'Device location ('+(Math.round(position.coords.latitude*100)/100)+', '+(Math.round(position.coords.longitude*100)/100)+')',latitude:position.coords.latitude,longitude:position.coords.longitude});return fetchAt(p,date);}
  function apply(value){need(!blocked,blocked);const s=validate(value);if(backend){const t=JSON.stringify({schema:SCHEMA,selection:s});need(backend.getItem(KEY)===raw,'Weather settings changed in another tab; reload before saving');backend.setItem(KEY,t);need(backend.getItem(KEY)===t,'Weather save could not be verified');raw=t;}selected=s;return copy(s);}
  function request(date){if(!selected)return {source:'not_assessed',date};need(fresh(selected,date,now()),'Weather is stale or belongs to another date. Refresh Weather or choose manual conditions.');return copy(selected);}
- return Object.freeze({search,fetchAt,locate,apply,request,snapshot:()=>copy(selected),status:()=>({blocked,persistent:!!backend}),diagnostic:()=>copy(lastDiagnostic),key:KEY});
+ return Object.freeze({search,fetchAt,locate,apply,request,snapshot:()=>copy(selected),status:()=>({blocked,persistent:!!backend}),key:KEY});
 }
 // Explicit material words only. The lookup is operational evidence, not a DNA edit.
 // Table/class values are recovered from historical Phase 9; no fibre imputation.

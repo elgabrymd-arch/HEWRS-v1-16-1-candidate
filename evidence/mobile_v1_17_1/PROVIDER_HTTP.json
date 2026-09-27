@@ -1,0 +1,18 @@
+{
+  "status": "UNAVAILABLE",
+  "scope": "Read-only HTTP probes at demonstration coordinates. No user geolocation,\nno deployment, no credentials, and no attempt to bypass network restrictions.",
+  "probes": [
+    {
+      "probe": "forecast_demo",
+      "success": false,
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    },
+    {
+      "probe": "city_demo",
+      "success": false,
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    }
+  ],
+  "phone_test": false,
+  "user_location_accessed": false
+}

@@ -51,25 +51,3 @@ html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
 }
 .hewrs-ui.fx-sheet .fx-picker-filter label,
 .hewrs-ui.fx-sheet .fx-picker-filter select { min-width: 0; width: 100%; }
-
-/* V1.17.1: increase outfit display size, not the 996 x 2748 render geometry.
- * Only the Outfits page scrolls for its lower score/details; Home is unchanged.
- */
-.fx-outfits .fx-output{flex:0 0 auto;min-height:0;}
-.fx-outfits .fx-stage-row{flex:0 0 auto;height:clamp(480px,75vh,740px);height:clamp(480px,75dvh,740px);min-height:480px;}
-.fx-outfits .canvas-stage{min-height:0;}
-.fx-outfits .fx-view-switch{gap:12px;flex-wrap:wrap;}
-.hewrs-ui .fx-outfits .fx-view-switch button{min-height:40px;}
-.fx-large-preview{width:100%;background:#000;overflow:hidden;border:1px solid var(--line);border-radius:12px;}
-.fx-large-preview canvas{display:block;width:100%;height:auto;margin:0 auto;}
-.fx-large-preview[data-fit="true"] canvas{height:calc(var(--fx-visible-height,90dvh) - 225px);min-height:160px;width:auto;max-width:100%;object-fit:contain;}
-.fx-weather-date-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;}
-.fx-weather-lookup-row{display:flex;gap:8px;flex-wrap:wrap;}
-.fx-weather-lookup-row>button{flex:1;min-height:44px;}
-.fx-weather-search-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;}
-.fx-weather-status{border:1px solid var(--line);border-radius:9px;padding:10px;line-height:1.5;overflow-wrap:anywhere;}
-.fx-weather-status[data-error="true"]{border-color:var(--danger);color:var(--danger);}
-#weather-city,#weather-manual-location,#weather-date{font-size:16px;min-width:0;width:100%;}
-#weather-date-note{margin:0;}
-#weather-locations:empty{display:none;}
-@media(max-height:440px){.fx-outfits .fx-stage-row{height:400px;min-height:400px;}}
