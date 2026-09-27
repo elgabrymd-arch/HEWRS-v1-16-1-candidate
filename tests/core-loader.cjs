@@ -1,0 +1,2 @@
+const fs=require('fs'),vm=require('vm'),path=require('path');
+module.exports=function(R){let paths=JSON.parse(fs.readFileSync(R+'/tools/build.py','utf8').match(/SCRIPTS=(\[[^\n]+\])/)[1].replaceAll("'",'"'));let g=vm.createContext({console,structuredClone,Date,Math,JSON,setTimeout,clearTimeout,Uint8ClampedArray,URL,URLSearchParams,AbortController,performance,Map,Set});for(const p of paths.filter(x=>x!=='src/application.js'))vm.runInContext(fs.readFileSync(R+'/'+p,'utf8'),g,{filename:p});return g;};

@@ -1,0 +1,715 @@
+{
+  "schema": "hewrs.core.functional.v1_17_0",
+  "passed": 25,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Protected DNA, score inputs and existing numerical/rotation paths are byte-identical",
+      "passed": true,
+      "result": [
+        "data/inputs.json",
+        "data/inputs.js",
+        "vendor/hewrs-logic.js",
+        "vendor/approved-scores.js",
+        "vendor/ensemble-completion.js",
+        "vendor/release-guards.js",
+        "vendor/request-contract.js",
+        "src/controller.js",
+        "src/connection.js",
+        "src/local-state.js",
+        "src/favorites-state.js",
+        "src/rotation-insights.js"
+      ]
+    },
+    {
+      "name": "All original shirt-tie values and source holds remain identical",
+      "passed": true,
+      "result": 2350
+    },
+    {
+      "name": "Derived cache preserves original ensemble results for every indexed row",
+      "passed": true,
+      "result": 112392
+    },
+    {
+      "name": "Full Engine Choice requires no topwear/shoe lock and returns 15 genuine outfits",
+      "passed": true,
+      "result": {
+        "query": {
+          "automatic": true,
+          "revision": "HEWRS_AUTOMATIC_WORKFLOW_1_17_0",
+          "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+          "prefs": {
+            "topwear": {
+              "mode": "any"
+            },
+            "shirt": {
+              "mode": "any"
+            },
+            "tie": {
+              "mode": "any"
+            },
+            "shoes": {
+              "mode": "any"
+            },
+            "bottoms": {
+              "mode": "any"
+            },
+            "watch": {
+              "mode": "any"
+            }
+          },
+          "context": {
+            "occasion": "clinic",
+            "requiredFormality": "any"
+          },
+          "localDate": "2026-09-27",
+          "environment": {
+            "source": "manual",
+            "date": "2026-09-27",
+            "temperatureBand": "mildWarm",
+            "precipitation": "dry",
+            "season": "Fall",
+            "locationLabel": "Synthetic test location"
+          },
+          "executiveStyle": "AUTO",
+          "dressMode": "work",
+          "limit": 15,
+          "sneakerStance": false
+        },
+        "status": "candidate_recommendation",
+        "count": 15,
+        "seconds": 3.814,
+        "diagnostics": {
+          "enumerated": 221256,
+          "examined": 221256,
+          "score_statuses": {
+            "new_ensemble_estimate": 176582,
+            "requires_review": 2933,
+            "canonical_data_hold": 918,
+            "rejected": 4985,
+            "premise_mismatch": 11430,
+            "conflict": 14040,
+            "excluded_by_proposed_foundation": 10368
+          },
+          "weather_style_or_accessory_holds": 364,
+          "unbound_trouser_ids": [],
+          "numeric_candidates": 176582,
+          "domain_evaluated": 5409,
+          "lower_scoring_candidates_safely_skipped": 171173
+        },
+        "reason": null,
+        "options": [
+          {
+            "selection": {
+              "suitId": "S05",
+              "shirtId": "DS029",
+              "state": "T028",
+              "shoeId": "shoe-0",
+              "watchId": "watch-R09"
+            },
+            "score": 9.561711,
+            "display_score": 9.6,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": "Fine Herringbone",
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "suitId": "S13",
+              "shirtId": "DS026",
+              "state": "NO_TIE",
+              "shoeId": "shoe-0",
+              "watchId": "watch-R09"
+            },
+            "score": 9.591842,
+            "display_score": 9.6,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "suitId": "S13",
+              "shirtId": "DS034",
+              "state": "T038",
+              "shoeId": "shoe-0",
+              "watchId": "watch-R09"
+            },
+            "score": 9.554803,
+            "display_score": 9.6,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "suitId": "S16",
+              "shirtId": "DS034",
+              "state": "T045",
+              "shoeId": "shoe-0",
+              "watchId": "watch-R09"
+            },
+            "score": 9.629276,
+            "display_score": 9.6,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "suitId": "S09",
+              "shirtId": "DS034",
+              "state": "T045",
+              "shoeId": "shoe-12",
+              "watchId": "watch-R09"
+            },
+            "score": 9.629276,
+            "display_score": 9.6,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": "Suede"
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B01",
+              "pantId": "PN002",
+              "shirtId": "DS018",
+              "state": "NO_TIE",
+              "shoeId": "shoe-10",
+              "watchId": "watch-R09"
+            },
+            "score": 9.462544,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B01",
+              "pantId": "PN002",
+              "shirtId": "DS024",
+              "state": "T024",
+              "shoeId": "shoe-10",
+              "watchId": "watch-R09"
+            },
+            "score": 9.459572,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B01",
+              "pantId": "PG002",
+              "shirtId": "DS025",
+              "state": "T024",
+              "shoeId": "shoe-13",
+              "watchId": "watch-R09"
+            },
+            "score": 9.465197,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B01",
+              "pantId": "PG003",
+              "shirtId": "DS025",
+              "state": "T024",
+              "shoeId": "shoe-13",
+              "watchId": "watch-R09"
+            },
+            "score": 9.465197,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B01",
+              "pantId": "PN002",
+              "shirtId": "DS025",
+              "state": "T024",
+              "shoeId": "shoe-10",
+              "watchId": "watch-R09"
+            },
+            "score": 9.494572,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B02",
+              "pantId": "PN002",
+              "shirtId": "DS018",
+              "state": "NO_TIE",
+              "shoeId": "shoe-10",
+              "watchId": "watch-R09"
+            },
+            "score": 9.462544,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B02",
+              "pantId": "PG002",
+              "shirtId": "DS022",
+              "state": "T041",
+              "shoeId": "shoe-13",
+              "watchId": "watch-R09"
+            },
+            "score": 9.466217,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B02",
+              "pantId": "PG003",
+              "shirtId": "DS022",
+              "state": "T041",
+              "shoeId": "shoe-13",
+              "watchId": "watch-R09"
+            },
+            "score": 9.466217,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B02",
+              "pantId": "PN002",
+              "shirtId": "DS022",
+              "state": "T041",
+              "shoeId": "shoe-10",
+              "watchId": "watch-R09"
+            },
+            "score": 9.468092,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          },
+          {
+            "selection": {
+              "blazerId": "B02",
+              "pantId": "PN002",
+              "shirtId": "DS024",
+              "state": "T024",
+              "shoeId": "shoe-10",
+              "watchId": "watch-R09"
+            },
+            "score": 9.459572,
+            "display_score": 9.5,
+            "environment": {
+              "status": "eligible_with_unassessed_materials",
+              "eligible": true,
+              "score": 10,
+              "reasons": [],
+              "unassessed": [
+                "topwear material",
+                "shirt material",
+                "shoes material",
+                "Exact shoe sole / traction",
+                "Wind and humidity modifiers not assessed"
+              ],
+              "materials": {
+                "topwear": null,
+                "shirt": null,
+                "tie": "Woven Silk",
+                "shoes": null
+              },
+              "compatibility_adjustment": 0,
+              "policy": "Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification."
+            },
+            "source_status": "new_ensemble_estimate"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Selected options use freshly evaluated unchanged core scores",
+      "passed": true,
+      "result": 15
+    },
+    {
+      "name": "A suit lock is retained while all other pieces can be chosen",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "A shirt lock alone can drive full automatic choice",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Independent No Tie and No Watch constraints are never substituted",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Exact shoe/watch locks survive automatic generation",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Independent trouser anchor chooses blazers only and retains physical ID",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All non-suit automatic options retain the 18-shirt roster; suit-only IDs stay usable in suits",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Fewer qualifying outfits are returned without duplicate padding",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unbound trousers do not acquire invented numerical profiles",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Existing canonical holds are excluded rather than fabricated to reach 15",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Weather changes eligibility without changing clothing score or DNA",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Date mismatch is blocked instead of silently using stale weather",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "No-weather generation is explicitly not assessed",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Known classic/modern/hybrid filters use existing classifications",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Tie-required request excludes open collar without modifying scoring model",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "No visual, history, Favorites, or source input is mutated by generation",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Rotation remains delegated to original near-equivalent/confirmed-wear engine",
+      "passed": true,
+      "result": {
+        "status": "selected",
+        "first": "S09|SUIT_TROUSERS|DS034|T045|shoe-12|watch-R14"
+      }
+    },
+    {
+      "name": "Tampered scores, changed locks and weather cannot replay as validated results",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Manual shirt-only keeps original selection and no invented ranking",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Partial Anchor selects remaining pieces without changing Apply/Cancel semantics",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Async generation cancels before display and preserves inputs",
+      "passed": true
+    }
+  ],
+  "seconds": 44.203
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "Single live provider API contract read at non-user demonstration coordinates Berlin 52.52,13.41; not owner location/device acceptance",
+  "provider": "Open-Meteo",
+  "coordinates_are_owner_data": false,
+  "started_unix": 1790491006.3554654,
+  "status": "UNAVAILABLE",
+  "error": "HTTPSConnectionPool(host='api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m%2Capparent_temperature%2Cprecipitation%2Cweather_code&daily=temperature_2m_max%2Ctemperature_2m_min%2Capparent_temperature_max%2Cprecipitation_sum%2Cweather_code&temperature_unit=fahrenheit&precipitation_unit=mm&timezone=auto&forecast_days=7 (Caused by NameResolutionError(\"HTTPSConnection(host='api.open-meteo.com', port=443): Failed to resolve 'api.open-meteo.com' ([Errno -3] Temporary failure in name resolution)\"))"
+}

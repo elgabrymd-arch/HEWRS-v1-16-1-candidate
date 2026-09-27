@@ -1,0 +1,166 @@
+{
+  "schema": "hewrs.favorites.functional.v1_16_6",
+  "scope": "Synthetic storage; no owner history read or altered",
+  "passed": 31,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Correct 18-shirt scope remains controlling; DS041 is deferred",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Empty Favorites initialization makes no storage writes",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Saving an exact outfit stores only ID, timestamp and selection",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Duplicate save is a no-op independent of property order",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 18 physical shirt IDs remain separate Favorites",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Different physical trousers, watches and ties are not deduplicated",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 50 shirts can be favorited in suit mode",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 32 deferred non-suit shirts reject save without substitution",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "REFERENCE and unsupported ties are never stored",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Malformed entries, IDs, timestamps and extra score fields are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Synthetic browser reload preserves Favorites and source lock",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Save, remove and merge do not write the wear/session key or any other key",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Session-only fallback is explicitly nonpersistent",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Quota/write errors do not report a successful save",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Read-back mismatch leaves no false in-memory saved item",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Malformed stored data is retained exactly and writes blocked",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Different source lock is retained without migration or reset",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Stale-tab writes cannot overwrite another tab",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Remove requires a matching reviewed revision and exact Favorite ID",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Import preview is read-only; confirmation adds without replacing existing IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Import duplicates keep the existing Favorite ID and do not write",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Conflicting imported Favorite ID is rejected before any write",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "An import cannot overwrite changes made after its preview",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Wear backup, malformed JSON, oversized text and retired IDs reject import",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Favorite export/snapshot is isolated from caller edits",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "500-item bound is checked without truncating or deleting imported entries",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Existing wear records survive Favorite saves and V1.16.7 rollback",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All suit and existing non-suit selection contracts are unchanged",
+      "passed": true,
+      "result": {
+        "suits": 39817,
+        "non_suit": 12960
+      }
+    },
+    {
+      "name": "Blazer scores/source holds unchanged; shirt-only still has no ranking",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 705 image files and all garment/scoring/storage/CSS modules are unchanged",
+      "passed": true,
+      "result": 705
+    },
+    {
+      "name": "Current picker has 18 non-suit and 50 suit shirts without new imagery",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

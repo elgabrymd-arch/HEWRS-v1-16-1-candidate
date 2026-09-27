@@ -1,0 +1,58 @@
+{
+  "schema": "hewrs.core.source-policy.v1_17_0",
+  "source_type": "reused existing calculation core plus explicitly identified recovered context/accessory adapter",
+  "current_core": "Unchanged V1.16.7 / source-locked V1.13 files; strict existing holds and proposed estimates retained.",
+  "historical_source": {
+    "file_name": "index.html",
+    "file_id": "file_000000006a94820cb6d4081eb6365ce9",
+    "access": "Read/search text from the File Library. Raw-byte materialization unavailable; no claim to a byte-identical full-source export.",
+    "ranges": {
+      "seasonEligible": "1855-1904",
+      "shoe_helpers": "1975-2075, 2390-2503, 2706-2773",
+      "watch_helpers_and_composite": "2493-2632",
+      "shoeIntegrationComposite": "5140-5239",
+      "weather_Phase_9": "4422-4664",
+      "material_no_imputation": "3493-3613",
+      "weather_domain_minimum_Ch179": "4683 onward"
+    }
+  },
+  "new_adapter_boundaries": [
+    "No historical whole app, catalogue, old avatar or legacy score engine is installed.",
+    "Current canonical primary/accent/pattern metadata replaces brittle historical name-based condition lookups in the accessory adapter. These are contextual rule inferences, not edits to wardrobe DNA.",
+    "Shoe and watch preference coefficients are transcribed from the named historical composites. Missing-dimension neutral placeholders are disclosed in accessory detail. They are not mixed into the clothing score.",
+    "Shoes are selected after a clothing configuration; watch last. Best qualifying accessories are chosen for each clothing tuple. Accessory-only variations do not pad 15 clothing options.",
+    "Weather uses recovered Phase 9 weights, penalties, material classes, existing season eligibility and the historical minimum weather-domain score 7. It is separately disclosed from fixed compatibility.",
+    "Only explicit current material words are used. Resemblance (e.g. boucle-like) stays unknown; suede elbow trim is not called an all-suede body. No new fibre or measured traction field is assigned.",
+    "Snow/ice dress-shoe exclusion is the inherited category proxy, not proof of a particular sole or a safety certification.",
+    "Known freezing precipitation codes are mapped to snow/ice; missing units/values and unknown codes fail to manual fallback.",
+    "No Foxborough or other hardcoded historical location is used. Device coordinates are permission-based; city results require selection.",
+    "The original near-equivalent band and confirmed-wear rotation policy remain unchanged. Accessory ties use prior confirmed last wear, then stable physical ID, not random selection."
+  ],
+  "weather_api": {
+    "provider": "Open-Meteo",
+    "forecast_docs": "https://open-meteo.com/en/docs",
+    "geocoding_docs": "https://open-meteo.com/en/docs/geocoding-api",
+    "reviewed": "2026-09-27",
+    "permission_docs": "https://www.w3.org/TR/geolocation/",
+    "coordinates": "rounded to 0.01 degree before provider request",
+    "privacy": "explicit user request only; credentials omitted and referrer suppressed; separate local weather key, not wear or Favorites"
+  },
+  "not_changed": [
+    "DNA records",
+    "colour corrections",
+    "original image bytes",
+    "physical IDs and aliases",
+    "frozen shirt-tie values",
+    "existing compatibility formula",
+    "independent no-tie formula",
+    "numeric source holds",
+    "existing rotation formula",
+    "wear/Favorites namespaces"
+  ],
+  "new_acceleration_cache": {
+    "file": "data/option-index.json",
+    "meaning": "112392 unchanged engine outputs across 102 topwear/profile groups; not new score judgments",
+    "core_result_verification": "tests/core-workflow.cjs compares every row to independent V1.16.7 and current core results",
+    "no_palette_rank_overwrite": true
+  }
+}
