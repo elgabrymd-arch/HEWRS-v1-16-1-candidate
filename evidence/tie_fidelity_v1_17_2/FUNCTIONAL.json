@@ -1,0 +1,77 @@
+{
+  "schema": "hewrs.tie-fidelity.functional.v1_17_2",
+  "passed": 14,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "T001-T047 complete; 142 explicit display bindings; no old hash redirects",
+      "passed": true,
+      "result": 142
+    },
+    {
+      "name": "All new runtime image bytes match their new hashes",
+      "passed": true,
+      "result": 143
+    },
+    {
+      "name": "Original source model and all current tie identities remain unchanged",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "New layer selection never mutates original manifests",
+      "passed": true,
+      "result": 846
+    },
+    {
+      "name": "47 displayed source fabrics retain exact ID provenance and historical repair policy",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "DS023/T017 keeps its distinct accepted alpha source",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "NO_TIE and REFERENCE descriptors are not replaced",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Non-suit roster remains 18; 32 stay deferred and DS041 is not activated",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 39,817 supported suit routes and exact physical IDs retain validation",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "All 47 states per 18 connected shirts retain both mode selections",
+      "passed": true,
+      "result": 1728
+    },
+    {
+      "name": "Wear and Favorite payloads retain exact IDs; no storage calls in display binding",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Weather, automatic 15-option policy, Favorites, rotation and mobile layout code are byte-identical",
+      "passed": true,
+      "result": 11
+    },
+    {
+      "name": "Wrong tie identity, baseline hash and destination URL are rejected at initialization",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Special DS051 numeric compositor profile and DS035 visibility masks are retained",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

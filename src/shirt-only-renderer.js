@@ -6,7 +6,7 @@ function create(canvas,connection,resolveUrl){
  let epoch=0;const cache=new Map();
  function plan(s){connection.validateSelection(s);if(!connection.shirtOnlyConnection.isShirtOnly(s))throw Error('Shirt-only selection required');
   const d=connection.shirtOnlyConnection.data,body=d.shirts[s.shirtId];
-  return {operation:'NATIVE_FULL_SHIRT_WITHOUT_JACKET',selection:structuredClone(s),layers:[d.avatar,connection.shoeLayers[s.shoeId],connection.blazerConnection.knownPant(s.pantId).layer,body.layers[s.state],...body.hands]};
+  return {operation:'NATIVE_FULL_SHIRT_WITHOUT_JACKET',selection:structuredClone(s),layers:[d.avatar,connection.shoeLayers[s.shoeId],connection.blazerConnection.knownPant(s.pantId).layer,(connection.tieFidelity?connection.tieFidelity.replace(body.layers[s.state]):body.layers[s.state]),...body.hands]};
  }
  function load(d){
   if(!d||!/^[a-f0-9]{64}$/.test(d.sha256)||d.rect?.join(',')!=='0,0,996,2748'||!Object.hasOwn(connection.assetPaths,d.sha256))throw Error('Unbound shirt-only source');

@@ -1,0 +1,104 @@
+{
+  "schema": "hewrs.owner-release-scope.v1",
+  "version": "1.17.1",
+  "owner_instruction": "Continue with 18 only for now",
+  "owner_message_timestamp": "2026-09-25T02:44:23Z",
+  "scope_applies_to": [
+    "blazer",
+    "shirt-only"
+  ],
+  "enabled_non_suit_shirt_ids": [
+    "DS001",
+    "DS002",
+    "DS004",
+    "DS005",
+    "DS006",
+    "DS007",
+    "DS008",
+    "DS014",
+    "DS015",
+    "DS018",
+    "DS019",
+    "DS021",
+    "DS022",
+    "DS023",
+    "DS024",
+    "DS025",
+    "DS027",
+    "DS047"
+  ],
+  "deferred_non_suit_shirt_ids": [
+    "DS017",
+    "DS035",
+    "DS036",
+    "DS051",
+    "DS034",
+    "DS037",
+    "DS038",
+    "DS032",
+    "DS033",
+    "DS046",
+    "DS003",
+    "DS020",
+    "DS045",
+    "DS010",
+    "DS011",
+    "DS028",
+    "DS029",
+    "DS030",
+    "DS044",
+    "DS013",
+    "DS026",
+    "DS031",
+    "DS009",
+    "DS012",
+    "DS050",
+    "DS016",
+    "DS048",
+    "DS039",
+    "DS042",
+    "DS043",
+    "DS040",
+    "DS041"
+  ],
+  "deferred_shirts_block_this_release": false,
+  "all_50_suit_shirt_routes_retained": true,
+  "inventory_ids_deleted": [],
+  "new_garment_approvals_required": false,
+  "shirt_only_numerical_ranking": "NOT_INSTALLED_SEPARATE_POLICY",
+  "watch_imagery": "DEFERRED_ID_NAME_SUFFICIENT",
+  "owner_reported_acceptance": {
+    "baseline": "1.16.4",
+    "mobile_picker": {
+      "reported": "pass",
+      "timestamp": "2026-09-25T02:16:11Z"
+    },
+    "iphone_safari_visual_reload_restart_and_unchanged_wear_count": {
+      "reported": "pass",
+      "timestamp": "2026-09-25T02:20:59Z",
+      "tested_selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      }
+    },
+    "scope": "User-reported acceptance of the tested V1.16.4 route, not tool-observed physical-device testing and not certification of all combinations."
+  },
+  "favorites": "Exact bookmarks using current supported selections; no scoring-policy changes, no wear logging",
+  "insights": "Read-only confirmed-record statistics; no new recommendation score, eligibility rule, physical ID, or wear entry",
+  "clarification": "18-shirt instruction limits blazer/shirt-only visual inventory, not automatic Engine Choice, weather or location.",
+  "required_core_workflow": [
+    "Permission-based device location or chosen city",
+    "Current weather / forecast with manual fallback",
+    "Automatic suit/blazer outfits with no mandatory exact shoe/topwear selection",
+    "15 distinct qualified clothing options when available, honoring all explicit locks",
+    "Existing DNA/compatibility/rotation preserved"
+  ],
+  "current_patch_scope": [
+    "weather transport, cancellation, explicit date and actionable error reporting",
+    "larger on-screen outfit presentation only"
+  ]
+}

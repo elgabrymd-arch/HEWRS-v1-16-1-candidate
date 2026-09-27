@@ -13,7 +13,7 @@ function create(canvas,connection,resolveUrl){
   const b=connection.blazerConnection.knownBlazer(s.blazerId),a=connection.blazerConnection.data.assembly;
   if(s.state!=='NO_TIE'&&!['B01','B02'].includes(b.id))throw Error('Unknown native assembly request');
   const registered=b.assembly||a,ownership=registered.ownership||connection.blazerConnection.knownBlazer('B02').assembly.ownership;
-  return {operation:s.state==='NO_TIE'?'CURRENT_SOURCE_OPEN_COLLAR_ASSEMBLY':'B01_B02_EXISTING_ALPHA_APPROVED_REFERENCE_CLOTH',selection:structuredClone(s),avatar:connection.manifest.static.avatar,shoes:connection.shoeLayers[s.shoeId],pants:connection.blazerConnection.knownPant(s.pantId).layer,shirt:s.state==='NO_TIE'?a.no_tie:a.ties[s.state],ownership,cuffOwnershipStart:registered.sourceCuffOwnershipStart??1339,jacket:registered.jacket,cuffs:a.cuffs,hands:a.hands};
+  return {operation:s.state==='NO_TIE'?'CURRENT_SOURCE_OPEN_COLLAR_ASSEMBLY':'B01_B02_EXISTING_ALPHA_APPROVED_REFERENCE_CLOTH',selection:structuredClone(s),avatar:connection.manifest.static.avatar,shoes:connection.shoeLayers[s.shoeId],pants:connection.blazerConnection.knownPant(s.pantId).layer,shirt:s.state==='NO_TIE'?a.no_tie:(connection.tieFidelity?connection.tieFidelity.replace(a.ties[s.state]):a.ties[s.state]),ownership,cuffOwnershipStart:registered.sourceCuffOwnershipStart??1339,jacket:registered.jacket,cuffs:a.cuffs,hands:a.hands};
  }
  function load(d){
   if(!d||!/^[a-f0-9]{64}$/.test(d.sha256)||d.rect?.join(',')!=='0,0,996,2748'||!Object.hasOwn(connection.assetPaths,d.sha256))throw Error('Unbound B01/B02 source');

@@ -19,6 +19,7 @@ function create(canvas,connection,resolveUrl,kind){
   if(s.shirtId==='DS023'&&connection.ds023Cleanup){p.body=connection.ds023Cleanup.modes[s.state==='NO_TIE'?'no_tie':'tied'].base;p.ds023Cleanup=true;p.pantsInForeground=kind==='shirt-only';}
   if(s.shirtId==='DS023'&&s.state!=='NO_TIE'&&connection.ds023Edges){const e=connection.ds023Edges.layers;p.body=e.base.layer;p.leaves=[e.left.layer,e.right.layer];if(s.state==='T017')p.tie=e.T017.layer;p.ds023Edges=true;}
   if(kind==='blazer'){const b=connection.blazerConnection.knownBlazer(s.blazerId),r=b.assembly||a;p.jacket=r.jacket;p.ownership=r.ownership||connection.blazerConnection.knownBlazer('B02').assembly.ownership;p.cuffOwnershipStart=r.sourceCuffOwnershipStart??1339;p.cuffs=[parts.left_cuff,parts.right_cuff];}
+  if(p.tie&&connection.tieFidelity){p.tie=connection.tieFidelity.replace(p.tie);p.tieFidelity=true;}
   return p;
  }
  function load(v){if(!v||v.rect?.join(',')!=='0,0,996,2748'||!Object.hasOwn(connection.assetPaths,v.sha256))throw Error('Unbound batch source');
