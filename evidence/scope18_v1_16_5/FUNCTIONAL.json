@@ -1,0 +1,130 @@
+{
+  "schema": "hewrs.scope18.functional.v1_16_5",
+  "passed": 24,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Only the existing 18 IDs are in scope; 32 deferred, none deleted",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Blazer and shirt-only pickers show exactly 18 active choices in inherited order",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 50 shirts remain visible for suits and unselected topwear",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Inventory rows and catalogue records remain exact baseline objects/order",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Full 18-suit / Active50 routing remains valid",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "All 18 non-suit IDs, 48 states and all 14 blazers retain exact selections",
+      "passed": true,
+      "result": 12960
+    },
+    {
+      "name": "Deferred non-suit routes stay guarded; suit approval remains independent",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Deferred suit preference survives topwear change and Cancel without substitution",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Apply changes only the intended shirt; Cancel leaves all preferences intact",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Search, brand and color filters intersect the scoped list without remapping IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All six categories persist and non-shirt filters remain baseline-equivalent",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "No Tie, 47 ties and the four No-Tie-only restrictions remain unchanged",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Blazer Engine scores and source holds equal the untouched baseline",
+      "passed": true,
+      "result": 36
+    },
+    {
+      "name": "Blazer Engine queries retain exact shirt/tie choices without fabricated recommendations",
+      "passed": true,
+      "result": {
+        "requests": 18,
+        "returned_options": 16
+      }
+    },
+    {
+      "name": "Shirt-only ranking stays absent; manual Anchor is functional",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Nine unbound numerical trouser profiles remain null; all physical trouser IDs persist",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All 705 runtime images remain byte-identical with no added artwork",
+      "passed": true,
+      "result": 705
+    },
+    {
+      "name": "All garment data, score code, renderers, geometry, CSS and storage remain untouched",
+      "passed": true,
+      "result": 132
+    },
+    {
+      "name": "DS023 correction selects the exact same layer references; DS035/DS051 special handling remains",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Shared image bytes never merge physical shirt identities",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Synthetic ledger export/import and version rollback preserve every byte and watch ID",
+      "passed": true,
+      "result": "Synthetic Map only; no owner data or physical browser persistence test"
+    },
+    {
+      "name": "Existing source lock and storage key remain exact",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Mobile sheet implementation and CSS remain exact accepted V1.16.4 bytes",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Owner-reported baseline acceptance is explicit, scoped and not fabricated tool evidence",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

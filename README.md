@@ -1,16 +1,34 @@
-# HEWRS connected candidate — V1.16.4
+# HEWRS connected candidate — V1.16.5
 
-Mobile picker layout correction over the approved V1.16.3 clothing build.
+Continue using the existing 18 connected shirts in blazer and shirt-only modes.
+The other 32 shirts are deferred for these modes, not release blockers, not
+removed from inventory, and not removed from suit mode. All 50 shirts remain
+in Wardrobe and in the existing 18-suit routes.
 
-Serve this COMPLETE folder as a static site, with index.html at the root.
-The existing candidate GitHub Pages configuration does not need to change.
-Do not replace the separate legacy live application.
+Serve this COMPLETE folder as a static website with index.html at its root.
+Keep the existing candidate repository/origin and its browser storage. There is
+no need to create a new repository, clear localStorage, or migrate wear history.
+Do not overwrite the separate legacy live application.
 
-Read DELIVERY_V1_16_4.md for changes and evidence limits. This is a correction
-candidate, not a physical Safari acceptance claim or a complete clothing release.
-Run `python -B tools/verify_v1164.py` to verify the package.
-The previous README is preserved under rollback/picker_v1_16_4/original/README.md.
+The non-suit Shirt picker now lists only its 18 usable shirts in their existing
+relative order. Its brand filter uses the same visible set. Switching from a
+suit keeps the previously selected shirt without substituting another; a
+non-suit-ineligible draft cannot be applied. Cancel preserves preferences.
+The accepted mobile sheet layout, palette and garment output are unchanged.
 
-There are 18 connected non-suit shirt IDs and 32 gated IDs. Suit routing, all
-14 blazers, DS023 corrections, original palette, ID/history and source scores
-are unchanged. Watch imagery and shirt-only numerical ranking remain deferred.
+RELEASE_SCOPE.json records the owner's instruction and the separately labelled
+owner-reported V1.16.4 mobile-picker/persistence acceptance for DS023 + T017.
+These recorded passes are not fresh tool-observed device testing of V1.16.5.
+The 32-shirt source search is deferred; no additional source uploads or garment
+approvals are required for this 18-shirt scope.
+
+Read DELIVERY_V1_16_5.md for changes, evidence and material limits.
+Verify with `python -B tools/verify_v1165.py`.
+Restore exact V1.16.4 into a NEW folder with
+`python -B tools/rollback_v1165.py --output NEW_FOLDER`.
+Neither command accesses browser data or GitHub.
+
+Shirt-only remains an exact manual Anchor workflow, with no fabricated
+numerical ranking. Existing source-score holds remain. Watch ID/name is
+sufficient; watch images and other previously unavailable functions are not
+silently presented as implemented.

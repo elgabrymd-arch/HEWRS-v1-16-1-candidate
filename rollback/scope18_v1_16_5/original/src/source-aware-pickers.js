@@ -1,5 +1,4 @@
-/* V1.16.5: owner-scoped 18-shirt non-suit picker; all 50 IDs remain in inventory.
- * Source availability in the existing picker, without changing its layout,
+/* V1.14: source availability in the existing picker, without changing its layout,
  * palette, item order, names, six categories, Apply/Cancel or persistent schema.
  * A disabled route is not a revoked garment approval or a numerical score hold.
  */
@@ -20,19 +19,11 @@ function create(connection){
   }
   return {visual_available:true,reason_code:null,missing_components:[]};
  }
- function scope(cat){
-  const top=base.selectedTop(),limited=cat==='shirt'&&['blazer','shirt-only'].includes(top?.kind);
-  const availableIds=limited?base.rows.shirt.filter(row=>sources.inspect(row.id,top.kind).visual_available).map(row=>row.id):base.rows.shirt.map(row=>row.id);
-  return {limited,mode:limited?top.kind:null,available_count:availableIds.length,
-   inventory_count:base.rows.shirt.length,deferred_count:limited?base.rows.shirt.length-availableIds.length:0,
-   available_ids:availableIds,inventory_preserved:true};
- }
  function filter(cat,query){
-  const limited=scope(cat).limited;
   return base.filter(cat,query).map(row=>{
    const cap=availability(cat,row.id);
    return {...row,available:row.available&&cap.visual_available,sourceAvailability:cap};
-  }).filter(row=>!limited||row.sourceAvailability.visual_available);
+  });
  }
  // Programmatic draft writes must obey the same guard as the disabled controls.
  // Changing topwear does not silently replace a previously selected shirt/tie.
@@ -56,7 +47,7 @@ function create(connection){
   }
   return base.commit();
  }
- return Object.freeze({...base,filter,choose,commit,availability,scope});
+ return Object.freeze({...base,filter,choose,commit,availability});
 }
 root.HEWRSFaceliftModelV113=prior;
 root.HEWRSFaceliftModel=Object.freeze({...prior,create});

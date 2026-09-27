@@ -1,0 +1,2415 @@
+{
+  "schema": "hewrs.scope18.chromium.v1_16_5",
+  "scope": "Actual local app scripts and images in in-memory Chromium, synthetic storage.\nNot an independently observed iPhone test, hosted deployment or real-origin test.\nRequires HEWRS_BASELINE_V1164 pointing at the complete V1.16.4 source folder.\n",
+  "passed": 20,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "New scope build loads with accepted controller and garment renderers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "90 complete baseline comparisons retain exact pixels, including all 18 non-suit shirts and all 18 suits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual accepted DS023 Collar Detail view remains pixel-identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Accepted Home appearance unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "blazer picker has correct visible choices",
+      "passed": true,
+      "detail": {
+        "visible": 18,
+        "enabled": 18
+      }
+    },
+    {
+      "name": "blazer picker explicitly retains the other 32 for suits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "shirt-only picker has correct visible choices",
+      "passed": true,
+      "detail": {
+        "visible": 18,
+        "enabled": 18
+      }
+    },
+    {
+      "name": "shirt-only picker explicitly retains the other 32 for suits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "suit picker has correct visible choices",
+      "passed": true,
+      "detail": {
+        "visible": 50,
+        "enabled": 50
+      }
+    },
+    {
+      "name": "Scoped search/select then Cancel preserves all preferences",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Scoped Apply changes only one shirt preference",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Deferred non-suit search yields no substitute and disabled Apply",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Deferred suit preference cannot be applied in a non-suit mode and is not replaced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancel retains the suit shirt after mode change",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS036 remains selectable in suits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Wardrobe retains all 50 physical shirts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Backup/restore UI is still available, restore is confirmation-gated",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All picker and backup interactions leave synthetic ledger bytes intact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All six pickers remain usable in 30 mobile/short viewport cases",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No uncaught browser exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "outfit_frames": [
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "after": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "after": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "after": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "after": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS002",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "5ffc67cfc4809ae0c6a2407180f7c1aa195a8eb2ac6097c0951767b239f93357",
+      "after": "5ffc67cfc4809ae0c6a2407180f7c1aa195a8eb2ac6097c0951767b239f93357",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS002",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "4875faa0a3c16cf17fb9a5d0d3655f978495510c1dd32093712006a478705d21",
+      "after": "4875faa0a3c16cf17fb9a5d0d3655f978495510c1dd32093712006a478705d21",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS002",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "a69982c5024af63c2bdb1977d4eadf7ed213d16de24e74c01fe7ef285b87a2de",
+      "after": "a69982c5024af63c2bdb1977d4eadf7ed213d16de24e74c01fe7ef285b87a2de",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS002",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "063a168b276e4638f965d6359ef8c5a8ff4c68f4df8d2ddfc6d28851f19a5a5b",
+      "after": "063a168b276e4638f965d6359ef8c5a8ff4c68f4df8d2ddfc6d28851f19a5a5b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d709aa0a51b563c8cb11910d266238cf72c388e6a5b8a7287382e0d45b37d4c2",
+      "after": "d709aa0a51b563c8cb11910d266238cf72c388e6a5b8a7287382e0d45b37d4c2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "9a6da9048c7d03aaf909a7e6728fac67962393151a718a68d7c64fbb50063eec",
+      "after": "9a6da9048c7d03aaf909a7e6728fac67962393151a718a68d7c64fbb50063eec",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS004",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "00a22bb57f9add56fac16404d0641131175ed7b4640a796dccf7703db246f3bf",
+      "after": "00a22bb57f9add56fac16404d0641131175ed7b4640a796dccf7703db246f3bf",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS004",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "094afd744deaa8053e97862a8ca7bae2218cdd027880781c72ff0078fbe2d9d6",
+      "after": "094afd744deaa8053e97862a8ca7bae2218cdd027880781c72ff0078fbe2d9d6",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS005",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "be752b7237afdd4d4a4255e11c31eb9e5b204151e2ee215367cea5e1edd24506",
+      "after": "be752b7237afdd4d4a4255e11c31eb9e5b204151e2ee215367cea5e1edd24506",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS005",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "3a38763151cae7da9cc48f9beea6b4c590e4403da22f9cc6f1e29e6128351b2b",
+      "after": "3a38763151cae7da9cc48f9beea6b4c590e4403da22f9cc6f1e29e6128351b2b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS005",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "7a625006354dffd806dc2fa1354c503a96549fa614e5b5b560104c2dc569d435",
+      "after": "7a625006354dffd806dc2fa1354c503a96549fa614e5b5b560104c2dc569d435",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS005",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "0e57eb651f267148bf7ec6ca7ac6805ddbf2e8c0120209a8877efb89051d1681",
+      "after": "0e57eb651f267148bf7ec6ca7ac6805ddbf2e8c0120209a8877efb89051d1681",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS006",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d0cdd8fd1ac02be200fd951bd3ffb75ce29bd1ba855d23504db382f195e332b2",
+      "after": "d0cdd8fd1ac02be200fd951bd3ffb75ce29bd1ba855d23504db382f195e332b2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS006",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "7653b1a770fc2b16664e34a1a6be48ffe084aebb02f5f804b6020327bd906a7b",
+      "after": "7653b1a770fc2b16664e34a1a6be48ffe084aebb02f5f804b6020327bd906a7b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS006",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "a87bef9e0673f9ef0038a29a5e61727ad7be13563f2853b63540be75e1aca6b9",
+      "after": "a87bef9e0673f9ef0038a29a5e61727ad7be13563f2853b63540be75e1aca6b9",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS006",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "f136d2cb5126b6afde57af8ee172c5ea2edbf1b37f682d6147dee0eed4e3c840",
+      "after": "f136d2cb5126b6afde57af8ee172c5ea2edbf1b37f682d6147dee0eed4e3c840",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "0faca15a61cc068b2285846bb46bd041e8d5a771c7645798dc6c6f868eba765e",
+      "after": "0faca15a61cc068b2285846bb46bd041e8d5a771c7645798dc6c6f868eba765e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "ad94abb71c1303d18fdc97eea8caec0ef4ff9e5a872bf8a7a6d540240555a5db",
+      "after": "ad94abb71c1303d18fdc97eea8caec0ef4ff9e5a872bf8a7a6d540240555a5db",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "b650b2a8b1a898901946820cb0182835bdeade6a323c998d8d2d830f9bab40ac",
+      "after": "b650b2a8b1a898901946820cb0182835bdeade6a323c998d8d2d830f9bab40ac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "21213ed02aa08d26ed798dd00b62dd4b5a41ca0b77640e4d6af34093cb865acd",
+      "after": "21213ed02aa08d26ed798dd00b62dd4b5a41ca0b77640e4d6af34093cb865acd",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "e639ccb78ea984dd8fba0ba2065b21072540cc591d526ef43b13d1bd47dc4632",
+      "after": "e639ccb78ea984dd8fba0ba2065b21072540cc591d526ef43b13d1bd47dc4632",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "6336b1a47210e153af188fd10f042b214f3bc495b2668ff71aeaaefc9531e980",
+      "after": "6336b1a47210e153af188fd10f042b214f3bc495b2668ff71aeaaefc9531e980",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS008",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "005b5e92690811d050c25fa28217c65a0e3e4b2dbb7ffd58d9c908d73405158b",
+      "after": "005b5e92690811d050c25fa28217c65a0e3e4b2dbb7ffd58d9c908d73405158b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS008",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "cac3bec0cb3646c41064e9d48103cd3e7993956f19ad8d96860e413fe4d20cac",
+      "after": "cac3bec0cb3646c41064e9d48103cd3e7993956f19ad8d96860e413fe4d20cac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "after": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "after": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "after": "50fed7ce907335510dbc66755a985567fab4ed692632189e4836ce2fa61875be",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "after": "f9d1e812580f2cb1e85fcb85624370dc418691ed0c35f803cea769e44f373377",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS015",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "0262aed43a3ee94d3f711ff9d0ec76fd4f7339d706245c8be9f4db7e34ec044d",
+      "after": "0262aed43a3ee94d3f711ff9d0ec76fd4f7339d706245c8be9f4db7e34ec044d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS015",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "21929c96c5d4eb4e00efb5e040c889e0743dd76954f50f143d7e7d3eb42c715c",
+      "after": "21929c96c5d4eb4e00efb5e040c889e0743dd76954f50f143d7e7d3eb42c715c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS015",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "c757d8cd3172fc816d29bd46e4141270bd4e2bf103e59954714fd3a27202dec6",
+      "after": "c757d8cd3172fc816d29bd46e4141270bd4e2bf103e59954714fd3a27202dec6",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS015",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "0645d0af456c8f97639d006f9f513cdd77d5705dfa1a111aa8ccc8e34ed07250",
+      "after": "0645d0af456c8f97639d006f9f513cdd77d5705dfa1a111aa8ccc8e34ed07250",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "89cf721c76d87bb5ed79d4ab8edcdd53ae4da766b302dbed41c3a944d5c38ae2",
+      "after": "89cf721c76d87bb5ed79d4ab8edcdd53ae4da766b302dbed41c3a944d5c38ae2",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "c31f684c10c80acb18eb157360038552d441558216510a170cecbfa4497cd82c",
+      "after": "c31f684c10c80acb18eb157360038552d441558216510a170cecbfa4497cd82c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS018",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "b42ddcda9d563ef0c2942a7153b1e9ea8073fbe635aa52c23bf6ee6c3d656712",
+      "after": "b42ddcda9d563ef0c2942a7153b1e9ea8073fbe635aa52c23bf6ee6c3d656712",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS018",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "07c263ea5663a4f5594339a343ba1acc4c8986d83116a2b386b868986edec913",
+      "after": "07c263ea5663a4f5594339a343ba1acc4c8986d83116a2b386b868986edec913",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "91b4fe2d09f4f0a50ad6ab3b71646325d9efe2253dc5fcb69e896efae5330a1f",
+      "after": "91b4fe2d09f4f0a50ad6ab3b71646325d9efe2253dc5fcb69e896efae5330a1f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "26cc8f63edd9faad224ed360f685a7c46e9a6ec7347481827d04275646a5b885",
+      "after": "26cc8f63edd9faad224ed360f685a7c46e9a6ec7347481827d04275646a5b885",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS019",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "6f590660fa47ae9ca5fac8f6f6251d5e9864236647ffbe60938cd41e92a2d449",
+      "after": "6f590660fa47ae9ca5fac8f6f6251d5e9864236647ffbe60938cd41e92a2d449",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS019",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "2ae083cfc183bdf6bd9b6b9ee728223206421504a75706a52ec8bcd1ec8c2a04",
+      "after": "2ae083cfc183bdf6bd9b6b9ee728223206421504a75706a52ec8bcd1ec8c2a04",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS021",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "1fc7dfd447c2ca22b22f822f5e7eeca1fdf425da129dddb054447e6654bc029d",
+      "after": "1fc7dfd447c2ca22b22f822f5e7eeca1fdf425da129dddb054447e6654bc029d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS021",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "be8b6def5e81b4b1709e21149b3fc74100ece134f73b850628dcc3e4924f80a1",
+      "after": "be8b6def5e81b4b1709e21149b3fc74100ece134f73b850628dcc3e4924f80a1",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS021",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "fe6f2a1ee74235f00da61e2099420b86ed0fd87939d894f6656d7e5c886f781b",
+      "after": "fe6f2a1ee74235f00da61e2099420b86ed0fd87939d894f6656d7e5c886f781b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS021",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "2284fee9f2b220083c378d7809b6c7fc2f2b4b8c044a9941eda9690c740e5a0b",
+      "after": "2284fee9f2b220083c378d7809b6c7fc2f2b4b8c044a9941eda9690c740e5a0b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "781ab58ea87e2805e171473c608be5175275d6cb83d315471c3af3739393ed16",
+      "after": "781ab58ea87e2805e171473c608be5175275d6cb83d315471c3af3739393ed16",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "fd06dfc2578f7dfcc596b62147f2cb1f8e0a6352ea164c1ff5fb9c5111d834a0",
+      "after": "fd06dfc2578f7dfcc596b62147f2cb1f8e0a6352ea164c1ff5fb9c5111d834a0",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS022",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "0dbf760e4cfab03565ec4b64c470e851281a5e97eb743d852859a3cf2bc01044",
+      "after": "0dbf760e4cfab03565ec4b64c470e851281a5e97eb743d852859a3cf2bc01044",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS022",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "ba39a6ecbbab50a27e6d2c49cc152b0ab49151c5c6df89c7af251852d2f14ab7",
+      "after": "ba39a6ecbbab50a27e6d2c49cc152b0ab49151c5c6df89c7af251852d2f14ab7",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d7dbffcd90157b02db895cbfc9c382eee26af969de8eea0386f1a479bcd7609b",
+      "after": "d7dbffcd90157b02db895cbfc9c382eee26af969de8eea0386f1a479bcd7609b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "942101f77636f6ad159d749f068cb14182edd78db0432058622c0cc2df3a4749",
+      "after": "942101f77636f6ad159d749f068cb14182edd78db0432058622c0cc2df3a4749",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "7a65b7265570a579804d284af061bbef456c42afa556deb033ac027c2928107d",
+      "after": "7a65b7265570a579804d284af061bbef456c42afa556deb033ac027c2928107d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "1a3863813c9dc70699a6e3bbd23a9ca89c2333656c0c7872efab94d729ce8b9e",
+      "after": "1a3863813c9dc70699a6e3bbd23a9ca89c2333656c0c7872efab94d729ce8b9e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "after": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "after": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "after": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "after": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS025",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "after": "9f086a365fdf5e6506726941d0e0aae43b76184856b78536c7ec64d068220308",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS025",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "after": "ce05574f0caf907459d8fb42104287f5e220a3c5e950918e02eeb9e68a07ca4c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS025",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "after": "d790c9a07a6527468c1c872bcd1deb219d8da8c789dd444ea6b3354777de2d2b",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS025",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "after": "1b637cadc15b6a5793f1cc1ffc1d9d2af134ccf89d896358ffc0c3a48e8b41ac",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "37595380b69177a305a885061fd6592bab5636190f45a796081f40f30c29ee13",
+      "after": "37595380b69177a305a885061fd6592bab5636190f45a796081f40f30c29ee13",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "9b9d4b49b376982e4548f4364a2c1cf5be6f3da458235db779e5885a0e09162e",
+      "after": "9b9d4b49b376982e4548f4364a2c1cf5be6f3da458235db779e5885a0e09162e",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "53eb6c3f85eca5295a339b79e6fb432f245014d844b46ba83e1e0970a57a4119",
+      "after": "53eb6c3f85eca5295a339b79e6fb432f245014d844b46ba83e1e0970a57a4119",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "947288a9f0e466c6320f2174fbd4108cec6f3938ed37642e5099bcc3a25adb98",
+      "after": "947288a9f0e466c6320f2174fbd4108cec6f3938ed37642e5099bcc3a25adb98",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS047",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "cfb41887ed85baeb9be3a7bfbe960e683cb4960f62bcfcf960d6e47f0ba40e4a",
+      "after": "cfb41887ed85baeb9be3a7bfbe960e683cb4960f62bcfcf960d6e47f0ba40e4a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS047",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "eac2385c84c6f1badecb12f34682180427310135346aaa104abb4a77e6be5d1a",
+      "after": "eac2385c84c6f1badecb12f34682180427310135346aaa104abb4a77e6be5d1a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS047",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "5f489fb68a0d606649cf305b5ded22683d1caaf6b4011cf7ea6e29a55adf9da4",
+      "after": "5f489fb68a0d606649cf305b5ded22683d1caaf6b4011cf7ea6e29a55adf9da4",
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS047",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d46c8d8ca982559be3a7b00f311a2499b754d2fe116c553d5f3e376989b0606d",
+      "after": "d46c8d8ca982559be3a7b00f311a2499b754d2fe116c553d5f3e376989b0606d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "74eadf75a23ebc25443c953488f1bbc455c77f71813d384335acf0314f430931",
+      "after": "74eadf75a23ebc25443c953488f1bbc455c77f71813d384335acf0314f430931",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "a980af4d8b91331c048faab56571a13a6bf8200980e9d8d08a1bb93bd8b3246d",
+      "after": "a980af4d8b91331c048faab56571a13a6bf8200980e9d8d08a1bb93bd8b3246d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "2f1772a348a000b82815574447514ba616a8bd16d41b343d299d192cadee0161",
+      "after": "2f1772a348a000b82815574447514ba616a8bd16d41b343d299d192cadee0161",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "88bb3d6bdf54b70df0f7381426e0d2ae2293a2d8e24850ceeeb3c5b9770f7193",
+      "after": "88bb3d6bdf54b70df0f7381426e0d2ae2293a2d8e24850ceeeb3c5b9770f7193",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "a817fee1265ae8d9f5f58d2a28a1ab5e8ad4f8d31d6ce5a8599c7bef915e889d",
+      "after": "a817fee1265ae8d9f5f58d2a28a1ab5e8ad4f8d31d6ce5a8599c7bef915e889d",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "201d8f451531329a9d7aad16b6be89e76371e47ee94609ae5127053642286527",
+      "after": "201d8f451531329a9d7aad16b6be89e76371e47ee94609ae5127053642286527",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "1e183dfe4671eb193172afd122c9513c8f75838204d0fbbb9aa11c8cfb098b38",
+      "after": "1e183dfe4671eb193172afd122c9513c8f75838204d0fbbb9aa11c8cfb098b38",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "4ee4a2d3213903c8db1ada10c663b722e38b5d79c844496e202a25f1b8283c9c",
+      "after": "4ee4a2d3213903c8db1ada10c663b722e38b5d79c844496e202a25f1b8283c9c",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "79d11aa5521e5cf3cb0ec66723296d4aab2343186439f28422309a84f9e48819",
+      "after": "79d11aa5521e5cf3cb0ec66723296d4aab2343186439f28422309a84f9e48819",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "aa0fe9236a8c509e020effa8ee4de87ebe977a08df489f9cec0d2c7d8fada36a",
+      "after": "aa0fe9236a8c509e020effa8ee4de87ebe977a08df489f9cec0d2c7d8fada36a",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "71df26075dc3f14d874e71f24f11b5d7649169f9752fab62bbad96dbad6f39d7",
+      "after": "71df26075dc3f14d874e71f24f11b5d7649169f9752fab62bbad96dbad6f39d7",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "883a246f8da87cff052bc9d189443dc7f7d99157b64d9d87fbf8226c05088e65",
+      "after": "883a246f8da87cff052bc9d189443dc7f7d99157b64d9d87fbf8226c05088e65",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "2ce4f86dd4cecc3135eb7dd448846d66c203a5f736ff26bc83d46c9516ef6d9f",
+      "after": "2ce4f86dd4cecc3135eb7dd448846d66c203a5f736ff26bc83d46c9516ef6d9f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "d4682ebda74c4f76a7801dd3317634fe1fea1eb95ad517c5628cd699a637ccc0",
+      "after": "d4682ebda74c4f76a7801dd3317634fe1fea1eb95ad517c5628cd699a637ccc0",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "8d0a273e09c6a70c880f8c27d29709634c595882d3a420b36500db31d358d44f",
+      "after": "8d0a273e09c6a70c880f8c27d29709634c595882d3a420b36500db31d358d44f",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "8cc14485a5ef437688f9ac2ee66872dbdf22616ebfecc58761223ab5920ffefd",
+      "after": "8cc14485a5ef437688f9ac2ee66872dbdf22616ebfecc58761223ab5920ffefd",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "3b4c3e7c6c84e185ed1241bf0e2d037f6a1a949025e112047a749d1fd2435901",
+      "after": "3b4c3e7c6c84e185ed1241bf0e2d037f6a1a949025e112047a749d1fd2435901",
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "before": "a23e8202341d660a965bd12642cf57c9cec04c2a33955295b5c58a3bc9acf72b",
+      "after": "a23e8202341d660a965bd12642cf57c9cec04c2a33955295b5c58a3bc9acf72b",
+      "equal": true
+    }
+  ],
+  "layout_cases": [
+    {
+      "category": "topwear",
+      "viewport": [
+        320,
+        568
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 568,
+          "right": 320,
+          "height": 552,
+          "client": 318,
+          "scroll": 318
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "bottom": 498,
+          "right": 306.203125,
+          "height": 405,
+          "client": 292,
+          "scroll": 292
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "bottom": 552,
+          "right": 306.203125,
+          "height": 44,
+          "client": 292,
+          "scroll": 292
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        320,
+        568
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 568,
+          "right": 320,
+          "height": 552,
+          "client": 318,
+          "scroll": 318
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "bottom": 498,
+          "right": 306.203125,
+          "height": 405,
+          "client": 292,
+          "scroll": 292
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "bottom": 552,
+          "right": 306.203125,
+          "height": 44,
+          "client": 292,
+          "scroll": 292
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        320,
+        568
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 568,
+          "right": 320,
+          "height": 552,
+          "client": 318,
+          "scroll": 318
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "bottom": 498,
+          "right": 306.203125,
+          "height": 405,
+          "client": 292,
+          "scroll": 292
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "bottom": 552,
+          "right": 306.203125,
+          "height": 44,
+          "client": 292,
+          "scroll": 292
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        320,
+        568
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 568,
+          "right": 320,
+          "height": 552,
+          "client": 318,
+          "scroll": 318
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "bottom": 498,
+          "right": 306.203125,
+          "height": 405,
+          "client": 292,
+          "scroll": 292
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "bottom": 552,
+          "right": 306.203125,
+          "height": 44,
+          "client": 292,
+          "scroll": 292
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        320,
+        568
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 568,
+          "right": 320,
+          "height": 552,
+          "client": 318,
+          "scroll": 318
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "bottom": 498,
+          "right": 306.203125,
+          "height": 405,
+          "client": 292,
+          "scroll": 292
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "bottom": 552,
+          "right": 306.203125,
+          "height": 44,
+          "client": 292,
+          "scroll": 292
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        320,
+        568
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 568,
+          "right": 320,
+          "height": 552,
+          "client": 318,
+          "scroll": 318
+        },
+        "body": {
+          "x": 13.796875,
+          "y": 93,
+          "bottom": 498,
+          "right": 306.203125,
+          "height": 405,
+          "client": 292,
+          "scroll": 292
+        },
+        "actions": {
+          "x": 13.796875,
+          "y": 508,
+          "bottom": 552,
+          "right": 306.203125,
+          "height": 44,
+          "client": 292,
+          "scroll": 292
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        390,
+        700
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 700,
+          "right": 390,
+          "height": 684,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "bottom": 630,
+          "right": 367.5625,
+          "height": 537,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "bottom": 684,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        390,
+        700
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 700,
+          "right": 390,
+          "height": 684,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "bottom": 630,
+          "right": 367.5625,
+          "height": 537,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "bottom": 684,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        390,
+        700
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 700,
+          "right": 390,
+          "height": 684,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "bottom": 630,
+          "right": 367.5625,
+          "height": 537,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "bottom": 684,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        390,
+        700
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 700,
+          "right": 390,
+          "height": 684,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "bottom": 630,
+          "right": 367.5625,
+          "height": 537,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "bottom": 684,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        390,
+        700
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 700,
+          "right": 390,
+          "height": 684,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "bottom": 630,
+          "right": 367.5625,
+          "height": 537,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "bottom": 684,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        390,
+        700
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 16,
+          "bottom": 700,
+          "right": 390,
+          "height": 684,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 93,
+          "bottom": 630,
+          "right": 367.5625,
+          "height": 537,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 640,
+          "bottom": 684,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        430,
+        820
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "bottom": 820,
+          "right": 430,
+          "height": 760,
+          "client": 428,
+          "scroll": 428
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "bottom": 750,
+          "right": 405.359375,
+          "height": 613,
+          "client": 381,
+          "scroll": 381
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "bottom": 804,
+          "right": 405.359375,
+          "height": 44,
+          "client": 381,
+          "scroll": 381
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        430,
+        820
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "bottom": 820,
+          "right": 430,
+          "height": 760,
+          "client": 428,
+          "scroll": 428
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "bottom": 750,
+          "right": 405.359375,
+          "height": 613,
+          "client": 381,
+          "scroll": 381
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "bottom": 804,
+          "right": 405.359375,
+          "height": 44,
+          "client": 381,
+          "scroll": 381
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        430,
+        820
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "bottom": 820,
+          "right": 430,
+          "height": 760,
+          "client": 428,
+          "scroll": 428
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "bottom": 750,
+          "right": 405.359375,
+          "height": 613,
+          "client": 381,
+          "scroll": 381
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "bottom": 804,
+          "right": 405.359375,
+          "height": 44,
+          "client": 381,
+          "scroll": 381
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        430,
+        820
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "bottom": 820,
+          "right": 430,
+          "height": 760,
+          "client": 428,
+          "scroll": 428
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "bottom": 750,
+          "right": 405.359375,
+          "height": 613,
+          "client": 381,
+          "scroll": 381
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "bottom": 804,
+          "right": 405.359375,
+          "height": 44,
+          "client": 381,
+          "scroll": 381
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        430,
+        820
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "bottom": 820,
+          "right": 430,
+          "height": 760,
+          "client": 428,
+          "scroll": 428
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "bottom": 750,
+          "right": 405.359375,
+          "height": 613,
+          "client": 381,
+          "scroll": 381
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "bottom": 804,
+          "right": 405.359375,
+          "height": 44,
+          "client": 381,
+          "scroll": 381
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        430,
+        820
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 60,
+          "bottom": 820,
+          "right": 430,
+          "height": 760,
+          "client": 428,
+          "scroll": 428
+        },
+        "body": {
+          "x": 24.640625,
+          "y": 137,
+          "bottom": 750,
+          "right": 405.359375,
+          "height": 613,
+          "client": 381,
+          "scroll": 381
+        },
+        "actions": {
+          "x": 24.640625,
+          "y": 760,
+          "bottom": 804,
+          "right": 405.359375,
+          "height": 44,
+          "client": 381,
+          "scroll": 381
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        844,
+        390
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "bottom": 390,
+          "right": 692,
+          "height": 382,
+          "client": 538,
+          "scroll": 538
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "bottom": 320,
+          "right": 667,
+          "height": 235,
+          "client": 490,
+          "scroll": 490
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "bottom": 374,
+          "right": 667,
+          "height": 44,
+          "client": 490,
+          "scroll": 490
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        844,
+        390
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "bottom": 390,
+          "right": 692,
+          "height": 382,
+          "client": 538,
+          "scroll": 538
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "bottom": 320,
+          "right": 667,
+          "height": 235,
+          "client": 490,
+          "scroll": 490
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "bottom": 374,
+          "right": 667,
+          "height": 44,
+          "client": 490,
+          "scroll": 490
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        844,
+        390
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "bottom": 390,
+          "right": 692,
+          "height": 382,
+          "client": 538,
+          "scroll": 538
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "bottom": 320,
+          "right": 667,
+          "height": 235,
+          "client": 490,
+          "scroll": 490
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "bottom": 374,
+          "right": 667,
+          "height": 44,
+          "client": 490,
+          "scroll": 490
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        844,
+        390
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "bottom": 390,
+          "right": 692,
+          "height": 382,
+          "client": 538,
+          "scroll": 538
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "bottom": 320,
+          "right": 667,
+          "height": 235,
+          "client": 490,
+          "scroll": 490
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "bottom": 374,
+          "right": 667,
+          "height": 44,
+          "client": 490,
+          "scroll": 490
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        844,
+        390
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "bottom": 390,
+          "right": 692,
+          "height": 382,
+          "client": 538,
+          "scroll": 538
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "bottom": 320,
+          "right": 667,
+          "height": 235,
+          "client": 490,
+          "scroll": 490
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "bottom": 374,
+          "right": 667,
+          "height": 44,
+          "client": 490,
+          "scroll": 490
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        844,
+        390
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 152,
+          "y": 8,
+          "bottom": 390,
+          "right": 692,
+          "height": 382,
+          "client": 538,
+          "scroll": 538
+        },
+        "body": {
+          "x": 177,
+          "y": 85,
+          "bottom": 320,
+          "right": 667,
+          "height": 235,
+          "client": 490,
+          "scroll": 490
+        },
+        "actions": {
+          "x": 177,
+          "y": 330,
+          "bottom": 374,
+          "right": 667,
+          "height": 44,
+          "client": 490,
+          "scroll": 490
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "topwear",
+      "viewport": [
+        390,
+        320
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "bottom": 320,
+          "right": 390,
+          "height": 312,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "bottom": 250,
+          "right": 367.5625,
+          "height": 165,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "bottom": 304,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shirt",
+      "viewport": [
+        390,
+        320
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "bottom": 320,
+          "right": 390,
+          "height": 312,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "bottom": 250,
+          "right": 367.5625,
+          "height": 165,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "bottom": 304,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "tie",
+      "viewport": [
+        390,
+        320
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "bottom": 320,
+          "right": 390,
+          "height": 312,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "bottom": 250,
+          "right": 367.5625,
+          "height": 165,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "bottom": 304,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "shoes",
+      "viewport": [
+        390,
+        320
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "bottom": 320,
+          "right": 390,
+          "height": 312,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "bottom": 250,
+          "right": 367.5625,
+          "height": 165,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "bottom": 304,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "bottoms",
+      "viewport": [
+        390,
+        320
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "bottom": 320,
+          "right": 390,
+          "height": 312,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "bottom": 250,
+          "right": 367.5625,
+          "height": 165,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "bottom": 304,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    },
+    {
+      "category": "watch",
+      "viewport": [
+        390,
+        320
+      ],
+      "last_choice_reachable": true,
+      "metrics": {
+        "sheet": {
+          "x": 0,
+          "y": 8,
+          "bottom": 320,
+          "right": 390,
+          "height": 312,
+          "client": 388,
+          "scroll": 388
+        },
+        "body": {
+          "x": 22.4375,
+          "y": 85,
+          "bottom": 250,
+          "right": 367.5625,
+          "height": 165,
+          "client": 345,
+          "scroll": 345
+        },
+        "actions": {
+          "x": 22.4375,
+          "y": 260,
+          "bottom": 304,
+          "right": 367.5625,
+          "height": 44,
+          "client": 345,
+          "scroll": 345
+        },
+        "active": "fx-sheet-close"
+      }
+    }
+  ],
+  "errors": [],
+  "seconds": 57.89
+}
