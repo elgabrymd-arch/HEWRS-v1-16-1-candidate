@@ -1,0 +1,17 @@
+{
+  "audit_pass": 1,
+  "result": "PASS",
+  "baseline": "1.17.2 reconstructed from V1.17.1 source plus exact delivered cumulative update",
+  "payloads_verified": 1832,
+  "manifest_sha256": "02ce479182f585136bdddf421d96601ec23d50de6dce40f319f1b02480a5c3b6",
+  "live_GitHub_inspection": "unavailable: GitHub plugin not connected and public URL reads failed",
+  "deployed_version_claim": "not independently verified; local delivered source only",
+  "owner_reported_weather": "fixed per 2026-09-27T20:15:32Z message",
+  "new_requirements": {
+    "max_unanchored_physical_item_occurrences": 2,
+    "anchored_exception": "exact explicitly locked physical item only; family selection does not exempt each member",
+    "shirt_only_options_max": 2,
+    "no_tie_options_max": 2,
+    "ambiguity_note": "Owner wording \"no shirt options only\" is ambiguous; both No Tie and no-jacket shirt-only are capped at two by default. Existing no-jacket mode still has no numerical model and remains manual."
+  }
+}

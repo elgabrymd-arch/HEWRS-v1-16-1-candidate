@@ -21,14 +21,11 @@
   const s=String(text||'').toLowerCase();let best=null,pos=Infinity;
   for(const [f,re]of tokens){const m=s.match(re);if(m&&m.index<pos){best=f;pos=m.index;}}
   if(!best){if(fallback)return colour(fallback);return null;}
-  // A compound blue wording is not a colourless charcoal/silver garment.
-  // These forms are present in the retained S08/S14 and DS029 source records.
-  if(/\bcharcoal[ -]+blue\b|\bsilver-blue\b/.test(s))best='blue';
   let [h,v,t]=colourSpecs[best];
   if(/very dark|near.black/.test(s))v=Math.min(v,.7);
   else if(/medium.dark|mid.dark/.test(s))v=Math.min(v,2);
   else if(/\bdark\b|\bdeep\b/.test(s))v=Math.min(v,1.6);
-  else if(/\b(?:very pale|very light|ice|powder)\b/.test(s))v=Math.max(v,4.5); // 'lattice' is a pattern word, not 'ice'.
+  else if(/very pale|very light|ice|powder/.test(s))v=Math.max(v,4.5);
   else if(/\blight\b|\bpale\b/.test(s))v=Math.max(v,4);
   else if(/medium.light/.test(s))v=Math.max(v,3.6);
   return {family:best,hue:h,value:v,temperature:t,wording:text||fallback,measurement:false};
@@ -53,9 +50,6 @@
  }
  function normalize(r){
   const p=colour(r.primary_text,r.historical_fields_unchanged?.primary_color),a=secondaryColours(r.secondary_text);
-  // T019's retained detailed same-ID source explicitly says very light cool grey.
-  // Keep that recorded qualifier, rather than the accidental 'ice' in 'lattice'.
-  if(r.id==='T019'&&r.primary_text==='Pearl silver tonal lattice'&&r.historical_fields_unchanged?.primary_color==='Silver / very light cool grey')p.value=colour(r.historical_fields_unchanged.primary_color).value;
   const pat=pattern(r),tex=String(r.texture_text||'').toLowerCase();
   const surface=!tex||/unknown|unconfirmed/.test(tex)&&!/appearance|visible|looking|like/.test(tex)?null:/pronounced.*sheen|lustrous|satin|high.sheen|shiny/.test(tex)?'lustrous':/nap|hairy|brushed|boucle|slub|dry woven|pronounced/.test(tex)?'pronounced':'restrained';
   const construction=String(r.construction_text||'').toLowerCase();
@@ -261,5 +255,5 @@
   }
   return Object.freeze({get,evaluate,rank,selectForContext,spec:clone(policy),ids:()=>rows.map(r=>({id:r.id,category:r.category,description:r.description}))});
  }
- return Object.freeze({version:'step3-completion-candidate.1',normalizationRevision:'hewrs.literal-colour-qualifiers.v1_17_3',createEngine,normalize,colourHarmony,valueSeparation,patternPair,pairScore,systemComponents,conflicts,classifyStyle,contextCheck,weights});
+ return Object.freeze({version:'step3-completion-candidate.1',createEngine,normalize,colourHarmony,valueSeparation,patternPair,pairScore,systemComponents,conflicts,classifyStyle,contextCheck,weights});
 });

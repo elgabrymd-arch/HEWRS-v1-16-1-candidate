@@ -1,0 +1,14 @@
+{
+  "owner_message_timestamp": "2026-09-27T20:15:32Z",
+  "weather_status": "User reported fixed; weather implementation untouched",
+  "max_occurrences_per_unanchored_physical_item": 2,
+  "exception": "Only the exact selected physical item; selecting a colour family is not an item anchor",
+  "cap_scope": "One current returned option set, not actual logged wear or Favorites",
+  "no_tie_default_max": 2,
+  "shirt_only_no_jacket_default_max": 2,
+  "mode_cap_exception": "Explicitly selected corresponding mode only",
+  "wording_boundary": "The phrase \"no shirt options only\" was ambiguous. Both No Tie and no-jacket modes have separate caps. No-jacket remains manual-only because no numerical model exists; this patch does not fabricate one.",
+  "source_audit_requested_passes": 5,
+  "garment_approvals_reopened": false,
+  "photos_or_geometry_changed": false
+}

@@ -30,7 +30,7 @@ function create(inputs,{configurationFilter,blazerMappings}={}){
   records[sid]={id:sid,label,feature:clone(f),render_label:text,history_id:legacy.id,no_tie_only:m.shirts[sid].mode_policy==='NO_TIE_ONLY'};
  }
  for(const row of p.suitAliases){const item=catalogue.suits.find(s=>s.id===row.app_id),f=features.get(row.source_id);need(item&&f,'Broken suit alias');item.name=f.description;item.color=f.primary_text;item.pattern=f.pattern_text;item._canonical={id:row.source_id,source:'FEATURE_INPUTS.json'};}
- for(const item of catalogue.ties){const f=features.get(item.id);need(f,'Missing tie feature record');const n=root.HEWRSEnsembleCompletion.normalize(f);item.name=f.description;item.color=f.primary_text;item.pattern=f.pattern_text;item.colorFamily=n.primary?.family==='charcoal'?'grey':n.primary?.family||null;item._canonical={id:item.id,source:'FEATURE_INPUTS.json',colour_family_source:'current_normalized_primary_not_legacy_catalogue'};}
+ for(const item of catalogue.ties){const f=features.get(item.id);need(f,'Missing tie feature record');item.name=f.description;item.color=f.primary_text;item.pattern=f.pattern_text;item._canonical={id:item.id,source:'FEATURE_INPUTS.json'};}
  const base=root.HEWRSLogic.createEngine(p.logicData);
  const registry=root.HEWRSStep3Scores.createRegistry(p.approved,p.approval);
  const source=root.HEWRSStep3Scores.withApprovedScores(base,root.HEWRSLogic,registry,p.logicData.ensembleComponents);

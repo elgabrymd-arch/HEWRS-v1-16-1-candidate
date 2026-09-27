@@ -1,0 +1,69 @@
+{
+  "audit_pass": 5,
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "All loaded JavaScript and new Python helpers pass syntax checks",
+      "passed": true,
+      "detail": {
+        "javascript_files": 55,
+        "python_files": 2
+      }
+    },
+    {
+      "name": "Completed final semantic, option-policy and browser evidence contains no failures",
+      "passed": true,
+      "detail": {
+        "functional": 38,
+        "chromium": 17
+      }
+    },
+    {
+      "name": "Versioned local HTTP resources contain the exact tested bytes",
+      "passed": true,
+      "detail": {
+        "resources": 60,
+        "real_hosted_browser_test": false
+      }
+    },
+    {
+      "name": "All 848 runtime image files remain unchanged",
+      "passed": true,
+      "detail": {
+        "changed_images": 0,
+        "new_images": 0
+      }
+    },
+    {
+      "name": "Five visual boards inspected",
+      "passed": true,
+      "detail": {
+        "boards": [
+          "ALL_47_TIES_CURRENT.png",
+          "ALL_50_SHIRTS_CURRENT.png",
+          "ALL_18_SUITS_CURRENT.png",
+          "ALL_14_BLAZERS_CURRENT.png",
+          "FIFTEEN_OPTIONS_CAPS.png"
+        ],
+        "scope": "Actual renderer contact sheets reviewed; not new garment approvals or an exhaustive photographic colour-measurement claim"
+      }
+    },
+    {
+      "name": "Exact independent V1.17.2 source physically reconstructed",
+      "passed": true,
+      "detail": {
+        "files": 1833,
+        "browser_data_accessed": false
+      }
+    },
+    {
+      "name": "Independent baseline remained byte-identical throughout auditing",
+      "passed": true,
+      "detail": {
+        "files": 1833
+      }
+    }
+  ],
+  "package_phase": "Final ZIP container hashes, round-trip verifier and update-install output recorded in external delivery receipt; avoids self-hash recursion",
+  "live_deployment_performed": false
+}

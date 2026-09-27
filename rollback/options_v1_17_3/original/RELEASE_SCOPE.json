@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.owner-release-scope.v1",
-  "version": "1.17.3",
+  "version": "1.17.2",
   "owner_instruction": "Continue with 18 only for now",
   "owner_message_timestamp": "2026-09-25T02:44:23Z",
   "scope_applies_to": [
@@ -98,25 +98,8 @@
     "Existing DNA/compatibility/rotation preserved"
   ],
   "current_patch_scope": [
-    "Source-literal colour normalization corrections",
-    "Current source-family metadata in color filtering",
-    "Two-use per-unanchored-item limit for option sets",
-    "Maximum two No Tie/default no-jacket options unless explicitly selected",
-    "Rebuilt derived index and mismatched-index/version guards",
-    "Five independently documented audit passes"
+    "weather transport, cancellation, explicit date and actionable error reporting",
+    "larger on-screen outfit presentation only"
   ],
-  "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged.",
-  "owner_weather_update": {
-    "timestamp": "2026-09-27T20:15:32Z",
-    "report": "weather is fixed",
-    "code_changed_in_this_increment": false
-  },
-  "option_set_policy": {
-    "max_unanchored_item_uses": 2,
-    "max_no_tie": 2,
-    "max_shirt_only": 2,
-    "exact_item_anchor_exception": true,
-    "family_anchor_exception": false,
-    "compatibility_diversity_bonus": false
-  }
+  "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged."
 }

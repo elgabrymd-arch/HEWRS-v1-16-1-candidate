@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Pure acceleration cache of the current bound clothing engine. No independent scores.
+/* Pure acceleration cache of the UNCHANGED bound clothing engine. No new scores.
  * Shares computation across colour profiles, never physical wardrobe identities.
  */
 'use strict';
@@ -23,7 +23,7 @@ for(const top of [...c.suitSources.ids,...c.blazerConnection.availableIds])for(c
  groups.push({topwearId:top,pantProfileId:profile,rows:out});
  console.log('indexed',top,profile||'',out.length);
 }
-const value={schema:'hewrs.derived-clothing-index.v1_17_0',source_input_sha256:g.HEWRS_INPUT_SHA256,normalization_revision:g.HEWRSEnsembleCompletion.normalizationRevision,engine_files:hashes,columns:['shirt_id','state','score','display_score','candidate_eligible','status'],groups,counts:{rows,groups:groups.length,status:counts},authority:'DERIVED_CACHE_OF_EXISTING_ENGINE_RESULTS_NOT_NEW_OR_APPROVED_SCORES',environment_and_history:'Not part of compatibility; assessed at request time'};
+const value={schema:'hewrs.derived-clothing-index.v1_17_0',source_input_sha256:g.HEWRS_INPUT_SHA256,engine_files:hashes,columns:['shirt_id','state','score','display_score','candidate_eligible','status'],groups,counts:{rows,groups:groups.length,status:counts},authority:'DERIVED_CACHE_OF_EXISTING_ENGINE_RESULTS_NOT_NEW_OR_APPROVED_SCORES',environment_and_history:'Not part of compatibility; assessed at request time'};
 for(const [p,t] of [['data/option-index.json',JSON.stringify(value)+'\n'],['data/option-index.js','globalThis.HEWRS_OPTION_INDEX='+JSON.stringify(value)+';\n']]){
  if(check){if(fs.readFileSync(R+'/'+p,'utf8')!==t)throw Error('Cache differs from current source engine '+p);}else fs.writeFileSync(R+'/'+p,t);
 }

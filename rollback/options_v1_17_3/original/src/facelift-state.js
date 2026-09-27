@@ -38,10 +38,7 @@ function create(connection){
  function commit(){assert(draft&&draft.choice,'Choose an item, supported family, or Engine Choice');const d=draft;draft=null;return set(d.category,d.choice);}
  function cancel(){draft=null;}
  function reset(){draft=null;prefs=Object.fromEntries(CATEGORIES.map(k=>[k,{mode:'any'}]));return snapshot();}
- // Family filtering uses the same current, source-derived category as generation.
- // Literal substring matching would omit charcoal from Grey and taupe from Brown.
- function matchesColour(r,cat,color){const wanted=String(color).toLowerCase();if(FAMILIES[cat]?.includes(wanted)){const f=connection.engine.get(r.sourceId||r.id)?.primary?.family;return (f==='charcoal'?'grey':f)===wanted;}return String(r.color).toLowerCase().includes(wanted);}
- function filter(cat,{query='',type='',brand='',color=''}={}){assert(maps[cat],'Unknown category');const q=query.trim().toLocaleLowerCase();return rows[cat].filter(r=>(!q||(r.id+' '+(r.sourceId||'')+' '+r.label+' '+r.brand).toLocaleLowerCase().includes(q))&&(!type||r.kind===type)&&(!brand||r.brand===brand)&&(!color||matchesColour(r,cat,color)));}
+ function filter(cat,{query='',type='',brand='',color=''}={}){assert(maps[cat],'Unknown category');const q=query.trim().toLocaleLowerCase();return rows[cat].filter(r=>(!q||(r.id+' '+(r.sourceId||'')+' '+r.label+' '+r.brand).toLocaleLowerCase().includes(q))&&(!type||r.kind===type)&&(!brand||r.brand===brand)&&(!color||String(r.color).toLowerCase().includes(color.toLowerCase())));}
  function operation(mode,ctx){assert(['anchor','engine'].includes(mode),'Unknown selection intent');const p=snapshot(),top=selectedTop(p);assert(top,'Choose an exact Suit, Blazer or Shirt-only mode. This build requires a topwear anchor.');assert(top.available,'This exact topwear binding is not connected in the current application.');
   assert(p.shoes.mode==='item','Choose an exact registered shoe pair. Automatic footwear selection is not installed in this build.');
   assert(p.watch.mode!=='family','Watch families are not supported');

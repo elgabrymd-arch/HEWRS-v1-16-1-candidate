@@ -1,0 +1,199 @@
+{
+  "audit_pass": 2,
+  "schema": "hewrs.colour-ensemble.audit.v1_17_3",
+  "passed": 12,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Recorded DNA, source aliases, historical/frozen ST tables and base input lock remain exact",
+      "passed": true,
+      "result": [
+        "data/inputs.json",
+        "data/inputs.js",
+        "vendor/hewrs-logic.js",
+        "vendor/approved-scores.js",
+        "vendor/release-guards.js",
+        "vendor/request-contract.js",
+        "src/controller.js",
+        "src/local-state.js",
+        "src/favorites-state.js",
+        "src/rotation-insights.js",
+        "src/weather-context.js",
+        "src/application.css"
+      ]
+    },
+    {
+      "name": "All 136 source-derived profiles checked; changes explicitly enumerated, not silently declared identical",
+      "passed": true,
+      "result": {
+        "profiles": 136,
+        "changed": [
+          "S08",
+          "S14",
+          "DS029",
+          "T007",
+          "T012"
+        ]
+      }
+    },
+    {
+      "name": "Black lattice does not become ice/light fabric; literal ice blue still does",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Documented blue component in S08/S14 and DS029 remains chromatic",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Tie category/adaptor colours consistently use the current source-derived primary, not legacy family metadata",
+      "passed": true,
+      "result": [
+        {
+          "id": "T001",
+          "legacy_family": "grey",
+          "current_family": "brown",
+          "source_wording": "Taupe horsebit"
+        },
+        {
+          "id": "T002",
+          "legacy_family": "gold",
+          "current_family": "brown",
+          "source_wording": "Tobacco"
+        },
+        {
+          "id": "T007",
+          "legacy_family": "black",
+          "current_family": "grey",
+          "source_wording": "Charcoal"
+        },
+        {
+          "id": "T016",
+          "legacy_family": "red",
+          "current_family": "burgundy",
+          "source_wording": "Burgundy-red"
+        },
+        {
+          "id": "T025",
+          "legacy_family": "burgundy",
+          "current_family": "brown",
+          "source_wording": "Muted slate-brown"
+        },
+        {
+          "id": "T026",
+          "legacy_family": "grey",
+          "current_family": "blue",
+          "source_wording": "Ice-blue"
+        },
+        {
+          "id": "T034",
+          "legacy_family": "grey",
+          "current_family": "gold",
+          "source_wording": "Bronze"
+        },
+        {
+          "id": "T036",
+          "legacy_family": "black",
+          "current_family": "purple",
+          "source_wording": "Purple"
+        },
+        {
+          "id": "T037",
+          "legacy_family": "burgundy",
+          "current_family": "pink",
+          "source_wording": "Dusty rose"
+        },
+        {
+          "id": "T038",
+          "legacy_family": "fuchsia",
+          "current_family": "pink",
+          "source_wording": "Fuchsia"
+        },
+        {
+          "id": "T047",
+          "legacy_family": "green",
+          "current_family": "sage",
+          "source_wording": "Pistachio"
+        }
+      ]
+    },
+    {
+      "name": "2,350 frozen shirt-tie lookups retain all values, conflicts and premise holds",
+      "passed": true,
+      "result": 2350
+    },
+    {
+      "name": "112,392 ensemble rows audited: every fresh index result matches; all score changes have affected colour profiles",
+      "passed": true,
+      "result": {
+        "rows": 112392,
+        "byte_equivalent_calculation_results": 106007,
+        "changed_results": 6385,
+        "changed_scores": 5800,
+        "changed_eligibility": 174,
+        "affected": {
+          "T012": 1775,
+          "DS029": 736,
+          "DS029,T007": 16,
+          "DS029,T012": 16,
+          "S08": 1802,
+          "S08,T007": 36,
+          "S08,T012": 35,
+          "S08,DS029": 46,
+          "S08,DS029,T007": 1,
+          "S08,DS029,T012": 1,
+          "S14": 1802,
+          "S14,T007": 36,
+          "S14,T012": 35,
+          "S14,DS029": 46,
+          "S14,DS029,T007": 1,
+          "S14,DS029,T012": 1
+        }
+      }
+    },
+    {
+      "name": "Tied formula, no-tie path, blazer foundation thresholds and rotation policy are not rewritten",
+      "passed": true,
+      "result": {
+        "tied_weights": {
+          "shirt_tie": 0.35,
+          "topwear_shirt": 0.25,
+          "topwear_tie": 0.25,
+          "ensemble": 0.15
+        },
+        "no_diversity_score_bonus": true
+      }
+    },
+    {
+      "name": "Source holds, independent physical IDs and supported clothing scope remain intact",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Current suit/photo routes, all current shirt components and all 142 restored tie bindings unchanged",
+      "passed": true,
+      "result": {
+        "ties": 47,
+        "bindings": 142,
+        "suits": 18,
+        "blazers": 14
+      }
+    },
+    {
+      "name": "Picker colour families agree with Engine families for every supported shirt/tie family",
+      "passed": true,
+      "result": 16
+    },
+    {
+      "name": "Index and colour-normalizer revisions are pinned; mixed files are rejected",
+      "passed": true,
+      "result": null
+    }
+  ],
+  "notes": [
+    "Numerical estimates intentionally change where a wrongly normalized colour was corrected. Frozen pair scores and source DNA remain unchanged.",
+    "Matched runtime sources do not resolve every historic narrative conflict; DS011/DS040/DS042/DS043 remain blocked from automatic scoring.",
+    "No user-provided offending outfit IDs were included in the latest message; these are independently reproduced defects, not identification of an unseen exact outfit."
+  ]
+}
