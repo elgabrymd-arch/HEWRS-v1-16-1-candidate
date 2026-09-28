@@ -37,18 +37,6 @@ function create(connection,lock,backend){
   return clone(v);
  }
  try{if(backend){raw=backend.getItem(KEY);if(raw!==null)state=validate(JSON.parse(raw));}}catch(e){blocked='Stored data retained, not reset: '+e.message;}
- // Read-side guard for generation: synchronize valid backing data without
- // writing it; never interpret a load failure as an empty confirmed ledger.
- function readForGeneration(){
-  if(backend){let incoming;try{incoming=backend.getItem(KEY);const v=incoming===null?{schema:SCHEMA,source_lock:lock,revision:0,session:null,events:[]}:validate(JSON.parse(incoming));state=v;raw=incoming;blocked=null;persistent=true;}
-   catch(e){if(incoming!==undefined)raw=incoming;blocked='Wear history unavailable; saved data retained: '+e.message;throw Error(blocked);}}
-  need(!blocked,blocked||'Wear history unavailable');
-  return {events:clone(state.events),token:{raw,revision:state.revision,events:JSON.stringify(state.events)}};
- }
- function assertCurrent(token){need(token&&Number.isSafeInteger(token.revision),'No validated history revision');need(!blocked,blocked);
-  if(backend){let incoming;try{incoming=backend.getItem(KEY);}catch(e){throw Error('Cannot verify current wear history: '+e.message);}need(incoming===token.raw,'Wear history/session changed in another tab; generate again. No stale recommendation was accepted.');}
-  need(state.revision===token.revision&&JSON.stringify(state.events)===token.events,'History snapshot changed during generation; generate again');return true;
- }
  function commit(next){
   need(!blocked,blocked);const v=validate(next),text=JSON.stringify(v);
   if(backend){try{need(backend.getItem(KEY)===raw,'Storage changed in another tab; reload before writing');backend.setItem(KEY,text);need(backend.getItem(KEY)===text,'Persistent write could not be verified');raw=text;}catch(e){persistent=false;throw Error('No save confirmed: '+e.message);}}
@@ -58,7 +46,7 @@ function create(connection,lock,backend){
  function addEvent(e){need(!state.events.some(x=>x.id===e.id),'Duplicate event; nothing added');return commit({...clone(state),revision:state.revision+1,events:[...clone(state.events),clone(e)]});}
  function previewImport(text){need(typeof text==='string'&&text.length<=25_000_000,'Backup too large');return validate(JSON.parse(text));}
  function restore(preview){need(!blocked,'Existing invalid data remains preserved; restore into a fresh namespace only');return commit({...validate(preview),revision:state.revision+1});}
- return Object.freeze({key:KEY,readForGeneration,assertCurrent,snapshot:()=>clone(state),status:()=>({persistent:!!backend&&persistent,blocked,scope:'Only this candidate namespace; production history is not read'}),validate,saveSession,addEvent,previewImport,restore,exportText:()=>{if(blocked){need(raw!==null,'Existing saved data could not be read; no backup claimed');return raw;}return JSON.stringify(state,null,2);}});
+ return Object.freeze({key:KEY,snapshot:()=>clone(state),status:()=>({persistent:!!backend&&persistent,blocked,scope:'Only this candidate namespace; production history is not read'}),validate,saveSession,addEvent,previewImport,restore,exportText:()=>{if(blocked){need(raw!==null,'Existing saved data could not be read; no backup claimed');return raw;}return JSON.stringify(state,null,2);}});
 }
 root.HEWRSLocalState=Object.freeze({create,KEY,SCHEMA,date});
 })(globalThis);

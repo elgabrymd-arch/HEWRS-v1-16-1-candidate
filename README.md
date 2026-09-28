@@ -1,45 +1,66 @@
-# HEWRS V1.17.4 — suit eligibility and automatic local weather
+# HEWRS V1.18.0 — personal complete-outfit ranking
 
-Continuation of the 18-shirt V1.17.3 build; not a new wardrobe or final certification.
-S10/S11 no longer fail solely because old catalogue tags omit the calendar season.
-Season tags remain unchanged metadata/advice. Actual material, heat, precipitation,
-footwear, source-score, formality and explicit-lock guards still apply.
+This is an implemented update to the existing connected application. It keeps the
+18 connected non-suit shirts, all 50 suit shirts, all physical IDs, approved image
+assets, weather service and existing stored-data formats. The recommendation order
+is intentionally different. Original numerical compatibility remains unchanged and
+is disclosed separately from the new heuristic personal styling fit.
 
-Location & weather → Enable automatic local weather authorizes the first request.
-Successful activation saves and applies automatically; no additional Apply is needed.
-The app refreshes on opening, returning and before generation, with a 15-minute
-request throttle. A silent device-location lookup occurs only when the browser reports
-granted permission. Otherwise existing saved coordinates are refreshed and labelled
-as a saved location; unknown current location is not invented. Manual Apply or
-Use without weather pauses automatic refresh. The browser controls permission expiry.
+## Use
+Open the same hosted `index.html` as before. Engine Choice selects unlocked pieces;
+partial Anchor selection keeps exact locks. Generated options show **Personal styling
+fit · heuristic**. Score Details includes the original compatibility calculation.
+No item needs to be relabelled or reapproved. Current weather/manual fallback and
+previously implemented Favorites/Insights remain. Generation, viewing and Favorite
+saving do not log an outfit as worn.
 
-Preserved: 18 connected non-suit shirts, all 50 suit shirts, all suits/blazers and
-physical IDs, 47 restored tie displays, 848 existing images, DNA, numerical scores,
-Favorites, wear history, accepted phone layout and the two-use option-list caps.
-Only the exact anchored item is exempt from its cap. No Tie defaults to at most two.
-Shirt-only remains exact manual Anchor because numerical ranking is not installed.
+The 15-option selector retains the maximum-two rule for every unanchored physical
+item and the separate No Tie cap. It varies visual ideas among similar-quality
+choices without mandatory color slots. It expands beyond its initial working pool
+when caps would otherwise prevent filling the list. Incompatible constraints may
+still yield fewer; no score or duplicate is fabricated to force 15.
 
-## Run / install
-Serve this complete folder. index.html alone is not self-contained.
-The cumulative update supports exact V1.17.2 or V1.17.3. Copy the CONTENTS of
-FILES_TO_COPY into the existing candidate root, replacing matching files and keeping
-all other folders and .git. Do not upload the enclosing FILES_TO_COPY folder or ZIP.
-Keep the same site address and browser data. No new repository is required.
+The history-to-Engine integration now validates/synchronizes the backing wear ledger
+before generation, checks its revision before accepting a result and after image
+loading, and invalidates stale recommendations. Corrupt data remains untouched and
+is shown as unavailable rather than used as an empty history. The schema, namespace,
+source lock and event/Favorite IDs do not change. No migration/reset is necessary.
 
-## Verify
-python -B tools/verify_v1174.py
+## Install
+Use the cumulative update over an exact V1.17.2, V1.17.3 or V1.17.4 candidate tree.
+Copy the CONTENTS of `FILES_TO_COPY` into the existing candidate repository, replacing
+matching files and keeping all others and `.git`. Do not copy the enclosing folder
+or ZIP itself into the web root. Keep the same website address and browser data.
 
-## Rollback
-python -B tools/rollback_v1174.py --check
-python -B tools/rollback_v1174.py --output NEW_FOLDER
-Restores exact V1.17.3 in a separate folder; never reads or changes browser data.
-The inert automatic-weather preference key is ignored by the older version.
+Commit summary:
+`V1.18.0 — recalibrate full-outfit recommendations; preserve wardrobe and scores`
 
-## Evidence and limits
-See DELIVERY_V1_17_4.md and evidence/suits_auto_weather_v1_17_4/.
-Fresh results: 85 functional checks, 19 in-memory Chromium checks, 166 pixel-equal
-existing frames, 30 S10/S11 option navigation frames. Provider/permission successes
-were simulated. Ordinary real-origin Chromium navigation was blocked before load.
-No GitHub write, public deployment or physical Safari permission test was performed.
-Old version-specific tests/verifiers apply to their restored source versions. Their
-packaged historical pass records are not relabelled as fresh V1.17.4 results.
+Commit and push the existing candidate repository through the owner's normal flow.
+This package does not publish itself. No new repository or Pages setup is required.
+
+The complete folder is required: `index.html` alone is not self-contained. Optional
+local viewing: `python -m http.server 8000` from this folder, then open localhost:8000.
+Localhost is a separate browser origin and will not contain your hosted wear history.
+No browser-data export is bundled in source or evidence.
+
+## Verification and rollback
+- `python -B tools/verify_v1180.py`: read-only package/source protection checks.
+- `python -B tools/rollback_v1180.py --check`: verify old restoration bytes.
+- `python -B tools/rollback_v1180.py --output NEW_FOLDER`: exact V1.17.4 in a separate
+  new folder; existing destination refused. It never opens browser data.
+
+`CHANGED_FILES.json` lists exact changes against V1.17.4. The package manifest covers
+every bundled payload except itself. The update has its own cumulative contract for
+all supported baselines. Original historical manifests/test reports remain historical;
+current results are in `evidence/recalibration_v1_18_0/`.
+
+## Interpretation and evidence
+Read `PREFERENCE_MODEL_V1_18_0.md` for disclosed weights, shade/pattern interpretation,
+accessory preferences, curation and its limits. Read `DELIVERY_V1_18_0.md` for actual
+before/after counts, current tests, preserved inputs and execution boundaries.
+
+This is a transparent heuristic calibration from your accepted complete-outfit
+examples and instructions, not a newly trained visual AI or a guarantee that every
+future outfit matches your taste. Its score is not an objective measurement. The
+original source data/grades remain available for comparison; no new objective-looking
+historical score was written into your database.

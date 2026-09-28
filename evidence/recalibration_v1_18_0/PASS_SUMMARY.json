@@ -1,0 +1,80 @@
+{
+  "schema": "hewrs.recalibration.audit.v1_18_0",
+  "version": "1.18.0",
+  "baseline": "1.17.4",
+  "passes": [
+    {
+      "number": 1,
+      "area": "Verified source, source semantics and preserved wardrobe",
+      "status": "PASS",
+      "evidence": [
+        "PASS1_SOURCE_INTEGRITY.json",
+        "SOURCE_PREFERENCE_PROFILES.json",
+        "PROTECTED_BASELINE_HASHES.json"
+      ]
+    },
+    {
+      "number": 2,
+      "area": "Implemented preference, source-score preservation, all exact anchors, caps, data and weather",
+      "status": "PASS",
+      "named_functional_checks": 81,
+      "anchor_scenarios": 129,
+      "all_32_topwear_lists_return_15": true,
+      "evidence": [
+        "PASS2_FUNCTIONAL.json",
+        "PASS2_ORIGINAL_SCORE_PRESERVATION.json",
+        "DATA_REGRESSION.json",
+        "AUTO_WEATHER_FUNCTIONAL.json",
+        "WEATHER_TRANSPORT.json",
+        "PASS2_WARDROBE_MATRIX.json"
+      ]
+    },
+    {
+      "number": 3,
+      "area": "Actual UI/render/history races, viewport, source transport and delivery",
+      "status": "PASS_BROWSER_SOURCE_TESTS",
+      "chromium_checks": 17,
+      "pixel_equal_controls": 166,
+      "actual_topwear_before_after_frames": 128,
+      "actual_S10_option_frames": 15,
+      "evidence": [
+        "browser/PASS3_BROWSER.json",
+        "HTTP_AND_SYNTAX.json"
+      ],
+      "delivery_verification": "External delivery receipt records final archive/installer/rollback checks after packaging."
+    }
+  ],
+  "suite_results": {
+    "PASS2_FUNCTIONAL.json": {
+      "passed": 23,
+      "failed": 0
+    },
+    "PASS2_ORIGINAL_SCORE_PRESERVATION.json": {
+      "passed": 5,
+      "failed": 0
+    },
+    "DATA_REGRESSION.json": {
+      "passed": 10,
+      "failed": 0
+    },
+    "AUTO_WEATHER_FUNCTIONAL.json": {
+      "passed": 22,
+      "failed": 0
+    },
+    "WEATHER_TRANSPORT.json": {
+      "passed": 21,
+      "failed": 0
+    },
+    "PASS2_WARDROBE_MATRIX.json": {
+      "passed": 129,
+      "failed": 0
+    },
+    "browser/PASS3_BROWSER.json": {
+      "passed": 17,
+      "failed": 0
+    }
+  },
+  "new_owner_device_acceptance": false,
+  "deployed": false,
+  "not_a_global_optimality_or_subjective_quality_proof": true
+}

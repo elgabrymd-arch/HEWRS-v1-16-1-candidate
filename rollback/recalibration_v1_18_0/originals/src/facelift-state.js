@@ -3,7 +3,7 @@
 (function(root){'use strict';
 const copy=x=>structuredClone(x),assert=(x,s)=>{if(!x)throw Error(s);};
 const CATEGORIES=Object.freeze(['topwear','shirt','tie','shoes','bottoms','watch']);
-const FAMILIES=Object.freeze({shirt:['white','cream','beige','taupe','blue','navy','pink','lavender','brown','grey','black','burgundy'],tie:['navy','burgundy','grey','blue','pink','brown','gold','purple','lavender','rust','green','sage','black','cream','beige']});
+const FAMILIES=Object.freeze({shirt:['white','cream','blue','navy','pink','lavender','brown','grey','black'],tie:['navy','burgundy','grey','blue','pink','brown','gold']});
 function create(connection){
  const rows={topwear:[],shirt:[],tie:[],shoes:[],bottoms:[],watch:[]};
  for(const id of connection.suitSources.ids){const item=connection.catalogue.suits.find(x=>x.id===connection.aliases.get(id));assert(item,'Missing exact suit alias');rows.topwear.push({id:item.id,sourceId:id,kind:'suit',label:connection.features.get(id)?.description||item.name,brand:item.brand||'',color:item.color||'',available:connection.assemblies.supported(id)});}
@@ -40,7 +40,7 @@ function create(connection){
  function reset(){draft=null;prefs=Object.fromEntries(CATEGORIES.map(k=>[k,{mode:'any'}]));return snapshot();}
  // Family filtering uses the same current, source-derived category as generation.
  // Literal substring matching would omit charcoal from Grey and taupe from Brown.
- function matchesColour(r,cat,color){const wanted=String(color).toLowerCase();if(FAMILIES[cat]?.includes(wanted)){if(connection.preference)return connection.preference.matchesFamily(r.sourceId||r.id,wanted);const f=connection.engine.get(r.sourceId||r.id)?.primary?.family;return (f==='charcoal'?'grey':f)===wanted;}return String(r.color).toLowerCase().includes(wanted);}
+ function matchesColour(r,cat,color){const wanted=String(color).toLowerCase();if(FAMILIES[cat]?.includes(wanted)){const f=connection.engine.get(r.sourceId||r.id)?.primary?.family;return (f==='charcoal'?'grey':f)===wanted;}return String(r.color).toLowerCase().includes(wanted);}
  function filter(cat,{query='',type='',brand='',color=''}={}){assert(maps[cat],'Unknown category');const q=query.trim().toLocaleLowerCase();return rows[cat].filter(r=>(!q||(r.id+' '+(r.sourceId||'')+' '+r.label+' '+r.brand).toLocaleLowerCase().includes(q))&&(!type||r.kind===type)&&(!brand||r.brand===brand)&&(!color||matchesColour(r,cat,color)));}
  function operation(mode,ctx){assert(['anchor','engine'].includes(mode),'Unknown selection intent');const p=snapshot(),top=selectedTop(p);assert(top,'Choose an exact Suit, Blazer or Shirt-only mode. This build requires a topwear anchor.');assert(top.available,'This exact topwear binding is not connected in the current application.');
   assert(p.shoes.mode==='item','Choose an exact registered shoe pair. Automatic footwear selection is not installed in this build.');
