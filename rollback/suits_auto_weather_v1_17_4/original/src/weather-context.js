@@ -1,4 +1,4 @@
-/* V1.17.4: season catalogue labels are advisory, not a calendar-only ban. No garment DNA, compatibility or wear writes.
+/* V1.17.1 location/weather transport and phone feedback; eligibility unchanged. No garment DNA, compatibility or wear writes.
  * API contract: Open-Meteo forecast/geocoding documentation, checked 2026-09-27.
  * Suitability rules: recovered index.html Phase 9 (Ch.129-162), separately named
  * from frozen clothing scores. Unknown material/sole facts are never invented.
@@ -100,7 +100,7 @@ function material(item,role){if(!item)return null;if(role==='tie')return 'Woven 
 function assess(items,env,context){if(!env||env.source==='not_assessed')return {status:'not_assessed',eligible:true,score:null,reasons:['Weather not assessed'],unassessed:['weather'],compatibility_adjustment:0};validate(env);
  const temp=env.temperatureBand,precip=env.precipitation,idx=BANDS.indexOf(temp),mats={},unknown=[];for(const role of ['topwear','shirt','tie','shoes'])if(items[role]){mats[role]=material(items[role],role);if(!mats[role])unknown.push(role+' material');}
  const reasons=[],penalties=[];let hard=false,T=10,M=10,F=10,P=10,E=10,W=10;const matNotes=[],footNotes=[],precipNotes=[];
- const seasonal=[];for(const [role,item]of Object.entries(items)){if(!item||!Array.isArray(item.seasons))continue;if(!item.seasons.includes('All Year')&&!item.seasons.includes(env.season)){seasonal.push(role+': catalogue season tags '+item.seasons.join(' / ')+' do not list '+env.season+'; advisory only, actual conditions assessed separately');}}
+ const seasonal=[];for(const [role,item]of Object.entries(items)){if(!item||!Array.isArray(item.seasons))continue;if(!item.seasons.includes('All Year')&&!item.seasons.includes(env.season)){seasonal.push(role+': recorded seasons exclude '+env.season);}}
  if(temp==='veryHot'&&CLASSES[mats.topwear]==='cold'){T-=4;penalties.push(-2.5);reasons.push('Cold-weather topwear material in very hot conditions');}else if(temp==='veryCold'&&CLASSES[mats.topwear]==='warm'){T-=2;if(['clinic','hospital','work'].includes(context.occasion))T=Math.min(10,T+1);}
  const known=Object.entries(mats).filter(([,v])=>v&&CLASSES[v]);for(const [role,m]of known){if(idx<=1&&CLASSES[m]==='cold'){M-=3;matNotes.push(role+' '+m+' in hot conditions');}else if(idx>=4&&CLASSES[m]==='warm'){M-=2;matNotes.push(role+' '+m+' in cold conditions');}}M=Math.max(0,M);
  if(!(temp==='veryHot'&&CLASSES[mats.topwear]==='cold')&&matNotes.length)penalties.push(M<=6?-1.25:-0.5);reasons.push(...matNotes);
@@ -111,7 +111,7 @@ function assess(items,env,context){if(!env||env.source==='not_assessed')return {
  const weights=known.length?{T:.3,M:.2,F:.2,P:.15,E:.1,W:.05}:{T:.375,M:0,F:.25,P:.1875,E:.125,W:.0625};
  const sh=items.shirt?._family,colour=env.season==='Summer'&&['white','cream','blue','lavender','pink','grey'].includes(sh)||env.season==='Winter'&&['burgundy','black','navy'].includes(sh)?.25:0;
  let score=Math.round(Math.max(0,Math.min(10,weights.T*T+weights.M*M+weights.F*F+weights.P*P+weights.E*E+weights.W*W+penalties.reduce((a,b)=>a+b,0)+colour))*100)/100;if(hard)score=Math.min(score,3);
- return {status:hard||score<7?'ineligible':unknown.length?'eligible_with_unassessed_materials':seasonal.length?'eligible_with_season_advisory':'eligible_by_recorded_rules',eligible:!hard&&score>=7,score,reasons,season_advisories:seasonal,season_policy:'Catalogue tags are guidance, not hard restrictions or evidence of fibre weight',unassessed:[...unknown,'Exact shoe sole / traction','Wind and humidity modifiers not assessed'],materials:mats,compatibility_adjustment:0,policy:'Recovered Phase 9 weather criteria + advisory catalogue season tags. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification.'};
+ return {status:hard||seasonal.length||score<7?'ineligible':unknown.length?'eligible_with_unassessed_materials':'eligible_by_recorded_rules',eligible:!hard&&!seasonal.length&&score>=7,score,reasons:[...seasonal,...reasons],unassessed:[...unknown,'Exact shoe sole / traction','Wind and humidity modifiers not assessed'],materials:mats,compatibility_adjustment:0,policy:'Recovered Phase 9 weather criteria + recorded season eligibility. Weather domain minimum 7 from historical Ch.179; not a frozen aesthetic score or safety certification.'};
 }
 root.HEWRSWeather=Object.freeze({create,band,precipitation,season,place,validate,fresh,parseForecast,assess,BANDS,PRECIP,SEASONS,LABELS,KEY});
 })(globalThis);

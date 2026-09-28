@@ -1,0 +1,1426 @@
+[
+  {
+    "id": "S05",
+    "source": "not_assessed",
+    "count": 15,
+    "reason": null,
+    "diagnostics": {
+      "enumerated": 2212,
+      "examined": 2212,
+      "score_statuses": {
+        "new_ensemble_estimate": 1779,
+        "requires_review": 64,
+        "rejected": 157,
+        "canonical_data_hold": 51,
+        "premise_mismatch": 96,
+        "conflict": 65
+      },
+      "weather_style_or_accessory_holds": 0,
+      "unbound_trouser_ids": [],
+      "numeric_candidates": 1779,
+      "domain_evaluated": 185,
+      "lower_scoring_candidates_safely_skipped": 1594,
+      "option_cap_skips": 28,
+      "accessory_or_context_exhaustion": 0,
+      "list_evaluated": 14
+    },
+    "sample": {
+      "status": "new_ensemble_estimate",
+      "score": 9.54296,
+      "display_score": 9.5,
+      "scale_max": 10,
+      "configuration": "tied",
+      "spec_id": "HEWRS_STEP3_COMPLETION_SPEC_1",
+      "owner_approved_spec": false,
+      "production_enabled": false,
+      "ids": {
+        "topwear": "S05",
+        "shirt": "DS029",
+        "tie": "T028",
+        "pant_profile": null
+      },
+      "shirt_tie": {
+        "status": "recorded",
+        "score": 99,
+        "reason_codes": [
+          "SOURCE_LOOKUP_NOT_RESCORED"
+        ],
+        "evidence": [
+          {
+            "source_id": "HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX.pdf",
+            "page": 4
+          }
+        ],
+        "shirt_id": "DS029",
+        "tie_id": "T028",
+        "recorded_score": 99,
+        "scale_max": 100,
+        "recorded_class": "EXCELLENT",
+        "rationale_as_recorded": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+        "alternatives": [
+          {
+            "source_id": "SRC08",
+            "source_phase": "Phase_2B",
+            "source_pdf": "01_ORIGINAL_PDFS/Phase_2B/HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX(1).pdf",
+            "source_page": 4,
+            "shirt_id": "DS029",
+            "shirt_heading_as_printed": "DS029 - Brooks Brothers 346",
+            "shirt_dna_as_printed": "Ice/silver-blue; tonal blue/silver; fine continuous herringbone; fine density; low contrast",
+            "tie_id": "T028",
+            "tie_label_as_printed": "Midnight Navy Tonal Paisley",
+            "score": 99,
+            "class_as_printed": "EXCELLENT",
+            "rationale_as_printed": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+            "extraction_status": "SOURCE_TRANSCRIPTION_NOT_CANONICAL_MATRIX"
+          }
+        ],
+        "version_policy": "strict",
+        "package_selection_is_not_premise_validation": true,
+        "premise_concern": null,
+        "normalized_score": 9.9,
+        "classification": "EXCELLENT",
+        "current_styling_independently_certified": false,
+        "version_selection_evidence": null
+      },
+      "foundation": null,
+      "components": {
+        "topwear_shirt": {
+          "status": "new_component_estimate",
+          "score": 9.436842,
+          "coverage": 0.95,
+          "subscores": {
+            "color_harmony": 8.9,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 10,
+            "formality": 9,
+            "surface": null
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "One clear major pattern."
+          ],
+          "unknown_subfactors": [
+            "surface"
+          ],
+          "not_a_frozen_judgment": true
+        },
+        "topwear_tie": {
+          "status": "new_component_estimate",
+          "score": 9.325,
+          "coverage": 1,
+          "subscores": {
+            "color_harmony": 8.6,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 10,
+            "formality": 9,
+            "surface": 9
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "One clear major pattern."
+          ],
+          "unknown_subfactors": [],
+          "not_a_frozen_judgment": true
+        },
+        "ensemble": {
+          "score": 9.25,
+          "status": "new_component_estimate",
+          "color_bridge": 9,
+          "palette_harmony": 8.7,
+          "value_architecture": 9.3,
+          "visual_hierarchy": 10,
+          "hierarchy": {
+            "score": 10,
+            "active": [
+              {
+                "id": "S05",
+                "value": 4.55
+              }
+            ],
+            "reason": "One clear major pattern."
+          },
+          "palette": [
+            {
+              "id": "S05",
+              "primary": "grey",
+              "accents": [
+                "grey"
+              ],
+              "value": 3
+            },
+            {
+              "id": "DS029",
+              "primary": "blue",
+              "accents": [
+                "blue",
+                "grey"
+              ],
+              "value": 4.5
+            },
+            {
+              "id": "T028",
+              "primary": "navy",
+              "accents": [],
+              "value": 1.2
+            }
+          ],
+          "evaluated_interactions": 3,
+          "pant_included": false,
+          "foundation_score_included": false,
+          "reason": "Active secondary colours, colour separation, value architecture and full-system hierarchy; no style/context/rotation bonus."
+        }
+      },
+      "weights": {
+        "shirt_tie": 0.35,
+        "topwear_shirt": 0.25,
+        "topwear_tie": 0.25,
+        "ensemble": 0.15
+      },
+      "arithmetic_inputs": {
+        "shirt_tie": 9.9,
+        "topwear_shirt": 9.436842,
+        "topwear_tie": 9.325,
+        "ensemble": 9.25
+      },
+      "weighted_sum": 9.54296,
+      "hard_conflict": {
+        "assessed": true,
+        "status": "new_rule_assessment",
+        "deduction": 0,
+        "hard_reject": false,
+        "reasons": [],
+        "not_a_recorded_historical_verdict": true
+      },
+      "candidate_eligible": true,
+      "evidence_status": "new_component_estimates_with_read_only_recorded_ST_or_independent_no_tie",
+      "authoritative_ensemble_score": null,
+      "style_context_rotation_adjustment": 0,
+      "final_ensemble_audit": {
+        "status": "rule_checked_not_owner_visual_certification",
+        "mandatory_human_visual_audit_not_claimed": true
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "CLASSIC",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [],
+        "modern_intervention_count": 0,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled modern elements; not a midpoint.",
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "context": {
+        "status": "eligible",
+        "context": {
+          "occasion": "clinic",
+          "requiredFormality": "any"
+        },
+        "checks": [
+          {
+            "axis": "occasion",
+            "value": "clinic",
+            "status": "specified",
+            "reason": "Setting retained. No workplace-specific dress code invented."
+          },
+          {
+            "axis": "requiredFormality",
+            "status": "eligible",
+            "reason": "No extra tie requirement specified."
+          }
+        ],
+        "compatibility_adjustment": 0,
+        "scope": "Explicit requirements and supplied suitability facts only. No invented hospital/clinic dress codes."
+      },
+      "blazer_style_affinities": null
+    }
+  },
+  {
+    "id": "S10",
+    "source": "not_assessed",
+    "count": 15,
+    "reason": null,
+    "diagnostics": {
+      "enumerated": 2212,
+      "examined": 2212,
+      "score_statuses": {
+        "new_ensemble_estimate": 1921,
+        "requires_review": 63,
+        "canonical_data_hold": 51,
+        "rejected": 16,
+        "premise_mismatch": 96,
+        "conflict": 65
+      },
+      "weather_style_or_accessory_holds": 0,
+      "unbound_trouser_ids": [],
+      "numeric_candidates": 1921,
+      "domain_evaluated": 312,
+      "lower_scoring_candidates_safely_skipped": 1609,
+      "option_cap_skips": 58,
+      "accessory_or_context_exhaustion": 0,
+      "list_evaluated": 14
+    },
+    "sample": {
+      "status": "new_ensemble_estimate",
+      "score": 9.236349,
+      "display_score": 9.2,
+      "scale_max": 10,
+      "configuration": "tied",
+      "spec_id": "HEWRS_STEP3_COMPLETION_SPEC_1",
+      "owner_approved_spec": false,
+      "production_enabled": false,
+      "ids": {
+        "topwear": "S10",
+        "shirt": "DS029",
+        "tie": "T028",
+        "pant_profile": null
+      },
+      "shirt_tie": {
+        "status": "recorded",
+        "score": 99,
+        "reason_codes": [
+          "SOURCE_LOOKUP_NOT_RESCORED"
+        ],
+        "evidence": [
+          {
+            "source_id": "HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX.pdf",
+            "page": 4
+          }
+        ],
+        "shirt_id": "DS029",
+        "tie_id": "T028",
+        "recorded_score": 99,
+        "scale_max": 100,
+        "recorded_class": "EXCELLENT",
+        "rationale_as_recorded": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+        "alternatives": [
+          {
+            "source_id": "SRC08",
+            "source_phase": "Phase_2B",
+            "source_pdf": "01_ORIGINAL_PDFS/Phase_2B/HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX(1).pdf",
+            "source_page": 4,
+            "shirt_id": "DS029",
+            "shirt_heading_as_printed": "DS029 - Brooks Brothers 346",
+            "shirt_dna_as_printed": "Ice/silver-blue; tonal blue/silver; fine continuous herringbone; fine density; low contrast",
+            "tie_id": "T028",
+            "tie_label_as_printed": "Midnight Navy Tonal Paisley",
+            "score": 99,
+            "class_as_printed": "EXCELLENT",
+            "rationale_as_printed": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+            "extraction_status": "SOURCE_TRANSCRIPTION_NOT_CANONICAL_MATRIX"
+          }
+        ],
+        "version_policy": "strict",
+        "package_selection_is_not_premise_validation": true,
+        "premise_concern": null,
+        "normalized_score": 9.9,
+        "classification": "EXCELLENT",
+        "current_styling_independently_certified": false,
+        "version_selection_evidence": null
+      },
+      "foundation": null,
+      "components": {
+        "topwear_shirt": {
+          "status": "new_component_estimate",
+          "score": 8.757895,
+          "coverage": 0.95,
+          "subscores": {
+            "color_harmony": 8.9,
+            "pattern_compatibility": 10,
+            "contrast_value": 6,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": null
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [
+            "surface"
+          ],
+          "not_a_frozen_judgment": true
+        },
+        "topwear_tie": {
+          "status": "new_component_estimate",
+          "score": 9.175,
+          "coverage": 1,
+          "subscores": {
+            "color_harmony": 8.6,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": 9
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [],
+          "not_a_frozen_judgment": true
+        },
+        "ensemble": {
+          "score": 8.5875,
+          "status": "new_component_estimate",
+          "color_bridge": 9,
+          "palette_harmony": 8.7,
+          "value_architecture": 7.65,
+          "visual_hierarchy": 9,
+          "hierarchy": {
+            "score": 9,
+            "active": [],
+            "reason": "Quiet complete system; no competing major pattern."
+          },
+          "palette": [
+            {
+              "id": "S10",
+              "primary": "grey",
+              "accents": [],
+              "value": 4
+            },
+            {
+              "id": "DS029",
+              "primary": "blue",
+              "accents": [
+                "blue",
+                "grey"
+              ],
+              "value": 4.5
+            },
+            {
+              "id": "T028",
+              "primary": "navy",
+              "accents": [],
+              "value": 1.2
+            }
+          ],
+          "evaluated_interactions": 3,
+          "pant_included": false,
+          "foundation_score_included": false,
+          "reason": "Active secondary colours, colour separation, value architecture and full-system hierarchy; no style/context/rotation bonus."
+        }
+      },
+      "weights": {
+        "shirt_tie": 0.35,
+        "topwear_shirt": 0.25,
+        "topwear_tie": 0.25,
+        "ensemble": 0.15
+      },
+      "arithmetic_inputs": {
+        "shirt_tie": 9.9,
+        "topwear_shirt": 8.757895,
+        "topwear_tie": 9.175,
+        "ensemble": 8.5875
+      },
+      "weighted_sum": 9.236349,
+      "hard_conflict": {
+        "assessed": true,
+        "status": "new_rule_assessment",
+        "deduction": 0,
+        "hard_reject": false,
+        "reasons": [],
+        "not_a_recorded_historical_verdict": true
+      },
+      "candidate_eligible": true,
+      "evidence_status": "new_component_estimates_with_read_only_recorded_ST_or_independent_no_tie",
+      "authoritative_ensemble_score": null,
+      "style_context_rotation_adjustment": 0,
+      "final_ensemble_audit": {
+        "status": "rule_checked_not_owner_visual_certification",
+        "mandatory_human_visual_audit_not_claimed": true
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "CLASSIC",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [],
+        "modern_intervention_count": 0,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled modern elements; not a midpoint.",
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "context": {
+        "status": "eligible",
+        "context": {
+          "occasion": "clinic",
+          "requiredFormality": "any"
+        },
+        "checks": [
+          {
+            "axis": "occasion",
+            "value": "clinic",
+            "status": "specified",
+            "reason": "Setting retained. No workplace-specific dress code invented."
+          },
+          {
+            "axis": "requiredFormality",
+            "status": "eligible",
+            "reason": "No extra tie requirement specified."
+          }
+        ],
+        "compatibility_adjustment": 0,
+        "scope": "Explicit requirements and supplied suitability facts only. No invented hospital/clinic dress codes."
+      },
+      "blazer_style_affinities": null
+    }
+  },
+  {
+    "id": "S11",
+    "source": "not_assessed",
+    "count": 15,
+    "reason": null,
+    "diagnostics": {
+      "enumerated": 2212,
+      "examined": 2212,
+      "score_statuses": {
+        "new_ensemble_estimate": 1921,
+        "requires_review": 63,
+        "canonical_data_hold": 51,
+        "rejected": 16,
+        "premise_mismatch": 96,
+        "conflict": 65
+      },
+      "weather_style_or_accessory_holds": 0,
+      "unbound_trouser_ids": [],
+      "numeric_candidates": 1921,
+      "domain_evaluated": 312,
+      "lower_scoring_candidates_safely_skipped": 1609,
+      "option_cap_skips": 58,
+      "accessory_or_context_exhaustion": 0,
+      "list_evaluated": 14
+    },
+    "sample": {
+      "status": "new_ensemble_estimate",
+      "score": 9.236349,
+      "display_score": 9.2,
+      "scale_max": 10,
+      "configuration": "tied",
+      "spec_id": "HEWRS_STEP3_COMPLETION_SPEC_1",
+      "owner_approved_spec": false,
+      "production_enabled": false,
+      "ids": {
+        "topwear": "S11",
+        "shirt": "DS029",
+        "tie": "T028",
+        "pant_profile": null
+      },
+      "shirt_tie": {
+        "status": "recorded",
+        "score": 99,
+        "reason_codes": [
+          "SOURCE_LOOKUP_NOT_RESCORED"
+        ],
+        "evidence": [
+          {
+            "source_id": "HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX.pdf",
+            "page": 4
+          }
+        ],
+        "shirt_id": "DS029",
+        "tie_id": "T028",
+        "recorded_score": 99,
+        "scale_max": 100,
+        "recorded_class": "EXCELLENT",
+        "rationale_as_recorded": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+        "alternatives": [
+          {
+            "source_id": "SRC08",
+            "source_phase": "Phase_2B",
+            "source_pdf": "01_ORIGINAL_PDFS/Phase_2B/HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX(1).pdf",
+            "source_page": 4,
+            "shirt_id": "DS029",
+            "shirt_heading_as_printed": "DS029 - Brooks Brothers 346",
+            "shirt_dna_as_printed": "Ice/silver-blue; tonal blue/silver; fine continuous herringbone; fine density; low contrast",
+            "tie_id": "T028",
+            "tie_label_as_printed": "Midnight Navy Tonal Paisley",
+            "score": 99,
+            "class_as_printed": "EXCELLENT",
+            "rationale_as_printed": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+            "extraction_status": "SOURCE_TRANSCRIPTION_NOT_CANONICAL_MATRIX"
+          }
+        ],
+        "version_policy": "strict",
+        "package_selection_is_not_premise_validation": true,
+        "premise_concern": null,
+        "normalized_score": 9.9,
+        "classification": "EXCELLENT",
+        "current_styling_independently_certified": false,
+        "version_selection_evidence": null
+      },
+      "foundation": null,
+      "components": {
+        "topwear_shirt": {
+          "status": "new_component_estimate",
+          "score": 8.757895,
+          "coverage": 0.95,
+          "subscores": {
+            "color_harmony": 8.9,
+            "pattern_compatibility": 10,
+            "contrast_value": 6,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": null
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [
+            "surface"
+          ],
+          "not_a_frozen_judgment": true
+        },
+        "topwear_tie": {
+          "status": "new_component_estimate",
+          "score": 9.175,
+          "coverage": 1,
+          "subscores": {
+            "color_harmony": 8.6,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": 9
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [],
+          "not_a_frozen_judgment": true
+        },
+        "ensemble": {
+          "score": 8.5875,
+          "status": "new_component_estimate",
+          "color_bridge": 9,
+          "palette_harmony": 8.7,
+          "value_architecture": 7.65,
+          "visual_hierarchy": 9,
+          "hierarchy": {
+            "score": 9,
+            "active": [],
+            "reason": "Quiet complete system; no competing major pattern."
+          },
+          "palette": [
+            {
+              "id": "S11",
+              "primary": "grey",
+              "accents": [],
+              "value": 4
+            },
+            {
+              "id": "DS029",
+              "primary": "blue",
+              "accents": [
+                "blue",
+                "grey"
+              ],
+              "value": 4.5
+            },
+            {
+              "id": "T028",
+              "primary": "navy",
+              "accents": [],
+              "value": 1.2
+            }
+          ],
+          "evaluated_interactions": 3,
+          "pant_included": false,
+          "foundation_score_included": false,
+          "reason": "Active secondary colours, colour separation, value architecture and full-system hierarchy; no style/context/rotation bonus."
+        }
+      },
+      "weights": {
+        "shirt_tie": 0.35,
+        "topwear_shirt": 0.25,
+        "topwear_tie": 0.25,
+        "ensemble": 0.15
+      },
+      "arithmetic_inputs": {
+        "shirt_tie": 9.9,
+        "topwear_shirt": 8.757895,
+        "topwear_tie": 9.175,
+        "ensemble": 8.5875
+      },
+      "weighted_sum": 9.236349,
+      "hard_conflict": {
+        "assessed": true,
+        "status": "new_rule_assessment",
+        "deduction": 0,
+        "hard_reject": false,
+        "reasons": [],
+        "not_a_recorded_historical_verdict": true
+      },
+      "candidate_eligible": true,
+      "evidence_status": "new_component_estimates_with_read_only_recorded_ST_or_independent_no_tie",
+      "authoritative_ensemble_score": null,
+      "style_context_rotation_adjustment": 0,
+      "final_ensemble_audit": {
+        "status": "rule_checked_not_owner_visual_certification",
+        "mandatory_human_visual_audit_not_claimed": true
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "CLASSIC",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [],
+        "modern_intervention_count": 0,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled modern elements; not a midpoint.",
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "context": {
+        "status": "eligible",
+        "context": {
+          "occasion": "clinic",
+          "requiredFormality": "any"
+        },
+        "checks": [
+          {
+            "axis": "occasion",
+            "value": "clinic",
+            "status": "specified",
+            "reason": "Setting retained. No workplace-specific dress code invented."
+          },
+          {
+            "axis": "requiredFormality",
+            "status": "eligible",
+            "reason": "No extra tie requirement specified."
+          }
+        ],
+        "compatibility_adjustment": 0,
+        "scope": "Explicit requirements and supplied suitability facts only. No invented hospital/clinic dress codes."
+      },
+      "blazer_style_affinities": null
+    }
+  },
+  {
+    "id": "S05",
+    "source": "manual",
+    "count": 15,
+    "reason": null,
+    "diagnostics": {
+      "enumerated": 2212,
+      "examined": 2212,
+      "score_statuses": {
+        "new_ensemble_estimate": 1779,
+        "requires_review": 64,
+        "rejected": 157,
+        "canonical_data_hold": 51,
+        "premise_mismatch": 96,
+        "conflict": 65
+      },
+      "weather_style_or_accessory_holds": 0,
+      "unbound_trouser_ids": [],
+      "numeric_candidates": 1779,
+      "domain_evaluated": 185,
+      "lower_scoring_candidates_safely_skipped": 1594,
+      "option_cap_skips": 28,
+      "accessory_or_context_exhaustion": 0,
+      "list_evaluated": 14
+    },
+    "sample": {
+      "status": "new_ensemble_estimate",
+      "score": 9.54296,
+      "display_score": 9.5,
+      "scale_max": 10,
+      "configuration": "tied",
+      "spec_id": "HEWRS_STEP3_COMPLETION_SPEC_1",
+      "owner_approved_spec": false,
+      "production_enabled": false,
+      "ids": {
+        "topwear": "S05",
+        "shirt": "DS029",
+        "tie": "T028",
+        "pant_profile": null
+      },
+      "shirt_tie": {
+        "status": "recorded",
+        "score": 99,
+        "reason_codes": [
+          "SOURCE_LOOKUP_NOT_RESCORED"
+        ],
+        "evidence": [
+          {
+            "source_id": "HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX.pdf",
+            "page": 4
+          }
+        ],
+        "shirt_id": "DS029",
+        "tie_id": "T028",
+        "recorded_score": 99,
+        "scale_max": 100,
+        "recorded_class": "EXCELLENT",
+        "rationale_as_recorded": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+        "alternatives": [
+          {
+            "source_id": "SRC08",
+            "source_phase": "Phase_2B",
+            "source_pdf": "01_ORIGINAL_PDFS/Phase_2B/HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX(1).pdf",
+            "source_page": 4,
+            "shirt_id": "DS029",
+            "shirt_heading_as_printed": "DS029 - Brooks Brothers 346",
+            "shirt_dna_as_printed": "Ice/silver-blue; tonal blue/silver; fine continuous herringbone; fine density; low contrast",
+            "tie_id": "T028",
+            "tie_label_as_printed": "Midnight Navy Tonal Paisley",
+            "score": 99,
+            "class_as_printed": "EXCELLENT",
+            "rationale_as_printed": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+            "extraction_status": "SOURCE_TRANSCRIPTION_NOT_CANONICAL_MATRIX"
+          }
+        ],
+        "version_policy": "strict",
+        "package_selection_is_not_premise_validation": true,
+        "premise_concern": null,
+        "normalized_score": 9.9,
+        "classification": "EXCELLENT",
+        "current_styling_independently_certified": false,
+        "version_selection_evidence": null
+      },
+      "foundation": null,
+      "components": {
+        "topwear_shirt": {
+          "status": "new_component_estimate",
+          "score": 9.436842,
+          "coverage": 0.95,
+          "subscores": {
+            "color_harmony": 8.9,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 10,
+            "formality": 9,
+            "surface": null
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "One clear major pattern."
+          ],
+          "unknown_subfactors": [
+            "surface"
+          ],
+          "not_a_frozen_judgment": true
+        },
+        "topwear_tie": {
+          "status": "new_component_estimate",
+          "score": 9.325,
+          "coverage": 1,
+          "subscores": {
+            "color_harmony": 8.6,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 10,
+            "formality": 9,
+            "surface": 9
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "One clear major pattern."
+          ],
+          "unknown_subfactors": [],
+          "not_a_frozen_judgment": true
+        },
+        "ensemble": {
+          "score": 9.25,
+          "status": "new_component_estimate",
+          "color_bridge": 9,
+          "palette_harmony": 8.7,
+          "value_architecture": 9.3,
+          "visual_hierarchy": 10,
+          "hierarchy": {
+            "score": 10,
+            "active": [
+              {
+                "id": "S05",
+                "value": 4.55
+              }
+            ],
+            "reason": "One clear major pattern."
+          },
+          "palette": [
+            {
+              "id": "S05",
+              "primary": "grey",
+              "accents": [
+                "grey"
+              ],
+              "value": 3
+            },
+            {
+              "id": "DS029",
+              "primary": "blue",
+              "accents": [
+                "blue",
+                "grey"
+              ],
+              "value": 4.5
+            },
+            {
+              "id": "T028",
+              "primary": "navy",
+              "accents": [],
+              "value": 1.2
+            }
+          ],
+          "evaluated_interactions": 3,
+          "pant_included": false,
+          "foundation_score_included": false,
+          "reason": "Active secondary colours, colour separation, value architecture and full-system hierarchy; no style/context/rotation bonus."
+        }
+      },
+      "weights": {
+        "shirt_tie": 0.35,
+        "topwear_shirt": 0.25,
+        "topwear_tie": 0.25,
+        "ensemble": 0.15
+      },
+      "arithmetic_inputs": {
+        "shirt_tie": 9.9,
+        "topwear_shirt": 9.436842,
+        "topwear_tie": 9.325,
+        "ensemble": 9.25
+      },
+      "weighted_sum": 9.54296,
+      "hard_conflict": {
+        "assessed": true,
+        "status": "new_rule_assessment",
+        "deduction": 0,
+        "hard_reject": false,
+        "reasons": [],
+        "not_a_recorded_historical_verdict": true
+      },
+      "candidate_eligible": true,
+      "evidence_status": "new_component_estimates_with_read_only_recorded_ST_or_independent_no_tie",
+      "authoritative_ensemble_score": null,
+      "style_context_rotation_adjustment": 0,
+      "final_ensemble_audit": {
+        "status": "rule_checked_not_owner_visual_certification",
+        "mandatory_human_visual_audit_not_claimed": true
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "CLASSIC",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [],
+        "modern_intervention_count": 0,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled modern elements; not a midpoint.",
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "context": {
+        "status": "eligible",
+        "context": {
+          "occasion": "clinic",
+          "requiredFormality": "any"
+        },
+        "checks": [
+          {
+            "axis": "occasion",
+            "value": "clinic",
+            "status": "specified",
+            "reason": "Setting retained. No workplace-specific dress code invented."
+          },
+          {
+            "axis": "requiredFormality",
+            "status": "eligible",
+            "reason": "No extra tie requirement specified."
+          }
+        ],
+        "compatibility_adjustment": 0,
+        "scope": "Explicit requirements and supplied suitability facts only. No invented hospital/clinic dress codes."
+      },
+      "blazer_style_affinities": null
+    }
+  },
+  {
+    "id": "S10",
+    "source": "manual",
+    "count": 0,
+    "reason": "No scored outfit satisfies every selected lock, style and weather rule. Existing score holds remain excluded; no lock or weather condition was relaxed.",
+    "diagnostics": {
+      "enumerated": 2212,
+      "examined": 2212,
+      "score_statuses": {
+        "new_ensemble_estimate": 1921,
+        "requires_review": 63,
+        "canonical_data_hold": 51,
+        "rejected": 16,
+        "premise_mismatch": 96,
+        "conflict": 65
+      },
+      "weather_style_or_accessory_holds": 1921,
+      "unbound_trouser_ids": [],
+      "numeric_candidates": 1921,
+      "domain_evaluated": 1921,
+      "lower_scoring_candidates_safely_skipped": 0
+    },
+    "sample": {
+      "status": "new_ensemble_estimate",
+      "score": 9.236349,
+      "display_score": 9.2,
+      "scale_max": 10,
+      "configuration": "tied",
+      "spec_id": "HEWRS_STEP3_COMPLETION_SPEC_1",
+      "owner_approved_spec": false,
+      "production_enabled": false,
+      "ids": {
+        "topwear": "S10",
+        "shirt": "DS029",
+        "tie": "T028",
+        "pant_profile": null
+      },
+      "shirt_tie": {
+        "status": "recorded",
+        "score": 99,
+        "reason_codes": [
+          "SOURCE_LOOKUP_NOT_RESCORED"
+        ],
+        "evidence": [
+          {
+            "source_id": "HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX.pdf",
+            "page": 4
+          }
+        ],
+        "shirt_id": "DS029",
+        "tie_id": "T028",
+        "recorded_score": 99,
+        "scale_max": 100,
+        "recorded_class": "EXCELLENT",
+        "rationale_as_recorded": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+        "alternatives": [
+          {
+            "source_id": "SRC08",
+            "source_phase": "Phase_2B",
+            "source_pdf": "01_ORIGINAL_PDFS/Phase_2B/HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX(1).pdf",
+            "source_page": 4,
+            "shirt_id": "DS029",
+            "shirt_heading_as_printed": "DS029 - Brooks Brothers 346",
+            "shirt_dna_as_printed": "Ice/silver-blue; tonal blue/silver; fine continuous herringbone; fine density; low contrast",
+            "tie_id": "T028",
+            "tie_label_as_printed": "Midnight Navy Tonal Paisley",
+            "score": 99,
+            "class_as_printed": "EXCELLENT",
+            "rationale_as_printed": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+            "extraction_status": "SOURCE_TRANSCRIPTION_NOT_CANONICAL_MATRIX"
+          }
+        ],
+        "version_policy": "strict",
+        "package_selection_is_not_premise_validation": true,
+        "premise_concern": null,
+        "normalized_score": 9.9,
+        "classification": "EXCELLENT",
+        "current_styling_independently_certified": false,
+        "version_selection_evidence": null
+      },
+      "foundation": null,
+      "components": {
+        "topwear_shirt": {
+          "status": "new_component_estimate",
+          "score": 8.757895,
+          "coverage": 0.95,
+          "subscores": {
+            "color_harmony": 8.9,
+            "pattern_compatibility": 10,
+            "contrast_value": 6,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": null
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [
+            "surface"
+          ],
+          "not_a_frozen_judgment": true
+        },
+        "topwear_tie": {
+          "status": "new_component_estimate",
+          "score": 9.175,
+          "coverage": 1,
+          "subscores": {
+            "color_harmony": 8.6,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": 9
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [],
+          "not_a_frozen_judgment": true
+        },
+        "ensemble": {
+          "score": 8.5875,
+          "status": "new_component_estimate",
+          "color_bridge": 9,
+          "palette_harmony": 8.7,
+          "value_architecture": 7.65,
+          "visual_hierarchy": 9,
+          "hierarchy": {
+            "score": 9,
+            "active": [],
+            "reason": "Quiet complete system; no competing major pattern."
+          },
+          "palette": [
+            {
+              "id": "S10",
+              "primary": "grey",
+              "accents": [],
+              "value": 4
+            },
+            {
+              "id": "DS029",
+              "primary": "blue",
+              "accents": [
+                "blue",
+                "grey"
+              ],
+              "value": 4.5
+            },
+            {
+              "id": "T028",
+              "primary": "navy",
+              "accents": [],
+              "value": 1.2
+            }
+          ],
+          "evaluated_interactions": 3,
+          "pant_included": false,
+          "foundation_score_included": false,
+          "reason": "Active secondary colours, colour separation, value architecture and full-system hierarchy; no style/context/rotation bonus."
+        }
+      },
+      "weights": {
+        "shirt_tie": 0.35,
+        "topwear_shirt": 0.25,
+        "topwear_tie": 0.25,
+        "ensemble": 0.15
+      },
+      "arithmetic_inputs": {
+        "shirt_tie": 9.9,
+        "topwear_shirt": 8.757895,
+        "topwear_tie": 9.175,
+        "ensemble": 8.5875
+      },
+      "weighted_sum": 9.236349,
+      "hard_conflict": {
+        "assessed": true,
+        "status": "new_rule_assessment",
+        "deduction": 0,
+        "hard_reject": false,
+        "reasons": [],
+        "not_a_recorded_historical_verdict": true
+      },
+      "candidate_eligible": true,
+      "evidence_status": "new_component_estimates_with_read_only_recorded_ST_or_independent_no_tie",
+      "authoritative_ensemble_score": null,
+      "style_context_rotation_adjustment": 0,
+      "final_ensemble_audit": {
+        "status": "rule_checked_not_owner_visual_certification",
+        "mandatory_human_visual_audit_not_claimed": true
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "CLASSIC",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [],
+        "modern_intervention_count": 0,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled modern elements; not a midpoint.",
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "context": {
+        "status": "eligible",
+        "context": {
+          "occasion": "clinic",
+          "requiredFormality": "any"
+        },
+        "checks": [
+          {
+            "axis": "occasion",
+            "value": "clinic",
+            "status": "specified",
+            "reason": "Setting retained. No workplace-specific dress code invented."
+          },
+          {
+            "axis": "requiredFormality",
+            "status": "eligible",
+            "reason": "No extra tie requirement specified."
+          }
+        ],
+        "compatibility_adjustment": 0,
+        "scope": "Explicit requirements and supplied suitability facts only. No invented hospital/clinic dress codes."
+      },
+      "blazer_style_affinities": null
+    }
+  },
+  {
+    "id": "S11",
+    "source": "manual",
+    "count": 0,
+    "reason": "No scored outfit satisfies every selected lock, style and weather rule. Existing score holds remain excluded; no lock or weather condition was relaxed.",
+    "diagnostics": {
+      "enumerated": 2212,
+      "examined": 2212,
+      "score_statuses": {
+        "new_ensemble_estimate": 1921,
+        "requires_review": 63,
+        "canonical_data_hold": 51,
+        "rejected": 16,
+        "premise_mismatch": 96,
+        "conflict": 65
+      },
+      "weather_style_or_accessory_holds": 1921,
+      "unbound_trouser_ids": [],
+      "numeric_candidates": 1921,
+      "domain_evaluated": 1921,
+      "lower_scoring_candidates_safely_skipped": 0
+    },
+    "sample": {
+      "status": "new_ensemble_estimate",
+      "score": 9.236349,
+      "display_score": 9.2,
+      "scale_max": 10,
+      "configuration": "tied",
+      "spec_id": "HEWRS_STEP3_COMPLETION_SPEC_1",
+      "owner_approved_spec": false,
+      "production_enabled": false,
+      "ids": {
+        "topwear": "S11",
+        "shirt": "DS029",
+        "tie": "T028",
+        "pant_profile": null
+      },
+      "shirt_tie": {
+        "status": "recorded",
+        "score": 99,
+        "reason_codes": [
+          "SOURCE_LOOKUP_NOT_RESCORED"
+        ],
+        "evidence": [
+          {
+            "source_id": "HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX.pdf",
+            "page": 4
+          }
+        ],
+        "shirt_id": "DS029",
+        "tie_id": "T028",
+        "recorded_score": 99,
+        "scale_max": 100,
+        "recorded_class": "EXCELLENT",
+        "rationale_as_recorded": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+        "alternatives": [
+          {
+            "source_id": "SRC08",
+            "source_phase": "Phase_2B",
+            "source_pdf": "01_ORIGINAL_PDFS/Phase_2B/HEWRS_PHASE2B_DS028-DS032_DETAILED_MATRIX(1).pdf",
+            "source_page": 4,
+            "shirt_id": "DS029",
+            "shirt_heading_as_printed": "DS029 - Brooks Brothers 346",
+            "shirt_dna_as_printed": "Ice/silver-blue; tonal blue/silver; fine continuous herringbone; fine density; low contrast",
+            "tie_id": "T028",
+            "tie_label_as_printed": "Midnight Navy Tonal Paisley",
+            "score": 99,
+            "class_as_printed": "EXCELLENT",
+            "rationale_as_printed": "Fine herringbone is permissive; score balances color/value with modest linear/repetitive-pattern penalties.",
+            "extraction_status": "SOURCE_TRANSCRIPTION_NOT_CANONICAL_MATRIX"
+          }
+        ],
+        "version_policy": "strict",
+        "package_selection_is_not_premise_validation": true,
+        "premise_concern": null,
+        "normalized_score": 9.9,
+        "classification": "EXCELLENT",
+        "current_styling_independently_certified": false,
+        "version_selection_evidence": null
+      },
+      "foundation": null,
+      "components": {
+        "topwear_shirt": {
+          "status": "new_component_estimate",
+          "score": 8.757895,
+          "coverage": 0.95,
+          "subscores": {
+            "color_harmony": 8.9,
+            "pattern_compatibility": 10,
+            "contrast_value": 6,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": null
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [
+            "surface"
+          ],
+          "not_a_frozen_judgment": true
+        },
+        "topwear_tie": {
+          "status": "new_component_estimate",
+          "score": 9.175,
+          "coverage": 1,
+          "subscores": {
+            "color_harmony": 8.6,
+            "pattern_compatibility": 10,
+            "contrast_value": 9.3,
+            "hierarchy": 9,
+            "formality": 9,
+            "surface": 9
+          },
+          "reasons": [
+            "Neutral/chromatic relationship; no automatic perfect score.",
+            "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+            "Categorical lightness separation; not a measured luminance difference.",
+            "Quiet complete system; no competing major pattern."
+          ],
+          "unknown_subfactors": [],
+          "not_a_frozen_judgment": true
+        },
+        "ensemble": {
+          "score": 8.5875,
+          "status": "new_component_estimate",
+          "color_bridge": 9,
+          "palette_harmony": 8.7,
+          "value_architecture": 7.65,
+          "visual_hierarchy": 9,
+          "hierarchy": {
+            "score": 9,
+            "active": [],
+            "reason": "Quiet complete system; no competing major pattern."
+          },
+          "palette": [
+            {
+              "id": "S11",
+              "primary": "grey",
+              "accents": [],
+              "value": 4
+            },
+            {
+              "id": "DS029",
+              "primary": "blue",
+              "accents": [
+                "blue",
+                "grey"
+              ],
+              "value": 4.5
+            },
+            {
+              "id": "T028",
+              "primary": "navy",
+              "accents": [],
+              "value": 1.2
+            }
+          ],
+          "evaluated_interactions": 3,
+          "pant_included": false,
+          "foundation_score_included": false,
+          "reason": "Active secondary colours, colour separation, value architecture and full-system hierarchy; no style/context/rotation bonus."
+        }
+      },
+      "weights": {
+        "shirt_tie": 0.35,
+        "topwear_shirt": 0.25,
+        "topwear_tie": 0.25,
+        "ensemble": 0.15
+      },
+      "arithmetic_inputs": {
+        "shirt_tie": 9.9,
+        "topwear_shirt": 8.757895,
+        "topwear_tie": 9.175,
+        "ensemble": 8.5875
+      },
+      "weighted_sum": 9.236349,
+      "hard_conflict": {
+        "assessed": true,
+        "status": "new_rule_assessment",
+        "deduction": 0,
+        "hard_reject": false,
+        "reasons": [],
+        "not_a_recorded_historical_verdict": true
+      },
+      "candidate_eligible": true,
+      "evidence_status": "new_component_estimates_with_read_only_recorded_ST_or_independent_no_tie",
+      "authoritative_ensemble_score": null,
+      "style_context_rotation_adjustment": 0,
+      "final_ensemble_audit": {
+        "status": "rule_checked_not_owner_visual_certification",
+        "mandatory_human_visual_audit_not_claimed": true
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "CLASSIC",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [],
+        "modern_intervention_count": 0,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled modern elements; not a midpoint.",
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "context": {
+        "status": "eligible",
+        "context": {
+          "occasion": "clinic",
+          "requiredFormality": "any"
+        },
+        "checks": [
+          {
+            "axis": "occasion",
+            "value": "clinic",
+            "status": "specified",
+            "reason": "Setting retained. No workplace-specific dress code invented."
+          },
+          {
+            "axis": "requiredFormality",
+            "status": "eligible",
+            "reason": "No extra tie requirement specified."
+          }
+        ],
+        "compatibility_adjustment": 0,
+        "scope": "Explicit requirements and supplied suitability facts only. No invented hospital/clinic dress codes."
+      },
+      "blazer_style_affinities": null
+    }
+  }
+]

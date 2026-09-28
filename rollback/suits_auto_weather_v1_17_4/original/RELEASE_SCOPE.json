@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.owner-release-scope.v1",
-  "version": "1.17.4",
+  "version": "1.17.3",
   "owner_instruction": "Continue with 18 only for now",
   "owner_message_timestamp": "2026-09-25T02:44:23Z",
   "scope_applies_to": [
@@ -98,18 +98,18 @@
     "Existing DNA/compatibility/rotation preserved"
   ],
   "current_patch_scope": [
-    "Remove unsupported hard calendar-season veto; preserve season metadata as advice",
-    "Preserve material/temperature/precipitation and shoe weather checks and all numerical DNA rules",
-    "Explain genuine weather/accessory/source constraints instead of a generic no-score message",
-    "Automatic startup/foreground/pre-generation weather with permission-aware device or labelled saved-location refresh",
-    "Explicit Enable once; manual override, cancellation, stale-tab and stored-data safeguards",
-    "No garment re-rendering, renumbering, repeated-item-cap relaxation, wear mutation or new wardrobe scope"
+    "Source-literal colour normalization corrections",
+    "Current source-family metadata in color filtering",
+    "Two-use per-unanchored-item limit for option sets",
+    "Maximum two No Tie/default no-jacket options unless explicitly selected",
+    "Rebuilt derived index and mismatched-index/version guards",
+    "Five independently documented audit passes"
   ],
   "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged.",
   "owner_weather_update": {
     "timestamp": "2026-09-27T20:15:32Z",
     "report": "weather is fixed",
-    "code_changed_in_this_increment": true
+    "code_changed_in_this_increment": false
   },
   "option_set_policy": {
     "max_unanchored_item_uses": 2,
@@ -118,12 +118,5 @@
     "exact_item_anchor_exception": true,
     "family_anchor_exception": false,
     "compatibility_diversity_bonus": false
-  },
-  "automatic_weather": {
-    "enabled_by_user_action": true,
-    "existing_granted_permission_can_be_reused": true,
-    "no_automatic_permission_prompt_when_permission_is_not_granted": true,
-    "fallback": "Saved coordinates labelled explicitly; never claimed as a fresh device location. Manual weather disables automatic updates.",
-    "browser_permission_lifetime": "Controlled by browser/OS; no promise of permanent permission."
   }
 }

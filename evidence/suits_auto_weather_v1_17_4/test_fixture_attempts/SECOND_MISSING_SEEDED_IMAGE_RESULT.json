@@ -1,0 +1,2264 @@
+{
+  "scope": "Actual scripts/images/UI in in-memory Chromium. Simulated provider and browser\npermission responses; not a live weather request or physical iPhone permission test.\n",
+  "passed": 8,
+  "failed": 1,
+  "checks": [
+    {
+      "name": "Verified baseline and corrected source load independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All 166 existing suit, tie, shirt, blazer and no-tie/reference frames remain pixel-identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "First visit does not request GPS/provider when permission is prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S10 actual picker + Generate yields 15 in Fall and respects every other two-use cap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S11 actual picker + Generate yields 15 in Fall and respects every other two-use cap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All 30 S10/S11 navigation frames match their actual option IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "One explicit Enable gets permission, fetches weather, and saves automatically without Apply",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Automatic weather does not modify the outfit locks, wear or Favorites",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Browser test completion",
+      "passed": false,
+      "error": "Traceback (most recent call last):\n  File \"/mnt/data/work_v1174/HEWRS_CONNECTED_APP_V1_17_4/tests/suits-auto-weather-browser.py\", line 86, in <module>\n    p=browser.new_page(viewport={'width':390,'height':700},has_touch=True);p.on('pageerror',lambda e:errors.append(str(e)));load(p,R,seed=seed,permission='granted')\n                                                                                                                            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/work_v1174/HEWRS_CONNECTED_APP_V1_17_4/tests/suits-auto-weather-browser.py\", line 36, in load\n    p.evaluate(MOCK);p.evaluate('v=>__PERMISSION=v',permission);h.R=r;h.load(p,storage=seed or {'audit-sentinel':'UNCHANGED'})\n                                                                      ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/work_v1174/HEWRS_CONNECTED_APP_V1_17_4/tests/facelift_harness.py\", line 34, in load\n    if err:raise RuntimeError(err)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Embedded image missing\n"
+    }
+  ],
+  "native_comparisons": [
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS017",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS051",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS034",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS037",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS038",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS032",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS033",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS046",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS003",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS020",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS045",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS010",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS011",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS028",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS030",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS044",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS013",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS026",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS031",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS009",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS012",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS050",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS016",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS048",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS039",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS042",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS043",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS040",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS041",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS002",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS005",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS006",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS015",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS021",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS024",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS025",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS047",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T001",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T003",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T004",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T005",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T006",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T007",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T008",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T009",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T010",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T011",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T012",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T013",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T014",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T015",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T016",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T018",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T019",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T020",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T021",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T023",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T025",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T026",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T027",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T028",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T029",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T030",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T031",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T032",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T033",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T034",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T035",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T036",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T037",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T038",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T039",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T040",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T041",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T042",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T043",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T044",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T045",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T046",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T047",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS035",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B04",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B05",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B06",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B07",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B08",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B09",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B10",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B11",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B12",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B13",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS002",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS002",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS004",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS005",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS005",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS006",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS006",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS008",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS015",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS015",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS018",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS019",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS021",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS021",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS022",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS025",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS025",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS027",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS047",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS047",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "REFERENCE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "changed_samples": 0,
+      "equal": true
+    }
+  ],
+  "engine_frames": [
+    {
+      "suit": "S10",
+      "option": 1,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS034",
+        "state": "T013",
+        "shoeId": "shoe-10",
+        "watchId": "watch-R09"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 2,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS034",
+        "state": "T016",
+        "shoeId": "shoe-10",
+        "watchId": "watch-R09"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 3,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS037",
+        "state": "T043",
+        "shoeId": "shoe-14",
+        "watchId": "watch-R14"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 4,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS019",
+        "state": "T020",
+        "shoeId": "shoe-0",
+        "watchId": "watch-R14"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 5,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS019",
+        "state": "T031",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP09"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 6,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS032",
+        "state": "T013",
+        "shoeId": "shoe-14",
+        "watchId": "watch-AP09"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 7,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS032",
+        "state": "T016",
+        "shoeId": "shoe-9",
+        "watchId": "watch-R18"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 8,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS033",
+        "state": "T026",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R18"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 9,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS033",
+        "state": "T041",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R03"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 10,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "T015",
+        "shoeId": "shoe-9",
+        "watchId": "watch-R03"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 11,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "T020",
+        "shoeId": "shoe-13",
+        "watchId": "watch-R04"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 12,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS037",
+        "state": "T010",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R04"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 13,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS038",
+        "state": "T015",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P01"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 14,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS038",
+        "state": "T024",
+        "shoeId": "shoe-17",
+        "watchId": "watch-R11"
+      }
+    },
+    {
+      "suit": "S10",
+      "option": 15,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS039",
+        "state": "T026",
+        "shoeId": "shoe-17",
+        "watchId": "watch-P01"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 1,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS034",
+        "state": "T013",
+        "shoeId": "shoe-10",
+        "watchId": "watch-R09"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 2,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS034",
+        "state": "T016",
+        "shoeId": "shoe-10",
+        "watchId": "watch-R09"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 3,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS037",
+        "state": "T043",
+        "shoeId": "shoe-14",
+        "watchId": "watch-R14"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 4,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS019",
+        "state": "T020",
+        "shoeId": "shoe-0",
+        "watchId": "watch-R14"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 5,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS019",
+        "state": "T031",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP09"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 6,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS032",
+        "state": "T013",
+        "shoeId": "shoe-14",
+        "watchId": "watch-AP09"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 7,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS032",
+        "state": "T016",
+        "shoeId": "shoe-9",
+        "watchId": "watch-R18"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 8,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS033",
+        "state": "T026",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R18"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 9,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS033",
+        "state": "T041",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R03"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 10,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS036",
+        "state": "T015",
+        "shoeId": "shoe-9",
+        "watchId": "watch-R03"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 11,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS036",
+        "state": "T020",
+        "shoeId": "shoe-13",
+        "watchId": "watch-R04"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 12,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS037",
+        "state": "T010",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R04"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 13,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS038",
+        "state": "T015",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P01"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 14,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS038",
+        "state": "T024",
+        "shoeId": "shoe-17",
+        "watchId": "watch-R11"
+      }
+    },
+    {
+      "suit": "S11",
+      "option": 15,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS039",
+        "state": "T026",
+        "shoeId": "shoe-17",
+        "watchId": "watch-P01"
+      }
+    }
+  ],
+  "errors": [],
+  "seconds": 73.61
+}

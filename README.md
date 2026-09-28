@@ -1,35 +1,45 @@
-# HEWRS V1.17.3 — colour interpretation and option-list limits
+# HEWRS V1.17.4 — suit eligibility and automatic local weather
 
-Continuation of V1.17.2. Use the full folder, not index.html alone. This release
-retains 18 connected non-suit shirts, 50 suit-mode shirts and the restored 47 ties.
+Continuation of the 18-shirt V1.17.3 build; not a new wardrobe or final certification.
+S10/S11 no longer fail solely because old catalogue tags omit the calendar season.
+Season tags remain unchanged metadata/advice. Actual material, heat, precipitation,
+footwear, source-score, formality and explicit-lock guards still apply.
 
-See `DELIVERY_V1_17_3.md` and `evidence/options_v1_17_3/` for the five-pass audit.
-The original source DNA and frozen Shirt–Tie scores are unchanged. Derived
-ensemble estimates intentionally change where colour text was wrongly parsed.
+Location & weather → Enable automatic local weather authorizes the first request.
+Successful activation saves and applies automatically; no additional Apply is needed.
+The app refreshes on opening, returning and before generation, with a 15-minute
+request throttle. A silent device-location lookup occurs only when the browser reports
+granted permission. Otherwise existing saved coordinates are refreshed and labelled
+as a saved location; unknown current location is not invented. Manual Apply or
+Use without weather pauses automatic refresh. The browser controls permission expiry.
 
-Engine Choice now limits every unanchored physical item to two appearances in
-one returned option list. Only exact item anchors exempt that item. No Tie is
-limited to two unless selected. No-jacket shirt-only remains manual-only; its
-separate list cap is two, not an installed shirt-only scoring model. No duplicate
-or accessory-only padding is used to reach 15. Restrictive requests may return
-fewer with an explanation; the selector does not claim a global combinatorial optimum.
+Preserved: 18 connected non-suit shirts, all 50 suit shirts, all suits/blazers and
+physical IDs, 47 restored tie displays, 848 existing images, DNA, numerical scores,
+Favorites, wear history, accepted phone layout and the two-use option-list caps.
+Only the exact anchored item is exempt from its cap. No Tie defaults to at most two.
+Shirt-only remains exact manual Anchor because numerical ranking is not installed.
 
-Weather was reported fixed by the owner and is untouched. Local wear, Favorites,
-source lock, storage keys, garment images, palette and geometry are unchanged.
-
-## Run
-Serve this complete folder with any static web server. The existing GitHub Pages
-candidate can be updated using the supplied `FILES_TO_COPY` package. Keep the
-same origin, folder structure and `.git`; do not clear browser data.
+## Run / install
+Serve this complete folder. index.html alone is not self-contained.
+The cumulative update supports exact V1.17.2 or V1.17.3. Copy the CONTENTS of
+FILES_TO_COPY into the existing candidate root, replacing matching files and keeping
+all other folders and .git. Do not upload the enclosing FILES_TO_COPY folder or ZIP.
+Keep the same site address and browser data. No new repository is required.
 
 ## Verify
-`python -B tools/verify_v1173.py`
+python -B tools/verify_v1174.py
 
-## Roll back
-`python -B tools/rollback_v1173.py --check`
-`python -B tools/rollback_v1173.py --output NEW_FOLDER`
-This reconstructs exact V1.17.2 into a new folder. It never accesses browser data.
+## Rollback
+python -B tools/rollback_v1174.py --check
+python -B tools/rollback_v1174.py --output NEW_FOLDER
+Restores exact V1.17.3 in a separate folder; never reads or changes browser data.
+The inert automatic-weather preference key is ignored by the older version.
 
-Historical tests under older evidence folders are retained as historical reports.
-New results live only in `evidence/options_v1_17_3/`. Old version-specific verifier
-scripts apply to their restored versions, not automatically to this new build.
+## Evidence and limits
+See DELIVERY_V1_17_4.md and evidence/suits_auto_weather_v1_17_4/.
+Fresh results: 85 functional checks, 19 in-memory Chromium checks, 166 pixel-equal
+existing frames, 30 S10/S11 option navigation frames. Provider/permission successes
+were simulated. Ordinary real-origin Chromium navigation was blocked before load.
+No GitHub write, public deployment or physical Safari permission test was performed.
+Old version-specific tests/verifiers apply to their restored source versions. Their
+packaged historical pass records are not relabelled as fresh V1.17.4 results.

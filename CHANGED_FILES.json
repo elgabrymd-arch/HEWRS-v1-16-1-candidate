@@ -1,7 +1,7 @@
 {
   "schema": "hewrs.changed-files.v1",
-  "version": "1.17.3",
-  "baseline": "1.17.2",
+  "version": "1.17.4",
+  "baseline": "1.17.3",
   "deleted": [],
   "exclusions": [
     "Root PACKAGE_SHA256.json self-hash",
@@ -9,438 +9,389 @@
   ],
   "changes": [
     {
-      "path": "DELIVERY_V1_17_3.md",
+      "path": "DELIVERY_V1_17_4.md",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "a0855f381b99dedbbbe9ae46eacc03247795cfdebfca1321b38e35f8ed82d78a",
-      "bytes": 12421
+      "after_sha256": "7eccb970826070b022cd3778b645f3fe4d49adce3b40d194026b40954c7617d6",
+      "bytes": 9499
     },
     {
       "path": "README.md",
       "status": "modified",
-      "before_sha256": "49f7d5eefda01f733685abcf7c5256f9b929c956da79c17eee42caf7a5005e5e",
-      "after_sha256": "623d98a2a4622c0076541493921d23550dc6670045f925f60bb1969267c55cf1",
-      "bytes": 1838
+      "before_sha256": "623d98a2a4622c0076541493921d23550dc6670045f925f60bb1969267c55cf1",
+      "after_sha256": "4bd508ac55b0887ba9ec82b0a84acf98136a8aaade514a806d373546e4679c2f",
+      "bytes": 2702
     },
     {
       "path": "RELEASE_SCOPE.json",
       "status": "modified",
-      "before_sha256": "06e9e89ea5f5c50b2727d06100913430acc22d62391e51d9b874f4a76353ebd5",
-      "after_sha256": "be13998f7d081a6a4a4aa37f871c280dcc0f89bee692097891d57be362f949f3",
-      "bytes": 3586
+      "before_sha256": "be13998f7d081a6a4a4aa37f871c280dcc0f89bee692097891d57be362f949f3",
+      "after_sha256": "8861347d0f37684563ec436232cdfb5faab54df6117ccf0f3bd70ad2b4c6081c",
+      "bytes": 4280
     },
     {
       "path": "RELEASE_STATUS.json",
       "status": "modified",
-      "before_sha256": "21305e7ac42d996225c5a0d101039ddc5dc3c827c551b843800df26bcef1d90d",
-      "after_sha256": "36b1dbd9382257d1ec95264038ae8bd0037afdbb182c114da36bc27c5dafcc65",
-      "bytes": 3141
+      "before_sha256": "36b1dbd9382257d1ec95264038ae8bd0037afdbb182c114da36bc27c5dafcc65",
+      "after_sha256": "a7ad1a0f87b452ebb1844658f5fc8bc45513f842972a43dc362af3904b721048",
+      "bytes": 4411
     },
     {
       "path": "app.html",
       "status": "modified",
-      "before_sha256": "43d65421efe25a52e291244d746a6adfa0f1625d4fa68a98da7b7fec36afc708",
-      "after_sha256": "a05b2267c13ab5ea7efac0efc4a5fe8ee93dcceeaae3e84830d5965af1a4c113",
-      "bytes": 16042
+      "before_sha256": "a05b2267c13ab5ea7efac0efc4a5fe8ee93dcceeaae3e84830d5965af1a4c113",
+      "after_sha256": "53633b6d0853e650f2ddc226293056a8ec909ff00dd9594a0d3deeb14d974085",
+      "bytes": 16098
     },
     {
       "path": "app.template.html",
       "status": "modified",
-      "before_sha256": "67c0e3f79c51c01f6f1252e4b25a581988dff83ea07b651ed4a2f9ba01f2ef4f",
-      "after_sha256": "869e92ae70c1e6cf4575d8955df71b043e0fd094fe4e1dc3f282c211df07dc38",
+      "before_sha256": "869e92ae70c1e6cf4575d8955df71b043e0fd094fe4e1dc3f282c211df07dc38",
+      "after_sha256": "fa71926995a2ccafb5a252be94cf2753c59377fc649fb51e9ab577a9eef52513",
       "bytes": 13221
     },
     {
-      "path": "data/option-index.js",
-      "status": "modified",
-      "before_sha256": "d8293703bd84c29ab3292cccf9dc5032408694152ee12147d2e3e389cb369547",
-      "after_sha256": "ce53f87f90d7898895599c893fcd17dc8c7f50f9885c7b5d8aefddd521d5d9fb",
-      "bytes": 6067234
-    },
-    {
-      "path": "data/option-index.json",
-      "status": "modified",
-      "before_sha256": "c6d35d7fe4c896a9eabfc280a7d025c805cc83a527fc30091e7b04f11d43dd87",
-      "after_sha256": "e50722ab0443f672d82eb53558d927e51c79fe3d7bf8f6c4a66ec942af7ad13a",
-      "bytes": 6067203
-    },
-    {
-      "path": "evidence/options_v1_17_3/AFTER_OPTIONS.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/AUTO_WEATHER_FUNCTIONAL.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "707be5deda6d8aa7d90152b8bb9bb3a16b5fd81742dd4e4762235ad3b8d43d43",
-      "bytes": 227734
+      "after_sha256": "10bb007f0e732709dc30707d6d1aa646bfaa88e04e37713a3e7b148b20ddb4e3",
+      "bytes": 3602
     },
     {
-      "path": "evidence/options_v1_17_3/BASELINE_MANIFEST.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/BASELINE_REPRO.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "02ce479182f585136bdddf421d96601ec23d50de6dce40f319f1b02480a5c3b6",
-      "bytes": 356344
+      "after_sha256": "1b1617945ccf1569b7d50e2f529cbcb29da1dc6f0ef9db817413a597b3b1cb7e",
+      "bytes": 48452
     },
     {
-      "path": "evidence/options_v1_17_3/BEFORE_OPTIONS.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/BASELINE_VERIFICATION.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "91e2d75751c28a8b4d9d6797b0905d554dadfbf606df127addbe5db5496c63e3",
-      "bytes": 240268
+      "after_sha256": "9d9bb24df423f7aaefe08dc6e316b998eb88ba514fc3924e2dd749bcc55908f9",
+      "bytes": 417
     },
     {
-      "path": "evidence/options_v1_17_3/ENSEMBLE_CHANGED_ROWS.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/DNA_ENSEMBLE_PRESERVATION.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "9cf14bcdf21ee0197f7f71f287cfd06f1ed6f15b2e449cc10961f89ccbbf8c13",
-      "bytes": 1080000
+      "after_sha256": "09d75bf45b2e384609dd50bc52cbb169329daf4ad3a3f92380b9ac5c17370634",
+      "bytes": 1108
     },
     {
-      "path": "evidence/options_v1_17_3/HTTP.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/IMAGE_PRESERVATION.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "fc4d21b51afcfa84cbcbdfacbc932349d6a117828620e7faf51447d6471bfa8d",
-      "bytes": 10950
+      "after_sha256": "82123632df82dd2110622e51fe8a356f64100f680846c427c826e6d75f0adada",
+      "bytes": 179577
     },
     {
-      "path": "evidence/options_v1_17_3/IMAGE_PRESERVATION.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/LOCAL_ORIGIN.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "90461802a0b19a425d75062bfd9ac467f980a3cc934644715af170b9a8d6d5ae",
-      "bytes": 179629
+      "after_sha256": "ff7dad1c5f24b30199f1ea488a8bfa8c70ccc2bec7a945f883bb06b8fc05cebf",
+      "bytes": 516
     },
     {
-      "path": "evidence/options_v1_17_3/LIVE_READ_ATTEMPTS.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/PASS3_OPTIONS_POLICY.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "18e6e94b8f5053d09eb4afc3f84120e081798b329e44c563a1ec8ef79e9a2b1e",
-      "bytes": 940
+      "after_sha256": "7c7a17f5d493f5e6ffc372b6d90fdf812db913f3bcf09662a2abf40e6c7c4c4e",
+      "bytes": 213737
     },
     {
-      "path": "evidence/options_v1_17_3/OWNER_REQUIREMENTS.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/PATCH_SCOPE.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "84598a586a3c6fae5a010cbf160619ebfb72bf9d81ceb694190b86b518ed0200",
-      "bytes": 862
+      "after_sha256": "9a7c31bc4582e9687ceb4023cca882e089c1ff4de6d65ede7cae48d92ef7d020",
+      "bytes": 461
     },
     {
-      "path": "evidence/options_v1_17_3/PASS1_INPUT_INTEGRITY.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/ROLLBACK_VERIFICATION.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "fc8c68e59538e7acf0c3eace30468166458e6d1fc100562e68a3d47ecbab4a66",
-      "bytes": 992
+      "after_sha256": "69e397d73039e341df758fb9c6bd521aa867ded6a32177f60c780757fbee8edb",
+      "bytes": 891
     },
     {
-      "path": "evidence/options_v1_17_3/PASS2_COLOUR_AND_ENSEMBLE.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/SUITS_FUNCTIONAL.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "d9c4e0e54821e33f74e64fdf3ffd59658d835b1a5307e78166c85b71262f5672",
-      "bytes": 5787
+      "after_sha256": "a6ec2d2c59ea805d0e3e6050caa51b08986376633a3c08b5c38509570de00fc6",
+      "bytes": 156311
     },
     {
-      "path": "evidence/options_v1_17_3/PASS3_OPTIONS_POLICY.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/TESTED_RUNTIME_SHA256.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "dc93e9b6958e10f9120418baaa75dfac6e62654b6eca1e0e0d5cfe047ace2f92",
-      "bytes": 213836
+      "after_sha256": "1e97b457f2d906bc195312b4b991078bc3bb49454c6066d4e895d0c3a57c7c0d",
+      "bytes": 137798
     },
     {
-      "path": "evidence/options_v1_17_3/PASS5_DELIVERY_CHECKS.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/WEATHER_TRANSPORT.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "6cc347e811d538daabd729c7a7657d31a0e94833921822d6b3859a1b39efa559",
-      "bytes": 1885
+      "after_sha256": "097337d407df105b7cd2afb542a91c892d3be8b633a7f43b6b585e176a9609bf",
+      "bytes": 3122
     },
     {
-      "path": "evidence/options_v1_17_3/ROLLBACK.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/browser/AUTO_WEATHER_390x700.png",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "ceb949551995b52f762573885c6708cd8bfc09314937afdd54398f229ae6e01b",
-      "bytes": 189
+      "after_sha256": "66e88153f2f4a91f5e6b5cc1d47901bd87102d35a4e30c30f065ef44f815629e",
+      "bytes": 60574
     },
     {
-      "path": "evidence/options_v1_17_3/SOURCE_COLOUR_AUDIT.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/browser/RESULT.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "4693abc4440126ed97cc304b8df43a4ef1cc8746b39b2e7e9fad90e741830349",
-      "bytes": 142274
+      "after_sha256": "73c322b223603f816f31464ecf1b4962b276807fab45e675e16e7400525b2962",
+      "bytes": 48034
     },
     {
-      "path": "evidence/options_v1_17_3/TESTED_RUNTIME_SHA256.json",
+      "path": "evidence/suits_auto_weather_v1_17_4/browser/S10_OPTION_1_390x700.png",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "151fab694c5e2a202caf23301870da275da74ad4846db7aa7f717e5d9958a2b0",
-      "bytes": 6527
+      "after_sha256": "faf6cf8690646a9a4ea793781f2883193df61e5c8b0a650fa84890b1b625a158",
+      "bytes": 119409
     },
     {
-      "path": "evidence/options_v1_17_3/browser/ACTUAL_OPTION_1_390x700.png",
+      "path": "evidence/suits_auto_weather_v1_17_4/browser/S10_S11_OPTIONS.png",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "c2601c885f66a2fa16ee85c8f7fbbecc819a58fb26e9d26d3343af9836ff5495",
-      "bytes": 110251
+      "after_sha256": "01307922c6ff53913e5ac007c245248e1a8552b8d96d0af258f51c48f82dcfcd",
+      "bytes": 237456
     },
     {
-      "path": "evidence/options_v1_17_3/browser/ALL_14_BLAZERS_CURRENT.png",
+      "path": "evidence/suits_auto_weather_v1_17_4/browser/S11_OPTION_1_390x700.png",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "77850a27ceeea7f9b63490472c1067954c14a8d411fbb4aa23eaecb14ccb6dec",
-      "bytes": 344470
+      "after_sha256": "d61f971bdd1507af67c20872af2b2927e0f299263d6300c10fdaf8875404b6a7",
+      "bytes": 83869
     },
     {
-      "path": "evidence/options_v1_17_3/browser/ALL_18_SUITS_CURRENT.png",
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/INITIAL_CSP_PREDICATE_FAILURE.png",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "f5a9c6cccd39fa8207429c595054aac320fdd192816f7e7ca05f53c9023e9eb9",
-      "bytes": 569523
+      "after_sha256": "5c18de2adbcf0f94b361a4cc96984a7df04a8d9a69da0d5a3f61e7818b3d002f",
+      "bytes": 53800
     },
     {
-      "path": "evidence/options_v1_17_3/browser/ALL_47_TIES_CURRENT.png",
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/INITIAL_CSP_PREDICATE_RESULT.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "2f8b36d81d99cdd781926430e096bece9b01cec182167367dcb34f1ddf7a6f0a",
-      "bytes": 380190
+      "after_sha256": "423024d2de8567dfab15ef026277e067a80679688291ad89e952b6afc869c903",
+      "bytes": 41363
     },
     {
-      "path": "evidence/options_v1_17_3/browser/ALL_50_SHIRTS_CURRENT.png",
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/SECOND_MISSING_SEEDED_IMAGE_FAILURE.png",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "71324ab87de765a750d09dff943bb9072e603f724cac7a80673708d30676351f",
-      "bytes": 496264
+      "after_sha256": "0b67e5701768768f47bf1a67c852827127f1e3f1ca836e5736318463beadfb8b",
+      "bytes": 55557
     },
     {
-      "path": "evidence/options_v1_17_3/browser/FIFTEEN_OPTIONS_CAPS.png",
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/SECOND_MISSING_SEEDED_IMAGE_RESULT.json",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "c0e50d79d843af49794b2e920047e8a6a8dad0c54bb63811d513da244b441e7f",
-      "bytes": 394247
-    },
-    {
-      "path": "evidence/options_v1_17_3/browser/PASS4_BROWSER.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "1c5420c16e37132cbb3a4f6f30b4bf6bc48f39027567ebc5ff53012962c123df",
-      "bytes": 48154
+      "after_sha256": "8f6ed2f44165f2f9f100a2e563f6de247f6808b8a58f3ef5853b710dfbbc96c4",
+      "bytes": 47594
     },
     {
       "path": "index.html",
       "status": "modified",
-      "before_sha256": "43d65421efe25a52e291244d746a6adfa0f1625d4fa68a98da7b7fec36afc708",
+      "before_sha256": "a05b2267c13ab5ea7efac0efc4a5fe8ee93dcceeaae3e84830d5965af1a4c113",
+      "after_sha256": "53633b6d0853e650f2ddc226293056a8ec909ff00dd9594a0d3deeb14d974085",
+      "bytes": 16098
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/BASELINE_FILES.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "defa267b56081a178881b0669db86cb0ff011e3e578441d3c9968a1ccaffe4e4",
+      "bytes": 338744
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/CHANGED_FILES.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "75fd8bde6f28f7fb84b8e53ee87c02c2e05576a4adf15ef1ccc8a4454b14ea7c",
+      "bytes": 15830
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/PACKAGE_SHA256.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "2e21d84c4276ae8860dccdcde1da4067bdf734e26b389acbe46fc3b99a8aaa29",
+      "bytes": 364944
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/README.md",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "623d98a2a4622c0076541493921d23550dc6670045f925f60bb1969267c55cf1",
+      "bytes": 1838
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/RELEASE_SCOPE.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "be13998f7d081a6a4a4aa37f871c280dcc0f89bee692097891d57be362f949f3",
+      "bytes": 3586
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/RELEASE_STATUS.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "36b1dbd9382257d1ec95264038ae8bd0037afdbb182c114da36bc27c5dafcc65",
+      "bytes": 3141
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/app.html",
+      "status": "added",
+      "before_sha256": null,
       "after_sha256": "a05b2267c13ab5ea7efac0efc4a5fe8ee93dcceeaae3e84830d5965af1a4c113",
       "bytes": 16042
     },
     {
-      "path": "rollback/options_v1_17_3/BASELINE_FILES.json",
+      "path": "rollback/suits_auto_weather_v1_17_4/original/app.template.html",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "a490438df7a8813b1d458a2e30b12206a199fd69c9e31acdd44075a318ccd37c",
-      "bytes": 330802
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/CHANGED_FILES.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "2697c13faa693f1cb349ee87db00e99b4de432b009a9ea65e0b02abdb1d20f40",
-      "bytes": 76858
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/PACKAGE_SHA256.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "02ce479182f585136bdddf421d96601ec23d50de6dce40f319f1b02480a5c3b6",
-      "bytes": 356344
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/README.md",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "49f7d5eefda01f733685abcf7c5256f9b929c956da79c17eee42caf7a5005e5e",
-      "bytes": 1125
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/RELEASE_SCOPE.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "06e9e89ea5f5c50b2727d06100913430acc22d62391e51d9b874f4a76353ebd5",
-      "bytes": 2972
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/RELEASE_STATUS.json",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "21305e7ac42d996225c5a0d101039ddc5dc3c827c551b843800df26bcef1d90d",
-      "bytes": 3537
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/app.html",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "43d65421efe25a52e291244d746a6adfa0f1625d4fa68a98da7b7fec36afc708",
-      "bytes": 15965
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/app.template.html",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "67c0e3f79c51c01f6f1252e4b25a581988dff83ea07b651ed4a2f9ba01f2ef4f",
+      "after_sha256": "869e92ae70c1e6cf4575d8955df71b043e0fd094fe4e1dc3f282c211df07dc38",
       "bytes": 13221
     },
     {
-      "path": "rollback/options_v1_17_3/original/data/option-index.js",
+      "path": "rollback/suits_auto_weather_v1_17_4/original/index.html",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "d8293703bd84c29ab3292cccf9dc5032408694152ee12147d2e3e389cb369547",
-      "bytes": 6065133
+      "after_sha256": "a05b2267c13ab5ea7efac0efc4a5fe8ee93dcceeaae3e84830d5965af1a4c113",
+      "bytes": 16042
     },
     {
-      "path": "rollback/options_v1_17_3/original/data/option-index.json",
+      "path": "rollback/suits_auto_weather_v1_17_4/original/src/application.js",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "c6d35d7fe4c896a9eabfc280a7d025c805cc83a527fc30091e7b04f11d43dd87",
-      "bytes": 6065102
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/index.html",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "43d65421efe25a52e291244d746a6adfa0f1625d4fa68a98da7b7fec36afc708",
-      "bytes": 15965
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/src/application.js",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "c46686cf6b724fb54341227c05614d889140312e451046e98471e3a1af2aad09",
-      "bytes": 64036
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/src/automatic-engine.js",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "ca458d6c9ae3d20ee9bb5c8db1ef38fdcf9b3b11b23e98bf65fc19f0e4c34c23",
-      "bytes": 16713
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/src/connection.js",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "05738e2113ee4c7a1308479ee6ae0a32d2d31294b3a90a3bb576b42bfa5ac37e",
-      "bytes": 10365
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/src/facelift-state.js",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "3e4e9e4d8837241c45aac1a2c4b17b4c915282baa2dce99062645690e4098ee3",
-      "bytes": 8647
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/tools/build.py",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "d123cd50cf6c297d487e002cd637da878a657b969de21cc09b86bd864e971478",
-      "bytes": 3536
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/tools/build_option_index.cjs",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "dad597a6b8ad66f464e5810780cc2e3ecfc2a0286f5111d6e0c3091bc2e7c727",
-      "bytes": 2964
-    },
-    {
-      "path": "rollback/options_v1_17_3/original/vendor/ensemble-completion.js",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "e32c88b5411babf19a1bb3d7769bec672af8760adc301c493f2ca29264577f0a",
-      "bytes": 27411
-    },
-    {
-      "path": "src/application.js",
-      "status": "modified",
-      "before_sha256": "c46686cf6b724fb54341227c05614d889140312e451046e98471e3a1af2aad09",
       "after_sha256": "28e7227615b3e780a452739c23f7efa836566989c05c4a00b42780b1a023f127",
       "bytes": 64213
     },
     {
-      "path": "src/automatic-engine.js",
-      "status": "modified",
-      "before_sha256": "ca458d6c9ae3d20ee9bb5c8db1ef38fdcf9b3b11b23e98bf65fc19f0e4c34c23",
+      "path": "rollback/suits_auto_weather_v1_17_4/original/src/automatic-engine.js",
+      "status": "added",
+      "before_sha256": null,
       "after_sha256": "d2bac7c8feb5864674eba618e77c8541d9d74c23da299da742d2b7577ef1cefb",
       "bytes": 20528
     },
     {
-      "path": "src/connection.js",
-      "status": "modified",
-      "before_sha256": "05738e2113ee4c7a1308479ee6ae0a32d2d31294b3a90a3bb576b42bfa5ac37e",
-      "after_sha256": "9bc1446af83ba7cf3d8991fe7941d14a6dd3949ba7a3d247b4db2a1c552b9a9f",
-      "bytes": 10565
-    },
-    {
-      "path": "src/facelift-state.js",
-      "status": "modified",
-      "before_sha256": "3e4e9e4d8837241c45aac1a2c4b17b4c915282baa2dce99062645690e4098ee3",
-      "after_sha256": "efd5ce442c20ebbb83025a8d1a0b1cf98da432cebd2c441d7131fa37a530f121",
-      "bytes": 9058
-    },
-    {
-      "path": "src/option-set-policy.js",
+      "path": "rollback/suits_auto_weather_v1_17_4/original/src/weather-context.js",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "e714decc822d9a088ce76cdb3ab6a36f112e829e708dd2f8886a973255c5ef5b",
-      "bytes": 3831
+      "after_sha256": "829e5c6bf37b033d56730d87550f2a94a3927db99ecbe82d020ee537bf7ddf8b",
+      "bytes": 18283
     },
     {
-      "path": "tests/colour-ensemble-audit.cjs",
+      "path": "rollback/suits_auto_weather_v1_17_4/original/tools/build.py",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "b6e4d9dbe0d83d2eef18a2fdffb46d8c03af27c339d4f177f662f000a9ccc31c",
-      "bytes": 9022
-    },
-    {
-      "path": "tests/option-limits.cjs",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "5ad2c44e2382627ee978c8c7af7f770408bebe13170666add19caeb25a9afe87",
-      "bytes": 12124
-    },
-    {
-      "path": "tests/options-audit-browser.py",
-      "status": "added",
-      "before_sha256": null,
-      "after_sha256": "8022ac26f90785f91a6a0cbbaf6b4092fbed0fb1929ba4b118e9861925a17ea5",
-      "bytes": 12060
-    },
-    {
-      "path": "tools/build.py",
-      "status": "modified",
-      "before_sha256": "d123cd50cf6c297d487e002cd637da878a657b969de21cc09b86bd864e971478",
       "after_sha256": "6b76748a8d6fa987e92df795103a16ace76d264b36ff4e7494df2a4629a5d1f3",
       "bytes": 3761
     },
     {
-      "path": "tools/build_option_index.cjs",
+      "path": "src/application.js",
       "status": "modified",
-      "before_sha256": "dad597a6b8ad66f464e5810780cc2e3ecfc2a0286f5111d6e0c3091bc2e7c727",
-      "after_sha256": "5c1703902c8ab6a0d517e6859c513967cdd22fb1ef0794a03d5d297a6015973f",
-      "bytes": 3041
+      "before_sha256": "28e7227615b3e780a452739c23f7efa836566989c05c4a00b42780b1a023f127",
+      "after_sha256": "1422af9458e53aa389cab11696e937ad2aedd9aba00d87bf04189d6ac94d6236",
+      "bytes": 68539
     },
     {
-      "path": "tools/rollback_v1173.py",
+      "path": "src/automatic-engine.js",
+      "status": "modified",
+      "before_sha256": "d2bac7c8feb5864674eba618e77c8541d9d74c23da299da742d2b7577ef1cefb",
+      "after_sha256": "98cbc6a385eb4ac406f7fb2682b9c8f3b4db0677158ad0355d4768dde1e621d2",
+      "bytes": 21636
+    },
+    {
+      "path": "src/automatic-weather.js",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "6565f9a7781e62f735d1dd90327c73c9320b7377e22bf1e38572a6e615225f88",
-      "bytes": 1596
+      "after_sha256": "b74837e7dfb7aeec83c5dfa523cbd69e77c857c78a6bbb2dcf3457f297a5fcba",
+      "bytes": 7402
     },
     {
-      "path": "tools/verify_v1173.py",
+      "path": "src/weather-context.js",
+      "status": "modified",
+      "before_sha256": "829e5c6bf37b033d56730d87550f2a94a3927db99ecbe82d020ee537bf7ddf8b",
+      "after_sha256": "56477f56aef18081687ee3ab56ed6ec19731c7e47796519f2325bff4742720eb",
+      "bytes": 18485
+    },
+    {
+      "path": "tests/automatic-weather.cjs",
       "status": "added",
       "before_sha256": null,
-      "after_sha256": "6c88cce3e0a3900529b5a9d558eca738901474c4a06fe9683c8e05ebc79ce1ae",
-      "bytes": 4923
+      "after_sha256": "e443d785a9e18ea4e0998be305259c62287cebd1c8de698cfbf951a77ae05477",
+      "bytes": 10377
     },
     {
-      "path": "vendor/ensemble-completion.js",
+      "path": "tests/dna-preservation-v1174.cjs",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7edac48a8d646ed02db3289dda6bca1a62a95f28b77ed2dfd1e4e806420c7391",
+      "bytes": 2996
+    },
+    {
+      "path": "tests/options-preservation-v1174.cjs",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "56baec4c9387e6b8334c8a57f0b04f35c9873128b68cd754b23a557e5f912319",
+      "bytes": 12135
+    },
+    {
+      "path": "tests/suit-season-regression.cjs",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "101e3a336254d1dba340496a0ce0553527fc412c16acb6dc76e296041eda0c60",
+      "bytes": 7042
+    },
+    {
+      "path": "tests/suits-auto-weather-browser.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f499fce5a3e4efcf8883ef0ebd974576bf546a36137bb00b6c4af722a7e04162",
+      "bytes": 13877
+    },
+    {
+      "path": "tests/suits-weather-real-origin.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a9cc24e413043c8c9694cd590e06a0ce3bc6094535bb46805abaad5c6c6cb520",
+      "bytes": 2768
+    },
+    {
+      "path": "tests/weather-transport-v1174.cjs",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "23b2dda50f118284666214fde0800b4d9d6d21fd9df71255c9decd42d84a138d",
+      "bytes": 9388
+    },
+    {
+      "path": "tools/build.py",
       "status": "modified",
-      "before_sha256": "e32c88b5411babf19a1bb3d7769bec672af8760adc301c493f2ca29264577f0a",
-      "after_sha256": "0fa186c64a49a5836dab2c4110bf87f8f3282591ef62642dfa1a38ef3ce5f174",
-      "bytes": 28123
+      "before_sha256": "6b76748a8d6fa987e92df795103a16ace76d264b36ff4e7494df2a4629a5d1f3",
+      "after_sha256": "722392e54d269aafda3d8757ee78f659721ec1ff8a3ab99d8b9280d33d3a557d",
+      "bytes": 3842
+    },
+    {
+      "path": "tools/rollback_v1174.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d089ba1b6cf6650befe5611edd88afd151f122682947031461d6fafa2c2422c4",
+      "bytes": 1573
+    },
+    {
+      "path": "tools/verify_v1174.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "b3ec34616b6d0c41bde3e2c00e37ab254357062eed6c3bdcc9a47013e579940b",
+      "bytes": 3986
     }
   ]
 }
