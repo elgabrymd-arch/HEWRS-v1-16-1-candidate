@@ -1,0 +1,3262 @@
+{
+  "basis": "Independently chosen styling proposals using the actual wardrobe database. No HEWRS scores or ranking used to select or order these proposals. Existing application renderer used only to compose the exact registered garments.",
+  "source_version": "1.17.4",
+  "source_integrity": "1924 payload hashes verified before use",
+  "options": [
+    {
+      "number": 1,
+      "title": "White and midnight navy",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS001",
+        "state": "T028",
+        "shoeId": "shoe-3",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Brunello Cucinelli \u2014 White solid",
+      "tie_name": "Midnight-navy tonal paisley",
+      "shoe_name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+      "styling_reason": "A crisp white base and a dark, quiet tie keep the light suit sharply defined.",
+      "render": "renders/S10_option_01.png",
+      "render_sha256": "4aaca8f307059971da026127685ec30c8f5d1ad0e1dc3fe888f0d0ebd621d79a",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-3.png",
+          "sha256": "8fcc5693be46e9e8be2a998d8a8f74b199c40602acff8a9952691ae4d8684b1f",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/original_ids/DS001/tied/DS001_REAR.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "role": "rear",
+          "alpha_bounds": null,
+          "evidence_status": "NO_SOURCE_REAR_FABRIC"
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/original_ids/DS001/tied/DS001_BODY.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902",
+          "role": "body",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ],
+          "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE"
+        },
+        {
+          "url": "assets/be19fa8451574967ecee2ee912e0d9695fd7d50bcc5277f85dd920cdba632359.png",
+          "sha256": "be19fa8451574967ecee2ee912e0d9695fd7d50bcc5277f85dd920cdba632359",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T028_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/original_ids/DS001/tied/DS001_LEFT.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2",
+          "role": "left",
+          "alpha_bounds": [
+            373,
+            405,
+            496,
+            525
+          ],
+          "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE"
+        },
+        {
+          "url": "assets/original_ids/DS001/tied/DS001_RIGHT.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca",
+          "role": "right",
+          "alpha_bounds": [
+            518,
+            412,
+            609,
+            525
+          ],
+          "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE"
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/original_ids/DS001/tied/DS001_LEFT_CUFF.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "role": "left_cuff",
+          "alpha_bounds": null,
+          "evidence_status": "UNAVAILABLE_CUFF_NO_SUBSTITUTE"
+        },
+        {
+          "url": "assets/original_ids/DS001/tied/DS001_RIGHT_CUFF.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "role": "right_cuff",
+          "alpha_bounds": null,
+          "evidence_status": "UNAVAILABLE_CUFF_NO_SUBSTITUTE"
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Brunello Cucinelli | white solid",
+      "shoe_display": "Ecco | black Oxford/Derby",
+      "detail": "renders/S10_option_01_detail.png"
+    },
+    {
+      "number": 2,
+      "title": "Light blue and burgundy",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS006",
+        "state": "T023",
+        "shoeId": "shoe-4",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Brunello Cucinelli \u2014 Light blue solid",
+      "tie_name": "Burgundy / blue paisley",
+      "shoe_name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+      "styling_reason": "The blue shirt picks up the blue in the burgundy paisley; dark-brown leather adds warmth.",
+      "render": "renders/S10_option_02.png",
+      "render_sha256": "703996217f58b2e22f49ca32f797201909082ac9cdb21f102ad808af30141cf6",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-4.png",
+          "sha256": "7fad7e15c81a3c96e1839e8053a3418ceb86655d562691ea77354320587b0e61",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/original_ids/DS006/tied/DS006_REAR.png",
+          "role": "Native DS009 rear",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "7940698ed925588194ce59bee79ff47586a549d81a6a5d9044428f0bd30cd522",
+          "alpha_bounds": [
+            384,
+            387,
+            616,
+            436
+          ]
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/original_ids/DS006/tied/DS006_BODY.png",
+          "role": "Native DS009 body",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "77446941fd6ce68dfe3c2d751b3ec79ae6431ba10a62d204d3230ade7bdf8b0c",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/bbb28ebadb60dd37334aa945e9554b7d64fcebf327edf10136cfc2a83af1cab5.png",
+          "sha256": "bbb28ebadb60dd37334aa945e9554b7d64fcebf327edf10136cfc2a83af1cab5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T023_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/original_ids/DS006/tied/DS006_LEFT.png",
+          "role": "Native DS009 left",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "0a5c2e1e5fdb77d27784a384890ada70e92a9d984c9eadfcb4a91343e8adbb63",
+          "alpha_bounds": [
+            372,
+            387,
+            508,
+            535
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS006/tied/DS006_RIGHT.png",
+          "role": "Native DS009 right",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "f4b3bd9ed1eb77ee9a8e8d6e9a7f666426e37906f869a9f3aa679bb8a4b369f2",
+          "alpha_bounds": [
+            501,
+            388,
+            616,
+            530
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/original_ids/DS006/tied/DS006_LEFT_CUFF.png",
+          "role": "Native DS009 left_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "9966303049e0db66ad097cea0a93c7cb7d7e81b656bbce77dc44f5f9cf745fb4",
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS006/tied/DS006_RIGHT_CUFF.png",
+          "role": "Native DS009 right_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "aaa36073742c940b26a0a5690780610073f730165b3ed8ad9eb09c2337227c54",
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Brunello Cucinelli | light blue solid",
+      "shoe_display": "Christian Louboutin | dark-brown Derby",
+      "detail": "renders/S10_option_02_detail.png"
+    },
+    {
+      "number": 3,
+      "title": "Ivory and deep navy",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Zegna \u2014 Ivory / off-white solid",
+      "tie_name": "Deep navy tonal honeycomb",
+      "shoe_name": "Gucci Loafers \u2014 Black Horsebit",
+      "styling_reason": "The ivory shirt softens the grey, while the tonal navy tie keeps the center disciplined.",
+      "render": "renders/S10_option_03.png",
+      "render_sha256": "bf1c3cc43a1010f3b51a297d058c794de7d07accb559ca40e1c71d3ff4d74fed",
+      "layer_plan": [
+        {
+          "url": "assets/b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393.png",
+          "sha256": "b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_S11_TIED_RIGHT_EDGE_CLEANUP",
+          "render_operation": "bounded-edge-RGB-cleanup",
+          "opacity_changes_limited_to_patch": true,
+          "exclude_alpha_of": {
+            "url": "assets/8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd.png",
+            "sha256": "8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "T022_SUIT_DIRECT_SOURCE_TEXTURE"
+          }
+        },
+        {
+          "url": "assets/47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918.png",
+          "sha256": "47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_S11_TIED_COVERAGE_EXTENSION",
+          "nontransparent_pixels": 5833,
+          "bbox_xyxy": [
+            374,
+            409,
+            622,
+            852
+          ],
+          "render_operation": "destination-underfill-only",
+          "exclude_alpha_of": {
+            "url": "assets/8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd.png",
+            "sha256": "8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "T022_SUIT_DIRECT_SOURCE_TEXTURE"
+          }
+        },
+        {
+          "url": "assets/shared/SHOE8.png",
+          "sha256": "49164c596dda983bb9fc4e6d324bfc11f164889ed4816305cfa69da2f760f63d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "SHOE8"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS035/tied/DS035_REAR_COLLAR.png",
+          "sha256": "d5ea70b559aa5aacde9a6d2c01359e2623cf47a58b3297ac18b69ea154d56058",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_REAR_COLLAR"
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS035/tied/DS035_BODY.png",
+          "sha256": "134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_BODY",
+          "display_alpha_mask": {
+            "url": "assets/shirts/DS035/SELECTABLE_BODY_KEEP.png",
+            "sha256": "c90245fa21b3ed0f9e7ded755901113a931bd4cc926bc62fb98ef8bb16a1bdd6",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "SELECTABLE_BODY_KEEP"
+          }
+        },
+        {
+          "url": "assets/8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd.png",
+          "sha256": "8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T022_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/shirts/DS035/tied/DS035_FRONT_COLLAR_LEFT.png",
+          "sha256": "c432067c66236c3eb7de5b5cfdbcdce4ab6d2cbda6625e622cf260ed53d6f096",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_FRONT_COLLAR_LEFT"
+        },
+        {
+          "url": "assets/shirts/DS035/tied/DS035_FRONT_COLLAR_RIGHT.png",
+          "sha256": "63dc1c4431fd24c1422d6b53c401c118d1e18bf3187bc1a2f9ef1147461feb90",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_FRONT_COLLAR_RIGHT"
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS035/tied/DS035_LEFT_CUFF.png",
+          "sha256": "a79f69dc1f31ea956d77e83d96e496235e012188bd6799275b8854c00e582726",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_LEFT_CUFF"
+        },
+        {
+          "url": "assets/shirts/DS035/tied/DS035_RIGHT_CUFF.png",
+          "sha256": "fc36f9d5e8bb62a39265e6504f6d95498cbea2b9222e0837047e6aebe3e2ffcb",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_RIGHT_CUFF"
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Zegna | ivory / off-white solid",
+      "shoe_display": "Gucci | black horsebit loafer",
+      "detail": "renders/S10_option_03_detail.png"
+    },
+    {
+      "number": 4,
+      "title": "Pale pink and aubergine",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS024",
+        "state": "T030",
+        "shoeId": "shoe-2",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Burberry \u2014 Solid pale pink",
+      "tie_name": "Aubergine tonal geometric",
+      "shoe_name": "Berluti Dress Shoes \u2014 Black Double Monk",
+      "styling_reason": "A pale-pink shirt and deep aubergine tie make a restrained warm-toned combination.",
+      "render": "renders/S10_option_04.png",
+      "render_sha256": "bdadb910ea3aef4dd44252d74b07582ab49decf92bc6a8e6a68130fc5e71f918",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-2.png",
+          "sha256": "995f48e4f65148fa40793807a3c3e9bf56250e5b78e53fe7b374bddc8f9104b5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/original_ids/DS024/tied/DS024_REAR.png",
+          "role": "rear",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/original_ids/DS024/tied/DS024_BODY.png",
+          "role": "body",
+          "sha256": "abf835ffa5aa8273729b6f623ac0ca104f4c9b646e95312d75c465d880c52458",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png",
+          "sha256": "adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T030_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/original_ids/DS024/tied/DS024_LEFT.png",
+          "role": "left",
+          "sha256": "4575e70d0d2bf119cc7a1ccbcb8b9ef4a45e468bca53ba760e9c840e8d4214ec",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            368,
+            400,
+            490,
+            526
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS024/tied/DS024_RIGHT.png",
+          "role": "right",
+          "sha256": "11f54fcd27d8430a93bf3fd035995b087b430949c1ac8ac63e1ae33d038e5ad5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            513,
+            404,
+            614,
+            525
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/original_ids/DS024/tied/DS024_LEFT_CUFF.png",
+          "role": "left_cuff",
+          "sha256": "8de5232c6e0818e588eb92f7b65f849701b77737264436d1c40cd73c3eb49fdc",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS024/tied/DS024_RIGHT_CUFF.png",
+          "role": "right_cuff",
+          "sha256": "910a445c39f5b4f9a80de5553af8295a057c03d64d9d4f310a687cd33a1d343e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Burberry | pale pink solid",
+      "shoe_display": "Berluti | black double monk",
+      "detail": "renders/S10_option_04_detail.png"
+    },
+    {
+      "number": 5,
+      "title": "Silver-blue and navy stripe",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS029",
+        "state": "T015",
+        "shoeId": "shoe-13",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Brooks Brothers 346 \u2014 Ice blue/silver-blue, fine continuous herringbone, point collar",
+      "tie_name": "Navy / fine diagonal stripe",
+      "shoe_name": "Hermes Loafers \u2014 Black Kelly Hardware",
+      "styling_reason": "Fine shirt texture sits behind a darker, clearly defined diagonal stripe.",
+      "render": "renders/S10_option_05.png",
+      "render_sha256": "a39bdd770c2ade42b2b947a3ef88b81e220e626b5e6e712ece85e60390050ec3",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-13.png",
+          "sha256": "cd86e082451569b243cf693966658a8e16722f9cbb2bac9bdcb6c0364afc6110",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS029/tied/DS029_REAR_COLLAR.png",
+          "role": "Native DS029 rear",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "59ac55e3c1607c6ad99bf6b4aed8a1127632b4c289ac8d7d59f5998881c506d1",
+          "alpha_bounds": [
+            384,
+            379,
+            618,
+            436
+          ]
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS029/tied/DS029_BODY.png",
+          "role": "Native DS029 body",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "34251250c59c10e1ac35b99798647ad157048bfb101cc04d17adcf931a9ff36a",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/0c0c1d24c45b701ab96df77c65c495fb85eef2138e78c10702634323a34ba85e.png",
+          "sha256": "0c0c1d24c45b701ab96df77c65c495fb85eef2138e78c10702634323a34ba85e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T015_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/shirts/DS029/tied/DS029_FRONT_COLLAR_LEFT.png",
+          "role": "Native DS029 left",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "9c2d3a388f88f37b8793b1a12c12e6263a88c5c16ff05d8a73e455848126995d",
+          "alpha_bounds": [
+            348,
+            384,
+            486,
+            532
+          ]
+        },
+        {
+          "url": "assets/shirts/DS029/tied/DS029_FRONT_COLLAR_RIGHT.png",
+          "role": "Native DS029 right",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "d9d42aa7837f6473692d845cc76f9003667ab5861647b1411c39efd49f580ccf",
+          "alpha_bounds": [
+            508,
+            378,
+            626,
+            532
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS029/tied/DS029_LEFT_CUFF.png",
+          "role": "Native DS029 left_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "d46ffebf5ca61fa17a3bc0cfa69129f07a0d8f192878543b3245c4d279bb96b4",
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/shirts/DS029/tied/DS029_RIGHT_CUFF.png",
+          "role": "Native DS029 right_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "71ab9ee47390f9af05beb73e9050ac9325fc6c316357926984e1959eeef00958",
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Brooks Brothers 346 | ice/silver-blue herringbone",
+      "shoe_display": "Hermes | black Kelly-hardware loafer",
+      "detail": "renders/S10_option_05_detail.png"
+    },
+    {
+      "number": 6,
+      "title": "White and navy floral",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS014",
+        "state": "T039",
+        "shoeId": "shoe-0",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Paul Fredrick \u2014 Solid white",
+      "tie_name": "Navy / light-blue floral",
+      "shoe_name": "Louis Vuitton Dress Shoes \u2014 Black Embossed Monogram Lace-up",
+      "styling_reason": "A white shirt leaves the navy floral tie as the one visible patterned accent.",
+      "render": "renders/S10_option_06.png",
+      "render_sha256": "894c45947ca2e61f3c4a74302eb958d23e4f253aa03f91ebf9fed207c2ecdee0",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-0.png",
+          "sha256": "c42afc64540e0a9da334836db658cc53f0c8e8cdf1e42b8a10714fdd1ffe5560",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/original_ids/DS014/tied/DS014_REAR.png",
+          "role": "rear",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/original_ids/DS014/tied/DS014_BODY.png",
+          "role": "body",
+          "sha256": "6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/35a622c794f4da2609414b0a821dd2015d59b4e1ad0e24be0d06bb633f87d447.png",
+          "sha256": "35a622c794f4da2609414b0a821dd2015d59b4e1ad0e24be0d06bb633f87d447",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T039_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/original_ids/DS014/tied/DS014_LEFT.png",
+          "role": "left",
+          "sha256": "8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            373,
+            405,
+            496,
+            525
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS014/tied/DS014_RIGHT.png",
+          "role": "right",
+          "sha256": "1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            518,
+            412,
+            609,
+            525
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/original_ids/DS014/tied/DS014_LEFT_CUFF.png",
+          "role": "left_cuff",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/original_ids/DS014/tied/DS014_RIGHT_CUFF.png",
+          "role": "right_cuff",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Paul Fredrick | solid white",
+      "shoe_display": "Louis Vuitton | black embossed-monogram lace-up",
+      "detail": "renders/S10_option_06_detail.png"
+    },
+    {
+      "number": 7,
+      "title": "Cream, slate-brown and wine",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS017",
+        "state": "T025",
+        "shoeId": "shoe-11",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Brioni \u2014 Cream/stone solid",
+      "tie_name": "Muted slate-brown / wine paisley",
+      "shoe_name": "Gucci Loafers \u2014 Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+      "styling_reason": "Muted warm notes connect the cream shirt, paisley tie and dark espresso/oxblood loafers.",
+      "render": "renders/S10_option_07.png",
+      "render_sha256": "680795d3ef9a4689739add09e6cb43f7553a425ad9038887dc22ddc5151173ed",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-11.png",
+          "sha256": "062200cdaac7f92f9acbc134779195a6f07f9fd8eb51b5a7c84924a7d2e6b4d2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS017/tied/DS017_REAR_COLLAR.png",
+          "sha256": "9e221b7e27bdaa4b22e78f605a4c6e8ff34f1da91fd71507225ff229f30552db",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS017_REAR_COLLAR"
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS017/tied/DS017_BODY.png",
+          "sha256": "06690a9374f32f594ea4c4b739ac287d951aaf89e32414485cabd4ed5bffffd6",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS017_BODY"
+        },
+        {
+          "url": "assets/d4eed90623d8922455bd5322daa0c215b025ee2ca4d46c9c35a479b698b0ac47.png",
+          "sha256": "d4eed90623d8922455bd5322daa0c215b025ee2ca4d46c9c35a479b698b0ac47",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T025_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/shirts/DS017/tied/DS017_FRONT_COLLAR_LEFT.png",
+          "sha256": "80c6284711f42b7bb5e4f593be85ff9f2263a863485b8dfce321b6d9de80f76d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS017_FRONT_COLLAR_LEFT"
+        },
+        {
+          "url": "assets/shirts/DS017/tied/DS017_FRONT_COLLAR_RIGHT.png",
+          "sha256": "bdc84331cf8517af90958cd2a0b4aaf961d92827852f756b584f4ada6203e63a",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS017_FRONT_COLLAR_RIGHT"
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS017/tied/DS017_LEFT_CUFF.png",
+          "sha256": "6807ef8fc1091abb6f5ff642b2e28639dc9025cee0cca401e45c9872aa8b4d22",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS017_LEFT_CUFF"
+        },
+        {
+          "url": "assets/shirts/DS017/tied/DS017_RIGHT_CUFF.png",
+          "sha256": "b2b11971461575d6146b985d7ffb089fd2837f2bd8a0dd72f4a98885f6ae04ba",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS017_RIGHT_CUFF"
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Brioni | cream / stone solid",
+      "shoe_display": "Gucci | espresso/oxblood horsebit loafer",
+      "detail": "renders/S10_option_07_detail.png"
+    },
+    {
+      "number": 8,
+      "title": "Sky blue and brown paisley",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T018",
+        "shoeId": "shoe-5",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Brunello Cucinelli \u2014 Sky blue solid",
+      "tie_name": "Dark brown / slate-blue paisley",
+      "shoe_name": "Ecco Dress Shoes \u2014 Brown Oxford/Derby",
+      "styling_reason": "The slate-blue detail in the brown paisley relates to the blue shirt without matching it literally.",
+      "render": "renders/S10_option_08.png",
+      "render_sha256": "2111a6376ba7c66056be133177047ce13483ceb79e6f8afda3c19fb1b60e2902",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-5.png",
+          "sha256": "e06cb21b98ffd810a5b7653bb38cdfe5a00ce4a03d892bb8b2c5a5256a2224ca",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS009/tied/DS009_REAR_COLLAR.png",
+          "role": "Native DS009 rear",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "7940698ed925588194ce59bee79ff47586a549d81a6a5d9044428f0bd30cd522",
+          "alpha_bounds": [
+            384,
+            387,
+            616,
+            436
+          ]
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS009/tied/DS009_BODY.png",
+          "role": "Native DS009 body",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "77446941fd6ce68dfe3c2d751b3ec79ae6431ba10a62d204d3230ade7bdf8b0c",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/4750a223aafb084efeff27bd4b3b3dbcf164f8941c1cf89fdeb2acc109acd742.png",
+          "sha256": "4750a223aafb084efeff27bd4b3b3dbcf164f8941c1cf89fdeb2acc109acd742",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T018_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/shirts/DS009/tied/DS009_FRONT_COLLAR_LEFT.png",
+          "role": "Native DS009 left",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "0a5c2e1e5fdb77d27784a384890ada70e92a9d984c9eadfcb4a91343e8adbb63",
+          "alpha_bounds": [
+            372,
+            387,
+            508,
+            535
+          ]
+        },
+        {
+          "url": "assets/shirts/DS009/tied/DS009_FRONT_COLLAR_RIGHT.png",
+          "role": "Native DS009 right",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "f4b3bd9ed1eb77ee9a8e8d6e9a7f666426e37906f869a9f3aa679bb8a4b369f2",
+          "alpha_bounds": [
+            501,
+            388,
+            616,
+            530
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS009/tied/DS009_LEFT_CUFF.png",
+          "role": "Native DS009 left_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "9966303049e0db66ad097cea0a93c7cb7d7e81b656bbce77dc44f5f9cf745fb4",
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/shirts/DS009/tied/DS009_RIGHT_CUFF.png",
+          "role": "Native DS009 right_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "aaa36073742c940b26a0a5690780610073f730165b3ed8ad9eb09c2337227c54",
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Brunello Cucinelli | sky-blue solid",
+      "shoe_display": "Ecco | brown Oxford/Derby",
+      "detail": "renders/S10_option_08_detail.png"
+    },
+    {
+      "number": 9,
+      "title": "Pink pinstripe and black texture",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS020",
+        "state": "T012",
+        "shoeId": "shoe-3",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Paul Fredrick \u2014 White, soft pink pencil stripes",
+      "tie_name": "Black tonal lattice",
+      "shoe_name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+      "styling_reason": "A near-black tonal tie gives the fine pink stripe a dark, uncluttered focal point.",
+      "render": "renders/S10_option_09.png",
+      "render_sha256": "9765302838aac7dab5c41e3fb9417cd4a5f244cfcdff53819a5b68dd7ca6092c",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-3.png",
+          "sha256": "8fcc5693be46e9e8be2a998d8a8f74b199c40602acff8a9952691ae4d8684b1f",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS020/tied/DS020_REAR_COLLAR.png",
+          "role": "Native DS020 rear",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "9f2ff4f49896d7989b3fa57ba388ca3f854aec5c39fa0aa2fbe5d4cf7dfa9b43",
+          "alpha_bounds": [
+            385,
+            376,
+            617,
+            436
+          ]
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS020/tied/DS020_BODY.png",
+          "role": "Native DS020 body",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "22546e2e63d8fe333847f1d20e6b3ff904cf779970747474b5daef02fae0b85e",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/7b8675379ad5eaaf23f988456583e2702065429f075d31690c639bead1a34b89.png",
+          "sha256": "7b8675379ad5eaaf23f988456583e2702065429f075d31690c639bead1a34b89",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T012_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/shirts/DS020/tied/DS020_FRONT_COLLAR_LEFT.png",
+          "role": "Native DS020 left",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "cfc932fe2d38f5e420be74818e9844146334931c5b4504f5ac0ada8f02c664cd",
+          "alpha_bounds": [
+            362,
+            390,
+            515,
+            532
+          ]
+        },
+        {
+          "url": "assets/shirts/DS020/tied/DS020_FRONT_COLLAR_RIGHT.png",
+          "role": "Native DS020 right",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "5afb1bf3ba208a60e1091659366adc82c7a6b18e3ca6e81099b1b12d5971cfac",
+          "alpha_bounds": [
+            506,
+            378,
+            620,
+            532
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS020/tied/DS020_LEFT_CUFF.png",
+          "role": "Native DS020 left_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "07d3d6e74d3c60432b82cd265751f86251cb9c2b15bddfee14df5c34eb9a7c10",
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/shirts/DS020/tied/DS020_RIGHT_CUFF.png",
+          "role": "Native DS020 right_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "70c9a415caf2940bd123f9bcab1a51417b64975dc7a63d09e47a11942d6666d4",
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Paul Fredrick | white / soft-pink pencil stripe",
+      "shoe_display": "Ecco | black Oxford/Derby",
+      "detail": "renders/S10_option_09_detail.png"
+    },
+    {
+      "number": 10,
+      "title": "Ice blue and burgundy stripe",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS015",
+        "state": "T016",
+        "shoeId": "shoe-1",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Emanuel Berg \u2014 Ice blue tonal checkerboard",
+      "tie_name": "Burgundy-red / silver diagonal stripe",
+      "shoe_name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+      "styling_reason": "The subtle shirt check supports the larger silver diagonal on the burgundy tie.",
+      "render": "renders/S10_option_10.png",
+      "render_sha256": "15921d81b8410fea0a89b451be69b914b7b65667230f18ab57e649f6bb1219f8",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-1.png",
+          "sha256": "8618ba2177c408da5c18f2cfdbd7e4babf5f734e15ed7de61f0bebb2dae7fd95",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/original_ids/DS015/tied/DS015_REAR.png",
+          "role": "rear",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/original_ids/DS015/tied/DS015_BODY.png",
+          "role": "body",
+          "sha256": "0037b77f59831d985264d6f83ab9c988e4fa4701540719c7674aed8259b9cc94",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/8cb2553204ccc8042ea2b77753037bdbe4766fb54a54140e6eef84050d634c02.png",
+          "sha256": "8cb2553204ccc8042ea2b77753037bdbe4766fb54a54140e6eef84050d634c02",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T016_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/original_ids/DS015/tied/DS015_LEFT.png",
+          "role": "left",
+          "sha256": "42a8798865f0b4b2da035403d3950706510cce770fda210766e265d8689ffdf9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            382,
+            398,
+            491,
+            525
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS015/tied/DS015_RIGHT.png",
+          "role": "right",
+          "sha256": "fe34f1d22a8c5aa7385c74efb3d064290d43219abe231b91da8fb0ff4769e092",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            510,
+            398,
+            617,
+            525
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/original_ids/DS015/tied/DS015_LEFT_CUFF.png",
+          "role": "left_cuff",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/original_ids/DS015/tied/DS015_RIGHT_CUFF.png",
+          "role": "right_cuff",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Emanuel Berg | ice-blue tonal checkerboard",
+      "shoe_display": "Christian Louboutin | black single monk",
+      "detail": "renders/S10_option_10_detail.png"
+    },
+    {
+      "number": 11,
+      "title": "Light pink and navy medallions",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS025",
+        "state": "T021",
+        "shoeId": "shoe-11",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Charles Tyrwhitt \u2014 Solid light pink",
+      "tie_name": "Dark navy / gold medallions",
+      "shoe_name": "Gucci Loafers \u2014 Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+      "styling_reason": "The pale shirt supports a darker medallion tie; polished dark loafers echo its warm accents.",
+      "render": "renders/S10_option_11.png",
+      "render_sha256": "175725e1a607980b0b868d6c12750ae1523e5f263a2342dbf4cb7532bc19f57c",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-11.png",
+          "sha256": "062200cdaac7f92f9acbc134779195a6f07f9fd8eb51b5a7c84924a7d2e6b4d2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/original_ids/DS025/tied/DS025_REAR.png",
+          "role": "rear",
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": null
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/original_ids/DS025/tied/DS025_BODY.png",
+          "role": "body",
+          "sha256": "abf835ffa5aa8273729b6f623ac0ca104f4c9b646e95312d75c465d880c52458",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/5b08a782986b640d9abce58aaacdde2cbce2cb56448d16edcc5776944cb0a52c.png",
+          "sha256": "5b08a782986b640d9abce58aaacdde2cbce2cb56448d16edcc5776944cb0a52c",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T021_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/original_ids/DS025/tied/DS025_LEFT.png",
+          "role": "left",
+          "sha256": "4575e70d0d2bf119cc7a1ccbcb8b9ef4a45e468bca53ba760e9c840e8d4214ec",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            368,
+            400,
+            490,
+            526
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS025/tied/DS025_RIGHT.png",
+          "role": "right",
+          "sha256": "11f54fcd27d8430a93bf3fd035995b087b430949c1ac8ac63e1ae33d038e5ad5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            513,
+            404,
+            614,
+            525
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/original_ids/DS025/tied/DS025_LEFT_CUFF.png",
+          "role": "left_cuff",
+          "sha256": "8de5232c6e0818e588eb92f7b65f849701b77737264436d1c40cd73c3eb49fdc",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/original_ids/DS025/tied/DS025_RIGHT_CUFF.png",
+          "role": "right_cuff",
+          "sha256": "910a445c39f5b4f9a80de5553af8295a057c03d64d9d4f310a687cd33a1d343e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Charles Tyrwhitt | light-pink solid",
+      "shoe_display": "Gucci | espresso/oxblood horsebit loafer",
+      "detail": "renders/S10_option_11_detail.png"
+    },
+    {
+      "number": 12,
+      "title": "Silver-grey and deep purple",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS030",
+        "state": "T027",
+        "shoeId": "shoe-2",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Brooks Brothers 346 \u2014 Light silver-grey, fine continuous herringbone, point collar",
+      "tie_name": "Deep purple / pale medallions",
+      "shoe_name": "Berluti Dress Shoes \u2014 Black Double Monk",
+      "styling_reason": "The grey herringbone stays close to the suit; purple supplies the needed contrast.",
+      "render": "renders/S10_option_12.png",
+      "render_sha256": "dfb41e385bcb18326b84fe77aa02ea9615a2ce832d848a0df84c311b32a864d9",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-2.png",
+          "sha256": "995f48e4f65148fa40793807a3c3e9bf56250e5b78e53fe7b374bddc8f9104b5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS030/tied/DS030_REAR_COLLAR.png",
+          "role": "Native DS030 rear",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "a126fe1e660019fe4df16776cbb91fea07e2ba8f339b6fa89a35ba92316e9f16",
+          "alpha_bounds": [
+            383,
+            379,
+            617,
+            436
+          ]
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS030/tied/DS030_BODY.png",
+          "role": "Native DS030 body",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "e9f54c5910552b6b0a75ae7b41072e6ad2703ac8ba66df45bed7b85e1b71bef3",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/003aea23ca094be3465e9548c06c6957dc56bf08e69baa78abbe432706ea076c.png",
+          "sha256": "003aea23ca094be3465e9548c06c6957dc56bf08e69baa78abbe432706ea076c",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T027_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/shirts/DS030/tied/DS030_FRONT_COLLAR_LEFT.png",
+          "role": "Native DS030 left",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "c555d4fbd447a3c3bd2689d812f0750191c430dcf212efb90a57c761f2fc977b",
+          "alpha_bounds": [
+            346,
+            383,
+            490,
+            532
+          ]
+        },
+        {
+          "url": "assets/shirts/DS030/tied/DS030_FRONT_COLLAR_RIGHT.png",
+          "role": "Native DS030 right",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "58645142e3bf895ed6a681fb00b30ac6256b57de10154810ac73fd8c7f197361",
+          "alpha_bounds": [
+            517,
+            379,
+            626,
+            532
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS030/tied/DS030_LEFT_CUFF.png",
+          "role": "Native DS030 left_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "5f36ee8fe08fddf54279142b1f169b555e92ce6ef31634520e5e50cc5db3b33c",
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/shirts/DS030/tied/DS030_RIGHT_CUFF.png",
+          "role": "Native DS030 right_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "8cff35afad883a0f852807cd1e21ea01305c8b106887842df0fb53d04d3b152f",
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Brooks Brothers 346 | light silver-grey herringbone",
+      "shoe_display": "Berluti | black double monk",
+      "detail": "renders/S10_option_12_detail.png"
+    },
+    {
+      "number": 13,
+      "title": "Blue stripe and burnt orange",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS045",
+        "state": "T004",
+        "shoeId": "shoe-6",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Emanuel Berg \u2014 Blue and white bengal stripe",
+      "tie_name": "Burnt-orange near-solid geometric",
+      "shoe_name": "Allen Edmonds Dress Shoes \u2014 Brown Double Monk Strap",
+      "styling_reason": "A blue striped shirt and near-solid burnt-orange tie make the strongest color contrast in this set.",
+      "render": "renders/S10_option_13.png",
+      "render_sha256": "da7c6b19d05543cbd6101e0e3d57a23239a94701f4c6a5dbff6c98db44bb535c",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-6.png",
+          "sha256": "4dd0b27a32b78d8b1ac3e51e6ace224d1c9c8718b5336b2868ae17d66c0b7287",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS045/tied/DS045_REAR_COLLAR.png",
+          "role": "Native DS045 rear",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "72d7695a52dda277115959754b590761792e4063ff2f60fe6b82279d6214130b",
+          "alpha_bounds": [
+            385,
+            381,
+            616,
+            436
+          ]
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS045/tied/DS045_BODY.png",
+          "role": "Native DS045 body",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "c55649a29597023593a5abde8c89a4e8e2ee1868e8cbac31e6cc58e734a3d105",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/771aff1d663aca3389549ae5acb0904295b4179be0d0ce40b7f0cc22f0b3beb3.png",
+          "sha256": "771aff1d663aca3389549ae5acb0904295b4179be0d0ce40b7f0cc22f0b3beb3",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "T004_SUIT_DIRECT_SOURCE_TEXTURE"
+        },
+        {
+          "url": "assets/shirts/DS045/tied/DS045_FRONT_COLLAR_LEFT.png",
+          "role": "Native DS045 left",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "390edd9dfd3bccc6a4ccc439c8840ea207e27167785d01bab6c1f306fe5a35be",
+          "alpha_bounds": [
+            367,
+            387,
+            488,
+            530
+          ]
+        },
+        {
+          "url": "assets/shirts/DS045/tied/DS045_FRONT_COLLAR_RIGHT.png",
+          "role": "Native DS045 right",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "4c738442f92f24a0004601d6fe9c2800eff49da0ab554597f1c255542fee3548",
+          "alpha_bounds": [
+            512,
+            380,
+            624,
+            531
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS045/tied/DS045_LEFT_CUFF.png",
+          "role": "Native DS045 left_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "56579d0d77198c4517c78132ab5dfce6c69f015d4c4cfbfa4a0b702752b1e751",
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/shirts/DS045/tied/DS045_RIGHT_CUFF.png",
+          "role": "Native DS045 right_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "344d65914df2a02fa81b9c89f9f840fc4e4ebbf77c1044df81b417b3daf2660b",
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Emanuel Berg | blue / white Bengal stripe",
+      "shoe_display": "Allen Edmonds | brown double monk",
+      "detail": "renders/S10_option_13_detail.png"
+    },
+    {
+      "number": 14,
+      "title": "Ivory, open collar",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-4",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Zegna \u2014 Ivory / off-white solid",
+      "tie_name": "No tie",
+      "shoe_name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+      "styling_reason": "An ivory open collar relaxes the suit; dark-brown lace-ups keep the outfit polished.",
+      "render": "renders/S10_option_14.png",
+      "render_sha256": "e7aa66259f67456329553edb674cff20ffb90d9d7580803118e941074fdc37e0",
+      "layer_plan": [
+        {
+          "url": "assets/ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81.png",
+          "sha256": "ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_S11_NO_TIE_RIGHT_EDGE_CLEANUP",
+          "render_operation": "bounded-edge-RGB-cleanup",
+          "opacity_changes_limited_to_patch": true,
+          "exclude_alpha_of": null
+        },
+        {
+          "url": "assets/a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e.png",
+          "sha256": "a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_S11_NO_TIE_COVERAGE_EXTENSION",
+          "nontransparent_pixels": 5370,
+          "bbox_xyxy": [
+            374,
+            409,
+            622,
+            852
+          ],
+          "render_operation": "destination-underfill-only",
+          "exclude_alpha_of": null
+        },
+        {
+          "url": "assets/registered-shoes/shoe-4.png",
+          "sha256": "7fad7e15c81a3c96e1839e8053a3418ceb86655d562691ea77354320587b0e61",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS035/no_tie/DS035_REAR_COLLAR.png",
+          "sha256": "f8580cdca4073f1e09bad276ad5d09f80602b4f2159a6a7f4cc50398cc4421a3",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_REAR_COLLAR"
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS035/no_tie/DS035_BODY.png",
+          "sha256": "319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_BODY"
+        },
+        {
+          "url": "assets/shirts/DS035/no_tie/DS035_FRONT_COLLAR_LEFT.png",
+          "sha256": "733414fa9d8d65171f3d8d235fea76de2da88dacc3b4df68bcdecd428c4351a5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_FRONT_COLLAR_LEFT"
+        },
+        {
+          "url": "assets/shirts/DS035/no_tie/DS035_FRONT_COLLAR_RIGHT.png",
+          "sha256": "c21b07a9dc31e11f2f5b211400a65d81ca24408af375398599520cfd3dec6da1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_FRONT_COLLAR_RIGHT"
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS035/no_tie/DS035_LEFT_CUFF.png",
+          "sha256": "a79f69dc1f31ea956d77e83d96e496235e012188bd6799275b8854c00e582726",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_LEFT_CUFF"
+        },
+        {
+          "url": "assets/shirts/DS035/no_tie/DS035_RIGHT_CUFF.png",
+          "sha256": "fc36f9d5e8bb62a39265e6504f6d95498cbea2b9222e0837047e6aebe3e2ffcb",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "DS035_RIGHT_CUFF"
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Zegna | ivory / off-white solid",
+      "shoe_display": "Christian Louboutin | dark-brown Derby",
+      "detail": "renders/S10_option_14_detail.png"
+    },
+    {
+      "number": 15,
+      "title": "Dark navy, open collar",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS032",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": null
+      },
+      "suit": "S10 \u2014 Brioni, cool light grey, single-breasted two-button suit",
+      "shirt_name": "Theory \u2014 Solid dark navy blue",
+      "tie_name": "No tie",
+      "shoe_name": "Hermes Loafers \u2014 Black Kelly Hardware",
+      "styling_reason": "A dark navy shirt creates a clean light-dark contrast, finished with black loafers.",
+      "render": "renders/S10_option_15.png",
+      "render_sha256": "492d99092d00fbc2ddd651b9a4d1067569f6604f4c9ec69dfa6bf7202a34c170",
+      "layer_plan": [
+        {
+          "url": "assets/registered-shoes/shoe-13.png",
+          "sha256": "cd86e082451569b243cf693966658a8e16722f9cbb2bac9bdcb6c0364afc6110",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair"
+        },
+        {
+          "url": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+          "sha256": "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/TROUSERS.png"
+        },
+        {
+          "url": "assets/shirts/DS032/no_tie/DS032_REAR_COLLAR.png",
+          "role": "Native navy source rear",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "28a4da5c2f7566c9e2863db0f7c29b1cbb47bec9f5f5dac4a40906988f673b43",
+          "alpha_bounds": [
+            386,
+            375,
+            616,
+            436
+          ]
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY"
+        },
+        {
+          "url": "assets/shirts/DS032/no_tie/DS032_BODY.png",
+          "role": "Native navy source body",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "a0c99232c30705b0a64ca7c96d0f52d590e2520f214fb683004f5086f669d7e8",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ]
+        },
+        {
+          "url": "assets/shirts/DS032/no_tie/DS032_FRONT_COLLAR_LEFT.png",
+          "role": "Native navy source left",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "1b309c0874d97239ac8263436280dc3a56e01d9a37a15b1a8e7bfb859c045c01",
+          "alpha_bounds": [
+            369,
+            377,
+            484,
+            532
+          ]
+        },
+        {
+          "url": "assets/shirts/DS032/no_tie/DS032_FRONT_COLLAR_RIGHT.png",
+          "role": "Native navy source right",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "566be053274b0bc52dbf73403249baf80c78fefb646601f9b5029ddaaad972fd",
+          "alpha_bounds": [
+            517,
+            375,
+            617,
+            531
+          ]
+        },
+        {
+          "url": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+          "sha256": "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S10/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          }
+        },
+        {
+          "url": "assets/shirts/DS032/no_tie/DS032_LEFT_CUFF.png",
+          "role": "Native navy source left_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "0ae94ea1690ce33ca0be85d804630c8921cfdf721cf28161b75d0d3bf8e2a7e1",
+          "alpha_bounds": [
+            101,
+            1344,
+            206,
+            1390
+          ]
+        },
+        {
+          "url": "assets/shirts/DS032/no_tie/DS032_RIGHT_CUFF.png",
+          "role": "Native navy source right_cuff",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "793a2af76b6c429f41f616a6fad717eea2583661dd46c1d59c596a7081f441b7",
+          "alpha_bounds": [
+            785,
+            1339,
+            885,
+            1389
+          ]
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND"
+        }
+      ],
+      "shirt_display": "Theory | dark navy solid",
+      "shoe_display": "Hermes | black Kelly-hardware loafer",
+      "detail": "renders/S10_option_15_detail.png"
+    }
+  ],
+  "source_images": {
+    "8fcc5693be46e9e8be2a998d8a8f74b199c40602acff8a9952691ae4d8684b1f": "assets/8fcc5693be46e9e8be2a998d8a8f74b199c40602acff8a9952691ae4d8684b1f.png",
+    "c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b": "assets/c455c80d18d6afc4bf5d1a2764e24bb223ea54e3d486895b97d0c8c821d87c2b.png",
+    "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0": "assets/99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0.png",
+    "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d": "assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png",
+    "6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902": "assets/6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902.png",
+    "be19fa8451574967ecee2ee912e0d9695fd7d50bcc5277f85dd920cdba632359": "assets/be19fa8451574967ecee2ee912e0d9695fd7d50bcc5277f85dd920cdba632359.png",
+    "8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2": "assets/8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2.png",
+    "1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca": "assets/1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca.png",
+    "eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1": "assets/eac64414adfb87be4c4d9ac1bf14ffc4fad6895acb505211264bfe2b15e7abc1.png",
+    "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545": "assets/c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545.png",
+    "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34": "assets/8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34.png",
+    "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9": "assets/3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9.png",
+    "7fad7e15c81a3c96e1839e8053a3418ceb86655d562691ea77354320587b0e61": "assets/7fad7e15c81a3c96e1839e8053a3418ceb86655d562691ea77354320587b0e61.png",
+    "7940698ed925588194ce59bee79ff47586a549d81a6a5d9044428f0bd30cd522": "assets/7940698ed925588194ce59bee79ff47586a549d81a6a5d9044428f0bd30cd522.png",
+    "77446941fd6ce68dfe3c2d751b3ec79ae6431ba10a62d204d3230ade7bdf8b0c": "assets/77446941fd6ce68dfe3c2d751b3ec79ae6431ba10a62d204d3230ade7bdf8b0c.png",
+    "bbb28ebadb60dd37334aa945e9554b7d64fcebf327edf10136cfc2a83af1cab5": "assets/bbb28ebadb60dd37334aa945e9554b7d64fcebf327edf10136cfc2a83af1cab5.png",
+    "0a5c2e1e5fdb77d27784a384890ada70e92a9d984c9eadfcb4a91343e8adbb63": "assets/0a5c2e1e5fdb77d27784a384890ada70e92a9d984c9eadfcb4a91343e8adbb63.png",
+    "f4b3bd9ed1eb77ee9a8e8d6e9a7f666426e37906f869a9f3aa679bb8a4b369f2": "assets/f4b3bd9ed1eb77ee9a8e8d6e9a7f666426e37906f869a9f3aa679bb8a4b369f2.png",
+    "9966303049e0db66ad097cea0a93c7cb7d7e81b656bbce77dc44f5f9cf745fb4": "assets/9966303049e0db66ad097cea0a93c7cb7d7e81b656bbce77dc44f5f9cf745fb4.png",
+    "aaa36073742c940b26a0a5690780610073f730165b3ed8ad9eb09c2337227c54": "assets/aaa36073742c940b26a0a5690780610073f730165b3ed8ad9eb09c2337227c54.png",
+    "b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393": "assets/b0e9d84ede7a2036bdf5fd62f4edc95d6433c8e520d87877dcc4136e9ab90393.png",
+    "8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd": "assets/8cd61f0d9356020d0d83b09620bc49b04eac3a57a1a0a12973c24c6e327047bd.png",
+    "47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918": "assets/47d2e6d4687ff11bfc9520e6053724d74e63fa9e62e6ae61cde901c92f083918.png",
+    "49164c596dda983bb9fc4e6d324bfc11f164889ed4816305cfa69da2f760f63d": "assets/49164c596dda983bb9fc4e6d324bfc11f164889ed4816305cfa69da2f760f63d.png",
+    "d5ea70b559aa5aacde9a6d2c01359e2623cf47a58b3297ac18b69ea154d56058": "assets/d5ea70b559aa5aacde9a6d2c01359e2623cf47a58b3297ac18b69ea154d56058.png",
+    "134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212": "assets/134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212.png",
+    "c90245fa21b3ed0f9e7ded755901113a931bd4cc926bc62fb98ef8bb16a1bdd6": "assets/c90245fa21b3ed0f9e7ded755901113a931bd4cc926bc62fb98ef8bb16a1bdd6.png",
+    "c432067c66236c3eb7de5b5cfdbcdce4ab6d2cbda6625e622cf260ed53d6f096": "assets/c432067c66236c3eb7de5b5cfdbcdce4ab6d2cbda6625e622cf260ed53d6f096.png",
+    "63dc1c4431fd24c1422d6b53c401c118d1e18bf3187bc1a2f9ef1147461feb90": "assets/63dc1c4431fd24c1422d6b53c401c118d1e18bf3187bc1a2f9ef1147461feb90.png",
+    "a79f69dc1f31ea956d77e83d96e496235e012188bd6799275b8854c00e582726": "assets/a79f69dc1f31ea956d77e83d96e496235e012188bd6799275b8854c00e582726.png",
+    "fc36f9d5e8bb62a39265e6504f6d95498cbea2b9222e0837047e6aebe3e2ffcb": "assets/fc36f9d5e8bb62a39265e6504f6d95498cbea2b9222e0837047e6aebe3e2ffcb.png",
+    "995f48e4f65148fa40793807a3c3e9bf56250e5b78e53fe7b374bddc8f9104b5": "assets/995f48e4f65148fa40793807a3c3e9bf56250e5b78e53fe7b374bddc8f9104b5.png",
+    "abf835ffa5aa8273729b6f623ac0ca104f4c9b646e95312d75c465d880c52458": "assets/abf835ffa5aa8273729b6f623ac0ca104f4c9b646e95312d75c465d880c52458.png",
+    "adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019": "assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png",
+    "4575e70d0d2bf119cc7a1ccbcb8b9ef4a45e468bca53ba760e9c840e8d4214ec": "assets/4575e70d0d2bf119cc7a1ccbcb8b9ef4a45e468bca53ba760e9c840e8d4214ec.png",
+    "11f54fcd27d8430a93bf3fd035995b087b430949c1ac8ac63e1ae33d038e5ad5": "assets/11f54fcd27d8430a93bf3fd035995b087b430949c1ac8ac63e1ae33d038e5ad5.png",
+    "8de5232c6e0818e588eb92f7b65f849701b77737264436d1c40cd73c3eb49fdc": "assets/8de5232c6e0818e588eb92f7b65f849701b77737264436d1c40cd73c3eb49fdc.png",
+    "910a445c39f5b4f9a80de5553af8295a057c03d64d9d4f310a687cd33a1d343e": "assets/910a445c39f5b4f9a80de5553af8295a057c03d64d9d4f310a687cd33a1d343e.png",
+    "cd86e082451569b243cf693966658a8e16722f9cbb2bac9bdcb6c0364afc6110": "assets/cd86e082451569b243cf693966658a8e16722f9cbb2bac9bdcb6c0364afc6110.png",
+    "59ac55e3c1607c6ad99bf6b4aed8a1127632b4c289ac8d7d59f5998881c506d1": "assets/59ac55e3c1607c6ad99bf6b4aed8a1127632b4c289ac8d7d59f5998881c506d1.png",
+    "34251250c59c10e1ac35b99798647ad157048bfb101cc04d17adcf931a9ff36a": "assets/34251250c59c10e1ac35b99798647ad157048bfb101cc04d17adcf931a9ff36a.png",
+    "0c0c1d24c45b701ab96df77c65c495fb85eef2138e78c10702634323a34ba85e": "assets/0c0c1d24c45b701ab96df77c65c495fb85eef2138e78c10702634323a34ba85e.png",
+    "9c2d3a388f88f37b8793b1a12c12e6263a88c5c16ff05d8a73e455848126995d": "assets/9c2d3a388f88f37b8793b1a12c12e6263a88c5c16ff05d8a73e455848126995d.png",
+    "d9d42aa7837f6473692d845cc76f9003667ab5861647b1411c39efd49f580ccf": "assets/d9d42aa7837f6473692d845cc76f9003667ab5861647b1411c39efd49f580ccf.png",
+    "d46ffebf5ca61fa17a3bc0cfa69129f07a0d8f192878543b3245c4d279bb96b4": "assets/d46ffebf5ca61fa17a3bc0cfa69129f07a0d8f192878543b3245c4d279bb96b4.png",
+    "71ab9ee47390f9af05beb73e9050ac9325fc6c316357926984e1959eeef00958": "assets/71ab9ee47390f9af05beb73e9050ac9325fc6c316357926984e1959eeef00958.png",
+    "c42afc64540e0a9da334836db658cc53f0c8e8cdf1e42b8a10714fdd1ffe5560": "assets/c42afc64540e0a9da334836db658cc53f0c8e8cdf1e42b8a10714fdd1ffe5560.png",
+    "35a622c794f4da2609414b0a821dd2015d59b4e1ad0e24be0d06bb633f87d447": "assets/35a622c794f4da2609414b0a821dd2015d59b4e1ad0e24be0d06bb633f87d447.png",
+    "062200cdaac7f92f9acbc134779195a6f07f9fd8eb51b5a7c84924a7d2e6b4d2": "assets/062200cdaac7f92f9acbc134779195a6f07f9fd8eb51b5a7c84924a7d2e6b4d2.png",
+    "9e221b7e27bdaa4b22e78f605a4c6e8ff34f1da91fd71507225ff229f30552db": "assets/9e221b7e27bdaa4b22e78f605a4c6e8ff34f1da91fd71507225ff229f30552db.png",
+    "06690a9374f32f594ea4c4b739ac287d951aaf89e32414485cabd4ed5bffffd6": "assets/06690a9374f32f594ea4c4b739ac287d951aaf89e32414485cabd4ed5bffffd6.png",
+    "d4eed90623d8922455bd5322daa0c215b025ee2ca4d46c9c35a479b698b0ac47": "assets/d4eed90623d8922455bd5322daa0c215b025ee2ca4d46c9c35a479b698b0ac47.png",
+    "80c6284711f42b7bb5e4f593be85ff9f2263a863485b8dfce321b6d9de80f76d": "assets/80c6284711f42b7bb5e4f593be85ff9f2263a863485b8dfce321b6d9de80f76d.png",
+    "bdc84331cf8517af90958cd2a0b4aaf961d92827852f756b584f4ada6203e63a": "assets/bdc84331cf8517af90958cd2a0b4aaf961d92827852f756b584f4ada6203e63a.png",
+    "6807ef8fc1091abb6f5ff642b2e28639dc9025cee0cca401e45c9872aa8b4d22": "assets/6807ef8fc1091abb6f5ff642b2e28639dc9025cee0cca401e45c9872aa8b4d22.png",
+    "b2b11971461575d6146b985d7ffb089fd2837f2bd8a0dd72f4a98885f6ae04ba": "assets/b2b11971461575d6146b985d7ffb089fd2837f2bd8a0dd72f4a98885f6ae04ba.png",
+    "e06cb21b98ffd810a5b7653bb38cdfe5a00ce4a03d892bb8b2c5a5256a2224ca": "assets/e06cb21b98ffd810a5b7653bb38cdfe5a00ce4a03d892bb8b2c5a5256a2224ca.png",
+    "4750a223aafb084efeff27bd4b3b3dbcf164f8941c1cf89fdeb2acc109acd742": "assets/4750a223aafb084efeff27bd4b3b3dbcf164f8941c1cf89fdeb2acc109acd742.png",
+    "9f2ff4f49896d7989b3fa57ba388ca3f854aec5c39fa0aa2fbe5d4cf7dfa9b43": "assets/9f2ff4f49896d7989b3fa57ba388ca3f854aec5c39fa0aa2fbe5d4cf7dfa9b43.png",
+    "22546e2e63d8fe333847f1d20e6b3ff904cf779970747474b5daef02fae0b85e": "assets/22546e2e63d8fe333847f1d20e6b3ff904cf779970747474b5daef02fae0b85e.png",
+    "7b8675379ad5eaaf23f988456583e2702065429f075d31690c639bead1a34b89": "assets/7b8675379ad5eaaf23f988456583e2702065429f075d31690c639bead1a34b89.png",
+    "cfc932fe2d38f5e420be74818e9844146334931c5b4504f5ac0ada8f02c664cd": "assets/cfc932fe2d38f5e420be74818e9844146334931c5b4504f5ac0ada8f02c664cd.png",
+    "5afb1bf3ba208a60e1091659366adc82c7a6b18e3ca6e81099b1b12d5971cfac": "assets/5afb1bf3ba208a60e1091659366adc82c7a6b18e3ca6e81099b1b12d5971cfac.png",
+    "07d3d6e74d3c60432b82cd265751f86251cb9c2b15bddfee14df5c34eb9a7c10": "assets/07d3d6e74d3c60432b82cd265751f86251cb9c2b15bddfee14df5c34eb9a7c10.png",
+    "70c9a415caf2940bd123f9bcab1a51417b64975dc7a63d09e47a11942d6666d4": "assets/70c9a415caf2940bd123f9bcab1a51417b64975dc7a63d09e47a11942d6666d4.png",
+    "8618ba2177c408da5c18f2cfdbd7e4babf5f734e15ed7de61f0bebb2dae7fd95": "assets/8618ba2177c408da5c18f2cfdbd7e4babf5f734e15ed7de61f0bebb2dae7fd95.png",
+    "0037b77f59831d985264d6f83ab9c988e4fa4701540719c7674aed8259b9cc94": "assets/0037b77f59831d985264d6f83ab9c988e4fa4701540719c7674aed8259b9cc94.png",
+    "8cb2553204ccc8042ea2b77753037bdbe4766fb54a54140e6eef84050d634c02": "assets/8cb2553204ccc8042ea2b77753037bdbe4766fb54a54140e6eef84050d634c02.png",
+    "42a8798865f0b4b2da035403d3950706510cce770fda210766e265d8689ffdf9": "assets/42a8798865f0b4b2da035403d3950706510cce770fda210766e265d8689ffdf9.png",
+    "fe34f1d22a8c5aa7385c74efb3d064290d43219abe231b91da8fb0ff4769e092": "assets/fe34f1d22a8c5aa7385c74efb3d064290d43219abe231b91da8fb0ff4769e092.png",
+    "5b08a782986b640d9abce58aaacdde2cbce2cb56448d16edcc5776944cb0a52c": "assets/5b08a782986b640d9abce58aaacdde2cbce2cb56448d16edcc5776944cb0a52c.png",
+    "a126fe1e660019fe4df16776cbb91fea07e2ba8f339b6fa89a35ba92316e9f16": "assets/a126fe1e660019fe4df16776cbb91fea07e2ba8f339b6fa89a35ba92316e9f16.png",
+    "e9f54c5910552b6b0a75ae7b41072e6ad2703ac8ba66df45bed7b85e1b71bef3": "assets/e9f54c5910552b6b0a75ae7b41072e6ad2703ac8ba66df45bed7b85e1b71bef3.png",
+    "003aea23ca094be3465e9548c06c6957dc56bf08e69baa78abbe432706ea076c": "assets/003aea23ca094be3465e9548c06c6957dc56bf08e69baa78abbe432706ea076c.png",
+    "c555d4fbd447a3c3bd2689d812f0750191c430dcf212efb90a57c761f2fc977b": "assets/c555d4fbd447a3c3bd2689d812f0750191c430dcf212efb90a57c761f2fc977b.png",
+    "58645142e3bf895ed6a681fb00b30ac6256b57de10154810ac73fd8c7f197361": "assets/58645142e3bf895ed6a681fb00b30ac6256b57de10154810ac73fd8c7f197361.png",
+    "5f36ee8fe08fddf54279142b1f169b555e92ce6ef31634520e5e50cc5db3b33c": "assets/5f36ee8fe08fddf54279142b1f169b555e92ce6ef31634520e5e50cc5db3b33c.png",
+    "8cff35afad883a0f852807cd1e21ea01305c8b106887842df0fb53d04d3b152f": "assets/8cff35afad883a0f852807cd1e21ea01305c8b106887842df0fb53d04d3b152f.png",
+    "4dd0b27a32b78d8b1ac3e51e6ace224d1c9c8718b5336b2868ae17d66c0b7287": "assets/4dd0b27a32b78d8b1ac3e51e6ace224d1c9c8718b5336b2868ae17d66c0b7287.png",
+    "72d7695a52dda277115959754b590761792e4063ff2f60fe6b82279d6214130b": "assets/72d7695a52dda277115959754b590761792e4063ff2f60fe6b82279d6214130b.png",
+    "c55649a29597023593a5abde8c89a4e8e2ee1868e8cbac31e6cc58e734a3d105": "assets/c55649a29597023593a5abde8c89a4e8e2ee1868e8cbac31e6cc58e734a3d105.png",
+    "771aff1d663aca3389549ae5acb0904295b4179be0d0ce40b7f0cc22f0b3beb3": "assets/771aff1d663aca3389549ae5acb0904295b4179be0d0ce40b7f0cc22f0b3beb3.png",
+    "390edd9dfd3bccc6a4ccc439c8840ea207e27167785d01bab6c1f306fe5a35be": "assets/390edd9dfd3bccc6a4ccc439c8840ea207e27167785d01bab6c1f306fe5a35be.png",
+    "4c738442f92f24a0004601d6fe9c2800eff49da0ab554597f1c255542fee3548": "assets/4c738442f92f24a0004601d6fe9c2800eff49da0ab554597f1c255542fee3548.png",
+    "56579d0d77198c4517c78132ab5dfce6c69f015d4c4cfbfa4a0b702752b1e751": "assets/56579d0d77198c4517c78132ab5dfce6c69f015d4c4cfbfa4a0b702752b1e751.png",
+    "344d65914df2a02fa81b9c89f9f840fc4e4ebbf77c1044df81b417b3daf2660b": "assets/344d65914df2a02fa81b9c89f9f840fc4e4ebbf77c1044df81b417b3daf2660b.png",
+    "ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81": "assets/ec0035a4c4a1fae82cb3526cb95393333f0ebfd9973152992f75e9a9af4b0a81.png",
+    "a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e": "assets/a37448ec4fb46420f188f73f7efc1c44a313e343b04af43e4b3a272666fad10e.png",
+    "f8580cdca4073f1e09bad276ad5d09f80602b4f2159a6a7f4cc50398cc4421a3": "assets/f8580cdca4073f1e09bad276ad5d09f80602b4f2159a6a7f4cc50398cc4421a3.png",
+    "319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407": "assets/319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407.png",
+    "733414fa9d8d65171f3d8d235fea76de2da88dacc3b4df68bcdecd428c4351a5": "assets/733414fa9d8d65171f3d8d235fea76de2da88dacc3b4df68bcdecd428c4351a5.png",
+    "c21b07a9dc31e11f2f5b211400a65d81ca24408af375398599520cfd3dec6da1": "assets/c21b07a9dc31e11f2f5b211400a65d81ca24408af375398599520cfd3dec6da1.png",
+    "28a4da5c2f7566c9e2863db0f7c29b1cbb47bec9f5f5dac4a40906988f673b43": "assets/28a4da5c2f7566c9e2863db0f7c29b1cbb47bec9f5f5dac4a40906988f673b43.png",
+    "a0c99232c30705b0a64ca7c96d0f52d590e2520f214fb683004f5086f669d7e8": "assets/a0c99232c30705b0a64ca7c96d0f52d590e2520f214fb683004f5086f669d7e8.png",
+    "1b309c0874d97239ac8263436280dc3a56e01d9a37a15b1a8e7bfb859c045c01": "assets/1b309c0874d97239ac8263436280dc3a56e01d9a37a15b1a8e7bfb859c045c01.png",
+    "566be053274b0bc52dbf73403249baf80c78fefb646601f9b5029ddaaad972fd": "assets/566be053274b0bc52dbf73403249baf80c78fefb646601f9b5029ddaaad972fd.png",
+    "0ae94ea1690ce33ca0be85d804630c8921cfdf721cf28161b75d0d3bf8e2a7e1": "assets/0ae94ea1690ce33ca0be85d804630c8921cfdf721cf28161b75d0d3bf8e2a7e1.png",
+    "793a2af76b6c429f41f616a6fad717eea2583661dd46c1d59c596a7081f441b7": "assets/793a2af76b6c429f41f616a6fad717eea2583661dd46c1d59c596a7081f441b7.png"
+  },
+  "checks": {
+    "all_15_rendered": true,
+    "all_item_ids_in_database": true,
+    "exact_s10_suit_in_every_option": true,
+    "no_external_image_requests": true,
+    "uncaught_browser_errors": [],
+    "application_files_changed": false,
+    "wear_history_accessed_or_changed": false,
+    "unique_complete_selections": 15
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "schema": "hewrs.hybrid.functional.v1_19_0",
+  "passed": 21,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Baseline exact source scope preserved; 18 nonsuit /50 suit shirts /47 ties /32 tops",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "94 explicit complete-look references; unchanged source lock",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "No-anchor default returns15 reference outfits, not relabelled heuristic or AI",
+      "passed": true,
+      "result": {
+        "counts": {
+          "suit-9": 1,
+          "shirt-DS022": 1,
+          "T022": 1,
+          "shoe-3": 2,
+          "watch-P05": 2,
+          "suit-12": 1,
+          "shirt-DS035": 1,
+          "T023": 1,
+          "shoe-4": 2,
+          "watch-P08": 2,
+          "suit-0": 1,
+          "shirt-DS009": 1,
+          "T018": 1,
+          "shoe-5": 1,
+          "watch-P02": 2,
+          "suit-2": 1,
+          "shirt-DS006": 2,
+          "T028": 1,
+          "shoe-6": 2,
+          "watch-R09": 2,
+          "suit-16": 1,
+          "shirt-DS001": 1,
+          "T025": 1,
+          "shoe-0": 1,
+          "watch-R14": 1,
+          "suit-5": 1,
+          "shirt-DS024": 1,
+          "T030": 1,
+          "shoe-2": 1,
+          "watch-AP09": 2,
+          "suit-7": 1,
+          "shirt-DS017": 1,
+          "T021": 1,
+          "shoe-8": 1,
+          "watch-R03": 1,
+          "suit-10": 1,
+          "shirt-DS036": 1,
+          "shoe-11": 1,
+          "watch-P07": 1,
+          "suit-14": 1,
+          "shirt-DS030": 1,
+          "T020": 2,
+          "shoe-13": 2,
+          "watch-R02": 1,
+          "blazer-1": 1,
+          "shirt-DS005": 1,
+          "T015": 1,
+          "pants-PG003": 1,
+          "blazer-source-B06": 1,
+          "shirt-DS007": 1,
+          "T004": 1,
+          "pants-PB001": 1,
+          "shoe-15": 2,
+          "blazer-source-B08": 1,
+          "shirt-DS019": 1,
+          "pants-PB002": 1,
+          "blazer-source-B10": 1,
+          "shirt-DS014": 1,
+          "T005": 1,
+          "pants-PG001": 1,
+          "watch-R13": 1,
+          "blazer-source-B13": 1,
+          "shirt-DS025": 1,
+          "T012": 1,
+          "pants-PG002": 1,
+          "suit-1": 1
+        },
+        "no_tie": 2
+      }
+    },
+    {
+      "name": "14 independently preferred no-anchor references retained exactly; held reference excluded",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Every returned item and unchanged source score revalidates; all15 exact canonical selections",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Forged model/grade/explanation and changed IDs cannot be recalled as issued options",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All32 exact jacket anchors keep locks/caps; limited-library counts disclosed",
+      "passed": true,
+      "result": [
+        {
+          "id": "S01",
+          "options": 3
+        },
+        {
+          "id": "S02",
+          "options": 2
+        },
+        {
+          "id": "S03",
+          "options": 3
+        },
+        {
+          "id": "S04",
+          "options": 2
+        },
+        {
+          "id": "S05",
+          "options": 2
+        },
+        {
+          "id": "S06",
+          "options": 3
+        },
+        {
+          "id": "S07",
+          "options": 1
+        },
+        {
+          "id": "S08",
+          "options": 3
+        },
+        {
+          "id": "S09",
+          "options": 2
+        },
+        {
+          "id": "S10",
+          "options": 14
+        },
+        {
+          "id": "S11",
+          "options": 3
+        },
+        {
+          "id": "S12",
+          "options": 2
+        },
+        {
+          "id": "S13",
+          "options": 2
+        },
+        {
+          "id": "S14",
+          "options": 2
+        },
+        {
+          "id": "S15",
+          "options": 3
+        },
+        {
+          "id": "S16",
+          "options": 2
+        },
+        {
+          "id": "S17",
+          "options": 3
+        },
+        {
+          "id": "S18",
+          "options": 2
+        },
+        {
+          "id": "B01",
+          "options": 2
+        },
+        {
+          "id": "B02",
+          "options": 3
+        },
+        {
+          "id": "B03",
+          "options": 2
+        },
+        {
+          "id": "B04",
+          "options": 2
+        },
+        {
+          "id": "B05",
+          "options": 2
+        },
+        {
+          "id": "B06",
+          "options": 3
+        },
+        {
+          "id": "B07",
+          "options": 2
+        },
+        {
+          "id": "B08",
+          "options": 2
+        },
+        {
+          "id": "B09",
+          "options": 2
+        },
+        {
+          "id": "B10",
+          "options": 3
+        },
+        {
+          "id": "B11",
+          "options": 2
+        },
+        {
+          "id": "B12",
+          "options": 2
+        },
+        {
+          "id": "B13",
+          "options": 3
+        },
+        {
+          "id": "B14",
+          "options": 2
+        }
+      ]
+    },
+    {
+      "name": "Explicit shoes/watch anchors adapt references only to exact selected items",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Family preferences are not exact exemptions",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Explicit No Tie lifts only No Tie count; physical caps still apply",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unknown items, unconnected nonsuit shirts and No-Tie-only guards stay explicit",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unresolved watch slot preserved in inventory/history but excluded from recommendations",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Weather rules apply to every curated result without touching environment or source data",
+      "passed": true,
+      "result": {
+        "options": 15
+      }
+    },
+    {
+      "name": "Source/premise conflicts are not filled with invented numerical grades",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unreadable/stale ledger guard remains byte-identical to accepted V1.18.0",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Generation changes neither catalogue, raw score data nor passed history",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All39,817 supported suit routes remain valid",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "Unconfigured visual mode fails before any render/provider call; no fallback relabelled AI",
+      "passed": true
+    },
+    {
+      "name": "Live workflow carries fixture renderer payloads for every candidate; rejects malicious rank IDs",
+      "passed": true,
+      "result": {
+        "candidates": 20,
+        "external_provider_calls": 0
+      }
+    },
+    {
+      "name": "Visual cancellation does not generate partial results",
+      "passed": true
+    },
+    {
+      "name": "Service client sends no ledger/coordinates; rejects provider keys in browser",
+      "passed": true
+    }
+  ],
+  "scope": "Node VM, exact local modules, isolated fixture transport; no live API calls"
+}

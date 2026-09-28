@@ -1,0 +1,38 @@
+{
+  "checks": [
+    {
+      "name": "All new/changed executable syntax checked",
+      "passed": true
+    },
+    {
+      "name": "All private resource bytes match source/board manifest",
+      "passed": true
+    },
+    {
+      "name": "Frontend/private backend exact reference libraries match",
+      "passed": true
+    },
+    {
+      "name": "Private service is disabled by default; no secrets/databases packaged",
+      "passed": true
+    },
+    {
+      "name": "Configured HTTPS variant verified; original endpoint stays disabled",
+      "passed": true,
+      "details": {
+        "valid_https_configured_copy_verified": true,
+        "no_csp_wildcard": true,
+        "plaintext_endpoint_rejected": true,
+        "original_endpoint_still_null": true,
+        "service_called": false,
+        "endpoint_check_method": "Executed actual configuration script in isolated Node VM; no string/quote-format inference."
+      }
+    },
+    {
+      "name": "Exact V1.18.0 rollback actually reconstructed",
+      "passed": true,
+      "payloads": 1974
+    }
+  ],
+  "note": "ZIP identities and installer replays appear in external delivery receipt to avoid self-referential hashes."
+}
