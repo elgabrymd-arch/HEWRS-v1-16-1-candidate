@@ -1,0 +1,24 @@
+/* Owner option-list limits, V1.17.3. This module changes list composition only.
+ * No aesthetic scores, inventory IDs, history data or weather rules are changed.
+ * Exact item locks exempt only that item; choosing a colour family is not a lock.
+ * No Tie and no-jacket shirt-only are distinct modes with independent defaults.
+ */
+(function(root){'use strict';
+const ROLES=['topwear','shirt','tie','pants','shoes','watch'];
+const need=(x,m)=>{if(!x)throw Error(m);};
+function prefs(q){if(q?.prefs)return q.prefs;return {topwear:q?.topwear||{mode:'any'},shirt:q?.shirt||{mode:'any'},tie:q?.tie||{mode:'any'},bottoms:q?.pants||{mode:'any'},shoes:q?.shoes||{mode:'any'},watch:q?.watch||{mode:'any'}};}
+function exactLocks(q){const p=prefs(q),ids=[];for(const role of ROLES){const v=p[role==='pants'?'bottoms':role];if(v?.mode!=='item')continue;let id=v.id;if(role==='shirt'&&!id.startsWith('shirt-'))id='shirt-'+id;if(role==='pants'&&!id.startsWith('pants-'))id='pants-'+id;ids.push(id);}return ids;}
+function clothingKey(c){const i=c.items;return ['topwear','shirt','tie','pants'].map(k=>i[k]?.id||'NONE').join('|');}
+function fullKey(c){return ROLES.map(k=>c.items[k]?.id||'NONE').join('|');}
+function create(q){const p=prefs(q),exempt=new Set(exactLocks(q)),counts=new Map(),seen=new Set(),clothing=new Set();let noTie=0,shirtOnly=0,total=0;
+ const noTieExplicit=p.tie?.mode==='none',shirtOnlyExplicit=p.topwear?.mode==='item'&&p.topwear.id==='ui:shirt-only';
+ function canUse(id){return id==null||exempt.has(id)||(counts.get(id)||0)<2;}
+ function issue(c){need(c?.items,'Missing physical option items');const i=c.items;need(i.shirt?.id&&i.shoes?.id,'Incomplete physical option');if(seen.has(fullKey(c)))return 'DUPLICATE_COMPLETE_OUTFIT';if(clothing.has(clothingKey(c)))return 'DUPLICATE_CLOTHING_CONFIGURATION';if(!i.tie&&!noTieExplicit&&noTie>=2)return 'NO_TIE_OPTION_CAP';if(!i.topwear&&!shirtOnlyExplicit&&shirtOnly>=2)return 'SHIRT_ONLY_OPTION_CAP';for(const role of ROLES)if(i[role]?.id&&!canUse(i[role].id))return 'ITEM_CAP:'+i[role].id;return null;}
+ function add(c){const why=issue(c);need(!why,'Option list violates '+why);seen.add(fullKey(c));clothing.add(clothingKey(c));for(const role of ROLES){const id=c.items[role]?.id;if(id)counts.set(id,(counts.get(id)||0)+1);}if(!c.items.tie)noTie++;if(!c.items.topwear)shirtOnly++;total++;}
+ function snapshot(){return {schema:'hewrs.option-set-policy.v1_17_3',max_per_unanchored_item:2,no_tie_default_max:2,shirt_only_default_max:2,exact_anchor_exemptions:[...exempt],no_tie_explicitly_selected:noTieExplicit,shirt_only_explicitly_selected:shirtOnlyExplicit,no_tie_options:noTie,shirt_only_options:shirtOnly,returned_options:total,item_counts:Object.fromEntries(counts),all_unanchored_items_within_limit:[...counts].every(([id,n])=>exempt.has(id)||n<=2),scoring_adjustment:0,distinct_clothing_configurations:clothing.size};}
+ return Object.freeze({canUse,issue,add,snapshot,canAddNoTie:()=>noTieExplicit||noTie<2,canAddShirtOnly:()=>shirtOnlyExplicit||shirtOnly<2});
+}
+function inspect(options,q){need(Array.isArray(options)&&options.length<=15,'Invalid option-list length');const s=create(q);for(const o of options)s.add(o);return s.snapshot();}
+function limitLegacy(result,q){if(!Array.isArray(result?.options))return result;const s=create(q),options=[];for(const o of result.options){if(!s.issue(o)){s.add(o);options.push(o);}}return {...result,options,requested_options:15,returned_options:options.length,option_policy:s.snapshot(),reason:options.length<result.options.length?'The current results are limited by the two-use item and two-No-Tie rules. Exact item anchors exempt only the locked item; no score or constraint was changed.':result.reason};}
+root.HEWRSOptionSetPolicy=Object.freeze({create,inspect,exactLocks,clothingKey,fullKey,limitLegacy});
+})(globalThis);

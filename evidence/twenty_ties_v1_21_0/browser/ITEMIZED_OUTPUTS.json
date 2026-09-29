@@ -1,0 +1,5797 @@
+{
+  "FREE": [
+    {
+      "position": 1,
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-AP06"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-0",
+          "name": "Dark chocolate brown solid; double-breasted; peak lapels",
+          "brand": "Dior",
+          "palette": "warm",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Dark chocolate brown",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "S01",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS029",
+          "name": "Brooks Brothers 346 \u2014 ice-blue / silver-blue herringbone",
+          "brand": "Brooks Brothers 346",
+          "color": "Ice/silver-blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine continuous herringbone",
+          "_canonical": {
+            "id": "DS029",
+            "label": "Brooks Brothers 346 \u2014 ice-blue / silver-blue herringbone",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T024",
+          "brand": null,
+          "displayDesc": "Cornflower Blue Paisley",
+          "primaryColor": "Cornflower / royal blue",
+          "secondaryColors": [],
+          "colorFamily": "blue",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "VERY LARGE",
+          "patternScaleNum": 3.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Royal blue / beige-gold paisley",
+          "color": "Royal blue",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Royal blue / beige-gold paisley",
+          "_canonical": {
+            "id": "T024",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-4",
+          "name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Dark Brown Derby Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP06",
+          "name": "Audemars Piguet \u2014 RO Black Dial, Rose Gold",
+          "brand": "Audemars Piguet",
+          "color": "RO Black Dial, Rose Gold",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 2,
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PG003",
+        "shirtId": "DS002",
+        "state": "T035",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-1",
+          "name": "very dark/midnight navy, fine micro-check, structured two-button, flap pockets, no pocket square",
+          "brand": "Andrew Fezza",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 8,
+          "modes": [
+            "Office",
+            "Casual/Weekend"
+          ],
+          "lavender": false,
+          "formal": false,
+          "color": "Very dark navy / midnight navy",
+          "pattern": "Fine micro-check",
+          "_canonical": {
+            "id": "B02",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS002",
+          "name": "DS002 - source-repaired collar/body pilot",
+          "brand": "Tom James",
+          "color": "Cream/white",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Check/grid",
+          "_canonical": {
+            "id": "DS002",
+            "label": "DS002 - source-repaired collar/body pilot",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T035",
+          "brand": "Gucci",
+          "displayDesc": "Midnight Navy / Blue GG Monogram",
+          "primaryColor": "Midnight navy",
+          "secondaryColors": [
+            "Periwinkle / medium blue with small tonal navy connectors"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "geometric",
+          "patternSubtype": "Logo Monogram",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": "HIGH",
+          "densityNum": 4,
+          "contrast": "LOW",
+          "contrastNum": 1.67,
+          "texture": "Fine silk twill/jacquard appearance with smooth sheen and subtle diagonal rib",
+          "material": "silk",
+          "reflectance": "lustrous/high-sheen (observed)",
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / blue monogram",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / blue monogram",
+          "_canonical": {
+            "id": "T035",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG003",
+          "name": "Very light grey",
+          "brand": "",
+          "color": "Very light grey",
+          "colorCategory": "grey_light",
+          "details": "",
+          "_canonical": {
+            "id": "PG003",
+            "source": "CP98/PANTS54"
+          }
+        },
+        "shoes": {
+          "id": "shoe-1",
+          "name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Black Single Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP09",
+          "name": "Audemars Piguet \u2014 RO Dark Blue",
+          "brand": "Audemars Piguet",
+          "color": "RO Dark Blue",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 3,
+      "selection": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP06"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B08",
+          "name": "Cream / Ivory Textured Blazer",
+          "formal": false,
+          "color": "Cream / ivory",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "B08",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS019",
+          "name": "Chestnut/warm mid-brown; Solid",
+          "brand": "Brioni",
+          "color": "Chestnut/warm mid-brown",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS019",
+            "label": "Chestnut/warm mid-brown; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": null,
+        "pants": {
+          "id": "pants-PB001",
+          "name": "Charles Tyrwhitt \u2014 Chino Navy (34W 30L, Slim Fit)",
+          "brand": "Charles Tyrwhitt",
+          "color": "Chino Navy",
+          "details": "34W 30L, Slim Fit",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-13",
+          "name": "Hermes Loafers \u2014 Black Kelly Hardware",
+          "brand": "Hermes",
+          "subcategory": "Loafers",
+          "color": "Black Kelly Hardware",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP06",
+          "name": "Audemars Piguet \u2014 RO Black Dial, Rose Gold",
+          "brand": "Audemars Piguet",
+          "color": "RO Black Dial, Rose Gold",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 4,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS020",
+        "state": "T010",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-10",
+          "name": "Cool light grey textured near-solid",
+          "brand": "Zegna",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S11",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS020",
+          "name": "Paul Fredrick \u2014 white / soft-pink stripe",
+          "brand": "Paul Fredrick",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Pencil stripe",
+          "_canonical": {
+            "id": "DS020",
+            "label": "Paul Fredrick \u2014 white / soft-pink stripe",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T010",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Near-black Polka Dot",
+          "primaryColor": "Near-black / very dark charcoal",
+          "secondaryColors": [
+            "Ivory/cream"
+          ],
+          "colorFamily": "black",
+          "patternFamily": "geometric",
+          "patternSubtype": "Polka Dot",
+          "geometry": "CIRCULAR",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-LOW",
+          "contrastNum": 2.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Near-black / white spaced dots",
+          "color": "Near-black",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Near-black / white spaced dots",
+          "_canonical": {
+            "id": "T010",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-1",
+          "name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Black Single Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP09",
+          "name": "Audemars Piguet \u2014 RO Dark Blue",
+          "brand": "Audemars Piguet",
+          "color": "RO Dark Blue",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 5,
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "T037",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-12",
+          "name": "Medium-dark slate-blue textured near-solid",
+          "brand": "Loro Piana",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 10,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Medium-dark slate blue",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S13",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS035",
+          "name": "Zegna \u2014 ivory/off-white solid",
+          "brand": "Zegna",
+          "color": "Ivory/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work",
+            "weekend"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS035",
+            "label": "Zegna \u2014 ivory/off-white solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T037",
+          "brand": "Brooks Brothers",
+          "displayDesc": "Rose/Burgundy Geometric Medallion",
+          "primaryColor": "dusty rose / muted burgundy",
+          "secondaryColors": [
+            "rose",
+            "burgundy",
+            "slate blue/light blue and cream"
+          ],
+          "colorFamily": "pink",
+          "patternFamily": "organic",
+          "patternSubtype": "Floral",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM",
+          "contrastNum": 2.67,
+          "texture": "fine woven silk appearance",
+          "material": "silk",
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Dusty rose / blue medallions",
+          "color": "Dusty rose",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Dusty rose / blue medallions",
+          "_canonical": {
+            "id": "T037",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-2",
+          "name": "Berluti Dress Shoes \u2014 Black Double Monk",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Black Double Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R09",
+          "name": "Rolex \u2014 Datejust White Dial",
+          "brand": "Rolex",
+          "color": "Datejust White Dial",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 6,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS025",
+        "state": "T016",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS025",
+          "name": "Light pink; Solid",
+          "brand": "Charles Tyrwhitt",
+          "color": "Light pink",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS025",
+            "label": "Light pink; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T016",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Red/Silver Diagonal Stripe",
+          "primaryColor": "Red / silver-white",
+          "secondaryColors": [
+            "Burgundy / wine red"
+          ],
+          "colorFamily": "burgundy",
+          "patternFamily": "linear",
+          "patternSubtype": "Diagonal Stripe",
+          "geometry": "LINEAR",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Burgundy-red / silver diagonal stripe",
+          "color": "Burgundy-red",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Burgundy-red / silver diagonal stripe",
+          "_canonical": {
+            "id": "T016",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-2",
+          "name": "Berluti Dress Shoes \u2014 Black Double Monk",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Black Double Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R09",
+          "name": "Rolex \u2014 Datejust White Dial",
+          "brand": "Rolex",
+          "color": "Datejust White Dial",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 7,
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS022",
+        "state": "T030",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R11"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-10",
+          "name": "Cool light grey textured near-solid",
+          "brand": "Zegna",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S11",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS022",
+          "name": "Darker lavender; Solid",
+          "brand": "Paul Fredrick",
+          "color": "Darker lavender",
+          "white": false,
+          "lavender": true,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS022",
+            "label": "Darker lavender; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T030",
+          "brand": "Frangi",
+          "displayDesc": "Deep Purple Tonal Geometric",
+          "primaryColor": "Deep aubergine / dark purple",
+          "secondaryColors": [
+            "Very dark navy / bluish-black",
+            "charcoal-purple"
+          ],
+          "colorFamily": "purple",
+          "patternFamily": "geometric",
+          "patternSubtype": "Geometric",
+          "geometry": "MIXED",
+          "patternScale": "SMALL-MEDIUM",
+          "patternScaleNum": 2,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY LOW",
+          "contrastNum": 1.33,
+          "texture": "Tonal jacquard with pronounced texture",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": true,
+          "status": "active",
+          "name": "Aubergine tonal geometric",
+          "color": "Aubergine tonal geometric",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Aubergine tonal geometric",
+          "_canonical": {
+            "id": "T030",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-3",
+          "name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Black Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R11",
+          "name": "Rolex \u2014 Day-Date Green",
+          "brand": "Rolex",
+          "color": "Day-Date Green",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 8,
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS017",
+        "state": "T018",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R11"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-13",
+          "name": "Dark charcoal / slate-blue Prince of Wales / glen plaid",
+          "brand": "Tom James",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 8,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Dark charcoal blue",
+          "pattern": "Prince of Wales / glen plaid",
+          "_canonical": {
+            "id": "S14",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS017",
+          "name": "Brioni \u2014 cream/stone solid",
+          "brand": "Brioni",
+          "color": "Cream/stone",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS017",
+            "label": "Brioni \u2014 cream/stone solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T018",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Dark brown Paisley",
+          "primaryColor": "Dark brown / espresso",
+          "secondaryColors": [
+            "Steel blue",
+            "light blue",
+            "silver-grey"
+          ],
+          "colorFamily": "brown",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "VERY LARGE",
+          "patternScaleNum": 3.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-HIGH",
+          "contrastNum": 3,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Dark brown / slate-blue paisley",
+          "color": "Dark brown",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Dark brown / slate-blue paisley",
+          "_canonical": {
+            "id": "T018",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-3",
+          "name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Black Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R11",
+          "name": "Rolex \u2014 Day-Date Green",
+          "brand": "Rolex",
+          "color": "Day-Date Green",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 9,
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-AP10"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-2",
+          "name": "Mushroom beige / warm greige solid",
+          "brand": "Brioni",
+          "palette": "warm",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 8,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Mushroom beige",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "S03",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS006",
+          "name": "Brunello Cucinelli \u2014 light blue solid",
+          "brand": "Brunello Cucinelli",
+          "color": "Light blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": true,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS006",
+            "label": "Brunello Cucinelli \u2014 light blue solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T033",
+          "brand": "Gucci",
+          "displayDesc": "Dark Navy Multicolor GG Monogram",
+          "primaryColor": "Very dark navy / near-black navy",
+          "secondaryColors": [
+            "Light blue and muted gold / ochre"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "geometric",
+          "patternSubtype": "Logo Monogram",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": "HIGH",
+          "densityNum": 4,
+          "contrast": "LOW",
+          "contrastNum": 1.67,
+          "texture": "Fine silk jacquard/twill appearance with a subtly ribbed dark ground",
+          "material": "silk",
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Dark navy / blue-gold monogram",
+          "color": "Dark navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Dark navy / blue-gold monogram",
+          "_canonical": {
+            "id": "T033",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-4",
+          "name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Dark Brown Derby Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP10",
+          "name": "Audemars Piguet \u2014 RO Blue RG Bracelet",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Bracelet",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 10,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS008",
+        "state": "T044",
+        "shoeId": "shoe-5",
+        "watchId": "watch-R13"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS008",
+          "name": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+          "brand": "Brunello Cucinelli",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine horizontal stripe",
+          "_canonical": {
+            "id": "DS008",
+            "label": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T044",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Silver-Grey Tonal Floral-Paisley",
+          "primaryColor": "Silver-grey / light pearl-grey",
+          "secondaryColors": [
+            "Tonal grey floral-paisley vine outline (self-tone woven, not charcoal or black)"
+          ],
+          "colorFamily": "grey",
+          "patternFamily": "organic",
+          "patternSubtype": "Floral-Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM",
+          "patternScaleNum": 2.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW-MEDIUM",
+          "contrastNum": 2,
+          "texture": "tonal jacquard, woven leaf/paisley vine motif",
+          "material": "silk",
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Silver-grey tonal floral-paisley",
+          "color": "Silver-grey tonal floral-paisley",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Silver-grey tonal floral-paisley",
+          "_canonical": {
+            "id": "T044",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-5",
+          "name": "Ecco Dress Shoes \u2014 Brown Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R13",
+          "name": "Rolex \u2014 Day-Date Champagne",
+          "brand": "Rolex",
+          "color": "Day-Date Champagne",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 11,
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T032",
+        "shoeId": "shoe-49",
+        "watchId": "watch-R13"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-0",
+          "name": "medium navy, medium-weight linen, visible natural slub, patch pockets",
+          "brand": "Brunello Cucinelli",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 8,
+          "modes": [
+            "Office",
+            "Casual/Weekend"
+          ],
+          "lavender": false,
+          "formal": false,
+          "color": "Medium navy",
+          "pattern": "Solid / near-solid",
+          "_canonical": {
+            "id": "B01",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS005",
+          "name": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+          "brand": "Brunello Cucinelli",
+          "color": "Cream/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Visually near-solid; subtle windowpane metadata retained",
+          "_canonical": {
+            "id": "DS005",
+            "label": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T032",
+          "brand": "Versace Collection",
+          "displayDesc": "Deep Purple Geometric Stripe",
+          "primaryColor": "Deep royal purple / aubergine",
+          "secondaryColors": [
+            "Black",
+            "dark navy",
+            "royal blue and ivory/white"
+          ],
+          "colorFamily": "purple",
+          "patternFamily": "linear",
+          "patternSubtype": "Diagonal Stripe",
+          "geometry": "LINEAR",
+          "patternScale": "MEDIUM",
+          "patternScaleNum": 2.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM",
+          "contrastNum": 2.67,
+          "texture": "High-relief jacquard with contrasting woven structures; purple sections show a pronounced geometric/basket texture",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": true,
+          "status": "active",
+          "name": "Purple / navy-white diagonal stripe",
+          "color": "Purple",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Purple / navy-white diagonal stripe",
+          "_canonical": {
+            "id": "T032",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG003",
+          "name": "Very light grey",
+          "brand": "",
+          "color": "Very light grey",
+          "colorCategory": "grey_light",
+          "details": "",
+          "_canonical": {
+            "id": "PG003",
+            "source": "CP98/PANTS54"
+          }
+        },
+        "shoes": {
+          "id": "shoe-49",
+          "name": "Berluti Dress Shoes \u2014 Alessandro Infini Alto Oxford, Venezia calf, brown patina, lug sole",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Alessandro Infini Alto Oxford, brown Venezia calf patina, lug sole",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R13",
+          "name": "Rolex \u2014 Day-Date Champagne",
+          "brand": "Rolex",
+          "color": "Day-Date Champagne",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 12,
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS028",
+        "state": "T009",
+        "shoeId": "shoe-11",
+        "watchId": "watch-AP10"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-0",
+          "name": "Dark chocolate brown solid; double-breasted; peak lapels",
+          "brand": "Dior",
+          "palette": "warm",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Dark chocolate brown",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "S01",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS028",
+          "name": "Tom James \u2014 very pale-blue birdseye / micro-check",
+          "brand": "Tom James",
+          "color": "Very pale blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Birdseye/micro-check",
+          "_canonical": {
+            "id": "DS028",
+            "label": "Tom James \u2014 very pale-blue birdseye / micro-check",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T009",
+          "brand": "Holland & Sherry, London 1836",
+          "displayDesc": "Antique Gold Medallion Mosaic",
+          "primaryColor": "Antique gold / mustard",
+          "secondaryColors": [
+            "Powder blue",
+            "navy",
+            "burgundy/plum",
+            "cream",
+            "small coral-red accents"
+          ],
+          "colorFamily": "gold",
+          "patternFamily": "geometric",
+          "patternSubtype": "Medallion/Mosaic",
+          "geometry": "MIXED",
+          "patternScale": "VERY LARGE",
+          "patternScaleNum": 3.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-HIGH",
+          "contrastNum": 3,
+          "texture": "chained oval links and squared medallion units with floral centers",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Gold / blue medallion mosaic",
+          "color": "Gold",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Gold / blue medallion mosaic",
+          "_canonical": {
+            "id": "T009",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-11",
+          "name": "Gucci Loafers \u2014 Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP10",
+          "name": "Audemars Piguet \u2014 RO Blue RG Bracelet",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Bracelet",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 13,
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS013",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-R14"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-3",
+          "name": "Approved grey double-breasted solid appearance",
+          "brand": "Louis Vuitton",
+          "palette": "neutral",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Medium grey",
+          "pattern": "Solid appearance",
+          "_canonical": {
+            "id": "S04",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS013",
+          "name": "Tom James \u2014 cream, brown & light-blue tattersall",
+          "brand": "Tom James",
+          "color": "Cream",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Tattersall/windowpane",
+          "_canonical": {
+            "id": "DS013",
+            "label": "Tom James \u2014 cream, brown & light-blue tattersall",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": null,
+        "pants": null,
+        "shoes": {
+          "id": "shoe-13",
+          "name": "Hermes Loafers \u2014 Black Kelly Hardware",
+          "brand": "Hermes",
+          "subcategory": "Loafers",
+          "color": "Black Kelly Hardware",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R14",
+          "name": "Rolex \u2014 Day-Date White Roman",
+          "brand": "Rolex",
+          "color": "Day-Date White Roman",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 14,
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS024",
+        "state": "T001",
+        "shoeId": "shoe-5",
+        "watchId": "watch-R14"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-5",
+          "name": "Approved grey Prince of Wales / glen check",
+          "brand": "DKNY",
+          "palette": "cool",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 8,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Medium grey",
+          "pattern": "Prince of Wales / glen check",
+          "_canonical": {
+            "id": "S06",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS024",
+          "name": "Pale pink; Solid",
+          "brand": "Burberry",
+          "color": "Pale pink",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS024",
+            "label": "Pale pink; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T001",
+          "brand": "Gucci",
+          "displayDesc": "Mushroom Taupe Horsebit",
+          "primaryColor": "Mushroom taupe / warm grey-brown",
+          "secondaryColors": [
+            "Muted champagne-beige"
+          ],
+          "colorFamily": "brown",
+          "patternFamily": "geometric",
+          "patternSubtype": "Horsebit",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW",
+          "contrastNum": 1.33,
+          "texture": "fine textured/micro-check ground",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Taupe horsebit",
+          "color": "Taupe horsebit",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Taupe horsebit",
+          "_canonical": {
+            "id": "T001",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-5",
+          "name": "Ecco Dress Shoes \u2014 Brown Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R14",
+          "name": "Rolex \u2014 Day-Date White Roman",
+          "brand": "Rolex",
+          "color": "Day-Date White Roman",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 15,
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS044",
+        "state": "T020",
+        "shoeId": "shoe-8",
+        "watchId": "watch-AP13"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-16",
+          "name": "Very dark navy fine blue-grey pinstripe",
+          "brand": "Zegna",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Very dark navy",
+          "pattern": "Fine tonal pinstripe",
+          "_canonical": {
+            "id": "S17",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS044",
+          "name": "Emanuel Berg \u2014 white with navy micro-diamond / dot print",
+          "brand": "Emanuel Berg",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work",
+            "weekend"
+          ],
+          "pattern": "Micro-diamond/dot",
+          "_canonical": {
+            "id": "DS044",
+            "label": "Emanuel Berg \u2014 white with navy micro-diamond / dot print",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T020",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Deep navy Paisley",
+          "primaryColor": "Deep navy",
+          "secondaryColors": [
+            "Burgundy/wine",
+            "olive-grey",
+            "silver/cream"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY HIGH",
+          "contrastNum": 3.67,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / burgundy-tan paisley",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / burgundy-tan paisley",
+          "_canonical": {
+            "id": "T020",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-8",
+          "name": "Gucci Loafers \u2014 Black Horsebit",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Black Horsebit",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP13",
+          "name": "Audemars Piguet \u2014 RO Blue RG Leather",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Leather",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 16,
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS005",
+        "state": "T021",
+        "shoeId": "shoe-6",
+        "watchId": "watch-AP13"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-8",
+          "name": "Approved blue and dark-navy tonal plaid/check; checkpoint95 inside97",
+          "brand": "Tom James",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Medium-dark blue",
+          "pattern": "Medium plaid/check",
+          "_canonical": {
+            "id": "S09",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS005",
+          "name": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+          "brand": "Brunello Cucinelli",
+          "color": "Cream/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Visually near-solid; subtle windowpane metadata retained",
+          "_canonical": {
+            "id": "DS005",
+            "label": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T021",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Dark navy Medallion",
+          "primaryColor": "Dark navy / slate navy",
+          "secondaryColors": [],
+          "colorFamily": "navy",
+          "patternFamily": "geometric",
+          "patternSubtype": "Medallion",
+          "geometry": "CIRCULAR",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY HIGH",
+          "contrastNum": 3.67,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Dark navy / gold medallions",
+          "color": "Dark navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Dark navy / gold medallions",
+          "_canonical": {
+            "id": "T021",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-6",
+          "name": "Allen Edmonds Dress Shoes \u2014 Brown Double Monk Strap",
+          "brand": "Allen Edmonds",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Double Monk Strap",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP13",
+          "name": "Audemars Piguet \u2014 RO Blue RG Leather",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Leather",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 17,
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS014",
+        "state": "T046",
+        "shoeId": "shoe-6",
+        "watchId": "watch-P01"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-3",
+          "name": "Approved grey double-breasted solid appearance",
+          "brand": "Louis Vuitton",
+          "palette": "neutral",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Medium grey",
+          "pattern": "Solid appearance",
+          "_canonical": {
+            "id": "S04",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS014",
+          "name": "White; Solid",
+          "brand": "Paul Fredrick",
+          "color": "White",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS014",
+            "label": "White; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T046",
+          "brand": "Louis Vuitton",
+          "displayDesc": "Pink Geometric Check",
+          "primaryColor": "Pink / rose-pink dominant",
+          "secondaryColors": [
+            "Very light silver",
+            "pale pink"
+          ],
+          "colorFamily": "pink",
+          "patternFamily": "grid",
+          "patternSubtype": "Check/Lattice",
+          "geometry": "GRID",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM",
+          "contrastNum": 2.67,
+          "texture": "woven jacquard with visible diagonal structure and moderate silk sheen",
+          "material": "silk",
+          "reflectance": "lustrous/high-sheen (observed)",
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Pink / silver check",
+          "color": "Pink",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Pink / silver check",
+          "_canonical": {
+            "id": "T046",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-6",
+          "name": "Allen Edmonds Dress Shoes \u2014 Brown Double Monk Strap",
+          "brand": "Allen Edmonds",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Double Monk Strap",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P01",
+          "name": "Patek Philippe \u2014 Aquanaut Black",
+          "brand": "Patek Philippe",
+          "color": "Aquanaut Black",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 18,
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS004",
+        "state": "T005",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P01"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-14",
+          "name": "Dark navy with fine burgundy-red pinstripes",
+          "brand": "Tom James",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Dark navy",
+          "pattern": "Fine pinstripe",
+          "_canonical": {
+            "id": "S15",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS004",
+          "name": "DS004 - source-repaired collar/body pilot",
+          "brand": "Tom James",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine horizontal stripe",
+          "_canonical": {
+            "id": "DS004",
+            "label": "DS004 - source-repaired collar/body pilot",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T005",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Deep chocolate Medallion",
+          "primaryColor": "Deep chocolate / espresso brown",
+          "secondaryColors": [
+            "Champagne/tan",
+            "taupe-grey",
+            "microscopic pale/ice-blue points"
+          ],
+          "colorFamily": "brown",
+          "patternFamily": "geometric",
+          "patternSubtype": "Medallion",
+          "geometry": "CIRCULAR",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8,
+          "lavender": false,
+          "status": "active",
+          "name": "Dark brown / gold medallions",
+          "color": "Dark brown",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Dark brown / gold medallions",
+          "_canonical": {
+            "id": "T005",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-8",
+          "name": "Gucci Loafers \u2014 Black Horsebit",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Black Horsebit",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P01",
+          "name": "Patek Philippe \u2014 Aquanaut Black",
+          "brand": "Patek Philippe",
+          "color": "Aquanaut Black",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 19,
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "T039",
+        "shoeId": "shoe-0",
+        "watchId": "watch-P03"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-7",
+          "name": "Blue / dark-charcoal tonal plaid/check",
+          "brand": "DKNY",
+          "palette": "cool",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 8,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Dark charcoal blue",
+          "pattern": "Tonal plaid/check",
+          "_canonical": {
+            "id": "S08",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS035",
+          "name": "Zegna \u2014 ivory/off-white solid",
+          "brand": "Zegna",
+          "color": "Ivory/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work",
+            "weekend"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS035",
+            "label": "Zegna \u2014 ivory/off-white solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T039",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Navy Floral Vine",
+          "primaryColor": "Dark navy",
+          "secondaryColors": [
+            "light blue",
+            "ivory/silver",
+            "bronze-brown vine work"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "organic",
+          "patternSubtype": "Floral",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-LOW",
+          "contrastNum": 2.33,
+          "texture": "smooth woven silk appearance with luminous floral threads",
+          "material": "silk",
+          "reflectance": "lustrous/high-sheen (observed)",
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / light-blue floral",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / light-blue floral",
+          "_canonical": {
+            "id": "T039",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-0",
+          "name": "Louis Vuitton Dress Shoes \u2014 Black Embossed Monogram Lace-up",
+          "brand": "Louis Vuitton",
+          "subcategory": "Dress Shoes",
+          "color": "Black Embossed Monogram Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P03",
+          "name": "Patek Philippe \u2014 Nautilus Blue/Black",
+          "brand": "Patek Philippe",
+          "color": "Nautilus Blue/Black",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 20,
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS007",
+        "state": "T025",
+        "shoeId": "shoe-11",
+        "watchId": "watch-P02"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-1",
+          "name": "Warm charcoal brown Prince of Wales / glen plaid",
+          "brand": "Tom James",
+          "palette": "warm",
+          "seasons": [
+            "All Year"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Warm charcoal brown",
+          "pattern": "Prince of Wales / glen plaid",
+          "_canonical": {
+            "id": "S02",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS007",
+          "name": "Paul Fredrick \u2014 Light blue micro-check",
+          "brand": "Paul Fredrick",
+          "color": "Light blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": true,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Micro-check",
+          "_canonical": {
+            "id": "DS007",
+            "label": "Paul Fredrick \u2014 Light blue micro-check",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T025",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Grey Paisley",
+          "primaryColor": "Grey / slate with burgundy",
+          "secondaryColors": [],
+          "colorFamily": "brown",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY HIGH",
+          "contrastNum": 3.67,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Muted slate-brown / wine paisley",
+          "color": "Muted slate-brown",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Muted slate-brown / wine paisley",
+          "_canonical": {
+            "id": "T025",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-11",
+          "name": "Gucci Loafers \u2014 Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P02",
+          "name": "Patek Philippe \u2014 Aquanaut Chocolate RG",
+          "brand": "Patek Philippe",
+          "color": "Aquanaut Chocolate RG",
+          "lavender": false
+        }
+      }
+    }
+  ],
+  "S10": [
+    {
+      "position": 1,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T039",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS009",
+          "name": "Brunello Cucinelli \u2014 sky-blue solid",
+          "brand": "Brunello Cucinelli",
+          "color": "Sky blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS009",
+            "label": "Brunello Cucinelli \u2014 sky-blue solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T039",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Navy Floral Vine",
+          "primaryColor": "Dark navy",
+          "secondaryColors": [
+            "light blue",
+            "ivory/silver",
+            "bronze-brown vine work"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "organic",
+          "patternSubtype": "Floral",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-LOW",
+          "contrastNum": 2.33,
+          "texture": "smooth woven silk appearance with luminous floral threads",
+          "material": "silk",
+          "reflectance": "lustrous/high-sheen (observed)",
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / light-blue floral",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / light-blue floral",
+          "_canonical": {
+            "id": "T039",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-1",
+          "name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Black Single Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP09",
+          "name": "Audemars Piguet \u2014 RO Dark Blue",
+          "brand": "Audemars Piguet",
+          "color": "RO Dark Blue",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 2,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS020",
+        "state": "T010",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS020",
+          "name": "Paul Fredrick \u2014 white / soft-pink stripe",
+          "brand": "Paul Fredrick",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Pencil stripe",
+          "_canonical": {
+            "id": "DS020",
+            "label": "Paul Fredrick \u2014 white / soft-pink stripe",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T010",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Near-black Polka Dot",
+          "primaryColor": "Near-black / very dark charcoal",
+          "secondaryColors": [
+            "Ivory/cream"
+          ],
+          "colorFamily": "black",
+          "patternFamily": "geometric",
+          "patternSubtype": "Polka Dot",
+          "geometry": "CIRCULAR",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-LOW",
+          "contrastNum": 2.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Near-black / white spaced dots",
+          "color": "Near-black",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Near-black / white spaced dots",
+          "_canonical": {
+            "id": "T010",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-1",
+          "name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Black Single Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP09",
+          "name": "Audemars Piguet \u2014 RO Dark Blue",
+          "brand": "Audemars Piguet",
+          "color": "RO Dark Blue",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 3,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS022",
+        "state": "T030",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS022",
+          "name": "Darker lavender; Solid",
+          "brand": "Paul Fredrick",
+          "color": "Darker lavender",
+          "white": false,
+          "lavender": true,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS022",
+            "label": "Darker lavender; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T030",
+          "brand": "Frangi",
+          "displayDesc": "Deep Purple Tonal Geometric",
+          "primaryColor": "Deep aubergine / dark purple",
+          "secondaryColors": [
+            "Very dark navy / bluish-black",
+            "charcoal-purple"
+          ],
+          "colorFamily": "purple",
+          "patternFamily": "geometric",
+          "patternSubtype": "Geometric",
+          "geometry": "MIXED",
+          "patternScale": "SMALL-MEDIUM",
+          "patternScaleNum": 2,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY LOW",
+          "contrastNum": 1.33,
+          "texture": "Tonal jacquard with pronounced texture",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": true,
+          "status": "active",
+          "name": "Aubergine tonal geometric",
+          "color": "Aubergine tonal geometric",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Aubergine tonal geometric",
+          "_canonical": {
+            "id": "T030",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-2",
+          "name": "Berluti Dress Shoes \u2014 Black Double Monk",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Black Double Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R09",
+          "name": "Rolex \u2014 Datejust White Dial",
+          "brand": "Rolex",
+          "color": "Datejust White Dial",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 4,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS025",
+        "state": "T016",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS025",
+          "name": "Light pink; Solid",
+          "brand": "Charles Tyrwhitt",
+          "color": "Light pink",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS025",
+            "label": "Light pink; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T016",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Red/Silver Diagonal Stripe",
+          "primaryColor": "Red / silver-white",
+          "secondaryColors": [
+            "Burgundy / wine red"
+          ],
+          "colorFamily": "burgundy",
+          "patternFamily": "linear",
+          "patternSubtype": "Diagonal Stripe",
+          "geometry": "LINEAR",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Burgundy-red / silver diagonal stripe",
+          "color": "Burgundy-red",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Burgundy-red / silver diagonal stripe",
+          "_canonical": {
+            "id": "T016",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-2",
+          "name": "Berluti Dress Shoes \u2014 Black Double Monk",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Black Double Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R09",
+          "name": "Rolex \u2014 Datejust White Dial",
+          "brand": "Rolex",
+          "color": "Datejust White Dial",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 5,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-R11"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS036",
+          "name": "Zegna \u2014 chocolate-brown solid",
+          "brand": "Zegna",
+          "color": "Chocolate brown",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work",
+            "weekend"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS036",
+            "label": "Zegna \u2014 chocolate-brown solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": null,
+        "pants": null,
+        "shoes": {
+          "id": "shoe-13",
+          "name": "Hermes Loafers \u2014 Black Kelly Hardware",
+          "brand": "Hermes",
+          "subcategory": "Loafers",
+          "color": "Black Kelly Hardware",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R11",
+          "name": "Rolex \u2014 Day-Date Green",
+          "brand": "Rolex",
+          "color": "Day-Date Green",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 6,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS017",
+        "state": "T046",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R11"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS017",
+          "name": "Brioni \u2014 cream/stone solid",
+          "brand": "Brioni",
+          "color": "Cream/stone",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS017",
+            "label": "Brioni \u2014 cream/stone solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T046",
+          "brand": "Louis Vuitton",
+          "displayDesc": "Pink Geometric Check",
+          "primaryColor": "Pink / rose-pink dominant",
+          "secondaryColors": [
+            "Very light silver",
+            "pale pink"
+          ],
+          "colorFamily": "pink",
+          "patternFamily": "grid",
+          "patternSubtype": "Check/Lattice",
+          "geometry": "GRID",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM",
+          "contrastNum": 2.67,
+          "texture": "woven jacquard with visible diagonal structure and moderate silk sheen",
+          "material": "silk",
+          "reflectance": "lustrous/high-sheen (observed)",
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Pink / silver check",
+          "color": "Pink",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Pink / silver check",
+          "_canonical": {
+            "id": "T046",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-3",
+          "name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Black Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R11",
+          "name": "Rolex \u2014 Day-Date Green",
+          "brand": "Rolex",
+          "color": "Day-Date Green",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 7,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T005",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R13"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS035",
+          "name": "Zegna \u2014 ivory/off-white solid",
+          "brand": "Zegna",
+          "color": "Ivory/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work",
+            "weekend"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS035",
+            "label": "Zegna \u2014 ivory/off-white solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T005",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Deep chocolate Medallion",
+          "primaryColor": "Deep chocolate / espresso brown",
+          "secondaryColors": [
+            "Champagne/tan",
+            "taupe-grey",
+            "microscopic pale/ice-blue points"
+          ],
+          "colorFamily": "brown",
+          "patternFamily": "geometric",
+          "patternSubtype": "Medallion",
+          "geometry": "CIRCULAR",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8,
+          "lavender": false,
+          "status": "active",
+          "name": "Dark brown / gold medallions",
+          "color": "Dark brown",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Dark brown / gold medallions",
+          "_canonical": {
+            "id": "T005",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-3",
+          "name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Black Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R13",
+          "name": "Rolex \u2014 Day-Date Champagne",
+          "brand": "Rolex",
+          "color": "Day-Date Champagne",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 8,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS008",
+        "state": "T017",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R13"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS008",
+          "name": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+          "brand": "Brunello Cucinelli",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine horizontal stripe",
+          "_canonical": {
+            "id": "DS008",
+            "label": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T017",
+          "brand": "Geoffrey Beene",
+          "displayDesc": "Light powder Paisley",
+          "primaryColor": "Light powder / sky blue",
+          "secondaryColors": [
+            "Silver-white"
+          ],
+          "colorFamily": "blue",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW-MEDIUM",
+          "contrastNum": 2,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Pale blue / white paisley",
+          "color": "Pale blue",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Pale blue / white paisley",
+          "_canonical": {
+            "id": "T017",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-4",
+          "name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Dark Brown Derby Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R13",
+          "name": "Rolex \u2014 Day-Date Champagne",
+          "brand": "Rolex",
+          "color": "Day-Date Champagne",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 9,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS002",
+        "state": "T036",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R14"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS002",
+          "name": "DS002 - source-repaired collar/body pilot",
+          "brand": "Tom James",
+          "color": "Cream/white",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Check/grid",
+          "_canonical": {
+            "id": "DS002",
+            "label": "DS002 - source-repaired collar/body pilot",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T036",
+          "brand": "Jos. A. Bank",
+          "displayDesc": "Purple/Pink Ornamental Medallion",
+          "primaryColor": "black/deep charcoal",
+          "secondaryColors": [
+            "purple",
+            "lavender",
+            "soft pink",
+            "ivory/grey with small amber-gold floral centers"
+          ],
+          "colorFamily": "purple",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": "woven silk/jacquard appearance with strong pattern definition",
+          "material": "silk",
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Purple / grey ornamental medallions",
+          "color": "Purple",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Purple / grey ornamental medallions",
+          "_canonical": {
+            "id": "T036",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-4",
+          "name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Dark Brown Derby Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R14",
+          "name": "Rolex \u2014 Day-Date White Roman",
+          "brand": "Rolex",
+          "color": "Day-Date White Roman",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 10,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS044",
+        "state": "T031",
+        "shoeId": "shoe-5",
+        "watchId": "watch-R14"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS044",
+          "name": "Emanuel Berg \u2014 white with navy micro-diamond / dot print",
+          "brand": "Emanuel Berg",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work",
+            "weekend"
+          ],
+          "pattern": "Micro-diamond/dot",
+          "_canonical": {
+            "id": "DS044",
+            "label": "Emanuel Berg \u2014 white with navy micro-diamond / dot print",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T031",
+          "brand": "Nautica",
+          "displayDesc": "Midnight Navy Multicolor Regimental Stripe",
+          "primaryColor": "Midnight navy / very dark blue",
+          "secondaryColors": [
+            "Purple",
+            "royal/cobalt blue",
+            "crisp white and black"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "linear",
+          "patternSubtype": "Diagonal Stripe",
+          "geometry": "LINEAR",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": "LOW",
+          "densityNum": 1,
+          "contrast": "MEDIUM-HIGH",
+          "contrastNum": 3,
+          "texture": "Smooth woven silk appearance; diagonal twill/rib texture is visible within the colored bands",
+          "material": "silk",
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / purple-white regimental stripe",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / purple-white regimental stripe",
+          "_canonical": {
+            "id": "T031",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-5",
+          "name": "Ecco Dress Shoes \u2014 Brown Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R14",
+          "name": "Rolex \u2014 Day-Date White Roman",
+          "brand": "Rolex",
+          "color": "Day-Date White Roman",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 11,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS029",
+        "state": "T009",
+        "shoeId": "shoe-5",
+        "watchId": "watch-AP06"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS029",
+          "name": "Brooks Brothers 346 \u2014 ice-blue / silver-blue herringbone",
+          "brand": "Brooks Brothers 346",
+          "color": "Ice/silver-blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine continuous herringbone",
+          "_canonical": {
+            "id": "DS029",
+            "label": "Brooks Brothers 346 \u2014 ice-blue / silver-blue herringbone",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T009",
+          "brand": "Holland & Sherry, London 1836",
+          "displayDesc": "Antique Gold Medallion Mosaic",
+          "primaryColor": "Antique gold / mustard",
+          "secondaryColors": [
+            "Powder blue",
+            "navy",
+            "burgundy/plum",
+            "cream",
+            "small coral-red accents"
+          ],
+          "colorFamily": "gold",
+          "patternFamily": "geometric",
+          "patternSubtype": "Medallion/Mosaic",
+          "geometry": "MIXED",
+          "patternScale": "VERY LARGE",
+          "patternScaleNum": 3.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-HIGH",
+          "contrastNum": 3,
+          "texture": "chained oval links and squared medallion units with floral centers",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Gold / blue medallion mosaic",
+          "color": "Gold",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Gold / blue medallion mosaic",
+          "_canonical": {
+            "id": "T009",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-5",
+          "name": "Ecco Dress Shoes \u2014 Brown Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP06",
+          "name": "Audemars Piguet \u2014 RO Black Dial, Rose Gold",
+          "brand": "Audemars Piguet",
+          "color": "RO Black Dial, Rose Gold",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 12,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS028",
+        "state": "T002",
+        "shoeId": "shoe-6",
+        "watchId": "watch-AP06"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS028",
+          "name": "Tom James \u2014 very pale-blue birdseye / micro-check",
+          "brand": "Tom James",
+          "color": "Very pale blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Birdseye/micro-check",
+          "_canonical": {
+            "id": "DS028",
+            "label": "Tom James \u2014 very pale-blue birdseye / micro-check",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T002",
+          "brand": "Tom James",
+          "displayDesc": "Tobacco Grid Medallion",
+          "primaryColor": "Tobacco / cognac-gold brown",
+          "secondaryColors": [
+            "Bright medium blue",
+            "pale blue",
+            "gold/ochre",
+            "minute dark-brown details"
+          ],
+          "colorFamily": "brown",
+          "patternFamily": "geometric",
+          "patternSubtype": "Grid/Medallion",
+          "geometry": "GRID",
+          "patternScale": "LARGE",
+          "patternScaleNum": 3,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-HIGH",
+          "contrastNum": 3,
+          "texture": "structured square grid with blue border lines",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8,
+          "lavender": false,
+          "status": "active",
+          "name": "Tobacco / blue medallion grid",
+          "color": "Tobacco",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Tobacco / blue medallion grid",
+          "_canonical": {
+            "id": "T002",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-6",
+          "name": "Allen Edmonds Dress Shoes \u2014 Brown Double Monk Strap",
+          "brand": "Allen Edmonds",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Double Monk Strap",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP06",
+          "name": "Audemars Piguet \u2014 RO Black Dial, Rose Gold",
+          "brand": "Audemars Piguet",
+          "color": "RO Black Dial, Rose Gold",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 13,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS005",
+        "state": "T029",
+        "shoeId": "shoe-6",
+        "watchId": "watch-AP10"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS005",
+          "name": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+          "brand": "Brunello Cucinelli",
+          "color": "Cream/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Visually near-solid; subtle windowpane metadata retained",
+          "_canonical": {
+            "id": "DS005",
+            "label": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T029",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Navy Ornamental Medallion",
+          "primaryColor": "Very dark navy / near-black navy",
+          "secondaryColors": [
+            "Ivory/silver",
+            "royal blue",
+            "turquoise accents"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "organic",
+          "patternSubtype": "Floral",
+          "geometry": "ORGANIC",
+          "patternScale": "VERY LARGE",
+          "patternScaleNum": 3.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": "Detailed jacquard",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / silver ornamental medallions",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / silver ornamental medallions",
+          "_canonical": {
+            "id": "T029",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-6",
+          "name": "Allen Edmonds Dress Shoes \u2014 Brown Double Monk Strap",
+          "brand": "Allen Edmonds",
+          "subcategory": "Dress Shoes",
+          "color": "Brown Double Monk Strap",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP10",
+          "name": "Audemars Piguet \u2014 RO Blue RG Bracelet",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Bracelet",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 14,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP10"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS019",
+          "name": "Chestnut/warm mid-brown; Solid",
+          "brand": "Brioni",
+          "color": "Chestnut/warm mid-brown",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS019",
+            "label": "Chestnut/warm mid-brown; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": null,
+        "pants": null,
+        "shoes": {
+          "id": "shoe-13",
+          "name": "Hermes Loafers \u2014 Black Kelly Hardware",
+          "brand": "Hermes",
+          "subcategory": "Loafers",
+          "color": "Black Kelly Hardware",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP10",
+          "name": "Audemars Piguet \u2014 RO Blue RG Bracelet",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Bracelet",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 15,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS027",
+        "state": "T004",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP13"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS027",
+          "name": "White/light ground; Bengal stripe",
+          "brand": "Brooks Brothers",
+          "color": "White/light ground",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Bengal stripe",
+          "_canonical": {
+            "id": "DS027",
+            "label": "White/light ground; Bengal stripe",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T004",
+          "brand": "Hermes Paris",
+          "displayDesc": "Burnt orange Geometric",
+          "primaryColor": "Burnt orange / deep terracotta",
+          "secondaryColors": [
+            "Tonal rust-red and darker orange"
+          ],
+          "colorFamily": "rust",
+          "patternFamily": "geometric",
+          "patternSubtype": "Geometric",
+          "geometry": "MIXED",
+          "patternScale": "MICRO",
+          "patternScaleNum": 1,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY LOW",
+          "contrastNum": 1.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Burnt-orange near-solid geometric",
+          "color": "Burnt-orange near-solid geometric",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Burnt-orange near-solid geometric",
+          "_canonical": {
+            "id": "T004",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-0",
+          "name": "Louis Vuitton Dress Shoes \u2014 Black Embossed Monogram Lace-up",
+          "brand": "Louis Vuitton",
+          "subcategory": "Dress Shoes",
+          "color": "Black Embossed Monogram Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP13",
+          "name": "Audemars Piguet \u2014 RO Blue RG Leather",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Leather",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 16,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS024",
+        "state": "T001",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP13"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS024",
+          "name": "Pale pink; Solid",
+          "brand": "Burberry",
+          "color": "Pale pink",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS024",
+            "label": "Pale pink; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T001",
+          "brand": "Gucci",
+          "displayDesc": "Mushroom Taupe Horsebit",
+          "primaryColor": "Mushroom taupe / warm grey-brown",
+          "secondaryColors": [
+            "Muted champagne-beige"
+          ],
+          "colorFamily": "brown",
+          "patternFamily": "geometric",
+          "patternSubtype": "Horsebit",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW",
+          "contrastNum": 1.33,
+          "texture": "fine textured/micro-check ground",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Taupe horsebit",
+          "color": "Taupe horsebit",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Taupe horsebit",
+          "_canonical": {
+            "id": "T001",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-0",
+          "name": "Louis Vuitton Dress Shoes \u2014 Black Embossed Monogram Lace-up",
+          "brand": "Louis Vuitton",
+          "subcategory": "Dress Shoes",
+          "color": "Black Embossed Monogram Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP13",
+          "name": "Audemars Piguet \u2014 RO Blue RG Leather",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Leather",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 17,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P01"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS029",
+          "name": "Brooks Brothers 346 \u2014 ice-blue / silver-blue herringbone",
+          "brand": "Brooks Brothers 346",
+          "color": "Ice/silver-blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine continuous herringbone",
+          "_canonical": {
+            "id": "DS029",
+            "label": "Brooks Brothers 346 \u2014 ice-blue / silver-blue herringbone",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T024",
+          "brand": null,
+          "displayDesc": "Cornflower Blue Paisley",
+          "primaryColor": "Cornflower / royal blue",
+          "secondaryColors": [],
+          "colorFamily": "blue",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "VERY LARGE",
+          "patternScaleNum": 3.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Royal blue / beige-gold paisley",
+          "color": "Royal blue",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Royal blue / beige-gold paisley",
+          "_canonical": {
+            "id": "T024",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-8",
+          "name": "Gucci Loafers \u2014 Black Horsebit",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Black Horsebit",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P01",
+          "name": "Patek Philippe \u2014 Aquanaut Black",
+          "brand": "Patek Philippe",
+          "color": "Aquanaut Black",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 18,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS031",
+        "state": "T028",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P01"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS031",
+          "name": "Hugo Boss \u2014 lavender windowpane over micro-check",
+          "brand": "Hugo Boss",
+          "color": "Lavender",
+          "white": false,
+          "lavender": true,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Windowpane over micro-check",
+          "_canonical": {
+            "id": "DS031",
+            "label": "Hugo Boss \u2014 lavender windowpane over micro-check",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T028",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Midnight Navy Tonal Paisley",
+          "primaryColor": "Midnight navy",
+          "secondaryColors": [
+            "Tonal dark blue / black"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM",
+          "patternScaleNum": 2.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW",
+          "contrastNum": 1.67,
+          "texture": "Tonal jacquard; pattern appears mainly through texture and reflected light",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Midnight-navy tonal paisley",
+          "color": "Midnight-navy tonal paisley",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Midnight-navy tonal paisley",
+          "_canonical": {
+            "id": "T028",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-8",
+          "name": "Gucci Loafers \u2014 Black Horsebit",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Black Horsebit",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P01",
+          "name": "Patek Philippe \u2014 Aquanaut Black",
+          "brand": "Patek Philippe",
+          "color": "Aquanaut Black",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 19,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS014",
+        "state": "T007",
+        "shoeId": "shoe-11",
+        "watchId": "watch-P03"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS014",
+          "name": "White; Solid",
+          "brand": "Paul Fredrick",
+          "color": "White",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS014",
+            "label": "White; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T007",
+          "brand": "DKNY",
+          "displayDesc": "Charcoal Check/Lattice",
+          "primaryColor": "Charcoal / blue-charcoal",
+          "secondaryColors": [
+            "Dusty pink",
+            "silver-grey/cream",
+            "muted taupe"
+          ],
+          "colorFamily": "grey",
+          "patternFamily": "grid",
+          "patternSubtype": "Check/Lattice",
+          "geometry": "GRID",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-LOW",
+          "contrastNum": 2.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Charcoal / pale-pink diagonal lattice",
+          "color": "Charcoal",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Charcoal / pale-pink diagonal lattice",
+          "_canonical": {
+            "id": "T007",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-11",
+          "name": "Gucci Loafers \u2014 Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P03",
+          "name": "Patek Philippe \u2014 Nautilus Blue/Black",
+          "brand": "Patek Philippe",
+          "color": "Nautilus Blue/Black",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 20,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS028",
+        "state": "T003",
+        "shoeId": "shoe-11",
+        "watchId": "watch-P03"
+      },
+      "items": {
+        "topwear": {
+          "id": "suit-9",
+          "name": "Owner-confirmed light grey near-solid",
+          "brand": "Brioni",
+          "palette": "neutral",
+          "seasons": [
+            "Summer",
+            "Spring"
+          ],
+          "score": 9,
+          "modes": [
+            "Hospital/Clinic",
+            "Office Only"
+          ],
+          "lavender": false,
+          "formal": true,
+          "color": "Light grey",
+          "pattern": "Near-solid",
+          "_canonical": {
+            "id": "S10",
+            "source": "FEATURE_INPUTS.json"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS028",
+          "name": "Tom James \u2014 very pale-blue birdseye / micro-check",
+          "brand": "Tom James",
+          "color": "Very pale blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Birdseye/micro-check",
+          "_canonical": {
+            "id": "DS028",
+            "label": "Tom James \u2014 very pale-blue birdseye / micro-check",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T003",
+          "brand": "Gucci",
+          "displayDesc": "Rust-Orange Striped Scroll",
+          "primaryColor": "Rust-orange / cognac brown",
+          "secondaryColors": [
+            "Blue-grey stripe",
+            "dark brown/charcoal stripe",
+            "ivory scroll outline"
+          ],
+          "colorFamily": "rust",
+          "patternFamily": "geometric",
+          "patternSubtype": "Striped Scroll",
+          "geometry": "MIXED",
+          "patternScale": "SMALL-MEDIUM",
+          "patternScaleNum": 2,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-HIGH",
+          "contrastNum": 3,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Rust / blue-grey linked scroll",
+          "color": "Rust",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Rust / blue-grey linked scroll",
+          "_canonical": {
+            "id": "T003",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": null,
+        "shoes": {
+          "id": "shoe-11",
+          "name": "Gucci Loafers \u2014 Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-P03",
+          "name": "Patek Philippe \u2014 Nautilus Blue/Black",
+          "brand": "Patek Philippe",
+          "color": "Nautilus Blue/Black",
+          "lavender": false
+        }
+      }
+    }
+  ],
+  "B14": [
+    {
+      "position": 1,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG001",
+        "shirtId": "DS004",
+        "state": "T025",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS004",
+          "name": "DS004 - source-repaired collar/body pilot",
+          "brand": "Tom James",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine horizontal stripe",
+          "_canonical": {
+            "id": "DS004",
+            "label": "DS004 - source-repaired collar/body pilot",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T025",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Grey Paisley",
+          "primaryColor": "Grey / slate with burgundy",
+          "secondaryColors": [],
+          "colorFamily": "brown",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY HIGH",
+          "contrastNum": 3.67,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Muted slate-brown / wine paisley",
+          "color": "Muted slate-brown",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Muted slate-brown / wine paisley",
+          "_canonical": {
+            "id": "T025",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG001",
+          "name": "Prada \u2014 Dark grey (Cream lining)",
+          "brand": "Prada",
+          "color": "Dark grey",
+          "details": "Cream lining",
+          "colorCategory": "grey",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-1",
+          "name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Black Single Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP09",
+          "name": "Audemars Piguet \u2014 RO Dark Blue",
+          "brand": "Audemars Piguet",
+          "color": "RO Dark Blue",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 2,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS019",
+          "name": "Chestnut/warm mid-brown; Solid",
+          "brand": "Brioni",
+          "color": "Chestnut/warm mid-brown",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS019",
+            "label": "Chestnut/warm mid-brown; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": null,
+        "pants": {
+          "id": "pants-PB001",
+          "name": "Charles Tyrwhitt \u2014 Chino Navy (34W 30L, Slim Fit)",
+          "brand": "Charles Tyrwhitt",
+          "color": "Chino Navy",
+          "details": "34W 30L, Slim Fit",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-13",
+          "name": "Hermes Loafers \u2014 Black Kelly Hardware",
+          "brand": "Hermes",
+          "subcategory": "Loafers",
+          "color": "Black Kelly Hardware",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP09",
+          "name": "Audemars Piguet \u2014 RO Dark Blue",
+          "brand": "Audemars Piguet",
+          "color": "RO Dark Blue",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 3,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG003",
+        "shirtId": "DS002",
+        "state": "T035",
+        "shoeId": "shoe-1",
+        "watchId": "watch-R09"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS002",
+          "name": "DS002 - source-repaired collar/body pilot",
+          "brand": "Tom James",
+          "color": "Cream/white",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Check/grid",
+          "_canonical": {
+            "id": "DS002",
+            "label": "DS002 - source-repaired collar/body pilot",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T035",
+          "brand": "Gucci",
+          "displayDesc": "Midnight Navy / Blue GG Monogram",
+          "primaryColor": "Midnight navy",
+          "secondaryColors": [
+            "Periwinkle / medium blue with small tonal navy connectors"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "geometric",
+          "patternSubtype": "Logo Monogram",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": "HIGH",
+          "densityNum": 4,
+          "contrast": "LOW",
+          "contrastNum": 1.67,
+          "texture": "Fine silk twill/jacquard appearance with smooth sheen and subtle diagonal rib",
+          "material": "silk",
+          "reflectance": "lustrous/high-sheen (observed)",
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / blue monogram",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / blue monogram",
+          "_canonical": {
+            "id": "T035",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG003",
+          "name": "Very light grey",
+          "brand": "",
+          "color": "Very light grey",
+          "colorCategory": "grey_light",
+          "details": "",
+          "_canonical": {
+            "id": "PG003",
+            "source": "CP98/PANTS54"
+          }
+        },
+        "shoes": {
+          "id": "shoe-1",
+          "name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Black Single Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R09",
+          "name": "Rolex \u2014 Datejust White Dial",
+          "brand": "Rolex",
+          "color": "Datejust White Dial",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 4,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG002",
+        "shirtId": "DS025",
+        "state": "T013",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS025",
+          "name": "Light pink; Solid",
+          "brand": "Charles Tyrwhitt",
+          "color": "Light pink",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS025",
+            "label": "Light pink; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T013",
+          "brand": "Tommy Hilfiger",
+          "displayDesc": "Vivid red Geometric",
+          "primaryColor": "Vivid red / scarlet",
+          "secondaryColors": [
+            "Navy",
+            "ice-blue/white"
+          ],
+          "colorFamily": "red",
+          "patternFamily": "geometric",
+          "patternSubtype": "Geometric",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM",
+          "contrastNum": 2.67,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8,
+          "lavender": false,
+          "status": "active",
+          "name": "Vivid red / small pale motifs",
+          "color": "Vivid red",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Vivid red / small pale motifs",
+          "_canonical": {
+            "id": "T013",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG002",
+          "name": "Nordstrom Mens Shop \u2014 Grey (Brushed/flannel)",
+          "brand": "Nordstrom Mens Shop",
+          "color": "Grey",
+          "details": "Brushed/flannel",
+          "colorCategory": "grey",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-2",
+          "name": "Berluti Dress Shoes \u2014 Black Double Monk",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Black Double Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R09",
+          "name": "Rolex \u2014 Datejust White Dial",
+          "brand": "Rolex",
+          "color": "Datejust White Dial",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 5,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB001",
+        "shirtId": "DS006",
+        "state": "T004",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R11"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS006",
+          "name": "Brunello Cucinelli \u2014 light blue solid",
+          "brand": "Brunello Cucinelli",
+          "color": "Light blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": true,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS006",
+            "label": "Brunello Cucinelli \u2014 light blue solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T004",
+          "brand": "Hermes Paris",
+          "displayDesc": "Burnt orange Geometric",
+          "primaryColor": "Burnt orange / deep terracotta",
+          "secondaryColors": [
+            "Tonal rust-red and darker orange"
+          ],
+          "colorFamily": "rust",
+          "patternFamily": "geometric",
+          "patternSubtype": "Geometric",
+          "geometry": "MIXED",
+          "patternScale": "MICRO",
+          "patternScaleNum": 1,
+          "density": null,
+          "densityNum": null,
+          "contrast": "VERY LOW",
+          "contrastNum": 1.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Burnt-orange near-solid geometric",
+          "color": "Burnt-orange near-solid geometric",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Burnt-orange near-solid geometric",
+          "_canonical": {
+            "id": "T004",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PB001",
+          "name": "Charles Tyrwhitt \u2014 Chino Navy (34W 30L, Slim Fit)",
+          "brand": "Charles Tyrwhitt",
+          "color": "Chino Navy",
+          "details": "34W 30L, Slim Fit",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-2",
+          "name": "Berluti Dress Shoes \u2014 Black Double Monk",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Black Double Monk",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R11",
+          "name": "Rolex \u2014 Day-Date Green",
+          "brand": "Rolex",
+          "color": "Day-Date Green",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 6,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T010",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R11"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS005",
+          "name": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+          "brand": "Brunello Cucinelli",
+          "color": "Cream/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Visually near-solid; subtle windowpane metadata retained",
+          "_canonical": {
+            "id": "DS005",
+            "label": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T010",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Near-black Polka Dot",
+          "primaryColor": "Near-black / very dark charcoal",
+          "secondaryColors": [
+            "Ivory/cream"
+          ],
+          "colorFamily": "black",
+          "patternFamily": "geometric",
+          "patternSubtype": "Polka Dot",
+          "geometry": "CIRCULAR",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-LOW",
+          "contrastNum": 2.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Near-black / white spaced dots",
+          "color": "Near-black",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Near-black / white spaced dots",
+          "_canonical": {
+            "id": "T010",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG003",
+          "name": "Very light grey",
+          "brand": "",
+          "color": "Very light grey",
+          "colorCategory": "grey_light",
+          "details": "",
+          "_canonical": {
+            "id": "PG003",
+            "source": "CP98/PANTS54"
+          }
+        },
+        "shoes": {
+          "id": "shoe-3",
+          "name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Black Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R11",
+          "name": "Rolex \u2014 Day-Date Green",
+          "brand": "Rolex",
+          "color": "Day-Date Green",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 7,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG001",
+        "shirtId": "DS014",
+        "state": "T016",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R13"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS014",
+          "name": "White; Solid",
+          "brand": "Paul Fredrick",
+          "color": "White",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS014",
+            "label": "White; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T016",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Red/Silver Diagonal Stripe",
+          "primaryColor": "Red / silver-white",
+          "secondaryColors": [
+            "Burgundy / wine red"
+          ],
+          "colorFamily": "burgundy",
+          "patternFamily": "linear",
+          "patternSubtype": "Diagonal Stripe",
+          "geometry": "LINEAR",
+          "patternScale": "OVERSIZED",
+          "patternScaleNum": 3.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "HIGH",
+          "contrastNum": 3.33,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Burgundy-red / silver diagonal stripe",
+          "color": "Burgundy-red",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Burgundy-red / silver diagonal stripe",
+          "_canonical": {
+            "id": "T016",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG001",
+          "name": "Prada \u2014 Dark grey (Cream lining)",
+          "brand": "Prada",
+          "color": "Dark grey",
+          "details": "Cream lining",
+          "colorCategory": "grey",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-3",
+          "name": "Ecco Dress Shoes \u2014 Black Oxford/Derby",
+          "brand": "Ecco",
+          "subcategory": "Dress Shoes",
+          "color": "Black Oxford/Derby",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R13",
+          "name": "Rolex \u2014 Day-Date Champagne",
+          "brand": "Rolex",
+          "color": "Day-Date Champagne",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 8,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "T038",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R13"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS024",
+          "name": "Pale pink; Solid",
+          "brand": "Burberry",
+          "color": "Pale pink",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS024",
+            "label": "Pale pink; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T038",
+          "brand": "Holland & Sherry",
+          "displayDesc": "Fuchsia Floral Geometric",
+          "primaryColor": "vivid fuchsia / magenta",
+          "secondaryColors": [
+            "tonal pink and magenta with powder-blue accents"
+          ],
+          "colorFamily": "pink",
+          "patternFamily": "organic",
+          "patternSubtype": "Floral",
+          "geometry": "ORGANIC",
+          "patternScale": "SMALL-MEDIUM",
+          "patternScaleNum": 2,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-LOW",
+          "contrastNum": 2.33,
+          "texture": "richly woven jacquard",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": true,
+          "status": "active",
+          "name": "Fuchsia / pale-blue floral",
+          "color": "Fuchsia",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Fuchsia / pale-blue floral",
+          "_canonical": {
+            "id": "T038",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PG002",
+          "name": "Nordstrom Mens Shop \u2014 Grey (Brushed/flannel)",
+          "brand": "Nordstrom Mens Shop",
+          "color": "Grey",
+          "details": "Brushed/flannel",
+          "colorCategory": "grey",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-4",
+          "name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Dark Brown Derby Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R13",
+          "name": "Rolex \u2014 Day-Date Champagne",
+          "brand": "Rolex",
+          "color": "Day-Date Champagne",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 9,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB002",
+        "shirtId": "DS007",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R14"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS007",
+          "name": "Paul Fredrick \u2014 Light blue micro-check",
+          "brand": "Paul Fredrick",
+          "color": "Light blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": true,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Micro-check",
+          "_canonical": {
+            "id": "DS007",
+            "label": "Paul Fredrick \u2014 Light blue micro-check",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T033",
+          "brand": "Gucci",
+          "displayDesc": "Dark Navy Multicolor GG Monogram",
+          "primaryColor": "Very dark navy / near-black navy",
+          "secondaryColors": [
+            "Light blue and muted gold / ochre"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "geometric",
+          "patternSubtype": "Logo Monogram",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": "HIGH",
+          "densityNum": 4,
+          "contrast": "LOW",
+          "contrastNum": 1.67,
+          "texture": "Fine silk jacquard/twill appearance with a subtly ribbed dark ground",
+          "material": "silk",
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Dark navy / blue-gold monogram",
+          "color": "Dark navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Dark navy / blue-gold monogram",
+          "_canonical": {
+            "id": "T033",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PB002",
+          "name": "Nordstrom \u2014 Navy (Workers United label, previously unbranded)",
+          "brand": "Nordstrom",
+          "color": "Navy",
+          "details": "Workers United label, previously unbranded",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-4",
+          "name": "Christian Louboutin Dress Shoes \u2014 Dark Brown Derby Lace-up",
+          "brand": "Christian Louboutin",
+          "subcategory": "Dress Shoes",
+          "color": "Dark Brown Derby Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R14",
+          "name": "Rolex \u2014 Day-Date White Roman",
+          "brand": "Rolex",
+          "color": "Day-Date White Roman",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 10,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PN002",
+        "shirtId": "DS005",
+        "state": "T015",
+        "shoeId": "shoe-49",
+        "watchId": "watch-R14"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS005",
+          "name": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+          "brand": "Brunello Cucinelli",
+          "color": "Cream/off-white",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Visually near-solid; subtle windowpane metadata retained",
+          "_canonical": {
+            "id": "DS005",
+            "label": "Cream/off-white; Visually near-solid; subtle windowpane metadata retained",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T015",
+          "brand": "Calvin Klein",
+          "displayDesc": "Deep navy Diagonal Stripe",
+          "primaryColor": "Deep navy / midnight blue",
+          "secondaryColors": [
+            "Silver-white",
+            "subtle tonal blue"
+          ],
+          "colorFamily": "navy",
+          "patternFamily": "linear",
+          "patternSubtype": "Diagonal Stripe",
+          "geometry": "LINEAR",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW-MEDIUM",
+          "contrastNum": 2,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Navy / fine diagonal stripe",
+          "color": "Navy",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Navy / fine diagonal stripe",
+          "_canonical": {
+            "id": "T015",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PN002",
+          "name": "The Rising Sun Mfg Co. \u2014 Chino Light stone/grey-beige (Leather patch)",
+          "brand": "The Rising Sun Mfg Co.",
+          "color": "Chino Light stone/grey-beige",
+          "details": "Leather patch",
+          "colorCategory": "tan",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-49",
+          "name": "Berluti Dress Shoes \u2014 Alessandro Infini Alto Oxford, Venezia calf, brown patina, lug sole",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Alessandro Infini Alto Oxford, brown Venezia calf patina, lug sole",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-R14",
+          "name": "Rolex \u2014 Day-Date White Roman",
+          "brand": "Rolex",
+          "color": "Day-Date White Roman",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 11,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PN002",
+        "shirtId": "DS008",
+        "state": "T017",
+        "shoeId": "shoe-49",
+        "watchId": "watch-AP06"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS008",
+          "name": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+          "brand": "Brunello Cucinelli",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine horizontal stripe",
+          "_canonical": {
+            "id": "DS008",
+            "label": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T017",
+          "brand": "Geoffrey Beene",
+          "displayDesc": "Light powder Paisley",
+          "primaryColor": "Light powder / sky blue",
+          "secondaryColors": [
+            "Silver-white"
+          ],
+          "colorFamily": "blue",
+          "patternFamily": "organic",
+          "patternSubtype": "Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM-LARGE",
+          "patternScaleNum": 2.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW-MEDIUM",
+          "contrastNum": 2,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": null,
+          "lavender": false,
+          "status": "active",
+          "name": "Pale blue / white paisley",
+          "color": "Pale blue",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Pale blue / white paisley",
+          "_canonical": {
+            "id": "T017",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PN002",
+          "name": "The Rising Sun Mfg Co. \u2014 Chino Light stone/grey-beige (Leather patch)",
+          "brand": "The Rising Sun Mfg Co.",
+          "color": "Chino Light stone/grey-beige",
+          "details": "Leather patch",
+          "colorCategory": "tan",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-49",
+          "name": "Berluti Dress Shoes \u2014 Alessandro Infini Alto Oxford, Venezia calf, brown patina, lug sole",
+          "brand": "Berluti",
+          "subcategory": "Dress Shoes",
+          "color": "Alessandro Infini Alto Oxford, brown Venezia calf patina, lug sole",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP06",
+          "name": "Audemars Piguet \u2014 RO Black Dial, Rose Gold",
+          "brand": "Audemars Piguet",
+          "color": "RO Black Dial, Rose Gold",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 12,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB002",
+        "shirtId": "DS014",
+        "state": "T011",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP06"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS014",
+          "name": "White; Solid",
+          "brand": "Paul Fredrick",
+          "color": "White",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS014",
+            "label": "White; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T011",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Black Polka Dot",
+          "primaryColor": "Black / near-black",
+          "secondaryColors": [
+            "Silver-white"
+          ],
+          "colorFamily": "black",
+          "patternFamily": "geometric",
+          "patternSubtype": "Polka Dot",
+          "geometry": "CIRCULAR",
+          "patternScale": "LARGE",
+          "patternScaleNum": 3,
+          "density": null,
+          "densityNum": null,
+          "contrast": "MEDIUM-HIGH",
+          "contrastNum": 3,
+          "texture": null,
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8,
+          "lavender": false,
+          "status": "active",
+          "name": "Near-black / fine white dots",
+          "color": "Near-black",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Near-black / fine white dots",
+          "_canonical": {
+            "id": "T011",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PB002",
+          "name": "Nordstrom \u2014 Navy (Workers United label, previously unbranded)",
+          "brand": "Nordstrom",
+          "color": "Navy",
+          "details": "Workers United label, previously unbranded",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-13",
+          "name": "Hermes Loafers \u2014 Black Kelly Hardware",
+          "brand": "Hermes",
+          "subcategory": "Loafers",
+          "color": "Black Kelly Hardware",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP06",
+          "name": "Audemars Piguet \u2014 RO Black Dial, Rose Gold",
+          "brand": "Audemars Piguet",
+          "color": "RO Black Dial, Rose Gold",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 13,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB003",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": "watch-AP10"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS019",
+          "name": "Chestnut/warm mid-brown; Solid",
+          "brand": "Brioni",
+          "color": "Chestnut/warm mid-brown",
+          "white": false,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS019",
+            "label": "Chestnut/warm mid-brown; Solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": null,
+        "pants": {
+          "id": "pants-PB003",
+          "name": "Theory \u2014 Navy (Size 32)",
+          "brand": "Theory",
+          "color": "Navy",
+          "details": "Size 32",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-8",
+          "name": "Gucci Loafers \u2014 Black Horsebit",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Black Horsebit",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP10",
+          "name": "Audemars Piguet \u2014 RO Blue RG Bracelet",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Bracelet",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 14,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB003",
+        "shirtId": "DS006",
+        "state": "T034",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP10"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS006",
+          "name": "Brunello Cucinelli \u2014 light blue solid",
+          "brand": "Brunello Cucinelli",
+          "color": "Light blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": true,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "DS006",
+            "label": "Brunello Cucinelli \u2014 light blue solid",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T034",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Bronze / Gold Woven Checkerboard",
+          "primaryColor": "Dark charcoal / blackened olive-grey",
+          "secondaryColors": [
+            "Bronze",
+            "antique gold and muted brown"
+          ],
+          "colorFamily": "gold",
+          "patternFamily": "grid",
+          "patternSubtype": "Check/Lattice",
+          "geometry": "GRID",
+          "patternScale": "VERY SMALL",
+          "patternScaleNum": 1.33,
+          "density": "HIGH",
+          "densityNum": 4,
+          "contrast": "VERY LOW",
+          "contrastNum": 1.33,
+          "texture": "Pronounced woven jacquard with a dimensional basket-weave effect; texture is a major part of the design",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 7.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Bronze / dark woven checkerboard",
+          "color": "Bronze",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Bronze / dark woven checkerboard",
+          "_canonical": {
+            "id": "T034",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PB003",
+          "name": "Theory \u2014 Navy (Size 32)",
+          "brand": "Theory",
+          "color": "Navy",
+          "details": "Size 32",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-0",
+          "name": "Louis Vuitton Dress Shoes \u2014 Black Embossed Monogram Lace-up",
+          "brand": "Louis Vuitton",
+          "subcategory": "Dress Shoes",
+          "color": "Black Embossed Monogram Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP10",
+          "name": "Audemars Piguet \u2014 RO Blue RG Bracelet",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Bracelet",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 15,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB004",
+        "shirtId": "DS008",
+        "state": "T044",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP13"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS008",
+          "name": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+          "brand": "Brunello Cucinelli",
+          "color": "White",
+          "white": true,
+          "lavender": false,
+          "highAuthority": false,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Fine horizontal stripe",
+          "_canonical": {
+            "id": "DS008",
+            "label": "Brunello Cucinelli \u2014 White with thin horizontal stripe",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T044",
+          "brand": "Paul Fredrick",
+          "displayDesc": "Silver-Grey Tonal Floral-Paisley",
+          "primaryColor": "Silver-grey / light pearl-grey",
+          "secondaryColors": [
+            "Tonal grey floral-paisley vine outline (self-tone woven, not charcoal or black)"
+          ],
+          "colorFamily": "grey",
+          "patternFamily": "organic",
+          "patternSubtype": "Floral-Paisley",
+          "geometry": "ORGANIC",
+          "patternScale": "MEDIUM",
+          "patternScaleNum": 2.33,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW-MEDIUM",
+          "contrastNum": 2,
+          "texture": "tonal jacquard, woven leaf/paisley vine motif",
+          "material": "silk",
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 9,
+          "lavender": false,
+          "status": "active",
+          "name": "Silver-grey tonal floral-paisley",
+          "color": "Silver-grey tonal floral-paisley",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Silver-grey tonal floral-paisley",
+          "_canonical": {
+            "id": "T044",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PB004",
+          "name": "Prada \u2014 Navy (Cuffed hem)",
+          "brand": "Prada",
+          "color": "Navy",
+          "details": "Cuffed hem",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-0",
+          "name": "Louis Vuitton Dress Shoes \u2014 Black Embossed Monogram Lace-up",
+          "brand": "Louis Vuitton",
+          "subcategory": "Dress Shoes",
+          "color": "Black Embossed Monogram Lace-up",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP13",
+          "name": "Audemars Piguet \u2014 RO Blue RG Leather",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Leather",
+          "lavender": false
+        }
+      }
+    },
+    {
+      "position": 16,
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PB004",
+        "shirtId": "DS007",
+        "state": "T001",
+        "shoeId": "shoe-8",
+        "watchId": "watch-AP13"
+      },
+      "items": {
+        "topwear": {
+          "id": "blazer-source-B14",
+          "name": "Black / Near-Black Solid Executive Blazer",
+          "formal": false,
+          "color": "Black / extremely deep near-black",
+          "pattern": "Solid",
+          "_canonical": {
+            "id": "B14",
+            "source": "CP98 pinned feature record"
+          }
+        },
+        "shirt": {
+          "id": "shirt-DS007",
+          "name": "Paul Fredrick \u2014 Light blue micro-check",
+          "brand": "Paul Fredrick",
+          "color": "Light blue",
+          "white": false,
+          "lavender": false,
+          "highAuthority": true,
+          "preferredContext": [
+            "work"
+          ],
+          "pattern": "Micro-check",
+          "_canonical": {
+            "id": "DS007",
+            "label": "Paul Fredrick \u2014 Light blue micro-check",
+            "source": "Active50 manifest + pinned feature record",
+            "source_text_disagreement": false
+          }
+        },
+        "tie": {
+          "id": "T001",
+          "brand": "Gucci",
+          "displayDesc": "Mushroom Taupe Horsebit",
+          "primaryColor": "Mushroom taupe / warm grey-brown",
+          "secondaryColors": [
+            "Muted champagne-beige"
+          ],
+          "colorFamily": "brown",
+          "patternFamily": "geometric",
+          "patternSubtype": "Horsebit",
+          "geometry": "MIXED",
+          "patternScale": "SMALL",
+          "patternScaleNum": 1.67,
+          "density": null,
+          "densityNum": null,
+          "contrast": "LOW",
+          "contrastNum": 1.33,
+          "texture": "fine textured/micro-check ground",
+          "material": null,
+          "reflectance": null,
+          "visualDominance": null,
+          "formality": 8.5,
+          "lavender": false,
+          "status": "active",
+          "name": "Taupe horsebit",
+          "color": "Taupe horsebit",
+          "white": false,
+          "highAuthority": false,
+          "pattern": "Taupe horsebit",
+          "_canonical": {
+            "id": "T001",
+            "source": "FEATURE_INPUTS.json",
+            "colour_family_source": "current_normalized_primary_not_legacy_catalogue"
+          }
+        },
+        "pants": {
+          "id": "pants-PB004",
+          "name": "Prada \u2014 Navy (Cuffed hem)",
+          "brand": "Prada",
+          "color": "Navy",
+          "details": "Cuffed hem",
+          "colorCategory": "blue",
+          "lavender": false
+        },
+        "shoes": {
+          "id": "shoe-8",
+          "name": "Gucci Loafers \u2014 Black Horsebit",
+          "brand": "Gucci",
+          "subcategory": "Loafers",
+          "color": "Black Horsebit",
+          "lavender": false,
+          "disabled": false
+        },
+        "watch": {
+          "id": "watch-AP13",
+          "name": "Audemars Piguet \u2014 RO Blue RG Leather",
+          "brand": "Audemars Piguet",
+          "color": "RO Blue RG Leather",
+          "lavender": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3135 @@
+{
+  "scope": "JS/CJS syntax, Python AST and JSON syntax/structure. Not execution of every historical helper.",
+  "passed": 782,
+  "failed": 0,
+  "checks": [
+    {
+      "path": "CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "data/approved-suits.js",
+      "passed": true
+    },
+    {
+      "path": "data/approved-suits.json",
+      "passed": true
+    },
+    {
+      "path": "data/batch10.js",
+      "passed": true
+    },
+    {
+      "path": "data/batch10.json",
+      "passed": true
+    },
+    {
+      "path": "data/blazer-connection.js",
+      "passed": true
+    },
+    {
+      "path": "data/blazer-connection.json",
+      "passed": true
+    },
+    {
+      "path": "data/ds023-cleanup.js",
+      "passed": true
+    },
+    {
+      "path": "data/ds023-cleanup.json",
+      "passed": true
+    },
+    {
+      "path": "data/ds023-edges.js",
+      "passed": true
+    },
+    {
+      "path": "data/ds023-edges.json",
+      "passed": true
+    },
+    {
+      "path": "data/ds035-coverage.js",
+      "passed": true
+    },
+    {
+      "path": "data/ds035-coverage.json",
+      "passed": true
+    },
+    {
+      "path": "data/ds035-edge.js",
+      "passed": true
+    },
+    {
+      "path": "data/ds035-edge.json",
+      "passed": true
+    },
+    {
+      "path": "data/inputs.js",
+      "passed": true
+    },
+    {
+      "path": "data/inputs.json",
+      "passed": true
+    },
+    {
+      "path": "data/non-suit-sources.js",
+      "passed": true
+    },
+    {
+      "path": "data/non-suit-sources.json",
+      "passed": true
+    },
+    {
+      "path": "data/option-index.js",
+      "passed": true
+    },
+    {
+      "path": "data/option-index.json",
+      "passed": true
+    },
+    {
+      "path": "data/shirt-only.js",
+      "passed": true
+    },
+    {
+      "path": "data/shirt-only.json",
+      "passed": true
+    },
+    {
+      "path": "data/styling-research.json",
+      "passed": true
+    },
+    {
+      "path": "data/stylist-library.js",
+      "passed": true
+    },
+    {
+      "path": "data/stylist-library.json",
+      "passed": true
+    },
+    {
+      "path": "data/stylist-service-config.js",
+      "passed": true
+    },
+    {
+      "path": "data/suit-assembly.js",
+      "passed": true
+    },
+    {
+      "path": "data/suit-assembly.json",
+      "passed": true
+    },
+    {
+      "path": "data/tie-fidelity.js",
+      "passed": true
+    },
+    {
+      "path": "data/tie-fidelity.json",
+      "passed": true
+    },
+    {
+      "path": "data/trouser-profiles.js",
+      "passed": true
+    },
+    {
+      "path": "evidence/COVERAGE_AUTHORIZATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/DS035_COVERAGE_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/DS035_COVERAGE_ROUTING.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/DS035_COVERAGE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/FUNCTIONAL_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/IMPLEMENTATION_RESULT_V1_2.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/IMPLEMENTATION_RESULT_V1_3.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/IMPLEMENTATION_RESULT_V1_4.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/INPUTS_BEFORE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/INPUT_PRESERVATION_V1_2.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/INTEGRATION_APERTURE_CHECK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/REGISTERED_VIEW_ORIGINS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/SOURCE_ORIGINS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/STRICT_OPENING_MASK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/SUIT_DISPLAY_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/SUIT_DISPLAY_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/SUIT_SOURCE_ORIGINS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/SUIT_SOURCE_ROUTING_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/BASE_REGRESSION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/BROWSER_PROGRESS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/EDGE_GUARDS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/INITIAL_BROWSER_HARNESS_CHECK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/INITIAL_ROUTING_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/OWNER_APPROVAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/ROUTING_AND_ENGINE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/SOURCE_CHANGES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/SUIT_SOURCE_GUARDS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/TEST_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/TEST_FIXES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/V1_5_BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/baseline/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/baseline/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/baseline/src/atomic-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/baseline/src/connection.js",
+      "passed": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/baseline/src/suit-assemblies.js",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/BASELINE_V1_11.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/DERIVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/HARNESS_NOTE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/browser/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/browser/HISTORY_LOCATOR_FAILURE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/browser/TEST_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/BASELINE_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/DERIVATION_CHECKS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/EDGE_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/REAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/STATIC_ENTRY_CHECK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch16_v1_16/DERIVATION_CHECKS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch16_v1_16/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/batch16_v1_16/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/BASELINE_V1_6.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/INHERITED_SWEEP_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/PHYSICAL_PANTS_CROSSWALK_ORIGINAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/SOURCE_ORIGINS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/BASELINE_V1_8.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/BROWSER_ORACLE_PRE_CANVAS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/HARNESS_NOTES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/HTTP_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/INHERITED_PROFILE_DIAGNOSTIC.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/SOURCE_CONNECTION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/browser/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/browser/RENDER_SWEEP_RUN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/browser/TEST_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/source/BLAZER_APPROVAL_STATE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/source/SANITATION_REPORT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/BASELINE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/DNA_LOGIC_IMAGE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/ENGINE_CASES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/EXTERNAL_BOUNDARY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/LOCAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/PROVIDER_HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/WEATHER_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/favorites-regression/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/insights-regression/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/DERIVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/HTTP_DELIVERY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/RESTORED_BASELINE_VERIFIER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/FUNCTIONAL_SUMMARY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/PARENT_PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/ROUTING.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/VISUAL_SAMPLE_MEASUREMENTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/prior_attempt/OPAQUE_ONLY_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edge_v1_5/prior_attempt/REJECTION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/DERIVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/HTTP_DELIVERY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/INHERITED_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/VISUAL_REVIEW.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BASELINE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BROWSER_HARNESS_CSP_ATTEMPT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BROWSER_HARNESS_FIRST_ATTEMPT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/FUNCTIONAL_FIRST_ATTEMPT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/LOCAL_ORIGIN_PROBE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/engine_v1_4/TEST_ONLY_ENGINE_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/ACCEPTANCE_RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/BASELINE_V1_10.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/BROWSER_INITIAL_LAYOUT_FINDING.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/CHANGED_ORIGINAL_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/HANDOFF_VERIFICATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/ICON_SOURCE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/ORIGINAL_INPUTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/TEST_NOTES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/browser/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/browser_extra/EXTRA_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/browser_extra/TEST_EXPORTED_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/handoff/OWNER_DECISIONS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/EXTRA_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/LOCAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/browser/SYNTHETIC_FAVORITES_EXPORT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/ALL32_CURATED_ANCHORS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/BACKEND_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/CURATED_NO_ANCHOR.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/LIBRARY_ASSESSMENTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/PACKAGING_CHECKS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/PASS2_ORIGINAL_SCORE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/SOURCE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/browser/INITIAL_RENDER_CHECKS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/browser/REGRESSION_AND_VISUAL_PIPELINE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1/BROWSER_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1/FUNCTIONAL_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1/IMPLEMENTATION_RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/FUNCTIONAL_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/IMPLEMENTATION_RESULT_V1_1.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/ORIGINAL_INPUT_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/SOURCE_ORIGINS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/STANDALONE_SMOKE_ATTEMPT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/SUIT_SOURCE_ORIGINS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/SUIT_SOURCE_ROUTING_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/DS035_COVERAGE_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/DS035_COVERAGE_ROUTING.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/FUNCTIONAL_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/SUIT_DISPLAY_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/SUIT_SOURCE_ROUTING_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/BASELINE_VERIFICATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/LOCAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/PROTECTION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/favorites-regression/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/INHERITED_WEATHER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/LOCAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/PROVIDER_HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/SMOKE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/WEATHER_NEW.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/core/ENGINE_CASES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/core/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/BASELINE_V1_12.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/DERIVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/browser/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/browser/FIRST_ATTEMPT_HARNESS_CSP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/browser/TEST_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/AFTER_OPTIONS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/BASELINE_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/BEFORE_OPTIONS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/ENSEMBLE_CHANGED_ROWS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/IMAGE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/LIVE_READ_ATTEMPTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/OWNER_REQUIREMENTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS1_INPUT_INTEGRITY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS2_COLOUR_AND_ENSEMBLE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS3_OPTIONS_POLICY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS5_DELIVERY_CHECKS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/SOURCE_COLOUR_AUDIT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/browser/PASS4_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/SOURCE_BOUNDARY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/BASELINE_V1_7.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/HARNESS_NOTES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/TEST_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/source/HEWRS_Trouser_Profile_Bindings.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/source/RECOVERY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/AUTO_WEATHER_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/DATA_REGRESSION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/HTTP_AND_SYNTAX.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/OWNER_MANDATE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS1_SOURCE_INTEGRITY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS2_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS2_ORIGINAL_SCORE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS2_WARDROBE_MATRIX.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS_SUMMARY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PROTECTED_BASELINE_HASHES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/SOURCE_PREFERENCE_PROFILES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/VISUAL_INSPECTION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/WARDROBE_BEFORE_AFTER_METRICS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/WEATHER_TRANSPORT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/browser/PASS3_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/BASELINE_V116_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/EDGE_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/HTTP_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/ORDER_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/REAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/SOURCE_RECONSTRUCTION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/TEST_SOURCE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/VISUAL_REVIEW.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/AUTO_WEATHER_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/CODE_INVENTORY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/FINAL_CODE_INVENTORY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/FINAL_UI_FAMILY_PARITY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/MEASURED_LIST_COUNTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/NO_ANCHOR.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS1_INTEGRITY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS1_ORIGINAL_SCORE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS1_RESTORATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS2_RULES_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS3_ALL32_OUTPUTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS3_STATE_ROUTING.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS5_HTTP_BYTES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS5_ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/SEASON_MATRIX.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/SOURCE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/WEATHER_TRANSPORT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/browser/NATIVE_FRAME_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/browser/PASS4_BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/browser_before_final_family_adapter.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/browser_long_lived_page_attempt.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/browser_resource_attempt.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/family_getter_spread_finding.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/SOURCE_BOUNDARY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/BASELINE_V1_9.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/HTTP_PROBE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/INITIAL_TEST_EXPECTATION_FAILURE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/SOURCE_LAYER_COMPARISON.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/archive.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/browser/BROWSER.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/browser/TEST_BACKUP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/BASELINE_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/REAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/SOURCE_DEPENDENCIES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/AUTO_WEATHER_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/BASELINE_REPRO.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/BASELINE_VERIFICATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/DNA_ENSEMBLE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/IMAGE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/LOCAL_ORIGIN.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/PASS3_OPTIONS_POLICY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/PATCH_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/ROLLBACK_VERIFICATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/SUITS_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/WEATHER_TRANSPORT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/INITIAL_CSP_PREDICATE_RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/SECOND_MISSING_SEEDED_IMAGE_RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/BROWSER_FIRST_ATTEMPT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/BROWSER_SECOND_ATTEMPT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/BROWSER_THIRD_ATTEMPT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/DERIVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/HTTP.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/PIXEL_INTEGRITY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/REPLAY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/ROLLBACK.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/TESTED_RUNTIME_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/core/ENGINE_CASES.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/core/FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/ABLATION_SUMMARY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/AUTO_WEATHER_FUNCTIONAL.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/B14_SOURCE_CAPACITY.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/CONTRACT_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_caps20.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_old15.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_old20.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_target.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/PASS1_ORIGINAL_SCORE_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/PASS3_STATE_ROUTING.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/SOURCE_CAPACITY_TESTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/VISUAL_REVIEW.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/WEATHER_TRANSPORT.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/browser/ITEMIZED_OUTPUTS.json",
+      "passed": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/browser/RESULT.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/batch10_v1_15/SOURCE_INPUTS.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/batch10_v1_15/V11_LAYER_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/batch16_v1_16/V11_LAYER_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/core_v1_17_0/SOURCE_POLICY.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/edges_v1_16_3/PROFILES.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/hybrid_v1_19_0/independent.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/hybrid_v1_19_0/s10.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/all47.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/all47_PRE_BLADEFIX.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/assemble_shirt.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/blade_fix.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/collar3.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/knot6.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/knot7.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/knot_r3.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/preflight.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/shirt_addendum.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/shirt_cloth.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/shirt_hires.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/shirt_hires_PRE_COVER.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/shirt_photo_cloth.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/sleeve.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/sleeve_render.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/test_guards.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/tie_source.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_code/torso.py",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_input_hashes.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_inputs/catalogue.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/tie_fidelity_v1_17_2/SOURCE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "provenance/tie_fidelity_v1_17_2/catalogue.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/PACKAGE_SHA256_V114.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/src/blazer-connection.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/src/non-suit-sources.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/src/shirt-only-connection.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/src/batch10-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/src/batch10-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/facelift_v1_11/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/facelift_v1_11/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/BASELINE_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/originals/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/originals/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/originals/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/originals/src/automatic-engine.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/originals/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/src/weather-context.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/data/option-index.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/data/option-index.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/src/automatic-engine.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/src/connection.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/src/facelift-state.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/tools/build_option_index.cjs",
+      "passed": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/vendor/ensemble-completion.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/BASELINE_PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/src/automatic-engine.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/src/facelift-state.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/src/local-state.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/data/batch10.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/data/batch10.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/src/batch10-contract.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/src/non-suit-sources.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/tests/batch16.cjs",
+      "passed": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/tools/build_batch16.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/BASELINE_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/src/automatic-engine.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/src/facelift-state.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/src/hybrid-stylist.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/tools/configure_visual_service.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/src/source-aware-pickers.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/source_routes_v1_14/PACKAGE_SHA256_V113.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/source_routes_v1_14/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/source_routes_v1_14/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/src/automatic-engine.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/src/weather-context.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/BASELINE_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/CHANGED_FILES.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/PACKAGE_SHA256.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/RELEASE_SCOPE.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/RELEASE_STATUS.json",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/src/application.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/src/b01-b02-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/src/batch10-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/src/blazer-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/src/shirt-only-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "src/application.js",
+      "passed": true
+    },
+    {
+      "path": "src/approved-suit-sources.js",
+      "passed": true
+    },
+    {
+      "path": "src/atomic-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/automatic-engine.js",
+      "passed": true
+    },
+    {
+      "path": "src/automatic-preferences.js",
+      "passed": true
+    },
+    {
+      "path": "src/automatic-weather.js",
+      "passed": true
+    },
+    {
+      "path": "src/b01-b02-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/batch10-contract.js",
+      "passed": true
+    },
+    {
+      "path": "src/batch10-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/blazer-connection.js",
+      "passed": true
+    },
+    {
+      "path": "src/blazer-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/canonical-bindings-browser.js",
+      "passed": true
+    },
+    {
+      "path": "src/connection.js",
+      "passed": true
+    },
+    {
+      "path": "src/controller.js",
+      "passed": true
+    },
+    {
+      "path": "src/ds023-cleanup-connection.js",
+      "passed": true
+    },
+    {
+      "path": "src/ds023-edges-connection.js",
+      "passed": true
+    },
+    {
+      "path": "src/ds035-coverage-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/ds035-edge-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/facelift-state.js",
+      "passed": true
+    },
+    {
+      "path": "src/favorites-state.js",
+      "passed": true
+    },
+    {
+      "path": "src/hybrid-stylist.js",
+      "passed": true
+    },
+    {
+      "path": "src/legacy-accessories.js",
+      "passed": true
+    },
+    {
+      "path": "src/local-state.js",
+      "passed": true
+    },
+    {
+      "path": "src/mixed-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/non-suit-sources.js",
+      "passed": true
+    },
+    {
+      "path": "src/option-set-policy.js",
+      "passed": true
+    },
+    {
+      "path": "src/outfit-preference.js",
+      "passed": true
+    },
+    {
+      "path": "src/researched-preference.js",
+      "passed": true
+    },
+    {
+      "path": "src/rotation-insights.js",
+      "passed": true
+    },
+    {
+      "path": "src/sheet-layout.js",
+      "passed": true
+    },
+    {
+      "path": "src/shirt-only-connection.js",
+      "passed": true
+    },
+    {
+      "path": "src/shirt-only-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "src/source-aware-pickers.js",
+      "passed": true
+    },
+    {
+      "path": "src/suit-assemblies.js",
+      "passed": true
+    },
+    {
+      "path": "src/suit-resolver97-browser.js",
+      "passed": true
+    },
+    {
+      "path": "src/tie-fidelity.js",
+      "passed": true
+    },
+    {
+      "path": "src/trouser-profiles.js",
+      "passed": true
+    },
+    {
+      "path": "src/visual-stylist-client.js",
+      "passed": true
+    },
+    {
+      "path": "src/weather-context.js",
+      "passed": true
+    },
+    {
+      "path": "tests/all-suits-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/all-suits.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/auto-weather-regression-v1180.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/automatic-weather.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/batch-blazers-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/batch-blazers.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/batch10-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/batch10-edge-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/batch10-real-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/batch10.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/batch16-browser-smoke.py",
+      "passed": true
+    },
+    {
+      "path": "tests/batch16.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/blazer-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/blazer-routing.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/colour-ensemble-audit.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/core-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/core-favorites-v1167-regression.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/core-http.py",
+      "passed": true
+    },
+    {
+      "path": "tests/core-loader.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/core-local-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/core-rotation-insights.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/core-workflow.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/data-regression-v1180.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/dna-preservation-v1174.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/ds023-cleanup-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/ds023-cleanup.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/ds023-edges-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/ds023-edges.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/edge-routing.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/facelift-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/facelift-extra-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/facelift-state.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/facelift_harness.py",
+      "passed": true
+    },
+    {
+      "path": "tests/favorites-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/favorites-extra-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/favorites-http.py",
+      "passed": true
+    },
+    {
+      "path": "tests/favorites-local-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/favorites-v1167-regression.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/favorites.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/final-blazers-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/final-blazers.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/functional.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/http-integrity-v1180.py",
+      "passed": true
+    },
+    {
+      "path": "tests/hybrid-browser-v1190.py",
+      "passed": true
+    },
+    {
+      "path": "tests/hybrid-v1190.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/insights-http.py",
+      "passed": true
+    },
+    {
+      "path": "tests/insights-local-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/inspect-non-suit-coverage.py",
+      "passed": true
+    },
+    {
+      "path": "tests/mobile-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/mobile-core-regression.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/mobile-http.py",
+      "passed": true
+    },
+    {
+      "path": "tests/mobile-local-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/mobile-provider-probe.py",
+      "passed": true
+    },
+    {
+      "path": "tests/mobile-weather-regression.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/mobile-weather.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/non-suit-real-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/non-suit-sources-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/non-suit-sources.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/open-collar-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/open-collar.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/option-limits.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/options-audit-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/options-preservation-v1174.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/picker-layout-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/picker-layout.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/preference-browser-v1180.py",
+      "passed": true
+    },
+    {
+      "path": "tests/preference-v1180.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/profile-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/profile-routing.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/release-scope-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/release-scope.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/release-v1161-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/release-v1161-edge-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/release-v1161-real-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/release-v1161.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/research-auto-weather.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/research-browser-v1200.py",
+      "passed": true
+    },
+    {
+      "path": "tests/research-original-scores.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/research-state-and-routing.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/research-ui-family-parity.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/research-v1200.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/research-weather-transport.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/rotation-insights-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/rotation-insights.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/score-preservation-v1180.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/score-preservation-v1190.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/shirt-only-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/shirt-only.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/source-http.py",
+      "passed": true
+    },
+    {
+      "path": "tests/suit-season-regression.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/suit-source-routing.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/suits-auto-weather-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/suits-weather-real-origin.py",
+      "passed": true
+    },
+    {
+      "path": "tests/tie-core-regression.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie-fidelity-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/tie-fidelity-http.py",
+      "passed": true
+    },
+    {
+      "path": "tests/tie-fidelity.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-auto-weather.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-browser.py",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-capacity.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-contracts.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-matrix.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-original-scores.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-state.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/tie20-weather-transport.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/wardrobe-v1180.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/weather-context.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/weather-transport-v1174.cjs",
+      "passed": true
+    },
+    {
+      "path": "tests/weather-transport-v1180.cjs",
+      "passed": true
+    },
+    {
+      "path": "tools/bind_final_blazers.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_batch10.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_batch16.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_ds023_cleanup.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_ds023_edges.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_ds035_coverage.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_ds035_edge.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_non_suit_sources.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_open_collar.py",
+      "passed": true
+    },
+    {
+      "path": "tools/build_option_index.cjs",
+      "passed": true
+    },
+    {
+      "path": "tools/build_tie_fidelity.py",
+      "passed": true
+    },
+    {
+      "path": "tools/configure_visual_service.py",
+      "passed": true
+    },
+    {
+      "path": "tools/reconstruct_ds001_pre_tie.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_facelift.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v114.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v115.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1161.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1162.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1163.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1164.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1165.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1166.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1167.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1170.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1171.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1172.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1173.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1174.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1180.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1190.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1200.py",
+      "passed": true
+    },
+    {
+      "path": "tools/rollback_v1210.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_ds035_coverage.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_edge.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_engine.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v110.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v111.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v112.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v113.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v114.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v115.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1161.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1162.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1163.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1164.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1165.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1166.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1167.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1170.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1171.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1172.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1173.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1174.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1180.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1190.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1200.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v1210.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v16.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v17.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v18.py",
+      "passed": true
+    },
+    {
+      "path": "tools/verify_v19.py",
+      "passed": true
+    },
+    {
+      "path": "vendor/active50-renderer.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/approved-scores.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/b01_b02_v1_12/BLAZER_APPROVAL_STATE.json",
+      "passed": true
+    },
+    {
+      "path": "vendor/blazers-v1_9/blazer-connection_code_v18.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/blazers-v1_9/blazer-connection_v18.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/blazers-v1_9/blazer-connection_v18.json",
+      "passed": true
+    },
+    {
+      "path": "vendor/blazers-v1_9/blazer-renderer_v18.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/blazers-v1_9/connection_v18.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/cp98/AUTHORITY.json",
+      "passed": true
+    },
+    {
+      "path": "vendor/cp98/REGISTER97.json",
+      "passed": true
+    },
+    {
+      "path": "vendor/cp98/static-viewer97.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/ensemble-completion.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/hewrs-logic.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/profiles-v1_8/blazer_connection_v17.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/profiles-v1_8/connection_v17.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/profiles-v1_8/controller_v17.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/recommendation-path-original.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/release-guards.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/request-contract.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/shirt-only-v1_10/mixed-renderer_v19.js",
+      "passed": true
+    },
+    {
+      "path": "vendor/watch-classification.js",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "passed": 5,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "All 136 canonical source-derived feature records remain identical",
+      "passed": true,
+      "result": 136
+    },
+    {
+      "name": "All 2350 frozen Shirt-Tie lookups retain scores, holds and conflicts",
+      "passed": true,
+      "result": 2350
+    },
+    {
+      "name": "112392 fresh ensemble calculations match the baseline and pinned source index",
+      "passed": true,
+      "result": {
+        "rows": 112392,
+        "differences": 0,
+        "calculated_rows_digest": "d82c74014e3905f0bb44f8f6617d05e5c42ac91747382d17b8afaf996e991a7e"
+      }
+    },
+    {
+      "name": "Original formula weights, independent No Tie policy and base rotation remain unchanged",
+      "passed": true,
+      "result": {
+        "no_diversity_score_bonus": true,
+        "weather_is_separate": true
+      }
+    },
+    {
+      "name": "All image and tie bindings and physical identities remain identical",
+      "passed": true,
+      "result": {
+        "nonsuit_shirts": 18,
+        "suit_shirts": 50,
+        "ties": 47
+      }
+    }
+  ]
+}

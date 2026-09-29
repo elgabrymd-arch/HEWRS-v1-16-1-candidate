@@ -1,19 +1,17 @@
-/* V1.21.0 local, research-informed styling rules.
+/* V1.20.0 local, research-informed styling rules.
  * Sources/qualifiers: RESEARCH_RULES_V1_20_0.md and data/styling-research.json.
  * Numeric weights are disclosed engineering judgments, NOT designer ratings,
  * measured colours, a trained taste model, or live visual-AI assessment.
  * This module reads wardrobe facts. It does not edit DNA or historical scores.
  */
 (function(root){'use strict';
-const REV='hewrs.researched-work-styling.v1_21_0',old=root.HEWRSOutfitPreference;
+const REV='hewrs.researched-work-styling.v1_20_0',old=root.HEWRSOutfitPreference;
 const clip=(v,lo=0,hi=10)=>Math.max(lo,Math.min(hi,v)),r=v=>Math.round(v*1e6)/1e6,copy=x=>structuredClone(x),txt=x=>String(x||'').toLowerCase();
 const warm=new Set(['brown','beige','cream','rust','gold','olive']),neutral=new Set(['white','cream','beige','grey','charcoal','black']);
 function col(t){let c=old.colour(t),s=txt(t);
  // Retain the dominant compound, not incidental tokens or accent adjectives.
  if(/\b(?:warm )?charcoal brown\b/.test(s))c={...c,shade:'brown',family:'brown',hue:30,value:1.8,saturation:.14,temperature:'warm-neutral'};
  if(/\bmedium\/dark chocolate\b/.test(s))c={...c,value:1.8};
- // Source-described pearl/silver is not generic mid-grey. Ordinal, not measured.
- if(/\b(?:pearl[ -]silver|silver(?:[ -]grey)?|light metallic grey)\b/.test(s)&&!/(?:dark|charcoal|black|blue)/.test(s))c={...c,shade:'silver-grey',family:'grey',hue:null,saturation:.04,value:/pearl/.test(s)?4.5:4.1,temperature:'neutral'};
  return c;
 }
 function pat(row){let p=old.pattern(row),s=txt(row.pattern_text),cs=txt(row.contrast_text);
@@ -21,12 +19,6 @@ function pat(row){let p=old.pattern(row),s=txt(row.pattern_text),cs=txt(row.cont
  if(/motif over|monogram.*weave|geometric.*weave/.test(s))p={...p,family:'geometric',layers:['motif','ground-weave'],compound:false,scale:2.2,contrast:/tonal/.test(s)?1.5:p.contrast,quiet:false};
  if(/herringbone|micro.basket/.test(s)&&!/windowpane|check over/.test(s))p={...p,family:'texture',quiet:true,contrast:Math.min(p.contrast,1.2)};
  if(/very low|extremely faint|almost invisible/.test(cs+' '+s))p={...p,quiet:true,contrast:Math.min(p.contrast,.65)};
- const ordinal=v=>{const m=String(v||'').match(/\((\d+(?:\.\d+)?)\)/);return m&&+m[1]>=0&&+m[1]<=5?+m[1]:null;};
- const scale=ordinal(row.scale_text),contrast=ordinal(row.contrast_text);
- if(scale!==null)p={...p,scale,scale_basis:'recorded_ordinal'};
- if(contrast!==null)p={...p,contrast,contrast_basis:'recorded_ordinal'};
- // Quietness means low visual contrast, not removal of the actual pattern.
- if(!p.compound&&contrast!==null)p={...p,quiet:contrast<=1.67};
  return p;
 }
 function create(c){const inherited=old.create(c),profiles=new Map();
@@ -55,12 +47,12 @@ function create(c){const inherited=old.create(c),profiles=new Map();
   if(!tied&&['brown','navy','black','burgundy'].includes(sf)&&Math.abs(t.primary.value-s.primary.value)>=.7)v+=.4;
   return clip(v);
  }
- // A tie is judged in relation to BOTH surrounding garments. No primary-
- // family preference table systematically promotes navy/burgundy or suppresses
- // silver, pale blue, gold, pink, sage or other owned colours.
- function tieDirection(t,s,i){if(!i)return 9.35;
-  const shirtLink=pair(s.primary,i.primary),jacketLink=pair(t.primary,i.primary);
-  return clip(.55*shirtLink+.45*jacketLink);
+ function tieDirection(t,s,i){if(!i)return 9.35;const f=s.primary.family,tf=t.primary.family;let m;
+  if(['blue','navy'].includes(f))m={navy:9.5,burgundy:9.6,brown:9.4,purple:9.3,rust:9.2,grey:9.0,black:8.9,blue:9.1,gold:8.8,red:8.85,pink:8.8,lavender:8.8};
+  else if(['lavender','purple','pink','mauve'].includes(f))m={navy:9.6,purple:9.45,burgundy:9.35,brown:9.1,grey:9.3,black:9.0,blue:9.15,rust:8.8,gold:8.6,red:8.5,pink:8.7,lavender:8.9};
+  else if(['brown','beige'].includes(f))m={navy:9.55,brown:9.3,burgundy:9.3,purple:9.1,grey:9.1,blue:9.2,black:8.9,rust:8.9,gold:8.8,red:8.4,pink:8.7};
+  else m={navy:9.6,burgundy:9.5,brown:warm.has(tf)?9.45:9.2,purple:9.35,grey:9.0,black:9.0,blue:9.25,rust:warm.has(tf)?9.25:9.05,gold:8.95,red:8.75,pink:8.95,lavender:9.0};
+  return m[i.primary.family]??8.8;
  }
  // Small semantic reference prior: compare recorded garment properties, not
  // exact IDs. These are the two overall preferred example sets, NOT a fitted
@@ -77,29 +69,16 @@ function create(c){const inherited=old.create(c),profiles=new Map();
   const patt=a.pattern.quiet&&b.pattern.quiet?1:a.pattern.family===b.pattern.family?Math.max(.4,1-Math.abs(a.pattern.scale-b.pattern.scale)/5):.35;
   return .50*same+.25*depth+.25*patt;
  }
- function referenceSimilarity(p){if(!templates.length)return 8;let best=0;for(const x of templates){if((!!p.pants)!=(!!x.pants))continue;const tieShape=(!p.tie||!x.tie)?(!p.tie&&!x.tie?1:.3):(.55*(p.tie.pattern.quiet===x.tie.pattern.quiet?1:.65)+.45*Math.max(.5,1-Math.abs(p.tie.pattern.scale-x.tie.pattern.scale)/5));const v=.28*propertySimilarity(p.topwear,x.topwear)+.30*propertySimilarity(p.shirt,x.shirt)+.30*tieShape+.12*propertySimilarity(p.pants,x.pants);best=Math.max(best,v);}return 10*best;}
+ function referenceSimilarity(p){if(!templates.length)return 8;let best=0;for(const x of templates){if((!!p.pants)!=(!!x.pants))continue;const v=.28*propertySimilarity(p.topwear,x.topwear)+.30*propertySimilarity(p.shirt,x.shirt)+.30*propertySimilarity(p.tie,x.tie)+.12*propertySimilarity(p.pants,x.pants);best=Math.max(best,v);}return 10*best;}
  function clothing(topId,shirtId,tieId,pantId,legacyScore){const t=get(topId),s=get(shirtId),tie=tieId==='NO_TIE'?null:get(tieId),p=pantId?get('pants-'+pantId):null,parts=[t,s,...(tie?[tie]:[]),...(p?[p]:[])];
   const tv=t.primary.value,sv=s.primary.value,iv=tie?.primary.value,d=sv===null||iv===null?null:sv-iv,gap=tv===null||sv===null?null:Math.abs(tv-sv),pr=parts.map(prominence),reasons=[],cautions=[];
-  // Readability has several legitimate structures: a deeper focal tie,
-  // a pale tonal tie with visible pattern/texture, and a framed light tie.
-  // No maximum-contrast reward and no categorical reverse-value rejection.
-  let value=8.6,valueRoute='open_collar';
-  if(tie){
-   const abs=d===null?null:Math.abs(d),hg=hueGap(s.primary,tie.primary),
-    colourSeparation=hg!==null&&hg>=25&&Math.max(s.primary.saturation||0,tie.primary.saturation||0)>=.14,
-    patternSignal=tie.pattern.family!=='solid'&&(tie.pattern.contrast>=1||!!tie.surface),
-    surfaceSignal=/jacquard|woven|silk|texture|rib|lustr|metallic/.test(txt(tie.surface)+' '+txt(tie.primary.wording)),
-    frame=tv!==null&&iv!==null&&(Math.abs(tv-iv)>=.75||hueGap(t.primary,tie.primary)>=30),
-    pale=sv!==null&&sv>=3.6&&iv!==null&&iv>=3.6;
-   if(d===null){value=8;valueRoute='unknown_depth';cautions.push('Tie depth is not recorded; no measured separation is inferred.');}
-   else if(d>=.5){value=9.3;valueRoute='deeper_focal_tie';reasons.push('A deeper tie supplies a readable focal point without rewarding maximum contrast.');}
-   else if(pale&&(patternSignal||surfaceSignal||colourSeparation)){
-    value=frame?9.3:9.05;valueRoute='pale_tonal_pattern_or_texture';reasons.push('A pale-tonal tie remains readable through its recorded pattern, texture or hue; a dark tie is not required.');
-   }else if(d<-.3&&(abs>=.6||colourSeparation)&&(patternSignal||frame)){
-    value=9.05;valueRoute='lighter_tie_with_supporting_separation';reasons.push('The lighter tie has supporting shirt/jacket separation; it is not categorically penalized.');
-   }else if(abs>=.3||colourSeparation||patternSignal&&frame){value=8.8;valueRoute='tonal_with_supporting_structure';}
-   else{value=7.1;valueRoute='weak_recorded_separation';cautions.push('Similar depths with little recorded hue, pattern or texture separation may lose the tie outline.');}
-   if(sv!==null&&sv<2&&iv!==null&&iv<2&&!colourSeparation&&!patternSignal)value-=.55;
+  // CT dark-tie/light-shirt guidance is a contextual preference, not a ban.
+  let value=8.6;
+  if(tie){value=d===null?8:d>=.6?9.4:d>=.2?8.8:d>=-.2?8:6.5;
+   if(d!==null&&d>=.6)reasons.push('The tie is deeper than the shirt, giving a readable focal point.');
+   else if(d!==null&&d<-.2)cautions.push('Reverse-value tie: more expressive than the default work styling.');
+   if(sv!==null&&sv<2.0&&iv!==null&&iv<2.0)value-=.55;
+   if(gap!==null&&gap<.35&&(d===null||d<.6))value-=.55;
   }else{value=gap===null?8:gap>=.5?9.1:prominence(t)+prominence(s)>.45?8.7:8.1;reasons.push('Open collar keeps the outfit uncluttered; no missing-tie penalty.');}
   // Relative pattern scales and one leading focal element. Subtle weaves stay subtle.
   let hierarchy=9.5;const visible=parts.map((x,i)=>({x,p:pr[i]})).filter(z=>z.p>.38);
@@ -124,9 +103,9 @@ function create(c){const inherited=old.create(c),profiles=new Map();
   if(tie&&/button.down|denim/.test(txt(s.construction)+' '+txt(s.surface))&&/peak|double.breasted/.test(txt(t.construction)))formality-=.7;
   if(/nap|hairy|brushed|boucle/.test(txt(t.surface))&&/satin|shiny/.test(txt(s.surface)))surface-=.7;
   const components={reference_structure:r(referenceSimilarity({topwear:t,shirt:s,tie,pants:p})),shirt_palette_direction:r(shirtDirection(t,s,!!tie)),tie_palette_direction:r(tieDirection(t,s,tie)),value_structure:r(clip(value)),palette:r(clip(palette)),pattern_hierarchy:r(clip(hierarchy)),formality:r(clip(formality)),surface:r(clip(surface)),blazer_trouser_foundation:r(clip(foundation)),legacy_compatibility:legacyScore};
-  const weights={reference_structure:.04,shirt_palette_direction:.153,tie_palette_direction:.18,value_structure:.18,palette:.096,pattern_hierarchy:.198,formality:.036,surface:.027,blazer_trouser_foundation:.072,legacy_compatibility:.018};
+  const weights={reference_structure:.10,shirt_palette_direction:.153,tie_palette_direction:.162,value_structure:.162,palette:.072,pattern_hierarchy:.198,formality:.036,surface:.027,blazer_trouser_foundation:.072,legacy_compatibility:.018};
   let score=Object.keys(weights).reduce((n,k)=>n+weights[k]*components[k],0);
-  return {revision:REV,score:r(score),components,weights,ids:{topwear:topId,shirt:shirtId,tie:tieId,pants:pantId},profiles:{topwear:t,shirt:s,tie,pants:p},prominence:pr,value_route:valueRoute,reasons,cautions,reason:[...reasons,...cautions].join(' '),kind:'research_informed_local_rule_estimate',measured:false};
+  return {revision:REV,score:r(score),components,weights,ids:{topwear:topId,shirt:shirtId,tie:tieId,pants:pantId},profiles:{topwear:t,shirt:s,tie,pants:p},prominence:pr,reasons,cautions,reason:[...reasons,...cautions].join(' '),kind:'research_informed_local_rule_estimate',measured:false};
  }
  function shoe(item,o,q){const t=o.profiles.topwear,p=o.profiles.pants||t,ss=txt(item.color),colour=col(ss),type=item.subcategory,suit=t.category==='suit',tied=!!o.profiles.tie,pv=p.primary.value,v=colour.value;
   let formality=type==='Dress Shoes'?(tied?9.5:9.0):type==='Loafers'?(tied?8.9:9.35):type==='Drivers'?6.8:6.2;
@@ -151,7 +130,7 @@ function create(c){const inherited=old.create(c),profiles=new Map();
  function redundancy(e,selected,q){if(!selected.length)return 0;const a=signature(e.entry.preference);let max=0,sum=0;for(const old of selected){const b=signature(old.entry.preference);let n=0;for(const[k,w]of Object.entries({topFamily:.06,topPattern:.04,shirtShade:.23,shirtDepth:.06,shirtPattern:.12,tieFamily:.25,tiePattern:.12}))if(a[k]===b[k])n+=w;
   if(q.prefs.topwear.mode!=='item'&&a.topId===b.topId)n+=.12;if(q.prefs.shirt.mode!=='item'&&a.shirtId===b.shirtId)n+=.12;max=Math.max(max,n);sum+=n;}
   return r(.15*max+.10*sum/selected.length);}
- return Object.freeze({revision:REV,reference_templates:templates.length,clothing,shoe,watch,complete,signature,redundancy,matchesFamily:(id,f)=>{const a=get(id).primary;return f==='taupe'?a.shade==='taupe':f==='grey'?['grey','charcoal','stone'].includes(a.family):f==='pink'?['pink','mauve'].includes(a.family):a.family===f;},profile:id=>copy(get(id)),profiles:()=>[...profiles.values()].map(copy),curationBand:.25,tieCoverage:true,maximumComplete:score=>.87*score+1.3,description:'Local wardrobe generator with published qualitative style guidance; all weights are disclosed heuristics, not live AI or designer-endorsed scores.'});
+ return Object.freeze({revision:REV,reference_templates:templates.length,clothing,shoe,watch,complete,signature,redundancy,matchesFamily:(id,f)=>{const a=get(id).primary;return f==='taupe'?a.shade==='taupe':f==='grey'?['grey','charcoal','stone'].includes(a.family):f==='pink'?['pink','mauve'].includes(a.family):a.family===f;},profile:id=>copy(get(id)),profiles:()=>[...profiles.values()].map(copy),curationBand:.25,maximumComplete:score=>.87*score+1.3,description:'Local wardrobe generator with published qualitative style guidance; all weights are disclosed heuristics, not live AI or designer-endorsed scores.'});
 }
 root.HEWRSResearchPreference=Object.freeze({create,revision:REV,colour:col,pattern:pat});
 })(globalThis);

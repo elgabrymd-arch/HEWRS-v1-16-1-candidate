@@ -1,0 +1,112 @@
+{
+  "schema": "hewrs.weather.functional.v1_17_0",
+  "passed": 21,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Temperature bands use exact existing boundaries including feels-like",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Frozen/freezing and snow weather codes are explicitly mapped",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Season uses selected date and hemisphere; no assumed user location",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Location is coarsened, bounded, and invalid values rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Current model estimate retains provider units, timestamps and source",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Future date uses clearly labelled daily forecast high, not fake current or noon reading",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Out-of-range dates, Celsius and missing values are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Automatic request refuses stale time/date and preserves original state",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Initialization is read-only with no implicit location/network request",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Weather saves/reloads in its own key without touching wear or Favorites",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Corrupt and stale-tab weather data is not silently overwritten",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Search lists all returned cities without automatically selecting one",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Forecast uses allowed host, Fahrenheit, rounded coordinates and no credentials",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Location permission denial leaves prior settings intact and exposes manual fallback",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Location success fetches but does not apply until explicit confirmation",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Network/HTTP/malformed/aborted requests preserve previous manual settings",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unknown material is not filled with guessed fibre or sole properties",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Weather effects are separate from wardrobe compatibility and demonstrably operational",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Seasonal labels are advisory and never alter catalogue metadata",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Texture resemblance is not promoted to known cloth composition",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Suede elbow patches do not turn a herringbone blazer into an all-suede garment",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

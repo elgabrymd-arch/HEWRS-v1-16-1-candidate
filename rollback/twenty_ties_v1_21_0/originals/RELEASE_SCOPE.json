@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.owner-release-scope.v1",
-  "version": "1.21.0",
+  "version": "1.18.0",
   "owner_instruction": "Continue with 18 only for now",
   "owner_message_timestamp": "2026-09-25T02:44:23Z",
   "scope_applies_to": [
@@ -94,21 +94,22 @@
     "Permission-based device location or chosen city",
     "Current weather / forecast with manual fallback",
     "Automatic suit/blazer outfits with no mandatory exact shoe/topwear selection",
-    "20 distinct qualified clothing options when available, honoring all explicit locks",
+    "15 distinct qualified clothing options when available, honoring all explicit locks",
     "Existing DNA/compatibility/rotation preserved"
   ],
   "current_patch_scope": [
-    "Target20 complete distinct options",
-    "Each unanchored tie once; other items twice; exact-item exemptions only",
-    "Complete-outfit candidate review across all eligible ties",
-    "Correct pale/silver pattern and palette interpretation without changing raw wardrobe data",
-    "Preserve source holds, original scores, assets, weather, history and Favorites"
+    "Remove unsupported hard calendar-season veto; preserve season metadata as advice",
+    "Preserve material/temperature/precipitation and shoe weather checks and all numerical DNA rules",
+    "Explain genuine weather/accessory/source constraints instead of a generic no-score message",
+    "Automatic startup/foreground/pre-generation weather with permission-aware device or labelled saved-location refresh",
+    "Explicit Enable once; manual override, cancellation, stale-tab and stored-data safeguards",
+    "No garment re-rendering, renumbering, repeated-item-cap relaxation, wear mutation or new wardrobe scope"
   ],
   "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged.",
   "owner_weather_update": {
     "timestamp": "2026-09-27T20:15:32Z",
     "report": "weather is fixed",
-    "code_changed_in_this_increment": false
+    "code_changed_in_this_increment": true
   },
   "option_set_policy": {
     "max_unanchored_item_uses": 2,
@@ -116,10 +117,7 @@
     "max_shirt_only": 2,
     "exact_item_anchor_exception": true,
     "family_anchor_exception": false,
-    "compatibility_diversity_bonus": false,
-    "target_options": 20,
-    "max_unanchored_tie_uses": 1,
-    "max_unanchored_other_item_uses": 2
+    "compatibility_diversity_bonus": false
   },
   "automatic_weather": {
     "enabled_by_user_action": true,
@@ -128,6 +126,6 @@
     "fallback": "Saved coordinates labelled explicitly; never claimed as a fresh device location. Manual weather disables automatic updates.",
     "browser_permission_lifetime": "Controlled by browser/OS; no promise of permanent permission."
   },
-  "recommendation_authorization": "2026-09-29T01:24:11Z: i approve proposed start;20 options, unique unanchored ties and full47-tie coverage review",
+  "recommendation_authorization": "2026-09-28T04:10:34Z: PLEASE IMPLEMENT AND PROCEED; wardrobe-wide personal preference calibration",
   "no_new_inventory_scope": true
 }

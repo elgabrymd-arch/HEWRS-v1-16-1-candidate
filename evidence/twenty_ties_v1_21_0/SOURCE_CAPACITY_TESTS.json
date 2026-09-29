@@ -1,0 +1,31 @@
+{
+  "passed": 2,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "B14 source ceiling16 is independent of the tie-once correction",
+      "passed": true,
+      "detail": {
+        "topwear": 20,
+        "shirt": 36,
+        "tie": 49,
+        "pants": 16,
+        "upper_bound": 16,
+        "distinct_scored_trouser_ids": 8,
+        "explanation": "Counts are upper bounds from source-eligible matched clothing; weather, accessories and combined caps can reduce actual results further."
+      }
+    },
+    {
+      "name": "Anchoring B14 and an exact supported trouser lifts only those caps and allows20",
+      "passed": true,
+      "detail": {
+        "returned": 20,
+        "exact_exemptions": [
+          "blazer-source-B14",
+          "pants-PG002"
+        ],
+        "distinct_ties": 18
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "passes": [
+    {
+      "pass": 1,
+      "name": "Baseline and original wardrobe/score preservation",
+      "checks": "2,153 baseline payloads,136 canonical features,2,350 original pair lookups,112,392 original ensemble results and848 image paths",
+      "status": "PASS"
+    },
+    {
+      "pass": 2,
+      "name": "Tie interpretation,20/1/2 rules and source-capacity boundary",
+      "checks": "22 new contract/capacity named checks; all47 exact tie anchors, family/NoTie/partial locks and original-data isolation",
+      "status": "PASS"
+    },
+    {
+      "pass": 3,
+      "name": "Controlled four-way generation comparison",
+      "checks": "4\u00d733 actual selector runs; full47-tie candidate diagnostics; independent counters and duplicate tests",
+      "status": "PASS_WITH_B14_16_SOURCE_CAPACITY"
+    },
+    {
+      "pass": 4,
+      "name": "Actual compositor/UI and regressions",
+      "checks": "77 aggregate functional checks,20 browser checks,90 native equal frames,56 navigated positions; simulated storage/provider scope",
+      "status": "PASS_LOCAL"
+    },
+    {
+      "pass": 5,
+      "name": "Parser, transport, exact source installation and rollback",
+      "checks": "782 prepackaging parser targets;914 HTTP bytes; exact install/rollback and finalZIP checks in external receipt",
+      "status": "FINAL_PACKAGING_RECORDED_EXTERNALLY"
+    }
+  ],
+  "scope": "Five distinct audit work areas, not five claimed complete formal proofs. No hosted/privateAI/device deployment."
+}
