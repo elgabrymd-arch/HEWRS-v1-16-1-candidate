@@ -1,779 +1,1833 @@
 {
-  "version": "1.21.0",
-  "baseline": "1.20.0",
-  "self_exclusions": [
-    "CHANGED_FILES.json",
-    "PACKAGE_SHA256.json"
-  ],
-  "deleted_baseline_paths": [],
+  "baseline": "1.21.0",
+  "version": "1.21.1",
   "files": [
     {
+      "path": "DELIVERY_V1_21_1.md",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "DELIVERY_V1_21_1.md",
+        "bytes": 4980,
+        "sha256": "697b0910b3cb71f0af5337da9bebe26b081677bda8baa0a475395e5437b0ccbe"
+      }
+    },
+    {
       "path": "README.md",
-      "operation": "modified",
+      "change": "modified",
       "before": {
         "path": "README.md",
-        "bytes": 4125,
-        "sha256": "3b19256e007084292cd4e5964b660c2eaefec50ff2f31cd0e62ede8f5e8f093f"
+        "bytes": 2671,
+        "sha256": "ebc71f072a835f93a9607b4ef3b4ae8e916c45bdbdd87f711e1ed071f6ee7181"
       },
       "after": {
         "path": "README.md",
+        "bytes": 1493,
+        "sha256": "fa0cf8e4609e03036a0336933111adc4c0c10a5f7592d3bfc9f198acf7b7f669"
+      }
+    },
+    {
+      "path": "RELEASE_STATUS.json",
+      "change": "modified",
+      "before": {
+        "path": "RELEASE_STATUS.json",
+        "bytes": 5262,
+        "sha256": "835a4cc45b11b26ae9397730220b76ec19a87e6e1e7e23629192448b56487fa7"
+      },
+      "after": {
+        "path": "RELEASE_STATUS.json",
+        "bytes": 5700,
+        "sha256": "c99f0867f0729ceb363305e6ff7a7d988510f0565226bd5af0fecc94e9a59242"
+      }
+    },
+    {
+      "path": "app.html",
+      "change": "modified",
+      "before": {
+        "path": "app.html",
+        "bytes": 16690,
+        "sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df"
+      },
+      "after": {
+        "path": "app.html",
+        "bytes": 17360,
+        "sha256": "a16d74ae7cad515d0e4eb09d31aff724577f1e93156b1533e659d54160e1c87e"
+      }
+    },
+    {
+      "path": "app.template.html",
+      "change": "modified",
+      "before": {
+        "path": "app.template.html",
+        "bytes": 13222,
+        "sha256": "f67a5735afc1282f2f5d55498a3f9f939b6dde7215b826f3be63b227f5bcfb4f"
+      },
+      "after": {
+        "path": "app.template.html",
+        "bytes": 13779,
+        "sha256": "7d2da9df59a131d263d408f286b57ac10c751e8e304f73dbc4549885dcdc4257"
+      }
+    },
+    {
+      "path": "data/option-card-thumbnails.js",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "data/option-card-thumbnails.js",
+        "bytes": 78689,
+        "sha256": "263ce46bbfac42a6360c0cd8d0ddcb2a2bcb1ba0e947e1ef303828ae6f8e9372"
+      }
+    },
+    {
+      "path": "data/option-card-thumbnails.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "data/option-card-thumbnails.json",
+        "bytes": 107047,
+        "sha256": "43871603c36373c46c06674f88a2c231d8b0a8ad09e7303e798aa9b06461270a"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/FUNCTIONAL.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/FUNCTIONAL.json",
+        "bytes": 1808,
+        "sha256": "3aebdc7d297a76ae8c7aa40d373955d695ff7885e93ff20ab3a457957b21dad7"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/HTTP_SOURCE_CHECK.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/HTTP_SOURCE_CHECK.json",
+        "bytes": 33639,
+        "sha256": "8c3d6bf3b046ffd9864953651b89033d47ef911280a0070ce628d0e3be7bd5fe"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/INDEPENDENT_ITEM_COUNTERS.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/INDEPENDENT_ITEM_COUNTERS.json",
+        "bytes": 1666,
+        "sha256": "3ead2779e20da06b687b322ee7102d38ab95b7a1016537f50c5f220dca79c8ca"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/PRESERVED_SOURCE.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/PRESERVED_SOURCE.json",
+        "bytes": 426429,
+        "sha256": "07bc4bc69f15a73b9da5ce89220802d3dab178098b27e55534965581a58dd817"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/DESKTOP_APP.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/DESKTOP_APP.png",
+        "bytes": 231071,
+        "sha256": "e270bd502d2b59d2fc7b6a263224b967015b56429f838986ed1dfaa24f9aac4f"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/DESKTOP_OPTION_CARD.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/DESKTOP_OPTION_CARD.png",
+        "bytes": 210325,
+        "sha256": "8233c21684a0a709e4afcd549a71d0b7f3cd306e1846c39ebb373b2bd0c6eedb"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/EXTRA_ATTEMPT_FAVORITES_FIELD.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/EXTRA_ATTEMPT_FAVORITES_FIELD.json",
+        "bytes": 13453,
+        "sha256": "d0111969e6c74ddbf10a84ae8eeecbad123340c8bdcf7ce898b38eaea81b0a11"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/FAILURE.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/FAILURE.png",
+        "bytes": 63552,
+        "sha256": "8e1dbbddeeda08646cb02bd27abc6b00a9af9444ca6a37ddd363e52168991578"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/HOME_BASELINE.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/HOME_BASELINE.png",
+        "bytes": 51649,
+        "sha256": "fead389760ff851c18062e7f24d36228a57d45b44d0f25e4dde9ca02b3bbf7fc"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/HOME_CURRENT.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/HOME_CURRENT.png",
+        "bytes": 51649,
+        "sha256": "fead389760ff851c18062e7f24d36228a57d45b44d0f25e4dde9ca02b3bbf7fc"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHASE1_ATTEMPT.log",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/PHASE1_ATTEMPT.log",
+        "bytes": 2835,
+        "sha256": "629b010fcd17eb035bc03a33580771196d0e229569417d41a255a69b66b7f417"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHASE1_ATTEMPT_WITH_FIXTURE_ERROR.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/PHASE1_ATTEMPT_WITH_FIXTURE_ERROR.json",
+        "bytes": 11221,
+        "sha256": "267a71ecc2c3a2638135bf64bc8e954b6453a1c66c6fdc631e360d88d44c6357"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHASE1_GENERATION.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/PHASE1_GENERATION.json",
+        "bytes": 9094,
+        "sha256": "08c7e53009c4aeb0a370ebf29cb2bc5ea0e6370999579b635758a2d351b401c0"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHONE_FULL_OUTFIT.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/PHONE_FULL_OUTFIT.png",
+        "bytes": 146754,
+        "sha256": "beae983b94b79bef7f6db14a834f0cca9c3706ffe5139482ff96bb5220d97d61"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHONE_ITEMS.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/PHONE_ITEMS.png",
+        "bytes": 69210,
+        "sha256": "79a86ef066e4b37a807b8b5a15e49313756b1e4ca903e93ae2675c363a75a7ac"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/RESULT.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser/RESULT.json",
+        "bytes": 11358,
+        "sha256": "d154de3a91cd6240389f5bda3b2001cbb6dfafe4aa1fd1063d3161cf070fb262"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser_aborted_timeout.log",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser_aborted_timeout.log",
+        "bytes": 590,
+        "sha256": "9904da0c7f87343639107f91336a134454ffa65c870de9403c423f801f8ddaf0"
+      }
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser_home_fail.log",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "evidence/option_cards_v1_21_1/browser_home_fail.log",
+        "bytes": 701,
+        "sha256": "7109e48172435901596073f19da226d8f0307b007df525f6c61ca9455b69b06f"
+      }
+    },
+    {
+      "path": "index.html",
+      "change": "modified",
+      "before": {
+        "path": "index.html",
+        "bytes": 16690,
+        "sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df"
+      },
+      "after": {
+        "path": "index.html",
+        "bytes": 17360,
+        "sha256": "a16d74ae7cad515d0e4eb09d31aff724577f1e93156b1533e659d54160e1c87e"
+      }
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/BASELINE_PACKAGE_SHA256.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "rollback/option_cards_v1_21_1/BASELINE_PACKAGE_SHA256.json",
+        "bytes": 427728,
+        "sha256": "68bd81d519aa8be577b6ab707cf90211dca5c450e5eba3f7b6936b77687c74c2"
+      }
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/RESTORE.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "rollback/option_cards_v1_21_1/RESTORE.json",
+        "bytes": 364,
+        "sha256": "71e1dd6fc66b81d98d68903290a1d93d1b48075e70aba51a91ae331012456f78"
+      }
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/original/CHANGED_FILES.json",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "rollback/option_cards_v1_21_1/original/CHANGED_FILES.json",
+        "bytes": 25251,
+        "sha256": "451357183e050eee5bf180410198d43637fd0c68e338cb062d5aaa2063851792"
+      }
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/original/README.md",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "rollback/option_cards_v1_21_1/original/README.md",
         "bytes": 2671,
         "sha256": "ebc71f072a835f93a9607b4ef3b4ae8e916c45bdbdd87f711e1ed071f6ee7181"
       }
     },
     {
-      "path": "RELEASE_SCOPE.json",
-      "operation": "modified",
-      "before": {
-        "path": "RELEASE_SCOPE.json",
-        "bytes": 4449,
-        "sha256": "d456485151fbb88254660c96f55850a0ccb03a377972473df159371045aa0e68"
-      },
+      "path": "rollback/option_cards_v1_21_1/original/RELEASE_STATUS.json",
+      "change": "new",
+      "before": null,
       "after": {
-        "path": "RELEASE_SCOPE.json",
-        "bytes": 4315,
-        "sha256": "fee3c825849314e6b5f450cd4a2abdc6b7e267cec45d1b4859da1a25dafd5862"
-      }
-    },
-    {
-      "path": "RELEASE_STATUS.json",
-      "operation": "modified",
-      "before": {
-        "path": "RELEASE_STATUS.json",
-        "bytes": 6193,
-        "sha256": "79054929b9739389f7bac2bbe88a7cca8a4e7aceb75b475a4c866048d4ee31a3"
-      },
-      "after": {
-        "path": "RELEASE_STATUS.json",
+        "path": "rollback/option_cards_v1_21_1/original/RELEASE_STATUS.json",
         "bytes": 5262,
         "sha256": "835a4cc45b11b26ae9397730220b76ec19a87e6e1e7e23629192448b56487fa7"
       }
     },
     {
-      "path": "RESEARCH_RULES_V1_21_0.md",
-      "operation": "added",
+      "path": "rollback/option_cards_v1_21_1/original/app.html",
+      "change": "new",
       "before": null,
       "after": {
-        "path": "RESEARCH_RULES_V1_21_0.md",
-        "bytes": 6399,
-        "sha256": "d2414207a75c3e689b2b514cfb5c7481a7eaeaca2d35cb8380915f11dddb75b7"
-      }
-    },
-    {
-      "path": "V1210_IMPLEMENTATION_AUDIT.md",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "V1210_IMPLEMENTATION_AUDIT.md",
-        "bytes": 10664,
-        "sha256": "c96c32e06288ef1318e4a8b25c815e1d83b19061da9a9f8663e7cb1b9b01be5c"
-      }
-    },
-    {
-      "path": "app.html",
-      "operation": "modified",
-      "before": {
-        "path": "app.html",
-        "bytes": 16690,
-        "sha256": "544a040a7d3c6fbade5ba5cca0001a23b7c03b7a98409cbb8e0678d5a970b11e"
-      },
-      "after": {
-        "path": "app.html",
+        "path": "rollback/option_cards_v1_21_1/original/app.html",
         "bytes": 16690,
         "sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df"
       }
     },
     {
-      "path": "app.template.html",
-      "operation": "modified",
-      "before": {
-        "path": "app.template.html",
-        "bytes": 13222,
-        "sha256": "05dacf627d1eeb5a02963240705fa1cc6a73afd36727358513c7cd59db1d1235"
-      },
+      "path": "rollback/option_cards_v1_21_1/original/app.template.html",
+      "change": "new",
+      "before": null,
       "after": {
-        "path": "app.template.html",
+        "path": "rollback/option_cards_v1_21_1/original/app.template.html",
         "bytes": 13222,
         "sha256": "f67a5735afc1282f2f5d55498a3f9f939b6dde7215b826f3be63b227f5bcfb4f"
       }
     },
     {
-      "path": "evidence/twenty_ties_v1_21_0/ABLATION_SUMMARY.json",
-      "operation": "added",
+      "path": "rollback/option_cards_v1_21_1/original/index.html",
+      "change": "new",
       "before": null,
       "after": {
-        "path": "evidence/twenty_ties_v1_21_0/ABLATION_SUMMARY.json",
-        "bytes": 2951,
-        "sha256": "5c92df92ce366feed2b4d2461ef1d9204cd95f3a015a5d77b5596b42f544d254"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/ALL_32_COUNTS.csv",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/ALL_32_COUNTS.csv",
-        "bytes": 906,
-        "sha256": "a3ee561e11dd89f22f89c2116bbe9517e648430c89194f778154933648e9ebba"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/ALL_47_TIE_COVERAGE.csv",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/ALL_47_TIE_COVERAGE.csv",
-        "bytes": 5898,
-        "sha256": "6fe7adcb87aebe423f75088ba6ec969aaee6d6c50449d6cc4ca55088bc5dddf9"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/AUTO_WEATHER_FUNCTIONAL.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/AUTO_WEATHER_FUNCTIONAL.json",
-        "bytes": 3602,
-        "sha256": "10bb007f0e732709dc30707d6d1aa646bfaa88e04e37713a3e7b148b20ddb4e3"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/B14_SOURCE_CAPACITY.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/B14_SOURCE_CAPACITY.json",
-        "bytes": 1624,
-        "sha256": "03249aa41678359e22aba6f0c71ff00d3d722ca8d93bc9389c9229533f7fc2d7"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/BASELINE_RECONSTRUCTION.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/BASELINE_RECONSTRUCTION.json",
-        "bytes": 932,
-        "sha256": "5c964f82a57489518730724ceb02e92be8167c21d9df33da1d19deec32ca598d"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/CONTRACT_TESTS.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/CONTRACT_TESTS.json",
-        "bytes": 104401,
-        "sha256": "ab9a6f80e4bb2398945bbe4f353f4f74d12980e4b7ad21ed189180c760998dac"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/FIVE_PASS_SUMMARY.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/FIVE_PASS_SUMMARY.json",
-        "bytes": 1499,
-        "sha256": "0a012e4e0e1603e0d760adaee6833f02f3f0d013759bae83cb2011ca0438d143"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/HTTP_BYTES.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/HTTP_BYTES.json",
-        "bytes": 190588,
-        "sha256": "f509e6254e45dc2832898f80b03226893418ad826a27b5cb81e23a08977e4bbf"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/MATRIX_caps20.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/MATRIX_caps20.json",
-        "bytes": 14664394,
-        "sha256": "f3bf7ce8ff086908b647786990e6c4ec8c95573455f78ad3d4f950b6719c52e5"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/MATRIX_old15.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/MATRIX_old15.json",
-        "bytes": 11253466,
-        "sha256": "c0642314bf5f70edb6982882fda7219f825c3e8a3e6b56605876046e1546f728"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/MATRIX_old20.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/MATRIX_old20.json",
-        "bytes": 14727537,
-        "sha256": "9b19055da561c8525698028e6fe5a12a14b16f83833e951b367180c916a57402"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/MATRIX_target.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/MATRIX_target.json",
-        "bytes": 16398395,
-        "sha256": "64cad309daaf35cfd9b6e3a91bf2166f804d854ff83a8d5260ef9b777dc89a40"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/NAMED_TEST_SUMMARY.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/NAMED_TEST_SUMMARY.json",
-        "bytes": 408,
-        "sha256": "7ae3c38f410498e73691131c178765fdbf126079371802d93fef016bca7abd3f"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/PARSER_CHECKS.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/PARSER_CHECKS.json",
-        "bytes": 72819,
-        "sha256": "731bbd8d3b7831fbc303c0b2c44d716a953ee882d3d86c44778cc28914793ab7"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/PASS1_ORIGINAL_SCORE_PRESERVATION.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/PASS1_ORIGINAL_SCORE_PRESERVATION.json",
-        "bytes": 1103,
-        "sha256": "ca4eadd2f731768cc245278f3f162ec59c4b1a66b1ddf02caf79f49853bffd6a"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/PASS3_STATE_ROUTING.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/PASS3_STATE_ROUTING.json",
-        "bytes": 1107,
-        "sha256": "28c982b95938cceaf9c645967296a0f9fb04136145a915061dd503ecf4b9dc12"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/ROLLBACK_CHECK.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/ROLLBACK_CHECK.json",
-        "bytes": 314,
-        "sha256": "c43919f469b6f0d2ed2a22a12bb34c77ff03ac221b513d07cea861dd7567b0ef"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/SOURCE_CAPACITY_TESTS.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/SOURCE_CAPACITY_TESTS.json",
-        "bytes": 813,
-        "sha256": "be3d2eb97e6629ce028a637e0b6a2ac9d66ceabe841c155f35df90f926ac4e2c"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/SOURCE_PRESERVATION.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/SOURCE_PRESERVATION.json",
-        "bytes": 415250,
-        "sha256": "f3aff1e4ad2af25306978f80c01698eebef769832f6ecd37e99b7a57e8ec5e8c"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/TESTED_RUNTIME_SHA256.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/TESTED_RUNTIME_SHA256.json",
-        "bytes": 10660,
-        "sha256": "272ee7f5fb781acd1292ba8542da5b7acff4825001a32b87950927adc3877322"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/VISUAL_REVIEW.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/VISUAL_REVIEW.json",
-        "bytes": 572,
-        "sha256": "6cab86741a5f16d93d655581bd236baf8b69a185bcead26e9641c977326675ea"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/WEATHER_TRANSPORT.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/WEATHER_TRANSPORT.json",
-        "bytes": 3122,
-        "sha256": "097337d407df105b7cd2afb542a91c892d3be8b633a7f43b6b585e176a9609bf"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/browser/COLLAR_390x700.png",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/browser/COLLAR_390x700.png",
-        "bytes": 177330,
-        "sha256": "a8a863db92b9556c72093c65fc34aa6ae0e03e1dd034f872482eef896b10af63"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/browser/ITEMIZED_OUTPUTS.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/browser/ITEMIZED_OUTPUTS.json",
-        "bytes": 178347,
-        "sha256": "4f00435c1c817cafdeea98250f94679c30a76ff5d3dd459c012b14d20087a11d"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/browser/OPTION20_390x700.png",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/browser/OPTION20_390x700.png",
-        "bytes": 126940,
-        "sha256": "04252fa78320f007a875640217135c4beb65064398e5ccedbaf53f8d95b15943"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/browser/RESULT.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/browser/RESULT.json",
-        "bytes": 49124,
-        "sha256": "afc92ac16ffea7fc8c4a6d5eb1713fd7d802a9ea0968ce8b535752ecbbce58d7"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/browser/boards/B14_OPTIONS.jpg",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/browser/boards/B14_OPTIONS.jpg",
-        "bytes": 704103,
-        "sha256": "bc6233a16af99bb0cbbb898665d57af7a2f13daee5696752f65a4bc718033c0f"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/browser/boards/FREE_OPTIONS.jpg",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/browser/boards/FREE_OPTIONS.jpg",
-        "bytes": 783559,
-        "sha256": "03921ffd029fce69d0768c4c106314d6da7c57cace43a691130e043535a678bd"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/browser/boards/S10_OPTIONS.jpg",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/browser/boards/S10_OPTIONS.jpg",
-        "bytes": 762138,
-        "sha256": "6294c8a6fc924ebb867ebf3028f3b7c79efe5b84fd309db05d10ef138548e5c9"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/development_attempts/INITIAL_MATRIX_ASSUMED_TWENTY_B14_FAILED.log",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/development_attempts/INITIAL_MATRIX_ASSUMED_TWENTY_B14_FAILED.log",
-        "bytes": 4566,
-        "sha256": "8eae01d04a58bac2b43e7acce1dfe0665d0b8f2602d34434ceda65eb9214815c"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/development_attempts/matrix_old20_completion.log",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/development_attempts/matrix_old20_completion.log",
-        "bytes": 446,
-        "sha256": "e471a5b7d3549a20439956602c735fe4ed46ba10ab1ae04f18a2cab9f6ee9508"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/development_attempts/matrix_target.log",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/development_attempts/matrix_target.log",
-        "bytes": 4566,
-        "sha256": "8eae01d04a58bac2b43e7acce1dfe0665d0b8f2602d34434ceda65eb9214815c"
-      }
-    },
-    {
-      "path": "evidence/twenty_ties_v1_21_0/development_attempts/runner.log",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "evidence/twenty_ties_v1_21_0/development_attempts/runner.log",
-        "bytes": 166,
-        "sha256": "a5659ebcc978c759b76c36ffad8e9a350350b23c220d6b779d92b27e06af1950"
-      }
-    },
-    {
-      "path": "index.html",
-      "operation": "modified",
-      "before": {
-        "path": "index.html",
-        "bytes": 16690,
-        "sha256": "544a040a7d3c6fbade5ba5cca0001a23b7c03b7a98409cbb8e0678d5a970b11e"
-      },
-      "after": {
-        "path": "index.html",
+        "path": "rollback/option_cards_v1_21_1/original/index.html",
         "bytes": 16690,
         "sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df"
       }
     },
     {
-      "path": "rollback/twenty_ties_v1_21_0/BASELINE_MANIFEST.json",
-      "operation": "added",
+      "path": "rollback/option_cards_v1_21_1/original/src/application.css",
+      "change": "new",
       "before": null,
       "after": {
-        "path": "rollback/twenty_ties_v1_21_0/BASELINE_MANIFEST.json",
-        "bytes": 416632,
-        "sha256": "76aeb040e593f869b077d8faf2b6d4fe8d295bd81dae73f6446c3aeaaac8e8c5"
+        "path": "rollback/option_cards_v1_21_1/original/src/application.css",
+        "bytes": 18626,
+        "sha256": "bf33a1f259a1344ba3e4df53ae433435a63fab1978c1c1e06933a21efc6f9902"
       }
     },
     {
-      "path": "rollback/twenty_ties_v1_21_0/originals/CHANGED_FILES.json",
-      "operation": "added",
+      "path": "rollback/option_cards_v1_21_1/original/src/application.js",
+      "change": "new",
       "before": null,
       "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/CHANGED_FILES.json",
-        "bytes": 33930,
-        "sha256": "f1ef4aa9c67718b2655f775f69088a2c1e5a745c8d8d70a36234890388c350d2"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/README.md",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/README.md",
-        "bytes": 4125,
-        "sha256": "3b19256e007084292cd4e5964b660c2eaefec50ff2f31cd0e62ede8f5e8f093f"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/RELEASE_SCOPE.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/RELEASE_SCOPE.json",
-        "bytes": 4449,
-        "sha256": "d456485151fbb88254660c96f55850a0ccb03a377972473df159371045aa0e68"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/RELEASE_STATUS.json",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/RELEASE_STATUS.json",
-        "bytes": 6193,
-        "sha256": "79054929b9739389f7bac2bbe88a7cca8a4e7aceb75b475a4c866048d4ee31a3"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/app.html",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/app.html",
-        "bytes": 16690,
-        "sha256": "544a040a7d3c6fbade5ba5cca0001a23b7c03b7a98409cbb8e0678d5a970b11e"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/app.template.html",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/app.template.html",
-        "bytes": 13222,
-        "sha256": "05dacf627d1eeb5a02963240705fa1cc6a73afd36727358513c7cd59db1d1235"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/index.html",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/index.html",
-        "bytes": 16690,
-        "sha256": "544a040a7d3c6fbade5ba5cca0001a23b7c03b7a98409cbb8e0678d5a970b11e"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/src/application.js",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/src/application.js",
-        "bytes": 77840,
-        "sha256": "97b29ee7dc2b60681fc3ee2c234ee925f3bee5fdb033b9237feb19637396bf09"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/src/automatic-engine.js",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/src/automatic-engine.js",
-        "bytes": 25438,
-        "sha256": "590026e01f3a30396db6179fca9b48053abfd1ed8bb5466b5036235e38b409d8"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/src/hybrid-stylist.js",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/src/hybrid-stylist.js",
-        "bytes": 16283,
-        "sha256": "866f7a2fb69d9f6fa7db18d5fec11ac5339042cdcb3427ee3315aaae752cf15b"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/src/option-set-policy.js",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/src/option-set-policy.js",
-        "bytes": 3831,
-        "sha256": "e714decc822d9a088ce76cdb3ab6a36f112e829e708dd2f8886a973255c5ef5b"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/src/researched-preference.js",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/src/researched-preference.js",
-        "bytes": 15503,
-        "sha256": "13cf509bee5f5d90f3e15fb16ffd979ea382a9d29571f764703e956d650d93ef"
-      }
-    },
-    {
-      "path": "rollback/twenty_ties_v1_21_0/originals/tools/build.py",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "rollback/twenty_ties_v1_21_0/originals/tools/build.py",
-        "bytes": 3150,
-        "sha256": "1965bbdea4d5ccdbeae21cda3efaaa9dec5ec87ae1af70051acee7dc39226ca1"
-      }
-    },
-    {
-      "path": "src/application.js",
-      "operation": "modified",
-      "before": {
-        "path": "src/application.js",
-        "bytes": 77840,
-        "sha256": "97b29ee7dc2b60681fc3ee2c234ee925f3bee5fdb033b9237feb19637396bf09"
-      },
-      "after": {
-        "path": "src/application.js",
+        "path": "rollback/option_cards_v1_21_1/original/src/application.js",
         "bytes": 77868,
         "sha256": "ec33116906dd3108e00f1b79f372aa0dbe0fef327eb5454d8198f22a4574a082"
       }
     },
     {
-      "path": "src/automatic-engine.js",
-      "operation": "modified",
-      "before": {
-        "path": "src/automatic-engine.js",
-        "bytes": 25438,
-        "sha256": "590026e01f3a30396db6179fca9b48053abfd1ed8bb5466b5036235e38b409d8"
-      },
-      "after": {
-        "path": "src/automatic-engine.js",
-        "bytes": 30193,
-        "sha256": "66d0c22f048e288a2814a646b68f52af8e2be44aee47770a0600978e2e4327c0"
-      }
-    },
-    {
-      "path": "src/hybrid-stylist.js",
-      "operation": "modified",
-      "before": {
-        "path": "src/hybrid-stylist.js",
-        "bytes": 16283,
-        "sha256": "866f7a2fb69d9f6fa7db18d5fec11ac5339042cdcb3427ee3315aaae752cf15b"
-      },
-      "after": {
-        "path": "src/hybrid-stylist.js",
-        "bytes": 16328,
-        "sha256": "5d161afc2c883a057c0796fd1c203954908717931f1f27f18f73fb88d66a203b"
-      }
-    },
-    {
-      "path": "src/option-set-policy.js",
-      "operation": "modified",
-      "before": {
-        "path": "src/option-set-policy.js",
-        "bytes": 3831,
-        "sha256": "e714decc822d9a088ce76cdb3ab6a36f112e829e708dd2f8886a973255c5ef5b"
-      },
-      "after": {
-        "path": "src/option-set-policy.js",
-        "bytes": 4117,
-        "sha256": "f84a6b3a2237530b8449c4169b6b852e908de3d76e28c31262f77ad63cd0291c"
-      }
-    },
-    {
-      "path": "src/researched-preference.js",
-      "operation": "modified",
-      "before": {
-        "path": "src/researched-preference.js",
-        "bytes": 15503,
-        "sha256": "13cf509bee5f5d90f3e15fb16ffd979ea382a9d29571f764703e956d650d93ef"
-      },
-      "after": {
-        "path": "src/researched-preference.js",
-        "bytes": 17574,
-        "sha256": "b1126a17d92cadffa2e516579bcc784f015846163175ff3940d9f6733258d336"
-      }
-    },
-    {
-      "path": "tests/tie20-auto-weather.cjs",
-      "operation": "added",
+      "path": "rollback/option_cards_v1_21_1/original/tools/build.py",
+      "change": "new",
       "before": null,
       "after": {
-        "path": "tests/tie20-auto-weather.cjs",
-        "bytes": 10446,
-        "sha256": "fc6130a553013c1136eea0e06742879c77d79ef557ba44cb536b0210f01afe1c"
-      }
-    },
-    {
-      "path": "tests/tie20-browser.py",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "tests/tie20-browser.py",
-        "bytes": 9678,
-        "sha256": "8777c8467558b02715aa80df4699ed8110a85c903417ba4bd58ece724057c561"
-      }
-    },
-    {
-      "path": "tests/tie20-capacity.cjs",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "tests/tie20-capacity.cjs",
-        "bytes": 2431,
-        "sha256": "55196a0ff7a4844b8a0ca45024d1e52ffce21f0042e12b012f1ec16bab740c27"
-      }
-    },
-    {
-      "path": "tests/tie20-contracts.cjs",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "tests/tie20-contracts.cjs",
-        "bytes": 9580,
-        "sha256": "47a0c82f2bcc4f25e7a061081f62fe884afb3104bc2535c66a0e907328f1beef"
-      }
-    },
-    {
-      "path": "tests/tie20-matrix.cjs",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "tests/tie20-matrix.cjs",
-        "bytes": 3341,
-        "sha256": "69ce353a265834cc3cda14369717f2a095d7d4f12eab1a3b7d82621b48215921"
-      }
-    },
-    {
-      "path": "tests/tie20-original-scores.cjs",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "tests/tie20-original-scores.cjs",
-        "bytes": 3063,
-        "sha256": "0b4b2a4e471350db4fb30dd978e765997229299a48ae95d7d4d2712e685b71b7"
-      }
-    },
-    {
-      "path": "tests/tie20-state.cjs",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "tests/tie20-state.cjs",
-        "bytes": 3726,
-        "sha256": "c927db4b42cc3355c7507ccb78e87f9e2fe260cbfd17c690546e2481b6a07884"
-      }
-    },
-    {
-      "path": "tests/tie20-weather-transport.cjs",
-      "operation": "added",
-      "before": null,
-      "after": {
-        "path": "tests/tie20-weather-transport.cjs",
-        "bytes": 9475,
-        "sha256": "63ed26bb1c873cdd56f3e2a902ae7c7afd6794a59429a40a9c24fa42990452d8"
-      }
-    },
-    {
-      "path": "tools/build.py",
-      "operation": "modified",
-      "before": {
-        "path": "tools/build.py",
-        "bytes": 3150,
-        "sha256": "1965bbdea4d5ccdbeae21cda3efaaa9dec5ec87ae1af70051acee7dc39226ca1"
-      },
-      "after": {
-        "path": "tools/build.py",
+        "path": "rollback/option_cards_v1_21_1/original/tools/build.py",
         "bytes": 3150,
         "sha256": "35580a39c58cf75673c673735af3ae269d7854fe2c21a134bf6a126c5182aeb1"
       }
     },
     {
-      "path": "tools/rollback_v1210.py",
-      "operation": "added",
-      "before": null,
+      "path": "src/application.css",
+      "change": "modified",
+      "before": {
+        "path": "src/application.css",
+        "bytes": 18626,
+        "sha256": "bf33a1f259a1344ba3e4df53ae433435a63fab1978c1c1e06933a21efc6f9902"
+      },
       "after": {
-        "path": "tools/rollback_v1210.py",
-        "bytes": 1421,
-        "sha256": "90f50f43a2ab885a049e6ea1147b83cf07172c8783d93452d14faa4bebce2377"
+        "path": "src/application.css",
+        "bytes": 23569,
+        "sha256": "c1b7a98ca5dececcaf927433b78649f8c19e81e1cd25ad11411035d59a999d5e"
       }
     },
     {
-      "path": "tools/verify_v1210.py",
-      "operation": "added",
+      "path": "src/application.js",
+      "change": "modified",
+      "before": {
+        "path": "src/application.js",
+        "bytes": 77868,
+        "sha256": "ec33116906dd3108e00f1b79f372aa0dbe0fef327eb5454d8198f22a4574a082"
+      },
+      "after": {
+        "path": "src/application.js",
+        "bytes": 78015,
+        "sha256": "16699a82d222a3b0526bb0e12e097b221a6732733cbc7b4df597c77d6fd93a74"
+      }
+    },
+    {
+      "path": "src/option-cards.js",
+      "change": "new",
       "before": null,
       "after": {
-        "path": "tools/verify_v1210.py",
-        "bytes": 2273,
-        "sha256": "443a37daf166a9e5fbd6fefcf4f72191ac9b106c92b55ede2bb87189e559c571"
+        "path": "src/option-cards.js",
+        "bytes": 4229,
+        "sha256": "f55d647e1a5dd9299a134f5a4a4565580ead7b295440f8aa73cda94cec26f5cc"
+      }
+    },
+    {
+      "path": "tests/option-cards-browser-extra.py",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "tests/option-cards-browser-extra.py",
+        "bytes": 7091,
+        "sha256": "56d179be5e6b200e1568c8b8d01e6015844036d475459bee54202d0cabae94ee"
+      }
+    },
+    {
+      "path": "tests/option-cards-browser.py",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "tests/option-cards-browser.py",
+        "bytes": 10582,
+        "sha256": "31f642bc9ec42d8ce6fc3ef3f27f1c460ce219a13a4f2da220d099b7b4a742c8"
+      }
+    },
+    {
+      "path": "tests/option-cards.cjs",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "tests/option-cards.cjs",
+        "bytes": 5771,
+        "sha256": "af27b9ec5337def74c9ee405910bde7b8aca8345161bdd31e3e9cf24597713ac"
+      }
+    },
+    {
+      "path": "tools/build.py",
+      "change": "modified",
+      "before": {
+        "path": "tools/build.py",
+        "bytes": 3150,
+        "sha256": "35580a39c58cf75673c673735af3ae269d7854fe2c21a134bf6a126c5182aeb1"
+      },
+      "after": {
+        "path": "tools/build.py",
+        "bytes": 3529,
+        "sha256": "0a7cb2d670bd3efb2663a87a115df380de697b15ecbd6abf267f1554c4aa735b"
+      }
+    },
+    {
+      "path": "tools/build_option_card_thumbnails.py",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "tools/build_option_card_thumbnails.py",
+        "bytes": 2838,
+        "sha256": "2f3e148064a0b91ea9323f0dc9e923f1ac5072940be8f96533a9420973d45b1a"
+      }
+    },
+    {
+      "path": "tools/rollback_v1211.py",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "tools/rollback_v1211.py",
+        "bytes": 1493,
+        "sha256": "309c83ded9cc83bdccf5d2d01e4814ce64ca6e2b4e720358bc2444e25b8292e9"
+      }
+    },
+    {
+      "path": "tools/verify_v1211.py",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "tools/verify_v1211.py",
+        "bytes": 1510,
+        "sha256": "4c0058c978471f9cbe8c038c3a24c73dcb507326ffa317183759b0b6d11e61d3"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS001.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS001.png",
+        "bytes": 50387,
+        "sha256": "0fa664e109ff17de76ac1b66cebc1f8032dbef9884dcc5571c4bb86684b2cdb1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS002.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS002.png",
+        "bytes": 88958,
+        "sha256": "3d57962ec3b50e7601b6a979dccfa963e96d70c6fea72982b3b0e564321b6d0c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS003.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS003.png",
+        "bytes": 83406,
+        "sha256": "474ec7c46f2e07b6a07c2c2f0c416d9d738b9c09fc24f259f6daac19b77e367f"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS004.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS004.png",
+        "bytes": 75089,
+        "sha256": "be4ae9141a4a35a149160c9a75699cb8a92c93c75caa3dba1687abf184cccfae"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS005.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS005.png",
+        "bytes": 71799,
+        "sha256": "5ae4af3a227caaf0c3c366c3fbecb130658a42bba5ba98ea628b0d17f1cc00b0"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS006.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS006.png",
+        "bytes": 42526,
+        "sha256": "d524e7eb4468512b0e0013ccd0b8d2b654ef76e09a056093ce7f82cdf2697746"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS007.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS007.png",
+        "bytes": 80243,
+        "sha256": "cc73647e31ec7e6db390f792123e4508b3f9f9365edcd06d1ea2473b1901c7ad"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS008.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS008.png",
+        "bytes": 63054,
+        "sha256": "880f8bac49ddea3b28b4f98725eeea62abce38e503991408b5b985ce042c037d"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS009.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS009.png",
+        "bytes": 42526,
+        "sha256": "d524e7eb4468512b0e0013ccd0b8d2b654ef76e09a056093ce7f82cdf2697746"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS010.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS010.png",
+        "bytes": 108178,
+        "sha256": "51a724e5398e3b6ee335107bf68ff014e704eab8e0115f47f987c890e2d92d42"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS011.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS011.png",
+        "bytes": 125858,
+        "sha256": "a4e5bd3038ca72de475ec84946fdecde098bab6115d4b67baba9a4c73821c3bf"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS012.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS012.png",
+        "bytes": 34254,
+        "sha256": "b91c6c290a52acef55a62d4a084a56ec6071a54262e78504da3b7c165485f9ad"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS013.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS013.png",
+        "bytes": 91954,
+        "sha256": "3756fcc3050d5f8654307f1a7eb1776dad6b72f1ead8afbb411282d4ae296fb6"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS014.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS014.png",
+        "bytes": 50387,
+        "sha256": "0fa664e109ff17de76ac1b66cebc1f8032dbef9884dcc5571c4bb86684b2cdb1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS015.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS015.png",
+        "bytes": 64605,
+        "sha256": "4ec42bb401616123b144e5d88fe2a8692abbc1eaf529df60ada6d364be3c6090"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS016.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS016.png",
+        "bytes": 63287,
+        "sha256": "c63a965076a6bb0240e171943530eb74cd62fca3181db79e06841149d9cdac84"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS017.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS017.png",
+        "bytes": 65612,
+        "sha256": "bbdfb14c757dd27babebb9322801b03d2ad931cebe1e626dc938afd0964c33c9"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS018.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS018.png",
+        "bytes": 70915,
+        "sha256": "d63bc7ecd679a11fa4ca4244a5c1c09ca559729fcb467e8ad2b657b769b0f7e2"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS019.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS019.png",
+        "bytes": 65781,
+        "sha256": "0b89de2275274bff5b86423877730dfe8b94e1a5c547b30c67572c35457ab878"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS020.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS020.png",
+        "bytes": 63500,
+        "sha256": "0c2e92715859e4c50d46b8fa0b961e51177d25b011b538a729af56fc8a17333c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS021.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS021.png",
+        "bytes": 64079,
+        "sha256": "49cb3121ef7541b2bbbdf4a3ec17261eb44b7f9dd9eb4e0701ba765fc1e32d6e"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS022.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS022.png",
+        "bytes": 53429,
+        "sha256": "2d036369b53a78e97c31cacf8cd0aea43c7c5eeeb8cb73e720e45411dfab9ae1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS023.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS023.png",
+        "bytes": 62074,
+        "sha256": "a2fdd492cf68096e9e29874afa1f0c82e12fcd78f295b589ff79b8d831aa7736"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS024.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS024.png",
+        "bytes": 54987,
+        "sha256": "6dd4c203a0b9566f77e025f54f73e4360562e2b769edd71abdfb16fe1813f573"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS025.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS025.png",
+        "bytes": 54987,
+        "sha256": "6dd4c203a0b9566f77e025f54f73e4360562e2b769edd71abdfb16fe1813f573"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS026.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS026.png",
+        "bytes": 103862,
+        "sha256": "bc27394fec9d37134c865a6112d5cdb03d40736d16104301c4c3989f44591444"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS027.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS027.png",
+        "bytes": 65431,
+        "sha256": "23040ebee86ed5667d108d89071b2d239d9687be8a4d6d0fa49d9f19ec53c352"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS028.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS028.png",
+        "bytes": 59725,
+        "sha256": "b6075cc8ee7d59d3c015c80b1fd071e8623fc2558be1ca8f23c1fde0d68f9e7c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS029.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS029.png",
+        "bytes": 81964,
+        "sha256": "0e27d7fdc955fb7ba128a16ba5c4ac3211a4b5abeb04dbe0bd5720eec6263297"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS030.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS030.png",
+        "bytes": 92357,
+        "sha256": "a4fd0afc5f6831ad35ace99e17326031e8efc8325aeb50723fe7300849951a36"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS031.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS031.png",
+        "bytes": 98920,
+        "sha256": "dbe4a7f0afd984652fc8691e02e0beb0ceea539b9bbc7422d4a271af92a5b96e"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS032.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS032.png",
+        "bytes": 45046,
+        "sha256": "4dba4dd4197fcb36f46b3a01893aa9bab21998ffc1a2da889673c3f862b688ef"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS033.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS033.png",
+        "bytes": 45046,
+        "sha256": "4dba4dd4197fcb36f46b3a01893aa9bab21998ffc1a2da889673c3f862b688ef"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS034.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS034.png",
+        "bytes": 59902,
+        "sha256": "1a9d6a7d2dcf8a31da91ad02051219b107806319eaaa235583807139d0240e6b"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS035.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS035.png",
+        "bytes": 41944,
+        "sha256": "5666e9591d71c94cb0818bf3add4b82a83c7c1902d3b49fb5388f503e6f1842b"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS036.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS036.png",
+        "bytes": 66206,
+        "sha256": "f1d3d00775b4a2a335d1ad97b3d87b0d50825e85f29652a757fb7c55baad21cc"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS037.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS037.png",
+        "bytes": 75967,
+        "sha256": "f06c74d1e73984259792419bebe0b08b56d93c44ff4e6a82998903725cdfd542"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS038.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS038.png",
+        "bytes": 55621,
+        "sha256": "0ecf41dc16ad8b5b91628c6d47ebaeb3c88a41aca7ad96d60e1613306eddd152"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS039.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS039.png",
+        "bytes": 56846,
+        "sha256": "5ef03d88a5aff6c07526ec389e2b70f5cada3b90c31367d8ef1ec522f2f0ea33"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS040.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS040.png",
+        "bytes": 102307,
+        "sha256": "3399db0b62e6da9a7fc543e23df10320973d58b0b3542640c67cb70ec8ee291b"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS041.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS041.png",
+        "bytes": 100194,
+        "sha256": "3204c83f3f5ea8ab638fc0aef095c32456d0f6d12dd406a8f1c7622c50c0257c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS042.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS042.png",
+        "bytes": 74735,
+        "sha256": "3ec6a7ac8f775b13882e91dc14f43b042d53c5f9e8bb7ccabfc01b75cab61807"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS043.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS043.png",
+        "bytes": 88694,
+        "sha256": "e9f2a4ac7caaf45257ebb60ab0399be1123cd5b95b0e7a90481092d3a737fa00"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS044.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS044.png",
+        "bytes": 113886,
+        "sha256": "9686b138c865eac4acb939186138485432fe3373011a66a5dcd3bf93abce1671"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS045.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS045.png",
+        "bytes": 73987,
+        "sha256": "a487550c63b9d696ea1b2182bbb109c53b7c926efad17401e8959f03f2170a83"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS046.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS046.png",
+        "bytes": 45046,
+        "sha256": "4dba4dd4197fcb36f46b3a01893aa9bab21998ffc1a2da889673c3f862b688ef"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS047.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS047.png",
+        "bytes": 64079,
+        "sha256": "49cb3121ef7541b2bbbdf4a3ec17261eb44b7f9dd9eb4e0701ba765fc1e32d6e"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS048.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS048.png",
+        "bytes": 115638,
+        "sha256": "7a32a60e3ad20d20b14c026c1a093a8f81c77526139cbc00bca773cf3d3f2647"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS050.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS050.png",
+        "bytes": 50777,
+        "sha256": "f6473fac6bfbf7a4a93eed30701fb1fbbce0bdba02ecf303852d81b2322ac29c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/DS051.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/DS051.png",
+        "bytes": 74407,
+        "sha256": "7e50c2fe75924fee11674fa249bc2c78bf337754eefe6387225334a67bf061c0"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T001.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T001.png",
+        "bytes": 49504,
+        "sha256": "733b3667ea092d5e64e065c446b652b3e2a7459a0e0f467a958bc1192a1c31d4"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T002.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T002.png",
+        "bytes": 51496,
+        "sha256": "8cbb3bf0992100641b254854b1f3d23c6bf305fe831edd1e0302bc64e7ddd8f0"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T003.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T003.png",
+        "bytes": 52481,
+        "sha256": "1d9d0a9a9ce140fd6874e7dffd4b86f18818c78061f6b025dbfcad5e9a750e3e"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T004.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T004.png",
+        "bytes": 47058,
+        "sha256": "75c208b5bdac620925b0e9143657c1a97de0e8c86b944fc769842e9e4736e059"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T005.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T005.png",
+        "bytes": 50149,
+        "sha256": "eca541e9e31f41f41db8f038074c47860db715f3ed1f198c2e8868bb200ecd59"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T006.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T006.png",
+        "bytes": 49907,
+        "sha256": "f30009e2701425efb2ce529a0a439fdfcf5dabf1333cfb72927dd1564d7c973a"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T007.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T007.png",
+        "bytes": 46718,
+        "sha256": "9d09f537561e84928d668de19512ba5237dd835ce61eba0c3a0c00d05227fc67"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T008.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T008.png",
+        "bytes": 51391,
+        "sha256": "db8330afb76eae7c8cf6edcfe0b55a157ea359c999442849e1209abd94e1c8ab"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T009.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T009.png",
+        "bytes": 55779,
+        "sha256": "d8770778db7dc4f02bebab18d9df5f2da38ef7b7ca98af03a7858d2b1fea9867"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T010.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T010.png",
+        "bytes": 46135,
+        "sha256": "20e05bf839b4d736616a8a32e05ba4ef300117e10b11056b046ef9da3700ac8f"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T011.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T011.png",
+        "bytes": 36030,
+        "sha256": "811e52cc49f10ff364a82b8047c5bcd88cda9e87f82d757908720fac7bb2c93b"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T012.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T012.png",
+        "bytes": 37856,
+        "sha256": "dd1e8133bb61de6e5e4aae3acbb838a24324e5b43074ab1a5587ca385cbc102a"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T013.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T013.png",
+        "bytes": 47456,
+        "sha256": "bf74aa6b26db9e7789bbb004f9afc5ca6a056c673cf60d57c17d26b7257dab96"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T014.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T014.png",
+        "bytes": 46841,
+        "sha256": "9f179c44e642cb408aa04cf7b0746c0e4d3fd2b8258c03636ba291342596d844"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T015.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T015.png",
+        "bytes": 30868,
+        "sha256": "e1492cb3e74e0991f273c8829bc578901c71c269ab810de0544b3deea464f6e2"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T016.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T016.png",
+        "bytes": 34960,
+        "sha256": "2774a79df62efa804cd5610a8933cfbbaba650ca24417c955a7caa6c3ae32e00"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T017.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T017.png",
+        "bytes": 44697,
+        "sha256": "66c2c55bb43277b0de64faad0af77c91b9e82f91d3cc0344da39f6cc21390dc2"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T018.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T018.png",
+        "bytes": 53317,
+        "sha256": "3472fea6e342378df9e6e63a7c47e2e330179daafa39325cb9a9dbdc83e84776"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T019.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T019.png",
+        "bytes": 28158,
+        "sha256": "af4e322c5424b81cd240a184403d490c94afb0e2a3c925c947c42cd4309386ac"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T020.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T020.png",
+        "bytes": 54406,
+        "sha256": "6141429f02e82ed533a73b3d3f317b87aa9f5a81032b4e2b673a90d8079e470c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T021.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T021.png",
+        "bytes": 48453,
+        "sha256": "a70d7da723b82802e4e86575d88ed30dcedccc09ec697db5a78e61080dd03fe5"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T022.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T022.png",
+        "bytes": 35283,
+        "sha256": "d527f5da6915ce9d5f9c98eb1d0999194946df7437fa8227e60f4da148101d15"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T023.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T023.png",
+        "bytes": 47379,
+        "sha256": "07b200b0a463e5294282d6b387287be1931fc2d4c4f8ef4aade1a3ad031ae7c1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T024.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T024.png",
+        "bytes": 51330,
+        "sha256": "029fe24611ec56c4e1593c6ba5ce90aac5bb9a55a3b48ee6ec204fa3c455d1eb"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T025.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T025.png",
+        "bytes": 52018,
+        "sha256": "3515415806998e0f6644233c18e404ea849ebb851e1c6d835159758ed93dfcd1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T026.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T026.png",
+        "bytes": 43101,
+        "sha256": "da12e620a26d38887ae591d354269ea54ab9c1bd38292731794bb901ac69adc2"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T027.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T027.png",
+        "bytes": 47543,
+        "sha256": "e8fb128b4c3902a5619414f29ab82a7e0210f5ff564d5452f4669d0850cc8965"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T028.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T028.png",
+        "bytes": 40966,
+        "sha256": "2153d5d618ea669abbae7974b114185fb2a167077a44bcab70ae1887dcdf0399"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T029.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T029.png",
+        "bytes": 52867,
+        "sha256": "9375d53d945e8d8382204e6f5fb7eac25a52ebef4f5821be28cae748a7f1c0cb"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T030.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T030.png",
+        "bytes": 42236,
+        "sha256": "25d7f24eba4328981c4e4d37d9a158dbede8ebc4496fcee5330d30ea0c3be53b"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T031.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T031.png",
+        "bytes": 39827,
+        "sha256": "1f3b3268c85fc52c5577e0e2d02e64614561323f893d31f12477763a1e07e6e8"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T032.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T032.png",
+        "bytes": 35255,
+        "sha256": "ffdf2808023d52ee6049d55fb0d561a79a4b0b13c39b80a0487aa4e99fdd4be8"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T033.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T033.png",
+        "bytes": 48476,
+        "sha256": "b5200f6300aee1af34b69ed7717cba689eed40443b695cab6986e99daaf56ef7"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T034.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T034.png",
+        "bytes": 45699,
+        "sha256": "fac97f2ee7eb28a1b31270925efa28bd0012b4b90f00d90cfd5f3530d9c58673"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T035.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T035.png",
+        "bytes": 46923,
+        "sha256": "eb491c434777a85b8591139149b6e1cc16d6ed7df8387b41cc33e81a9829b88f"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T036.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T036.png",
+        "bytes": 57547,
+        "sha256": "ffef38353140100da24fec807f09f6c48ae5d300b3789737d46603c6fd9760b1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T037.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T037.png",
+        "bytes": 44113,
+        "sha256": "0627c307c7f9b25c6ba0af008e4d60e968695d902340979407a0f11dfb2d7fec"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T038.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T038.png",
+        "bytes": 47767,
+        "sha256": "11fc8f78dde8d52d602b370024354f7eda0c95ab7aca4236af0d6b70049ec01c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T039.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T039.png",
+        "bytes": 46077,
+        "sha256": "51ab5a389d2042ddda855a8302b40849b9f3d9e350c2c1d1db1b4023821094ff"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T040.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T040.png",
+        "bytes": 34823,
+        "sha256": "0e663959242bc69751e427de63ea10523cf21f06852a897c0fb063fd8ed5b6ab"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T041.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T041.png",
+        "bytes": 48147,
+        "sha256": "a51c0d33b2a9eca182985ea4ac06634be358e58bfd708cbd73f0a5cf80798afc"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T042.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T042.png",
+        "bytes": 40847,
+        "sha256": "ef08daeabebd6596d2ac26ba0eab738490678f77c6c56be8a352da05cc906e05"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T043.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T043.png",
+        "bytes": 38297,
+        "sha256": "806808dad56366ed277158d030570b33d4c74107b706e596c8f4f194c3253d40"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T044.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T044.png",
+        "bytes": 54220,
+        "sha256": "2bc22590dda4c6afa26cc72bd81b65ffc413311ce7286bcfaed8aba257e9accd"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T045.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T045.png",
+        "bytes": 38667,
+        "sha256": "4ff3405fe297e70dc39a0da5fd8017526d854b3e34ed60fc49f7db94e5ad71bf"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T046.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T046.png",
+        "bytes": 44044,
+        "sha256": "7169e383144550f834de6cdccec9cccb07e15f3c7779953d9784388ecda01d57"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/T047.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/T047.png",
+        "bytes": 50111,
+        "sha256": "f38bbb6056f614e340428104794e593adfdfbc7d542e488763d4433f06c8f81a"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-0.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-0.png",
+        "bytes": 40380,
+        "sha256": "4a45bf9f4ebc66909324b248e714b958d2483dd8bfdc08232a37620af97ce9b3"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-1.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-1.png",
+        "bytes": 37390,
+        "sha256": "9e8d854cabbcb8fb9b531d09b7532700f59a292e25585434a7a8340adff031ce"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-10.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-10.png",
+        "bytes": 46906,
+        "sha256": "11a612e1d28a312145750a09330005fa520790501e5d98a050ea2d340dec59e8"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-11.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-11.png",
+        "bytes": 42469,
+        "sha256": "b15dd39d673117b976bea3f71260ec2fe31aad8da9420a6620df207c56f91e00"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-12.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-12.png",
+        "bytes": 37215,
+        "sha256": "f8a06e462d8bd7c521255a8ce1b32d4a867cb26b763f948e4d35c37c303c5969"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-13.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-13.png",
+        "bytes": 37190,
+        "sha256": "4cae644858b8446e68a6f5c517bc521362561280c3a26541fa6708dbef7348d1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-14.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-14.png",
+        "bytes": 40476,
+        "sha256": "d2bbe00464df65a43c8ca59d2071d2c2c1bd2a7ef7a2576a1afbffce0d839a2c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-15.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-15.png",
+        "bytes": 39214,
+        "sha256": "cae80b0a76aab9d231ce7a37c91f316ede81842c65c9046b3391faa927366697"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-16.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-16.png",
+        "bytes": 35068,
+        "sha256": "2673723b604eae0c7584d4565894df0bc8a87369791542402e3169626f9ca024"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-17.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-17.png",
+        "bytes": 39502,
+        "sha256": "8fff071fa661f8da2fca216476c75289f42d9395eba90b40d5a4b04d68a68fd6"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-18.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-18.png",
+        "bytes": 48820,
+        "sha256": "58e743332babd9dba1b43781dd4e9b177880c9cfb49bcc19de74c96e0496ad0d"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-19.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-19.png",
+        "bytes": 38102,
+        "sha256": "7f91e667364f8f7c4678f43a85704daa8d54d7b571ec11d9e162c65b1ca52df4"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-2.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-2.png",
+        "bytes": 36431,
+        "sha256": "9ac756a62c355c0e93d4640a9691b61211b4749dc7245a491b00a201c07e110c"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-20.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-20.png",
+        "bytes": 26841,
+        "sha256": "a01e55968869e36fc8e94a3d9df6162d39e52391e7aabaa16fc47d1bf0dedbc8"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-21.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-21.png",
+        "bytes": 38218,
+        "sha256": "d75f92ad359220bd9d841970f05d051aa740ecad974ba2d03e506cf72670c4e3"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-22.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-22.png",
+        "bytes": 38621,
+        "sha256": "46674693a8a4a589da53932514b022ad614f843a2c2fdc4d3552b616fa42904f"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-23.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-23.png",
+        "bytes": 38830,
+        "sha256": "76df08fc0c61195752c4691834148d82404c6f69f8403e75db000de0913fa106"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-24.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-24.png",
+        "bytes": 46304,
+        "sha256": "e883af853d4cddfff5694894011889de8286c3222880b5743734c92edfcdba09"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-25.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-25.png",
+        "bytes": 35135,
+        "sha256": "c91fe1c98ee1742347598d6ab03a0f6da3deff99ab954010e4e465955445b5ad"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-26.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-26.png",
+        "bytes": 48867,
+        "sha256": "8b902a52859bcd3114fc7251e6865c577db8f1427f003eba86dfe680447240d5"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-3.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-3.png",
+        "bytes": 38824,
+        "sha256": "69bc8b910e921dbf2cb030cc6fe93fde0a45d9061a0cc3cde636741222300d58"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-33.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-33.png",
+        "bytes": 42517,
+        "sha256": "cf96432e8a88722eefae56e2984dee63add5882f93f9adc0e0fc2902842beb12"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-34.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-34.png",
+        "bytes": 33890,
+        "sha256": "c05647154e39014d35ac8e3e53e40e4bde5b94aa16f36d4663c9fa2350c98a16"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-35.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-35.png",
+        "bytes": 30108,
+        "sha256": "da6b952907eadac1a7744b777ffa335e23882475586c357b65636ca9caf94f1f"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-39.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-39.png",
+        "bytes": 31933,
+        "sha256": "7b1b600f8de18cc368b7232a769b2a844c9ff8b44ba53093dfe7519b4c42a4b1"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-4.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-4.png",
+        "bytes": 44853,
+        "sha256": "476ae411203628fdba9535c5c0cc3d0f8b69a1b9f0403955dac29fd53582a9af"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-41.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-41.png",
+        "bytes": 29508,
+        "sha256": "266f8c1e3a9404f771937333940fc822cf2d1522d5b24d9849dd4e1989e2021e"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-42.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-42.png",
+        "bytes": 26602,
+        "sha256": "6416af39d2c8485d6f80a43ec12c4354aa49cc77ccc131d2650eb5e851517842"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-43.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-43.png",
+        "bytes": 28509,
+        "sha256": "7b08d002825f5e6cdfcdd4c17255f361964d1d83d5caf0611a270beb31b45598"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-44.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-44.png",
+        "bytes": 31950,
+        "sha256": "70f0ce986b9f008bcae0e6939bc169fcb7887cde614c2c648577fcb5dd6758c0"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-49.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-49.png",
+        "bytes": 43724,
+        "sha256": "82d64e2bc4ea23c93b31632e9c2eb873d7e848dadb8655538f45557ed8290d29"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-5.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-5.png",
+        "bytes": 45332,
+        "sha256": "1f2fabda02adab02d6b9e441928cebbdc0ea543af311248d5efb8b1829fd345e"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-6.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-6.png",
+        "bytes": 49484,
+        "sha256": "e8897e80d4f25532c32fcc8c396b82f486ad53c7e50e4668329e7b6a123e5358"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-8.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-8.png",
+        "bytes": 53185,
+        "sha256": "e695ba49a9c550a20c01e26b1acbee472672e6049df0a6d745b646d9b2ea9acf"
+      }
+    },
+    {
+      "path": "ui-assets/option-cards/shoe-9.png",
+      "change": "new",
+      "before": null,
+      "after": {
+        "path": "ui-assets/option-cards/shoe-9.png",
+        "bytes": 45471,
+        "sha256": "aeb24a179e8fee0e86fd308fffddc62099dca504af71bb6b403eece42e98ec67"
       }
     }
+  ],
+  "deleted": [],
+  "self_hash_exclusions": [
+    "CHANGED_FILES.json",
+    "PACKAGE_SHA256.json"
   ]
 }

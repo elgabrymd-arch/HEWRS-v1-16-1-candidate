@@ -1,0 +1,429 @@
+{
+  "version": "1.21.1",
+  "passed": 18,
+  "failed": 1,
+  "checks": [
+    {
+      "name": "Home appearance unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Single native996x2748 avatar, no duplicate outfit canvas",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual unrestricted Generate returns20 selections matching V1.21.0 recorded fixture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Request still has six unlocked preferences and20 target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All20 positions show matching committed garment IDs, names and loaded thumbnails",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All20 generated native outfit frames pixel-identical to independently rendered baseline",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Tie-once and other-item caps remain intact in the actual list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Five manual/special controls remain identical: suit/blazer/shirt-only,NoTie/DS051/REFERENCE",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "REFERENCE is an explicit text badge, not an invented thumbnail",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S10 actual Generate returns unchanged20-option ordering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Collar Detail preserves native canvas and remains available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Enlarge keeps existing full-image modal reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Original exact item-details modal remains accessible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "20-option list remains reachable from card header",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Seven viewport layouts have no horizontal overflow,labels remain complete",
+      "passed": true,
+      "detail": [
+        {
+          "width": 320,
+          "height": 568,
+          "no_horizontal_scroll": true,
+          "thumbnails_visible": true
+        },
+        {
+          "width": 390,
+          "height": 350,
+          "no_horizontal_scroll": true,
+          "thumbnails_visible": true
+        },
+        {
+          "width": 390,
+          "height": 700,
+          "no_horizontal_scroll": true,
+          "thumbnails_visible": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "no_horizontal_scroll": true,
+          "thumbnails_visible": true
+        },
+        {
+          "width": 430,
+          "height": 932,
+          "no_horizontal_scroll": true,
+          "thumbnails_visible": true
+        },
+        {
+          "width": 768,
+          "height": 900,
+          "no_horizontal_scroll": true,
+          "thumbnails_visible": true
+        },
+        {
+          "width": 1150,
+          "height": 1020,
+          "no_horizontal_scroll": true,
+          "thumbnails_visible": true
+        }
+      ]
+    },
+    {
+      "name": "Picker Cancel retains current garment selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rejected selection leaves previous frame,card and current IDs intact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "A missing UI thumbnail shows unavailable without changing the actual outfit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Complete browser run",
+      "passed": false,
+      "detail": "Traceback (most recent call last):\n  File \"/mnt/data/option_cards/HEWRS_CONNECTED_APP_V1_21_1_OPTION_CARDS/tests/option-cards-browser-extra.py\", line 51, in <module>\n    ck('Viewing/generating cards adds no wear/Favorites or unrelated writes',p.evaluate('HEWRSApp.store.snapshot().events.length')==0 and p.evaluate('HEWRSApp.favorites.snapshot().favorites.length')==0 and p.evaluate('__STORAGE_MAP.get(\"cards-sentinel\")')=='UNCHANGED')\n                                                                                                                                          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/sync_api/_generated.py\", line 8562, in evaluate\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.evaluate(expression=expression, arg=mapping.to_impl(arg))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_page.py\", line 464, in evaluate\n    return await self._main_frame.evaluate(expression, arg)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_frame.py\", line 320, in evaluate\n    await self._channel.send(\n    ...<6 lines>...\n    )\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of undefined (reading 'length')\n    at eval (eval at evaluate (:290:30), <anonymous>:1:40)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:290:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n"
+    }
+  ],
+  "pixel_comparisons": [
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-AP06"
+      },
+      "equal": true,
+      "png_sha256": "7adbb66bd3069e6410e690dc0ba92d8f8c044d2bdb2b1a11ca0b1e5519de864f"
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PG003",
+        "shirtId": "DS002",
+        "state": "T035",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "equal": true,
+      "png_sha256": "2ea0a125208a37a4f194f50f262985f0252d115dc3ff85ef8893efb545407b02"
+    },
+    {
+      "selection": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP06"
+      },
+      "equal": true,
+      "png_sha256": "4af3de00d5d08563fb5640d84432302e852953d39d440bf4c897167ca9711e74"
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS020",
+        "state": "T010",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "equal": true,
+      "png_sha256": "ee638cd2deb734b824e736d759bd43811767f96b649e7909afce450407d2ac86"
+    },
+    {
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS035",
+        "state": "T037",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "equal": true,
+      "png_sha256": "59a3563a7a73f86f1c26af9450fe357f8367827f5eeea3221840b6db799f8ccd"
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS025",
+        "state": "T016",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "equal": true,
+      "png_sha256": "34d16ea912927f5e0b321ab0b8abdc515a8519e3bc42713fd355d184a26060db"
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS022",
+        "state": "T030",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R11"
+      },
+      "equal": true,
+      "png_sha256": "9c630eeff58a48de3e7f5e923fd30c9f7e287e7c6ba1469e1b5f1687434cbd81"
+    },
+    {
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS017",
+        "state": "T018",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R11"
+      },
+      "equal": true,
+      "png_sha256": "b7296118e67a55cefc8bbdc42305f4badb95667aa9a2c44723bbc7d9841aee26"
+    },
+    {
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-AP10"
+      },
+      "equal": true,
+      "png_sha256": "15cba8d41cf898829ff33d051f22767e7a486b54f89a0d2615537e55014f6ae8"
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS008",
+        "state": "T044",
+        "shoeId": "shoe-5",
+        "watchId": "watch-R13"
+      },
+      "equal": true,
+      "png_sha256": "60bb48781119dfa5761b9b80264648a5300edddc6e5bfcec95bb6080f900a32b"
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T032",
+        "shoeId": "shoe-49",
+        "watchId": "watch-R13"
+      },
+      "equal": true,
+      "png_sha256": "16f7f7f34be59657c902011790f9cd9768cbd1c0b044ce59342d1817c5dc1fa5"
+    },
+    {
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS028",
+        "state": "T009",
+        "shoeId": "shoe-11",
+        "watchId": "watch-AP10"
+      },
+      "equal": true,
+      "png_sha256": "bf8678b7f4b863e20f3122f20cbfcb42a7c4cfccff683bc17ec8b663433c9787"
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS013",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-R14"
+      },
+      "equal": true,
+      "png_sha256": "3cc278c2a52565bf39fe428f98710bd3f94c76c8fe9ee9a4449d275c54a030c6"
+    },
+    {
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS024",
+        "state": "T001",
+        "shoeId": "shoe-5",
+        "watchId": "watch-R14"
+      },
+      "equal": true,
+      "png_sha256": "d2a1ded1dccf23267edad386c677e19033313e3a750e6d3682d91a9d2d6270c1"
+    },
+    {
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS044",
+        "state": "T020",
+        "shoeId": "shoe-8",
+        "watchId": "watch-AP13"
+      },
+      "equal": true,
+      "png_sha256": "39cb4744c271aa2e6dd459a89678a145580f5b521d98e343bcae54c37d3bddd2"
+    },
+    {
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS005",
+        "state": "T021",
+        "shoeId": "shoe-6",
+        "watchId": "watch-AP13"
+      },
+      "equal": true,
+      "png_sha256": "9fa77bfb0f72f5180f485912e334be6a04852f474aa06993acaab25f29650fb7"
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS014",
+        "state": "T046",
+        "shoeId": "shoe-6",
+        "watchId": "watch-P01"
+      },
+      "equal": true,
+      "png_sha256": "eb322c90ca9e4681ab30f113a087e2ca218ddbae145591ca080f013caca61124"
+    },
+    {
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS004",
+        "state": "T005",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P01"
+      },
+      "equal": true,
+      "png_sha256": "5ffb71aac2e17e48f206cdd6aa42ddcb6152253b9a1158fe94bc2ca891632d4d"
+    },
+    {
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS035",
+        "state": "T039",
+        "shoeId": "shoe-0",
+        "watchId": "watch-P03"
+      },
+      "equal": true,
+      "png_sha256": "f42cb5ad241330255dc19082d52f338ab4b37ae418d41584a203edd4e0b097d9"
+    },
+    {
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS007",
+        "state": "T025",
+        "shoeId": "shoe-11",
+        "watchId": "watch-P02"
+      },
+      "equal": true,
+      "png_sha256": "fa5e150b08c4d33f2ad657eec7ac3e3a3d9dd112622de9b82aabfe10fdee983e"
+    },
+    {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T022",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P05"
+      },
+      "equal": true,
+      "png_sha256": "bf1c3cc43a1010f3b51a297d058c794de7d07accb559ca40e1c71d3ff4d74fed"
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS051",
+        "state": "NO_TIE",
+        "shoeId": "shoe-4",
+        "watchId": null
+      },
+      "equal": true,
+      "png_sha256": "6d27a1cd59ddd1d7c3cdda286179552b48eaa00a0ec5d4d4e45156d69e5d3dc3"
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-4",
+        "watchId": null
+      },
+      "equal": true,
+      "png_sha256": "79b5337f6d8017b4e172382c968a249ab19a6da8402e976a47f5dd2e2098e085"
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PN002",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-2",
+        "watchId": null
+      },
+      "equal": true,
+      "png_sha256": "053957da98c77fc16cb3d6609e50229f5649769e66131625199dab0e0d29d97f"
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS035",
+        "state": "REFERENCE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "equal": true,
+      "png_sha256": "03fc528f63e428a29bf33cba969af729ad65e20d9de29d4f7f54917c09a0b8e1"
+    }
+  ],
+  "page_errors": [],
+  "scope": "Actual local scripts/native garment pixels and presentation thumbnails in in-memory Chromium. Synthetic empty history; no hosted/iOS test."
+}

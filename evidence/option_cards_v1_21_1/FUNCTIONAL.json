@@ -1,0 +1,71 @@
+{
+  "version": "1.21.1",
+  "passed": 12,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "All50 shirt,47 tie,35 registered footwear thumbnail IDs match exact source universes",
+      "passed": true,
+      "result": {
+        "shirts": 50,
+        "ties": 47,
+        "shoes": 35
+      }
+    },
+    {
+      "name": "All132 UI thumbnail hashes and every declared source hash match bytes",
+      "passed": true,
+      "result": 132
+    },
+    {
+      "name": "All source-supported suit/card selections retain exact IDs and mode",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "Dynamic current,20-option and16-option numbering without hard-coded15",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Blazer and shirt-only keep separate trouser IDs and correct topwear roles",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "No Tie and REFERENCE remain text states,not fabricated tie IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Mismatched committed outfit/item labels are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Shared image bytes never merge physical IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "New view cannot require storage,network or renderer to build item models",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Every non-presentation runtime source is byte-identical to V1.21.0",
+      "passed": true,
+      "result": 61
+    },
+    {
+      "name": "Original848 runtime garment image files unchanged",
+      "passed": true,
+      "result": 848
+    },
+    {
+      "name": "Application changes only initialize and update the presentation and version",
+      "passed": true,
+      "result": null
+    }
+  ]
+}
