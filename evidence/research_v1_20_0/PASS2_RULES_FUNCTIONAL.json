@@ -1,0 +1,757 @@
+{
+  "checks": [
+    {
+      "name": "Preserve inventory, physical IDs, wardrobe source and non-suit scope exactly",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Local generator is the new default; curated/visual/old heuristic remain distinct",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "All160 interpretable wardrobe profiles are covered; no colour is deleted",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Sources distinguish warm neutrals, depth qualifiers and compound checks",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Guideline regression: patterned lead with quiet supporting shirt outranks three competing patterns",
+      "passed": true,
+      "result": {
+        "supporting": 9.5,
+        "competing": 5.87066
+      }
+    },
+    {
+      "name": "Guideline regression: tie focal depth is directional, not maximum jacket-shirt contrast",
+      "passed": true,
+      "result": {
+        "light_shirt_dark_tie": 9.4,
+        "reverse": 6.5
+      }
+    },
+    {
+      "name": "Footwear tests use trouser depth and context; cognac/suede not banned",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Rules contain no brand/price bonus and no mandatory shirt-colour quota",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Preferred-reference influence is property based, bounded and openly counted",
+      "passed": true,
+      "result": {
+        "eligible_property_templates": 28,
+        "weight": 0.1,
+        "not_individual_owner_ratings": true
+      }
+    },
+    {
+      "name": "All18 suits and14 blazers: old curated, old generator, new generator actual counts/locks",
+      "passed": true,
+      "result": [
+        {
+          "id": "S01",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S02",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S03",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S04",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S05",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S06",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S07",
+          "curated": 1,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S08",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S09",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S10",
+          "curated": 14,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S11",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S12",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S13",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S14",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S15",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S16",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S17",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "S18",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B01",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B02",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B03",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B04",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B05",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B06",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B07",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B08",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B09",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B10",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B11",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B12",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B13",
+          "curated": 3,
+          "heuristic": 15,
+          "current": 15
+        },
+        {
+          "id": "B14",
+          "curated": 2,
+          "heuristic": 15,
+          "current": 15
+        }
+      ]
+    },
+    {
+      "name": "True no-anchor engine produces15 with zero anchor exceptions",
+      "passed": true,
+      "result": {
+        "counts": {
+          "blazer-1": 2,
+          "shirt-DS005": 1,
+          "T015": 1,
+          "pants-PG003": 2,
+          "shoe-1": 2,
+          "watch-AP09": 2,
+          "suit-10": 2,
+          "shirt-DS009": 1,
+          "T023": 2,
+          "blazer-source-B10": 1,
+          "shirt-DS004": 1,
+          "T005": 1,
+          "pants-PG001": 1,
+          "shoe-2": 2,
+          "watch-AP06": 2,
+          "suit-9": 2,
+          "shirt-DS022": 1,
+          "T035": 1,
+          "watch-R09": 2,
+          "suit-5": 1,
+          "shirt-DS025": 1,
+          "T030": 1,
+          "shoe-3": 2,
+          "shirt-DS035": 2,
+          "T029": 2,
+          "watch-R11": 2,
+          "suit-2": 1,
+          "shirt-DS006": 1,
+          "T033": 1,
+          "shoe-4": 2,
+          "suit-0": 1,
+          "shirt-DS007": 1,
+          "T018": 1,
+          "watch-AP10": 2,
+          "suit-12": 1,
+          "shoe-5": 2,
+          "blazer-source-B08": 1,
+          "shirt-DS019": 1,
+          "pants-PB001": 1,
+          "shoe-13": 1,
+          "shirt-DS014": 1,
+          "T039": 2,
+          "watch-R13": 2,
+          "suit-8": 1,
+          "shirt-DS017": 1,
+          "T021": 1,
+          "shoe-6": 2,
+          "suit-3": 1,
+          "shirt-DS024": 1,
+          "watch-R14": 2,
+          "shirt-DS002": 1,
+          "T028": 1,
+          "shoe-49": 1,
+          "suit-14": 1,
+          "shirt-DS030": 1,
+          "shoe-0": 1,
+          "watch-AP13": 1
+        },
+        "no_tie": 1,
+        "distinct_topwear": 12,
+        "distinct_shirts": 14
+      }
+    },
+    {
+      "name": "Previously selected curated method is not silently augmented or relabelled",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Old heuristic choice remains available with exact preserved outputs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Family locks remain exact categories, not repetition exceptions",
+      "passed": true,
+      "result": [
+        {
+          "id": "lavender",
+          "count": 8
+        },
+        {
+          "id": "cream",
+          "count": 10
+        },
+        {
+          "id": "beige",
+          "count": 2
+        },
+        {
+          "id": "brown",
+          "count": 8
+        },
+        {
+          "id": "pink",
+          "count": 8
+        },
+        {
+          "id": "blue",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "name": "All four seasonal mild/dry fixtures retain all32 topwear eligibility",
+      "passed": true,
+      "result": {
+        "cases": 128
+      }
+    },
+    {
+      "name": "Individual anchors only exempt selected IDs; No Tie explicit opt-in keeps remaining caps",
+      "passed": true,
+      "result": [
+        {
+          "p": {
+            "shirt": {
+              "mode": "item",
+              "id": "DS022"
+            }
+          },
+          "count": 15,
+          "counts": {
+            "counts": {
+              "suit-9": 2,
+              "shirt-DS022": 15,
+              "T035": 2,
+              "shoe-1": 2,
+              "watch-AP09": 2,
+              "suit-10": 2,
+              "T029": 2,
+              "shoe-2": 2,
+              "watch-R09": 2,
+              "suit-3": 2,
+              "T033": 2,
+              "shoe-3": 2,
+              "watch-R11": 2,
+              "T021": 2,
+              "suit-2": 2,
+              "shoe-4": 2,
+              "watch-AP06": 2,
+              "suit-4": 2,
+              "T028": 2,
+              "watch-R13": 2,
+              "suit-5": 2,
+              "shoe-5": 2,
+              "suit-12": 1,
+              "T023": 1,
+              "shoe-6": 2,
+              "watch-R14": 2,
+              "T022": 2,
+              "shoe-0": 1,
+              "watch-AP10": 2,
+              "blazer-1": 1,
+              "T015": 1,
+              "pants-PG003": 1,
+              "shoe-49": 1,
+              "blazer-source-B08": 1,
+              "pants-PB001": 1,
+              "shoe-13": 1,
+              "watch-AP13": 1
+            },
+            "no_tie": 1,
+            "distinct_topwear": 9,
+            "distinct_shirts": 1
+          }
+        },
+        {
+          "p": {
+            "tie": {
+              "mode": "item",
+              "id": "T022"
+            }
+          },
+          "count": 15,
+          "counts": {
+            "counts": {
+              "suit-9": 2,
+              "shirt-DS035": 2,
+              "T022": 15,
+              "shoe-1": 2,
+              "watch-AP09": 2,
+              "suit-8": 2,
+              "shirt-DS017": 2,
+              "suit-10": 2,
+              "shirt-DS022": 1,
+              "shoe-2": 2,
+              "watch-R09": 2,
+              "suit-2": 2,
+              "shirt-DS006": 1,
+              "shoe-4": 2,
+              "watch-AP06": 2,
+              "shirt-DS008": 1,
+              "blazer-1": 1,
+              "shirt-DS002": 1,
+              "pants-PG003": 1,
+              "shoe-3": 2,
+              "watch-R11": 2,
+              "shirt-DS014": 1,
+              "suit-7": 1,
+              "shirt-DS005": 2,
+              "watch-R13": 2,
+              "suit-3": 2,
+              "shirt-DS025": 1,
+              "shoe-5": 2,
+              "shirt-DS009": 1,
+              "shoe-6": 2,
+              "watch-R14": 2,
+              "shirt-DS004": 1,
+              "suit-13": 2,
+              "shoe-0": 2,
+              "watch-AP10": 2,
+              "suit-14": 1,
+              "shirt-DS030": 1,
+              "shoe-13": 1,
+              "watch-AP13": 1
+            },
+            "no_tie": 0,
+            "distinct_topwear": 9,
+            "distinct_shirts": 12
+          }
+        },
+        {
+          "p": {
+            "shoes": {
+              "mode": "item",
+              "id": "shoe-4"
+            }
+          },
+          "count": 15,
+          "counts": {
+            "counts": {
+              "suit-2": 1,
+              "shirt-DS006": 1,
+              "T033": 2,
+              "shoe-4": 15,
+              "watch-AP06": 2,
+              "suit-12": 1,
+              "shirt-DS035": 2,
+              "T023": 2,
+              "watch-AP09": 2,
+              "blazer-1": 1,
+              "shirt-DS005": 2,
+              "T015": 1,
+              "pants-PG003": 1,
+              "blazer-source-B10": 1,
+              "shirt-DS004": 1,
+              "T005": 1,
+              "pants-PG001": 1,
+              "suit-10": 2,
+              "shirt-DS022": 1,
+              "T029": 2,
+              "watch-R09": 2,
+              "suit-0": 1,
+              "shirt-DS007": 1,
+              "T018": 1,
+              "watch-AP10": 2,
+              "suit-5": 1,
+              "shirt-DS025": 1,
+              "T030": 1,
+              "suit-9": 2,
+              "shirt-DS014": 1,
+              "T039": 1,
+              "watch-R11": 2,
+              "shirt-DS009": 1,
+              "suit-13": 1,
+              "shirt-DS017": 1,
+              "T021": 2,
+              "watch-R13": 2,
+              "blazer-source-B08": 1,
+              "shirt-DS019": 1,
+              "pants-PB001": 1,
+              "suit-3": 1,
+              "shirt-DS024": 1,
+              "watch-R14": 2,
+              "suit-14": 1,
+              "shirt-DS030": 1,
+              "T020": 1,
+              "suit-7": 1,
+              "watch-AP13": 1
+            },
+            "no_tie": 1,
+            "distinct_topwear": 13,
+            "distinct_shirts": 13
+          }
+        },
+        {
+          "p": {
+            "watch": {
+              "mode": "item",
+              "id": "watch-P05"
+            }
+          },
+          "count": 15,
+          "counts": {
+            "counts": {
+              "blazer-1": 2,
+              "shirt-DS005": 1,
+              "T015": 1,
+              "pants-PG003": 2,
+              "shoe-1": 2,
+              "watch-P05": 15,
+              "suit-10": 2,
+              "shirt-DS009": 1,
+              "T023": 2,
+              "blazer-source-B10": 1,
+              "shirt-DS004": 1,
+              "T005": 1,
+              "pants-PG001": 1,
+              "shoe-2": 2,
+              "suit-9": 2,
+              "shirt-DS022": 1,
+              "T035": 1,
+              "suit-5": 1,
+              "shirt-DS025": 1,
+              "T030": 1,
+              "shoe-3": 2,
+              "shirt-DS035": 2,
+              "T029": 2,
+              "suit-2": 1,
+              "shirt-DS006": 1,
+              "T033": 1,
+              "shoe-4": 2,
+              "suit-0": 1,
+              "shirt-DS007": 1,
+              "T018": 1,
+              "suit-12": 1,
+              "shoe-5": 2,
+              "blazer-source-B08": 1,
+              "shirt-DS019": 1,
+              "pants-PB001": 1,
+              "shoe-13": 1,
+              "shirt-DS014": 1,
+              "T039": 2,
+              "suit-8": 1,
+              "shirt-DS017": 1,
+              "T021": 1,
+              "shoe-6": 2,
+              "suit-3": 1,
+              "shirt-DS024": 1,
+              "shirt-DS002": 1,
+              "T028": 1,
+              "shoe-49": 1,
+              "suit-14": 1,
+              "shirt-DS030": 1,
+              "shoe-0": 1
+            },
+            "no_tie": 1,
+            "distinct_topwear": 12,
+            "distinct_shirts": 14
+          }
+        },
+        {
+          "p": {
+            "tie": {
+              "mode": "none"
+            }
+          },
+          "count": 15,
+          "counts": {
+            "counts": {
+              "blazer-source-B08": 2,
+              "shirt-DS019": 2,
+              "pants-PB001": 1,
+              "shoe-13": 2,
+              "watch-AP06": 2,
+              "suit-10": 2,
+              "shirt-DS036": 2,
+              "watch-AP09": 2,
+              "suit-9": 2,
+              "shirt-DS035": 2,
+              "shoe-8": 2,
+              "suit-3": 2,
+              "shirt-DS005": 1,
+              "watch-R09": 2,
+              "suit-2": 2,
+              "shirt-DS046": 1,
+              "shoe-15": 2,
+              "shirt-DS037": 1,
+              "shirt-DS038": 2,
+              "shoe-11": 2,
+              "watch-R11": 2,
+              "pants-PB002": 1,
+              "watch-AP10": 2,
+              "shoe-14": 2,
+              "shirt-DS017": 2,
+              "suit-5": 2,
+              "shirt-DS001": 1,
+              "shoe-9": 2,
+              "watch-R13": 2,
+              "suit-4": 2,
+              "shirt-DS032": 1,
+              "shoe-12": 2,
+              "watch-R14": 2,
+              "suit-6": 1,
+              "shoe-1": 1,
+              "watch-AP13": 1
+            },
+            "no_tie": 15,
+            "distinct_topwear": 8,
+            "distinct_shirts": 10
+          }
+        },
+        {
+          "p": {
+            "bottoms": {
+              "mode": "item",
+              "id": "PG002"
+            }
+          },
+          "count": 15,
+          "counts": {
+            "counts": {
+              "blazer-1": 2,
+              "shirt-DS005": 2,
+              "T015": 2,
+              "pants-PG002": 15,
+              "shoe-1": 2,
+              "watch-AP09": 2,
+              "blazer-source-B10": 2,
+              "shirt-DS004": 2,
+              "T005": 2,
+              "watch-AP06": 2,
+              "blazer-source-B08": 2,
+              "shirt-DS019": 1,
+              "shoe-13": 1,
+              "blazer-source-B13": 2,
+              "shirt-DS025": 1,
+              "T012": 2,
+              "shoe-2": 2,
+              "shirt-DS002": 2,
+              "T028": 2,
+              "watch-R09": 2,
+              "blazer-source-B06": 2,
+              "shirt-DS006": 1,
+              "T004": 2,
+              "shoe-3": 2,
+              "blazer-0": 2,
+              "watch-R11": 2,
+              "shirt-DS014": 2,
+              "shoe-4": 2,
+              "watch-AP10": 2,
+              "blazer-3": 2,
+              "shirt-DS001": 1,
+              "T035": 1,
+              "shoe-49": 2,
+              "watch-R13": 2,
+              "shirt-DS008": 1,
+              "T018": 2,
+              "T031": 1,
+              "shoe-5": 2,
+              "shirt-DS024": 1,
+              "watch-R14": 2,
+              "shirt-DS007": 1,
+              "shoe-6": 2,
+              "blazer-source-B14": 1,
+              "watch-AP13": 1
+            },
+            "no_tie": 1,
+            "distinct_topwear": 8,
+            "distinct_shirts": 11
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid IDs and unresolved watch are not repaired or introduced",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unsupported scoring premise remains a hold, separate from aesthetic ranking",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Tampered preference/request/IDs fail verification",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Generation leaves inventory, history and favorites unchanged",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Research generation cancels without a replacement list",
+      "passed": true
+    },
+    {
+      "name": "Paused private service remains disconnected; no paid request",
+      "passed": true
+    }
+  ],
+  "passed": 22,
+  "failed": 0
+}

@@ -4,19 +4,21 @@
  */
 (function(root){'use strict';
 const prior=root.HEWRSCleanConnection,copy=x=>structuredClone(x),stable=root.HEWRSConnectedContract.stable;
-const REV='HEWRS_HYBRID_STYLIST_1_19_0',SCHEMA='hewrs.visual-stylist.v1',MODES=['curated','visual','heuristic'];
+const REV='HEWRS_HYBRID_STYLIST_1_19_0',SCHEMA='hewrs.visual-stylist.v1',MODES=['research','curated','visual','heuristic'];
 function need(x,m,code='STYLIST_INVALID'){if(!x){const e=Error(m);e.code=code;throw e;}}
 function create(inputs){
- const base=prior.create(inputs),cat=base.catalogue,lib=copy(root.HEWRS_STYLIST_LIBRARY);let mode='curated',remote=null;
+ const base=prior.create(inputs),cat=base.catalogue,lib=copy(root.HEWRS_STYLIST_LIBRARY);let mode='research',remote=null;
+ const research=root.HEWRSAutomaticEngine.create(inputs,{preferenceFactory:root.HEWRSResearchPreference.create,revision:'HEWRS_AUTOMATIC_WORKFLOW_1_20_0'});
+ const engineFor=q=>q?.stylist?.mode==='research'?research:base;
  need(lib?.schema==='hewrs.curated-library.v1_19_0'&&lib.source_lock===root.HEWRS_INPUT_SHA256,'Wrong reference library');
  const maps=Object.fromEntries(['shirts','ties','shoes','watches','pants'].map(k=>[k,new Map(cat[k].map(x=>[x.id,x]))]));
  const tops=new Map();for(const id of base.suitSources.ids)tops.set(id,cat.suits.find(x=>x.id===base.aliases.get(id)));
  for(const id of base.blazerConnection.availableIds)tops.set(id,cat.blazers.find(x=>x.id===base.blazerConnection.knownBlazer(id).historyId));
  const identifiedWatch=w=>!w||!/reserved|placeholder|unresolved|current collection/i.test((w.name||'')+' '+(w.color||''));
  function plain(q){const p=copy(q);delete p.stylist;return p;}
- function prepare(c){const q=base.makeRequest(c);if(!q.automatic)return q;const m=c.stylistMode||mode;need(MODES.includes(m),'Unknown styling method');return {...q,stylist:{revision:REV,mode:m}};}
+ function prepare(c){const m=c.stylistMode||mode;need(MODES.includes(m),'Unknown styling method');const q=(m==='research'?research:base).makeRequest(c);if(!q.automatic)return q;return {...q,stylist:{revision:REV,mode:m}};}
  function valid(q){need(q?.automatic&&q.stylist?.revision===REV&&MODES.includes(q.stylist.mode),'Unknown stylist request');
-  const p=base.automatic.prepare({preferences:q.prefs,occasion:q.context?.occasion,formality:q.context?.requiredFormality,localDate:q.localDate,environment:q.environment,style:q.executiveStyle});need(stable(p)===stable(plain(q)),'Changed automatic request');return q;}
+  const p=engineFor(q).automatic.prepare({preferences:q.prefs,occasion:q.context?.occasion,formality:q.context?.requiredFormality,localDate:q.localDate,environment:q.environment,style:q.executiveStyle});need(stable(p)===stable(plain(q)),'Changed automatic request');return q;}
  function matches(p,id,itemId){return p.mode==='any'||p.mode==='none'&&id===null||p.mode==='item'&&(p.id===id||p.id===itemId)||p.mode==='family'&&id!==null&&base.preference.matchesFamily(id,p.id);}
  function fullItems(s){return {topwear:tops.get(s.suitId||s.blazerId),shirt:maps.shirts.get('shirt-'+s.shirtId),tie:s.state==='NO_TIE'?null:maps.ties.get(s.state),pants:s.pantId?maps.pants.get(base.blazerConnection.knownPant(s.pantId).historyId):null,shoes:maps.shoes.get(s.shoeId),watch:s.watchId?maps.watches.get(s.watchId):null};}
  const evaluations=new Map(),issued=new Set();
@@ -78,11 +80,11 @@ function create(inputs){
   const grades=['recommended','strong','exploratory','avoid'];ranked.sort((a,b)=>grades.indexOf(a._hewrsConnected.stylist.grade)-grades.indexOf(b._hewrsConnected.stylist.grade));
   const out=select(ranked,q,h,'visual');out.diagnostics.proposal_rejections=reject;out.stylist.provider=judged.provider;out.stylist.model=judged.model;out.stylist.candidates_visually_reviewed=rows.length;return out;
  }
- function generate(q,catArg,h){if(!q?.stylist)return base.controller.generate(q,catArg,h);valid(q);need(stable(catArg)===stable(cat),'Changed catalogue');if(q.stylist.mode==='heuristic')return base.controller.generate(plain(q),catArg,h);need(q.stylist.mode==='curated','Visual mode requires asynchronous generation');return curated(q,h);}
- async function generateAsync(q,catArg,h,opts={}){if(!q?.stylist)return base.controller.generateAsync(q,catArg,h,opts);valid(q);need(stable(catArg)===stable(cat),'Changed catalogue');if(q.stylist.mode==='heuristic')return base.controller.generateAsync(plain(q),catArg,h,opts);if(opts.isCancelled?.())return {status:'cancelled',options:[]};return q.stylist.mode==='visual'?visual(q,h,opts):curated(q,h);}
+ function generate(q,catArg,h){if(!q?.stylist)return base.controller.generate(q,catArg,h);valid(q);need(stable(catArg)===stable(cat),'Changed catalogue');if(['research','heuristic'].includes(q.stylist.mode))return engineFor(q).controller.generate(plain(q),catArg,h);need(q.stylist.mode==='curated','Visual mode requires asynchronous generation');return curated(q,h);}
+ async function generateAsync(q,catArg,h,opts={}){if(!q?.stylist)return base.controller.generateAsync(q,catArg,h,opts);valid(q);need(stable(catArg)===stable(cat),'Changed catalogue');if(['research','heuristic'].includes(q.stylist.mode))return engineFor(q).controller.generateAsync(plain(q),catArg,h,opts);if(opts.isCancelled?.())return {status:'cancelled',options:[]};return q.stylist.mode==='visual'?visual(q,h,opts):curated(q,h);}
  const isOwn=o=>o?._hewrsConnected?.revision===REV;
- const controller=Object.freeze({...base.controller,generate,generateAsync,verifyCachedOption:(o,q,c)=>isOwn(o)?stable(c)===stable(cat)&&verify(o,q):base.controller.verifyCachedOption(o,q?.stylist?plain(q):q,c),verifyOptionSet:(opts,q)=>{try{root.HEWRSOptionSetPolicy.inspect(opts,q);return opts.every(o=>isOwn(o)?verify(o,q):base.controller.verifyCachedOption(o,q?.stylist?plain(q):q,cat));}catch{return false;}}});
- return Object.freeze({...base,controller,makeRequest:prepare,selectionFromOption:(o,q)=>isOwn(o)?(need(verify(o,q),'Changed stylist option'),{selection:copy(o._hewrsConnected.canonical_selection),display:{shirt:base.records[o._hewrsConnected.canonical_selection.shirtId].label},representation:{selected_shoe_rendered:true,selected_watch_rendered:false}}):base.selectionFromOption(o,q?.stylist?plain(q):q),hybrid:Object.freeze({revision:REV,library:copy(lib),assess,curatedPool,select,mode:()=>mode,setMode:m=>{need(MODES.includes(m),'Unknown stylist mode');mode=m;},setService:s=>{remote=s;},identifiedWatch,plain}),implementationVersion:'1.19.0-hybrid-stylist'});
+ const controller=Object.freeze({...base.controller,generate,generateAsync,verifyCachedOption:(o,q,c)=>isOwn(o)?stable(c)===stable(cat)&&verify(o,q):engineFor(q).controller.verifyCachedOption(o,q?.stylist?plain(q):q,c),verifyOptionSet:(opts,q)=>{try{root.HEWRSOptionSetPolicy.inspect(opts,q);return opts.every(o=>isOwn(o)?verify(o,q):engineFor(q).controller.verifyCachedOption(o,q?.stylist?plain(q):q,cat));}catch{return false;}}});
+ return Object.freeze({...base,controller,makeRequest:prepare,selectionFromOption:(o,q)=>isOwn(o)?(need(verify(o,q),'Changed stylist option'),{selection:copy(o._hewrsConnected.canonical_selection),display:{shirt:base.records[o._hewrsConnected.canonical_selection.shirtId].label},representation:{selected_shoe_rendered:true,selected_watch_rendered:false}}):engineFor(q).selectionFromOption(o,q?.stylist?plain(q):q),hybrid:Object.freeze({revision:REV,researchPreference:research.preference,preferenceForMode:()=>mode==='research'?research.preference:base.preference,library:copy(lib),assess,curatedPool,select,mode:()=>mode,setMode:m=>{need(MODES.includes(m),'Unknown stylist mode');mode=m;},setService:s=>{remote=s;},identifiedWatch,plain}),implementationVersion:'1.20.0-researched-styling'});
 }
 root.HEWRSCleanConnection=Object.freeze({create});root.HEWRSHybridStylist=Object.freeze({REV,SCHEMA,MODES});
 })(globalThis);

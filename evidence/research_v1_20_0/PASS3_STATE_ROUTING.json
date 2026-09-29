@@ -1,0 +1,41 @@
+{
+  "passed": 7,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "39,817 suit/shirt/state render selections remain valid with exact identities",
+      "passed": true,
+      "result": 39817
+    },
+    {
+      "name": "12,960 nonsuit tie/no-tie/mode routes remain valid within18 connected IDs",
+      "passed": true,
+      "result": 12960
+    },
+    {
+      "name": "Valid history revision checked; concurrent record cancels old token without overwrite",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unreadable history retained; generating read refuses invented empty history",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Wear backup export and fresh instance preserve exact physical record IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "No-jacket Anchor remains manual and unscored; no new ranked route is invented",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unconnected nonsuit shirts do not enter the scoped picker or source capability",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

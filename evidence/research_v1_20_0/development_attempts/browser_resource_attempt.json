@@ -1,0 +1,48 @@
+{
+  "scope": "Actual local executable scripts/images in memory-loaded Chromium. Synthetic wear/Favorites/storage; no hosted or physical-device certification.",
+  "checks": [
+    {
+      "name": "New app loads research generator; independent V1.19.0 loads curated default",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Browser completion",
+      "passed": false,
+      "detail": "Traceback (most recent call last):\n  File \"/mnt/data/research1191/HEWRS_CONNECTED_APP_V1_20_0_RESEARCHED_STYLING/tests/research-browser-v1200.py\", line 64, in <module>\n    apply(p,s);apply(old,s);a,b=digest(p),digest(old);comparisons.append({'selection':s,'equal':a==b,'current_rgba':a,'baseline_rgba':b})\n                                ~~~~~~^^^\n  File \"/mnt/data/research1191/HEWRS_CONNECTED_APP_V1_20_0_RESEARCHED_STYLING/tests/research-browser-v1200.py\", line 29, in digest\n    def digest(p):return hashlib.sha256(im(p).tobytes()).hexdigest()\n                                        ~~^^^\n  File \"/mnt/data/research1191/HEWRS_CONNECTED_APP_V1_20_0_RESEARCHED_STYLING/tests/research-browser-v1200.py\", line 28, in im\n    def im(p):return Image.open(io.BytesIO(base64.b64decode(p.evaluate(\"document.querySelector('#avatar').toDataURL('image/png').split(',')[1]\")))).convert('RGBA')\n                                                            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/sync_api/_generated.py\", line 8562, in evaluate\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.evaluate(expression=expression, arg=mapping.to_impl(arg))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_page.py\", line 464, in evaluate\n    return await self._main_frame.evaluate(expression, arg)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_frame.py\", line 320, in evaluate\n    await self._channel.send(\n    ...<6 lines>...\n    )\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.Error: Page.evaluate: Target crashed \n"
+    }
+  ],
+  "passed": 1,
+  "failed": 1,
+  "unchanged_frame_comparisons": [
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "equal": true,
+      "current_rgba": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a",
+      "baseline_rgba": "2589d9a32b92d678a471926943ec709b83fd60806c98282f2031e48d39b5200a"
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "equal": true,
+      "current_rgba": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54",
+      "baseline_rgba": "f26879c43e9554536be3eae03ed1d64e2b8752fc5245c8dc610201e633660c54"
+    }
+  ],
+  "navigated_new_frames": [],
+  "errors": [],
+  "seconds": 26.01
+}

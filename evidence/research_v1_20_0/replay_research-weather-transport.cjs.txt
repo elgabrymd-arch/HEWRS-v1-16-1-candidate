@@ -1,0 +1,22 @@
+PASS Temperature bands use exact existing boundaries including feels-like
+PASS Frozen/freezing and snow weather codes are explicitly mapped
+PASS Season uses selected date and hemisphere; no assumed user location
+PASS Location is coarsened, bounded, and invalid values rejected
+PASS Current model estimate retains provider units, timestamps and source
+PASS Future date uses clearly labelled daily forecast high, not fake current or noon reading
+PASS Out-of-range dates, Celsius and missing values are rejected
+PASS Automatic request refuses stale time/date and preserves original state
+PASS Initialization is read-only with no implicit location/network request
+PASS Weather saves/reloads in its own key without touching wear or Favorites
+PASS Corrupt and stale-tab weather data is not silently overwritten
+PASS Search lists all returned cities without automatically selecting one
+PASS Forecast uses allowed host, Fahrenheit, rounded coordinates and no credentials
+PASS Location permission denial leaves prior settings intact and exposes manual fallback
+PASS Location success fetches but does not apply until explicit confirmation
+PASS Network/HTTP/malformed/aborted requests preserve previous manual settings
+PASS Unknown material is not filled with guessed fibre or sole properties
+PASS Weather effects are separate from wardrobe compatibility and demonstrably operational
+PASS Seasonal labels are advisory and never alter catalogue metadata
+PASS Texture resemblance is not promoted to known cloth composition
+PASS Suede elbow patches do not turn a herringbone blazer into an all-suede garment
+21 0

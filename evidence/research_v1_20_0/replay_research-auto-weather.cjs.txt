@@ -1,0 +1,22 @@
+PASS First visit with prompt permission does not call GPS or any provider until Enable
+PASS Enable explicitly requests once, fetches real transport format, persists weather and opt-in
+PASS Reload with granted permission refreshes automatically without an app modal or Apply
+PASS Already-granted browser permission enables silent first refresh without a saved config
+PASS Reopened prompt permission uses saved coordinates with an honest fallback label, zero GPS prompts
+PASS Reopened denied permission uses saved coordinates with an honest fallback label, zero GPS prompts
+PASS Unsupported Permissions API does not attempt silent GPS; saved place only
+PASS Unsupported/denied with no saved place does not fabricate location or weather
+PASS Saved named city refreshes automatically without replacing it with GPS
+PASS Manual weather and explicit not-assessed choice never get overwritten automatically
+PASS Explicitly turning auto off survives recreation without revoking or asking browser permission
+PASS Fresh foreground/generate checks throttle requests; older readings refresh
+PASS Follow-today mode uses today without overwriting the saved historical outfit ledger
+PASS Explicit fixed work date is honored; daily forecast is not mislabeled current
+PASS Out-of-forecast date retains the previous weather and reports the transport error
+PASS Offline and timeout responses retain good previous data; no false successful weather
+PASS Explicit denied permission does not save auto opt-in or replace prior manual weather
+PASS Cancellation stops late responses from overwriting manual weather
+PASS Manual weather changed during lookup wins even without explicit cancellation
+PASS Corrupt settings and cross-tab modifications are retained rather than reset
+PASS Repeated concurrent refresh calls share one location/weather request
+PASS Only separate weather keys are written; wear and Favorites remain identical

@@ -33,6 +33,6 @@ def main():
  for f in sorted(R.rglob('PACKAGE_SHA256.json')):
   if f!=manifest_path and '.git'not in f.parts:manifest['files'].append({'path':str(f.relative_to(R)),'bytes':f.stat().st_size,'sha256':digest(f.read_bytes())})
  manifest['files'].sort(key=lambda r:r['path']);manifest['configuration']='Exact user-configured service origin; provider credentials remain server-only.';manifest_path.write_text(json.dumps(manifest,indent=2)+'\n')
- print('Configured endpoint only; no service was deployed or called. Run tools/verify_v1190.py, then commit the configured frontend files. Keep all provider/service secrets outside this repository.')
+ print('Configured endpoint only; no service was deployed or called. Run tools/verify_v'+manifest['version'].replace('.','')+'.py, then commit the configured frontend files. Keep all provider/service secrets outside this repository.')
 def digest(raw):return hashlib.sha256(raw).hexdigest()
 if __name__=='__main__':main()

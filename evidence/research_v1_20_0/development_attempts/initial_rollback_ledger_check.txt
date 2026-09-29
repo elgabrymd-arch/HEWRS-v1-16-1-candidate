@@ -1,0 +1,17 @@
+runtime lock keys ['data/inputs.js', 'vendor/hewrs-logic.js', 'vendor/approved-scores.js', 'vendor/ensemble-completion.js', 'vendor/release-guards.js']
+Traceback (most recent call last):
+  File "/mnt/data/research1191/finish_delivery.py", line 25, in <module>
+    rollback_result=run([sys.executable,'-B',str(R/'tools/rollback_v1200.py'),'--output',str(rollback)])
+  File "/mnt/data/research1191/finish_delivery.py", line 12, in run
+    if x.returncode:raise RuntimeError(str(args)+'\n'+x.stdout[-6000:])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: ['/opt/pyvenv/bin/python', '-B', '/mnt/data/research1191/HEWRS_CONNECTED_APP_V1_20_0_RESEARCHED_STYLING/tools/rollback_v1200.py', '--output', '/mnt/data/research1191/REPLAY_ROLLBACK_V1190']
+Traceback (most recent call last):
+  File "/mnt/data/research1191/HEWRS_CONNECTED_APP_V1_20_0_RESEARCHED_STYLING/tools/rollback_v1200.py", line 21, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/mnt/data/research1191/HEWRS_CONNECTED_APP_V1_20_0_RESEARCHED_STYLING/tools/rollback_v1200.py", line 12, in main
+    f=P/'originals'/x['path'];f=f if f.is_file()else R/x['path'];assert f.is_file()and f.stat().st_size==x['bytes']and sha(f)==x['sha256'],'Rollback source mismatch: '+x['path'];rows.append((x,f))
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Rollback source mismatch: CHANGED_FILES.json
+

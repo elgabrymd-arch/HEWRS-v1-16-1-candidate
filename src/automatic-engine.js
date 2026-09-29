@@ -8,9 +8,10 @@
  */
 (function(root){'use strict';
 const prior=root.HEWRSCleanConnection,copy=x=>structuredClone(x),need=(v,m)=>{if(!v)throw Error(m);};
-const REV='HEWRS_AUTOMATIC_WORKFLOW_1_18_0',cmp=(a,b)=>a<b?-1:a>b?1:0,stable=root.HEWRSConnectedContract.stable;
-function create(inputs){
- const base=prior.create(inputs),cat=base.catalogue,index=root.HEWRS_OPTION_INDEX,personal=root.HEWRSOutfitPreference.create(base);
+const DEFAULT_REV='HEWRS_AUTOMATIC_WORKFLOW_1_18_0',cmp=(a,b)=>a<b?-1:a>b?1:0,stable=root.HEWRSConnectedContract.stable;
+function create(inputs,options={}){
+ const REV=options.revision||DEFAULT_REV;
+ const base=prior.create(inputs),cat=base.catalogue,index=root.HEWRS_OPTION_INDEX,personal=(options.preferenceFactory||root.HEWRSOutfitPreference.create)(base);
  const sourceResults=new Map();function sourceResult(e,q){const k=[e.group.topwearId,e.group.pantProfileId,e.row[0],e.row[1],q.context.occasion,q.context.requiredFormality].join('|');if(!sourceResults.has(k)){if(sourceResults.size>5000)sourceResults.clear();sourceResults.set(k,base.engine.evaluate(requestFor(e,q)));}return sourceResults.get(k);}
  need(index?.schema==='hewrs.derived-clothing-index.v1_17_0'&&index.source_input_sha256===root.HEWRS_INPUT_SHA256,'Clothing index is incompatible with current DNA');
  need(index.normalization_revision===root.HEWRSEnsembleCompletion.normalizationRevision&&index.normalization_revision==='hewrs.literal-colour-qualifiers.v1_17_3','Mixed clothing index/colour engine versions. Reload the complete update; no old cached scores will be used.');
@@ -139,5 +140,6 @@ function create(inputs){
  function selectionFromOption(o,q){if(!q?.automatic)return base.selectionFromOption(o,q);need(verify(o,q,cat),'Stale, changed or incompatible automatic option');const s=base.validateSelection(o._hewrsConnected.canonical_selection);return {selection:s,display:{shirt:base.records[s.shirtId].label},representation:{selected_shoe_rendered:true,selected_watch_rendered:false}};}
  return Object.freeze({...base,preference:personal,controller,selectionFromOption,makeRequest:c=>c?.automatic?prepare(c):base.makeRequest(c),automatic:Object.freeze({prepare,verify,indexCounts:copy(index.counts),revision:REV}),implementationVersion:'1.18.0-personalized-outfits'});
 }
+root.HEWRSAutomaticEngine=Object.freeze({create});
 root.HEWRSCleanConnection=Object.freeze({create});
 })(globalThis);

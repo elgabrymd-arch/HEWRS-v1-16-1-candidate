@@ -1,0 +1,134 @@
+{
+  "schema": "hewrs.styling-research.v1_20_0",
+  "review_date": "2026-09-28",
+  "scope": "Selected primary menswear sources, not all designers or a universal scientific style law.",
+  "sources": [
+    {
+      "id": "CT",
+      "publisher": "Charles Tyrwhitt",
+      "title": "The Art of the Shirt and Tie Combo",
+      "url": "https://www.charlestyrwhitt.com/ca/en_CA/editorial-style-tips/how-to-match-a-tie.html",
+      "kind": "brand styling guide",
+      "supported": "Choose a focal garment; consider tonal, adjacent and complementary palettes; usually deeper ties with lighter shirts; vary pattern scale and assess visible weave texture. It explicitly pairs lilac with purple/deep-pink paisley.",
+      "limit": "Its lighter-tie advice is written as an absolute. This implementation treats it as a workwear preference, not a universal prohibition. No numerical coefficients are supplied by the source."
+    },
+    {
+      "id": "BOSS",
+      "publisher": "HUGO BOSS",
+      "title": "How to combine your suit and shoe colors",
+      "url": "https://www.hugoboss.com/us/boss-men-matching-suits-with-shoes/",
+      "kind": "brand styling guide",
+      "supported": "Choose footwear according to dress level, suit/trouser colour and depth. Navy can use black, navy or cognac. Grey can use black or brown of appropriate depth. Very dark brown/deep red can be used with black; light blue can use black or navy.",
+      "limit": "Supports contextual choice, not a cognac ban or black-only rule. Does not rank the owner's specific shoes or supply price/brand bonuses."
+    },
+    {
+      "id": "KAM",
+      "publisher": "Kamiceria",
+      "title": "Suit, shirt and tie combinations",
+      "url": "https://www.kamiceria.com/us/tips/suit-shirt-and-tie-combinations",
+      "kind": "shirt retailer styling guide",
+      "supported": "Examples include navy with white/sky-blue and burgundy/blue/brown ties, and brown with beige/white and a different-depth brown tie; pattern sizes should differ.",
+      "limit": "Other portions are restrictive about mixed geometric patterns and give skin-tone generalizations. Those are not adopted as hard bans or demographic rules. No source-provided numerical scales."
+    },
+    {
+      "id": "BOGGI",
+      "publisher": "Boggi Milano Egypt / regional retail site",
+      "title": "Ties and Bow Ties \u2014 styling FAQ",
+      "url": "https://eg.boggi.com/en/men-accessories/ties-and-bow-ties",
+      "kind": "regional brand retail styling FAQ",
+      "supported": "Tie should be readable against the shirt; a deeper tie is its general formal guideline. Gives navy/charcoal/mid-grey/brown tie directions and distinguishes plain, stripe, micro-pattern and knit styles.",
+      "limit": "Its warning against navy disappearing into navy is not an unconditional navy-on-navy ban; compare CT's tonal approach. The module uses bounded readability guidance, not this source as a universal authority."
+    },
+    {
+      "id": "CJ",
+      "publisher": "Crockett & Jones",
+      "title": "Richmond 2 Black & Ocean Suede",
+      "url": "https://www.crockettandjones.com/products/richmond-2-black-ocean-suede",
+      "kind": "maker product-styling example",
+      "supported": "Maker describes this specific suede loafer with black, grey or navy tailoring and even dinner wear. This disproves a blanket statement that suede can never accompany tailoring.",
+      "limit": "Product-specific example, not a rule that every suede shoe is formal or that the user owns this shoe. No product was added to the wardrobe."
+    },
+    {
+      "id": "JEREM",
+      "publisher": "Jerem",
+      "title": "Men's mix and match suits",
+      "url": "https://jerem.com/en/collections/mix-and-match-suits",
+      "kind": "brand tailoring guide",
+      "supported": "Odd jacket/trousers should look deliberately coordinated rather than almost matching accidentally; examples include navy with grey/beige. Keep fabric-weight compatibility in view.",
+      "limit": "Calendar tags alone do not establish fibre weight; the earlier seasonal-veto defect is not restored. Its strict colour-count language is not adopted literally for small pattern accents."
+    }
+  ],
+  "rules": [
+    {
+      "id": "R1_VALUE",
+      "source_ids": [
+        "CT",
+        "BOGGI"
+      ],
+      "implementation": "Readable shirt/tie hierarchy; generally deeper tie. Penalize muddled or reverse-value work combinations softly, without maximizing jacket-shirt contrast.",
+      "kind": "research-informed heuristic"
+    },
+    {
+      "id": "R2_PATTERN",
+      "source_ids": [
+        "CT",
+        "KAM"
+      ],
+      "implementation": "Relative scale, prominence and leading/supporting pattern; compound checks remain compound, quiet textures remain quiet.",
+      "kind": "research-informed heuristic"
+    },
+    {
+      "id": "R3_PALETTE",
+      "source_ids": [
+        "CT",
+        "KAM",
+        "BOGGI"
+      ],
+      "implementation": "Tonal/adjacent/coordinated accents; distinct lavender, warm-neutral and brown depths; contextual shirt/tie family directions.",
+      "kind": "research synthesis plus owner-preferred-workwear judgment"
+    },
+    {
+      "id": "R4_SEPARATES",
+      "source_ids": [
+        "JEREM"
+      ],
+      "implementation": "Evaluate separate trousers against blazer shade/depth rather than simulate a mismatched suit.",
+      "kind": "research-informed heuristic"
+    },
+    {
+      "id": "R5_FOOTWEAR",
+      "source_ids": [
+        "BOSS",
+        "CJ"
+      ],
+      "implementation": "Footwear context includes trouser depth, dress level, material and conspicuous decoration. Neither cognac nor suede is universally prohibited.",
+      "kind": "research-informed heuristic"
+    },
+    {
+      "id": "R6_CONTEXT",
+      "source_ids": [
+        "CT",
+        "BOSS",
+        "JEREM"
+      ],
+      "implementation": "Whole-outfit focus and coherency; shoe/watch context. No brand, price or status reward.",
+      "kind": "research synthesis plus engineering judgment"
+    },
+    {
+      "id": "OWNER_REFERENCE",
+      "source_ids": [],
+      "implementation": "10% of clothing estimate compares property patterns to the two previously preferred independent sets. No exact-ID reward, inferred per-outfit approval, fitted model or invented source score.",
+      "kind": "owner-context-inspired semantic prior, not web fact"
+    },
+    {
+      "id": "OWNER_CAPS",
+      "source_ids": [],
+      "implementation": "Two uses maximum per unanchored physical item; exact anchor exempts only itself. No Tie at most two unless selected. No duplicate clothing padding.",
+      "kind": "explicit owner constraints"
+    }
+  ],
+  "no_products_added": true,
+  "no_skin_tone_inference": true,
+  "source_weights_provided": false,
+  "live_visual_ai_executed": false
+}
