@@ -23,10 +23,7 @@ function createCanonicalBindings({featureInputs, sourceBindings, active50Manifes
     requireValue(typeof row.app_id === 'string' && typeof row.source_id === 'string' && !aliases.has(row.app_id), 'Missing or duplicate explicit suit alias');
     requireValue(assets.has(`suits:${row.source_id}`), 'Suit alias has no canonical source binding'); aliases.set(row.app_id,row.source_id);
   }
-  const itemCache = new Map();
   function item(category, id) {
-    const cacheKey = category+":"+id;
-    if(itemCache.has(cacheKey)) return itemCache.get(cacheKey);
     const binding = assets.get(`${category}:${id}`);
     requireValue(binding, `No source binding for exact ${category}:${id}; no substitution`);
     let label = id, labelSource = 'exact canonical ID (no unsupported description supplied)';
@@ -38,8 +35,7 @@ function createCanonicalBindings({featureInputs, sourceBindings, active50Manifes
     } else if (byId.has(id)) {
       label = byId.get(id).description; labelSource = 'Step4 FEATURE_INPUTS.json '+id+' (version-pinned, not a claim of complete later DNA recovery)';
     }
-    const result=freeze({canonical_id:id,category,display_label:label,label_source:labelSource,source:clone(binding)});
-    itemCache.set(cacheKey,result);return result;
+    return freeze({canonical_id:id,category,display_label:label,label_source:labelSource,source:clone(binding)});
   }
   function stateRequest(suitId, shirtId, state) {
     requireValue(supportedSuitIds.includes(suitId) && assets.has('suits:'+suitId), 'No connected dynamic assembly for this exact suit');

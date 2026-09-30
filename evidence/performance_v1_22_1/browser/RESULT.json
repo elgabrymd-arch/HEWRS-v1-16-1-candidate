@@ -1,0 +1,790 @@
+{
+  "scope": "Shipped bundle/code + exact source images; injected script delivery and synthetic storage. No real HTTP/Safari performance claim.",
+  "passed": 19,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Home becomes interactive without loading the outfit index or any garment image",
+      "passed": true,
+      "detail": {
+        "indexRequests": 0,
+        "indexReady": false,
+        "homeReadyMs": 612.7999999998137
+      }
+    },
+    {
+      "name": "Startup creates no external image/provider request and no user-store write",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Home picker, Wardrobe and Rotation operate before the index is downloaded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "The hidden startup garment download is now deferred, not removed",
+      "passed": true,
+      "detail": {
+        "original_distinct_layers": 14,
+        "original_source_image_bytes": 3168146
+      }
+    },
+    {
+      "name": "View current outfit lazily restores the exact default without index or data changes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Saved outfit and all stored keys survive a fresh page without eager rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Deferred saved S02 restores identical native pixels and IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Generate requests the integrity-pinned index once with honest loading status",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Index network failure ends the wait with an actionable message and retains user data/pixels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Retried actual Generate returns every original S10 option and score in the same order",
+      "passed": true,
+      "detail": {
+        "seconds_with_test_delivery": 6.662910436999937,
+        "options": 20
+      }
+    },
+    {
+      "name": "All20 real card positions keep exact IDs and one-use ties",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Index stays loaded and navigation does not request it again",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Generating and navigating creates no wear, Favorites or feedback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancel remains responsive and retains the preceding complete outfit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "A/B feedback remains operational and touches only its own namespace",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Fast-start Home retains five responsive viewport layouts",
+      "passed": true,
+      "detail": [
+        {
+          "w": 320,
+          "h": 568,
+          "overflow": false,
+          "ready": true,
+          "button": true
+        },
+        {
+          "w": 390,
+          "h": 350,
+          "overflow": false,
+          "ready": true,
+          "button": true
+        },
+        {
+          "w": 390,
+          "h": 780,
+          "overflow": false,
+          "ready": true,
+          "button": true
+        },
+        {
+          "w": 430,
+          "h": 932,
+          "overflow": false,
+          "ready": true,
+          "button": true
+        },
+        {
+          "w": 1280,
+          "h": 1000,
+          "overflow": false,
+          "ready": true,
+          "button": true
+        }
+      ]
+    },
+    {
+      "name": "All18 suits and14 blazers retain exact native outfit pixels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Corrupt feedback is still explicitly retained and blocked",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No uncaught application errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "frames": [
+    {
+      "kind": "S10-navigation",
+      "position": 1,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T039",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "native_fnv1a": 1973785073
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 2,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS020",
+        "state": "T010",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "native_fnv1a": 3009820799
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 3,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS022",
+        "state": "T030",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "native_fnv1a": 1027155899
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 4,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS025",
+        "state": "T016",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R09"
+      },
+      "native_fnv1a": 1192480005
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 5,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-R11"
+      },
+      "native_fnv1a": 1014771975
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 6,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS017",
+        "state": "T046",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R11"
+      },
+      "native_fnv1a": 3691874359
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 7,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS035",
+        "state": "T005",
+        "shoeId": "shoe-3",
+        "watchId": "watch-R13"
+      },
+      "native_fnv1a": 3515996020
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 8,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS008",
+        "state": "T017",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R13"
+      },
+      "native_fnv1a": 3428385027
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 9,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS002",
+        "state": "T036",
+        "shoeId": "shoe-4",
+        "watchId": "watch-R14"
+      },
+      "native_fnv1a": 1937127440
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 10,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS044",
+        "state": "T031",
+        "shoeId": "shoe-5",
+        "watchId": "watch-R14"
+      },
+      "native_fnv1a": 2025942433
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 11,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS029",
+        "state": "T009",
+        "shoeId": "shoe-5",
+        "watchId": "watch-AP06"
+      },
+      "native_fnv1a": 3020248383
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 12,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS028",
+        "state": "T002",
+        "shoeId": "shoe-6",
+        "watchId": "watch-AP06"
+      },
+      "native_fnv1a": 1621172220
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 13,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS005",
+        "state": "T029",
+        "shoeId": "shoe-6",
+        "watchId": "watch-AP10"
+      },
+      "native_fnv1a": 1723693748
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 14,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP10"
+      },
+      "native_fnv1a": 1836291245
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 15,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS027",
+        "state": "T004",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP13"
+      },
+      "native_fnv1a": 1433476623
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 16,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS024",
+        "state": "T001",
+        "shoeId": "shoe-0",
+        "watchId": "watch-AP13"
+      },
+      "native_fnv1a": 152967489
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 17,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P01"
+      },
+      "native_fnv1a": 3763450398
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 18,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS031",
+        "state": "T028",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P01"
+      },
+      "native_fnv1a": 2640599119
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 19,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS014",
+        "state": "T007",
+        "shoeId": "shoe-11",
+        "watchId": "watch-P03"
+      },
+      "native_fnv1a": 3489273685
+    },
+    {
+      "kind": "S10-navigation",
+      "position": 20,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS028",
+        "state": "T003",
+        "shoeId": "shoe-11",
+        "watchId": "watch-P03"
+      },
+      "native_fnv1a": 175833214
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 217124715,
+      "target_fnv1a": 217124715
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 130097100,
+      "target_fnv1a": 130097100
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S03",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 3072419670,
+      "target_fnv1a": 3072419670
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 3930031934,
+      "target_fnv1a": 3930031934
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2710824164,
+      "target_fnv1a": 2710824164
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S06",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 4043008058,
+      "target_fnv1a": 4043008058
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S07",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 43857126,
+      "target_fnv1a": 43857126
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S08",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 3812249327,
+      "target_fnv1a": 3812249327
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S09",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 306011724,
+      "target_fnv1a": 306011724
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 157750646,
+      "target_fnv1a": 157750646
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 1072950954,
+      "target_fnv1a": 1072950954
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S12",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2960826901,
+      "target_fnv1a": 2960826901
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S13",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 1864922679,
+      "target_fnv1a": 1864922679
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S14",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 974610400,
+      "target_fnv1a": 974610400
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S15",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 1963544009,
+      "target_fnv1a": 1963544009
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S16",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 878114920,
+      "target_fnv1a": 878114920
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S17",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2475463798,
+      "target_fnv1a": 2475463798
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "suitId": "S18",
+        "shirtId": "DS023",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 1437898618,
+      "target_fnv1a": 1437898618
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2268202017,
+      "target_fnv1a": 2268202017
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 3136213341,
+      "target_fnv1a": 3136213341
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 612779786,
+      "target_fnv1a": 612779786
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B04",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2358916943,
+      "target_fnv1a": 2358916943
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B05",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 16778864,
+      "target_fnv1a": 16778864
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B06",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2672908113,
+      "target_fnv1a": 2672908113
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B07",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2676155772,
+      "target_fnv1a": 2676155772
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B08",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2686493028,
+      "target_fnv1a": 2686493028
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B09",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 3242907661,
+      "target_fnv1a": 3242907661
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B10",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 1915543912,
+      "target_fnv1a": 1915543912
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B11",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 1162355960,
+      "target_fnv1a": 1162355960
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B12",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 3835360169,
+      "target_fnv1a": 3835360169
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B13",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 3374827061,
+      "target_fnv1a": 3374827061
+    },
+    {
+      "kind": "unchanged-native-control",
+      "selection": {
+        "blazerId": "B14",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "baseline_fnv1a": 2956936781,
+      "target_fnv1a": 2956936781
+    }
+  ],
+  "errors": [],
+  "seconds": 317.19499921798706
+}

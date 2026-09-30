@@ -1,0 +1,77 @@
+{
+  "scope": "Shipped bundle/code + exact source images; injected script delivery and synthetic storage. No real HTTP/Safari performance claim.",
+  "passed": 9,
+  "failed": 2,
+  "checks": [
+    {
+      "name": "Home becomes interactive without loading the outfit index or any garment image",
+      "passed": true,
+      "detail": {
+        "indexRequests": 0,
+        "indexReady": false,
+        "homeReadyMs": 674.9000000001397
+      }
+    },
+    {
+      "name": "Startup creates no external image/provider request and no user-store write",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Home picker, Wardrobe and Rotation operate before the index is downloaded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "The hidden startup garment download is now deferred, not removed",
+      "passed": true,
+      "detail": {
+        "original_distinct_layers": 14,
+        "original_source_image_bytes": 3168146
+      }
+    },
+    {
+      "name": "View current outfit lazily restores the exact default without index or data changes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Saved outfit and all stored keys survive a fresh page without eager rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Deferred saved S02 restores identical native pixels and IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Generate requests the integrity-pinned index once with honest loading status",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Index network failure ends the wait with an actionable message and retains user data/pixels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Retried actual Generate returns every original S10 option and score in the same order",
+      "passed": false,
+      "detail": {
+        "seconds_with_test_delivery": 2.757037781000008,
+        "options": 20
+      }
+    },
+    {
+      "name": "Browser run completed",
+      "passed": false,
+      "detail": "Traceback (most recent call last):\n  File \"/mnt/data/perf1221/target/tests/performance-browser.py\", line 54, in <module>\n    actual=p.evaluate('HEWRSApp.state().report.options');ck('Retried actual Generate returns every original S10 option and score in the same order',actual==row['options'],{'seconds_with_test_delivery':time.monotonic()-t,'options':len(actual)})\n                                                         ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/perf1221/target/tests/performance-browser.py\", line 11, in ck\n    if not ok:raise AssertionError(name+' '+str(detail))\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Retried actual Generate returns every original S10 option and score in the same order {'seconds_with_test_delivery': 2.757037781000008, 'options': 20}\n"
+    }
+  ],
+  "frames": [],
+  "errors": [
+    "Traceback (most recent call last):\n  File \"/mnt/data/perf1221/target/tests/performance-browser.py\", line 54, in <module>\n    actual=p.evaluate('HEWRSApp.state().report.options');ck('Retried actual Generate returns every original S10 option and score in the same order',actual==row['options'],{'seconds_with_test_delivery':time.monotonic()-t,'options':len(actual)})\n                                                         ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/perf1221/target/tests/performance-browser.py\", line 11, in ck\n    if not ok:raise AssertionError(name+' '+str(detail))\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Retried actual Generate returns every original S10 option and score in the same order {'seconds_with_test_delivery': 2.757037781000008, 'options': 20}\n"
+  ],
+  "seconds": 12.264814138412476
+}

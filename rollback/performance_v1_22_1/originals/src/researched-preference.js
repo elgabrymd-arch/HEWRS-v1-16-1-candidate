@@ -128,9 +128,7 @@ function create(c){const inherited=old.create(c),profiles=new Map();let learning
   let score=Object.keys(weights).reduce((n,k)=>n+weights[k]*components[k],0);
   return {revision:REV,score:r(score),components,weights,ids:{topwear:topId,shirt:shirtId,tie:tieId,pants:pantId},profiles:{topwear:t,shirt:s,tie,pants:p},prominence:pr,value_route:valueRoute,reasons,cautions,reason:[...reasons,...cautions].join(' '),kind:'research_informed_local_rule_estimate',measured:false};
  }
- const shoeColours=new Map();
- function shoeColour(text){if(!shoeColours.has(text)){if(shoeColours.size>=128)shoeColours.clear();shoeColours.set(text,Object.freeze(col(text)));}return shoeColours.get(text);}
- function rawShoe(item,o,q){const t=o.profiles.topwear,p=o.profiles.pants||t,ss=txt(item.color),colour=shoeColour(ss),type=item.subcategory,suit=t.category==='suit',tied=!!o.profiles.tie,pv=p.primary.value,v=colour.value;
+ function shoe(item,o,q){const t=o.profiles.topwear,p=o.profiles.pants||t,ss=txt(item.color),colour=col(ss),type=item.subcategory,suit=t.category==='suit',tied=!!o.profiles.tie,pv=p.primary.value,v=colour.value;
   let formality=type==='Dress Shoes'?(tied?9.5:9.0):type==='Loafers'?(tied?8.9:9.35):type==='Drivers'?6.8:6.2;
   if(/lug sole|chunky|heavy sole/.test(ss)&&suit&&tied)formality-=.75;
   let grounding=8.6,reason='Footwear assessed against the trousers and dress level, not price or brand.';
@@ -146,15 +144,6 @@ function create(c){const inherited=old.create(c),profiles=new Map();let learning
   let surface=/suede/.test(ss)?(!suit||!tied?9.25:8.7):9;
   // Source-backed examples allow suede with tailoring. Weather module decides wet suitability.
   return {score:r(clip(.38*formality+.40*grounding+.14*restraint+.08*surface)),formality,grounding,restraint,surface,colour,revision:REV,reason,price_or_brand_bonus:0,kind:'research_informed_shoe_context',measurements:false};
- }
- // Context-keyed memo of the SAME shoe function; all fields it reads are
- // included. No history, model weight, price or candidate ranking is cached.
- const shoeAssessmentCache=new Map();
- function shoe(item,o,q){const t=o.profiles.topwear,p=o.profiles.pants||t;
-  const key=JSON.stringify([item.color,item.subcategory,t.category,p.primary.family,p.primary.value,!!o.profiles.tie,Math.max(...o.prominence)>.68]);
-  if(shoeAssessmentCache.has(key))return shoeAssessmentCache.get(key);
-  const value=Object.freeze(rawShoe(item,o,q));
-  if(shoeAssessmentCache.size>=4096)shoeAssessmentCache.delete(shoeAssessmentCache.keys().next().value);shoeAssessmentCache.set(key,value);return value;
  }
  function watch(item,o,q){const w=inherited.watch(item,{...o,components:{...o.components,pattern_hierarchy:o.components.pattern_hierarchy}},q);return {...w,revision:REV,kind:'contextual_watch_preference_not_designer_grade'};}
  function complete(o,sh,wa){const features=root.HEWRSOutfitLearning.vector(o,sh),baseline=.87*o.score+.10*sh.score+.03*wa.score,adjustment=root.HEWRSOutfitLearning.delta(learningModel,features);return {revision:REV,score:r(clip(baseline+adjustment)),baseline_research_score:r(baseline),learning:{revision:root.HEWRSOutfitLearning.REV,model_id:learningModel.id,active:learningModel.active&&learningModel.enabled,adjustment:r(adjustment),counts:copy(learningModel.counts),reason:learningModel.reason,features,feature_names:root.HEWRSOutfitLearning.FEATURES.slice(),source_revision:root.HEWRSSourceCorrections.revision},clothing_score:o.score,clothing:copy(o.components),shoe:copy(sh),watch:copy(wa),weights:{clothing:.87,shoes:.10,watch:.03},research_rule_ids:['R1_VALUE','R2_PATTERN','R3_PALETTE','R4_SEPARATES','R5_FOOTWEAR','R6_CONTEXT'],explanation:o.reason,reasons:copy(o.reasons),cautions:copy(o.cautions),kind:'research_informed_local_rules_not_live_ai',measurement:false};}

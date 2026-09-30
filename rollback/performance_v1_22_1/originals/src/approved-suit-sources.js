@@ -22,18 +22,15 @@ function create(input,suitAliases,adapter=root.HEWRSSuitResolver97){
   need(url==='assets/'+asset.sha256+'.png','Approved garment has no exact packaged source');
   return freeze({url,sha256:asset.sha256,rect:[0,0,...data.canvas],role:asset.role,source_path:asset.path});
  }
- const resolvedPairs=new Map();
  function resolveCanonical(suitId){
-  if(resolvedPairs.has(suitId))return resolvedPairs.get(suitId);
   const inherited=adapter.resolveSuit(registry,suitId);
   need(byCanonical.has(suitId),'Suit identity missing from explicit crosswalk');
-  const result=freeze({suitId,historyId:byCanonical.get(suitId),jacket:descriptor(inherited.jacket),trousers:descriptor(inherited.trousers),
+  return freeze({suitId,historyId:byCanonical.get(suitId),jacket:descriptor(inherited.jacket),trousers:descriptor(inherited.trousers),
    template:inherited.template,approval:'EXISTING_OWNER_APPROVAL_PRESERVED',
    scope:'APPROVED_PAIRED_GARMENT_SOURCES',inherited_scope:inherited.scope,
    // Source availability is not a claim that arbitrary selected shirts have
    // been composited under every different jacket template.
    dynamic_compositor_registered:root.HEWRS_SUIT_ASSEMBLY_DATA?.dynamic_suits.includes(suitId)??(suitId==='S05')});
-  resolvedPairs.set(suitId,result);return result;
  }
  function resolveLegacy(historyId){
   need(byLegacy.has(historyId),'Unknown historical suit ID; no numeric-index fallback');

@@ -1,0 +1,3072 @@
+{
+  "passed": 613,
+  "failed": 0,
+  "scope": "All current JSON plus listed current runtime/test JS and new Python helpers. Not an execution audit of historical helpers.",
+  "files": [
+    {
+      "path": "CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "STARTUP_RESOURCES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/approved-suits.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/batch10.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/blazer-connection.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/ds023-cleanup.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/ds023-edges.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/ds035-coverage.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/ds035-edge.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/inputs.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/non-suit-sources.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/option-card-thumbnails.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/option-index.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/owner-source-corrections.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/preference-pilot.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/shirt-only.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/styling-research.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/stylist-library.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/suit-assembly.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "data/tie-fidelity.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/COVERAGE_AUTHORIZATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/DS035_COVERAGE_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/DS035_COVERAGE_ROUTING.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/DS035_COVERAGE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/FUNCTIONAL_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/IMPLEMENTATION_RESULT_V1_2.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/IMPLEMENTATION_RESULT_V1_3.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/IMPLEMENTATION_RESULT_V1_4.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/INPUTS_BEFORE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/INPUT_PRESERVATION_V1_2.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/INTEGRATION_APERTURE_CHECK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/REGISTERED_VIEW_ORIGINS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/SOURCE_ORIGINS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/STRICT_OPENING_MASK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/SUIT_DISPLAY_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/SUIT_DISPLAY_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/SUIT_SOURCE_ORIGINS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/SUIT_SOURCE_ROUTING_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/BASE_REGRESSION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/BROWSER_PROGRESS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/EDGE_GUARDS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/INITIAL_BROWSER_HARNESS_CHECK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/INITIAL_ROUTING_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/OWNER_APPROVAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/ROUTING_AND_ENGINE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/SOURCE_CHANGES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/SUIT_SOURCE_GUARDS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/TEST_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/TEST_FIXES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/V1_5_BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/all_suits_v1_6/baseline/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/BASELINE_V1_11.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/DERIVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/HARNESS_NOTE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/browser/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/browser/HISTORY_LOCATOR_FAILURE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/b01_b02_v1_12/browser/TEST_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/BASELINE_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/DERIVATION_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/EDGE_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/REAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/STATIC_ENTRY_CHECK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch10_v1_15/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch16_v1_16/DERIVATION_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch16_v1_16/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/batch16_v1_16/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/BASELINE_V1_6.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/INHERITED_SWEEP_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/PHYSICAL_PANTS_CROSSWALK_ORIGINAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazer_v1_7/SOURCE_ORIGINS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/BASELINE_V1_8.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/BROWSER_ORACLE_PRE_CANVAS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/HARNESS_NOTES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/HTTP_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/INHERITED_PROFILE_DIAGNOSTIC.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/SOURCE_CONNECTION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/browser/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/browser/RENDER_SWEEP_RUN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/browser/TEST_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/source/BLAZER_APPROVAL_STATE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/blazers_v1_9/source/SANITATION_REPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/BASELINE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/DNA_LOGIC_IMAGE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/ENGINE_CASES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/EXTERNAL_BOUNDARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/LOCAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/PROVIDER_HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/WEATHER_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/favorites-regression/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/core_v1_17_0/insights-regression/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/DERIVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/HTTP_DELIVERY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/RESTORED_BASELINE_VERIFIER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/ds023_v1_16_2/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/FUNCTIONAL_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/PARENT_PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/ROUTING.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/VISUAL_SAMPLE_MEASUREMENTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/prior_attempt/OPAQUE_ONLY_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edge_v1_5/prior_attempt/REJECTION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/DERIVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/HTTP_DELIVERY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/INHERITED_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/VISUAL_REVIEW.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/edges_v1_16_3/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BASELINE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BROWSER_HARNESS_CSP_ATTEMPT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/BROWSER_HARNESS_FIRST_ATTEMPT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/FUNCTIONAL_FIRST_ATTEMPT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/LOCAL_ORIGIN_PROBE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/engine_v1_4/TEST_ONLY_ENGINE_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/ACCEPTANCE_RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/BASELINE_V1_10.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/BROWSER_INITIAL_LAYOUT_FINDING.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/CHANGED_ORIGINAL_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/HANDOFF_VERIFICATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/ICON_SOURCE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/ORIGINAL_INPUTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/TEST_NOTES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/browser/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/browser_extra/EXTRA_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/browser_extra/TEST_EXPORTED_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/facelift_v1_11/handoff/OWNER_DECISIONS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/EXTRA_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/LOCAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/favorites_v1_16_6/browser/SYNTHETIC_FAVORITES_EXPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/ALL32_CURATED_ANCHORS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/BACKEND_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/CURATED_NO_ANCHOR.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/LIBRARY_ASSESSMENTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/PACKAGING_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/PASS2_ORIGINAL_SCORE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/SOURCE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/browser/INITIAL_RENDER_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/hybrid_v1_19_0/browser/REGRESSION_AND_VISUAL_PIPELINE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1/BROWSER_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1/FUNCTIONAL_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1/IMPLEMENTATION_RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/FUNCTIONAL_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/IMPLEMENTATION_RESULT_V1_1.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/ORIGINAL_INPUT_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/SOURCE_ORIGINS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/STANDALONE_SMOKE_ATTEMPT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/SUIT_SOURCE_ORIGINS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_1/SUIT_SOURCE_ROUTING_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/DS035_COVERAGE_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/DS035_COVERAGE_ROUTING.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/FUNCTIONAL_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/SUIT_DISPLAY_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/inherited_v1_3/SUIT_SOURCE_ROUTING_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/BASELINE_VERIFICATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/LOCAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/PROTECTION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/insights_v1_16_7/favorites-regression/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/AUDIT_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/AUTO_WEATHER_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/GENERATION_MATRIX_cold.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/GENERATION_MATRIX_synthetic_learned.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/GENERATION_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/HTTP_DELIVERY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/INPUT_RECONSTRUCTION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/PARSER_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/PROTECTED_BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/S02_DERIVED_CHANGES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/SOURCE_RECALCULATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/UNIT_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/WEATHER_TRANSPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/attempts/INCOMPLETE_OLD_BOUND_MATRIX.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/attempts/browser_locator_RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/browser/SYNTHETIC_PREFERENCE_EXPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/local_preference_v1_22_0/browser_generation/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/INHERITED_WEATHER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/LOCAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/PROVIDER_HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/SMOKE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/WEATHER_NEW.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/core/ENGINE_CASES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/mobile_v1_17_1/core/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/BASELINE_V1_12.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/DERIVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/browser/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/browser/FIRST_ATTEMPT_HARNESS_CSP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/open_collar_v1_13/browser/TEST_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/BASELINE_INPUT_VERIFICATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/EXPORT_ARTIFACTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/HTTP_RESOURCE_CHECK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/PROTECTED_V1210.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/THUMBNAIL_SOURCE_MAP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PRINT_CHECK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/AFTER_OPTIONS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/BASELINE_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/BEFORE_OPTIONS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/ENSEMBLE_CHANGED_ROWS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/IMAGE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/LIVE_READ_ATTEMPTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/OWNER_REQUIREMENTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS1_INPUT_INTEGRITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS2_COLOUR_AND_ENSEMBLE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS3_OPTIONS_POLICY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/PASS5_DELIVERY_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/SOURCE_COLOUR_AUDIT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/options_v1_17_3/browser/PASS4_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/AUDIT_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/AUTO_WEATHER_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/CONTEXT_PARITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/INPUT_IDENTITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/LOADER_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/MATRIX_cold.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/MATRIX_synthetic_learned.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/PARSER_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/PERFORMANCE_MEASUREMENTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/ROLLBACK_CHECK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/S02_DERIVED_CHANGES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/SOURCE_RECALCULATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/STARTUP_MEASUREMENTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/UNCHANGED_BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/UNIT_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/WEATHER_TRANSPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/attempts/browser_diagnostic.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/attempts/browser_first.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/browser/ACTUAL_S10.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/browser/BASELINE_S10_SAME_BROWSER_MODEL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/performance_v1_22_1/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/SOURCE_BOUNDARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/picker_v1_16_4/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/BASELINE_V1_7.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/HARNESS_NOTES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/TEST_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/source/HEWRS_Trouser_Profile_Bindings.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/profiles_v1_8/source/RECOVERY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/AUTO_WEATHER_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/DATA_REGRESSION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/HTTP_AND_SYNTAX.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/OWNER_MANDATE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS1_SOURCE_INTEGRITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS2_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS2_ORIGINAL_SCORE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS2_WARDROBE_MATRIX.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PASS_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/PROTECTED_BASELINE_HASHES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/SOURCE_PREFERENCE_PROFILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/VISUAL_INSPECTION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/WARDROBE_BEFORE_AFTER_METRICS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/WEATHER_TRANSPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/recalibration_v1_18_0/browser/PASS3_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/BASELINE_V116_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/EDGE_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/HTTP_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/ORDER_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/REAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/SOURCE_RECONSTRUCTION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/TEST_SOURCE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/VISUAL_REVIEW.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/release_v1_16_1/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/AUTO_WEATHER_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/CODE_INVENTORY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/FINAL_CODE_INVENTORY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/FINAL_UI_FAMILY_PARITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/MEASURED_LIST_COUNTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/NO_ANCHOR.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS1_INTEGRITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS1_ORIGINAL_SCORE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS1_RESTORATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS2_RULES_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS3_ALL32_OUTPUTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS3_STATE_ROUTING.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS5_HTTP_BYTES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/PASS5_ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/SEASON_MATRIX.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/SOURCE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/WEATHER_TRANSPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/browser/NATIVE_FRAME_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/browser/PASS4_BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/browser_before_final_family_adapter.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/browser_long_lived_page_attempt.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/browser_resource_attempt.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/research_v1_20_0/development_attempts/family_getter_spread_finding.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/SOURCE_BOUNDARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/scope18_v1_16_5/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/BASELINE_V1_9.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/HTTP_PROBE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/INITIAL_TEST_EXPECTATION_FAILURE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/SOURCE_LAYER_COMPARISON.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/archive.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/browser/BROWSER.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/shirt_only_v1_10/browser/TEST_BACKUP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/BASELINE_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/REAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/SOURCE_DEPENDENCIES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/source_routes_v1_14/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/AUTO_WEATHER_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/BASELINE_REPRO.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/BASELINE_VERIFICATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/DNA_ENSEMBLE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/IMAGE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/LOCAL_ORIGIN.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/PASS3_OPTIONS_POLICY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/PATCH_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/ROLLBACK_VERIFICATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/SUITS_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/WEATHER_TRANSPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/INITIAL_CSP_PREDICATE_RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/suits_auto_weather_v1_17_4/test_fixture_attempts/SECOND_MISSING_SEEDED_IMAGE_RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/BROWSER_FIRST_ATTEMPT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/BROWSER_SECOND_ATTEMPT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/BROWSER_THIRD_ATTEMPT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/DERIVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/HTTP.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/PIXEL_INTEGRITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/REPLAY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/ROLLBACK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/core/ENGINE_CASES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/tie_fidelity_v1_17_2/core/FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/ABLATION_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/AUTO_WEATHER_FUNCTIONAL.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/B14_SOURCE_CAPACITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/BASELINE_RECONSTRUCTION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/CONTRACT_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/FIVE_PASS_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/HTTP_BYTES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_caps20.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_old15.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_old20.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/MATRIX_target.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/NAMED_TEST_SUMMARY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/PARSER_CHECKS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/PASS1_ORIGINAL_SCORE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/PASS3_STATE_ROUTING.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/ROLLBACK_CHECK.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/SOURCE_CAPACITY_TESTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/SOURCE_PRESERVATION.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/TESTED_RUNTIME_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/VISUAL_REVIEW.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/WEATHER_TRANSPORT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/browser/ITEMIZED_OUTPUTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "evidence/twenty_ties_v1_21_0/browser/RESULT.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/batch10_v1_15/SOURCE_INPUTS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/batch10_v1_15/V11_LAYER_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/batch16_v1_16/V11_LAYER_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/core_v1_17_0/SOURCE_POLICY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/edges_v1_16_3/PROFILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/hybrid_v1_19_0/independent.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/hybrid_v1_19_0/s10.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_input_hashes.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/open_collar_v1_13/original_inputs/catalogue.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/owner_source_s02_20260929/option-index.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/tie_fidelity_v1_17_2/SOURCE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "provenance/tie_fidelity_v1_17_2/catalogue.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/PACKAGE_SHA256_V114.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/batch10_v1_15/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/core_v1_17_0/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/ds023_v1_16_2/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/edges_v1_16_3/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/favorites_v1_16_6/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/BASELINE_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/originals/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/hybrid_v1_19_0/originals/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/insights_v1_16_7/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/local_preference_v1_22_0/BASELINE_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/local_preference_v1_22_0/originals/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/local_preference_v1_22_0/originals/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/local_preference_v1_22_0/originals/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/local_preference_v1_22_0/originals/data/option-index.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/mobile_v1_17_1/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/BASELINE_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/options_v1_17_3/original/data/option-index.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/performance_v1_22_1/BASELINE_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/performance_v1_22_1/originals/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/performance_v1_22_1/originals/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/performance_v1_22_1/originals/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/picker_v1_16_4/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/BASELINE_PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/recalibration_v1_18_0/originals/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/release_v1_16_1/original/data/batch10.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/BASELINE_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/research_v1_20_0/originals/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/scope18_v1_16_5/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/source_routes_v1_14/PACKAGE_SHA256_V113.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/source_routes_v1_14/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/suits_auto_weather_v1_17_4/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/BASELINE_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/PACKAGE_SHA256.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/tie_fidelity_v1_17_2/original/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/twenty_ties_v1_21_0/BASELINE_MANIFEST.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/twenty_ties_v1_21_0/originals/CHANGED_FILES.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/twenty_ties_v1_21_0/originals/RELEASE_SCOPE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "rollback/twenty_ties_v1_21_0/originals/RELEASE_STATUS.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "vendor/b01_b02_v1_12/BLAZER_APPROVAL_STATE.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "vendor/blazers-v1_9/blazer-connection_v18.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "vendor/cp98/AUTHORITY.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "vendor/cp98/REGISTER97.json",
+      "kind": "JSON",
+      "pass": true
+    },
+    {
+      "path": "tools/build.py",
+      "kind": "Python AST",
+      "pass": true
+    },
+    {
+      "path": "tools/verify_v1221.py",
+      "kind": "Python AST",
+      "pass": true
+    },
+    {
+      "path": "tools/rollback_v1221.py",
+      "kind": "Python AST",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-browser.py",
+      "kind": "Python AST",
+      "pass": true
+    },
+    {
+      "path": "data/approved-suits.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/batch10.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/blazer-connection.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/ds023-cleanup.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/ds023-edges.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/ds035-coverage.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/ds035-edge.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/inputs.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/non-suit-sources.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/option-card-thumbnails.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/option-index.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/owner-source-corrections.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/preference-pilot.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/shirt-only.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/stylist-library.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/stylist-service-config.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/suit-assembly.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/tie-fidelity.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "data/trouser-profiles.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "runtime/hewrs-1972a4fd322f4573dda4.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/application.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/approved-suit-sources.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/atomic-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/automatic-engine.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/automatic-preferences.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/automatic-weather.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/b01-b02-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/batch10-contract.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/batch10-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/blazer-connection.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/blazer-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/canonical-bindings-browser.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/connection.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/controller.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/ds023-cleanup-connection.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/ds023-edges-connection.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/ds035-coverage-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/ds035-edge-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/facelift-state.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/favorites-state.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/hybrid-stylist.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/legacy-accessories.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/local-state.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/mixed-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/non-suit-sources.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/option-cards.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/option-set-policy.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/outfit-learning.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/outfit-preference.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/preference-panel.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/researched-preference.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/rotation-insights.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/runtime-loader.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/sheet-layout.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/shirt-only-connection.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/shirt-only-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/source-aware-pickers.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/source-corrections.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/suit-assemblies.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/suit-resolver97-browser.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/tie-fidelity.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/trouser-profiles.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/visual-stylist-client.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "src/weather-context.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-auto-weather.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-browser-baseline.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-contexts.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-loader.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-matrix.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-preferences.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-preservation.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "tests/performance-weather-transport.cjs",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "vendor/active50-renderer.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "vendor/approved-scores.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "vendor/ensemble-completion.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "vendor/hewrs-logic.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "vendor/release-guards.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "vendor/request-contract.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    },
+    {
+      "path": "vendor/watch-classification.js",
+      "kind": "JavaScript parse",
+      "pass": true
+    }
+  ]
+}

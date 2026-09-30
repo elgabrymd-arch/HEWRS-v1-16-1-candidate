@@ -1,0 +1,19 @@
+{
+  "rollback": {
+    "status": "PASS",
+    "restored_version": "1.22.0",
+    "payloads": 2499,
+    "output": "/mnt/data/perf1221/rollback_verified",
+    "browser_data_access": false
+  },
+  "baseline_verifier": {
+    "status": "PASS",
+    "version": "1.22.0",
+    "payloads": 2499,
+    "original_runtime_images": 848,
+    "pilot_pairs": 24,
+    "owner_ratings_seeded": 0,
+    "browser_data_access": false
+  },
+  "manifest_matches": true
+}
