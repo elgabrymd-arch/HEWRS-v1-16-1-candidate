@@ -1,0 +1,117 @@
+{
+  "passed": 22,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "First visit with prompt permission does not call GPS or any provider until Enable",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Enable explicitly requests once, fetches real transport format, persists weather and opt-in",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reload with granted permission refreshes automatically without an app modal or Apply",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Already-granted browser permission enables silent first refresh without a saved config",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reopened prompt permission uses saved coordinates with an honest fallback label, zero GPS prompts",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reopened denied permission uses saved coordinates with an honest fallback label, zero GPS prompts",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unsupported Permissions API does not attempt silent GPS; saved place only",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unsupported/denied with no saved place does not fabricate location or weather",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Saved named city refreshes automatically without replacing it with GPS",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Manual weather and explicit not-assessed choice never get overwritten automatically",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Explicitly turning auto off survives recreation without revoking or asking browser permission",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Fresh foreground/generate checks throttle requests; older readings refresh",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Follow-today mode uses today without overwriting the saved historical outfit ledger",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Explicit fixed work date is honored; daily forecast is not mislabeled current",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Out-of-forecast date retains the previous weather and reports the transport error",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Offline and timeout responses retain good previous data; no false successful weather",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Explicit denied permission does not save auto opt-in or replace prior manual weather",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Cancellation stops late responses from overwriting manual weather",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Manual weather changed during lookup wins even without explicit cancellation",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Corrupt settings and cross-tab modifications are retained rather than reset",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Repeated concurrent refresh calls share one location/weather request",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Only separate weather keys are written; wear and Favorites remain identical",
+      "passed": true,
+      "result": null
+    }
+  ],
+  "scope": "Simulated permission states and provider replies through actual transport code, not actual iOS permission or a live Open-Meteo check."
+}

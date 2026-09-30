@@ -56,7 +56,9 @@
   // T019's retained detailed same-ID source explicitly says very light cool grey.
   // Keep that recorded qualifier, rather than the accidental 'ice' in 'lattice'.
   if(r.id==='T019'&&r.primary_text==='Pearl silver tonal lattice'&&r.historical_fields_unchanged?.primary_color==='Silver / very light cool grey')p.value=colour(r.historical_fields_unchanged.primary_color).value;
-  const pat=pattern(r),tex=String(r.texture_text||'').toLowerCase();
+  if(r.current_source_revision==='hewrs.owner-source.s02.2026-09-29.v1'&&r.id==='S02')p.value=r.current_interpretation.value;
+  const pat=pattern(r);if(r.current_source_revision==='hewrs.owner-source.s02.2026-09-29.v1'&&r.id==='S02'){pat.contrast=r.current_interpretation.contrast;pat.quiet=r.current_interpretation.quiet;}
+  const tex=String(r.texture_text||'').toLowerCase();
   const surface=!tex||/unknown|unconfirmed/.test(tex)&&!/appearance|visible|looking|like/.test(tex)?null:/pronounced.*sheen|lustrous|satin|high.sheen|shiny/.test(tex)?'lustrous':/nap|hairy|brushed|boucle|slub|dry woven|pronounced/.test(tex)?'pronounced':'restrained';
   const construction=String(r.construction_text||'').toLowerCase();
   const classicFoundation=['suit','blazer'].includes(r.category)?(!/safari|utility/.test(construction)&&!!construction):null;

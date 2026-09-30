@@ -1,0 +1,35 @@
+{
+  "schema": "hewrs.outfit-preferences.v1",
+  "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "revision": 1,
+  "enabled": true,
+  "comparisons": [
+    {
+      "id": "pref_1790725992453_ebnep6nhd",
+      "created_at": "2026-09-29T23:53:12.453Z",
+      "a": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T019",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "vote": "A",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S01_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    }
+  ]
+}

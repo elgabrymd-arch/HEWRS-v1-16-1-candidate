@@ -1,0 +1,218 @@
+{
+  "passed": 24,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Cold start has no fabricated ratings, no writes and zero adjustment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "24 actual pilot pairs validate exact owned IDs; 16 train and8 validation",
+      "passed": true,
+      "detail": {
+        "training_topwear": [
+          "S01",
+          "S03",
+          "S05",
+          "S10",
+          "B01",
+          "B03",
+          "B06",
+          "B08"
+        ],
+        "validation_topwear": [
+          "S12",
+          "S16",
+          "B09",
+          "B13"
+        ]
+      }
+    },
+    {
+      "name": "Both/neither saved without invented directional labels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Eight informative decisions across multiple tops activate a bounded experimental model",
+      "passed": true,
+      "detail": {
+        "revision": "hewrs.pairwise-outfit-model.v1_22_0",
+        "id": "7615b06b",
+        "active": true,
+        "enabled": true,
+        "counts": {
+          "directional": 8,
+          "informative": 8,
+          "topwear_groups": 4,
+          "neutral": 0,
+          "validation": 0,
+          "excluded": 0
+        },
+        "weights": [
+          0.24271516,
+          0.08154025,
+          0.06411785,
+          -0.19433295,
+          0.01374329,
+          0,
+          -0.00547216,
+          0,
+          0.22103165,
+          0.00467993,
+          -0.00312838,
+          0
+        ],
+        "feature_names": [
+          "tie_visual_prominence",
+          "competing_focal_elements",
+          "palette_saturation",
+          "layer_value_distance",
+          "light_tie_readability",
+          "open_collar",
+          "palette_coherence",
+          "shirt_depth",
+          "tie_pattern_contrast",
+          "shoe_formality",
+          "shoe_trouser_grounding",
+          "shoe_decoration"
+        ],
+        "bound": 0.35,
+        "reason": "Experimental local preference overlay; no independent taste validation claimed.",
+        "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+        "regularization": {
+          "method": "pairwise logistic difference; L2",
+          "lambda": 0.2,
+          "epochs": 240,
+          "max_adjustment": 0.35
+        },
+        "validation": {
+          "count": 0,
+          "correct": 0,
+          "ties": 0,
+          "scope": "Held-out topwear comparisons are never fitted. Small samples do not establish generalization."
+        }
+      }
+    },
+    {
+      "name": "Preferred feature direction is learned without any tie/garment ID bonuses",
+      "passed": true,
+      "detail": {
+        "weights": [
+          -0.1538087,
+          -0.17387319,
+          0.00076218,
+          0,
+          -0.27591056,
+          0.30487354,
+          -0.00152437,
+          0,
+          -0.16280247,
+          0.13154479,
+          0.12395499,
+          0
+        ],
+        "synthetic_intent": "Prefer higher footwear formality where alternatives differ; equal cues recorded both, not owner feedback"
+      }
+    },
+    {
+      "name": "Held-out votes are not fitted and cannot change the learned weights",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reserved validation topwear cannot be imported as training",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Same exact pair/reversed pair cannot inflate preference counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S02 source/render discrepancy is excluded from taste learning",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unknown IDs, arbitrary source versions and malformed fields rejected before writes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reopening preserves exact comparisons and fitted model; no wear/Favorites writes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Feedback export/import previews then merges; wrong backup/source rejected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Stale import/save tokens do not overwrite another tabs feedback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Corrupt feedback is retained and never interpreted as empty training history",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pausing learning zeroes its influence without deleting feedback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Undo last preference removes only that comparison; older exact IDs retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No default source holds or explicit hard rejects removed for preference fitting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Source-corrected S02 navy no-tie no longer vetoed by stale dark-value assumptions",
+      "passed": true,
+      "detail": {
+        "status": "new_ensemble_estimate",
+        "score": 8.915789
+      }
+    },
+    {
+      "name": "Every active S02 interpreter reads the same new brown depth and quiet pattern",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Old source/index mix fails rather than serving cached stale S02 calculations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Applied local model is explicit in complete score; baseline score remains separate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Learned complete-score pruning bound covers all candidate accessories",
+      "passed": true,
+      "detail": 1224
+    },
+    {
+      "name": "Failed preference persistence does not report success or change prior state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Opposite comparison votes reverse fitted direction; both and neither are non-directional",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

@@ -1,0 +1,1580 @@
+{
+  "schema": "hewrs.change-ledger.v1_21_1",
+  "baseline": "1.21.0",
+  "version": "1.21.1",
+  "deleted": [],
+  "self_hash_exclusions": [
+    "PACKAGE_SHA256.json",
+    "CHANGED_FILES.json"
+  ],
+  "changes": [
+    {
+      "path": "README.md",
+      "status": "modified",
+      "before_sha256": "ebc71f072a835f93a9607b4ef3b4ae8e916c45bdbdd87f711e1ed071f6ee7181",
+      "after_sha256": "f113b1ca0bd60fab5de11ed803bf4160a5481d1d9601f1c1b4a556d1a1a45acd",
+      "bytes": 2717
+    },
+    {
+      "path": "RELEASE_SCOPE.json",
+      "status": "modified",
+      "before_sha256": "fee3c825849314e6b5f450cd4a2abdc6b7e267cec45d1b4859da1a25dafd5862",
+      "after_sha256": "40fa21b132323612b5ff466e416b37f2fce2234c8316c0ca84c02cb4bdf9aa0b",
+      "bytes": 4570
+    },
+    {
+      "path": "RELEASE_STATUS.json",
+      "status": "modified",
+      "before_sha256": "835a4cc45b11b26ae9397730220b76ec19a87e6e1e7e23629192448b56487fa7",
+      "after_sha256": "faaf330171364954d0112a4a027c7314428cdfe5970885581e5654aa45ccd2b4",
+      "bytes": 5865
+    },
+    {
+      "path": "V1211_OPTION_CARDS_AUDIT.md",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "b2cd1067f482bb4b3a9bd36a769cca0c6811cc5ab8ca733a943fa25358075acb",
+      "bytes": 7553
+    },
+    {
+      "path": "app.html",
+      "status": "modified",
+      "before_sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df",
+      "after_sha256": "a945835cdd38dea9b493356721519342aa557c2e0ec2b47a0cdb1244ebc943f1",
+      "bytes": 17582
+    },
+    {
+      "path": "app.template.html",
+      "status": "modified",
+      "before_sha256": "f67a5735afc1282f2f5d55498a3f9f939b6dde7215b826f3be63b227f5bcfb4f",
+      "after_sha256": "02d3522d5b219a05d5aad419743d287d63a518a66aa3aea5c444d53b8953b8c4",
+      "bytes": 14001
+    },
+    {
+      "path": "data/option-card-thumbnails.js",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "17d5d4fbbb0b482ffb79cc1c3f7992d1bbf8ac36f024e67a126643e91d6ded8a",
+      "bytes": 46931
+    },
+    {
+      "path": "data/option-card-thumbnails.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f79e0c9a3dd1f2a3ef185d43dced9b2d9f0a5aa74f76068ba8b4bf5ea1fd9913",
+      "bytes": 59127
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/BASELINE_INPUT_VERIFICATION.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "13e638352f22a585290ee9422f0f80a9d06fdd63731617a6a0cf8154c837d907",
+      "bytes": 1452
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/EXPORT_ARTIFACTS.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "0b53d8ad75cb5a7a91e5dec67114e3f9e43b9886fcc2b65cafe212a653713300",
+      "bytes": 677
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/FUNCTIONAL.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4ac95009c539f3f7e08f855f1646436b96595292a71d1e70bf6d94970263eee3",
+      "bytes": 2201
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/HTTP_RESOURCE_CHECK.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "faa62c99834497470875a9fb29afe64c858fda571d26f214fcb0c4e348f6b2e6",
+      "bytes": 228753
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/PROTECTED_V1210.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7e65178d10f91bc5d0e43717cee5133f89e83f30040ca824ba3baa187cc1809d",
+      "bytes": 404116
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/TESTED_RUNTIME_SHA256.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d492cf32c9d5d43612d5cd88fb41779978b8844fb2d4ade3422f4a1fa2c00bb7",
+      "bytes": 6113
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/THUMBNAIL_SOURCE_MAP.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "45ef44e398361761aa58eda8146390a6b018e776af4d9785298e129cf7cede58",
+      "bytes": 113992
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/ACTUAL_OPTION_CARD.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "88a0e51369036ec3dee5946fb26da5e6f4b4d43e6b8bdb42c091aaee4661410d",
+      "bytes": 1006171
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/DESKTOP_ACTUAL.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "8972e2d3ff4636c8f6b4719f4d46805a4e2d5eecbdbc696d6d7eb31f29048246",
+      "bytes": 241177
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/EXPORTED_HTML_DESKTOP.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "2f626d9f22ddc790aed616059d683293ebb4183773cf81ed82f362501787ce77",
+      "bytes": 247609
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHONE_EXPORT.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "420f6480eaea38f2381d27a1cd22605d75d4f80e2dd5fd2215272cccc4c81bc9",
+      "bytes": 25645
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHONE_ITEMS.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "dd0e6e8ba245d8eace9924f557e7efd31e39890ba539e7e97841e4752c57f72e",
+      "bytes": 69858
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PHONE_OUTFIT.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "07f970000f6bbf065c5f171a268ec841873b5fb056455f98c4e59d535d7c6c90",
+      "bytes": 109015
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PRINT_CHECK.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "e25eb805b2cd8756dd330d541d08068b06de7f67fd012670030140ac63492848",
+      "bytes": 2164
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PRINT_PAGE_01.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "8d200304ef7273997a8c6f6f710143dc10e189ffee33d710dde24e0448f18dfb",
+      "bytes": 164931
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PRINT_PAGE_10.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "906e08ca7484f8a582ff7a74e9f79567fe597be0eb72598bab3fc1296cdf70ff",
+      "bytes": 168533
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/PRINT_PAGE_20.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "86fedce7a616fe3cbd0bcfe9e9e1874bd1b2d56fe28b0e8c213a3c8c21e56dd3",
+      "bytes": 199570
+    },
+    {
+      "path": "evidence/option_cards_v1_21_1/browser/RESULT.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "bb59fde912669e02ece9e07a586aeea6c6f22a0567124806c2f4e8f97d2fa949",
+      "bytes": 55033
+    },
+    {
+      "path": "index.html",
+      "status": "modified",
+      "before_sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df",
+      "after_sha256": "a945835cdd38dea9b493356721519342aa557c2e0ec2b47a0cdb1244ebc943f1",
+      "bytes": 17582
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/BASELINE_MANIFEST.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "68bd81d519aa8be577b6ab707cf90211dca5c450e5eba3f7b6936b77687c74c2",
+      "bytes": 427728
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/CHANGED_FILES.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "451357183e050eee5bf180410198d43637fd0c68e338cb062d5aaa2063851792",
+      "bytes": 25251
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/README.md",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "ebc71f072a835f93a9607b4ef3b4ae8e916c45bdbdd87f711e1ed071f6ee7181",
+      "bytes": 2671
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/RELEASE_SCOPE.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "fee3c825849314e6b5f450cd4a2abdc6b7e267cec45d1b4859da1a25dafd5862",
+      "bytes": 4315
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/RELEASE_STATUS.json",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "835a4cc45b11b26ae9397730220b76ec19a87e6e1e7e23629192448b56487fa7",
+      "bytes": 5262
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/app.html",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df",
+      "bytes": 16690
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/app.template.html",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f67a5735afc1282f2f5d55498a3f9f939b6dde7215b826f3be63b227f5bcfb4f",
+      "bytes": 13222
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/index.html",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d71fd3a2ff25acdacb0b3f4ffcac79ea607bb00affb7d76fe1b2c1443f7f65df",
+      "bytes": 16690
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/src/application.css",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "bf33a1f259a1344ba3e4df53ae433435a63fab1978c1c1e06933a21efc6f9902",
+      "bytes": 18626
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/src/application.js",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "ec33116906dd3108e00f1b79f372aa0dbe0fef327eb5454d8198f22a4574a082",
+      "bytes": 77868
+    },
+    {
+      "path": "rollback/option_cards_v1_21_1/originals/tools/build.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "35580a39c58cf75673c673735af3ae269d7854fe2c21a134bf6a126c5182aeb1",
+      "bytes": 3150
+    },
+    {
+      "path": "src/application.css",
+      "status": "modified",
+      "before_sha256": "bf33a1f259a1344ba3e4df53ae433435a63fab1978c1c1e06933a21efc6f9902",
+      "after_sha256": "633ba29cb7e13a5abac13a3869fa58a0cb6a37bb06fff53ca7393e2a4336550a",
+      "bytes": 22321
+    },
+    {
+      "path": "src/application.js",
+      "status": "modified",
+      "before_sha256": "ec33116906dd3108e00f1b79f372aa0dbe0fef327eb5454d8198f22a4574a082",
+      "after_sha256": "d63ad9be54032c1e000e49c24efbeccf13113969ef2f1e120591924467a35cd4",
+      "bytes": 82971
+    },
+    {
+      "path": "src/option-cards.js",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "47f0d4c50a43ff9e8f5e74b9d8aea945d7d778c65ab78066a0f924d52cafeb39",
+      "bytes": 13725
+    },
+    {
+      "path": "tests/option-cards-browser.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9f5c5ae85543b90a984d1d820186a7398b03023c6b56a6ca4b1eb1dacb83d3ab",
+      "bytes": 12423
+    },
+    {
+      "path": "tests/option-cards-http-check.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "deef03c306cc1a32bbbc9688a9d0fc89d7ab960f1b3405559d7c40a43dc05eed",
+      "bytes": 2222
+    },
+    {
+      "path": "tests/option-cards.cjs",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "e5f24ec467787334ad97278c7acf7807ec697e59482d3ba6744bf2815e6d5a0b",
+      "bytes": 6113
+    },
+    {
+      "path": "tests/option_card_harness.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "b4368c7ba980f1394be222c4897000be187eed03e163f2a1e5a9bd06c75e864b",
+      "bytes": 2133
+    },
+    {
+      "path": "tools/build.py",
+      "status": "modified",
+      "before_sha256": "35580a39c58cf75673c673735af3ae269d7854fe2c21a134bf6a126c5182aeb1",
+      "after_sha256": "1f6f0fb80947eb20e24473357a5d541bfdf23d64b6656e5574b262a98c7a9c26",
+      "bytes": 3468
+    },
+    {
+      "path": "tools/build_card_thumbnails.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "c9208090ecda88315a563ef7a24ecd94e90c051f33a1b3671b37eb46d9eb446c",
+      "bytes": 3117
+    },
+    {
+      "path": "tools/card_thumbnail_sources.cjs",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "58e0866cb37f41a804f541055c0f93fd7895f682b76526ce864fd4761db70f47",
+      "bytes": 1090
+    },
+    {
+      "path": "tools/rollback_v1211.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "05cc0c2291613033fc3f36c73ce140928c28b240caa581a3b8aec88bfad840ed",
+      "bytes": 1207
+    },
+    {
+      "path": "tools/verify_v1211.py",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d4b2027899871587e0f18fc4654332673a1d3f00963fcb7e10ed1dfd370baa44",
+      "bytes": 1212
+    },
+    {
+      "path": "ui/option-cards/008b1ea27f41cb4572b309e8e241bf20728f18c8231afba066a089313ff61b20.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "008b1ea27f41cb4572b309e8e241bf20728f18c8231afba066a089313ff61b20",
+      "bytes": 35068
+    },
+    {
+      "path": "ui/option-cards/028ae39cdadd33858009ad79cbee16100595e46b8670dc98da9ecb973c740baf.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "028ae39cdadd33858009ad79cbee16100595e46b8670dc98da9ecb973c740baf",
+      "bytes": 90039
+    },
+    {
+      "path": "ui/option-cards/031bbaa50c75d539c0488f686bf2909a2cee94722e93746859cb4ab556e3503d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "031bbaa50c75d539c0488f686bf2909a2cee94722e93746859cb4ab556e3503d",
+      "bytes": 36193
+    },
+    {
+      "path": "ui/option-cards/081bc07f8681cb95bcb30a3b6c63afb934815862eed58beed6c62b9e50b068ef.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "081bc07f8681cb95bcb30a3b6c63afb934815862eed58beed6c62b9e50b068ef",
+      "bytes": 29932
+    },
+    {
+      "path": "ui/option-cards/0993e56637cfcc4f20ba9daa29b3494f311e526ffdbd67d838f1132f989a7885.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "0993e56637cfcc4f20ba9daa29b3494f311e526ffdbd67d838f1132f989a7885",
+      "bytes": 37930
+    },
+    {
+      "path": "ui/option-cards/0a2abff6b5cb48a67febdcb909454f4af47198c455bb0092de6eaed8baa46b8f.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "0a2abff6b5cb48a67febdcb909454f4af47198c455bb0092de6eaed8baa46b8f",
+      "bytes": 84170
+    },
+    {
+      "path": "ui/option-cards/0ed7163dfa39662d256c93fc913ad3daf054ff3003d2c283a92e3fbfa92e810d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "0ed7163dfa39662d256c93fc913ad3daf054ff3003d2c283a92e3fbfa92e810d",
+      "bytes": 37829
+    },
+    {
+      "path": "ui/option-cards/105c56f8e1ef793b1c50f0eac94e710fce6d88232d247a19c76f4a967e63057b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "105c56f8e1ef793b1c50f0eac94e710fce6d88232d247a19c76f4a967e63057b",
+      "bytes": 27579
+    },
+    {
+      "path": "ui/option-cards/17efd804c6a2cfa16e97817b93c79b7b3533809ef9fa7102a11a046244b72563.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "17efd804c6a2cfa16e97817b93c79b7b3533809ef9fa7102a11a046244b72563",
+      "bytes": 38301
+    },
+    {
+      "path": "ui/option-cards/18326b08f5469c82653ebb91671ad3362893e0862cbb8620956d93691bfb3b36.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "18326b08f5469c82653ebb91671ad3362893e0862cbb8620956d93691bfb3b36",
+      "bytes": 54999
+    },
+    {
+      "path": "ui/option-cards/1991b03e6366dcc8909ac310eb538dda0bb34522100012fe1b2d84333c3a5c1a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "1991b03e6366dcc8909ac310eb538dda0bb34522100012fe1b2d84333c3a5c1a",
+      "bytes": 18968
+    },
+    {
+      "path": "ui/option-cards/199550675a2dea96d6409662389d332f973e93a730aa28022e740fc04f7a6bba.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "199550675a2dea96d6409662389d332f973e93a730aa28022e740fc04f7a6bba",
+      "bytes": 34966
+    },
+    {
+      "path": "ui/option-cards/19963b71e354ff27bad31d2efb6d5fcf1dc4d68f1ea5a780bf95650d55b1640c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "19963b71e354ff27bad31d2efb6d5fcf1dc4d68f1ea5a780bf95650d55b1640c",
+      "bytes": 49413
+    },
+    {
+      "path": "ui/option-cards/1caa580873a823ccd8cf652a3a8f632cbfccb9840e77ce6f64a19d467dea1791.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "1caa580873a823ccd8cf652a3a8f632cbfccb9840e77ce6f64a19d467dea1791",
+      "bytes": 38002
+    },
+    {
+      "path": "ui/option-cards/1d925bd112c0047f227246ecfb1b6495e49b0de63b505f660a8f58a78c0aa491.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "1d925bd112c0047f227246ecfb1b6495e49b0de63b505f660a8f58a78c0aa491",
+      "bytes": 79444
+    },
+    {
+      "path": "ui/option-cards/1e8ca66ec383e4e78a1bae754b0cb18e3700c20fcdb1b638871131e9cc718bd2.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "1e8ca66ec383e4e78a1bae754b0cb18e3700c20fcdb1b638871131e9cc718bd2",
+      "bytes": 27862
+    },
+    {
+      "path": "ui/option-cards/1fd4168a3a9685e04f1eb1afe932463ed309cee3fec9ba3a5ce1f8b9ff79fa6c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "1fd4168a3a9685e04f1eb1afe932463ed309cee3fec9ba3a5ce1f8b9ff79fa6c",
+      "bytes": 80696
+    },
+    {
+      "path": "ui/option-cards/21556c7c4d88035a5616f7023635cc730ffd88cbfa7cd7c987363ad3ede445d4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "21556c7c4d88035a5616f7023635cc730ffd88cbfa7cd7c987363ad3ede445d4",
+      "bytes": 70908
+    },
+    {
+      "path": "ui/option-cards/22cfb25409041b467348aa70fd227768ae2f9abf6761849587b53720a7ba3b3c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "22cfb25409041b467348aa70fd227768ae2f9abf6761849587b53720a7ba3b3c",
+      "bytes": 33602
+    },
+    {
+      "path": "ui/option-cards/22f6bbcf7cf26bbc945477af080261c86ec9eec435c6a6e8d77f9893c2f97149.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "22f6bbcf7cf26bbc945477af080261c86ec9eec435c6a6e8d77f9893c2f97149",
+      "bytes": 19608
+    },
+    {
+      "path": "ui/option-cards/23ec52ac1fe06f4f9cc74e9a8c8e22dcb7c73989b5e45a8ee5a65878ced15ef3.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "23ec52ac1fe06f4f9cc74e9a8c8e22dcb7c73989b5e45a8ee5a65878ced15ef3",
+      "bytes": 51849
+    },
+    {
+      "path": "ui/option-cards/248e1a96ab15a885cfae5c1450e67aab1469b7c5921a464a4adbaeef2ddd9ba8.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "248e1a96ab15a885cfae5c1450e67aab1469b7c5921a464a4adbaeef2ddd9ba8",
+      "bytes": 28609
+    },
+    {
+      "path": "ui/option-cards/276555bddd8a2ddbf9f9e0fa285360349befbeffcdd820177b333061efb917c0.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "276555bddd8a2ddbf9f9e0fa285360349befbeffcdd820177b333061efb917c0",
+      "bytes": 51639
+    },
+    {
+      "path": "ui/option-cards/29751973c10b2255b228ab7b9a6f596685bb701b2cee14b89b9ac8b71f950b0d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "29751973c10b2255b228ab7b9a6f596685bb701b2cee14b89b9ac8b71f950b0d",
+      "bytes": 37038
+    },
+    {
+      "path": "ui/option-cards/2a8560f996053e0f67571922edb8b916b93a08307dea9a6e63d63d56772f8d2b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "2a8560f996053e0f67571922edb8b916b93a08307dea9a6e63d63d56772f8d2b",
+      "bytes": 34971
+    },
+    {
+      "path": "ui/option-cards/2c1318e7e3160701b1e1f54697c29f298e0af3b4b1597462231b0dfbf040cc7f.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "2c1318e7e3160701b1e1f54697c29f298e0af3b4b1597462231b0dfbf040cc7f",
+      "bytes": 40200
+    },
+    {
+      "path": "ui/option-cards/2e4089ebb63083918d6d239216205c531dcc0ec5274a0eabc92ad9c315b6945a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "2e4089ebb63083918d6d239216205c531dcc0ec5274a0eabc92ad9c315b6945a",
+      "bytes": 38758
+    },
+    {
+      "path": "ui/option-cards/2e5f5d4798d90b7321a2071d042fae31d4fdae8248014085590f9b033ebebf5a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "2e5f5d4798d90b7321a2071d042fae31d4fdae8248014085590f9b033ebebf5a",
+      "bytes": 38626
+    },
+    {
+      "path": "ui/option-cards/2f0308191e2dccce09312cdfcaf902c1fce93ce1b4e8c0cfff23523e444f44bc.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "2f0308191e2dccce09312cdfcaf902c1fce93ce1b4e8c0cfff23523e444f44bc",
+      "bytes": 57308
+    },
+    {
+      "path": "ui/option-cards/3069ffde3a27f9f6e01563dc5f6eaac3735b6fb111d612264c410dd7eb6bec65.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "3069ffde3a27f9f6e01563dc5f6eaac3735b6fb111d612264c410dd7eb6bec65",
+      "bytes": 31012
+    },
+    {
+      "path": "ui/option-cards/30d8e3736d3f5fdb2bf298d3060861869285177b3f5f4cef33650cfac98c5f0a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "30d8e3736d3f5fdb2bf298d3060861869285177b3f5f4cef33650cfac98c5f0a",
+      "bytes": 20688
+    },
+    {
+      "path": "ui/option-cards/313bfd52854783584d0b6d27284b8ff8c426ae956e03c970b2b11f34906ff7fd.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "313bfd52854783584d0b6d27284b8ff8c426ae956e03c970b2b11f34906ff7fd",
+      "bytes": 30524
+    },
+    {
+      "path": "ui/option-cards/32e77e96f2078e7a89306fada65301e2614fd1dc9706894a8b886e89d000b718.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "32e77e96f2078e7a89306fada65301e2614fd1dc9706894a8b886e89d000b718",
+      "bytes": 40222
+    },
+    {
+      "path": "ui/option-cards/345f7fa49d6ba1573f88d4a0a445b032a1f7b40d75a3a30c086952fb1e30666e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "345f7fa49d6ba1573f88d4a0a445b032a1f7b40d75a3a30c086952fb1e30666e",
+      "bytes": 28661
+    },
+    {
+      "path": "ui/option-cards/3743523fef41265546eeca3df1559ab0f0658dbe8c7f9ff088b60bd0a59ac425.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "3743523fef41265546eeca3df1559ab0f0658dbe8c7f9ff088b60bd0a59ac425",
+      "bytes": 44154
+    },
+    {
+      "path": "ui/option-cards/398c54e8ffc99a595d137874a9983892b01d4194a5e3921a30c6ff278de7022c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "398c54e8ffc99a595d137874a9983892b01d4194a5e3921a30c6ff278de7022c",
+      "bytes": 22001
+    },
+    {
+      "path": "ui/option-cards/3d8971a2312b56d023ca18cdaf65af8e3b95e63f6df022a469dd02806d38ef69.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "3d8971a2312b56d023ca18cdaf65af8e3b95e63f6df022a469dd02806d38ef69",
+      "bytes": 32057
+    },
+    {
+      "path": "ui/option-cards/3dcf14c3f4761706391e4bf3760e38b0b0e03d77bf81e2a2442efe1e615de7f1.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "3dcf14c3f4761706391e4bf3760e38b0b0e03d77bf81e2a2442efe1e615de7f1",
+      "bytes": 44642
+    },
+    {
+      "path": "ui/option-cards/3df3bbdd51fcc3ee0238859212cfe5298e02575215906badbffec7f37463bb7a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "3df3bbdd51fcc3ee0238859212cfe5298e02575215906badbffec7f37463bb7a",
+      "bytes": 43573
+    },
+    {
+      "path": "ui/option-cards/3e3c35d54e378d8377b0752ea37b5f37906b7cdc1c4b5e8ddb76159cb2b55697.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "3e3c35d54e378d8377b0752ea37b5f37906b7cdc1c4b5e8ddb76159cb2b55697",
+      "bytes": 32579
+    },
+    {
+      "path": "ui/option-cards/410082af30498352a9daf3138691d1a284dc9e8d800bb07b9187ba333c3eccd0.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "410082af30498352a9daf3138691d1a284dc9e8d800bb07b9187ba333c3eccd0",
+      "bytes": 40785
+    },
+    {
+      "path": "ui/option-cards/41e7dff71c6caf81b51649e60f3e9760294091cdbcc9d3d423f168e61ce099fe.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "41e7dff71c6caf81b51649e60f3e9760294091cdbcc9d3d423f168e61ce099fe",
+      "bytes": 49808
+    },
+    {
+      "path": "ui/option-cards/44614270620d370330041fb0146fb9c34b428926e6307d573a3ddd14d8c472bf.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "44614270620d370330041fb0146fb9c34b428926e6307d573a3ddd14d8c472bf",
+      "bytes": 29124
+    },
+    {
+      "path": "ui/option-cards/44ffed875668d423a118cf13015c9c3ca22b1fa9a773c3a19bfcd443c07023d0.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "44ffed875668d423a118cf13015c9c3ca22b1fa9a773c3a19bfcd443c07023d0",
+      "bytes": 42860
+    },
+    {
+      "path": "ui/option-cards/45db4ad9dc7a9e173ba563e5d58e559773e61ff7e0c58ef695861c147ca7d381.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "45db4ad9dc7a9e173ba563e5d58e559773e61ff7e0c58ef695861c147ca7d381",
+      "bytes": 42710
+    },
+    {
+      "path": "ui/option-cards/45fbe5a6195c3f28c52f133ea7e60c1e40d78b6fa2d4fccb86f63347ad6aee60.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "45fbe5a6195c3f28c52f133ea7e60c1e40d78b6fa2d4fccb86f63347ad6aee60",
+      "bytes": 38675
+    },
+    {
+      "path": "ui/option-cards/4623627dee4164f5df5d05c84bcba537132b5912e87557d2f5af003f0b86d1f4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4623627dee4164f5df5d05c84bcba537132b5912e87557d2f5af003f0b86d1f4",
+      "bytes": 54453
+    },
+    {
+      "path": "ui/option-cards/4723ad9f08e1d5484ffbe47049c1870820334b064e757118716750f97e72358e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4723ad9f08e1d5484ffbe47049c1870820334b064e757118716750f97e72358e",
+      "bytes": 72091
+    },
+    {
+      "path": "ui/option-cards/48b2536325409562d6ba5b102a5b7dc7afc727e5d709db8b1ace005e9c7bd29d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "48b2536325409562d6ba5b102a5b7dc7afc727e5d709db8b1ace005e9c7bd29d",
+      "bytes": 24077
+    },
+    {
+      "path": "ui/option-cards/49e33ff6ba4f552dc171c71e742ebeb71d4492b3be23e64526c8f1f2d58b8314.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "49e33ff6ba4f552dc171c71e742ebeb71d4492b3be23e64526c8f1f2d58b8314",
+      "bytes": 44851
+    },
+    {
+      "path": "ui/option-cards/4b5f1f9e03605c3eb91aa25d0eb02a5a7367130f73d41ef5a0d9175f330e3300.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4b5f1f9e03605c3eb91aa25d0eb02a5a7367130f73d41ef5a0d9175f330e3300",
+      "bytes": 23355
+    },
+    {
+      "path": "ui/option-cards/4bae5269190cf652b768a791ebe05fbdd251cb6a10880666cc85390f936f3eac.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4bae5269190cf652b768a791ebe05fbdd251cb6a10880666cc85390f936f3eac",
+      "bytes": 86734
+    },
+    {
+      "path": "ui/option-cards/4ee27868e86856ab05d011c2ae0cb929a400f957ea501bebb2ab98c154692f87.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4ee27868e86856ab05d011c2ae0cb929a400f957ea501bebb2ab98c154692f87",
+      "bytes": 63632
+    },
+    {
+      "path": "ui/option-cards/4f1e66cf1aefa3a85003a156b9327f4a7113b76ccf0dafd171e0b8c1df0cc5e7.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4f1e66cf1aefa3a85003a156b9327f4a7113b76ccf0dafd171e0b8c1df0cc5e7",
+      "bytes": 34313
+    },
+    {
+      "path": "ui/option-cards/4f7e5c2a2e348402fa6e65fb992486d0cd49176cd567f118abb3c42e5c0634b3.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "4f7e5c2a2e348402fa6e65fb992486d0cd49176cd567f118abb3c42e5c0634b3",
+      "bytes": 42493
+    },
+    {
+      "path": "ui/option-cards/503c4ab9f5d3e9b13fe81797d7f75b3d2b652cedb15db8a89a7017763b622645.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "503c4ab9f5d3e9b13fe81797d7f75b3d2b652cedb15db8a89a7017763b622645",
+      "bytes": 68847
+    },
+    {
+      "path": "ui/option-cards/5190e2059719ce52d39568725c0fadb2674d2ccce94cdd079be2a979f915c0d2.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "5190e2059719ce52d39568725c0fadb2674d2ccce94cdd079be2a979f915c0d2",
+      "bytes": 36918
+    },
+    {
+      "path": "ui/option-cards/51b6b034bba0f88a9ce227e4ea3b2e0911d3098f6803e552f830daf7e8577155.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "51b6b034bba0f88a9ce227e4ea3b2e0911d3098f6803e552f830daf7e8577155",
+      "bytes": 35001
+    },
+    {
+      "path": "ui/option-cards/5225a912170b036f07a2c31a98668ac1b50243cb4116e62a86fdca2e54044051.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "5225a912170b036f07a2c31a98668ac1b50243cb4116e62a86fdca2e54044051",
+      "bytes": 40372
+    },
+    {
+      "path": "ui/option-cards/52e3883917af915f3081412a1c02e5fc62be97daa944c3d0b18150084d7e933b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "52e3883917af915f3081412a1c02e5fc62be97daa944c3d0b18150084d7e933b",
+      "bytes": 36784
+    },
+    {
+      "path": "ui/option-cards/5894f72125a3b31cc6fd5c4ccfb5b05737ebb2ca68b27037b226d15d610dc731.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "5894f72125a3b31cc6fd5c4ccfb5b05737ebb2ca68b27037b226d15d610dc731",
+      "bytes": 46222
+    },
+    {
+      "path": "ui/option-cards/58b580f0278316864fc99c371b31f18ceaa803d2de155b561148cfee7c62415a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "58b580f0278316864fc99c371b31f18ceaa803d2de155b561148cfee7c62415a",
+      "bytes": 36647
+    },
+    {
+      "path": "ui/option-cards/59fba521ec9825d19f83acb7e557749442400d3484f1fbe87f501fc479234daf.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "59fba521ec9825d19f83acb7e557749442400d3484f1fbe87f501fc479234daf",
+      "bytes": 32448
+    },
+    {
+      "path": "ui/option-cards/5a71abc2962230100f34a179e8a70e5f8c8dabffe43838ab9331aa165df64c6d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "5a71abc2962230100f34a179e8a70e5f8c8dabffe43838ab9331aa165df64c6d",
+      "bytes": 31632
+    },
+    {
+      "path": "ui/option-cards/5d100f34dae0f98f489f2efd93a36ac67c3b85308c692290d8b192515b3390d0.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "5d100f34dae0f98f489f2efd93a36ac67c3b85308c692290d8b192515b3390d0",
+      "bytes": 27708
+    },
+    {
+      "path": "ui/option-cards/5e7b8412b4d22ea259bcbd9224d7e4d2716a6c198a999c20079500a2d85d2df4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "5e7b8412b4d22ea259bcbd9224d7e4d2716a6c198a999c20079500a2d85d2df4",
+      "bytes": 33169
+    },
+    {
+      "path": "ui/option-cards/60a6e5136404c6cc34aadd9767458ea0a8956c1c84b340f66e32877c2ede33ef.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "60a6e5136404c6cc34aadd9767458ea0a8956c1c84b340f66e32877c2ede33ef",
+      "bytes": 27984
+    },
+    {
+      "path": "ui/option-cards/63b33a9e9e49d563eb323f98848d0f2c6dd609cf80ce58b7776caf19b786287c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "63b33a9e9e49d563eb323f98848d0f2c6dd609cf80ce58b7776caf19b786287c",
+      "bytes": 30768
+    },
+    {
+      "path": "ui/option-cards/64303b0bb88b52f50ea0504f6ecdd139acde6cb0afd9779256e731e9beba1110.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "64303b0bb88b52f50ea0504f6ecdd139acde6cb0afd9779256e731e9beba1110",
+      "bytes": 36993
+    },
+    {
+      "path": "ui/option-cards/6560203f6cd559c22c1e7f4f5db4b1cdc7dcf2d9934f9bf4197f09f78afe8639.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "6560203f6cd559c22c1e7f4f5db4b1cdc7dcf2d9934f9bf4197f09f78afe8639",
+      "bytes": 31980
+    },
+    {
+      "path": "ui/option-cards/66286d16bf5b1f8f47518c823c7a6df780e43e2edd9e3330f0680766e6e790f3.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "66286d16bf5b1f8f47518c823c7a6df780e43e2edd9e3330f0680766e6e790f3",
+      "bytes": 24980
+    },
+    {
+      "path": "ui/option-cards/67f57c37c90632893419e546d300bdfb8b110525a0deb92d4b27d445835c6337.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "67f57c37c90632893419e546d300bdfb8b110525a0deb92d4b27d445835c6337",
+      "bytes": 27806
+    },
+    {
+      "path": "ui/option-cards/680cab9233fafe226c1ecdc9f24a490ec34ae58edec9c096c1364963cfb8412d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "680cab9233fafe226c1ecdc9f24a490ec34ae58edec9c096c1364963cfb8412d",
+      "bytes": 62946
+    },
+    {
+      "path": "ui/option-cards/6a1a8dd8feb02ce67f83cbb38a84a1b6ae8f2591613eded90dfe95c7793c3344.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "6a1a8dd8feb02ce67f83cbb38a84a1b6ae8f2591613eded90dfe95c7793c3344",
+      "bytes": 30591
+    },
+    {
+      "path": "ui/option-cards/6c416951b2be5e86868e285790bd61f396579465f96087594023f550cde2b9d5.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "6c416951b2be5e86868e285790bd61f396579465f96087594023f550cde2b9d5",
+      "bytes": 31441
+    },
+    {
+      "path": "ui/option-cards/6ed30635a2cbd87d09b4f1e4f1b064020c23a3b83e19a75131fc5ac5b5ff373c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "6ed30635a2cbd87d09b4f1e4f1b064020c23a3b83e19a75131fc5ac5b5ff373c",
+      "bytes": 65882
+    },
+    {
+      "path": "ui/option-cards/705a9dd4a3a210851cdfbee00236a7a5a7616154ee2c34e7c9956222d9bfb25c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "705a9dd4a3a210851cdfbee00236a7a5a7616154ee2c34e7c9956222d9bfb25c",
+      "bytes": 26284
+    },
+    {
+      "path": "ui/option-cards/708303ccd995c6710eac7b2ac97d7d6ac158146412dfefb7d76d86ae0dec97db.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "708303ccd995c6710eac7b2ac97d7d6ac158146412dfefb7d76d86ae0dec97db",
+      "bytes": 23335
+    },
+    {
+      "path": "ui/option-cards/7137f7fa87280e5e5d788131eaa280c99961acdceb76000026fd1714f4b163d9.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7137f7fa87280e5e5d788131eaa280c99961acdceb76000026fd1714f4b163d9",
+      "bytes": 45538
+    },
+    {
+      "path": "ui/option-cards/72f91e10bc7c7485c4f4c9a42d763b680df7cb9c781cd44b5fee76ecf4e1b60a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "72f91e10bc7c7485c4f4c9a42d763b680df7cb9c781cd44b5fee76ecf4e1b60a",
+      "bytes": 33739
+    },
+    {
+      "path": "ui/option-cards/73025599650224f52ff38aa178a9614d17ed749e523f4aaa8fe57f747eaa5582.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "73025599650224f52ff38aa178a9614d17ed749e523f4aaa8fe57f747eaa5582",
+      "bytes": 50374
+    },
+    {
+      "path": "ui/option-cards/730b029a6fe4e37d3eb88da2fe41ec7ce56560dd3506071d4fbb1341faec6d04.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "730b029a6fe4e37d3eb88da2fe41ec7ce56560dd3506071d4fbb1341faec6d04",
+      "bytes": 25366
+    },
+    {
+      "path": "ui/option-cards/743dbfdf1d0beb1309c95feb8d475e288027b35b9564572b9cf417ab25c4ba15.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "743dbfdf1d0beb1309c95feb8d475e288027b35b9564572b9cf417ab25c4ba15",
+      "bytes": 30260
+    },
+    {
+      "path": "ui/option-cards/74b30846123a4ed5176b9dfc22e3c9c7afd39e4fb73586b5e643ea0d89baa66b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "74b30846123a4ed5176b9dfc22e3c9c7afd39e4fb73586b5e643ea0d89baa66b",
+      "bytes": 71796
+    },
+    {
+      "path": "ui/option-cards/7561303286be2265700e09128f6388400afee12bdbe9ed656722da86f35471b7.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7561303286be2265700e09128f6388400afee12bdbe9ed656722da86f35471b7",
+      "bytes": 42800
+    },
+    {
+      "path": "ui/option-cards/75916ab3d02445cd60260e4b0ebab611ef301319718436f3e0ce78a08a0b94cc.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "75916ab3d02445cd60260e4b0ebab611ef301319718436f3e0ce78a08a0b94cc",
+      "bytes": 45514
+    },
+    {
+      "path": "ui/option-cards/79302d86773f59b95c5522e51b5264d14149c9e1666cd30540bd74121cc24ecc.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "79302d86773f59b95c5522e51b5264d14149c9e1666cd30540bd74121cc24ecc",
+      "bytes": 54645
+    },
+    {
+      "path": "ui/option-cards/796e7aa3d9a362560ffd374073a2a1b555e8f57b76e4782813436314a1afda9e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "796e7aa3d9a362560ffd374073a2a1b555e8f57b76e4782813436314a1afda9e",
+      "bytes": 32216
+    },
+    {
+      "path": "ui/option-cards/7aa6ce98ce5cd55605a5c1d73fff1395074544db43cf246efc583938c050f544.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7aa6ce98ce5cd55605a5c1d73fff1395074544db43cf246efc583938c050f544",
+      "bytes": 23380
+    },
+    {
+      "path": "ui/option-cards/7b7f1b463e346c65e454ff9daa608391f1b5679ecf7de01c37bfdbe79ac53a48.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7b7f1b463e346c65e454ff9daa608391f1b5679ecf7de01c37bfdbe79ac53a48",
+      "bytes": 73693
+    },
+    {
+      "path": "ui/option-cards/7c33c15951bc872cc2badb40fbbf61f4499026ede8610a87b530dcddf587820c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7c33c15951bc872cc2badb40fbbf61f4499026ede8610a87b530dcddf587820c",
+      "bytes": 32241
+    },
+    {
+      "path": "ui/option-cards/7c7e1de3d98f75250554766d13925b79d5053198a712ebc0b1088cf3adb30279.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "7c7e1de3d98f75250554766d13925b79d5053198a712ebc0b1088cf3adb30279",
+      "bytes": 42858
+    },
+    {
+      "path": "ui/option-cards/83d35ad157f62503b7aa8367c75e5c661b89ae77aa34ea6068c7382532b20db8.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "83d35ad157f62503b7aa8367c75e5c661b89ae77aa34ea6068c7382532b20db8",
+      "bytes": 51248
+    },
+    {
+      "path": "ui/option-cards/83eb284aba5bf24760c6925e52eedc15a0f91b56d827a4e7d4b5fe8f805f872b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "83eb284aba5bf24760c6925e52eedc15a0f91b56d827a4e7d4b5fe8f805f872b",
+      "bytes": 29378
+    },
+    {
+      "path": "ui/option-cards/8492c1a984fb145f83b38d2c86dc0584a3a7f36a2ee55f0ff379d1f4cb15e8bd.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "8492c1a984fb145f83b38d2c86dc0584a3a7f36a2ee55f0ff379d1f4cb15e8bd",
+      "bytes": 34455
+    },
+    {
+      "path": "ui/option-cards/84d58a084fb1e600d7f8a96df8d4ad36907cb72ae15e51852a251366bd3453b4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "84d58a084fb1e600d7f8a96df8d4ad36907cb72ae15e51852a251366bd3453b4",
+      "bytes": 50395
+    },
+    {
+      "path": "ui/option-cards/8583e3b7655ac8ecf26cfb1ad0812c88c1fdb9767d5738cda1da000795dfa58c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "8583e3b7655ac8ecf26cfb1ad0812c88c1fdb9767d5738cda1da000795dfa58c",
+      "bytes": 46303
+    },
+    {
+      "path": "ui/option-cards/86552f6d61ca026449fa4e6e26785194c9196870d30d2ba72d9b0f7f2932aab0.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "86552f6d61ca026449fa4e6e26785194c9196870d30d2ba72d9b0f7f2932aab0",
+      "bytes": 31492
+    },
+    {
+      "path": "ui/option-cards/88cecca5abfcdac5059ed6f7c18f35c2ea4b0453658c00808f1e3f947a3ec685.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "88cecca5abfcdac5059ed6f7c18f35c2ea4b0453658c00808f1e3f947a3ec685",
+      "bytes": 29913
+    },
+    {
+      "path": "ui/option-cards/8a126129f6154127d6a1221ea5dc52c66b9c9aae68fefe9a753eb06e0437c6ed.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "8a126129f6154127d6a1221ea5dc52c66b9c9aae68fefe9a753eb06e0437c6ed",
+      "bytes": 57008
+    },
+    {
+      "path": "ui/option-cards/90aa9c9594d22c37cbf4d06c517d568e72cb5e2c8871e89709deb2e58639b82c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "90aa9c9594d22c37cbf4d06c517d568e72cb5e2c8871e89709deb2e58639b82c",
+      "bytes": 33441
+    },
+    {
+      "path": "ui/option-cards/917aa436da19fb8a987c763820e3c91bf7dbc1a89651bb7f749ed3e9b23bacd4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "917aa436da19fb8a987c763820e3c91bf7dbc1a89651bb7f749ed3e9b23bacd4",
+      "bytes": 39535
+    },
+    {
+      "path": "ui/option-cards/9181a6ce386f25db456224b63292fa6b11a3cc6b1054d3c12def77da56cd194b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9181a6ce386f25db456224b63292fa6b11a3cc6b1054d3c12def77da56cd194b",
+      "bytes": 61874
+    },
+    {
+      "path": "ui/option-cards/91ec07ecf330f311ad18b4bd3aed3ee3162e1d56e6fbd4302c7ddbc867f7d58e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "91ec07ecf330f311ad18b4bd3aed3ee3162e1d56e6fbd4302c7ddbc867f7d58e",
+      "bytes": 32962
+    },
+    {
+      "path": "ui/option-cards/945dfb83a37d4ec0589e205768994e0294a0e9bfbd3f75257d8be15c9015129d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "945dfb83a37d4ec0589e205768994e0294a0e9bfbd3f75257d8be15c9015129d",
+      "bytes": 44501
+    },
+    {
+      "path": "ui/option-cards/953042488bff1049f9be6a304128084b803a6ec0067dd4dc8f66e582b2bb147e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "953042488bff1049f9be6a304128084b803a6ec0067dd4dc8f66e582b2bb147e",
+      "bytes": 36430
+    },
+    {
+      "path": "ui/option-cards/9935bbb2a8df75f6ce6a01c0e7c36069c61512ddd337c156b2bc44db0125c75f.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9935bbb2a8df75f6ce6a01c0e7c36069c61512ddd337c156b2bc44db0125c75f",
+      "bytes": 31781
+    },
+    {
+      "path": "ui/option-cards/9c130bca32ad5535df31416e958fa39039b799ce4cabd8fa9dabe5ff2a755541.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9c130bca32ad5535df31416e958fa39039b799ce4cabd8fa9dabe5ff2a755541",
+      "bytes": 49381
+    },
+    {
+      "path": "ui/option-cards/9c6e1da37de0c04a9e8a06af0c12f3b566867624b70b2f6e27958914b58e6f85.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9c6e1da37de0c04a9e8a06af0c12f3b566867624b70b2f6e27958914b58e6f85",
+      "bytes": 24312
+    },
+    {
+      "path": "ui/option-cards/9de72fb28537fadf8a9e7fd55f56818e9622ad61a877c38ec6cd8e287d1c5539.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9de72fb28537fadf8a9e7fd55f56818e9622ad61a877c38ec6cd8e287d1c5539",
+      "bytes": 59527
+    },
+    {
+      "path": "ui/option-cards/9e501e2926838b4f290743ee336846996e2cf69e38a25ef2baf390590e5b0031.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9e501e2926838b4f290743ee336846996e2cf69e38a25ef2baf390590e5b0031",
+      "bytes": 44446
+    },
+    {
+      "path": "ui/option-cards/9ecbfd4895d928b01efd9951d275513e27d98f095650162c17abb7357e118995.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "9ecbfd4895d928b01efd9951d275513e27d98f095650162c17abb7357e118995",
+      "bytes": 33538
+    },
+    {
+      "path": "ui/option-cards/a11e694f81486722c95dabf6908549075ed896be918af1e3771e9990e344bb13.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a11e694f81486722c95dabf6908549075ed896be918af1e3771e9990e344bb13",
+      "bytes": 26360
+    },
+    {
+      "path": "ui/option-cards/a33120fb275effd6e852e4542b39ff5285bdbe5b40ac600b79e79dab429f0e57.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a33120fb275effd6e852e4542b39ff5285bdbe5b40ac600b79e79dab429f0e57",
+      "bytes": 21834
+    },
+    {
+      "path": "ui/option-cards/a39d85d05bb4def1adbd8c78ebdcabb026c635f337d325c8a2b67d19f921019f.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a39d85d05bb4def1adbd8c78ebdcabb026c635f337d325c8a2b67d19f921019f",
+      "bytes": 40926
+    },
+    {
+      "path": "ui/option-cards/a4a6f57097291eeb0c7b002e863e5566a1e0c6e7c1804222164ed577bf8c9ed9.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a4a6f57097291eeb0c7b002e863e5566a1e0c6e7c1804222164ed577bf8c9ed9",
+      "bytes": 31384
+    },
+    {
+      "path": "ui/option-cards/a4f1ba24f2b63967a82b44201e8a15424823c5189133d9507e17317e2cd07218.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a4f1ba24f2b63967a82b44201e8a15424823c5189133d9507e17317e2cd07218",
+      "bytes": 64525
+    },
+    {
+      "path": "ui/option-cards/a5058d53920fbd264d9f6b31213469dcde18805ceafcb427d144bf6dfb0a66ca.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a5058d53920fbd264d9f6b31213469dcde18805ceafcb427d144bf6dfb0a66ca",
+      "bytes": 20301
+    },
+    {
+      "path": "ui/option-cards/a59fc8c4f2d77063e287549fe7793c597d495fe2a743680b4351a2814ed89ab4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a59fc8c4f2d77063e287549fe7793c597d495fe2a743680b4351a2814ed89ab4",
+      "bytes": 30809
+    },
+    {
+      "path": "ui/option-cards/a6a43102f1917ea2938a312706a510dff8ccc39b0a7289eb49cbfaf155c6dead.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a6a43102f1917ea2938a312706a510dff8ccc39b0a7289eb49cbfaf155c6dead",
+      "bytes": 23712
+    },
+    {
+      "path": "ui/option-cards/a82c4741d764373e891246ea5214074b29b21f1a06b8531b7a37899a9d79fe24.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a82c4741d764373e891246ea5214074b29b21f1a06b8531b7a37899a9d79fe24",
+      "bytes": 46499
+    },
+    {
+      "path": "ui/option-cards/a8646889154c5477639b3aa91cc647094e0c11ef8a104fd183b98b4a16274d18.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a8646889154c5477639b3aa91cc647094e0c11ef8a104fd183b98b4a16274d18",
+      "bytes": 24917
+    },
+    {
+      "path": "ui/option-cards/a88898a9458945311e0b6fa9ceb068ce1d9faaf5520fb6b48aa4382be50bc3c3.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a88898a9458945311e0b6fa9ceb068ce1d9faaf5520fb6b48aa4382be50bc3c3",
+      "bytes": 32048
+    },
+    {
+      "path": "ui/option-cards/a9b7a0cf38db7d0bf1ae8b3553f8a9f8fd17d83e63e05b85524f963771aff0c6.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "a9b7a0cf38db7d0bf1ae8b3553f8a9f8fd17d83e63e05b85524f963771aff0c6",
+      "bytes": 30530
+    },
+    {
+      "path": "ui/option-cards/aa2174edce73609234c83f8a9e4d3d02005df9b388441c0c0dc00b8de30f9af7.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "aa2174edce73609234c83f8a9e4d3d02005df9b388441c0c0dc00b8de30f9af7",
+      "bytes": 30675
+    },
+    {
+      "path": "ui/option-cards/aa2c8e214c758f5de306b093dbbe2763d7c2644a1c89ade5b79e572539ac9670.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "aa2c8e214c758f5de306b093dbbe2763d7c2644a1c89ade5b79e572539ac9670",
+      "bytes": 32195
+    },
+    {
+      "path": "ui/option-cards/aad90bc71552c4fe0bcda9cf74584fbbcbdb2a2db1dea619ad424e4394298eb4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "aad90bc71552c4fe0bcda9cf74584fbbcbdb2a2db1dea619ad424e4394298eb4",
+      "bytes": 31593
+    },
+    {
+      "path": "ui/option-cards/b1671a5d3c49f1e98c8e67a89b6255aa88dbd5ebf9347717138997451f3d109a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "b1671a5d3c49f1e98c8e67a89b6255aa88dbd5ebf9347717138997451f3d109a",
+      "bytes": 30603
+    },
+    {
+      "path": "ui/option-cards/b8411ad28a0ed92aaba5bfbf1ac1ae12070f8c2ab6e9fb686da69862bae94a8b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "b8411ad28a0ed92aaba5bfbf1ac1ae12070f8c2ab6e9fb686da69862bae94a8b",
+      "bytes": 45098
+    },
+    {
+      "path": "ui/option-cards/b8a8612658d7250d2baeb89b7bc4423332e7cd5cb9175b0d1c0a19ab568affd2.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "b8a8612658d7250d2baeb89b7bc4423332e7cd5cb9175b0d1c0a19ab568affd2",
+      "bytes": 28635
+    },
+    {
+      "path": "ui/option-cards/ba69620ce625f4761b489eb4c7d46f5d77f6497d81b30567a188a37337d07d7c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "ba69620ce625f4761b489eb4c7d46f5d77f6497d81b30567a188a37337d07d7c",
+      "bytes": 21785
+    },
+    {
+      "path": "ui/option-cards/bb1e5d672543f34c34812eaf89eb4882d07c3286c33e3707bdde8b2b26cae979.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "bb1e5d672543f34c34812eaf89eb4882d07c3286c33e3707bdde8b2b26cae979",
+      "bytes": 24258
+    },
+    {
+      "path": "ui/option-cards/bc627318807aa7056aa2d8977305164111c30beec4c798f309454203877511f3.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "bc627318807aa7056aa2d8977305164111c30beec4c798f309454203877511f3",
+      "bytes": 33664
+    },
+    {
+      "path": "ui/option-cards/bcd6bc6e21616a98f81f1b7de8e9c7a1478afc0847e5f7f603eeebe332ccfcba.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "bcd6bc6e21616a98f81f1b7de8e9c7a1478afc0847e5f7f603eeebe332ccfcba",
+      "bytes": 40578
+    },
+    {
+      "path": "ui/option-cards/bcfcaa8fe18cef856385554d9ca872b0a8d59436dd719fa76135cc68ed646e33.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "bcfcaa8fe18cef856385554d9ca872b0a8d59436dd719fa76135cc68ed646e33",
+      "bytes": 45848
+    },
+    {
+      "path": "ui/option-cards/bdd11d47c8a7207d4c78f8ad8d76006eac4bac66086038d0a492080f24cfe7e5.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "bdd11d47c8a7207d4c78f8ad8d76006eac4bac66086038d0a492080f24cfe7e5",
+      "bytes": 31653
+    },
+    {
+      "path": "ui/option-cards/c11994f70b79fd56ba1c4abf4adeb6c2783b6f88cde5bae39ffa0f89dbbf80c4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "c11994f70b79fd56ba1c4abf4adeb6c2783b6f88cde5bae39ffa0f89dbbf80c4",
+      "bytes": 47525
+    },
+    {
+      "path": "ui/option-cards/c2e049a399727af591022ba779aa32a564a5b2ed93be8272e6046f053cdae65e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "c2e049a399727af591022ba779aa32a564a5b2ed93be8272e6046f053cdae65e",
+      "bytes": 52741
+    },
+    {
+      "path": "ui/option-cards/c33d9c9c6781e1f252f2ccda0c5b102a0eb1861d7ab40a416cf07763544d443b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "c33d9c9c6781e1f252f2ccda0c5b102a0eb1861d7ab40a416cf07763544d443b",
+      "bytes": 70792
+    },
+    {
+      "path": "ui/option-cards/c56c8bfea9d88ed40307222aba232c46b77507fb634a1e7935d2bebd506c2c3e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "c56c8bfea9d88ed40307222aba232c46b77507fb634a1e7935d2bebd506c2c3e",
+      "bytes": 28660
+    },
+    {
+      "path": "ui/option-cards/c5795c35a68b916e26afae39a99dd56cb08432382d2291124bd477104402ef4a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "c5795c35a68b916e26afae39a99dd56cb08432382d2291124bd477104402ef4a",
+      "bytes": 35062
+    },
+    {
+      "path": "ui/option-cards/c85a00c624492b7371a636c01b50c6467aa2ae3309a6888132bd41440a29c6b5.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "c85a00c624492b7371a636c01b50c6467aa2ae3309a6888132bd41440a29c6b5",
+      "bytes": 37686
+    },
+    {
+      "path": "ui/option-cards/cdabbdcb6507a5234260b365673da030c2b57b2a939b7a7beaf0b4d3b8a55403.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "cdabbdcb6507a5234260b365673da030c2b57b2a939b7a7beaf0b4d3b8a55403",
+      "bytes": 69043
+    },
+    {
+      "path": "ui/option-cards/ce5990aa2cfbe81d5de32e751396895a3c4511377a9f075e74543498e384d44e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "ce5990aa2cfbe81d5de32e751396895a3c4511377a9f075e74543498e384d44e",
+      "bytes": 51182
+    },
+    {
+      "path": "ui/option-cards/cf369b4fff560e0d71634f063b87dac85c1c26d06962bc65ff693c7f45ec9607.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "cf369b4fff560e0d71634f063b87dac85c1c26d06962bc65ff693c7f45ec9607",
+      "bytes": 34876
+    },
+    {
+      "path": "ui/option-cards/d0ad1acc0ea1947f8d2242e507fa8efed24ce27959bd8de704be452f3e74f46a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d0ad1acc0ea1947f8d2242e507fa8efed24ce27959bd8de704be452f3e74f46a",
+      "bytes": 51490
+    },
+    {
+      "path": "ui/option-cards/d0d4779273f02fba14306c83e781737e246a9295d34be7a98671a6ce646dc60d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d0d4779273f02fba14306c83e781737e246a9295d34be7a98671a6ce646dc60d",
+      "bytes": 42176
+    },
+    {
+      "path": "ui/option-cards/d0f4f05d5791d00ecfb515cd3de65a391168f3e185932f2afeefeb91b6efd3eb.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d0f4f05d5791d00ecfb515cd3de65a391168f3e185932f2afeefeb91b6efd3eb",
+      "bytes": 38464
+    },
+    {
+      "path": "ui/option-cards/d14228a015ad9b18685e322757dd46aaac90cd15d5687484060ef7262c22b5e8.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d14228a015ad9b18685e322757dd46aaac90cd15d5687484060ef7262c22b5e8",
+      "bytes": 23273
+    },
+    {
+      "path": "ui/option-cards/d43b4c0880ac5e82168efcbe09d736495809fd833c9527a12dce4b50088c5c98.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d43b4c0880ac5e82168efcbe09d736495809fd833c9527a12dce4b50088c5c98",
+      "bytes": 34405
+    },
+    {
+      "path": "ui/option-cards/d46a80bd9abd803e00d8b34fe18da676f3d6d551ea1657e2630d0e057425614d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d46a80bd9abd803e00d8b34fe18da676f3d6d551ea1657e2630d0e057425614d",
+      "bytes": 60037
+    },
+    {
+      "path": "ui/option-cards/d4919e1745d2a94d393296faa89b840c58f3c50f35534394c48e5fa107713502.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d4919e1745d2a94d393296faa89b840c58f3c50f35534394c48e5fa107713502",
+      "bytes": 36163
+    },
+    {
+      "path": "ui/option-cards/d49d448abd7ea64a73049ea6e97789a62602e38ab9141daceb5562d5cf681f4a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d49d448abd7ea64a73049ea6e97789a62602e38ab9141daceb5562d5cf681f4a",
+      "bytes": 77093
+    },
+    {
+      "path": "ui/option-cards/d53429fee0e2bd15a065b5c8f2c7b6f605d817960a0b423786fa06d9e459a54b.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d53429fee0e2bd15a065b5c8f2c7b6f605d817960a0b423786fa06d9e459a54b",
+      "bytes": 46107
+    },
+    {
+      "path": "ui/option-cards/d7da6c6029dadf0d01c66aeda8f7615947c5d96d14aedca786faa0ba7c910c85.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d7da6c6029dadf0d01c66aeda8f7615947c5d96d14aedca786faa0ba7c910c85",
+      "bytes": 24400
+    },
+    {
+      "path": "ui/option-cards/d931dbda7c4a6f540d75cf698752f8345d1448bd4f259865709f9e2d90c647ba.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "d931dbda7c4a6f540d75cf698752f8345d1448bd4f259865709f9e2d90c647ba",
+      "bytes": 30156
+    },
+    {
+      "path": "ui/option-cards/def75fd470902447db8c0b043ef346e4bc2056cb3fceccecae7dc82b64ffe0f8.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "def75fd470902447db8c0b043ef346e4bc2056cb3fceccecae7dc82b64ffe0f8",
+      "bytes": 23614
+    },
+    {
+      "path": "ui/option-cards/e25d7230b2ade613d082222fa5201090fc7bc5d356292cfd65dc53a6c0157662.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "e25d7230b2ade613d082222fa5201090fc7bc5d356292cfd65dc53a6c0157662",
+      "bytes": 33226
+    },
+    {
+      "path": "ui/option-cards/e345f47a0eab220cd5ec77efefca1339bb453c905d93c2c71f71a139a6095e1c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "e345f47a0eab220cd5ec77efefca1339bb453c905d93c2c71f71a139a6095e1c",
+      "bytes": 24861
+    },
+    {
+      "path": "ui/option-cards/e51e3b4211b14266b8b4abe34b1fa8070c973e9d65a1125b518ba6f5a5d985fc.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "e51e3b4211b14266b8b4abe34b1fa8070c973e9d65a1125b518ba6f5a5d985fc",
+      "bytes": 23109
+    },
+    {
+      "path": "ui/option-cards/e73495b0f0c83f398cb5aafd8273b9b6da7fb15298d9445b8deba77781ba3ffe.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "e73495b0f0c83f398cb5aafd8273b9b6da7fb15298d9445b8deba77781ba3ffe",
+      "bytes": 19579
+    },
+    {
+      "path": "ui/option-cards/e8bf0711474adc17fd5b413fe5a227ddd978fe67708a1ba8eecd5c202ca2cb4e.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "e8bf0711474adc17fd5b413fe5a227ddd978fe67708a1ba8eecd5c202ca2cb4e",
+      "bytes": 37170
+    },
+    {
+      "path": "ui/option-cards/ec1bd2e938f4b1eec51007b6b02ed09555d8511b84c5430205f4c77a7a47682d.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "ec1bd2e938f4b1eec51007b6b02ed09555d8511b84c5430205f4c77a7a47682d",
+      "bytes": 35270
+    },
+    {
+      "path": "ui/option-cards/ec466764b8a22f5ad8e4e164a1b0304c2bb5c2c3217b63a95e8dad3448ffc97c.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "ec466764b8a22f5ad8e4e164a1b0304c2bb5c2c3217b63a95e8dad3448ffc97c",
+      "bytes": 33468
+    },
+    {
+      "path": "ui/option-cards/ee3316090e2f64d417f45e43a52e9a3c7c19ac9832fb22f2d2b45afe3e6009fa.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "ee3316090e2f64d417f45e43a52e9a3c7c19ac9832fb22f2d2b45afe3e6009fa",
+      "bytes": 34250
+    },
+    {
+      "path": "ui/option-cards/f05d9f03f9da2e5633246b7a3b6d0e482a17879766453b091b8d5bbab1cc81b0.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f05d9f03f9da2e5633246b7a3b6d0e482a17879766453b091b8d5bbab1cc81b0",
+      "bytes": 45941
+    },
+    {
+      "path": "ui/option-cards/f1a67826db28f8f5c08bb7a333d3e7903b02dff5c4299b2fc943d461dfe0cca2.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f1a67826db28f8f5c08bb7a333d3e7903b02dff5c4299b2fc943d461dfe0cca2",
+      "bytes": 31396
+    },
+    {
+      "path": "ui/option-cards/f3ed5d47d24e68ada3cc189b27c933dbfaab7226bf41b44c61f1b18b95dcd279.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f3ed5d47d24e68ada3cc189b27c933dbfaab7226bf41b44c61f1b18b95dcd279",
+      "bytes": 72351
+    },
+    {
+      "path": "ui/option-cards/f5533de8f2c507af99cb099c2773eaf1387faada5efa70d9426d2a3bad59d299.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f5533de8f2c507af99cb099c2773eaf1387faada5efa70d9426d2a3bad59d299",
+      "bytes": 80405
+    },
+    {
+      "path": "ui/option-cards/f58541f3660177bffc535d632130a86e43a005064a872cc87c35d54972086909.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f58541f3660177bffc535d632130a86e43a005064a872cc87c35d54972086909",
+      "bytes": 38808
+    },
+    {
+      "path": "ui/option-cards/f6ee051b06b679b083b48ae40afdc7bfac771048ddcb796abeb1bba60c387f7a.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f6ee051b06b679b083b48ae40afdc7bfac771048ddcb796abeb1bba60c387f7a",
+      "bytes": 77648
+    },
+    {
+      "path": "ui/option-cards/f91d36ff71f259d812c5704cd0b6c5c6ccb1ce35f58190372bb5ea1236afa2ac.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f91d36ff71f259d812c5704cd0b6c5c6ccb1ce35f58190372bb5ea1236afa2ac",
+      "bytes": 36363
+    },
+    {
+      "path": "ui/option-cards/f9e64c6614c9f6ff777eb0b7b31be1119871e6789362088d042d3087f578f7df.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "f9e64c6614c9f6ff777eb0b7b31be1119871e6789362088d042d3087f578f7df",
+      "bytes": 21129
+    },
+    {
+      "path": "ui/option-cards/fd6dd873857dd026fa0bf998e3ec45edc9a9c4ab3b2c9bf528f2aa7689cafcc4.png",
+      "status": "added",
+      "before_sha256": null,
+      "after_sha256": "fd6dd873857dd026fa0bf998e3ec45edc9a9c4ab3b2c9bf528f2aa7689cafcc4",
+      "bytes": 31336
+    }
+  ]
+}

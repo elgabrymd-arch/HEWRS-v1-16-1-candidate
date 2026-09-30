@@ -29,8 +29,8 @@ function pat(row){let p=old.pattern(row),s=txt(row.pattern_text),cs=txt(row.cont
  if(!p.compound&&contrast!==null)p={...p,quiet:contrast<=1.67};
  return p;
 }
-function create(c){const inherited=old.create(c),profiles=new Map();
- for(const [id,row]of c.features){const p=old.profile(row);p.primary=col(row.primary_text);p.accents=(Array.isArray(row.secondary_text)?row.secondary_text:String(row.secondary_text||'').split(/[;,]/)).filter(x=>x&&!/^none$/i.test(String(x))).map(col);p.pattern=pat(row);profiles.set(id,p);}
+function create(c){const inherited=old.create(c),profiles=new Map();let learningModel=root.HEWRSOutfitLearning.empty();
+ for(const [id,row]of c.features){const p=old.profile(row);p.primary=col(row.primary_text);p.accents=(Array.isArray(row.secondary_text)?row.secondary_text:String(row.secondary_text||'').split(/[;,]/)).filter(x=>x&&!/^none$/i.test(String(x))).map(col);p.pattern=pat(row);profiles.set(id,root.HEWRSSourceCorrections.profile(row,p));}
  for(const id of c.blazerConnection.pantIds){const d=c.blazerConnection.knownPant(id),p=inherited.profile('pants-'+id);p.primary=col(d.record.shade);profiles.set('pants-'+id,p);}
  function get(id){const p=profiles.get(id);if(!p)throw Error('Missing research wardrobe profile '+id);return p;}
  function prominence(p){if(!p)return 0;const a=p.pattern;if(a.family==='solid')return 0;if(a.quiet)return Math.min(.3,a.contrast*.13);return clip(a.contrast/4*(.6+Math.min(a.scale,4)/8)+(a.compound?.24:0),0,1.4);}
@@ -146,12 +146,37 @@ function create(c){const inherited=old.create(c),profiles=new Map();
   return {score:r(clip(.38*formality+.40*grounding+.14*restraint+.08*surface)),formality,grounding,restraint,surface,colour,revision:REV,reason,price_or_brand_bonus:0,kind:'research_informed_shoe_context',measurements:false};
  }
  function watch(item,o,q){const w=inherited.watch(item,{...o,components:{...o.components,pattern_hierarchy:o.components.pattern_hierarchy}},q);return {...w,revision:REV,kind:'contextual_watch_preference_not_designer_grade'};}
- function complete(o,sh,wa){return {revision:REV,score:r(.87*o.score+.10*sh.score+.03*wa.score),clothing_score:o.score,clothing:copy(o.components),shoe:copy(sh),watch:copy(wa),weights:{clothing:.87,shoes:.10,watch:.03},research_rule_ids:['R1_VALUE','R2_PATTERN','R3_PALETTE','R4_SEPARATES','R5_FOOTWEAR','R6_CONTEXT'],explanation:o.reason,reasons:copy(o.reasons),cautions:copy(o.cautions),kind:'research_informed_local_rules_not_live_ai',measurement:false};}
+ function complete(o,sh,wa){const features=root.HEWRSOutfitLearning.vector(o,sh),baseline=.87*o.score+.10*sh.score+.03*wa.score,adjustment=root.HEWRSOutfitLearning.delta(learningModel,features);return {revision:REV,score:r(clip(baseline+adjustment)),baseline_research_score:r(baseline),learning:{revision:root.HEWRSOutfitLearning.REV,model_id:learningModel.id,active:learningModel.active&&learningModel.enabled,adjustment:r(adjustment),counts:copy(learningModel.counts),reason:learningModel.reason,features,feature_names:root.HEWRSOutfitLearning.FEATURES.slice(),source_revision:root.HEWRSSourceCorrections.revision},clothing_score:o.score,clothing:copy(o.components),shoe:copy(sh),watch:copy(wa),weights:{clothing:.87,shoes:.10,watch:.03},research_rule_ids:['R1_VALUE','R2_PATTERN','R3_PALETTE','R4_SEPARATES','R5_FOOTWEAR','R6_CONTEXT'],explanation:o.reason,reasons:copy(o.reasons),cautions:copy(o.cautions),kind:'research_informed_local_rules_not_live_ai',measurement:false};}
  function signature(o){const p=o.profiles;return {topId:p.topwear.id,topFamily:p.topwear.primary.family,topPattern:p.topwear.pattern.quiet?'quiet':p.topwear.pattern.family,shirtId:p.shirt.id,shirtShade:p.shirt.primary.shade,shirtDepth:p.shirt.primary.value>=3.6?'light':p.shirt.primary.value>=2.3?'medium':'dark',shirtPattern:p.shirt.pattern.quiet?'quiet':p.shirt.pattern.family,tieFamily:p.tie?.primary.family||'NO_TIE',tiePattern:p.tie?(p.tie.pattern.quiet?'quiet':p.tie.pattern.family):'NO_TIE'};}
  function redundancy(e,selected,q){if(!selected.length)return 0;const a=signature(e.entry.preference);let max=0,sum=0;for(const old of selected){const b=signature(old.entry.preference);let n=0;for(const[k,w]of Object.entries({topFamily:.06,topPattern:.04,shirtShade:.23,shirtDepth:.06,shirtPattern:.12,tieFamily:.25,tiePattern:.12}))if(a[k]===b[k])n+=w;
   if(q.prefs.topwear.mode!=='item'&&a.topId===b.topId)n+=.12;if(q.prefs.shirt.mode!=='item'&&a.shirtId===b.shirtId)n+=.12;max=Math.max(max,n);sum+=n;}
-  return r(.15*max+.10*sum/selected.length);}
- return Object.freeze({revision:REV,reference_templates:templates.length,clothing,shoe,watch,complete,signature,redundancy,matchesFamily:(id,f)=>{const a=get(id).primary;return f==='taupe'?a.shade==='taupe':f==='grey'?['grey','charcoal','stone'].includes(a.family):f==='pink'?['pink','mauve'].includes(a.family):a.family===f;},profile:id=>copy(get(id)),profiles:()=>[...profiles.values()].map(copy),curationBand:.25,tieCoverage:true,maximumComplete:score=>.87*score+1.3,description:'Local wardrobe generator with published qualitative style guidance; all weights are disclosed heuristics, not live AI or designer-endorsed scores.'});
+  const legacy=.15*max+.10*sum/selected.length;
+  // Only a learned model may change which feature similarities matter. This
+  // bounded reranking lives inside the existing quality band, not original grades.
+  const magnitude=learningModel.weights.reduce((n,x)=>n+Math.abs(x),0),v=e.preference?.learning?.features;
+  if(!learningModel.active||!learningModel.enabled||magnitude<.05||!v)return r(legacy);
+  let most=0;for(const prev of selected){const u=prev.preference?.learning?.features;if(!u)continue;const distance=v.reduce((n,x,i)=>n+Math.abs(x-u[i])*Math.abs(learningModel.weights[i]),0)/magnitude;most=Math.max(most,1-clip(distance,0,1));}
+  return r(.75*legacy+.25*.20*most);
+ }
+ function describeSelection(s,context={occasion:'clinic',requiredFormality:'any'}){
+  try{c.validateSelection(s);if(s.shirtOnly||s.state==='REFERENCE')throw Error('Whole tailored outfits only');
+   const raw=c.scoreSelection(s,context);if(!Number.isFinite(raw.score)||raw.hard_conflict?.hard_reject||raw.context?.status==='ineligible')return {eligible:false,reason:raw.status};
+   const o=clothing(s.suitId||s.blazerId,s.shirtId,s.state,s.pantId||null,raw.score),item=c.catalogue.shoes.find(x=>x.id===s.shoeId),sh=shoe(item,o,{context}),wa=watch(s.watchId?c.catalogue.watches.find(x=>x.id===s.watchId):null,o,{context});
+   return {eligible:true,vector:root.HEWRSOutfitLearning.vector(o,sh),baseline_score:r(.87*o.score+.10*sh.score+.03*wa.score),reason:raw.status,source_revision:root.HEWRSSourceCorrections.revision,source_scale:'ordinal text-derived, not physical measurements'};
+  }catch(e){return {eligible:false,reason:e.message};}
+ }
+ function setLearningModel(value){learningModel=root.HEWRSOutfitLearning.validateModel(value);return copy(learningModel);}
+ function accessoryOrderScore(o,sh){return learningModel.active&&learningModel.enabled?.10*sh.score+root.HEWRSOutfitLearning.delta(learningModel,root.HEWRSOutfitLearning.vector(o,sh)):sh.score;}
+ function maximumComplete(score,o){
+  if(!learningModel.active||!learningModel.enabled)return .87*score+1.3;
+  // The first nine learned features are already fixed by the clothing. Only
+  // shoe features remain unknown; maximize those analytically on [0,1].
+  // This is a provable upper bound, not a top-N recall shortcut.
+  const x=o?root.HEWRSOutfitLearning.vector(o,{}):null;
+  const u=learningModel.weights.reduce((n,w,i)=>n+(i<9&&x?w*x[i]:Math.max(0,w)),0);
+  return .87*score+1.3+.35*Math.tanh(u);
+ }
+ return Object.freeze({revision:REV,describeSelection,setLearningModel,learningStatus:()=>copy(learningModel),accessoryOrderScore,reference_templates:templates.length,clothing,shoe,watch,complete,signature,redundancy,matchesFamily:(id,f)=>{const a=get(id).primary;return f==='taupe'?a.shade==='taupe':f==='grey'?['grey','charcoal','stone'].includes(a.family):f==='pink'?['pink','mauve'].includes(a.family):a.family===f;},profile:id=>copy(get(id)),profiles:()=>[...profiles.values()].map(copy),curationBand:.25,tieCoverage:true,maximumComplete,description:'Local wardrobe generator with published qualitative style guidance; all weights are disclosed heuristics, not live AI or designer-endorsed scores.'});
 }
 root.HEWRSResearchPreference=Object.freeze({create,revision:REV,colour:col,pattern:pat});
 })(globalThis);

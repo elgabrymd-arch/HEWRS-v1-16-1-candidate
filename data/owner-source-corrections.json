@@ -1,0 +1,87 @@
+{
+  "schema": "hewrs.owner-source-corrections.v1",
+  "revision": "hewrs.owner-source.s02.2026-09-29.v1",
+  "owner_confirmation": "2026-09-29T12:54:08Z",
+  "source_photo": "B4A86F92-5B0D-4634-9FF4-98B31AE2EC80.jpeg",
+  "item": "S02",
+  "historical_feature": {
+    "id": "S02",
+    "category": "suit",
+    "description": "Warm charcoal brown Prince of Wales / glen plaid",
+    "primary_text": "Warm charcoal brown",
+    "secondary_text": "Tonal brown/grey",
+    "pattern_text": "Prince of Wales / glen plaid",
+    "texture_text": "woven texture",
+    "construction_text": "Single-breasted; notch lapels",
+    "scale_text": null,
+    "contrast_text": null,
+    "recorded_scale": null,
+    "recorded_contrast": null,
+    "source": {
+      "source_id": "HEWRS_S01-S06_FULL_ENSEMBLE_CATALOGUE.pdf",
+      "page": 4
+    },
+    "historical_fields_unchanged": {
+      "description": "Warm charcoal brown; Prince of Wales / Glen plaid; warm palette; all-year.",
+      "primary_color": null,
+      "secondary_colors": null,
+      "pattern": null,
+      "scale_text": null,
+      "contrast_text": null,
+      "texture": null,
+      "construction": null
+    },
+    "authority_notes": [
+      "Explicit semantic transcription from the approved suit identity/appearance and recorded owner corrections. Numeric feature calibration remains a new model choice."
+    ],
+    "eligibility": {
+      "active": true
+    },
+    "asset_binding": {
+      "authority": 98,
+      "component": "SUITS97",
+      "assets": [
+        {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "member": "HEWRS_SUIT_STATIC_INTEGRATION_97/static/layers/S02/JACKET.png",
+          "role": "REGISTERED_GARMENT_RGBA"
+        },
+        {
+          "sha256": "9213ab289d4751b83ef772849ab567d0ee99a3ead980acbf2b229c910633aed2",
+          "member": "HEWRS_SUIT_STATIC_INTEGRATION_97/static/layers/S02/TROUSERS.png",
+          "role": "REGISTERED_GARMENT_RGBA"
+        },
+        {
+          "sha256": "7c6db80669f405256e0dcef67e3ddf0a1de871a9902c1ea81a4b2fb9f3acd684",
+          "member": "HEWRS_SUIT_STATIC_INTEGRATION_97/static/renders/S02.png",
+          "role": "FROZEN_AVATAR_COMPOSITE"
+        },
+        {
+          "sha256": "ae1653437cbd88a5dab9f21cd80fa49287bde24ba0c3f0d0dff9f77943d40bc5",
+          "member": "HEWRS_SUIT_STATIC_INTEGRATION_97/approved/appearance_inputs/S02_ae1653437cbd.png",
+          "role": "APPEARANCE_INPUT_NOT_APP_COMPOSITE"
+        }
+      ]
+    },
+    "normalization_status": "PROPOSED_SEMANTIC_FEATURE_INPUT_NOT_A_MEASUREMENT",
+    "fibre_composition": null,
+    "seasonal_restrictions": []
+  },
+  "fields": {
+    "description": "Tom James — muted medium-brown Prince of Wales / Glen check; subtle charcoal and fine tan-brown overcheck",
+    "primary_text": "Muted medium brown",
+    "secondary_text": "Very subtle charcoal grey; fine tan-brown overcheck",
+    "pattern_text": "Prince of Wales / Glen check with a restrained tan-brown overcheck",
+    "contrast_text": "Low overall contrast"
+  },
+  "interpretation": {
+    "value": 2.6,
+    "saturation": 0.28,
+    "contrast": 1.2,
+    "quiet": true,
+    "basis": "Existing comparison-scale ordinal interpretation, not measured RGB, reflectance or fabric dimensions."
+  },
+  "visual_limit": "The existing S02 layer has a more pronounced check than the owner photo. Images are not changed by this update. Comparisons featuring S02 show this caveat and are excluded from training until the depiction is reconciled.",
+  "source_image_path": "ui/source-evidence/S02-owner-crop.png",
+  "source_image_sha256": "6b0b52b796c0c97b1445d45469e8b7945684d321a447e915947daf0fa90ee2be"
+}

@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.owner-release-scope.v1",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "owner_instruction": "Continue with 18 only for now",
   "owner_message_timestamp": "2026-09-25T02:44:23Z",
   "scope_applies_to": [
@@ -129,5 +129,28 @@
     "browser_permission_lifetime": "Controlled by browser/OS; no promise of permanent permission."
   },
   "recommendation_authorization": "2026-09-29T01:24:11Z: i approve proposed start;20 options, unique unanchored ties and full47-tie coverage review",
-  "no_new_inventory_scope": true
+  "no_new_inventory_scope": true,
+  "presentation_v1_21_1": {
+    "default": "option_cards",
+    "standard_view_retained": true,
+    "phone": "large outfit above readable item rows",
+    "desktop": "outfit left and item thumbnails/right",
+    "ranking_data_and_modes_unchanged": true
+  },
+  "current_increment": "S02 source correction + explicit local preference learning",
+  "preserved_option_policy": {
+    "target": 20,
+    "unanchored_tie_max": 1,
+    "other_unanchored_physical_item_max": 2,
+    "default_no_tie_max": 2,
+    "exact_anchor_only_exemption": true
+  },
+  "learning_scope": [
+    "Research-based wardrobe generator"
+  ],
+  "S02_source_applied": true,
+  "S02_depiction_changed": false,
+  "S02_feedback_excluded_due_depiction_mismatch": true,
+  "no_votes_seeded": true,
+  "private_AI_setup": "PAUSED; no network/provider calls added"
 }

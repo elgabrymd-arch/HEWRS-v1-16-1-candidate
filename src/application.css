@@ -74,73 +74,54 @@ html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
 #weather-locations:empty{display:none;}
 @media(max-height:440px){.fx-outfits .fx-stage-row{height:400px;min-height:400px;}}
 
-/* V1.21.1: editorial option cards. Only the Outfits presentation changes.
-   No color filters, native-canvas resize, garment recoloring or source changes. */
-#app:has(#page-outfits:not([hidden])) { max-width: 1040px; }
-#page-outfits { padding-inline: 3%; padding-bottom: 22px; }
-#page-outfits .fx-outfit-heading { margin: 8px 0 14px; }
-#page-outfits .fx-outfit-heading h1 { font-size: 24px; }
-#page-outfits .fx-output { gap: 12px; }
-.fx-editorial-card {
-  border: 1px solid var(--gold); border-radius: 14px; overflow: hidden;
-  background: #101111; color: var(--ink); flex: 0 0 auto;
-}
-.card-heading {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 18px 22px; border-bottom: 1px solid rgba(216,162,71,.32);
-}
-.hewrs-ui .card-heading h2 {
-  margin: 0; color: var(--gold-light); font: 500 31px/1.2 Georgia, 'Times New Roman', serif;
-}
-.card-position { color: var(--secondary); font-size: 13px; white-space: nowrap; letter-spacing: .06em; }
-.card-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.98fr); align-items: start; }
-.card-media { min-width: 0; padding: 12px 8px 10px; }
-#page-outfits .card-media .fx-stage-row { height: 610px; min-height: 0; }
-#page-outfits .card-media .canvas-stage { border: 0; border-radius: 8px; background: #000; }
-#page-outfits .card-media .fx-view-switch { gap: 10px; margin-top: 6px; }
-#page-outfits .card-media .fx-view-switch button { min-height: 44px; font-size: 11px; }
-.card-details { min-width: 0; padding: 22px 22px 18px 12px; }
-.card-topwear { display: flex; flex-direction: column; gap: 3px; padding-bottom: 16px; border-bottom: 1px solid rgba(216,162,71,.25); }
-.card-role { display: block; color: var(--gold); font-size: 11px; line-height: 1.4; letter-spacing: .09em; text-transform: uppercase; }
-.card-item-id { display: block; color: var(--ink); font-size: 15px; line-height: 1.4; font-weight: 650; }
-.card-item-name { display: block; color: var(--ink); font: 15px/1.48 Georgia, 'Times New Roman', serif; overflow-wrap: anywhere; }
-.card-topwear .card-item-id { font: 24px/1.2 Georgia, 'Times New Roman', serif; color: var(--gold-light); }
-.card-garments { display: flex; flex-direction: column; gap: 18px; padding-block: 20px; }
-.card-garment-row { display: grid; grid-template-columns: 92px minmax(0,1fr); align-items: center; gap: 14px; min-width: 0; }
-.card-thumbnail { width: 92px; height: 92px; display: grid; place-items: center; border: 1px solid rgba(216,162,71,.5); border-radius: 5px; background: #212323; overflow: hidden; }
-.card-thumbnail img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.card-preview-fallback { font-size: 11px; letter-spacing: .05em; color: var(--secondary); text-align: center; padding: 6px; }
-.card-garment-copy { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.card-secondary-items { border-top: 1px solid rgba(216,162,71,.25); padding-top: 14px; display: grid; gap: 12px; }
-.card-meta-value { display: block; color: var(--secondary); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; margin-top: 3px; }
-.card-note { color: var(--muted); font-size: 10px; margin: 14px 0 0; line-height: 1.4; }
-#page-outfits .fx-items-card #item-summary { display: none; }
-#page-outfits .fx-items-card { justify-content: space-between; min-height: 44px; padding: 10px 14px; font-size: 13px; }
-#page-outfits #representation { display: none; } /* watch remains fully itemized in the card */
-#page-outfits .fx-selection-heading { font-size: 12px; flex-wrap: wrap; }
-#page-outfits .fx-selection-heading span { font-size: 11px; }
-#page-outfits .fx-output-actions button { min-height: 46px; font-size: 13px; }
-@media (max-width: 650px) {
-  /* Keep the avatar large on phones; do not squeeze the card into two tiny columns. */
-  .card-grid { grid-template-columns: minmax(0,1fr); }
-  .card-heading { padding: 15px 16px; }
-  .hewrs-ui .card-heading h2 { font-size: 28px; }
-  .card-media { padding: 8px 3px 4px; }
-  #page-outfits .card-media .fx-stage-row { height: clamp(380px,calc(100dvh - 255px),650px); min-height: 380px; }
-  .card-details { padding: 12px 18px 20px; border-top: 1px solid rgba(216,162,71,.25); }
-  .card-topwear { gap: 4px; padding-bottom: 12px; }
-  .card-garments { gap: 15px; padding-block: 16px; }
-  .card-garment-row { grid-template-columns: 86px minmax(0,1fr); gap: 14px; }
-  .card-thumbnail { width: 86px; height: 86px; }
-  .card-item-name { font-size: 15px; }
-  .card-secondary-items { gap: 12px; }
-}
-@media (max-width: 350px) {
-  .card-garment-row { grid-template-columns: 72px minmax(0,1fr); gap: 10px; }
-  .card-thumbnail { width: 72px; height: 72px; }
-  .card-details { padding-inline: 12px; }
-  .card-item-name { font-size: 14px; }
+/* V1.21.1: option-card presentation. No canvas filter, bitmap modification,
+   ranking state, global wardrobe recolour, or Home layout change. */
+#app[data-page-view="outfits"][data-outfit-layout="cards"]{max-width:1100px}
+.lb-toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:4px 0 12px;flex-wrap:wrap}
+.lb-toolbar .fx-segment{min-width:210px}.lb-toolbar>button{font-size:12px}
+.lb-card{border:1px solid rgba(216,162,71,.75);border-radius:16px;padding:22px;background:var(--bg);min-width:0}
+.lb-card-header{position:relative;border-bottom:1px solid rgba(216,162,71,.3);padding:0 0 14px;margin-bottom:15px}
+.lb-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--secondary)}
+.hewrs-ui .lb-card-header h2{color:var(--gold-light);font:32px/1.2 Georgia,serif;margin:6px 0 5px}
+.lb-card-count{font-size:12px;color:var(--secondary)}
+.lb-card-body{display:grid;grid-template-columns:minmax(0,44fr) minmax(0,56fr);gap:24px;align-items:center}
+.lb-visual{min-width:0}.lb-items{min-width:0}
+.lb-item{border-bottom:1px solid var(--line);padding:13px 0;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:center;min-width:0}
+.lb-item:first-child{padding-top:0}.lb-item:last-child{border-bottom:0}
+.lb-item.lb-with-swatch{grid-template-columns:78px minmax(0,1fr)}
+.lb-swatch{width:78px;height:91px;display:block;object-fit:contain;flex:none;border:1px solid rgba(216,162,71,.55);border-radius:5px;background:var(--bg)}
+.lb-empty-swatch{display:grid;place-items:center;font:10px Georgia,serif;letter-spacing:.08em;color:var(--secondary)}
+.lb-item-copy{min-width:0}.lb-item-role{display:block;color:var(--gold-light);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.lb-item-id{display:block;color:var(--ink);font-size:13px;font-weight:650;margin-bottom:3px}
+.lb-item-name{display:block;font:17px/1.35 Georgia,serif;color:var(--secondary);overflow-wrap:anywhere}
+.lb-item small{display:block;color:var(--muted);font-size:10px;line-height:1.4;margin-top:4px;overflow-wrap:anywhere}
+.lb-image-unavailable{grid-template-columns:minmax(0,1fr)!important}
+.hewrs-ui .lb-download{display:block;color:var(--ink);text-decoration:none;padding:14px;border:1px solid var(--gold);border-radius:10px;text-align:center;overflow-wrap:anywhere;min-height:44px}
+#app[data-outfit-layout="cards"] .lb-card .canvas-stage{background:var(--bg);border:0;border-radius:0}
+#app[data-outfit-layout="cards"] .lb-card .fx-stage-row{height:clamp(590px,78dvh,810px);min-height:590px}
+#app[data-outfit-layout="cards"] .lb-card .fx-view-switch{gap:8px}
+#app[data-outfit-layout="cards"] .fx-items-card{display:none}
+#app[data-outfit-layout="cards"] .fx-output{gap:10px}
+#app[data-outfit-layout="cards"] .fx-selection-heading{padding-top:4px;flex-wrap:wrap}
+#app[data-outfit-layout="standard"] .lb-card{padding:0;background:none;border:0;border-radius:0}
+#app[data-outfit-layout="standard"] .lb-card-header,#app[data-outfit-layout="standard"] .lb-items{display:none}
+#app[data-outfit-layout="standard"] .lb-card-body{display:block}
+@media(max-width:759px){
+ .lb-card{padding:16px 12px}.lb-card-body{display:block}.lb-card-header{margin-bottom:6px}.hewrs-ui .lb-card-header h2{font-size:28px}
+ #app[data-outfit-layout="cards"] .lb-card .fx-stage-row{height:clamp(495px,76dvh,690px);min-height:495px}
+ .lb-items{padding:15px 6px 4px}.lb-item.lb-with-swatch{grid-template-columns:80px minmax(0,1fr)}.lb-swatch{width:80px;height:93px}.lb-item-name{font-size:16px}
+ .lb-toolbar{gap:6px}.lb-toolbar .fx-segment{min-width:190px}.lb-toolbar .fx-segment button{font-size:11px;padding:8px}.lb-toolbar>button{font-size:11px;padding:8px}
 }
 
-@media (max-width:650px){#page-outfits .fx-outfit-heading {display:none;} #page-outfits {padding-top:6px;}}
-.card-heading #open-results{font-size:12px;color:var(--secondary);min-height:44px;padding:6px;}
+/* V1.22.0 preference review only. No garment-canvas or Home geometry changes. */
+.pref-compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;min-width:0}
+.pref-compare-card{border:1px solid #806632;border-radius:12px;padding:12px;min-width:0;background:#060e19}
+.pref-compare-card h3{margin:0 0 8px;color:#d8a247;font-family:Georgia,serif;font-size:22px}
+.pref-compare-card>img{display:block;width:100%;max-height:440px;object-fit:contain;background:#060e19}
+.pref-compare-card button{width:100%;margin:8px 0}
+.pref-compare-items p{font-size:13px;line-height:1.5;overflow-wrap:anywhere;margin:5px 0}
+#pref-learning-counts,#pref-pair-status{overflow-wrap:anywhere}
+#fx-sheet:has(.pref-compare-grid){width:min(100vw - 16px,1080px)}
+#fx-sheet:has(.pref-compare-grid) #fx-sheet-actions{display:flex;flex-wrap:wrap;gap:8px}
+#fx-sheet:has(.pref-compare-grid) #fx-sheet-actions button{min-width:120px;flex:1 1 120px}
+@media(max-width:600px){.pref-compare-grid{grid-template-columns:1fr}.pref-compare-card>img{max-height:440px}.pref-compare-items p{font-size:14px}.lb-toolbar{flex-wrap:wrap;gap:8px}}

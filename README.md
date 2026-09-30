@@ -1,27 +1,18 @@
-# HEWRS V1.21.1 — editorial outfit cards
+# HEWRS V1.22.0 — confirmed S02 source + local outfit preferences
 
-Continues the verified V1.21.0 build. Only outfit presentation, thumbnail crops
-and release metadata change. All original ranking, 20-option policy, exact IDs,
-weather, renderer and saved-data modules remain unchanged.
+Continue the existing app. Read `QUICK_START_V1_22_0.md` for installation and first use.
 
-Open index.html through your existing static site after copying the COMPLETE
-FILES_TO_COPY contents from the update into the candidate repository. This update
-supports V1.21.0. It does not create a new site or change GitHub Pages settings.
-Retain .git and other folders; do not clear browser storage. The private AI setup
-remains paused and no credentials are needed or included.
+This source requires the complete folder structure. `index.html` is not self-contained. Keep the same candidate site and browser data. No private AI/API setup is needed.
 
-Desktop: actual avatar on the left; registered shirt, tie and shoe-detail previews
-and exact item names/IDs on the right. Phone: large avatar above legible item rows,
-within one card; scroll to the item rows. Existing Previous/Next, option list,
-Full Outfit, Collar Detail, Enlarge, score details and Log This Outfit remain.
+S02 uses the owner-confirmed muted-medium-brown, low-contrast source across interpreters and regenerated derived assessments. Its existing registered fabric image remains unchanged and has a disclosed stronger-check discrepancy. Its appearance is excluded from learning.
 
-Watches stay name/ID only. Previews do not invent separate product photography.
-Shirt thumbnails show the untied collar source detail; they are not tied-collar
-simulations and do not change the selected outfit. Original resolution/cutout
-limitations remain visible.
+The Research-based generator supports explicit local A/B preference learning; zero user votes are seeded. A24-pair pilot includes16 training and8 held-out comparisons, rendered from actual wardrobe sources. Eight informative A/B choices over3 training topwear groups activate an experimental, bounded local model. Both/neither are retained but not treated as directional labels. It is not live AI or proof of improved personal taste.
 
-Verify: python -B tools/verify_v1211.py
-Rebuild preview bytes read-only: python -B tools/build_option_card_thumbnails.py --check
-Rollback: python -B tools/rollback_v1211.py --output NEW_FOLDER
+The20-option target, tie-once and other-items-twice caps, exact-anchor exceptions and default No Tie maximum2 remain. All848 original garment images, physical IDs and historical pair scores remain preserved. Wear/Favorites/weather data stay separate from the preference namespace.
 
-DELIVERY_V1_21_1.md describes tests, scope and installation.
+`V1220_IMPLEMENTATION_AUDIT.md` gives fresh tests and limits. `LOCAL_PREFERENCE_MODEL_V1_22_0.md` gives the equations, features and feedback contract. Earlier delivery/evidence directories are historical, not newly repeated results.
+
+Verify: `python -B tools/verify_v1220.py`
+Rollback into a NEW folder: `python -B tools/rollback_v1220.py --output NEW_FOLDER`
+
+No GitHub deployment was performed when this source was delivered.

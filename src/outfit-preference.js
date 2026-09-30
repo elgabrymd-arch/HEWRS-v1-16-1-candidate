@@ -56,7 +56,7 @@ function pattern(row){const s=text(row.pattern_text),scaleText=text(row.scale_te
  return {family:type,scale,contrast,quiet,compound,layers:compound?['windowpane','micro-check']:[type],wording:row.pattern_text,scale_wording:row.scale_text,contrast_wording:row.contrast_text,measurement:false};
 }
 function profile(row){const primary=colour(row.primary_text),accents=(Array.isArray(row.secondary_text)?row.secondary_text:String(row.secondary_text||'').split(/[;,]/)).filter(x=>!/^(?:none|no accents?)$/i.test(String(x).trim())).map(colour);
- return {id:row.id,category:row.category,primary,accents,pattern:pattern(row),surface:row.texture_text||null,construction:row.construction_text||null,source:clone(row.source||null),interpretation:'separate preference-model semantics; no original DNA mutation'};
+ return root.HEWRSSourceCorrections.profile(row,{id:row.id,category:row.category,primary,accents,pattern:pattern(row),surface:row.texture_text||null,construction:row.construction_text||null,source:clone(row.source||null),interpretation:'separate preference-model semantics; no original DNA mutation'});
 }
 function create(connection){const profiles=new Map([...connection.features].map(([id,r])=>[id,profile(r)]));
  for(const id of connection.blazerConnection.pantIds){const p=connection.blazerConnection.knownPant(id);profiles.set('pants-'+id,profile({id:'pants-'+id,category:'pants',primary_text:p.record.shade,pattern_text:'Shared colour representative',texture_text:null,source:p.record.evidence}));}
