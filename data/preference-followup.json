@@ -1,0 +1,354 @@
+{
+  "schema": "hewrs.preference-followup.v1_23_0",
+  "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+  "training_topwear": [
+    "S01",
+    "S03",
+    "S05",
+    "S10",
+    "B01",
+    "B03",
+    "B06",
+    "B08"
+  ],
+  "validation_topwear": [
+    "S12",
+    "S16",
+    "B09",
+    "B13"
+  ],
+  "counts": {
+    "training": 8,
+    "validation": 4,
+    "total": 12,
+    "shirt": 6,
+    "whole_outfit": 6
+  },
+  "limitations": "Optional targeted comparisons. No prefilled feedback. S02 excluded; existing reserved topwear remain reserved. No assumed wearer skin-tone or brand preference.",
+  "records": [
+    {
+      "id": "FOLLOWUP_1230_01",
+      "topwear": "S01",
+      "partition": "training",
+      "a": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S01",
+        "shirtId": "DS035",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "shirt",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_02",
+      "topwear": "S03",
+      "partition": "training",
+      "a": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S03",
+        "shirtId": "DS017",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "shirt",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_03",
+      "topwear": "B01",
+      "partition": "training",
+      "a": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T015",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS021",
+        "state": "T015",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "shirt",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_04",
+      "topwear": "B06",
+      "partition": "training",
+      "a": {
+        "blazerId": "B06",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B06",
+        "pantId": "PB001",
+        "shirtId": "DS006",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "shirt",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_05",
+      "topwear": "S05/S10",
+      "partition": "training",
+      "a": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T019",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S10",
+        "shirtId": "DS022",
+        "state": "T030",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "whole_outfit",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_06",
+      "topwear": "S10",
+      "partition": "training",
+      "a": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T017",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S10",
+        "shirtId": "DS017",
+        "state": "T025",
+        "shoeId": "shoe-49",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "whole_outfit",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_07",
+      "topwear": "B03/B08",
+      "partition": "training",
+      "a": {
+        "blazerId": "B03",
+        "pantId": "PB001",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS005",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "whole_outfit",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_08",
+      "topwear": "B08",
+      "partition": "training",
+      "a": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "T046",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B08",
+        "pantId": "PG002",
+        "shirtId": "DS024",
+        "state": "T022",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "whole_outfit",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_09",
+      "topwear": "S12",
+      "partition": "validation",
+      "a": {
+        "suitId": "S12",
+        "shirtId": "DS014",
+        "state": "T017",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S12",
+        "shirtId": "DS021",
+        "state": "T017",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "shirt",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_10",
+      "topwear": "S16",
+      "partition": "validation",
+      "a": {
+        "suitId": "S16",
+        "shirtId": "DS035",
+        "state": "T019",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S16",
+        "shirtId": "DS022",
+        "state": "T019",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "shirt",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_11",
+      "topwear": "B09",
+      "partition": "validation",
+      "a": {
+        "blazerId": "B09",
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "T025",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B09",
+        "pantId": "PB001",
+        "shirtId": "DS024",
+        "state": "T022",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "whole_outfit",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    },
+    {
+      "id": "FOLLOWUP_1230_12",
+      "topwear": "B13",
+      "partition": "validation",
+      "a": {
+        "blazerId": "B13",
+        "pantId": "PG002",
+        "shirtId": "DS005",
+        "state": "T022",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B13",
+        "pantId": "PN002",
+        "shirtId": "DS022",
+        "state": "T015",
+        "shoeId": "shoe-49",
+        "watchId": "watch-P05"
+      },
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "focus": "whole_outfit",
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+      "authoring": "Source-validated choices, no winner or owner rating assigned. New shirt/complete-outfit comparisons, not repeat votes."
+    }
+  ]
+}

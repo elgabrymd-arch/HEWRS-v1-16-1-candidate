@@ -1,0 +1,55 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Original source inputs and historical score data remain byte-for-byte intact",
+      "passed": true,
+      "result": [
+        "data/inputs.json",
+        "data/inputs.js",
+        "vendor/approved-scores.js",
+        "vendor/hewrs-logic.js"
+      ]
+    },
+    {
+      "name": "All non-S02 canonical profiles retain their original calculations",
+      "passed": true,
+      "result": 135
+    },
+    {
+      "name": "All2350 historical shirt-tie lookups retain scores, holds and conflicts",
+      "passed": true,
+      "result": 2350
+    },
+    {
+      "name": "All112392 current index rows freshly recalculated; unchanged from V1.22.0",
+      "passed": true,
+      "result": {
+        "total": 112392,
+        "non_S02_unchanged": 110180,
+        "S02_rows": 2212,
+        "S02_score_changes": 0,
+        "S02_eligibility_changes": 0
+      }
+    },
+    {
+      "name": "20/1/2 policy, weather, valid-history and Favorites modules unchanged",
+      "passed": true,
+      "result": [
+        "src/option-set-policy.js",
+        "src/weather-context.js",
+        "src/automatic-weather.js",
+        "src/local-state.js",
+        "src/favorites-state.js",
+        "src/rotation-insights.js",
+        "src/tie-fidelity.js"
+      ]
+    },
+    {
+      "name": "Every848 original garment image hash and all physical IDs preserved",
+      "passed": true,
+      "result": 848
+    }
+  ]
+}

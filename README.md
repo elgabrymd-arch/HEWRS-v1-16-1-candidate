@@ -1,11 +1,19 @@
-# HEWRS V1.22.1 — faster startup and equivalent generation
+# HEWRS V1.23.0 — explicit acceptability learning
 
-Continue the existing V1.22.0 application. Open index.html through the existing HTTPS origin; the full directory is required.
+Executable continuation of V1.22.1. Existing Both work / Neither works responses
+now fit a separate bounded complete-outfit acceptability model. The original A/B
+learner and its evidence threshold are retained. Twelve new unlabelled shirt and
+whole-outfit comparisons supplement the original 24; no responses are preloaded.
 
-Home no longer waits for the 6 MB uncompressed option index or the hidden full-resolution outfit. Three integrity-pinned, dependency-ordered startup scripts replace 69 separate script requests. The outfit is restored when viewed and the unchanged index downloads on the first automatic generation. Failed index delivery can be retried with Generate; do not clear browser data.
+Start with `QUICK_START_V1_23_0.md`, `ACCEPTABILITY_MODEL_V1_23_0.md` and
+`V1230_IMPLEMENTATION_AUDIT.md`. Test evidence: `evidence/acceptability_v1_23_0/`.
+Source verification: `python -B tools/verify_v1230.py`.
 
-Repeated immutable metadata and accessory evaluations are memoized. The same candidate search, ranking, S02 source correction, 20/1/2 limits, weather, feedback learning, history and Favorites remain. The caches contain no final recommendation or user history; they do not substitute empty data or discard votes. Full learned generation can still take tens of seconds.
+The same wardrobe, IDs, 848 original images, original scores, S02 correction,
+20-option target, unique unanchored ties, two-use other-item limit, weather,
+wear/Favorites/history safeguards and lookbook renderer remain. No API is needed.
+Three startup scripts and lazy loading of the calculation index are preserved.
 
-See V1221_PERFORMANCE_AUDIT.md and evidence/performance_v1_22_1/AUDIT_SUMMARY.json for fresh evidence and limitations. No paid/private AI or GitHub deployment was performed.
-
-`python -B tools/verify_v1221.py` verifies exact delivered files and startup/bundle integrity. `python -B tools/rollback_v1221.py --output NEW_FOLDER` reconstructs exact V1.22.0 without browser data. Keep existing .git and browser data when manually updating.
+Owner feedback is never stored in this repository. Test labels and fixtures under
+`tests/` and `evidence/` are synthetic and MUST NOT be imported as personal answers.
+This source package is not a record of current live GitHub/Safari acceptance.

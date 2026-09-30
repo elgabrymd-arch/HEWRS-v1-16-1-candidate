@@ -1,0 +1,46 @@
+{
+  "passed": 8,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Home loader performs no request or storage write at construction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Concurrent index requests coalesce and retain exact content-pinned URL and SRI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Network failure cleans up and a second Generate can retry safely",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Thirty-second timeout ends wait without deleting data",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mismatched owner-source revision fails instead of using old S02 data",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Preloaded source-test/standalone index remains supported",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Slow boot warning is cancelled after successful Home readiness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Boot resource failure is actionable and never clears saved data",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

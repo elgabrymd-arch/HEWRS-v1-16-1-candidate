@@ -1,0 +1,171 @@
+{
+  "scope": "Synthetic fixture labels only, never owner feedback",
+  "passed": 30,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Cold model has two inactive channels and zero adjustment",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Both/Neither activate a separate acceptability model without A/B votes",
+      "passed": true,
+      "result": {
+        "comparisons": 16,
+        "label_occurrences": 32,
+        "unique_outfits": 24,
+        "positive": 12,
+        "negative": 12,
+        "groups": 8,
+        "positive_groups": 4,
+        "negative_groups": 4,
+        "conflicting_outfits": 0
+      }
+    },
+    {
+      "name": "Every same-outfit/context absolute label counts once despite repeat exposure",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "A/B responses never imply acceptable winner or unacceptable loser",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Old eight-informative/three-group A/B guard is not lowered",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Both/Neither cannot change directional coefficients",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "A/B feedback cannot change the separate acceptance fit",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "One acceptance class alone never activates acceptability",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Insufficient labels or single-group evidence does not activate acceptability",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Contradictory complete-outfit acceptance labels are quarantined, not averaged",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Repeated or reversed comparisons do not increase fitted data counts",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reserved A/B and acceptance feedback never affect either fit",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Even direct fit protects reserved topwear tagged incorrectly as training",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Import/add rejects reserved topwear reassigned to training",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reasons are preserved but never guessed or translated into extra labels",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "S02 remains excluded from both fits and from saving new votes",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Existing v1 feedback schema/source/IDs survive a read-only refit",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Import is a preview/merge; it does not replace original answers or wear/Favorites",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Pause stops both learned effects without dropping answers; resume restores fits",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Undo last exact response recomputes only the local preference model",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Corrupt/stale storage remains blocked, not emptied or overwritten",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Opposite acceptability labels reverse the fitted signal, without ID bonuses",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Combined adjustment is bounded; acceptance-only uses at most0.20",
+      "passed": true,
+      "result": {
+        "combined_active": true,
+        "relative_active": true,
+        "acceptability_active": true
+      }
+    },
+    {
+      "name": "Complete result discloses both active channels and their contributions",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Analytical two-channel bound safely covers clothing plus all shoes",
+      "passed": true,
+      "result": 3060
+    },
+    {
+      "name": "Malformed model status and tampered limits are rejected",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Twelve new pairs are source-eligible, with six shirt and six complete-look comparisons",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "New comparison bank has no repeated old pair, answer, model score or S02 image",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Reserved new groups are still reserved under import and core fitting",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Original directional coefficients/math remain equal to V1.22.1",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

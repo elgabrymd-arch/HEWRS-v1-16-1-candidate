@@ -1,0 +1,117 @@
+{
+  "revision": "hewrs.dual-outfit-learning.v1_23_0",
+  "id": "eb49074f",
+  "active": true,
+  "relative_active": false,
+  "enabled": true,
+  "counts": {
+    "directional": 0,
+    "informative": 0,
+    "topwear_groups": 0,
+    "neutral": 16,
+    "validation": 0,
+    "excluded": 0,
+    "duplicate_pairs": 0
+  },
+  "weights": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "feature_names": [
+    "tie_visual_prominence",
+    "competing_focal_elements",
+    "palette_saturation",
+    "layer_value_distance",
+    "light_tie_readability",
+    "open_collar",
+    "palette_coherence",
+    "shirt_depth",
+    "tie_pattern_contrast",
+    "shoe_formality",
+    "shoe_trouser_grounding",
+    "shoe_decoration"
+  ],
+  "bound": 0.35,
+  "acceptability": {
+    "active": true,
+    "weights": [
+      0.12275077,
+      0.01586559,
+      0.05007452,
+      0.00642573,
+      -0.00176293,
+      -0.2665599,
+      -0.00699005,
+      0.14226982,
+      0.07602949,
+      -0.00253493,
+      -0.02396634,
+      0.0147468
+    ],
+    "intercept": -0.03429489,
+    "bound": 0.2,
+    "counts": {
+      "comparisons": 16,
+      "label_occurrences": 32,
+      "unique_outfits": 24,
+      "positive": 12,
+      "negative": 12,
+      "groups": 8,
+      "positive_groups": 4,
+      "negative_groups": 4,
+      "conflicting_outfits": 0
+    },
+    "thresholds": {
+      "unique_outfits": 8,
+      "positive": 3,
+      "negative": 3,
+      "groups": 3,
+      "groups_per_label": 2
+    },
+    "reason": "Experimental acceptability adjustment from explicit Both/Neither. No garment is banned and no cause of a vote is inferred.",
+    "method": "Balanced logistic complete-outfit acceptability; centered semantic features; L2",
+    "validation": {
+      "unique_outfits": 0,
+      "positive": 0,
+      "negative": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "uncertain": 0,
+      "conflicting_outfits": 0,
+      "scope": "Reserved records are not fitted. Diagnostic sign agreement, not calibrated accuracy or approval."
+    },
+    "regularization": {
+      "lambda": 0.25,
+      "epochs": 240,
+      "class_weight": "balanced",
+      "deduplication": "exact complete outfit and context",
+      "conflict_policy": "exclude contradictory labels; preserve raw feedback",
+      "probability_calibrated": false
+    }
+  },
+  "reason": "Both/Neither acceptability is active. A/B ranking remains inactive until 8 informative choices span 3 training groups.",
+  "source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+  "regularization": {
+    "method": "pairwise logistic difference; L2",
+    "lambda": 0.2,
+    "epochs": 240,
+    "max_adjustment": 0.35,
+    "combined_bound": 0.35
+  },
+  "validation": {
+    "count": 0,
+    "correct": 0,
+    "ties": 0,
+    "scope": "Reserved A/B comparisons are never fitted. Provisional diagnostic, not a taste certificate."
+  }
+}

@@ -1,0 +1,510 @@
+{
+  "schema": "hewrs.outfit-preferences.v1",
+  "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "revision": 20,
+  "enabled": true,
+  "comparisons": [
+    {
+      "id": "pref_synthetic_0",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T019",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S01_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_1",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-49",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S01_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_2",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T046",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S03_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_3",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-8",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S03_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_4",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T019",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T029",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S05_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_5",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T029",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T029",
+        "shoeId": "shoe-49",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S05_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_6",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T039",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T019",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S10_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_7",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T039",
+        "shoeId": "shoe-49",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S10",
+        "shirtId": "DS009",
+        "state": "T039",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_S10_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_8",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T019",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T015",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B01_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_9",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T015",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B01",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T015",
+        "shoeId": "shoe-15",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B01_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_10",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B03",
+        "pantId": "PB001",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B03",
+        "pantId": "PB001",
+        "shirtId": "DS006",
+        "state": "T046",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B03_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_11",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B03",
+        "pantId": "PB001",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-15",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B03",
+        "pantId": "PB001",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-1",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B03_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_12",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B06",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "T046",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B06",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B06_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_13",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B06",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B06",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-49",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B06_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_14",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "T046",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B08_1",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_synthetic_15",
+      "created_at": "2026-09-29T20:00:00.000Z",
+      "a": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-49",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "PILOT_B08_2",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_1790741256827_3upyl3luf",
+      "created_at": "2026-09-30T04:07:36.827Z",
+      "a": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S01",
+        "shirtId": "DS035",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "vote": "both",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "FOLLOWUP_1230_01",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    },
+    {
+      "id": "pref_1790741258076_u1lddhq6g",
+      "created_at": "2026-09-30T04:07:38.076Z",
+      "a": {
+        "suitId": "S03",
+        "shirtId": "DS006",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "b": {
+        "suitId": "S03",
+        "shirtId": "DS017",
+        "state": "T033",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "vote": "neither",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": "FOLLOWUP_1230_02",
+      "context": {
+        "occasion": "clinic",
+        "requiredFormality": "any"
+      },
+      "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+    }
+  ]
+}

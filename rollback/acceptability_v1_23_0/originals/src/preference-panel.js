@@ -2,27 +2,23 @@
  * Source snapshots, vote tokens and detached renderers prevent stale/race commits. */
 (function(root){'use strict';
 const copy=x=>structuredClone(x),node=(t,s,c)=>{const n=document.createElement(t);if(s!==undefined)n.textContent=s;if(c)n.className=c;return n;};
-function create(h){const {connection,learning,openSheet,closeSheet,active,makeButton,selectField,onChanged,render,selectionItems}=h;let skipped=new Set(),followSkipped=new Set();
+function create(h){const {connection,learning,openSheet,closeSheet,active,makeButton,selectField,onChanged,render,selectionItems}=h;let skipped=new Set();
  const pilot=()=>root.HEWRS_PREFERENCE_PILOT;
  function data(){return learning.model();}
  function download(body,text,name){const blob=new Blob([text],{type:'application/json'}),url=URL.createObjectURL(blob),a=node('a','Save preference backup','lb-download');a.href=url;a.download=name;body.append(a);return()=>URL.revokeObjectURL(url);}
  function review(){let d;try{d=data();}catch(e){const {body,actions}=openSheet('Outfit preferences');body.append(node('p',e.message,'fx-warning'));actions.append(makeButton('Close',closeSheet));return;}
   let revoke=null;const {body,actions}=openSheet('Outfit preferences',{list:true,cancel:()=>revoke?.()});
-  const m=d.model,state=d.state;const title=node('h3',m.active?'Local learning is active':'Local learning');title.id='pref-learning-status';body.append(title,node('p',m.reason,'fx-caption'));
-  const stats=node('p',`A/B preference ranking: ${m.relative_active?'active':'inactive'} · ${m.counts.informative}/8 informative decisions · ${m.counts.topwear_groups} training groups`,'fx-caption');stats.id='pref-learning-counts';body.append(stats);
-  const ac=m.acceptability,accept=node('p',`Outfit acceptability: ${ac.active?'active':'inactive'} · ${ac.counts.positive} accepted / ${ac.counts.negative} rejected distinct training outfits · ${ac.counts.groups} groups`,'fx-caption');accept.id='pref-acceptability-status';body.append(accept,node('p',ac.reason,'fx-caption'));
-  body.append(node('p',`${m.counts.validation} reserved comparisons are not fitted. Repeated identical outfit labels are counted once. Conflicting labels excluded from acceptance fit: ${ac.counts.conflicting_outfits}.`,'fx-caption'));
+  const m=d.model,state=d.state;const title=node('h3',m.active?'Local preference learning is active':'Local preference learning');title.id='pref-learning-status';body.append(title,node('p',m.reason,'fx-caption'));
+  const stats=node('p',`${m.counts.informative} informative A/B choices · ${m.counts.topwear_groups} training topwear groups · ${m.counts.validation} validation records`,'fx-caption');stats.id='pref-learning-counts';body.append(stats);
   body.append(node('p','Used only by Research-based wardrobe generator. Curated and live visual methods are not silently replaced.','fx-caption'));
   if(!learning.status().persistent)body.append(node('p','Session memory only: export these preferences before closing this page.','fx-warning'));
   body.append(node('p','Your wardrobe, original score history, Favorites and wear log are separate. Nothing learns from a viewed, skipped or unlogged outfit. No provider is contacted.','fx-caption'));
-  body.append(node('p','Both work teaches that both complete outfits work; Neither works teaches that neither does. Prefer A/B is relative only and never labels the loser unacceptable. The A/B guard is unchanged. Acceptability has a separate balanced-evidence guard. Both adjustments together remain within ±0.35; they do not ban garments or claim improved taste.','fx-caption'));
-  const done=new Set(state.comparisons.map(x=>x.pilot_id).filter(x=>pilot().records.some(p=>p.id===x)));
-  const further=root.HEWRS_PREFERENCE_FOLLOWUP,followDone=state.comparisons.filter(x=>further.records.some(p=>p.id===x.pilot_id)).length;
-  const follow=makeButton(`New shirt & complete-outfit comparisons (${followDone}/${further.records.length} saved)`,()=>{followSkipped=new Set();nextFollowup();},true);follow.id='pref-start-followup';body.append(follow,node('p','These are new comparisons, not a repeat of the 24 you already completed. Six compare shirts and six compare finished looks; 8 train and 4 stay reserved. Existing answers are reused automatically.','fx-caption'));
+  body.append(node('p','Ranking remains the baseline until at least 8 informative A/B choices cover 3 training topwear groups. Both work / Neither works are saved for review, not converted into invented preferences. The experimental adjustment is bounded to ±0.35; this is not proof of improved taste.','fx-caption'));
+  const done=new Set(state.comparisons.map(x=>x.pilot_id).filter(Boolean));
   const start=makeButton(`Compare pilot outfits (${done.size}/24 saved)`,()=>{skipped=new Set();nextPilot();},true);start.id='pref-start-pilot';body.append(start);
   const current=makeButton('Compare two current options',chooseCurrent);current.id='pref-compare-current';body.append(current);
   const pause=makeButton(state.enabled?'Pause learned ranking':'Enable learned ranking',async()=>{await learning.exclusive(()=>learning.setEnabled(!state.enabled,d.token));onChanged();review();});pause.id='pref-learning-toggle';body.append(pause);
-  const details=makeButton('Model details and held-out checks',()=>{const {body,actions}=openSheet('Preference model details',{list:true});body.append(node('p','Training A/B responses fit relative ranking; training Both/Neither responses fit separate complete-outfit acceptability. Reserved groups are never fitted. Check both channels separately; provisional validation is not an independent certification.','fx-caption'),node('pre',JSON.stringify(m,null,2)));actions.append(makeButton('Back',review));});details.id='pref-model-details';body.append(details);
+  const details=makeButton('Model details and held-out checks',()=>{const {body,actions}=openSheet('Preference model details',{list:true});body.append(node('p','Only training A/B comparisons fit coefficients. Reserved validation topwear is never used in fitting. A small validation count is not a certification.','fx-caption'),node('pre',JSON.stringify(m,null,2)));actions.append(makeButton('Back',review));});details.id='pref-model-details';body.append(details);
   const exp=makeButton('Export outfit preferences',()=>{revoke?.();revoke=download(body,learning.exportText(),'HEWRS_OUTFIT_PREFERENCES_'+new Date().toISOString().slice(0,10)+'.json');});exp.id='pref-export';body.append(exp);
   const input=node('input');input.type='file';input.accept='.json,application/json';input.id='pref-import-file';input.setAttribute('aria-label','Import separate outfit preferences');input.onchange=async()=>{try{const file=input.files?.[0];if(!file)return;if(file.size>2500000)throw Error('Preference backup is too large');const p=learning.previewImport(await file.text());const {body,actions}=openSheet('Import outfit preferences',{list:true});body.append(node('p',`${p.added} new comparisons; ${p.already_saved} already saved. Existing learning on/off setting is retained. No wear or Favorites records are imported.`));actions.append(makeButton('Cancel',review),makeButton('Confirm preference merge',async()=>{await learning.exclusive(()=>learning.merge(p));onChanged();review();},true));}catch(e){h.error(e);}};body.append(node('label','Import a preference backup'),input);
   if(state.comparisons.length){const last=state.comparisons.at(-1),undo=makeButton('Undo last preference',()=>{const {body,actions}=openSheet('Undo last preference');body.append(node('p','Remove only the last saved comparison? No wear or Favorites will change.'));actions.append(makeButton('Cancel',review),makeButton('Confirm undo',async()=>{await learning.exclusive(()=>learning.undo(last.id,d.token));onChanged();review();}));});undo.id='pref-undo';body.append(undo);}
@@ -32,11 +28,6 @@ function create(h){const {connection,learning,openSheet,closeSheet,active,makeBu
  function nextPilot(){const d=data(),done=new Set(d.state.comparisons.map(x=>x.pilot_id).filter(Boolean));
   const r=pilot().records.find(x=>!done.has(x.id)&&!skipped.has(x.id));if(!r){const {body,actions}=openSheet('Comparison session finished');body.append(node('p','No unreviewed pilot pair remains in this session. Skipped pairs have no vote and remain available the next time you open the pilot.'));actions.append(makeButton('View learning status',review));return;}showPair(r,nextPilot,()=>{skipped.add(r.id);nextPilot();});
  }
- function nextFollowup(){const d=data(),done=new Set(d.state.comparisons.map(x=>x.pilot_id).filter(Boolean)),bank=root.HEWRS_PREFERENCE_FOLLOWUP;
-  const r=bank.records.find(x=>!done.has(x.id)&&!followSkipped.has(x.id));
-  if(!r){const {body,actions}=openSheet('New comparison session finished');body.append(node('p','No unanswered new pair remains in this session. Skipped pairs stay unanswered. Existing comparisons were not repeated or changed.'));actions.append(makeButton('View learning status',review));return;}
-  showPair(r,nextFollowup,()=>{followSkipped.add(r.id);nextFollowup();});
- }
  function chooseCurrent(){const options=h.options().map(copy);if(options.length<2){const {body,actions}=openSheet('Compare current options');body.append(node('p','Generate at least two outfits, or use the pilot to compare source-verified alternatives.'));actions.append(makeButton('Back',review));return;}
   const {body,actions}=openSheet('Choose two outfits',{list:true});const choices=options.map((s,i)=>({value:String(i),label:`Option ${i+1} · ${s.suitId||s.blazerId} · ${s.shirtId} · ${s.state} · ${s.shoeId}`}));
   const a=selectField('A',choices,'0','pref-option-A'),b=selectField('B',choices,'1','pref-option-B');body.append(a.wrap,b.wrap);actions.append(makeButton('Cancel',review),makeButton('View comparison',()=>{
@@ -45,7 +36,7 @@ function create(h){const {connection,learning,openSheet,closeSheet,active,makeBu
  }
  async function showPair(pair,next,skip){const d=data(),p=copy(pair);let cancelled=false,ready=false;
   const {body,actions,token}=openSheet('Which complete outfit do you prefer?',{list:true,cancel:()=>{cancelled=true;}});
-  const ok=()=>!cancelled&&active(token),bank=root.HEWRS_PREFERENCE_FOLLOWUP.records.some(x=>x.id===p.id)?root.HEWRS_PREFERENCE_FOLLOWUP:pilot();body.append(node('p',(p.partition==='validation'?'Reserved check: saved for evaluation, never fitted. ':'Training: A/B teaches relative preference; Both/Neither teaches complete-outfit acceptability. ')+(p.id?`${bank.records.findIndex(x=>x.id===p.id)+1} / ${bank.records.length}. `:'')+(p.focus?`Focus: ${p.focus==='shirt'?'only the shirt changes':p.focus==='whole_outfit'?'compare the complete looks':p.focus}.`:''),'fx-caption'));
+  const ok=()=>!cancelled&&active(token);body.append(node('p',(p.partition==='validation'?'Held-out comparison: saved for checking, not fitted. ':'Training comparison: only your explicit A/B choice can affect the local model. ')+(p.id?`${pilot().records.findIndex(x=>x.id===p.id)+1} / 24.`:''),'fx-caption'));
   body.append(node('p','Weather-neutral styling comparison. Neither outfit is logged as worn. Method labels and calculated scores are hidden; image order does not imply a winner.','fx-caption'));
   const grid=node('div',undefined,'pref-compare-grid');grid.id='pref-pair-grid';body.append(grid);const cards=[];
   for(const side of ['A','B']){const s=p[side.toLowerCase()],card=node('section',undefined,'pref-compare-card'),heading=node('h3','Outfit '+side),img=node('img');img.alt='Outfit '+side+' from your registered wardrobe';img.id='pref-image-'+side;card.append(heading,img);const toggle=makeButton('Collar detail',()=>{const detail=toggle.dataset.detail!=='true';toggle.dataset.detail=String(detail);img.src=detail?cards.find(x=>x.side===side).images.detail:cards.find(x=>x.side===side).images.full;toggle.textContent=detail?'Full outfit':'Collar detail';});toggle.disabled=true;card.append(toggle);
@@ -67,7 +58,7 @@ function create(h){const {connection,learning,openSheet,closeSheet,active,makeBu
    ready=true;for(const b of voteBtns)b.disabled=false;info.textContent='Both source renders loaded. Choose only when you have compared the complete looks.';
   }catch(e){if(ok())info.textContent='Comparison unavailable: '+e.message+'. No preference saved.';}
  }
- return Object.freeze({open:review,pilot:nextPilot,followup:nextFollowup,compare:chooseCurrent,showPair});
+ return Object.freeze({open:review,pilot:nextPilot,compare:chooseCurrent,showPair});
 }
 root.HEWRSPreferencePanel=Object.freeze({create});
 })(globalThis);
