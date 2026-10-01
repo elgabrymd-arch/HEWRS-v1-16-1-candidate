@@ -1,0 +1,64 @@
+{
+  "schema": "hewrs.card-layout.source.v1_23_2",
+  "passed": 6,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Exact model unchanged from shoe-15 baseline for all connected shirts, ties, suits, shoes, trousers and watches",
+      "passed": true,
+      "result": 238
+    },
+    {
+      "name": "All image and assembly files, source corrections and thumbnails byte-identical to V1.23.1",
+      "passed": true,
+      "result": 1068
+    },
+    {
+      "name": "Every non-presentation executable file unchanged including all engine,source,weather,storage and preference code",
+      "passed": true,
+      "result": 2629
+    },
+    {
+      "name": "Generation,apply,feedback,history and scoring functions in application.js preserved exactly",
+      "passed": true,
+      "result": [
+        "apply",
+        "generate",
+        "selectOption",
+        "restoreInitialOutfit",
+        "itemsFor",
+        "largerOutfit",
+        "details",
+        "startLog",
+        "scoreDetails",
+        "exportOptionCards",
+        "setCardLayout"
+      ]
+    },
+    {
+      "name": "All navigation,view,export,history and preference controls retained exactly once",
+      "passed": true,
+      "result": [
+        "avatar",
+        "prev-option",
+        "next-option",
+        "full-view",
+        "detail-view",
+        "large-view",
+        "layout-cards",
+        "layout-standard",
+        "export-option-cards",
+        "outfit-preferences",
+        "record-wear",
+        "regenerate",
+        "option-count",
+        "card-item-pictures"
+      ]
+    },
+    {
+      "name": "Presentation module does not write private state or generate/re-rank outfits",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

@@ -1,0 +1,1772 @@
+{
+  "schema": "hewrs.card-layout.browser.v1_23_2",
+  "scope": "Fresh actual rebuilt bundle and actual image bytes in offline Chromium; isolated synthetic memory storage; no live site, physical Safari, network SRI execution or current-device state verified.",
+  "passed": 56,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Actual new runtime starts with 3 scripts, no index, and no writes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Home screenshot pixel-identical to previous shoe-15 release",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_TIED native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_OPEN native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S11_DS035_OPEN native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S02_SOURCE_WARNING native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Existing S02 appearance-source warning retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B01_TIED native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B02_OPEN native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B03_WATCH native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SHIRT_ONLY native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SHOE8_CONTROL native outfit pixels and all item IDs unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Manual rendering does not write stored history, Favorites or feedback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320x568 keeps full-body canvas left and real items right",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320x568 picture access visible initially and bottom navigation inside viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320x568 shirt,tie,shoe images decoded and visible without scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320x568 thumbnail touch controls at least44px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x350 keeps full-body canvas left and real items right",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x350 picture access visible initially and bottom navigation inside viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x350 thumbnail touch controls at least44px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x780 keeps full-body canvas left and real items right",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x780 picture access visible initially and bottom navigation inside viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x780 shirt,tie,shoe images decoded and visible without scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x780 thumbnail touch controls at least44px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x844 keeps full-body canvas left and real items right",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x844 picture access visible initially and bottom navigation inside viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x844 shirt,tie,shoe images decoded and visible without scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390x844 thumbnail touch controls at least44px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "430x932 keeps full-body canvas left and real items right",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "430x932 picture access visible initially and bottom navigation inside viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "430x932 shirt,tie,shoe images decoded and visible without scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "430x932 thumbnail touch controls at least44px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1280x1000 keeps full-body canvas left and real items right",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1280x1000 picture access visible initially and bottom navigation inside viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1280x1000 shirt,tie,shoe images decoded and visible without scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1280x1000 thumbnail touch controls at least44px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Tap shoe photo opens source-photo enlargement at the correct ID",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Item pictures opens every current role including ID/name-only watch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Short350px viewport picture control opens an accessible scrolling sheet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Standard view still available with details hidden intentionally",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Collar detail retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Existing full-outfit enlargement retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All new picture/view controls preserve native pixels,selection,preferences and storage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Failed selection keeps previous coherent card and native image",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancelled render keeps previous coherent card and native image",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Image error reports unavailability without inventing a replacement identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PNG card export byte-identical to corrected shoe-15 baseline",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual Generate button produces a verified nonempty anchored list",
+      "passed": true,
+      "detail": {
+        "seconds": 1.136,
+        "count": 20,
+        "method": "research",
+        "anchors": [
+          "S05",
+          "DS001",
+          "shoe-15"
+        ],
+        "status": "candidate_recommendation"
+      }
+    },
+    {
+      "name": "Every real generated option has matching ID/name/pictures and returns to top on navigation",
+      "passed": true,
+      "detail": 20
+    },
+    {
+      "name": "Previous button and visible option count stay accurate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Self-contained HTML export retains actual IDs and decoded outfit pictures",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HTML export does not change saved state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Only synthetic session writes occurred; no wear,Favorites,feedback,or sentinel modification",
+      "passed": true,
+      "detail": [
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1",
+        "hewrs:connected-app:v1"
+      ]
+    },
+    {
+      "name": "Home remains one phone screen after all navigation",
+      "passed": true,
+      "detail": {
+        "h": 706,
+        "s": 706,
+        "w": 390
+      }
+    },
+    {
+      "name": "Existing picker Cancel still retains preferences",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No unexpected JavaScript errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "scrollTop": 0,
+      "horizontalOverflow": false,
+      "avatar": {
+        "x": 18.59375,
+        "y": 232.46875,
+        "width": 109.921875,
+        "height": 303.265625,
+        "right": 128.515625,
+        "bottom": 535.734375
+      },
+      "items": {
+        "x": 136.515625,
+        "y": 232.46875,
+        "width": 164.890625,
+        "height": 335,
+        "right": 301.40625,
+        "bottom": 567.46875
+      },
+      "card": {
+        "x": 9.59375,
+        "y": 126.5,
+        "width": 300.8125,
+        "height": 512.96875,
+        "right": 310.40625,
+        "bottom": 639.46875
+      },
+      "nav": {
+        "x": 0,
+        "y": 513,
+        "width": 320,
+        "height": 55,
+        "right": 320,
+        "bottom": 568
+      },
+      "navFullyVisible": true,
+      "pictures": [
+        {
+          "id": "DS001",
+          "decoded": true,
+          "visible": true,
+          "x": 136.515625,
+          "y": 299.15625,
+          "width": 44,
+          "height": 52,
+          "right": 180.515625,
+          "bottom": 351.15625
+        },
+        {
+          "id": "T017",
+          "decoded": true,
+          "visible": true,
+          "x": 136.515625,
+          "y": 361.15625,
+          "width": 44,
+          "height": 52,
+          "right": 180.515625,
+          "bottom": 413.15625
+        },
+        {
+          "id": "shoe-15",
+          "decoded": true,
+          "visible": true,
+          "x": 136.515625,
+          "y": 423.15625,
+          "width": 44,
+          "height": 52,
+          "right": 180.515625,
+          "bottom": 475.15625
+        }
+      ],
+      "pictureControlVisible": true,
+      "buttons": [
+        {
+          "id": "card-item-pictures",
+          "x": 230.15625,
+          "y": 165.46875,
+          "width": 71.25,
+          "height": 44,
+          "right": 301.40625,
+          "bottom": 209.46875
+        },
+        {
+          "id": "Enlarge shirt DS001 \u2014 White; Solid",
+          "x": 136.515625,
+          "y": 299.15625,
+          "width": 44,
+          "height": 52,
+          "right": 180.515625,
+          "bottom": 351.15625
+        },
+        {
+          "id": "Enlarge tie T017 \u2014 Pale blue / white paisley",
+          "x": 136.515625,
+          "y": 361.15625,
+          "width": 44,
+          "height": 52,
+          "right": 180.515625,
+          "bottom": 413.15625
+        },
+        {
+          "id": "Enlarge shoes shoe-15 \u2014 Loro Piana Loafers \u2014 Warm Brown Suede Penny",
+          "x": 136.515625,
+          "y": 423.15625,
+          "width": 44,
+          "height": 52,
+          "right": 180.515625,
+          "bottom": 475.15625
+        },
+        {
+          "id": "prev-option",
+          "x": 18.59375,
+          "y": 584.46875,
+          "width": 44,
+          "height": 44,
+          "right": 62.59375,
+          "bottom": 628.46875
+        },
+        {
+          "id": "full-view",
+          "x": 68.59375,
+          "y": 584.46875,
+          "width": 56.1875,
+          "height": 44,
+          "right": 124.78125,
+          "bottom": 628.46875
+        },
+        {
+          "id": "detail-view",
+          "x": 127.78125,
+          "y": 584.46875,
+          "width": 67.1875,
+          "height": 44,
+          "right": 194.96875,
+          "bottom": 628.46875
+        },
+        {
+          "id": "large-view",
+          "x": 197.96875,
+          "y": 584.46875,
+          "width": 53.4375,
+          "height": 44,
+          "right": 251.40625,
+          "bottom": 628.46875
+        },
+        {
+          "id": "next-option",
+          "x": 257.40625,
+          "y": 584.46875,
+          "width": 44,
+          "height": 44,
+          "right": 301.40625,
+          "bottom": 628.46875
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 350,
+      "scrollTop": 0,
+      "horizontalOverflow": false,
+      "avatar": {
+        "x": 22.6875,
+        "y": 229.78125,
+        "width": 143.875,
+        "height": 396.953125,
+        "right": 166.5625,
+        "bottom": 626.734375
+      },
+      "items": {
+        "x": 176.5625,
+        "y": 229.78125,
+        "width": 190.75,
+        "height": 365.15625,
+        "right": 367.3125,
+        "bottom": 594.9375
+      },
+      "card": {
+        "x": 11.6875,
+        "y": 119,
+        "width": 366.625,
+        "height": 581.734375,
+        "right": 378.3125,
+        "bottom": 700.734375
+      },
+      "nav": {
+        "x": 0,
+        "y": 295,
+        "width": 390,
+        "height": 55,
+        "right": 390,
+        "bottom": 350
+      },
+      "navFullyVisible": true,
+      "pictures": [
+        {
+          "id": "DS001",
+          "decoded": true,
+          "visible": false,
+          "x": 176.5625,
+          "y": 305.765625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 361.765625
+        },
+        {
+          "id": "T017",
+          "decoded": true,
+          "visible": false,
+          "x": 176.5625,
+          "y": 375.765625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 431.765625
+        },
+        {
+          "id": "shoe-15",
+          "decoded": true,
+          "visible": false,
+          "x": 176.5625,
+          "y": 445.765625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 501.765625
+        }
+      ],
+      "pictureControlVisible": true,
+      "buttons": [
+        {
+          "id": "card-item-pictures",
+          "x": 296.0625,
+          "y": 162.78125,
+          "width": 71.25,
+          "height": 44,
+          "right": 367.3125,
+          "bottom": 206.78125
+        },
+        {
+          "id": "Enlarge shirt DS001 \u2014 White; Solid",
+          "x": 176.5625,
+          "y": 305.765625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 361.765625
+        },
+        {
+          "id": "Enlarge tie T017 \u2014 Pale blue / white paisley",
+          "x": 176.5625,
+          "y": 375.765625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 431.765625
+        },
+        {
+          "id": "Enlarge shoes shoe-15 \u2014 Loro Piana Loafers \u2014 Warm Brown Suede Penny",
+          "x": 176.5625,
+          "y": 445.765625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 501.765625
+        },
+        {
+          "id": "prev-option",
+          "x": 22.6875,
+          "y": 643.734375,
+          "width": 44,
+          "height": 44,
+          "right": 66.6875,
+          "bottom": 687.734375
+        },
+        {
+          "id": "full-view",
+          "x": 75.453125,
+          "y": 643.734375,
+          "width": 76.671875,
+          "height": 44,
+          "right": 152.125,
+          "bottom": 687.734375
+        },
+        {
+          "id": "detail-view",
+          "x": 157.890625,
+          "y": 643.734375,
+          "width": 92.171875,
+          "height": 44,
+          "right": 250.0625,
+          "bottom": 687.734375
+        },
+        {
+          "id": "large-view",
+          "x": 255.84375,
+          "y": 643.734375,
+          "width": 58.703125,
+          "height": 44,
+          "right": 314.546875,
+          "bottom": 687.734375
+        },
+        {
+          "id": "next-option",
+          "x": 323.3125,
+          "y": 643.734375,
+          "width": 44,
+          "height": 44,
+          "right": 367.3125,
+          "bottom": 687.734375
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 780,
+      "scrollTop": 0,
+      "horizontalOverflow": false,
+      "avatar": {
+        "x": 22.6875,
+        "y": 237.28125,
+        "width": 143.875,
+        "height": 396.953125,
+        "right": 166.5625,
+        "bottom": 634.234375
+      },
+      "items": {
+        "x": 176.5625,
+        "y": 237.28125,
+        "width": 190.75,
+        "height": 365.15625,
+        "right": 367.3125,
+        "bottom": 602.4375
+      },
+      "card": {
+        "x": 11.6875,
+        "y": 126.5,
+        "width": 366.625,
+        "height": 581.734375,
+        "right": 378.3125,
+        "bottom": 708.234375
+      },
+      "nav": {
+        "x": 0,
+        "y": 725,
+        "width": 390,
+        "height": 55,
+        "right": 390,
+        "bottom": 780
+      },
+      "navFullyVisible": true,
+      "pictures": [
+        {
+          "id": "DS001",
+          "decoded": true,
+          "visible": true,
+          "x": 176.5625,
+          "y": 313.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 369.265625
+        },
+        {
+          "id": "T017",
+          "decoded": true,
+          "visible": true,
+          "x": 176.5625,
+          "y": 383.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 439.265625
+        },
+        {
+          "id": "shoe-15",
+          "decoded": true,
+          "visible": true,
+          "x": 176.5625,
+          "y": 453.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 509.265625
+        }
+      ],
+      "pictureControlVisible": true,
+      "buttons": [
+        {
+          "id": "card-item-pictures",
+          "x": 296.0625,
+          "y": 170.28125,
+          "width": 71.25,
+          "height": 44,
+          "right": 367.3125,
+          "bottom": 214.28125
+        },
+        {
+          "id": "Enlarge shirt DS001 \u2014 White; Solid",
+          "x": 176.5625,
+          "y": 313.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 369.265625
+        },
+        {
+          "id": "Enlarge tie T017 \u2014 Pale blue / white paisley",
+          "x": 176.5625,
+          "y": 383.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 439.265625
+        },
+        {
+          "id": "Enlarge shoes shoe-15 \u2014 Loro Piana Loafers \u2014 Warm Brown Suede Penny",
+          "x": 176.5625,
+          "y": 453.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 509.265625
+        },
+        {
+          "id": "prev-option",
+          "x": 22.6875,
+          "y": 651.234375,
+          "width": 44,
+          "height": 44,
+          "right": 66.6875,
+          "bottom": 695.234375
+        },
+        {
+          "id": "full-view",
+          "x": 75.453125,
+          "y": 651.234375,
+          "width": 76.671875,
+          "height": 44,
+          "right": 152.125,
+          "bottom": 695.234375
+        },
+        {
+          "id": "detail-view",
+          "x": 157.890625,
+          "y": 651.234375,
+          "width": 92.171875,
+          "height": 44,
+          "right": 250.0625,
+          "bottom": 695.234375
+        },
+        {
+          "id": "large-view",
+          "x": 255.84375,
+          "y": 651.234375,
+          "width": 58.703125,
+          "height": 44,
+          "right": 314.546875,
+          "bottom": 695.234375
+        },
+        {
+          "id": "next-option",
+          "x": 323.3125,
+          "y": 651.234375,
+          "width": 44,
+          "height": 44,
+          "right": 367.3125,
+          "bottom": 695.234375
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollTop": 0,
+      "horizontalOverflow": false,
+      "avatar": {
+        "x": 22.6875,
+        "y": 237.28125,
+        "width": 143.875,
+        "height": 396.953125,
+        "right": 166.5625,
+        "bottom": 634.234375
+      },
+      "items": {
+        "x": 176.5625,
+        "y": 237.28125,
+        "width": 190.75,
+        "height": 365.15625,
+        "right": 367.3125,
+        "bottom": 602.4375
+      },
+      "card": {
+        "x": 11.6875,
+        "y": 126.5,
+        "width": 366.625,
+        "height": 581.734375,
+        "right": 378.3125,
+        "bottom": 708.234375
+      },
+      "nav": {
+        "x": 0,
+        "y": 789,
+        "width": 390,
+        "height": 55,
+        "right": 390,
+        "bottom": 844
+      },
+      "navFullyVisible": true,
+      "pictures": [
+        {
+          "id": "DS001",
+          "decoded": true,
+          "visible": true,
+          "x": 176.5625,
+          "y": 313.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 369.265625
+        },
+        {
+          "id": "T017",
+          "decoded": true,
+          "visible": true,
+          "x": 176.5625,
+          "y": 383.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 439.265625
+        },
+        {
+          "id": "shoe-15",
+          "decoded": true,
+          "visible": true,
+          "x": 176.5625,
+          "y": 453.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 509.265625
+        }
+      ],
+      "pictureControlVisible": true,
+      "buttons": [
+        {
+          "id": "card-item-pictures",
+          "x": 296.0625,
+          "y": 170.28125,
+          "width": 71.25,
+          "height": 44,
+          "right": 367.3125,
+          "bottom": 214.28125
+        },
+        {
+          "id": "Enlarge shirt DS001 \u2014 White; Solid",
+          "x": 176.5625,
+          "y": 313.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 369.265625
+        },
+        {
+          "id": "Enlarge tie T017 \u2014 Pale blue / white paisley",
+          "x": 176.5625,
+          "y": 383.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 439.265625
+        },
+        {
+          "id": "Enlarge shoes shoe-15 \u2014 Loro Piana Loafers \u2014 Warm Brown Suede Penny",
+          "x": 176.5625,
+          "y": 453.265625,
+          "width": 48,
+          "height": 56,
+          "right": 224.5625,
+          "bottom": 509.265625
+        },
+        {
+          "id": "prev-option",
+          "x": 22.6875,
+          "y": 651.234375,
+          "width": 44,
+          "height": 44,
+          "right": 66.6875,
+          "bottom": 695.234375
+        },
+        {
+          "id": "full-view",
+          "x": 75.453125,
+          "y": 651.234375,
+          "width": 76.671875,
+          "height": 44,
+          "right": 152.125,
+          "bottom": 695.234375
+        },
+        {
+          "id": "detail-view",
+          "x": 157.890625,
+          "y": 651.234375,
+          "width": 92.171875,
+          "height": 44,
+          "right": 250.0625,
+          "bottom": 695.234375
+        },
+        {
+          "id": "large-view",
+          "x": 255.84375,
+          "y": 651.234375,
+          "width": 58.703125,
+          "height": 44,
+          "right": 314.546875,
+          "bottom": 695.234375
+        },
+        {
+          "id": "next-option",
+          "x": 323.3125,
+          "y": 651.234375,
+          "width": 44,
+          "height": 44,
+          "right": 367.3125,
+          "bottom": 695.234375
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "scrollTop": 0,
+      "horizontalOverflow": false,
+      "avatar": {
+        "x": 23.890625,
+        "y": 237.28125,
+        "width": 160.046875,
+        "height": 441.5625,
+        "right": 183.9375,
+        "bottom": 678.84375
+      },
+      "items": {
+        "x": 193.9375,
+        "y": 237.28125,
+        "width": 212.171875,
+        "height": 365.15625,
+        "right": 406.109375,
+        "bottom": 602.4375
+      },
+      "card": {
+        "x": 12.890625,
+        "y": 126.5,
+        "width": 404.21875,
+        "height": 626.34375,
+        "right": 417.109375,
+        "bottom": 752.84375
+      },
+      "nav": {
+        "x": 0,
+        "y": 877,
+        "width": 430,
+        "height": 55,
+        "right": 430,
+        "bottom": 932
+      },
+      "navFullyVisible": true,
+      "pictures": [
+        {
+          "id": "DS001",
+          "decoded": true,
+          "visible": true,
+          "x": 193.9375,
+          "y": 313.265625,
+          "width": 48,
+          "height": 56,
+          "right": 241.9375,
+          "bottom": 369.265625
+        },
+        {
+          "id": "T017",
+          "decoded": true,
+          "visible": true,
+          "x": 193.9375,
+          "y": 383.265625,
+          "width": 48,
+          "height": 56,
+          "right": 241.9375,
+          "bottom": 439.265625
+        },
+        {
+          "id": "shoe-15",
+          "decoded": true,
+          "visible": true,
+          "x": 193.9375,
+          "y": 453.265625,
+          "width": 48,
+          "height": 56,
+          "right": 241.9375,
+          "bottom": 509.265625
+        }
+      ],
+      "pictureControlVisible": true,
+      "buttons": [
+        {
+          "id": "card-item-pictures",
+          "x": 334.859375,
+          "y": 170.28125,
+          "width": 71.25,
+          "height": 44,
+          "right": 406.109375,
+          "bottom": 214.28125
+        },
+        {
+          "id": "Enlarge shirt DS001 \u2014 White; Solid",
+          "x": 193.9375,
+          "y": 313.265625,
+          "width": 48,
+          "height": 56,
+          "right": 241.9375,
+          "bottom": 369.265625
+        },
+        {
+          "id": "Enlarge tie T017 \u2014 Pale blue / white paisley",
+          "x": 193.9375,
+          "y": 383.265625,
+          "width": 48,
+          "height": 56,
+          "right": 241.9375,
+          "bottom": 439.265625
+        },
+        {
+          "id": "Enlarge shoes shoe-15 \u2014 Loro Piana Loafers \u2014 Warm Brown Suede Penny",
+          "x": 193.9375,
+          "y": 453.265625,
+          "width": 48,
+          "height": 56,
+          "right": 241.9375,
+          "bottom": 509.265625
+        },
+        {
+          "id": "prev-option",
+          "x": 23.890625,
+          "y": 695.84375,
+          "width": 44,
+          "height": 44,
+          "right": 67.890625,
+          "bottom": 739.84375
+        },
+        {
+          "id": "full-view",
+          "x": 86.046875,
+          "y": 695.84375,
+          "width": 76.671875,
+          "height": 44,
+          "right": 162.71875,
+          "bottom": 739.84375
+        },
+        {
+          "id": "detail-view",
+          "x": 177.890625,
+          "y": 695.84375,
+          "width": 92.171875,
+          "height": 44,
+          "right": 270.0625,
+          "bottom": 739.84375
+        },
+        {
+          "id": "large-view",
+          "x": 285.234375,
+          "y": 695.84375,
+          "width": 58.703125,
+          "height": 44,
+          "right": 343.9375,
+          "bottom": 739.84375
+        },
+        {
+          "id": "next-option",
+          "x": 362.109375,
+          "y": 695.84375,
+          "width": 44,
+          "height": 44,
+          "right": 406.109375,
+          "bottom": 739.84375
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 1000,
+      "scrollTop": 0,
+      "horizontalOverflow": false,
+      "avatar": {
+        "x": 237.25,
+        "y": 265.6875,
+        "width": 246.453125,
+        "height": 680,
+        "right": 483.703125,
+        "bottom": 945.6875
+      },
+      "items": {
+        "x": 585.046875,
+        "y": 265.6875,
+        "width": 537.046875,
+        "height": 515.640625,
+        "right": 1122.09375,
+        "bottom": 781.328125
+      },
+      "card": {
+        "x": 134.90625,
+        "y": 126.5,
+        "width": 1010.1875,
+        "height": 910.1875,
+        "right": 1145.09375,
+        "bottom": 1036.6875
+      },
+      "nav": {
+        "x": 91,
+        "y": 945,
+        "width": 1098,
+        "height": 55,
+        "right": 1189,
+        "bottom": 1000
+      },
+      "navFullyVisible": true,
+      "pictures": [
+        {
+          "id": "DS001",
+          "decoded": true,
+          "visible": true,
+          "x": 585.046875,
+          "y": 347.359375,
+          "width": 78,
+          "height": 91,
+          "right": 663.046875,
+          "bottom": 438.359375
+        },
+        {
+          "id": "T017",
+          "decoded": true,
+          "visible": true,
+          "x": 585.046875,
+          "y": 458.359375,
+          "width": 78,
+          "height": 91,
+          "right": 663.046875,
+          "bottom": 549.359375
+        },
+        {
+          "id": "shoe-15",
+          "decoded": true,
+          "visible": true,
+          "x": 585.046875,
+          "y": 569.359375,
+          "width": 78,
+          "height": 91,
+          "right": 663.046875,
+          "bottom": 660.359375
+        }
+      ],
+      "pictureControlVisible": true,
+      "buttons": [
+        {
+          "id": "card-item-pictures",
+          "x": 1041.125,
+          "y": 190.6875,
+          "width": 80.96875,
+          "height": 44,
+          "right": 1122.09375,
+          "bottom": 234.6875
+        },
+        {
+          "id": "Enlarge shirt DS001 \u2014 White; Solid",
+          "x": 585.046875,
+          "y": 347.359375,
+          "width": 78,
+          "height": 91,
+          "right": 663.046875,
+          "bottom": 438.359375
+        },
+        {
+          "id": "Enlarge tie T017 \u2014 Pale blue / white paisley",
+          "x": 585.046875,
+          "y": 458.359375,
+          "width": 78,
+          "height": 91,
+          "right": 663.046875,
+          "bottom": 549.359375
+        },
+        {
+          "id": "Enlarge shoes shoe-15 \u2014 Loro Piana Loafers \u2014 Warm Brown Suede Penny",
+          "x": 585.046875,
+          "y": 569.359375,
+          "width": 78,
+          "height": 91,
+          "right": 663.046875,
+          "bottom": 660.359375
+        },
+        {
+          "id": "prev-option",
+          "x": 157.90625,
+          "y": 969.6875,
+          "width": 44,
+          "height": 44,
+          "right": 201.90625,
+          "bottom": 1013.6875
+        },
+        {
+          "id": "full-view",
+          "x": 365.5625,
+          "y": 969.6875,
+          "width": 76.671875,
+          "height": 44,
+          "right": 442.234375,
+          "bottom": 1013.6875
+        },
+        {
+          "id": "detail-view",
+          "x": 602.890625,
+          "y": 969.6875,
+          "width": 92.171875,
+          "height": 44,
+          "right": 695.0625,
+          "bottom": 1013.6875
+        },
+        {
+          "id": "large-view",
+          "x": 855.734375,
+          "y": 969.6875,
+          "width": 58.703125,
+          "height": 44,
+          "right": 914.4375,
+          "bottom": 1013.6875
+        },
+        {
+          "id": "next-option",
+          "x": 1078.09375,
+          "y": 969.6875,
+          "width": 44,
+          "height": 44,
+          "right": 1122.09375,
+          "bottom": 1013.6875
+        }
+      ]
+    }
+  ],
+  "native_frames": [
+    {
+      "name": "S05_TIED",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "sha256_rgba": "4bd004f0c925f3c5fc02b51c5c108f5c164f97aaa82f98dc068d5436bbbde5f3",
+      "equal": true
+    },
+    {
+      "name": "S05_OPEN",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "sha256_rgba": "bfaa673209d5a2ede21cecbdef6fde7764c0d5d8b0c3f252a0a56b42c4b9ad0e",
+      "equal": true
+    },
+    {
+      "name": "S11_DS035_OPEN",
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "sha256_rgba": "4b35ce89dea7ff919d45a29151a8cff0a085d6a3fe5a94658c62c58f4d548552",
+      "equal": true
+    },
+    {
+      "name": "S02_SOURCE_WARNING",
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS029",
+        "state": "T017",
+        "shoeId": "shoe-4",
+        "watchId": null
+      },
+      "sha256_rgba": "05dc09fc946a5b454c75b340f38268da3029f3156b55417e0be1b159789040b4",
+      "equal": true
+    },
+    {
+      "name": "B01_TIED",
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PB001",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "sha256_rgba": "fdf3ae44e7dd948fd2cf845470e8d18017a7d9ec405924d9d33eaed732cd72cf",
+      "equal": true
+    },
+    {
+      "name": "B02_OPEN",
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PB001",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "sha256_rgba": "2c3f3e9090a674505821956c8dbdc16a5a2d01b6ccf14900e1a48c84fc91456b",
+      "equal": true
+    },
+    {
+      "name": "B03_WATCH",
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "T004",
+        "shoeId": "shoe-4",
+        "watchId": "watch-P05"
+      },
+      "sha256_rgba": "d54e5a33c32a906bab02918d10b4ac9b691ad5223313a2a38181281dee5fb408",
+      "equal": true
+    },
+    {
+      "name": "SHIRT_ONLY",
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PB001",
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "sha256_rgba": "3241d14b97c45991761e31d81163080427d00153e76274c74360e808bd0b7786",
+      "equal": true
+    },
+    {
+      "name": "SHOE8_CONTROL",
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "sha256_rgba": "d2b9334a9928d8798df6aa2f5c08a8ccc5248102443902bc4772badc756cd22e",
+      "equal": true
+    }
+  ],
+  "navigated": [
+    {
+      "position": 1,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP09"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "",
+        "shoe-15",
+        "",
+        "watch-AP09"
+      ],
+      "visible": true
+    },
+    {
+      "position": 2,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T044",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP09"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T044",
+        "shoe-15",
+        "",
+        "watch-AP09"
+      ],
+      "visible": true
+    },
+    {
+      "position": 3,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T014",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R09"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T014",
+        "shoe-15",
+        "",
+        "watch-R09"
+      ],
+      "visible": true
+    },
+    {
+      "position": 4,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T046",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R09"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T046",
+        "shoe-15",
+        "",
+        "watch-R09"
+      ],
+      "visible": true
+    },
+    {
+      "position": 5,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T016",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R11"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T016",
+        "shoe-15",
+        "",
+        "watch-R11"
+      ],
+      "visible": true
+    },
+    {
+      "position": 6,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T028",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R11"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T028",
+        "shoe-15",
+        "",
+        "watch-R11"
+      ],
+      "visible": true
+    },
+    {
+      "position": 7,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R13"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T017",
+        "shoe-15",
+        "",
+        "watch-R13"
+      ],
+      "visible": true
+    },
+    {
+      "position": 8,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T036",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R13"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T036",
+        "shoe-15",
+        "",
+        "watch-R13"
+      ],
+      "visible": true
+    },
+    {
+      "position": 9,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T002",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R14"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T002",
+        "shoe-15",
+        "",
+        "watch-R14"
+      ],
+      "visible": true
+    },
+    {
+      "position": 10,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T040",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R14"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T040",
+        "shoe-15",
+        "",
+        "watch-R14"
+      ],
+      "visible": true
+    },
+    {
+      "position": 11,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T009",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP06"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T009",
+        "shoe-15",
+        "",
+        "watch-AP06"
+      ],
+      "visible": true
+    },
+    {
+      "position": 12,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T047",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP06"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T047",
+        "shoe-15",
+        "",
+        "watch-AP06"
+      ],
+      "visible": true
+    },
+    {
+      "position": 13,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T004",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP10"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T004",
+        "shoe-15",
+        "",
+        "watch-AP10"
+      ],
+      "visible": true
+    },
+    {
+      "position": 14,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T029",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP10"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T029",
+        "shoe-15",
+        "",
+        "watch-AP10"
+      ],
+      "visible": true
+    },
+    {
+      "position": 15,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T026",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP13"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T026",
+        "shoe-15",
+        "",
+        "watch-AP13"
+      ],
+      "visible": true
+    },
+    {
+      "position": 16,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T041",
+        "shoeId": "shoe-15",
+        "watchId": "watch-AP13"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T041",
+        "shoe-15",
+        "",
+        "watch-AP13"
+      ],
+      "visible": true
+    },
+    {
+      "position": 17,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T006",
+        "shoeId": "shoe-15",
+        "watchId": "watch-P01"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T006",
+        "shoe-15",
+        "",
+        "watch-P01"
+      ],
+      "visible": true
+    },
+    {
+      "position": 18,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T031",
+        "shoeId": "shoe-15",
+        "watchId": "watch-P01"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T031",
+        "shoe-15",
+        "",
+        "watch-P01"
+      ],
+      "visible": true
+    },
+    {
+      "position": 19,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T030",
+        "shoeId": "shoe-15",
+        "watchId": "watch-P03"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T030",
+        "shoe-15",
+        "",
+        "watch-P03"
+      ],
+      "visible": true
+    },
+    {
+      "position": 20,
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T013",
+        "shoeId": "shoe-15",
+        "watchId": "watch-P03"
+      },
+      "ids": [
+        "S05",
+        "DS001",
+        "T013",
+        "shoe-15",
+        "",
+        "watch-P03"
+      ],
+      "visible": true
+    }
+  ],
+  "attempts": []
+}

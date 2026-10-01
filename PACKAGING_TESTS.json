@@ -1,0 +1,78 @@
+{
+  "schema": "hewrs.card-update.packaging.v1",
+  "passed": true,
+  "checks": [
+    {
+      "baseline": "1.23.0",
+      "dry_run_no_change": true,
+      "install_and_full_target_verification": {
+        "status": "PASS",
+        "version": "1.23.2-cards",
+        "payloads": 2664,
+        "unchanged_image_and_data_payloads": 1068,
+        "startup_scripts": 3,
+        "bundle_matches_sources": true,
+        "CSS_and_SRI_hashes_match": true,
+        "shoe15_retained": true,
+        "browser_data_access": false
+      },
+      "rollback_dry_run_no_change": true,
+      "rollback_and_full_original_verification": {
+        "status": "PASS",
+        "version": "1.23.0",
+        "payloads": 2607,
+        "startup_scripts": 3,
+        "index_deferred": true,
+        "bundle_matches_sources": true,
+        "browser_data_access": false
+      },
+      "rollback_file_universe_exact": true,
+      "later_edit_refused_without_writes": true,
+      "seconds": 14.51,
+      "logs": [
+        "Verified 1.23.0 -> 1.23.2-cards: 71 changed/added/removed paths. Browser data is not accessed.\nDry run complete. No files changed.\n",
+        "Verified 1.23.0 -> 1.23.2-cards: 71 changed/added/removed paths. Browser data is not accessed.\nCompleted and verified 1.23.2-cards in the local app folder. Nothing was published.\n",
+        "Verified 1.23.2-cards -> 1.23.0: 71 changed/added/removed paths. Browser data is not accessed.\nDry run complete. No files changed.\n",
+        "Verified 1.23.2-cards -> 1.23.0: 71 changed/added/removed paths. Browser data is not accessed.\nCompleted and verified 1.23.0 in the local app folder. Nothing was published.\n",
+        "REFUSED: File does not match required baseline: src/application.css\n"
+      ]
+    },
+    {
+      "baseline": "1.23.1-shoe15",
+      "dry_run_no_change": true,
+      "install_and_full_target_verification": {
+        "status": "PASS",
+        "version": "1.23.2-cards",
+        "payloads": 2664,
+        "unchanged_image_and_data_payloads": 1068,
+        "startup_scripts": 3,
+        "bundle_matches_sources": true,
+        "CSS_and_SRI_hashes_match": true,
+        "shoe15_retained": true,
+        "browser_data_access": false
+      },
+      "rollback_dry_run_no_change": true,
+      "rollback_and_full_original_verification": {
+        "status": "PASS",
+        "version": "1.23.1-shoe15",
+        "payloads": 2639,
+        "original_assets_unchanged": 848,
+        "startup_scripts": 3,
+        "generated_bundle_matches_sources": true,
+        "source_photo_hash_matches": true,
+        "browser_data_access": false
+      },
+      "rollback_file_universe_exact": true,
+      "later_edit_refused_without_writes": true,
+      "seconds": 14.55,
+      "logs": [
+        "Verified 1.23.1-shoe15 -> 1.23.2-cards: 36 changed/added/removed paths. Browser data is not accessed.\nDry run complete. No files changed.\n",
+        "Verified 1.23.1-shoe15 -> 1.23.2-cards: 36 changed/added/removed paths. Browser data is not accessed.\nCompleted and verified 1.23.2-cards in the local app folder. Nothing was published.\n",
+        "Verified 1.23.2-cards -> 1.23.1-shoe15: 36 changed/added/removed paths. Browser data is not accessed.\nDry run complete. No files changed.\n",
+        "Verified 1.23.2-cards -> 1.23.1-shoe15: 36 changed/added/removed paths. Browser data is not accessed.\nCompleted and verified 1.23.1-shoe15 in the local app folder. Nothing was published.\n",
+        "REFUSED: File does not match required baseline: src/application.css\n"
+      ]
+    }
+  ],
+  "scope": "Final exact-target full dry run, apply, current verifier, rollback dry run, original verifier/file universe and modified-baseline refusal for both starting versions. Prior long-running packaging attempt is not substituted for these results."
+}

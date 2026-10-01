@@ -1,0 +1,237 @@
+{
+  "schema": "hewrs.shoe15.browser.v1",
+  "scope": "Fresh offline memory-loaded Chromium, actual rebuilt bundle and real source images; URL navigation blocked by environment; not a live/Safari test.",
+  "passed": 40,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Current bundle reports 1.23.1 and starts without index or storage writes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_TIED exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_TIED no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 55696,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "S05_TIED face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_TIED corrected shoe pixels are actually visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_OPEN exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_OPEN no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 55696,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "S05_OPEN face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S05_OPEN corrected shoe pixels are actually visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S11_DS035_OPEN exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S11_DS035_OPEN no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 55696,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "S11_DS035_OPEN face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "S11_DS035_OPEN corrected shoe pixels are actually visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B01_TIED exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B01_TIED no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 55696,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "B01_TIED face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B01_TIED corrected shoe pixels are actually visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B02_OPEN exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B02_OPEN no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 55696,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "B02_OPEN face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B02_OPEN corrected shoe pixels are actually visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B03_BATCH exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B03_BATCH no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 55696,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "B03_BATCH face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B03_BATCH corrected shoe pixels are actually visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SHIRT_ONLY exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SHIRT_ONLY no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 55696,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "SHIRT_ONLY face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SHIRT_ONLY corrected shoe pixels are actually visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "CONTROL_SHOE8 exact selection and completed real render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "CONTROL_SHOE8 no change outside shoe-15 alpha",
+      "passed": true,
+      "detail": {
+        "changed_pixels": 0,
+        "outside_shoe_pixels": 0
+      }
+    },
+    {
+      "name": "CONTROL_SHOE8 face, hands, clothing and canvas geometry retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged shoe-8 output remains pixel-identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Full outfit and card both retain exact shoe-15 identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Shoe picture is the actual source-photo thumbnail, with decoded dimensions and truthful alt text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Shoe picker shows revised name at the original ID",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Picker Apply retains shoe-15 as the exact selected item",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rendering and picker never modify wear, Favorites or feedback",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Real PNG export completes with corrected source thumbnail",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No unexpected browser JavaScript errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Phone item-photo capture intentionally scrolls to the existing item panel; initial-view discoverability remains open.",
+    "A routed HTTPS navigation attempt was blocked by the environment before the app loaded; it is not counted as a successful live-origin test."
+  ]
+}

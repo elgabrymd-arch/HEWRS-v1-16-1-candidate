@@ -1,0 +1,161 @@
+{
+  "schema": "hewrs.owner-release-scope.v1",
+  "version": "1.23.0",
+  "owner_instruction": "Continue with 18 only for now",
+  "owner_message_timestamp": "2026-09-25T02:44:23Z",
+  "scope_applies_to": [
+    "blazer",
+    "shirt-only"
+  ],
+  "enabled_non_suit_shirt_ids": [
+    "DS001",
+    "DS002",
+    "DS004",
+    "DS005",
+    "DS006",
+    "DS007",
+    "DS008",
+    "DS014",
+    "DS015",
+    "DS018",
+    "DS019",
+    "DS021",
+    "DS022",
+    "DS023",
+    "DS024",
+    "DS025",
+    "DS027",
+    "DS047"
+  ],
+  "deferred_non_suit_shirt_ids": [
+    "DS017",
+    "DS035",
+    "DS036",
+    "DS051",
+    "DS034",
+    "DS037",
+    "DS038",
+    "DS032",
+    "DS033",
+    "DS046",
+    "DS003",
+    "DS020",
+    "DS045",
+    "DS010",
+    "DS011",
+    "DS028",
+    "DS029",
+    "DS030",
+    "DS044",
+    "DS013",
+    "DS026",
+    "DS031",
+    "DS009",
+    "DS012",
+    "DS050",
+    "DS016",
+    "DS048",
+    "DS039",
+    "DS042",
+    "DS043",
+    "DS040",
+    "DS041"
+  ],
+  "deferred_shirts_block_this_release": false,
+  "all_50_suit_shirt_routes_retained": true,
+  "inventory_ids_deleted": [],
+  "new_garment_approvals_required": false,
+  "shirt_only_numerical_ranking": "NOT_INSTALLED_SEPARATE_POLICY",
+  "watch_imagery": "DEFERRED_ID_NAME_SUFFICIENT",
+  "owner_reported_acceptance": {
+    "baseline": "1.16.4",
+    "mobile_picker": {
+      "reported": "pass",
+      "timestamp": "2026-09-25T02:16:11Z"
+    },
+    "iphone_safari_visual_reload_restart_and_unchanged_wear_count": {
+      "reported": "pass",
+      "timestamp": "2026-09-25T02:20:59Z",
+      "tested_selection": {
+        "shirtOnly": true,
+        "shirtId": "DS023",
+        "state": "T017",
+        "pantId": "PG002",
+        "shoeId": "shoe-8",
+        "watchId": null
+      }
+    },
+    "scope": "User-reported acceptance of the tested V1.16.4 route, not tool-observed physical-device testing and not certification of all combinations."
+  },
+  "favorites": "Exact bookmarks using current supported selections; no scoring-policy changes, no wear logging",
+  "insights": "Read-only confirmed-record statistics; no new recommendation score, eligibility rule, physical ID, or wear entry",
+  "clarification": "18-shirt instruction limits blazer/shirt-only visual inventory, not automatic Engine Choice, weather or location.",
+  "required_core_workflow": [
+    "Permission-based device location or chosen city",
+    "Current weather / forecast with manual fallback",
+    "Automatic suit/blazer outfits with no mandatory exact shoe/topwear selection",
+    "20 distinct qualified clothing options when available, honoring all explicit locks",
+    "Existing DNA/compatibility/rotation preserved"
+  ],
+  "current_patch_scope": [
+    "Target20 complete distinct options",
+    "Each unanchored tie once; other items twice; exact-item exemptions only",
+    "Complete-outfit candidate review across all eligible ties",
+    "Correct pale/silver pattern and palette interpretation without changing raw wardrobe data",
+    "Preserve source holds, original scores, assets, weather, history and Favorites"
+  ],
+  "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged.",
+  "owner_weather_update": {
+    "timestamp": "2026-09-27T20:15:32Z",
+    "report": "weather is fixed",
+    "code_changed_in_this_increment": false
+  },
+  "option_set_policy": {
+    "max_unanchored_item_uses": 2,
+    "max_no_tie": 2,
+    "max_shirt_only": 2,
+    "exact_item_anchor_exception": true,
+    "family_anchor_exception": false,
+    "compatibility_diversity_bonus": false,
+    "target_options": 20,
+    "max_unanchored_tie_uses": 1,
+    "max_unanchored_other_item_uses": 2
+  },
+  "automatic_weather": {
+    "enabled_by_user_action": true,
+    "existing_granted_permission_can_be_reused": true,
+    "no_automatic_permission_prompt_when_permission_is_not_granted": true,
+    "fallback": "Saved coordinates labelled explicitly; never claimed as a fresh device location. Manual weather disables automatic updates.",
+    "browser_permission_lifetime": "Controlled by browser/OS; no promise of permanent permission."
+  },
+  "recommendation_authorization": "2026-09-29T01:24:11Z: i approve proposed start;20 options, unique unanchored ties and full47-tie coverage review",
+  "no_new_inventory_scope": true,
+  "presentation_v1_21_1": {
+    "default": "option_cards",
+    "standard_view_retained": true,
+    "phone": "large outfit above readable item rows",
+    "desktop": "outfit left and item thumbnails/right",
+    "ranking_data_and_modes_unchanged": true
+  },
+  "current_increment": "Performance-only startup and equivalent-search optimization; no wardrobe-scope changes",
+  "preserved_option_policy": {
+    "target": 20,
+    "unanchored_tie_max": 1,
+    "other_unanchored_physical_item_max": 2,
+    "default_no_tie_max": 2,
+    "exact_anchor_only_exemption": true
+  },
+  "learning_scope": [
+    "Research-based wardrobe generator"
+  ],
+  "S02_source_applied": true,
+  "S02_depiction_changed": false,
+  "S02_feedback_excluded_due_depiction_mismatch": true,
+  "no_votes_seeded": true,
+  "private_AI_setup": "PAUSED; no network/provider calls added",
+  "acceptability_learning": {
+    "separate_from_directional_ranker": true,
+    "no_answer_migration": true,
+    "no_new_garment_scope": true
+  }
+}
