@@ -1,0 +1,64 @@
+{
+  "schema": "hewrs.shoe15.tests.v1",
+  "scope": "New local source/runtime checks; not production deployment or owner approval",
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Original input bytes and identity lock are unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Only shoe-15 descriptor changes; exact shoe universe and order retained",
+      "passed": true,
+      "detail": {
+        "registered_shoes": 35
+      }
+    },
+    {
+      "name": "All 18 suit routes receive corrected shoe-15 and no other shoe substitutions",
+      "passed": true,
+      "detail": {
+        "suits": 18
+      }
+    },
+    {
+      "name": "Broad brown color, material/category, availability and old score premises retained",
+      "passed": true,
+      "detail": {
+        "color": "Brown Suede Penny",
+        "name": "Loro Piana Loafers — Warm Brown Suede Penny"
+      }
+    },
+    {
+      "name": "Other catalogue entries, canonical source profiles and limits are identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Only shoe-15 thumbnail changes and it is explicitly the owner reference",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact selection, history identity and original clothing compatibility unchanged",
+      "passed": true,
+      "detail": {
+        "cases": 2
+      }
+    },
+    {
+      "name": "Missing or wrong baseline source fails, never silently substitutes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Every original asset remains byte-identical at its original path",
+      "passed": true,
+      "detail": {
+        "original_assets_unchanged": 848
+      }
+    }
+  ]
+}

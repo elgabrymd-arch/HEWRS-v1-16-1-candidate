@@ -4,7 +4,7 @@
 'use strict';
 const clone=x=>structuredClone(x),need=(v,m)=>{if(!v)throw Error(m);};
 function create(inputs,{configurationFilter,blazerMappings}={}){
- const p=root.HEWRSSourceCorrections.apply(inputs),m=p.manifest;
+ const p=root.HEWRSShoePhotoCorrections.apply(root.HEWRSSourceCorrections.apply(inputs)),m=p.manifest;
  const suitSources=root.HEWRSApprovedSuitSources.create(root.HEWRS_APPROVED_SUITS_DATA,p.suitAliases);
  const assemblies=root.HEWRSSuitAssemblies.create(suitSources,m,p.shoeLayers);
  need(p.schema==='hewrs.clean.connection.inputs.v1','Unexpected input schema');

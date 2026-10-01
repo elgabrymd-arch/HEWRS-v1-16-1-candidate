@@ -77,40 +77,82 @@ html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
 /* V1.21.1: option-card presentation. No canvas filter, bitmap modification,
    ranking state, global wardrobe recolour, or Home layout change. */
 #app[data-page-view="outfits"][data-outfit-layout="cards"]{max-width:1100px}
-.lb-toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:4px 0 12px;flex-wrap:wrap}
+#app[data-page-view="outfits"]{min-height:0}
+/* V1.23.2: the same live card stays side by side on a phone, like the PNG.
+   Canvas pixels, native geometry, Home, ranking and saved state are untouched. */
+.lb-toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:6px 0;flex-wrap:wrap}
 .lb-toolbar .fx-segment{min-width:210px}.lb-toolbar>button{font-size:12px}
-.lb-card{border:1px solid rgba(216,162,71,.75);border-radius:16px;padding:22px;background:var(--bg);min-width:0}
-.lb-card-header{position:relative;border-bottom:1px solid rgba(216,162,71,.3);padding:0 0 14px;margin-bottom:15px}
-.lb-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--secondary)}
-.hewrs-ui .lb-card-header h2{color:var(--gold-light);font:32px/1.2 Georgia,serif;margin:6px 0 5px}
+.lb-card{border:1px solid rgba(216,162,71,.75);border-radius:4px;padding:22px;background:var(--bg);min-width:0}
+.lb-card-header{position:relative;border-bottom:1px solid rgba(216,162,71,.45);padding:0 100px 12px 0;margin-bottom:18px}
+.lb-eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.hewrs-ui .lb-card-header h2{color:var(--gold);font:30px/1.2 Georgia,serif;margin:6px 0 4px}
 .lb-card-count{font-size:12px;color:var(--secondary)}
-.lb-card-body{display:grid;grid-template-columns:minmax(0,44fr) minmax(0,56fr);gap:24px;align-items:center}
-.lb-visual{min-width:0}.lb-items{min-width:0}
-.lb-item{border-bottom:1px solid var(--line);padding:13px 0;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:center;min-width:0}
-.lb-item:first-child{padding-top:0}.lb-item:last-child{border-bottom:0}
+.hewrs-ui .lb-item-pictures{position:absolute;right:0;bottom:12px;min-height:44px;padding:8px;font-size:11px;color:var(--gold);background:transparent;border-color:rgba(216,162,71,.4);border-radius:4px}
+.lb-card-body{display:grid;grid-template-columns:minmax(0,43fr) minmax(0,57fr);gap:22px;align-items:start}
+.lb-visual,.lb-items{min-width:0}
+.lb-item{padding:10px 0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-items:start;min-width:0}
+.lb-item:first-child{padding-top:0}.lb-item:last-child{padding-bottom:0}
 .lb-item.lb-with-swatch{grid-template-columns:78px minmax(0,1fr)}
-.lb-swatch{width:78px;height:91px;display:block;object-fit:contain;flex:none;border:1px solid rgba(216,162,71,.55);border-radius:5px;background:var(--bg)}
-.lb-empty-swatch{display:grid;place-items:center;font:10px Georgia,serif;letter-spacing:.08em;color:var(--secondary)}
-.lb-item-copy{min-width:0}.lb-item-role{display:block;color:var(--gold-light);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.lb-swatch{width:78px;height:91px;display:block;object-fit:contain;flex:none;border:1px solid rgba(216,162,71,.55);border-radius:0;background:var(--bg)}
+.hewrs-ui button.lb-swatch-button{display:block;padding:0;width:78px;height:91px;min-height:44px;border:0;border-radius:0;background:transparent}
+.lb-swatch-button .lb-swatch{width:100%;height:100%}
+.lb-empty-swatch{display:grid;place-items:center;font:10px Georgia,serif;letter-spacing:.05em;color:var(--secondary)}
+.lb-item-copy{min-width:0}.lb-item-role{display:block;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
 .lb-item-id{display:block;color:var(--ink);font-size:13px;font-weight:650;margin-bottom:3px}
-.lb-item-name{display:block;font:17px/1.35 Georgia,serif;color:var(--secondary);overflow-wrap:anywhere}
+.lb-item-name{display:block;font:17px/1.3 Georgia,serif;color:var(--secondary);overflow-wrap:anywhere}
 .lb-item small{display:block;color:var(--muted);font-size:10px;line-height:1.4;margin-top:4px;overflow-wrap:anywhere}
 .lb-image-unavailable{grid-template-columns:minmax(0,1fr)!important}
+.lb-image-unavailable .lb-swatch-button{display:none!important}
 .hewrs-ui .lb-download{display:block;color:var(--ink);text-decoration:none;padding:14px;border:1px solid var(--gold);border-radius:10px;text-align:center;overflow-wrap:anywhere;min-height:44px}
-#app[data-outfit-layout="cards"] .lb-card .canvas-stage{background:var(--bg);border:0;border-radius:0}
-#app[data-outfit-layout="cards"] .lb-card .fx-stage-row{height:clamp(590px,78dvh,810px);min-height:590px}
-#app[data-outfit-layout="cards"] .lb-card .fx-view-switch{gap:8px}
+#app[data-outfit-layout="cards"] .lb-card .canvas-stage{background:var(--bg);border:0;border-radius:0;min-width:0}
+#app[data-outfit-layout="cards"] .lb-card .fx-stage-row{height:clamp(500px,68dvh,740px);min-height:0}
+.lb-card-controls{display:flex;align-items:center;gap:6px;margin-top:16px;border-top:1px solid rgba(216,162,71,.3);padding-top:7px}
+.hewrs-ui .lb-card-controls .fx-step{width:44px;min-width:44px;min-height:44px;align-self:center}
+.lb-card-controls .fx-view-switch{flex:1;justify-content:space-evenly;gap:3px;flex-wrap:nowrap}
+.hewrs-ui .lb-card-controls .fx-view-switch button{min-height:44px;padding:3px;font-size:10px;line-height:1.25}
 #app[data-outfit-layout="cards"] .fx-items-card{display:none}
-#app[data-outfit-layout="cards"] .fx-output{gap:10px}
+#app[data-outfit-layout="cards"] .fx-output{gap:8px}
 #app[data-outfit-layout="cards"] .fx-selection-heading{padding-top:4px;flex-wrap:wrap}
 #app[data-outfit-layout="standard"] .lb-card{padding:0;background:none;border:0;border-radius:0}
 #app[data-outfit-layout="standard"] .lb-card-header,#app[data-outfit-layout="standard"] .lb-items{display:none}
 #app[data-outfit-layout="standard"] .lb-card-body{display:block}
+#app[data-outfit-layout="standard"] .lb-card-controls{border-top:0}
+.lb-detail-picture{display:block;width:100%;max-height:52dvh;min-height:160px;object-fit:contain;border:1px solid rgba(216,162,71,.4);background:var(--bg)}
+.lb-detail-copy{font:19px/1.4 Georgia,serif;color:var(--secondary);overflow-wrap:anywhere}
+.lb-detail-items .lb-item{border-bottom:1px solid var(--line);padding:14px 0}
 @media(max-width:759px){
- .lb-card{padding:16px 12px}.lb-card-body{display:block}.lb-card-header{margin-bottom:6px}.hewrs-ui .lb-card-header h2{font-size:28px}
- #app[data-outfit-layout="cards"] .lb-card .fx-stage-row{height:clamp(495px,76dvh,690px);min-height:495px}
- .lb-items{padding:15px 6px 4px}.lb-item.lb-with-swatch{grid-template-columns:80px minmax(0,1fr)}.lb-swatch{width:80px;height:93px}.lb-item-name{font-size:16px}
- .lb-toolbar{gap:6px}.lb-toolbar .fx-segment{min-width:190px}.lb-toolbar .fx-segment button{font-size:11px;padding:8px}.lb-toolbar>button{font-size:11px;padding:8px}
+ #app[data-outfit-layout="cards"] .fx-outfits{padding-left:3%;padding-right:3%}
+ .lb-card{padding:12px 10px}
+ .lb-card-body{display:grid;grid-template-columns:minmax(0,43fr) minmax(0,57fr);gap:10px}
+ .lb-card-header{padding:0 82px 9px 0;margin-bottom:13px}
+ .lb-eyebrow{font-size:8px;letter-spacing:.06em}
+ .hewrs-ui .lb-card-header h2{font-size:23px;margin:4px 0}
+ .lb-card-count{font-size:10px}
+ .hewrs-ui .lb-item-pictures{font-size:10px;bottom:9px;padding:6px}
+ #app[data-outfit-layout="cards"] .lb-card .fx-stage-row{height:auto;min-height:0;aspect-ratio:996/2748}
+ #app[data-outfit-layout="cards"] .lb-card .canvas-stage{align-items:flex-start}
+ #app[data-outfit-layout="cards"] .lb-card .canvas-stage:not(.detail) canvas{width:100%;height:auto;max-height:100%;object-fit:contain}
+ #app[data-outfit-layout="cards"] .lb-card .canvas-stage.detail canvas{height:245%;width:auto;max-width:none;max-height:none}
+ .lb-items{padding:0}
+ .lb-item{padding:7px 0;gap:8px}
+ .lb-item.lb-with-swatch{grid-template-columns:48px minmax(0,1fr)}
+ .lb-swatch,.hewrs-ui button.lb-swatch-button{width:48px;height:56px}
+ .lb-item-role{font-size:9px;margin-bottom:2px;letter-spacing:0}
+ .lb-item-id{font-size:11px;margin-bottom:2px}
+ .lb-item-name{font-size:12px;line-height:1.25}
+ .lb-item small{font-size:9px;line-height:1.2;margin-top:3px}
+ .lb-card-controls{margin-top:12px;padding-top:4px}
+ .lb-toolbar{gap:6px}.lb-toolbar .fx-segment{min-width:178px;flex:1}.lb-toolbar .fx-segment button{font-size:11px;padding:8px}.lb-toolbar>button{font-size:11px;padding:8px;min-height:44px}
+ .lb-detail-items .lb-item.lb-with-swatch{grid-template-columns:78px minmax(0,1fr)}
+ .lb-detail-items .lb-swatch,.hewrs-ui .lb-detail-items button.lb-swatch-button{width:78px;height:91px}
+ .lb-detail-items .lb-item-name{font-size:16px;line-height:1.35}.lb-detail-items .lb-item-role{font-size:11px}.lb-detail-items .lb-item-id{font-size:13px}
+}
+@media(max-width:350px){
+ .lb-card{padding:10px 8px}.lb-card-body{grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:8px}
+ .lb-item.lb-with-swatch{grid-template-columns:44px minmax(0,1fr)}
+ .lb-swatch,.hewrs-ui button.lb-swatch-button{width:44px;height:52px}
+ .lb-item{padding:5px 0;gap:6px}.lb-item-name{font-size:11px}.lb-item-role{font-size:8px}.lb-item-id{font-size:10px}
+ .hewrs-ui .lb-card-controls .fx-view-switch button{font-size:9px}
 }
 
 /* V1.22.0 preference review only. No garment-canvas or Home geometry changes. */

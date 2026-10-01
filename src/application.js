@@ -216,9 +216,24 @@ function updateOptionCard(){if(!current)return;
  // While an atomic navigation is settling, use the actual committed selection,
  // not the previous list index, for the title and all thumbnail identities.
  const i=currentOption?options.findIndex(o=>JSON.stringify(o._hewrsConnected?.canonical_selection)===JSON.stringify(current)):-1;
- const m=cardModel(current,currentOption,i>=0?i+1:null,i>=0?options.length:null),key=JSON.stringify(m);cardPresentation=m;
- if(key!==cardPresentationKey){optionCards.mount($('option-card-items'),m);cardPresentationKey=key;}
+ const m=cardModel(current,currentOption,i>=0?i+1:null,i>=0?options.length:null),key=JSON.stringify(m),newSelection=cardPresentation?.key!==m.key;cardPresentation=m;
+ if(key!==cardPresentationKey){optionCards.mount($('option-card-items'),m,{onItem:showCardItem});cardPresentationKey=key;}
  $('lb-card-title').textContent=m.title;$('lb-card-count').textContent=(m.total?'of '+m.total+' · ':'')+m.date;$('option-card').dataset.option=String(m.position||'');
+ if(newSelection&&$('app').dataset.outfitLayout==='cards')$('page-outfits').scrollTop=0;
+}
+function showCardItem(item){
+ const {body,actions}=openSheet(item.role+(item.id?' · '+item.id:''),{list:true});
+ if(item.image){const img=el('img');img.className='lb-detail-picture';img.alt=(item.id||'')+' — '+item.name;img.src=root.HEWRS_EMBEDDED_UI_IMAGES?.[item.image.sha256]||item.image.src;img.onerror=()=>{img.hidden=true;body.append(el('p','Picture unavailable; item identity retained.','fx-warning'));};body.append(img);}
+ body.append(el('p',item.name,'lb-detail-copy'));
+ if(item.note)body.append(el('p',item.note,'fx-caption'));
+ actions.append(button('All item pictures',cardItemPictures),button('Close',()=>dismissSheet()));
+}
+function cardItemPictures(){
+ if(!cardPresentation)return;
+ const snapshot=copy(cardPresentation),{body,actions}=openSheet(snapshot.title+' · Item pictures',{list:true});
+ const items=el('div',undefined,'lb-detail-items');items.id='card-detail-items';
+ optionCards.mount(items,snapshot,{onItem:showCardItem});body.append(items);
+ actions.append(button('Close',()=>dismissSheet()));
 }
 function setCardLayout(v){need(v==='cards'||v==='standard','Unknown presentation');$('app').dataset.outfitLayout=v;$('layout-cards').setAttribute('aria-pressed',String(v==='cards'));$('layout-standard').setAttribute('aria-pressed',String(v==='standard'));}
 function exportOptionCards(){if(!current||busy)return;
@@ -455,6 +470,7 @@ $('fx-sheet-close').onclick=()=>dismissSheet();$('fx-sheet').addEventListener('c
 for(const n of document.querySelectorAll('[data-page]'))n.onclick=()=>showPage(n.dataset.page);$('back-home').onclick=()=>showPage('home');for(const n of document.querySelectorAll('[data-picker]'))n.onclick=()=>openPicker(n.dataset.picker);
 $('mode-engine').onclick=()=>{setMode('engine');status('Engine Choice. Existing preferences are kept; Reset clears them explicitly.');};$('mode-anchor').onclick=()=>{setMode('anchor');status(ui.lockCount()?'Anchor Choice. Exact pieces or category preferences remain selected.':'Choose at least one preference; switching modes does not select an item.');};
 $('large-view').onclick=largerOutfit;
+$('card-item-pictures').onclick=cardItemPictures;
 $('layout-cards').onclick=()=>setCardLayout('cards');$('layout-standard').onclick=()=>setCardLayout('standard');$('export-option-cards').onclick=exportOptionCards;
 $('cancel-work').onclick=cancel;$('reset-preferences').onclick=resetPreferences;$('work-button').onclick=()=>contextSheet('work');$('style-button').onclick=()=>contextSheet('style');$('weather-button').onclick=()=>contextSheet('weather');$('season-button').onclick=()=>contextSheet('season');$('generate-options').onclick=submit;
 $('view-current').onclick=()=>{if(current){presentFrame();displayCurrent();}if(current||pendingInitialOutfit)showPage('outfits');};$('prev-option').onclick=()=>selectOption(optionIndex-1).catch(e=>status(e.message,true));$('next-option').onclick=()=>selectOption(optionIndex+1).catch(e=>status(e.message,true));$('open-results').onclick=resultSheet;
@@ -466,7 +482,7 @@ window.addEventListener('storage',e=>{if(e.key===store.key){generation++;rendere
 $('outfit-preferences').onclick=()=>preferencePanel.open();
 $('s02-source-photo').onclick=()=>{const d=root.HEWRSSourceCorrections.record(),{body,actions}=openSheet('S02 confirmed source',{list:true});const pic=el('img');pic.src=root.HEWRS_EMBEDDED_SOURCE_EVIDENCE?.S02||d.source_image_path;pic.alt='Owner-supplied S02 cloth photograph; muted brown with subtle charcoal/tan check';pic.style.maxWidth='100%';body.append(el('p',d.fields.description,'fx-caption'),pic,el('p',d.visual_limit,'fx-caption'));actions.append(button('Close',()=>dismissSheet()));};
 window.addEventListener('storage',e=>{if(e.key===learning.key||e.key===null){feedbackChanged();}});
-root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_23_0',learning,preferencePanel,renderForPreference,feedbackChanged,connection,visualStylist,stylistSheet,renderForStylist,optionCards,restoreInitialOutfit,exportOptionCards,setCardLayout,cardSnapshot:()=>copy(cardPresentation),store,favorites,usage,weather,autoWeather,refreshAutomaticWeather,weatherSheet,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
+root.HEWRSApp=Object.freeze({version:'HEWRS_CONNECTED_APP_V1_23_2_CARDS',learning,preferencePanel,renderForPreference,feedbackChanged,connection,visualStylist,stylistSheet,renderForStylist,optionCards,restoreInitialOutfit,exportOptionCards,setCardLayout,cardSnapshot:()=>copy(cardPresentation),store,favorites,usage,weather,autoWeather,refreshAutomaticWeather,weatherSheet,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
 const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:saved.context.occasion,formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}if(saved?.mode==='anchor')ui.fromSelection(saved.selection);else ui.reset();setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
 // Home does not need a full-size avatar or the 112,392-row outfit index.
 // Restore the exact saved/current image only when Outfits is actually opened.

@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.owner-release-scope.v1",
-  "version": "1.23.0",
+  "version": "1.23.2-cards",
   "owner_instruction": "Continue with 18 only for now",
   "owner_message_timestamp": "2026-09-25T02:44:23Z",
   "scope_applies_to": [
@@ -97,13 +97,7 @@
     "20 distinct qualified clothing options when available, honoring all explicit locks",
     "Existing DNA/compatibility/rotation preserved"
   ],
-  "current_patch_scope": [
-    "Target20 complete distinct options",
-    "Each unanchored tie once; other items twice; exact-item exemptions only",
-    "Complete-outfit candidate review across all eligible ties",
-    "Correct pale/silver pattern and palette interpretation without changing raw wardrobe data",
-    "Preserve source holds, original scores, assets, weather, history and Favorites"
-  ],
+  "current_patch_scope": "In-app card layout only; source-based shoe-15 update retained unchanged",
   "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged.",
   "owner_weather_update": {
     "timestamp": "2026-09-27T20:15:32Z",
@@ -137,7 +131,7 @@
     "desktop": "outfit left and item thumbnails/right",
     "ranking_data_and_modes_unchanged": true
   },
-  "current_increment": "Performance-only startup and equivalent-search optimization; no wardrobe-scope changes",
+  "current_increment": "Owner instruction 2026-10-01T02:57:54Z: show option cards like the supplied screenshot",
   "preserved_option_policy": {
     "target": 20,
     "unanchored_tie_max": 1,
@@ -157,5 +151,22 @@
     "separate_from_directional_ranker": true,
     "no_answer_migration": true,
     "no_new_garment_scope": true
+  },
+  "shoe15_correction": {
+    "owner_authorization": "2026-10-01T02:02:11Z",
+    "reference_sha256": "e46c8bc651fb37bf5c00bf71ecc287d84b65e9547f5087e839792bacd5388429",
+    "original_assets_retained": true,
+    "new_geometry": false,
+    "no_other_shoes_changed": true,
+    "no_deployment": true
+  },
+  "presentation_v1_23_2": {
+    "owner_screenshot": "1465E0D8-2C32-4C52-87D4-4D331E174DB0.png",
+    "phone": "side-by-side outfit left / source-derived item pictures and exact names right",
+    "desktop": "side-by-side retained",
+    "item_zoom": "tap thumbnail or Item pictures",
+    "ranking_data_and_modes_unchanged": true,
+    "new_storage_keys": false,
+    "original_palette_preserved": true
   }
 }
