@@ -78,11 +78,11 @@ html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
    ranking state, global wardrobe recolour, or Home layout change. */
 #app[data-page-view="outfits"][data-outfit-layout="cards"]{max-width:1100px}
 #app[data-page-view="outfits"]{min-height:0}
-/* V1.23.2: the same live card stays side by side on a phone, like the PNG.
+/* V1.23.3: preserve the side-by-side phone card and add swipe navigation.
    Canvas pixels, native geometry, Home, ranking and saved state are untouched. */
 .lb-toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:6px 0;flex-wrap:wrap}
 .lb-toolbar .fx-segment{min-width:210px}.lb-toolbar>button{font-size:12px}
-.lb-card{border:1px solid rgba(216,162,71,.75);border-radius:4px;padding:22px;background:var(--bg);min-width:0}
+.lb-card{border:1px solid rgba(216,162,71,.75);border-radius:4px;padding:22px;background:var(--bg);min-width:0;touch-action:pan-y;-webkit-user-select:none;user-select:none}
 .lb-card-header{position:relative;border-bottom:1px solid rgba(216,162,71,.45);padding:0 100px 12px 0;margin-bottom:18px}
 .lb-eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
 .hewrs-ui .lb-card-header h2{color:var(--gold);font:30px/1.2 Georgia,serif;margin:6px 0 4px}

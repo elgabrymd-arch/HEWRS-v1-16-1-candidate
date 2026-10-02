@@ -78,5 +78,5 @@ function create(connection){
  }
  return Object.freeze({model,mount,png,book,escape,thumbnailCounts:()=>({shirts:Object.keys(thumbs.shirts).length,ties:Object.keys(thumbs.ties).length,shoes:Object.keys(thumbs.shoes).length,pants:Object.keys(thumbs.pants).length})});
 }
-root.HEWRSOptionCards=Object.freeze({create,escape,version:'1.23.2-cards'});
+root.HEWRSOptionCards=Object.freeze({create,escape,version:'1.23.3-swipe'});
 })(globalThis);
