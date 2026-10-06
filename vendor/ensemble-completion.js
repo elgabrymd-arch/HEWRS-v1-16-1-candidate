@@ -154,13 +154,12 @@
   if(!tie)modern.push({id:'open_collar',source:{source_id:'explicit_outfit_configuration'},controlled:true});
   const a=accessories||{};
   if(a.shoeStyle==='sneaker')modern.push({id:'sneakers',source:a.evidence||null,controlled:a.controlled!==false});
-  if(a.statementWatch===true)modern.push({id:'statement_watch',source:a.evidence||null,controlled:a.controlled!==false});
-  if((a.shoeStyle==='sneaker'||a.statementWatch)&&!a.evidence?.source_id)return {status:'unknown',classification:null,authorityGate:'unknown',outfit_style_score:null,reason:'Accessory style claims need provenance.'};
+  if(a.shoeStyle==='sneaker'&&!a.evidence?.source_id)return {status:'unknown',classification:null,authorityGate:'unknown',outfit_style_score:null,reason:'Accessory style claims need provenance.'};
   const controlled=modern.every(x=>x.controlled),n=modern.length;
   const style=top.classicFoundation===true&&controlled&&n===0?'CLASSIC':top.classicFoundation===true&&controlled&&n>=1&&n<=2?'HYBRID':controlled&&(n>=3||top.classicFoundation===false)?'MODERN':null;
   return {status:style?'proposed_classification':'unknown',classification:style,authorityGate:style?'pass':'unknown',classic_foundation:top.classicFoundation,
    modern_interventions:modern,modern_intervention_count:n,outfit_style_score:null,compatibility_adjustment:0,
-   rule:'Hybrid requires a classic foundation and one or two controlled modern elements; not a midpoint.',evidence_status:'new_outfit_classification_not_frozen_blazer_affinity'};
+   rule:'Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.',classification_revision:'hewrs.watch-independent-style.v1_24_0',watch_contribution:0,evidence_status:'new_outfit_classification_not_frozen_blazer_affinity'};
  }
  function contextCheck(context,top,shirt,tie,facts){
   const q=context||{},checks=[],f=facts||{};

@@ -1,0 +1,777 @@
+{
+  "conditions": "Research; fixed 2026-10-01; before Clinic, after normalized Work; any formality; unassessed weather; inactive learning; empty synthetic wear. Other rows change only named occasion/lock. Not production phone data.",
+  "matrix": {
+    "before": {
+      "clinic": {
+        "AUTO": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "CLASSIC": 17,
+            "HYBRID": 3
+          },
+          "no_tie": 2,
+          "sneakers": 0,
+          "interventions": {
+            "none": 17,
+            "open_collar": 2,
+            "relaxed_tailoring": 1
+          },
+          "seconds": 21.593455861
+        },
+        "CLASSIC": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "CLASSIC": 20
+          },
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {
+            "none": 20
+          },
+          "seconds": 25.252305258
+        },
+        "HYBRID": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "HYBRID": 20
+          },
+          "no_tie": 2,
+          "sneakers": 0,
+          "interventions": {
+            "statement_watch": 15,
+            "open_collar": 2,
+            "relaxed_tailoring": 3
+          },
+          "seconds": 37.117893959999996
+        },
+        "MODERN": {
+          "accepted": true,
+          "count": 8,
+          "error": null,
+          "classifications": {
+            "MODERN": 8
+          },
+          "no_tie": 2,
+          "sneakers": 4,
+          "interventions": {
+            "none": 2,
+            "relaxed_tailoring+open_collar+statement_watch": 1,
+            "lustrous_shirt+open_collar+statement_watch": 1,
+            "relaxed_tailoring+sneakers+statement_watch": 3,
+            "lustrous_shirt+sneakers+statement_watch": 1
+          },
+          "seconds": 40.442951738000005
+        }
+      },
+      "dinner": {
+        "AUTO": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        },
+        "CLASSIC": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        },
+        "HYBRID": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        },
+        "MODERN": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        }
+      },
+      "weekend": {
+        "AUTO": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        },
+        "CLASSIC": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        },
+        "HYBRID": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        },
+        "MODERN": {
+          "accepted": false,
+          "count": null,
+          "error": "This release supports the existing work settings only",
+          "classifications": {},
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {},
+          "seconds": null
+        }
+      }
+    },
+    "after": {
+      "clinic": {
+        "AUTO": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "CLASSIC": 17,
+            "HYBRID": 3
+          },
+          "no_tie": 2,
+          "sneakers": 0,
+          "interventions": {
+            "none": 17,
+            "open_collar": 2,
+            "relaxed_tailoring": 1
+          },
+          "seconds": 30.979553834999997
+        },
+        "CLASSIC": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "CLASSIC": 20
+          },
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {
+            "none": 20
+          },
+          "seconds": 26.106309747
+        },
+        "HYBRID": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "HYBRID": 20
+          },
+          "no_tie": 2,
+          "sneakers": 13,
+          "interventions": {
+            "open_collar": 2,
+            "relaxed_tailoring": 4,
+            "sneakers": 13,
+            "lustrous_shirt": 1
+          },
+          "seconds": 29.558929515
+        },
+        "MODERN": {
+          "accepted": true,
+          "count": 8,
+          "error": null,
+          "classifications": {
+            "MODERN": 8
+          },
+          "no_tie": 6,
+          "sneakers": 6,
+          "interventions": {
+            "relaxed_tailoring+open_collar+sneakers": 4,
+            "none": 2,
+            "lustrous_shirt+open_collar+sneakers": 2
+          },
+          "seconds": 10.526525175000002
+        }
+      },
+      "dinner": {
+        "AUTO": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "CLASSIC": 18,
+            "HYBRID": 2
+          },
+          "no_tie": 2,
+          "sneakers": 0,
+          "interventions": {
+            "none": 18,
+            "open_collar": 2
+          },
+          "seconds": 23.916657278000002
+        },
+        "CLASSIC": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "CLASSIC": 20
+          },
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {
+            "none": 20
+          },
+          "seconds": 23.890958675999997
+        },
+        "HYBRID": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "HYBRID": 20
+          },
+          "no_tie": 2,
+          "sneakers": 13,
+          "interventions": {
+            "open_collar": 2,
+            "relaxed_tailoring": 4,
+            "sneakers": 13,
+            "lustrous_shirt": 1
+          },
+          "seconds": 32.503822395
+        },
+        "MODERN": {
+          "accepted": true,
+          "count": 8,
+          "error": null,
+          "classifications": {
+            "MODERN": 8
+          },
+          "no_tie": 6,
+          "sneakers": 6,
+          "interventions": {
+            "relaxed_tailoring+open_collar+sneakers": 4,
+            "none": 2,
+            "lustrous_shirt+open_collar+sneakers": 2
+          },
+          "seconds": 10.880215335
+        }
+      },
+      "weekend": {
+        "AUTO": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "HYBRID": 11,
+            "CLASSIC": 9
+          },
+          "no_tie": 2,
+          "sneakers": 8,
+          "interventions": {
+            "open_collar": 2,
+            "none": 9,
+            "sneakers": 8,
+            "relaxed_tailoring": 1
+          },
+          "seconds": 31.020864037000003
+        },
+        "CLASSIC": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "CLASSIC": 20
+          },
+          "no_tie": 0,
+          "sneakers": 0,
+          "interventions": {
+            "none": 20
+          },
+          "seconds": 25.036403163
+        },
+        "HYBRID": {
+          "accepted": true,
+          "count": 20,
+          "error": null,
+          "classifications": {
+            "HYBRID": 20
+          },
+          "no_tie": 2,
+          "sneakers": 15,
+          "interventions": {
+            "open_collar": 2,
+            "sneakers": 15,
+            "relaxed_tailoring": 3
+          },
+          "seconds": 29.822188056999998
+        },
+        "MODERN": {
+          "accepted": true,
+          "count": 8,
+          "error": null,
+          "classifications": {
+            "MODERN": 8
+          },
+          "no_tie": 6,
+          "sneakers": 6,
+          "interventions": {
+            "relaxed_tailoring+open_collar+sneakers": 4,
+            "none": 2,
+            "lustrous_shirt+open_collar+sneakers": 2
+          },
+          "seconds": 10.463257147
+        }
+      }
+    }
+  },
+  "overlaps": {
+    "before": {
+      "clinic": {
+        "AUTO/CLASSIC": {
+          "full": 4,
+          "clothing_and_shoes": 5,
+          "core": 6
+        },
+        "AUTO/HYBRID": {
+          "full": 1,
+          "clothing_and_shoes": 9,
+          "core": 9
+        },
+        "AUTO/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "CLASSIC/HYBRID": {
+          "full": 0,
+          "clothing_and_shoes": 3,
+          "core": 4
+        },
+        "CLASSIC/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "HYBRID/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        }
+      },
+      "dinner": {},
+      "weekend": {}
+    },
+    "after": {
+      "clinic": {
+        "AUTO/CLASSIC": {
+          "full": 4,
+          "clothing_and_shoes": 5,
+          "core": 6
+        },
+        "AUTO/HYBRID": {
+          "full": 1,
+          "clothing_and_shoes": 1,
+          "core": 3
+        },
+        "AUTO/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "CLASSIC/HYBRID": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 3
+        },
+        "CLASSIC/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "HYBRID/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        }
+      },
+      "dinner": {
+        "AUTO/CLASSIC": {
+          "full": 7,
+          "clothing_and_shoes": 10,
+          "core": 13
+        },
+        "AUTO/HYBRID": {
+          "full": 1,
+          "clothing_and_shoes": 1,
+          "core": 4
+        },
+        "AUTO/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "CLASSIC/HYBRID": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 2
+        },
+        "CLASSIC/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "HYBRID/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        }
+      },
+      "weekend": {
+        "AUTO/CLASSIC": {
+          "full": 2,
+          "clothing_and_shoes": 2,
+          "core": 5
+        },
+        "AUTO/HYBRID": {
+          "full": 2,
+          "clothing_and_shoes": 2,
+          "core": 9
+        },
+        "AUTO/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "CLASSIC/HYBRID": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 6
+        },
+        "CLASSIC/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        },
+        "HYBRID/MODERN": {
+          "full": 0,
+          "clothing_and_shoes": 0,
+          "core": 0
+        }
+      }
+    }
+  },
+  "modern_locks_and_cap_tests": {
+    "modern_cap2": {
+      "accepted": true,
+      "count": 4,
+      "error": null,
+      "classifications": {
+        "MODERN": 4
+      },
+      "no_tie": 2,
+      "sneakers": 2,
+      "interventions": {
+        "relaxed_tailoring+open_collar+sneakers": 1,
+        "none": 2,
+        "lustrous_shirt+open_collar+sneakers": 1
+      },
+      "seconds": 10.028876399000001
+    },
+    "modern_cap5": {
+      "accepted": true,
+      "count": 7,
+      "error": null,
+      "classifications": {
+        "MODERN": 7
+      },
+      "no_tie": 5,
+      "sneakers": 5,
+      "interventions": {
+        "relaxed_tailoring+open_collar+sneakers": 3,
+        "none": 2,
+        "lustrous_shirt+open_collar+sneakers": 2
+      },
+      "seconds": 10.535234359
+    },
+    "modern_noTie": {
+      "accepted": true,
+      "count": 8,
+      "error": null,
+      "classifications": {
+        "MODERN": 8
+      },
+      "no_tie": 8,
+      "sneakers": 6,
+      "interventions": {
+        "relaxed_tailoring+open_collar+sneakers": 4,
+        "lustrous_shirt+open_collar+sneakers": 2,
+        "open_collar": 2
+      },
+      "seconds": 0.5903235589999999
+    },
+    "modern_s05": {
+      "accepted": true,
+      "count": 1,
+      "error": null,
+      "classifications": {
+        "MODERN": 1
+      },
+      "no_tie": 1,
+      "sneakers": 1,
+      "interventions": {
+        "lustrous_shirt+open_collar+sneakers": 1
+      },
+      "seconds": 0.24135722599999998
+    },
+    "modern_shoe1": {
+      "accepted": true,
+      "count": 2,
+      "error": null,
+      "classifications": {
+        "MODERN": 2
+      },
+      "no_tie": 0,
+      "sneakers": 0,
+      "interventions": {
+        "none": 2
+      },
+      "seconds": 10.187936479
+    },
+    "modern_sneaker": {
+      "accepted": true,
+      "count": 8,
+      "error": null,
+      "classifications": {
+        "MODERN": 8
+      },
+      "no_tie": 6,
+      "sneakers": 8,
+      "interventions": {
+        "relaxed_tailoring+open_collar+sneakers": 4,
+        "sneakers": 2,
+        "lustrous_shirt+open_collar+sneakers": 2
+      },
+      "seconds": 9.027099873
+    },
+    "modern_tie17": {
+      "accepted": true,
+      "count": 2,
+      "error": null,
+      "classifications": {
+        "MODERN": 2
+      },
+      "no_tie": 0,
+      "sneakers": 0,
+      "interventions": {
+        "none": 2
+      },
+      "seconds": 0.5382664349999999
+    },
+    "modern_watch": {
+      "accepted": true,
+      "count": 8,
+      "error": null,
+      "classifications": {
+        "MODERN": 8
+      },
+      "no_tie": 6,
+      "sneakers": 6,
+      "interventions": {
+        "relaxed_tailoring+open_collar+sneakers": 4,
+        "none": 2,
+        "lustrous_shirt+open_collar+sneakers": 2
+      },
+      "seconds": 10.040397704
+    }
+  },
+  "independent_list_checks": [
+    {
+      "file": "results/before/clinic_AUTO.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/before/clinic_CLASSIC.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 0
+    },
+    {
+      "file": "results/before/clinic_HYBRID.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/before/clinic_MODERN.json",
+      "passed": true,
+      "options": 8,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/clinic_AUTO.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/clinic_CLASSIC.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 0
+    },
+    {
+      "file": "results/after/clinic_HYBRID.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/clinic_MODERN.json",
+      "passed": true,
+      "options": 8,
+      "no_tie": 6
+    },
+    {
+      "file": "results/after/dinner_AUTO.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/dinner_CLASSIC.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 0
+    },
+    {
+      "file": "results/after/dinner_HYBRID.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/dinner_MODERN.json",
+      "passed": true,
+      "options": 8,
+      "no_tie": 6
+    },
+    {
+      "file": "results/after/modern_cap2.json",
+      "passed": true,
+      "options": 4,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/modern_cap5.json",
+      "passed": true,
+      "options": 7,
+      "no_tie": 5
+    },
+    {
+      "file": "results/after/modern_noTie.json",
+      "passed": true,
+      "options": 8,
+      "no_tie": 8
+    },
+    {
+      "file": "results/after/modern_s05.json",
+      "passed": true,
+      "options": 1,
+      "no_tie": 1
+    },
+    {
+      "file": "results/after/modern_shoe1.json",
+      "passed": true,
+      "options": 2,
+      "no_tie": 0
+    },
+    {
+      "file": "results/after/modern_sneaker.json",
+      "passed": true,
+      "options": 8,
+      "no_tie": 6
+    },
+    {
+      "file": "results/after/modern_tie17.json",
+      "passed": true,
+      "options": 2,
+      "no_tie": 0
+    },
+    {
+      "file": "results/after/modern_watch.json",
+      "passed": true,
+      "options": 8,
+      "no_tie": 6
+    },
+    {
+      "file": "results/after/weekend_AUTO.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/weekend_CLASSIC.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 0
+    },
+    {
+      "file": "results/after/weekend_HYBRID.json",
+      "passed": true,
+      "options": 20,
+      "no_tie": 2
+    },
+    {
+      "file": "results/after/weekend_MODERN.json",
+      "passed": true,
+      "options": 8,
+      "no_tie": 6
+    }
+  ],
+  "protected_payloads_unchanged": 1068,
+  "protected_directories": {
+    "assemblies": 18,
+    "assets": 831,
+    "data": 42,
+    "ui": 177
+  },
+  "optimization_parity": {
+    "case": "Work Hybrid, all choices unlocked",
+    "exact_rows_identical": true,
+    "timings_not_device_benchmark": true,
+    "pre_optimization_seconds": 143.404276766,
+    "after_seconds": 29.558929515
+  }
+}

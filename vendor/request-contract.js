@@ -34,7 +34,6 @@
     if(typeof ov.category!=='string'||!valid.has(ov.category))return fail('Unknown '+role+' category; no substitute pool selected.');
    }
   }
-  if(dress==='weekend'&&q.tie&&q.tie.mode!=='none')return fail('Weekend has no tie path; an explicit tie preference cannot be discarded.');
   if(q.localDate!==undefined){if(typeof q.localDate!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(q.localDate))return fail('localDate must be a calendar date.');const d=new Date(q.localDate+'T00:00:00Z');if(!Number.isFinite(d.getTime())||d.toISOString().slice(0,10)!==q.localDate)return fail('Invalid calendar date.');}
   if(q.pantBindings!==undefined&&!Array.isArray(q.pantBindings))return fail('Trouser bindings must be an array.');
   for(const b of q.pantBindings||[])if(!object(b)||typeof b.physicalId!=='string'||typeof b.profileId!=='string')return fail('Malformed trouser binding.');

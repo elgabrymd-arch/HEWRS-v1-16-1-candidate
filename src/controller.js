@@ -44,13 +44,13 @@
    if(!Number.isInteger(limit)||limit<1||limit>100)return rejectedRequest('Limit must be an integer from 1 to 100.');
    if(q.mode==='production')return rejectedRequest('Production activation is not authorized; this is a local candidate.');
    const dress=q.dressMode||'work';
-   let tops=dress==='work'?catalogue.suits.concat(catalogue.blazers):catalogue.blazers.slice();
+   let tops=catalogue.suits.concat(catalogue.blazers);
    tops=filter(tops,q.topwear,x=>x.formal?'suit':'blazer');
    // A separate bottom locks this into a blazer configuration; never ignore it.
    if(q.pants)tops=tops.filter(x=>!x.formal);
    let shirts=filter(catalogue.shirts,q.shirt,rawShirtFamily);
    const ties=filter(catalogue.ties.filter(t=>t.status==='active'),q.tie,t=>t.colorFamily||fam.tie?.(t)||'unknown');
-   const noTieOnly=q.tie?.mode==='none'||dress==='weekend';
+   const noTieOnly=q.tie?.mode==='none';
    const tieChoices=noTieOnly?[null]:q.tie?ties:ties.concat([null]);
    if(!tops.length||!shirts.length||!tieChoices.length)return rejectedRequest('No items satisfy all explicit locks; no substitution was made.');
    const bindingMap=new Map();

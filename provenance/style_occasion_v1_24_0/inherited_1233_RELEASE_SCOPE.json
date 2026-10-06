@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.owner-release-scope.v1",
-  "version": "1.24.0-style-occasions",
+  "version": "1.23.2-cards",
   "owner_instruction": "Continue with 18 only for now",
   "owner_message_timestamp": "2026-09-25T02:44:23Z",
   "scope_applies_to": [
@@ -97,7 +97,7 @@
     "20 distinct qualified clothing options when available, honoring all explicit locks",
     "Existing DNA/compatibility/rotation preserved"
   ],
-  "current_patch_scope": "Watch-independent classification; Modern No Tie and sneaker policies; Work consolidation and Research Dinner/Weekend; classification explanations and complete rebuild",
+  "current_patch_scope": "In-app card layout only; source-based shoe-15 update retained unchanged",
   "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged.",
   "owner_weather_update": {
     "timestamp": "2026-09-27T20:15:32Z",
@@ -106,20 +106,14 @@
   },
   "option_set_policy": {
     "max_unanchored_item_uses": 2,
-    "max_no_tie": {
-      "AUTO": 2,
-      "CLASSIC": 2,
-      "HYBRID": 2,
-      "MODERN": null
-    },
+    "max_no_tie": 2,
     "max_shirt_only": 2,
     "exact_item_anchor_exception": true,
     "family_anchor_exception": false,
     "compatibility_diversity_bonus": false,
     "target_options": 20,
     "max_unanchored_tie_uses": 1,
-    "max_unanchored_other_item_uses": 2,
-    "no_tie_explicit_exception": true
+    "max_unanchored_other_item_uses": 2
   },
   "automatic_weather": {
     "enabled_by_user_action": true,
@@ -137,14 +131,13 @@
     "desktop": "outfit left and item thumbnails/right",
     "ranking_data_and_modes_unchanged": true
   },
-  "current_increment": "Owner implementation approval 2026-10-02T03:15:57Z",
+  "current_increment": "Owner instruction 2026-10-01T02:57:54Z: show option cards like the supplied screenshot",
   "preserved_option_policy": {
     "target": 20,
     "unanchored_tie_max": 1,
     "other_unanchored_physical_item_max": 2,
     "default_no_tie_max": 2,
-    "exact_anchor_only_exemption": true,
-    "modern_no_tie_max": null
+    "exact_anchor_only_exemption": true
   },
   "learning_scope": [
     "Research-based wardrobe generator"
@@ -175,30 +168,5 @@
     "ranking_data_and_modes_unchanged": true,
     "new_storage_keys": false,
     "original_palette_preserved": true
-  },
-  "style_occasion_v1_24_0": {
-    "watch_contribution_to_classification": 0,
-    "watch_complementary_matching_retained": true,
-    "modern_no_tie_category_cap": null,
-    "modern_sneaker_category_cap": null,
-    "modern_sneaker_pair_limit": 2,
-    "source_style_flags_changed": false,
-    "style_thresholds_changed": false,
-    "occasions": [
-      "work",
-      "dinner",
-      "weekend"
-    ],
-    "work_aliases": [
-      "clinic",
-      "hospital",
-      "office"
-    ],
-    "new_occasion_generation_method": "research",
-    "dinner_weekend_other_automatic_methods": "explicitly unavailable, never silently substituted",
-    "clothing_occasion_profiles": "Declared engineering assumptions in src/style-occasion-policy.js, not owner ratings",
-    "raw_history_feedback_migration": false,
-    "feedback_fit_scope": "normalized occasion",
-    "side_by_side_and_swipe_retained": true
   }
 }

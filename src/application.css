@@ -167,3 +167,7 @@ html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
 #fx-sheet:has(.pref-compare-grid) #fx-sheet-actions{display:flex;flex-wrap:wrap;gap:8px}
 #fx-sheet:has(.pref-compare-grid) #fx-sheet-actions button{min-width:120px;flex:1 1 120px}
 @media(max-width:600px){.pref-compare-grid{grid-template-columns:1fr}.pref-compare-card>img{max-height:440px}.pref-compare-items p{font-size:14px}.lb-toolbar{flex-wrap:wrap;gap:8px}}
+
+/* V1.24.0 actual clothing/footwear style explanation; no garment styling. */
+.lb-style-explanation{font:11px/1.4 Arial,sans-serif;color:var(--secondary);margin:5px 0 0;overflow-wrap:anywhere}
+@media(max-width:759px){.lb-style-explanation{font-size:9px}}

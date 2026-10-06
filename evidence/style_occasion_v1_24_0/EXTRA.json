@@ -1,0 +1,55 @@
+{
+  "passed": 4,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Every unique newly generated clothing score and component is exactly preserved from the old engine",
+      "passed": true,
+      "detail": 181
+    },
+    {
+      "name": "Tampered scores, selection and cross-occasion cached requests are rejected",
+      "passed": true,
+      "detail": {
+        "generated_options": 15,
+        "negative_cases": 3
+      }
+    },
+    {
+      "name": "Actual legacy exact tied-suit selection works in both new occasions without changing the explicit tie",
+      "passed": true,
+      "detail": [
+        {
+          "occasion": "dinner",
+          "count": 1,
+          "selection": {
+            "suitId": "S05",
+            "shirtId": "DS001",
+            "state": "T017",
+            "shoeId": "shoe-15",
+            "watchId": null
+          }
+        },
+        {
+          "occasion": "weekend",
+          "count": 1,
+          "selection": {
+            "suitId": "S05",
+            "shirtId": "DS001",
+            "state": "T017",
+            "shoeId": "shoe-15",
+            "watchId": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "Active Work feedback cannot be silently used for Dinner generation",
+      "passed": true,
+      "detail": {
+        "synthetic_work_active": true,
+        "scope_mismatch_rejected": true
+      }
+    }
+  ]
+}

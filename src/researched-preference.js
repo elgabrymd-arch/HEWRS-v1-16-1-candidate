@@ -5,7 +5,7 @@
  * This module reads wardrobe facts. It does not edit DNA or historical scores.
  */
 (function(root){'use strict';
-const REV='hewrs.researched-work-styling.v1_21_0',old=root.HEWRSOutfitPreference;
+const REV='hewrs.researched-styling.v1_24_0',old=root.HEWRSOutfitPreference;
 const clip=(v,lo=0,hi=10)=>Math.max(lo,Math.min(hi,v)),r=v=>Math.round(v*1e6)/1e6,copy=x=>structuredClone(x),txt=x=>String(x||'').toLowerCase();
 const warm=new Set(['brown','beige','cream','rust','gold','olive']),neutral=new Set(['white','cream','beige','grey','charcoal','black']);
 function col(t){let c=old.colour(t),s=txt(t);
@@ -78,7 +78,7 @@ function create(c){const inherited=old.create(c),profiles=new Map();let learning
   return .50*same+.25*depth+.25*patt;
  }
  function referenceSimilarity(p){if(!templates.length)return 8;let best=0;for(const x of templates){if((!!p.pants)!=(!!x.pants))continue;const tieShape=(!p.tie||!x.tie)?(!p.tie&&!x.tie?1:.3):(.55*(p.tie.pattern.quiet===x.tie.pattern.quiet?1:.65)+.45*Math.max(.5,1-Math.abs(p.tie.pattern.scale-x.tie.pattern.scale)/5));const v=.28*propertySimilarity(p.topwear,x.topwear)+.30*propertySimilarity(p.shirt,x.shirt)+.30*tieShape+.12*propertySimilarity(p.pants,x.pants);best=Math.max(best,v);}return 10*best;}
- function clothing(topId,shirtId,tieId,pantId,legacyScore){const t=get(topId),s=get(shirtId),tie=tieId==='NO_TIE'?null:get(tieId),p=pantId?get('pants-'+pantId):null,parts=[t,s,...(tie?[tie]:[]),...(p?[p]:[])];
+ function clothing(topId,shirtId,tieId,pantId,legacyScore,q={}){const t=get(topId),s=get(shirtId),tie=tieId==='NO_TIE'?null:get(tieId),p=pantId?get('pants-'+pantId):null,parts=[t,s,...(tie?[tie]:[]),...(p?[p]:[])];
   const tv=t.primary.value,sv=s.primary.value,iv=tie?.primary.value,d=sv===null||iv===null?null:sv-iv,gap=tv===null||sv===null?null:Math.abs(tv-sv),pr=parts.map(prominence),reasons=[],cautions=[];
   // Readability has several legitimate structures: a deeper focal tie,
   // a pale tonal tie with visible pattern/texture, and a framed light tie.
@@ -126,14 +126,28 @@ function create(c){const inherited=old.create(c),profiles=new Map();let learning
   const components={reference_structure:r(referenceSimilarity({topwear:t,shirt:s,tie,pants:p})),shirt_palette_direction:r(shirtDirection(t,s,!!tie)),tie_palette_direction:r(tieDirection(t,s,tie)),value_structure:r(clip(value)),palette:r(clip(palette)),pattern_hierarchy:r(clip(hierarchy)),formality:r(clip(formality)),surface:r(clip(surface)),blazer_trouser_foundation:r(clip(foundation)),legacy_compatibility:legacyScore};
   const weights={reference_structure:.04,shirt_palette_direction:.153,tie_palette_direction:.18,value_structure:.18,palette:.096,pattern_hierarchy:.198,formality:.036,surface:.027,blazer_trouser_foundation:.072,legacy_compatibility:.018};
   let score=Object.keys(weights).reduce((n,k)=>n+weights[k]*components[k],0);
-  return {revision:REV,score:r(score),components,weights,ids:{topwear:topId,shirt:shirtId,tie:tieId,pants:pantId},profiles:{topwear:t,shirt:s,tie,pants:p},prominence:pr,value_route:valueRoute,reasons,cautions,reason:[...reasons,...cautions].join(' '),kind:'research_informed_local_rule_estimate',measured:false};
+  return root.HEWRSStyleOccasions.clothingAssessment({revision:REV,score:r(score),components,weights,ids:{topwear:topId,shirt:shirtId,tie:tieId,pants:pantId},profiles:{topwear:t,shirt:s,tie,pants:p},prominence:pr,value_route:valueRoute,reasons,cautions,reason:[...reasons,...cautions].join(' '),kind:'research_informed_local_rule_estimate',measured:false},q);
  }
  const shoeColours=new Map();
  function shoeColour(text){if(!shoeColours.has(text)){if(shoeColours.size>=128)shoeColours.clear();shoeColours.set(text,Object.freeze(col(text)));}return shoeColours.get(text);}
  function rawShoe(item,o,q){const t=o.profiles.topwear,p=o.profiles.pants||t,ss=txt(item.color),colour=shoeColour(ss),type=item.subcategory,suit=t.category==='suit',tied=!!o.profiles.tie,pv=p.primary.value,v=colour.value;
   let formality=type==='Dress Shoes'?(tied?9.5:9.0):type==='Loafers'?(tied?8.9:9.35):type==='Drivers'?6.8:6.2;
-  if(/lug sole|chunky|heavy sole/.test(ss)&&suit&&tied)formality-=.75;
-  let grounding=8.6,reason='Footwear assessed against the trousers and dress level, not price or brand.';
+  const occasion=root.HEWRSStyleOccasions.occasion(q?.context?.occasion||'work'),modern=q?.executiveStyle==='MODERN';
+  const silhouette=/low.top|low top|triple stitch|slip.on/.test(ss)?'low_profile_description':/runner|running|knit trainer|fastlane/.test(ss)?'athletic_description':'not_recorded';
+  const bulky=/lug sole|chunky|heavy sole|oversized sole/.test(ss);
+  if(type==='Sneakers'&&(modern||occasion==='weekend')){
+   // No automatic disadvantage solely for the sneaker category. Record-based
+   // shoe/outfit relationships still matter; unknown bulk is not invented.
+   formality=9.2;
+   if(silhouette==='low_profile_description')formality=9.35;
+   if(silhouette==='athletic_description'&&suit&&tied)formality-=.45;
+  }else if(occasion==='dinner'){
+   formality=type==='Dress Shoes'?(tied?9.5:9.1):type==='Loafers'?9.4:type==='Drivers'?7.1:6.2;
+  }else if(occasion==='weekend'){
+   formality=type==='Dress Shoes'?(tied?8.4:8.0):type==='Loafers'?9.5:type==='Drivers'?9.0:formality;
+  }
+  if(bulky&&suit&&tied)formality-=.75;
+  let grounding=8.6,reason='Footwear assessed against the trousers, selected style and occasion, not price or brand.';
   if(colour.family==='black'){grounding=['navy','blue','charcoal','grey','black'].includes(p.primary.family)?9.35:warm.has(p.primary.family)&&pv>=3.3?8.35:8.85;}
   else if(['brown','burgundy','rust','beige'].includes(colour.family)){
    const dark=v!==null&&v<2.3,light=v!==null&&v>=3.1;
@@ -145,19 +159,19 @@ function create(c){const inherited=old.create(c),profiles=new Map();let learning
   const restraint=decorative?(busy?7.3:8.2):9.3;
   let surface=/suede/.test(ss)?(!suit||!tied?9.25:8.7):9;
   // Source-backed examples allow suede with tailoring. Weather module decides wet suitability.
-  return {score:r(clip(.38*formality+.40*grounding+.14*restraint+.08*surface)),formality,grounding,restraint,surface,colour,revision:REV,reason,price_or_brand_bonus:0,kind:'research_informed_shoe_context',measurements:false};
+  return {score:r(clip(.38*formality+.40*grounding+.14*restraint+.08*surface)),formality,grounding,restraint,surface,colour,revision:REV,reason,occasion,requested_style:q?.executiveStyle||'AUTO',silhouette_evidence:silhouette,sole_bulk_evidence:bulky?'described_as_bulky':'not_recorded',sneaker_category_cap:null,price_or_brand_bonus:0,kind:'research_informed_shoe_context',measurements:false};
  }
  // Context-keyed memo of the SAME shoe function; all fields it reads are
  // included. No history, model weight, price or candidate ranking is cached.
  const shoeAssessmentCache=new Map();
  function shoe(item,o,q){const t=o.profiles.topwear,p=o.profiles.pants||t;
-  const key=JSON.stringify([item.color,item.subcategory,t.category,p.primary.family,p.primary.value,!!o.profiles.tie,Math.max(...o.prominence)>.68]);
+  const key=JSON.stringify([item.color,item.subcategory,t.category,p.primary.family,p.primary.value,!!o.profiles.tie,Math.max(...o.prominence)>.68,q?.executiveStyle||'AUTO',root.HEWRSStyleOccasions.occasion(q?.context?.occasion||'work'),q?.context?.requiredFormality||'any']);
   if(shoeAssessmentCache.has(key))return shoeAssessmentCache.get(key);
   const value=Object.freeze(rawShoe(item,o,q));
   if(shoeAssessmentCache.size>=4096)shoeAssessmentCache.delete(shoeAssessmentCache.keys().next().value);shoeAssessmentCache.set(key,value);return value;
  }
  function watch(item,o,q){const w=inherited.watch(item,{...o,components:{...o.components,pattern_hierarchy:o.components.pattern_hierarchy}},q);return {...w,revision:REV,kind:'contextual_watch_preference_not_designer_grade'};}
- function complete(o,sh,wa){const features=root.HEWRSOutfitLearning.vector(o,sh),baseline=.87*o.score+.10*sh.score+.03*wa.score,contributions=root.HEWRSOutfitLearning.signals(learningModel,features),adjustment=contributions.total;return {revision:REV,score:r(clip(baseline+adjustment)),baseline_research_score:r(baseline),learning:{revision:root.HEWRSOutfitLearning.REV,model_id:learningModel.id,active:learningModel.active&&learningModel.enabled,adjustment:r(adjustment),pairwise_active:learningModel.relative_active,acceptability_active:learningModel.acceptability.active,contributions:{pairwise:r(contributions.pairwise),acceptability:r(contributions.acceptability),combined:r(contributions.total)},acceptability_counts:copy(learningModel.acceptability.counts),counts:copy(learningModel.counts),reason:learningModel.reason,features,feature_names:root.HEWRSOutfitLearning.FEATURES.slice(),source_revision:root.HEWRSSourceCorrections.revision},clothing_score:o.score,clothing:copy(o.components),shoe:copy(sh),watch:copy(wa),weights:{clothing:.87,shoes:.10,watch:.03},research_rule_ids:['R1_VALUE','R2_PATTERN','R3_PALETTE','R4_SEPARATES','R5_FOOTWEAR','R6_CONTEXT'],explanation:o.reason,reasons:copy(o.reasons),cautions:copy(o.cautions),kind:'research_informed_local_rules_not_live_ai',measurement:false};}
+ function complete(o,sh,wa){const features=root.HEWRSOutfitLearning.vector(o,sh),baseline=.87*o.score+.10*sh.score+.03*wa.score,contributions=root.HEWRSOutfitLearning.signals(learningModel,features),adjustment=contributions.total;return {revision:REV,score:r(clip(baseline+adjustment)),baseline_research_score:r(baseline),learning:{revision:root.HEWRSOutfitLearning.REV,model_id:learningModel.id,active:learningModel.active&&learningModel.enabled,adjustment:r(adjustment),pairwise_active:learningModel.relative_active,acceptability_active:learningModel.acceptability.active,contributions:{pairwise:r(contributions.pairwise),acceptability:r(contributions.acceptability),combined:r(contributions.total)},acceptability_counts:copy(learningModel.acceptability.counts),counts:copy(learningModel.counts),reason:learningModel.reason,features,feature_names:root.HEWRSOutfitLearning.FEATURES.slice(),source_revision:root.HEWRSSourceCorrections.revision},clothing_score:o.score,occasion_profile:copy(o.occasion_profile),clothing:copy(o.components),shoe:copy(sh),watch:copy(wa),weights:{clothing:.87,shoes:.10,watch:.03},research_rule_ids:['R1_VALUE','R2_PATTERN','R3_PALETTE','R4_SEPARATES','R5_FOOTWEAR','R6_CONTEXT'],explanation:o.reason,reasons:copy(o.reasons),cautions:copy(o.cautions),kind:'research_informed_local_rules_not_live_ai',measurement:false};}
  function signature(o){const p=o.profiles;return {topId:p.topwear.id,topFamily:p.topwear.primary.family,topPattern:p.topwear.pattern.quiet?'quiet':p.topwear.pattern.family,shirtId:p.shirt.id,shirtShade:p.shirt.primary.shade,shirtDepth:p.shirt.primary.value>=3.6?'light':p.shirt.primary.value>=2.3?'medium':'dark',shirtPattern:p.shirt.pattern.quiet?'quiet':p.shirt.pattern.family,tieFamily:p.tie?.primary.family||'NO_TIE',tiePattern:p.tie?(p.tie.pattern.quiet?'quiet':p.tie.pattern.family):'NO_TIE'};}
  function redundancy(e,selected,q){if(!selected.length)return 0;const a=signature(e.entry.preference);let max=0,sum=0;for(const old of selected){const b=signature(old.entry.preference);let n=0;for(const[k,w]of Object.entries({topFamily:.06,topPattern:.04,shirtShade:.23,shirtDepth:.06,shirtPattern:.12,tieFamily:.25,tiePattern:.12}))if(a[k]===b[k])n+=w;
   if(q.prefs.topwear.mode!=='item'&&a.topId===b.topId)n+=.12;if(q.prefs.shirt.mode!=='item'&&a.shirtId===b.shirtId)n+=.12;max=Math.max(max,n);sum+=n;}
@@ -172,7 +186,7 @@ function create(c){const inherited=old.create(c),profiles=new Map();let learning
  function describeSelection(s,context={occasion:'clinic',requiredFormality:'any'}){
   try{c.validateSelection(s);if(s.shirtOnly||s.state==='REFERENCE')throw Error('Whole tailored outfits only');
    const raw=c.scoreSelection(s,context);if(!Number.isFinite(raw.score)||raw.hard_conflict?.hard_reject||raw.context?.status==='ineligible')return {eligible:false,reason:raw.status};
-   const o=clothing(s.suitId||s.blazerId,s.shirtId,s.state,s.pantId||null,raw.score),item=c.catalogue.shoes.find(x=>x.id===s.shoeId),sh=shoe(item,o,{context}),wa=watch(s.watchId?c.catalogue.watches.find(x=>x.id===s.watchId):null,o,{context});
+   const o=clothing(s.suitId||s.blazerId,s.shirtId,s.state,s.pantId||null,raw.score,{context}),item=c.catalogue.shoes.find(x=>x.id===s.shoeId),sh=shoe(item,o,{context}),wa=watch(s.watchId?c.catalogue.watches.find(x=>x.id===s.watchId):null,o,{context});
    return {eligible:true,vector:root.HEWRSOutfitLearning.vector(o,sh),baseline_score:r(.87*o.score+.10*sh.score+.03*wa.score),reason:raw.status,source_revision:root.HEWRSSourceCorrections.revision,source_scale:'ordinal text-derived, not physical measurements'};
   }catch(e){return {eligible:false,reason:e.message};}
  }

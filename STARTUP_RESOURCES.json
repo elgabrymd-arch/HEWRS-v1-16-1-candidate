@@ -3,9 +3,10 @@
   "startup_scripts": [
     "src/runtime-loader.js",
     "data/inputs.js",
-    "runtime/hewrs-6c7ff9a139c849b73cb5.js"
+    "runtime/hewrs-46bcc3157215e63c11c2.js"
   ],
   "bundle_sources": [
+    "src/style-occasion-policy.js",
     "data/owner-source-corrections.js",
     "src/source-corrections.js",
     "data/shoe-photo-corrections.js",
@@ -81,6 +82,7 @@
   "script_order": [
     "src/runtime-loader.js",
     "data/inputs.js",
+    "src/style-occasion-policy.js",
     "data/owner-source-corrections.js",
     "src/source-corrections.js",
     "data/shoe-photo-corrections.js",
@@ -153,8 +155,8 @@
     "src/preference-panel.js",
     "src/application.js"
   ],
-  "bytes_if_current_sources_were_unbundled": 11914650,
-  "bytes_at_home": 5848951,
+  "bytes_if_current_sources_were_unbundled": 11923382,
+  "bytes_at_home": 5857724,
   "resource_integrity": {
     "src/runtime-loader.js": {
       "bytes": 3280,
@@ -164,17 +166,17 @@
       "bytes": 4465381,
       "sha256": "d4060df8ec8f400f62e2a160b6798ca5f15b940d030c9b63e901b58e0344c3fb"
     },
+    "runtime/hewrs-46bcc3157215e63c11c2.js": {
+      "bytes": 1389063,
+      "sha256": "46bcc3157215e63c11c26f89fd97485a2f47ebbd0ce4b81d44c433013ccc98d1"
+    },
     "data/option-index.js": {
       "bytes": 6072082,
       "sha256": "97a019847fcbe0868563bdc7a9b63f2d6fe1ddd5dc1f9091e0dcab524176fae4"
     },
     "src/application.css": {
-      "bytes": 26618,
-      "sha256": "ed1390d56723acefc557932f0262e9b71259ff9c874c669a64161cce49e970ab"
-    },
-    "runtime/hewrs-6c7ff9a139c849b73cb5.js": {
-      "bytes": 1381751,
-      "sha256": "6c7ff9a139c849b73cb55752f579200949e8ff3fd8232835b3cc8b8f0729066a"
+      "bytes": 26934,
+      "sha256": "f13a42337b334f88859733dc556c1f1d092f1b79b06dd67073e3d18a2912134c"
     }
   }
 }

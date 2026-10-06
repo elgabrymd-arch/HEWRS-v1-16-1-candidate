@@ -42,15 +42,14 @@ function requestGuard(q,c){
   if(role==='tie'&&item.status!=='active')return {allowed:false,reason:'Exact tie is not active'};
   if(role==='shoes'&&item.disabled)return {allowed:false,reason:'Exact shoe is disabled'};
   if(role==='topwear'&&(!!item.formal!==!!o.formal))return {allowed:false,reason:'Exact topwear ID/type disagree'};
-  if(role==='topwear'&&item.formal&&q.dressMode!=='work')return {allowed:false,reason:'Existing context does not admit the exact suit; no substitution'};
+  if(role==='topwear'&&item.formal&&!['work','fancyDinner','weekend'].includes(q.dressMode))return {allowed:false,reason:'Existing context does not admit the exact suit; no substitution'};
   if(role==='pants'){
    const isJeans=c.jeans.some(x=>x.id===o.id);
    if(q.dressMode==='work'&&isJeans)return {allowed:false,reason:'Exact jeans are outside the existing Work pool'};
-   if(q.dressMode==='weekend'&&(!isJeans||!item.weekendEligible))return {allowed:false,reason:'Exact bottom is outside the existing Weekend pool'};
+   if(q.dressMode==='weekend'&&isJeans&&!item.weekendEligible)return {allowed:false,reason:'Exact bottom is outside the existing Weekend pool'};
    if(q.dressMode==='fancyDinner'&&isJeans&&!item.fancyDinnerEligible)return {allowed:false,reason:'Exact jeans are outside the existing Dinner pool'};
   }
  }
- if(q.tie&&q.tie.mode==='item'&&q.dressMode==='weekend')return {allowed:false,reason:'Existing Weekend path has no ties; explicit tie is not silently dropped'};
  if(q.shirt&&NO_TIE.includes(q.shirt.id)&&q.tie&&q.tie.mode!=='none')return {allowed:false,reason:'No-tie shirt conflicts with explicit tie preference'};
  if(q.pants&&q.pants.mode==='item'&&q.topwear&&(q.topwear.formal===true||q.topwear.category==='suit'))return {allowed:false,reason:'Suit trousers are intrinsic; an explicit separate bottom cannot be ignored'};
  return {allowed:true,reason:null};

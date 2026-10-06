@@ -48,7 +48,7 @@ function create(inputs){
   need(c.tie!=='REFERENCE','A saved reference is not an exact tie/no-tie selection');
   need(Object.hasOwn(base.shoeLayers,c.shoeId),'Unknown exact footwear');
   if(c.watchId)need(catalogue.watches.some(w=>w.id===c.watchId),'Unknown exact watch');
-  const q={mode:'candidate',dressMode:'work',topwear:{mode:'item',id:b.historyId,formal:false},pants:{mode:'item',id:p.historyId},shirt:{mode:'item',id:base.records[shirtId].history_id},shoes:{mode:'item',id:c.shoeId},executiveStyle:c.style||'AUTO',context:{occasion:c.occasion||'clinic',requiredFormality:c.formality||'any'},localDate:c.localDate,limit:15,pantBindings:[]};
+  const q={mode:'candidate',dressMode:root.HEWRSStyleOccasions.dressMode(c.occasion||'work'),topwear:{mode:'item',id:b.historyId,formal:false},pants:{mode:'item',id:p.historyId},shirt:{mode:'item',id:base.records[shirtId].history_id},shoes:{mode:'item',id:c.shoeId},executiveStyle:c.style||'AUTO',context:{occasion:root.HEWRSStyleOccasions.occasion(c.occasion||'work'),requiredFormality:c.formality||'any'},localDate:c.localDate,limit:15,pantBindings:[]};
   if(c.tie&&c.tie!=='ANY'){if(c.tie==='NO_TIE')q.tie={mode:'none'};else if(c.tie.startsWith('FAMILY:'))q.tie={mode:'category',category:c.tie.slice(7)};else{need(Object.hasOwn(d.assembly.ties,c.tie),'Unknown exact tie');q.tie={mode:'item',id:c.tie};}}
   if(c.watchId)q.watch={mode:'item',id:c.watchId};
   // Exact recovered source crosswalk; do not activate its nine null profiles.

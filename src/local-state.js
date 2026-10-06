@@ -13,7 +13,7 @@ function create(connection,lock,backend){
   need(Object.keys(s).every(k=>['selection','origin','localDate','context','mode'].includes(k)),'Unexpected session fields');
   selection(s.selection);if(Object.hasOwn(s.selection,'shirtOnly'))need(s.mode==='anchor'&&s.origin==='manual','Shirt-only is an explicit manual Anchor session');need(['manual','engine','reference'].includes(s.origin),'Unknown session origin');need(['anchor','engine'].includes(s.mode),'Unknown workflow');need(date(s.localDate),'Invalid local calendar date');
   need(s.context&&Object.keys(s.context).every(k=>['occasion','requiredFormality'].includes(k)),'Unexpected context fields');
-  need(['clinic','hospital','work'].includes(s.context.occasion),'Invalid S05 setting');need(['any','tie_required','suit_required','open_collar_allowed'].includes(s.context.requiredFormality),'Invalid formality');return s;
+  need(root.HEWRSStyleOccasions.known(s.context.occasion),'Invalid occasion');need(['any','tie_required','suit_required','open_collar_allowed'].includes(s.context.requiredFormality),'Invalid formality');return s;
  }
  function validate(v){
   need(v&&typeof v==='object'&&!Array.isArray(v)&&v.schema===SCHEMA,'Different backup schema; not imported or migrated');

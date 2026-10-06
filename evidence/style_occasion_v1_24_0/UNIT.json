@@ -1,0 +1,210 @@
+{
+  "scope": "Fresh source-level unit and controlled synthetic tests, not live device or current-user data",
+  "passed": 15,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "All original 2350 shirt/tie lookup responses remain identical",
+      "passed": true,
+      "detail": 2350
+    },
+    {
+      "name": "Clothing-only and clothing/footwear classification is watch-invariant",
+      "passed": true,
+      "detail": {
+        "cases": 19200,
+        "classified": 19200,
+        "fixture": "classification-only source features; constant compatibility is a labelled unit fixture, not production score"
+      }
+    },
+    {
+      "name": "All fifteen watch-only Hybrid examples now classify Classic using the unchanged real clothing score",
+      "passed": true,
+      "detail": 15
+    },
+    {
+      "name": "Actual watch catalogue plus no-watch does not change same-clothing/footwear style",
+      "passed": true,
+      "detail": 408
+    },
+    {
+      "name": "Modern No Tie cap removed only in explicit Modern; physical reuse, exact anchors and duplicate protections remain",
+      "passed": true,
+      "detail": {
+        "modern_no_tie_synthetic_options": 6,
+        "other_style_default": 2,
+        "same_shoe_cap": 2,
+        "synthetic_fixture": true
+      }
+    },
+    {
+      "name": "No sneaker-category quota; pair cap remains two",
+      "passed": true,
+      "detail": {
+        "connected_sneaker_ids": [
+          "shoe-33",
+          "shoe-34",
+          "shoe-35",
+          "shoe-39",
+          "shoe-41",
+          "shoe-42",
+          "shoe-43",
+          "shoe-44"
+        ],
+        "synthetic_list_count": 8
+      }
+    },
+    {
+      "name": "Modern sneaker suitability removes blanket 6.2 and uses context-correct cache, without brand/price bonuses",
+      "passed": true,
+      "detail": [
+        {
+          "id": "shoe-33",
+          "before_formality": 6.2,
+          "modern_formality": 9.2,
+          "weekend_formality": 9.2
+        },
+        {
+          "id": "shoe-34",
+          "before_formality": 6.2,
+          "modern_formality": 9.2,
+          "weekend_formality": 9.2
+        },
+        {
+          "id": "shoe-35",
+          "before_formality": 6.2,
+          "modern_formality": 9.2,
+          "weekend_formality": 9.2
+        },
+        {
+          "id": "shoe-39",
+          "before_formality": 6.2,
+          "modern_formality": 8.75,
+          "weekend_formality": 8.75
+        },
+        {
+          "id": "shoe-41",
+          "before_formality": 6.2,
+          "modern_formality": 9.35,
+          "weekend_formality": 9.35
+        },
+        {
+          "id": "shoe-42",
+          "before_formality": 6.2,
+          "modern_formality": 9.35,
+          "weekend_formality": 9.35
+        },
+        {
+          "id": "shoe-43",
+          "before_formality": 6.2,
+          "modern_formality": 9.35,
+          "weekend_formality": 9.35
+        },
+        {
+          "id": "shoe-44",
+          "before_formality": 6.2,
+          "modern_formality": 9.35,
+          "weekend_formality": 9.35
+        }
+      ]
+    },
+    {
+      "name": "Work/hospital/clinic/office requests normalize identically; invalid occasions still fail",
+      "passed": true,
+      "detail": {
+        "occasion": "work",
+        "requiredFormality": "any"
+      }
+    },
+    {
+      "name": "Dinner/Weekend are real, separate research contexts; legacy method is not silently substituted",
+      "passed": true,
+      "detail": [
+        {
+          "occasion": "work",
+          "dressMode": "work",
+          "clothing_score": 9.267551,
+          "profile": {
+            "revision": "hewrs.style-and-occasion.v1_24_0",
+            "occasion": "work",
+            "profile_score": 9.267551,
+            "profile_weight": 0,
+            "base_clothing_score": 9.267551,
+            "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+            "basis": "declared_engineering_profile_not_owner_rating",
+            "forced_tie_or_no_tie": false
+          }
+        },
+        {
+          "occasion": "dinner",
+          "dressMode": "fancyDinner",
+          "clothing_score": 9.270147,
+          "profile": {
+            "revision": "hewrs.style-and-occasion.v1_24_0",
+            "occasion": "dinner",
+            "profile_score": 9.3,
+            "profile_weight": 0.08,
+            "base_clothing_score": 9.267551,
+            "description": "Evening tailoring; tie and suit are not compulsory. Explicit formality remains binding.",
+            "basis": "declared_engineering_profile_not_owner_rating",
+            "forced_tie_or_no_tie": false
+          }
+        },
+        {
+          "occasion": "weekend",
+          "dressMode": "weekend",
+          "clothing_score": 9.142147,
+          "profile": {
+            "revision": "hewrs.style-and-occasion.v1_24_0",
+            "occasion": "weekend",
+            "profile_score": 7.7,
+            "profile_weight": 0.08,
+            "base_clothing_score": 9.267551,
+            "description": "Relaxed tailored/smart-casual wardrobe. Open collars preferred, not forced; exact ties remain binding.",
+            "basis": "declared_engineering_profile_not_owner_rating",
+            "forced_tie_or_no_tie": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "Old session labels/ledger preserved; Dinner/Weekend session save and backup restore work",
+      "passed": true,
+      "detail": {
+        "tested_occasions": 6,
+        "all_storage": "synthetic memory only",
+        "writes": 6
+      }
+    },
+    {
+      "name": "Feedback contexts isolate fits; same pair can be separately reviewed in Dinner; raw existing records stay unchanged",
+      "passed": true,
+      "detail": {
+        "synthetic_work_records": 12,
+        "dinner_records": 1,
+        "existing_records_unchanged": true,
+        "model_recomputed_without_cross_occasion_labels": true
+      }
+    },
+    {
+      "name": "Held-out boundaries and S02 exclusion persist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New occasion legacy exact requests retain suit and explicit tie rather than dropping them",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Stale weather/invalid storage/unknown shoe are not converted into empty-history or fallback success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Watch and whole source inventory identities unchanged; no missing shoes/jeans activated",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

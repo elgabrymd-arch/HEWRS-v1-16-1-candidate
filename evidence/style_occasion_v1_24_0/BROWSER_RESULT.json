@@ -1,0 +1,677 @@
+{
+  "scope": "Fresh real built bundle and actual image bytes, offline Chromium. Isolated synthetic memory adapters. No production browser data, network publishing or physical Safari test.",
+  "passed": 67,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "app startup ready",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "before startup ready",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unchanged native outfit pixels 9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "One Work plus connected Dinner/Weekend choices",
+      "passed": true,
+      "detail": [
+        {
+          "value": "work",
+          "disabled": false
+        },
+        {
+          "value": "dinner",
+          "disabled": false
+        },
+        {
+          "value": "weekend",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "name": "Occasion Cancel retains context",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Side-by-side layout and image decoding 320x568",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Side-by-side layout and image decoding 390x350",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Side-by-side layout and image decoding 390x780",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Side-by-side layout and image decoding 390x844",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Side-by-side layout and image decoding 430x932",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Side-by-side layout and image decoding 1280x1000",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual Generate returned a current list",
+      "passed": true,
+      "detail": {
+        "count": 20,
+        "context": {
+          "occasion": "work",
+          "formality": "any",
+          "style": "AUTO",
+          "localDate": "2026-10-01"
+        }
+      }
+    },
+    {
+      "name": "Controlled actual UI list has twenty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Touch swipe right \u2192 20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Touch swipe left \u2192 1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Touch swipe left \u2192 2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Arrow wrapping 1\u219220\u21921",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Option card/list identity 20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Item enlargement remains functional",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Changing occasion invalidates old results dinner",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual Generate returned a current list",
+      "passed": true,
+      "detail": {
+        "count": 20,
+        "context": {
+          "occasion": "dinner",
+          "formality": "any",
+          "style": "AUTO",
+          "localDate": "2026-10-01"
+        }
+      }
+    },
+    {
+      "name": "Actual UI uses requested occasion dinner",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New session retains dinner",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Changing occasion invalidates old results weekend",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual Generate returned a current list",
+      "passed": true,
+      "detail": {
+        "count": 20,
+        "context": {
+          "occasion": "weekend",
+          "formality": "any",
+          "style": "AUTO",
+          "localDate": "2026-10-01"
+        }
+      }
+    },
+    {
+      "name": "Actual UI uses requested occasion weekend",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New session retains weekend",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "app startup ready",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Weekend session restores on reload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reload did not rewrite memory record",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PNG export remains available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "BEFORE CLASSIC comparison list exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AFTER CLASSIC comparison list exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "BEFORE HYBRID comparison list exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AFTER HYBRID comparison list exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "BEFORE MODERN comparison list exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AFTER MODERN comparison list exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Synthetic sentinel preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No wear/Favorites/feedback records created by these UI operations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No unhandled browser errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "avatar": {
+        "left": 18.59375,
+        "right": 128.515625,
+        "top": 250.0625,
+        "bottom": 553.328125
+      },
+      "items": {
+        "left": 136.515625,
+        "right": 301.40625,
+        "top": 250.0625,
+        "bottom": 585.0625
+      },
+      "allDecoded": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 350,
+      "avatar": {
+        "left": 22.6875,
+        "right": 166.5625,
+        "top": 247.375,
+        "bottom": 644.328125
+      },
+      "items": {
+        "left": 176.5625,
+        "right": 367.3125,
+        "top": 247.375,
+        "bottom": 612.53125
+      },
+      "allDecoded": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 780,
+      "avatar": {
+        "left": 22.6875,
+        "right": 166.5625,
+        "top": 254.875,
+        "bottom": 651.828125
+      },
+      "items": {
+        "left": 176.5625,
+        "right": 367.3125,
+        "top": 254.875,
+        "bottom": 620.03125
+      },
+      "allDecoded": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "avatar": {
+        "left": 22.6875,
+        "right": 166.5625,
+        "top": 254.875,
+        "bottom": 651.828125
+      },
+      "items": {
+        "left": 176.5625,
+        "right": 367.3125,
+        "top": 254.875,
+        "bottom": 620.03125
+      },
+      "allDecoded": true,
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "avatar": {
+        "left": 23.890625,
+        "right": 183.9375,
+        "top": 254.875,
+        "bottom": 696.4375
+      },
+      "items": {
+        "left": 193.9375,
+        "right": 406.109375,
+        "top": 254.875,
+        "bottom": 620.03125
+      },
+      "allDecoded": true,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "height": 1000,
+      "avatar": {
+        "left": 157.90625,
+        "right": 563.046875,
+        "top": 286.078125,
+        "bottom": 966.078125
+      },
+      "items": {
+        "left": 585.046875,
+        "right": 1122.09375,
+        "top": 286.078125,
+        "bottom": 801.71875
+      },
+      "allDecoded": true,
+      "overflow": false
+    }
+  ],
+  "native_frames": [
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "suitId": "S11",
+        "shirtId": "DS035",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "blazerId": "B01",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-15",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "blazerId": "B02",
+        "pantId": "PG002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-42",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "blazerId": "B03",
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "T017",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "shirtOnly": true,
+        "pantId": "PG002",
+        "shirtId": "DS007",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "suitId": "S04",
+        "shirtId": "DS022",
+        "state": "T030",
+        "shoeId": "shoe-1",
+        "watchId": null
+      },
+      "identical": true
+    },
+    {
+      "selection": {
+        "suitId": "S05",
+        "shirtId": "DS001",
+        "state": "T017",
+        "shoeId": "shoe-42",
+        "watchId": null
+      },
+      "identical": true
+    }
+  ],
+  "exports": [
+    {
+      "file": "BEFORE_CLASSIC.png",
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-AP06"
+      },
+      "classification": "CLASSIC",
+      "interventions": [],
+      "source": "actual regenerated engine result; rendered by the unchanged current garment pipeline"
+    },
+    {
+      "file": "AFTER_CLASSIC.png",
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-AP06"
+      },
+      "classification": "CLASSIC",
+      "interventions": [],
+      "source": "actual regenerated engine result; rendered by the unchanged current garment pipeline"
+    },
+    {
+      "file": "BEFORE_HYBRID.png",
+      "selection": {
+        "suitId": "S01",
+        "shirtId": "DS029",
+        "state": "T024",
+        "shoeId": "shoe-4",
+        "watchId": "watch-AP01"
+      },
+      "classification": "HYBRID",
+      "interventions": [
+        "statement_watch"
+      ],
+      "source": "actual regenerated engine result; rendered by the unchanged current garment pipeline"
+    },
+    {
+      "file": "AFTER_HYBRID.png",
+      "selection": {
+        "blazerId": "B08",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP06"
+      },
+      "classification": "HYBRID",
+      "interventions": [
+        "open_collar"
+      ],
+      "source": "actual regenerated engine result; rendered by the unchanged current garment pipeline"
+    },
+    {
+      "file": "BEFORE_MODERN.png",
+      "selection": {
+        "blazerId": "B11",
+        "pantId": "PG003",
+        "shirtId": "DS005",
+        "state": "T013",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP06"
+      },
+      "classification": "MODERN",
+      "interventions": [],
+      "source": "actual regenerated engine result; rendered by the unchanged current garment pipeline"
+    },
+    {
+      "file": "AFTER_MODERN.png",
+      "selection": {
+        "blazerId": "B06",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-41",
+        "watchId": "watch-AP09"
+      },
+      "classification": "MODERN",
+      "interventions": [
+        "relaxed_tailoring",
+        "open_collar",
+        "sneakers"
+      ],
+      "source": "actual regenerated engine result; rendered by the unchanged current garment pipeline"
+    }
+  ]
+}

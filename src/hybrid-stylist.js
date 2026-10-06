@@ -4,11 +4,11 @@
  */
 (function(root){'use strict';
 const prior=root.HEWRSCleanConnection,copy=x=>structuredClone(x),stable=root.HEWRSConnectedContract.stable;
-const REV='HEWRS_HYBRID_STYLIST_1_21_0',SCHEMA='hewrs.visual-stylist.v1',MODES=['research','curated','visual','heuristic'];
+const REV='HEWRS_HYBRID_STYLIST_1_24_0',SCHEMA='hewrs.visual-stylist.v1',MODES=['research','curated','visual','heuristic'];
 function need(x,m,code='STYLIST_INVALID'){if(!x){const e=Error(m);e.code=code;throw e;}}
 function create(inputs){
  const base=prior.create(inputs),cat=base.catalogue,lib=copy(root.HEWRS_STYLIST_LIBRARY);let mode='research',remote=null;
- const research=root.HEWRSAutomaticEngine.create(inputs,{preferenceFactory:root.HEWRSResearchPreference.create,revision:'HEWRS_AUTOMATIC_WORKFLOW_1_21_0'});
+ const research=root.HEWRSAutomaticEngine.create(inputs,{preferenceFactory:root.HEWRSResearchPreference.create,revision:'HEWRS_AUTOMATIC_WORKFLOW_1_24_0'});
  const engineFor=q=>q?.stylist?.mode==='research'?research:base;
  need(lib?.schema==='hewrs.curated-library.v1_19_0'&&lib.source_lock===root.HEWRS_INPUT_SHA256,'Wrong reference library');
  const maps=Object.fromEntries(['shirts','ties','shoes','watches','pants'].map(k=>[k,new Map(cat[k].map(x=>[x.id,x]))]));
@@ -16,7 +16,7 @@ function create(inputs){
  for(const id of base.blazerConnection.availableIds)tops.set(id,cat.blazers.find(x=>x.id===base.blazerConnection.knownBlazer(id).historyId));
  const identifiedWatch=w=>!w||!/reserved|placeholder|unresolved|current collection/i.test((w.name||'')+' '+(w.color||''));
  function plain(q){const p=copy(q);delete p.stylist;return p;}
- function prepare(c){const m=c.stylistMode||mode;need(MODES.includes(m),'Unknown styling method');const q=(m==='research'?research:base).makeRequest(c);if(!q.automatic)return q;return {...q,stylist:{revision:REV,mode:m}};}
+ function prepare(c){const m=c.stylistMode||mode;need(MODES.includes(m),'Unknown styling method');const q=(m==='research'?research:base).makeRequest(c);if(!q.automatic)return q;need(q.context.occasion==='work'||m==='research','Dinner and Weekend require the Research-based generator; the selected method was not changed.');return {...q,stylist:{revision:REV,mode:m}};}
  function valid(q){need(q?.automatic&&q.stylist?.revision===REV&&MODES.includes(q.stylist.mode),'Unknown stylist request');
   const p=engineFor(q).automatic.prepare({preferences:q.prefs,occasion:q.context?.occasion,formality:q.context?.requiredFormality,localDate:q.localDate,environment:q.environment,style:q.executiveStyle});need(stable(p)===stable(plain(q)),'Changed automatic request');return q;}
  function matches(p,id,itemId){return p.mode==='any'||p.mode==='none'&&id===null||p.mode==='item'&&(p.id===id||p.id===itemId)||p.mode==='family'&&id!==null&&base.preference.matchesFamily(id,p.id);}
@@ -37,12 +37,12 @@ function create(inputs){
   // Classify construction/accessories independently of the old aesthetic floor.
   // raw is never modified or replaced; a low score remains visible in details.
   const effective={...raw,status:'new_ensemble_estimate',candidate_eligible:true};
-  const style=root.HEWRSEnsembleCompletion.classifyStyle(enriched.topwear._feature,enriched.shirt._feature,enriched.tie?._feature||null,effective,{shoeStyle:items.shoes.subcategory==='Sneakers'?'sneaker':'other',statementWatch:items.watch?['statement','diamondStatement'].includes(root.watchFormalityCategory(items.watch)):false,controlled:true,evidence:{source_id:'HYBRID_CONSTRUCTION_CLASSIFICATION_NOT_RESCORING'}});
+  const style=root.HEWRSEnsembleCompletion.classifyStyle(enriched.topwear._feature,enriched.shirt._feature,enriched.tie?._feature||null,effective,{shoeStyle:items.shoes.subcategory==='Sneakers'?'sneaker':'other',statementWatch:false,controlled:true,evidence:{source_id:'HYBRID_CONSTRUCTION_CLASSIFICATION_NOT_RESCORING'}});
   need(style.authorityGate==='pass'&&(q.executiveStyle==='AUTO'||q.executiveStyle===style.classification),'Style lock','STYLE_HOLD');
   return {eligible:true,selection:copy(s),items:copy(items),compatibility:copy(raw),environment:env,style,accessory:{shoe:sh,watch:wa},legacy_aesthetic_floor_ignored:raw.status==='requires_review'};
  }catch(e){return {eligible:false,selection:copy(s),code:e.code||'LOCK_OR_ROUTE',reason:e.message};}}
  function checkHistory(h){need(Array.isArray(h),'Confirmed history required');const st=root.HEWRSLocalState.create(base,root.HEWRS_INPUT_SHA256,null);st.validate({schema:root.HEWRSLocalState.SCHEMA,source_lock:root.HEWRS_INPUT_SHA256,revision:0,session:null,events:h});}
- function option(e,q,method,id,why,grade=null){const s=e.selection;return {items:copy(e.items),formal:!!s.suitId,dressMode:'work',context:q.context.occasion,styleEngine:q.executiveStyle,controlledRepetition:false,_hewrsConnected:{revision:REV,id:root.HEWRSOptionSetPolicy.fullKey(e),compatibility:copy(e.compatibility),canonical_selection:copy(s),environment:copy(e.environment),accessory_assessment:copy(e.accessory),is_recommendation:false,validation:{request:stable(q)},stylist:{schema:SCHEMA,method,reference_id:id,explanation:why,grade,trained_on_user:false,legacy_aesthetic_floor_ignored:e.legacy_aesthetic_floor_ignored}}};}
+ function option(e,q,method,id,why,grade=null){const s=e.selection;return {items:copy(e.items),formal:!!s.suitId,dressMode:q.dressMode,context:q.context.occasion,styleEngine:q.executiveStyle,controlledRepetition:false,_hewrsConnected:{revision:REV,id:root.HEWRSOptionSetPolicy.fullKey(e),compatibility:copy(e.compatibility),canonical_selection:copy(s),environment:copy(e.environment),accessory_assessment:copy(e.accessory),is_recommendation:false,validation:{request:stable(q)},stylist:{schema:SCHEMA,method,reference_id:id,explanation:why,grade,trained_on_user:false,legacy_aesthetic_floor_ignored:e.legacy_aesthetic_floor_ignored}}};}
  function curatedPool(q){const rows=[],rejected=[],seen=new Set();const anchor=q.prefs.topwear.mode==='item'?q.prefs.topwear.id:null;
   const order=[...lib.records].sort((a,b)=>{const priority=x=>anchor===base.aliases.get('S10')?(x.set==='s10-reference'?0:x.set==='free-reference'?1:2):(x.set==='free-reference'?0:x.set==='s10-reference'?2:1);return priority(a)-priority(b);});
   for(const r of order){const s=copy(r.selection);let adapted=false;for(const role of ['shoes','watch']){const p=q.prefs[role],key=role==='shoes'?'shoeId':'watchId';if(p.mode==='item'&&s[key]!==p.id){s[key]=p.id;adapted=true;}if(role==='watch'&&p.mode==='none'&&s.watchId!==null){s.watchId=null;adapted=true;}}

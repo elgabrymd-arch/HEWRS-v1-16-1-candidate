@@ -54,8 +54,8 @@ function create(inputs,{configurationFilter,blazerMappings}={}){
   const type=watch?root.watchFormalityCategory(watch):null;
   return {status:'bound',shoes:clone(shoes),watch:watch?clone(watch):null,
    method:'Explicit accessory selection; no legacy accessory ranking or new accessory score.',
-   styleEvidence:{shoeStyle:shoes.subcategory==='Sneakers'?'sneaker':'other',statementWatch:['statement','diamondStatement'].includes(type),controlled:true,
-    evidence:{source_id:'EXACT_SELECTION_WITH_INHERITED_WATCH_CLASSIFICATION',shoe_id:shoes.id,watch_id:watch?.id??null,evidence_status:'inherited_rule_inference_not_owner_statement'}}};
+   styleEvidence:{shoeStyle:shoes.subcategory==='Sneakers'?'sneaker':'other',statementWatch:false,controlled:true,
+    evidence:{source_id:'EXACT_CLOTHING_AND_FOOTWEAR_SELECTION',shoe_id:shoes.id,evidence_status:'inherited_rule_inference_not_owner_statement'}}};
  }
  const controller=root.HEWRSConnectedPath.create({engine,guards:root.HEWRSRelease4,suitMappings:p.suitAliases,blazerMappings:blazerMappings||p.blazerAliases,accessoryResolver:exactAccessories,configurationFilter});
  const bridge=root.createCanonicalBindings({featureInputs:p.features,sourceBindings:p.sourceBindings,active50Manifest:m,suitAliases:p.suitAliases,validateCandidate:controller.verifyCachedOption,supportedSuitIds:suitSources.ids,canRenderSelection:assemblies.supported});
@@ -98,8 +98,8 @@ function create(inputs,{configurationFilter,blazerMappings}={}){
   if(c.tie&&c.tie!=='ANY'&&c.tie!=='NO_TIE'&&!c.tie.startsWith('FAMILY:'))
    need(Object.hasOwn(m.ties,c.tie),'No source for this exact Engine tie selection');
   if(c.watchId)need(catalogue.watches.some(w=>w.id===c.watchId),'Unknown exact Engine watch selection');
-  const q={mode:'candidate',dressMode:'work',topwear:{mode:'item',id:aliases.get(suitId),formal:true},
-   shoes:{mode:'item',id:c.shoeId},executiveStyle:c.style||'AUTO',context:{occasion:c.occasion||'clinic',requiredFormality:c.formality||'any'},localDate:c.localDate,limit:15};
+  const q={mode:'candidate',dressMode:root.HEWRSStyleOccasions.dressMode(c.occasion||'work'),topwear:{mode:'item',id:aliases.get(suitId),formal:true},
+   shoes:{mode:'item',id:c.shoeId},executiveStyle:c.style||'AUTO',context:{occasion:root.HEWRSStyleOccasions.occasion(c.occasion||'work'),requiredFormality:c.formality||'any'},localDate:c.localDate,limit:15};
   if(c.watchId)q.watch={mode:'item',id:c.watchId};
   if(c.shirt&&c.shirt!=='ANY'){if(c.shirt.startsWith('FAMILY:'))q.shirt={mode:'category',category:c.shirt.slice(7)};else q.shirt={mode:'item',id:records[c.shirt]?.history_id||c.shirt};}
   if(c.tie&&c.tie!=='ANY')q.tie=c.tie==='NO_TIE'?{mode:'none'}:c.tie.startsWith('FAMILY:')?{mode:'category',category:c.tie.slice(7)}:{mode:'item',id:c.tie};
