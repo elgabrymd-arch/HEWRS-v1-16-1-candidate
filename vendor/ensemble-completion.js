@@ -179,7 +179,7 @@
   return {status:checks.some(x=>x.status==='ineligible')?'ineligible':checks.some(x=>x.status==='unknown')?'unknown':checks.length?'eligible':'not_evaluated',
    context:clone(q),checks,compatibility_adjustment:0,scope:'Explicit requirements and supplied suitability facts only. No invented hospital/clinic dress codes.'};
  }
- function createEngine({featureInputs,spec,sourceEngine,rotationPolicy,logic}){
+ function createEngine({featureInputs,spec,sourceEngine,rotationPolicy,logic,additionalFoundation=null}){
   if(!featureInputs?.records||!spec||!sourceEngine)throw TypeError('Features, explicit specification and source lookup engine are required.');
   const rows=clone(featureInputs.records),policy=clone(spec);const map=new Map();
   for(const k of ['topwear_pair_weights','ensemble_weights','no_tie_weights']){
@@ -202,7 +202,8 @@
    if(top.category==='blazer'){
     pants=map.get(req.pantProfileId);if(!pants||pants.category!=='pant_color_profile')return {status:'unknown',score:null,reason_codes:['BLAZER_PANT_CANONICAL_PROFILE_REQUIRED_NO_PHYSICAL_ID_GUESS']};
     foundation=sourceEngine.lookupBlazerPant(top.id,pants.id);
-    if(foundation.status!=='recorded')return {status:'unknown',score:null,foundation,reason_codes:['FOUNDATION_RECORD_UNAVAILABLE']};
+    if(foundation.status!=='recorded'&&additionalFoundation){const estimated=additionalFoundation(top,pants,policy);if(estimated)foundation=estimated;}
+    if(!['recorded','new_foundation_estimate'].includes(foundation.status))return {status:'unknown',score:null,foundation,reason_codes:['FOUNDATION_RECORD_UNAVAILABLE']};
     foundation=Object.assign({},foundation,{candidate_gate_minimum:policy.new_choices.blazer_foundation_minimum,candidate_gate_pass:foundation.score>=policy.new_choices.blazer_foundation_minimum,gate_threshold_status:'new_proposed_threshold_not_frozen_source_rule'});
     if(!foundation.candidate_gate_pass)return {status:'excluded_by_proposed_foundation',score:null,foundation,reason_codes:['PROPOSED_FOUNDATION_GATE_NOT_MET']};
    }

@@ -4,7 +4,7 @@
 const original=root.HEWRSCleanConnection,clone=x=>structuredClone(x),need=(ok,msg)=>{if(!ok)throw Error(msg);};
 function freeze(x){if(x&&typeof x==='object'){Object.values(x).forEach(freeze);Object.freeze(x);}return x;}
 function create(inputs){
- const batch=root.HEWRSBatch10.contract(inputs),raw=clone(root.HEWRS_BLAZER_CONNECTION_DATA);
+ const batch=root.HEWRSBatch10.contract(inputs),raw=root.HEWRSAdditionalBlazers.extendContract(root.HEWRS_BLAZER_CONNECTION_DATA);
  for(const id of batch.ids){need(!raw.available_shirts.includes(id),'Duplicate batch source identity');raw.available_shirts.push(id);}
  const d=freeze(raw);
  // Filter unavailable blazer collar configurations before ranking. The inherited
@@ -19,9 +19,9 @@ function create(inputs){
   let item=catalogue.blazers.find(x=>x.id===b.historyId);const f=base.features.get(b.id);need(f,'Missing canonical blazer feature');
   if(!item&&b.identityPolicy==='NEW_CANONICAL_SOURCE_KEY_NO_LEGACY_REMAP'){
    need(b.historyId==='blazer-source-'+b.id,'Invalid new canonical identity key');
-   item={id:b.historyId,name:b.label,formal:false,color:f.primary_text,pattern:f.pattern_text};catalogue.blazers.push(item);
+   item={id:b.historyId,name:b.label,formal:false,color:f.primary_text,pattern:f.pattern_text};if(b.sourcePhoto)item.brand=b.brand;catalogue.blazers.push(item);
   }
-  if(item)Object.assign(item,{name:b.label,color:f.primary_text,pattern:f.pattern_text,_canonical:{id:b.id,source:'CP98 pinned feature record'}});
+  if(item)Object.assign(item,{name:b.label,color:f.primary_text,pattern:f.pattern_text,_canonical:{id:b.id,source:b.sourcePhoto?root.HEWRSAdditionalBlazers.revision:'CP98 pinned feature record'}});
  }
  const suitFields=['suitId','shirtId','state','shoeId','watchId'],blazerFields=['blazerId','pantId','shirtId','state','shoeId','watchId'];
  const isBlazer=s=>s&&Object.hasOwn(s,'blazerId');

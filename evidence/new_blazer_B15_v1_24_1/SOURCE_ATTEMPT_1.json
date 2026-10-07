@@ -1,0 +1,109 @@
+{
+  "checks": [
+    {
+      "name": "All existing catalogue rows retained in order; exactly one appended blazer",
+      "passed": true,
+      "result": {
+        "old_blazers": 14,
+        "new_blazers": 15
+      }
+    },
+    {
+      "name": "Existing canonical features, dimensions and style/occasion policy preserved",
+      "passed": true,
+      "result": 136
+    },
+    {
+      "name": "All 2350 recorded shirt-tie records unmodified",
+      "passed": true,
+      "result": 2350
+    },
+    {
+      "name": "All original 112392 full-ensemble evaluations unchanged",
+      "passed": true,
+      "result": 112392
+    },
+    {
+      "name": "Existing assets/contracts unaffected except append-only B15 contract",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "B15 normalization grounded in source; no relaxed or lustrous flag invented",
+      "passed": true,
+      "result": {
+        "id": "B15",
+        "category": "blazer",
+        "description": "Zegna — Light stone / warm greige herringbone blazer",
+        "primary": {
+          "family": "tan",
+          "hue": 38,
+          "value": 4,
+          "temperature": "warm",
+          "wording": "Light stone / warm greige",
+          "measurement": false
+        },
+        "accents": [],
+        "pattern": {
+          "family": "nearSolid",
+          "scale": 1,
+          "contrast": 1,
+          "density": 2,
+          "quiet": true,
+          "wording": "Fine herringbone; low-contrast tonal weave",
+          "feature_status": "proposed_normalization_not_physical_measurement"
+        },
+        "surface": "restrained",
+        "construction": "single-breasted; two-button front; notch lapels; patch lower pockets",
+        "classicFoundation": true,
+        "relaxedTailoring": false,
+        "source": {
+          "source_id": "A2C2B5CC-67C5-47AB-B0A2-8B1809F52CBE.jpeg",
+          "sha256": "11e373a64849fb1721400638be7f2fb8143a4d3baed7256cd881881e8065b26c",
+          "owner_request": "2026-10-06T03:20:22Z"
+        },
+        "asset_binding": {
+          "source_photo_sha256": "11e373a64849fb1721400638be7f2fb8143a4d3baed7256cd881881e8065b26c",
+          "registered_layer_sha256": "db4bc0cda20db06da7571bc724113de8bf02f42ef71991c6ea7a1a75e5b4134f"
+        },
+        "eligibility": {
+          "active": true
+        },
+        "feature_evidence_status": "new_semantic_model_features_from_recorded_descriptions",
+        "fibre_composition": null,
+        "source_wording": {
+          "primary": "Light stone / warm greige",
+          "secondary": null,
+          "pattern": "Fine herringbone; low-contrast tonal weave",
+          "texture": "Visible matte fine woven herringbone appearance",
+          "construction": "Single-breasted; two-button front; notch lapels; patch lower pockets"
+        }
+      }
+    },
+    {
+      "name": "B15 recorded score lookup stays unknown; estimates are labeled separately",
+      "passed": false,
+      "error": "TypeError: Cannot read properties of undefined (reading 'shirt_tie')\n    at /mnt/data/HEWRS_NEW_BLAZER_2026-10-06/source.cjs:12:590\n    at test (/mnt/data/HEWRS_NEW_BLAZER_2026-10-06/source.cjs:5:41)\n    at Object.<anonymous> (/mnt/data/HEWRS_NEW_BLAZER_2026-10-06/source.cjs:12:1)\n    at Module._compile (node:internal/modules/cjs/loader:1730:14)\n    at Object..js (node:internal/modules/cjs/loader:1895:10)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)\n    at Function._load (node:internal/modules/cjs/loader:1282:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)"
+    },
+    {
+      "name": "New lazy derived rows append to original index without mutating it",
+      "passed": true,
+      "result": {
+        "groups": 6,
+        "rows": 5184
+      }
+    },
+    {
+      "name": "18 non-suit shirts, 24 trousers, existing IDs and B15 validation maintained",
+      "passed": true,
+      "result": 36
+    },
+    {
+      "name": "Watches do not change B15 class or modern-element count",
+      "passed": true,
+      "result": 51
+    }
+  ],
+  "passed": 9,
+  "failed": 1
+}

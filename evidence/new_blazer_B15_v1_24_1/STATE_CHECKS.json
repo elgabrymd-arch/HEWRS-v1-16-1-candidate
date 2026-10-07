@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "name": "New B15 sessions validate under all three occasions without new storage keys",
+      "passed": true,
+      "result": 3
+    },
+    {
+      "name": "Old history remains byte-identical when read; new wearer event uses new immutable ID",
+      "passed": true,
+      "result": {
+        "original_events": 1,
+        "new_events": 1,
+        "synthetic_only": true
+      }
+    },
+    {
+      "name": "B15 favorites export and import preserve new canonical selection",
+      "passed": true,
+      "result": 1
+    },
+    {
+      "name": "Index append and source gates refuse accidental existing-ID replacement",
+      "passed": true,
+      "result": true
+    }
+  ],
+  "passed": 4,
+  "failed": 0
+}

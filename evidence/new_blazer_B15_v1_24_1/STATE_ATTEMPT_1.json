@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "name": "New B15 sessions validate under all three occasions without new storage keys",
+      "passed": true,
+      "result": 3
+    },
+    {
+      "name": "Old history remains byte-identical when read; new wearer event uses new immutable ID",
+      "passed": true,
+      "result": {
+        "original_events": 1,
+        "new_events": 1,
+        "synthetic_only": true
+      }
+    },
+    {
+      "name": "B15 favorites export and import preserve new canonical selection",
+      "passed": false,
+      "error": "Error: Invalid or duplicate Favorite ID\n    at need (src/favorites-state.js:8:32)\n    at validate (src/favorites-state.js:22:4)\n    at commit (src/favorites-state.js:31:40)\n    at Object.add (src/favorites-state.js:39:53)\n    at /mnt/data/HEWRS_NEW_BLAZER_2026-10-06/state.cjs:8:131\n    at test (/mnt/data/HEWRS_NEW_BLAZER_2026-10-06/state.cjs:4:65)\n    at Object.<anonymous> (/mnt/data/HEWRS_NEW_BLAZER_2026-10-06/state.cjs:8:1)\n    at Module._compile (node:internal/modules/cjs/loader:1730:14)\n    at Object..js (node:internal/modules/cjs/loader:1895:10)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)"
+    },
+    {
+      "name": "Index append and source gates refuse accidental existing-ID replacement",
+      "passed": true,
+      "result": true
+    }
+  ],
+  "passed": 3,
+  "failed": 1
+}

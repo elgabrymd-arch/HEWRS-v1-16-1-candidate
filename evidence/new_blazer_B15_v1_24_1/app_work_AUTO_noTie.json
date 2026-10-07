@@ -1,0 +1,4408 @@
+{
+  "config": {
+    "automatic": true,
+    "stylistMode": "research",
+    "preferences": {
+      "topwear": {
+        "mode": "item",
+        "id": "blazer-source-B15"
+      },
+      "shirt": {
+        "mode": "any"
+      },
+      "tie": {
+        "mode": "none"
+      },
+      "shoes": {
+        "mode": "any"
+      },
+      "bottoms": {
+        "mode": "any"
+      },
+      "watch": {
+        "mode": "any"
+      }
+    },
+    "occasion": "work",
+    "formality": "any",
+    "style": "AUTO",
+    "localDate": "2026-10-06",
+    "environment": {
+      "source": "not_assessed",
+      "date": "2026-10-06"
+    }
+  },
+  "request": {
+    "automatic": true,
+    "revision": "HEWRS_AUTOMATIC_WORKFLOW_1_24_0",
+    "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+    "current_source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
+    "local_learning_id": "untrained",
+    "prefs": {
+      "topwear": {
+        "mode": "item",
+        "id": "blazer-source-B15"
+      },
+      "shirt": {
+        "mode": "any"
+      },
+      "tie": {
+        "mode": "none"
+      },
+      "shoes": {
+        "mode": "any"
+      },
+      "bottoms": {
+        "mode": "any"
+      },
+      "watch": {
+        "mode": "any"
+      }
+    },
+    "context": {
+      "occasion": "work",
+      "requiredFormality": "any"
+    },
+    "localDate": "2026-10-06",
+    "environment": {
+      "source": "not_assessed",
+      "date": "2026-10-06"
+    },
+    "executiveStyle": "AUTO",
+    "dressMode": "work",
+    "style_policy_revision": "hewrs.style-and-occasion.v1_24_0",
+    "limit": 20,
+    "sneakerStance": false,
+    "stylist": {
+      "revision": "HEWRS_HYBRID_STYLIST_1_24_0",
+      "mode": "research"
+    }
+  },
+  "status": "candidate_recommendation",
+  "reason": null,
+  "verified": true,
+  "count": 20,
+  "seconds": 0.6536693729999999,
+  "rows": [
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP06"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.142895,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.293046,
+        "baseline_research_score": 9.293046,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.2533333,
+            0.57,
+            0,
+            1,
+            0.9,
+            0.53,
+            0,
+            0.935,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.295972,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.295972,
+          "profile_weight": 0,
+          "base_clothing_score": 9.295972,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 9.45,
+          "shirt_palette_direction": 9.5,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.142895
+        },
+        "shoe": {
+          "score": 9.315,
+          "formality": 9.35,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black kelly hardware",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.135,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB001",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP06"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.101579,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.20114,
+        "baseline_research_score": 9.20114,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.5703125,
+            0.1333333,
+            0.71,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.935,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.190333,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.190333,
+          "profile_weight": 0,
+          "base_clothing_score": 9.190333,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.355357,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.47066,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.101579
+        },
+        "shoe": {
+          "score": 9.315,
+          "formality": 9.35,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black kelly hardware",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.135,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB002",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": "watch-AP10"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.184649,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.226753,
+        "baseline_research_score": 9.226753,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.2533333,
+            0.57,
+            0,
+            1,
+            0.9,
+            0.32,
+            0,
+            0.935,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.219774,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.219774,
+          "profile_weight": 0,
+          "base_clothing_score": 9.219774,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 8.1,
+          "shirt_palette_direction": 9.35,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.184649
+        },
+        "shoe": {
+          "score": 9.315,
+          "formality": 9.35,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black horsebit",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.135,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB002",
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "shoeId": "shoe-8",
+        "watchId": "watch-AP10"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.147018,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.229035,
+        "baseline_research_score": 9.229035,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.21,
+            0.57,
+            0,
+            1,
+            0.9,
+            0.6,
+            0,
+            0.935,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.222396,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.222396,
+          "profile_weight": 0,
+          "base_clothing_score": 9.222396,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 8.25,
+          "shirt_palette_direction": 9.45,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.147018
+        },
+        "shoe": {
+          "score": 9.315,
+          "formality": 9.35,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black horsebit",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.135,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB003",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-11",
+        "watchId": "watch-AP13"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.142895,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.291046,
+        "baseline_research_score": 9.291046,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.2533333,
+            0.57,
+            0,
+            1,
+            0.9,
+            0.53,
+            0,
+            0.935,
+            0.93,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.295972,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.295972,
+          "profile_weight": 0,
+          "base_clothing_score": 9.295972,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 9.45,
+          "shirt_palette_direction": 9.5,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.142895
+        },
+        "shoe": {
+          "score": 9.295,
+          "formality": 9.35,
+          "grounding": 9.3,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "espresso",
+            "family": "brown",
+            "value": 1,
+            "hue": 28,
+            "saturation": 0.2,
+            "temperature": "warm",
+            "wording": "dark espresso brown/oxblood horsebit, polished leather",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.135,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB003",
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "shoeId": "shoe-11",
+        "watchId": "watch-AP13"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.101579,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.221159,
+        "baseline_research_score": 9.221159,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.1333333,
+            0.71,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.935,
+            0.93,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.215643,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.215643,
+          "profile_weight": 0,
+          "base_clothing_score": 9.215643,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.842857,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.101579
+        },
+        "shoe": {
+          "score": 9.295,
+          "formality": 9.35,
+          "grounding": 9.3,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "espresso",
+            "family": "brown",
+            "value": 1,
+            "hue": 28,
+            "saturation": 0.2,
+            "temperature": "warm",
+            "wording": "dark espresso brown/oxblood horsebit, polished leather",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.135,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB004",
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "shoeId": "shoe-14",
+        "watchId": "watch-AP09"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.499123,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.198671,
+        "baseline_research_score": 9.198671,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.2066667,
+            0.57,
+            0,
+            1,
+            0.9,
+            0.6,
+            0,
+            0.935,
+            0.93,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.190484,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.190484,
+          "profile_weight": 0,
+          "base_clothing_score": 9.190484,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 8.25,
+          "shirt_palette_direction": 9.2,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.499123
+        },
+        "shoe": {
+          "score": 9.295,
+          "formality": 9.35,
+          "grounding": 9.3,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "rust",
+            "family": "rust",
+            "value": 1.6,
+            "hue": 23,
+            "saturation": 0.55,
+            "temperature": "warm",
+            "wording": "cognac/chestnut kelly hardware, dark espresso patina",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PB004",
+        "shirtId": "DS002",
+        "state": "NO_TIE",
+        "shoeId": "shoe-14",
+        "watchId": "watch-AP09"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.822105,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.417647,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 9.2,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Controlled warm/cool or complementary opposition.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P06",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.166183,
+        "baseline_research_score": 9.166183,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.3878125,
+            0.1666667,
+            0.63,
+            0,
+            1,
+            0.9,
+            0.9,
+            0,
+            0.935,
+            0.93,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.153141,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.153141,
+          "profile_weight": 0,
+          "base_clothing_score": 9.153141,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.441071,
+          "shirt_palette_direction": 9.6,
+          "tie_palette_direction": 9.35,
+          "value_structure": 8.7,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.822105
+        },
+        "shoe": {
+          "score": 9.295,
+          "formality": 9.35,
+          "grounding": 9.3,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "rust",
+            "family": "rust",
+            "value": 1.6,
+            "hue": 23,
+            "saturation": 0.55,
+            "temperature": "warm",
+            "wording": "cognac/chestnut kelly hardware, dark espresso patina",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PG001",
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "shoeId": "shoe-12",
+        "watchId": "watch-R09"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.061579,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P02",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.206075,
+        "baseline_research_score": 9.206075,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.0466667,
+            0.66,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.935,
+            0.9,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.210488,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.210488,
+          "profile_weight": 0,
+          "base_clothing_score": 9.210488,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.732,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.061579
+        },
+        "shoe": {
+          "score": 9.195,
+          "formality": 9.35,
+          "grounding": 9,
+          "restraint": 9.3,
+          "surface": 9.25,
+          "colour": {
+            "shade": "navy",
+            "family": "navy",
+            "value": 1.35,
+            "hue": 220,
+            "saturation": 0.3,
+            "temperature": "cool",
+            "wording": "navy suede horsebit loafer",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PG001",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-12",
+        "watchId": "watch-R09"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.840526,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P02",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.202613,
+        "baseline_research_score": 9.202613,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.0466667,
+            0.66,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.935,
+            0.9,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.206509,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.206509,
+          "profile_weight": 0,
+          "base_clothing_score": 9.206509,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.732,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.840526
+        },
+        "shoe": {
+          "score": 9.195,
+          "formality": 9.35,
+          "grounding": 9,
+          "restraint": 9.3,
+          "surface": 9.25,
+          "colour": {
+            "shade": "navy",
+            "family": "navy",
+            "value": 1.35,
+            "hue": 220,
+            "saturation": 0.3,
+            "temperature": "cool",
+            "wording": "navy suede horsebit loafer",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PG002",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R11"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.710526,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 8.976471,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 8,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P01",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.200401,
+        "baseline_research_score": 9.200401,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.0466667,
+            0.38,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.935,
+            0.91,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.199369,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.199369,
+          "profile_weight": 0,
+          "base_clothing_score": 9.199369,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.612,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.710526
+        },
+        "shoe": {
+          "score": 9.235,
+          "formality": 9.35,
+          "grounding": 9.1,
+          "restraint": 9.3,
+          "surface": 9.25,
+          "colour": {
+            "shade": "brown",
+            "family": "brown",
+            "value": 2.6,
+            "hue": 30,
+            "saturation": 0.28,
+            "temperature": "warm",
+            "wording": "brown suede penny",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PG002",
+        "shirtId": "DS022",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": "watch-R11"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 7.963684,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 8.976471,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 8,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P01",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.196982,
+        "baseline_research_score": 9.196982,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.1233333,
+            0.24,
+            0,
+            1,
+            0.9,
+            0.6,
+            0,
+            0.935,
+            0.91,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.195439,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.195439,
+          "profile_weight": 0,
+          "base_clothing_score": 9.195439,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.658571,
+          "shirt_palette_direction": 9.45,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 7.963684
+        },
+        "shoe": {
+          "score": 9.235,
+          "formality": 9.35,
+          "grounding": 9.1,
+          "restraint": 9.3,
+          "surface": 9.25,
+          "colour": {
+            "shade": "brown",
+            "family": "brown",
+            "value": 2.6,
+            "hue": 30,
+            "saturation": 0.28,
+            "temperature": "warm",
+            "wording": "brown suede penny",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT001",
+        "shirtId": "DS023",
+        "state": "NO_TIE",
+        "shoeId": "shoe-1",
+        "watchId": "watch-R13"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.104649,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.193107,
+        "baseline_research_score": 9.193107,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.16,
+            0.76,
+            0,
+            1,
+            0.9,
+            0.32,
+            0,
+            0.9,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.197077,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.197077,
+          "profile_weight": 0,
+          "base_clothing_score": 9.197077,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.568571,
+          "shirt_palette_direction": 9.35,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.104649
+        },
+        "shoe": {
+          "score": 9.182,
+          "formality": 9,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black single monk",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT001",
+        "shirtId": "DS004",
+        "state": "NO_TIE",
+        "shoeId": "shoe-1",
+        "watchId": "watch-R13"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.061579,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.193887,
+        "baseline_research_score": 9.193887,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.04,
+            0.9,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.9,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.197974,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.197974,
+          "profile_weight": 0,
+          "base_clothing_score": 9.197974,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.419143,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.061579
+        },
+        "shoe": {
+          "score": 9.182,
+          "formality": 9,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black single monk",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT002",
+        "shirtId": "DS008",
+        "state": "NO_TIE",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R14"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.061579,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.193887,
+        "baseline_research_score": 9.193887,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.04,
+            0.9,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.9,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.197974,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.197974,
+          "profile_weight": 0,
+          "base_clothing_score": 9.197974,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.419143,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.061579
+        },
+        "shoe": {
+          "score": 9.182,
+          "formality": 9,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black double monk",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT002",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-2",
+        "watchId": "watch-R14"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.840526,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.190426,
+        "baseline_research_score": 9.190426,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.04,
+            0.9,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.9,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.193995,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.193995,
+          "profile_weight": 0,
+          "base_clothing_score": 9.193995,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.419143,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.840526
+        },
+        "shoe": {
+          "score": 9.182,
+          "formality": 9,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black double monk",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9.115,
+          "formality": 9.3,
+          "visual": 9,
+          "coherence": 8.9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT003",
+        "shirtId": "DS014",
+        "state": "NO_TIE",
+        "shoeId": "shoe-3",
+        "watchId": "watch-P02"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.840526,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.186976,
+        "baseline_research_score": 9.186976,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.04,
+            0.9,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.9,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.193995,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.193995,
+          "profile_weight": 0,
+          "base_clothing_score": 9.193995,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.419143,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.840526
+        },
+        "shoe": {
+          "score": 9.182,
+          "formality": 9,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black oxford/derby",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9,
+          "formality": 9,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT003",
+        "shirtId": "DS027",
+        "state": "NO_TIE",
+        "shoeId": "shoe-3",
+        "watchId": "watch-P02"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 9.061579,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.168419,
+        "baseline_research_score": 9.168419,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.5703125,
+            0.04,
+            0.9,
+            0,
+            1,
+            0.9,
+            0.98,
+            0,
+            0.9,
+            0.935,
+            0.07
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.172665,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.172665,
+          "profile_weight": 0,
+          "base_clothing_score": 9.172665,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 6.931643,
+          "shirt_palette_direction": 9.4,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.47066,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 9.061579
+        },
+        "shoe": {
+          "score": 9.182,
+          "formality": 9,
+          "grounding": 9.35,
+          "restraint": 9.3,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black oxford/derby",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9,
+          "formality": 9,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT004",
+        "shirtId": "DS018",
+        "state": "NO_TIE",
+        "shoeId": "shoe-17",
+        "watchId": "watch-P04"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.419123,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.162075,
+        "baseline_research_score": 9.162075,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.156,
+            0.1133333,
+            0.76,
+            0,
+            1,
+            0.9,
+            0.6,
+            0,
+            0.935,
+            0.935,
+            0.18
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.167787,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.167787,
+          "profile_weight": 0,
+          "base_clothing_score": 9.167787,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 7.718571,
+          "shirt_palette_direction": 9.2,
+          "tie_palette_direction": 9.35,
+          "value_structure": 9.1,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.419123
+        },
+        "shoe": {
+          "score": 9.161,
+          "formality": 9.35,
+          "grounding": 9.35,
+          "restraint": 8.2,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black damier",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9,
+          "formality": 9,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    },
+    {
+      "selection": {
+        "blazerId": "B15",
+        "pantId": "PT004",
+        "shirtId": "DS047",
+        "state": "NO_TIE",
+        "shoeId": "shoe-17",
+        "watchId": "watch-P04"
+      },
+      "style": {
+        "status": "proposed_classification",
+        "classification": "HYBRID",
+        "authorityGate": "pass",
+        "classic_foundation": true,
+        "modern_interventions": [
+          {
+            "id": "open_collar",
+            "source": {
+              "source_id": "explicit_outfit_configuration"
+            },
+            "controlled": true
+          }
+        ],
+        "modern_intervention_count": 1,
+        "outfit_style_score": null,
+        "compatibility_adjustment": 0,
+        "rule": "Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.",
+        "classification_revision": "hewrs.watch-independent-style.v1_24_0",
+        "watch_contribution": 0,
+        "evidence_status": "new_outfit_classification_not_frozen_blazer_affinity"
+      },
+      "score": 8.314737,
+      "foundation": {
+        "status": "new_foundation_estimate",
+        "score": 9.205882,
+        "coverage": 0.85,
+        "subscores": {
+          "color_harmony": 8.6,
+          "pattern_compatibility": 10,
+          "contrast_value": 9.3,
+          "hierarchy": 9,
+          "formality": null,
+          "surface": null
+        },
+        "reasons": [
+          "Neutral/chromatic relationship; no automatic perfect score.",
+          "At least one operative surface is solid/near-solid; no two-major-pattern scale collision.",
+          "Categorical lightness separation; not a measured luminance difference.",
+          "Quiet complete system; no competing major pattern."
+        ],
+        "unknown_subfactors": [
+          "formality",
+          "surface"
+        ],
+        "not_a_frozen_judgment": true,
+        "blazer_id": "B15",
+        "pant_profile_id": "P05",
+        "scale_max": 10,
+        "frozen": false,
+        "owner_approved": false,
+        "source_revision": "hewrs.additional-blazers.B15.2026-10-06.v1",
+        "method": "Existing generic pairScore; optional unknown formality/material remain unassessed",
+        "candidate_gate_minimum": 7.4,
+        "candidate_gate_pass": true,
+        "gate_threshold_status": "new_proposed_threshold_not_frozen_source_rule"
+      },
+      "preference": {
+        "revision": "hewrs.researched-styling.v1_24_0",
+        "score": 9.105164,
+        "baseline_research_score": 9.105164,
+        "learning": {
+          "revision": "hewrs.dual-outfit-learning.v1_24_0",
+          "model_id": "untrained",
+          "active": false,
+          "adjustment": 0,
+          "pairwise_active": false,
+          "acceptability_active": false,
+          "contributions": {
+            "pairwise": 0,
+            "acceptability": 0,
+            "combined": 0
+          },
+          "acceptability_counts": {
+            "comparisons": 0,
+            "label_occurrences": 0,
+            "unique_outfits": 0,
+            "positive": 0,
+            "negative": 0,
+            "groups": 0,
+            "positive_groups": 0,
+            "negative_groups": 0,
+            "conflicting_outfits": 0
+          },
+          "counts": {
+            "directional": 0,
+            "informative": 0,
+            "topwear_groups": 0,
+            "neutral": 0,
+            "validation": 0,
+            "excluded": 0,
+            "duplicate_pairs": 0
+          },
+          "reason": "No explicit comparisons saved",
+          "features": [
+            0,
+            0.453125,
+            0.1166667,
+            0.76,
+            0,
+            1,
+            0.9,
+            0.84,
+            0,
+            0.935,
+            0.935,
+            0.18
+          ],
+          "feature_names": [
+            "tie_visual_prominence",
+            "competing_focal_elements",
+            "palette_saturation",
+            "layer_value_distance",
+            "light_tie_readability",
+            "open_collar",
+            "palette_coherence",
+            "shirt_depth",
+            "tie_pattern_contrast",
+            "shoe_formality",
+            "shoe_trouser_grounding",
+            "shoe_decoration"
+          ],
+          "source_revision": "hewrs.owner-source.s02.2026-09-29.v1"
+        },
+        "clothing_score": 9.102372,
+        "occasion_profile": {
+          "revision": "hewrs.style-and-occasion.v1_24_0",
+          "occasion": "work",
+          "profile_score": 9.102372,
+          "profile_weight": 0,
+          "base_clothing_score": 9.102372,
+          "description": "One workplace: hospital, clinic and office. Original clothing preference unchanged.",
+          "basis": "declared_engineering_profile_not_owner_rating",
+          "forced_tie_or_no_tie": false
+        },
+        "clothing": {
+          "reference_structure": 6.973929,
+          "shirt_palette_direction": 9.45,
+          "tie_palette_direction": 9.35,
+          "value_structure": 8.7,
+          "palette": 9,
+          "pattern_hierarchy": 9.5,
+          "formality": 9.1,
+          "surface": 8.9,
+          "blazer_trouser_foundation": 9.25,
+          "legacy_compatibility": 8.314737
+        },
+        "shoe": {
+          "score": 9.161,
+          "formality": 9.35,
+          "grounding": 9.35,
+          "restraint": 8.2,
+          "surface": 9,
+          "colour": {
+            "shade": "black",
+            "family": "black",
+            "value": 0.4,
+            "hue": null,
+            "saturation": 0.02,
+            "temperature": "neutral",
+            "wording": "black damier",
+            "measurement": false
+          },
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "reason": "Footwear assessed against the trousers, selected style and occasion, not price or brand.",
+          "occasion": "work",
+          "requested_style": "AUTO",
+          "silhouette_evidence": "not_recorded",
+          "sole_bulk_evidence": "not_recorded",
+          "sneaker_category_cap": null,
+          "price_or_brand_bonus": 0,
+          "kind": "research_informed_shoe_context",
+          "measurements": false
+        },
+        "watch": {
+          "score": 9,
+          "formality": 9,
+          "visual": 9,
+          "coherence": 9,
+          "revision": "hewrs.researched-styling.v1_24_0",
+          "price_or_brand_bonus": 0,
+          "kind": "contextual_watch_preference_not_designer_grade"
+        },
+        "weights": {
+          "clothing": 0.87,
+          "shoes": 0.1,
+          "watch": 0.03
+        },
+        "research_rule_ids": [
+          "R1_VALUE",
+          "R2_PATTERN",
+          "R3_PALETTE",
+          "R4_SEPARATES",
+          "R5_FOOTWEAR",
+          "R6_CONTEXT"
+        ],
+        "explanation": "Open collar keeps the outfit uncluttered; no missing-tie penalty. Pattern scale and prominence leave a clear visual hierarchy. Separate trousers have deliberate colour/value separation from the blazer.",
+        "reasons": [
+          "Open collar keeps the outfit uncluttered; no missing-tie penalty.",
+          "Pattern scale and prominence leave a clear visual hierarchy.",
+          "Separate trousers have deliberate colour/value separation from the blazer."
+        ],
+        "cautions": [],
+        "kind": "research_informed_local_rules_not_live_ai",
+        "measurement": false
+      }
+    }
+  ]
+}

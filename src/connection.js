@@ -4,7 +4,7 @@
 'use strict';
 const clone=x=>structuredClone(x),need=(v,m)=>{if(!v)throw Error(m);};
 function create(inputs,{configurationFilter,blazerMappings}={}){
- const p=root.HEWRSShoePhotoCorrections.apply(root.HEWRSSourceCorrections.apply(inputs)),m=p.manifest;
+ const p=root.HEWRSAdditionalBlazers.extendInputs(root.HEWRSShoePhotoCorrections.apply(root.HEWRSSourceCorrections.apply(inputs))),m=p.manifest;
  const suitSources=root.HEWRSApprovedSuitSources.create(root.HEWRS_APPROVED_SUITS_DATA,p.suitAliases);
  const assemblies=root.HEWRSSuitAssemblies.create(suitSources,m,p.shoeLayers);
  need(p.schema==='hewrs.clean.connection.inputs.v1','Unexpected input schema');
@@ -34,7 +34,7 @@ function create(inputs,{configurationFilter,blazerMappings}={}){
  const base=root.HEWRSLogic.createEngine(p.logicData);
  const registry=root.HEWRSStep3Scores.createRegistry(p.approved,p.approval);
  const source=root.HEWRSStep3Scores.withApprovedScores(base,root.HEWRSLogic,registry,p.logicData.ensembleComponents);
- const rawEngine=root.HEWRSEnsembleCompletion.createEngine({featureInputs:p.features,spec:p.spec,sourceEngine:source,logic:root.HEWRSLogic,rotationPolicy:p.logicData.rotationPolicy});
+ const rawEngine=root.HEWRSEnsembleCompletion.createEngine({featureInputs:p.features,spec:p.spec,sourceEngine:source,logic:root.HEWRSLogic,rotationPolicy:p.logicData.rotationPolicy,additionalFoundation:root.HEWRSAdditionalBlazers.foundation});
  const textHolds=new Set(['DS011','DS040','DS042','DS043']);
  // Source-description conflicts may not silently generate a current score.
  // No stored value is changed and no render approval is withheld.

@@ -15,7 +15,7 @@ function create(connection){
   const topName=top?.brand&&!topDesc.toLowerCase().includes(top.brand.toLowerCase())?top.brand+' — '+topDesc:topDesc;
   const shoes=cat.shoes.find(x=>x.id===s.shoeId),watch=cat.watches.find(x=>x.id===s.watchId),tie=s.state==='NO_TIE'?null:s.state==='REFERENCE'?null:s.state;
   const items=[
-   {role:s.shirtOnly?'Outfit mode':s.blazerId?'Blazer':'Suit',id:s.suitId||s.blazerId||null,name:topName,image:null},
+   {role:s.shirtOnly?'Outfit mode':s.blazerId?'Blazer':'Suit',id:s.suitId||s.blazerId||null,name:topName,image:root.HEWRSAdditionalBlazers.photo(s.blazerId)},
    {role:'Shirt',id:s.shirtId,name:connection.records[s.shirtId].label,image:thumb('shirts',s.shirtId,mode)},
    {role:'Tie',id:tie,name:s.state==='NO_TIE'?'No Tie':s.state==='REFERENCE'?'Retained reference':connection.features.get(tie)?.description||tie,image:tie?thumb('ties',tie):null,empty:s.state==='NO_TIE'?'NO TIE':s.state==='REFERENCE'?'REFERENCE':null},
    {role:'Shoes',id:s.shoeId,name:shoes?.name||s.shoeId,image:thumb('shoes',s.shoeId)},

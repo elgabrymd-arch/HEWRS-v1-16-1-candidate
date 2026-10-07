@@ -7,11 +7,11 @@ const prior=root.HEWRSBlazerRenderer,W=996,H=2748;
 function create(canvas,connection,resolveUrl){
  const inherited=prior.create(canvas,connection,resolveUrl),ctx=canvas.getContext('2d',{willReadFrequently:true});
  let epoch=0;const cache=new Map();
- function native(s){return connection.blazerConnection.isBlazer(s)&&(s.state==='NO_TIE'||connection.blazerConnection.knownBlazer(s.blazerId).assembly?.mode==='NATIVE_REGISTERED_CLOTH');}
+ function native(s){return connection.blazerConnection.isBlazer(s)&&(s.state==='NO_TIE'||connection.blazerConnection.knownBlazer(s.blazerId).assembly?.mode==='NATIVE_REGISTERED_CLOTH'||connection.blazerConnection.knownBlazer(s.blazerId).assembly?.mode==='SOURCE_PHOTO_REGISTERED_CLOTH');}
  function plan(s){
   if(!native(s))return inherited.plan(s);connection.validateSelection(s);
   const b=connection.blazerConnection.knownBlazer(s.blazerId),a=connection.blazerConnection.data.assembly;
-  if(s.state!=='NO_TIE'&&!['B01','B02'].includes(b.id))throw Error('Unknown native assembly request');
+  if(s.state!=='NO_TIE'&&!['B01','B02'].includes(b.id)&&!root.HEWRSAdditionalBlazers.has(b.id))throw Error('Unknown native assembly request');
   const registered=b.assembly||a,ownership=registered.ownership||connection.blazerConnection.knownBlazer('B02').assembly.ownership;
   return {operation:s.state==='NO_TIE'?'CURRENT_SOURCE_OPEN_COLLAR_ASSEMBLY':'B01_B02_EXISTING_ALPHA_APPROVED_REFERENCE_CLOTH',selection:structuredClone(s),avatar:connection.manifest.static.avatar,shoes:connection.shoeLayers[s.shoeId],pants:connection.blazerConnection.knownPant(s.pantId).layer,shirt:s.state==='NO_TIE'?a.no_tie:(connection.tieFidelity?connection.tieFidelity.replace(a.ties[s.state]):a.ties[s.state]),ownership,cuffOwnershipStart:registered.sourceCuffOwnershipStart??1339,jacket:registered.jacket,cuffs:a.cuffs,hands:a.hands};
  }
@@ -40,7 +40,7 @@ function create(canvas,connection,resolveUrl){
    fc.drawImage(shirt,0,0);fc.drawImage(ims[5],0,0);
    for(const im of ims.slice(6))fc.drawImage(im,0,0);
    if(token!==epoch)return {cancelled:true};ctx.putImageData(fc.getImageData(0,0,W,H),0,0);
-   return {status:'ready',selection:structuredClone(s),source_assembly:s.state==='NO_TIE'?'CURRENT_OPEN_COLLAR_EXISTING_FULL_BODY_AND_NATIVE_BLAZER':'B01_B02_APPROVED_REFERENCE_RGB_EXISTING_ALPHA_CP49_DS001_CP54_TROUSERS',appearance_authorization:s.state==='NO_TIE'?null:'2026-09-23T03:57:47Z',implementation_scope:s.state==='NO_TIE'?'SOURCE_DERIVED_OPEN_COLLAR_CONNECTION_NOT_A_NEW_OWNER_VISUAL_APPROVAL':'PREVIOUS_APPROVED_RECONCILIATION'};
+   return {status:'ready',selection:structuredClone(s),source_assembly:root.HEWRSAdditionalBlazers.has(s.blazerId)?'NEW_OWNER_PHOTO_NATIVE_REGISTRATION':s.state==='NO_TIE'?'CURRENT_OPEN_COLLAR_EXISTING_FULL_BODY_AND_NATIVE_BLAZER':'B01_B02_APPROVED_REFERENCE_RGB_EXISTING_ALPHA_CP49_DS001_CP54_TROUSERS',appearance_authorization:root.HEWRSAdditionalBlazers.has(s.blazerId)||s.state==='NO_TIE'?null:'2026-09-23T03:57:47Z',implementation_scope:root.HEWRSAdditionalBlazers.has(s.blazerId)?'NEW_SOURCE_DERIVED_REGISTRATION_NOT_OWNER_VISUAL_APPROVAL':s.state==='NO_TIE'?'SOURCE_DERIVED_OPEN_COLLAR_CONNECTION_NOT_A_NEW_OWNER_VISUAL_APPROVAL':'PREVIOUS_APPROVED_RECONCILIATION'};
   }finally{frame.width=frame.height=shirt.width=shirt.height=1;}
  }
  function cancel(){epoch++;inherited.cancel();}
