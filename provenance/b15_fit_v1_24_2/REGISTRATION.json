@@ -1,0 +1,268 @@
+{
+  "schema": "hewrs.b15-approved-fit.v1_24_2",
+  "approved_at": "2026-10-07T00:48:11Z",
+  "approval_scope": "Corrected B15 depiction in immediately preceding generated card; not a replacement avatar or global garment approval.",
+  "approved_source_sha256": "68255e3386668b25df69a374c70c625d83dc4dce71d489e1cfe3a7e46c2cadec",
+  "source_dimensions": [
+    1055,
+    1491
+  ],
+  "source_mask_sha256": "01eb40be98711556cbdb8c4e279efe3d379e45680f948fafba0e6fb4213fb09a",
+  "output_layer_sha256": "e34e249bf344b0130e1f0b805285444758801a80a7c07b1c787687de7e36569a",
+  "ownership_sha256": "9a04fc204573cd59bf8c647698ba14b542c200d32d041218c86e2ea14074d860",
+  "output_dimensions": [
+    996,
+    2748
+  ],
+  "registration": {
+    "source_center_x": 244,
+    "source_neck_y": 380,
+    "target_neck_y": 380,
+    "vertical_scale": 2.36585,
+    "source_y_knots": [
+      378,
+      450,
+      600,
+      800,
+      845
+    ],
+    "horizontal_scales": [
+      2.52,
+      2.4,
+      2.34,
+      2.225,
+      2.225
+    ],
+    "target_center_x": [
+      470,
+      478,
+      488,
+      493,
+      493
+    ]
+  },
+  "garment_bbox": [
+    37,
+    379,
+    939,
+    1481
+  ],
+  "face_overlap_pixels": 0,
+  "shirt_hole_polygon": [
+    [
+      195,
+      350
+    ],
+    [
+      299,
+      350
+    ],
+    [
+      298,
+      378
+    ],
+    [
+      296,
+      397
+    ],
+    [
+      293,
+      416
+    ],
+    [
+      288,
+      437
+    ],
+    [
+      283,
+      458
+    ],
+    [
+      277,
+      480
+    ],
+    [
+      271,
+      501
+    ],
+    [
+      266,
+      522
+    ],
+    [
+      261,
+      543
+    ],
+    [
+      256,
+      564
+    ],
+    [
+      251,
+      584
+    ],
+    [
+      247,
+      600
+    ],
+    [
+      247,
+      606
+    ],
+    [
+      243,
+      595
+    ],
+    [
+      240,
+      580
+    ],
+    [
+      235,
+      560
+    ],
+    [
+      229,
+      540
+    ],
+    [
+      224,
+      520
+    ],
+    [
+      219,
+      500
+    ],
+    [
+      214,
+      480
+    ],
+    [
+      210,
+      460
+    ],
+    [
+      206,
+      440
+    ],
+    [
+      203,
+      420
+    ],
+    [
+      201,
+      400
+    ],
+    [
+      199,
+      380
+    ]
+  ],
+  "shirt_hole_guard_pixels": 4,
+  "cuff_exclusions": [
+    [
+      [
+        0,
+        800
+      ],
+      [
+        61,
+        800
+      ],
+      [
+        77,
+        794
+      ],
+      [
+        92,
+        791
+      ],
+      [
+        108,
+        790
+      ],
+      [
+        116,
+        792
+      ],
+      [
+        121,
+        800
+      ],
+      [
+        125,
+        845
+      ],
+      [
+        125,
+        1491
+      ],
+      [
+        0,
+        1491
+      ]
+    ],
+    [
+      [
+        365,
+        793
+      ],
+      [
+        375,
+        790
+      ],
+      [
+        387,
+        792
+      ],
+      [
+        400,
+        796
+      ],
+      [
+        416,
+        800
+      ],
+      [
+        445,
+        808
+      ],
+      [
+        1055,
+        808
+      ],
+      [
+        1055,
+        1491
+      ],
+      [
+        338,
+        1491
+      ],
+      [
+        350,
+        839
+      ],
+      [
+        358,
+        818
+      ]
+    ]
+  ],
+  "limits": [
+    "Artwork is extracted from approved generated card, not recovered photographic fit.",
+    "Only jacket pixels are resampled; all donor face, shirt, tie, trousers, cuffs, hands, shoes, thumbnails and text excluded.",
+    "No blanket texture recolour or sharpening.",
+    "Garment mask may change; avatar and other source images do not."
+  ],
+  "protected_visible_face_pixels": 103066,
+  "face_protection_definition": "Every nontransparent face/upper-neck pixel of the frozen visible-body source above row 425 is excluded from the new blazer layer. Browser comparisons additionally distinguish visible skin from neck portions previously covered by clothing.",
+  "source_shirt_aperture_sha256": "998cbcf1cc677ccc2cb10113fa2ddc741bf477c74e3570d38282eab25dd7c904",
+  "visible_face_keep_sha256": "9e8405dda00b658ee87c1d90fbdf7063b6bc4cc69e3489ceb92a73de5ad87cd5",
+  "authorized_change_region_sha256": "05d7b8e2ad9db4291b3fd9771e28a2d983d16b2fb6ff0eba70c37582356a81e8",
+  "software": {
+    "numpy": "2.3.5",
+    "opencv": "4.13.0",
+    "pillow": "12.3.0"
+  }
+}

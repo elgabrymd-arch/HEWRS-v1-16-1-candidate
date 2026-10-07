@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "name": "All pre-existing image and raw-input/index files unchanged",
+      "passed": true,
+      "detail": 1033
+    },
+    {
+      "name": "All scoring, classification, watch/No-Tie/sneaker, occasion, feedback and navigation source modules unchanged",
+      "passed": true
+    },
+    {
+      "name": "Existing IDs and B15 history mapping unchanged",
+      "passed": true
+    },
+    {
+      "name": "All available B15 shirt/tie state scores and classifications unchanged",
+      "passed": true,
+      "detail": 864
+    },
+    {
+      "name": "Only B15 worn jacket/visibility bindings changed; owner photo unchanged",
+      "passed": true
+    }
+  ],
+  "states": 864,
+  "scope": "Direct source/connection tests; no phone data, no deployment"
+}

@@ -40,7 +40,8 @@ function create(canvas,connection,resolveUrl){
    fc.drawImage(shirt,0,0);fc.drawImage(ims[5],0,0);
    for(const im of ims.slice(6))fc.drawImage(im,0,0);
    if(token!==epoch)return {cancelled:true};ctx.putImageData(fc.getImageData(0,0,W,H),0,0);
-   return {status:'ready',selection:structuredClone(s),source_assembly:root.HEWRSAdditionalBlazers.has(s.blazerId)?'NEW_OWNER_PHOTO_NATIVE_REGISTRATION':s.state==='NO_TIE'?'CURRENT_OPEN_COLLAR_EXISTING_FULL_BODY_AND_NATIVE_BLAZER':'B01_B02_APPROVED_REFERENCE_RGB_EXISTING_ALPHA_CP49_DS001_CP54_TROUSERS',appearance_authorization:root.HEWRSAdditionalBlazers.has(s.blazerId)||s.state==='NO_TIE'?null:'2026-09-23T03:57:47Z',implementation_scope:root.HEWRSAdditionalBlazers.has(s.blazerId)?'NEW_SOURCE_DERIVED_REGISTRATION_NOT_OWNER_VISUAL_APPROVAL':s.state==='NO_TIE'?'SOURCE_DERIVED_OPEN_COLLAR_CONNECTION_NOT_A_NEW_OWNER_VISUAL_APPROVAL':'PREVIOUS_APPROVED_RECONCILIATION'};
+   const approvedFit=connection.blazerConnection.knownBlazer(s.blazerId).renderApproval;
+   return {status:'ready',selection:structuredClone(s),source_assembly:approvedFit?'APPROVED_B15_GARMENT_ONLY_REGISTERED_LAYER':root.HEWRSAdditionalBlazers.has(s.blazerId)?'NEW_OWNER_PHOTO_NATIVE_REGISTRATION':s.state==='NO_TIE'?'CURRENT_OPEN_COLLAR_EXISTING_FULL_BODY_AND_NATIVE_BLAZER':'B01_B02_APPROVED_REFERENCE_RGB_EXISTING_ALPHA_CP49_DS001_CP54_TROUSERS',appearance_authorization:approvedFit?.timestamp||(root.HEWRSAdditionalBlazers.has(s.blazerId)||s.state==='NO_TIE'?null:'2026-09-23T03:57:47Z'),implementation_scope:approvedFit?'OWNER_APPROVED_BLAZER_ONLY_NO_DONOR_AVATAR_OR_OTHER_GARMENTS':root.HEWRSAdditionalBlazers.has(s.blazerId)?'NEW_SOURCE_DERIVED_REGISTRATION_NOT_OWNER_VISUAL_APPROVAL':s.state==='NO_TIE'?'SOURCE_DERIVED_OPEN_COLLAR_CONNECTION_NOT_A_NEW_OWNER_VISUAL_APPROVAL':'PREVIOUS_APPROVED_RECONCILIATION'};
   }finally{frame.width=frame.height=shirt.width=shirt.height=1;}
  }
  function cancel(){epoch++;inherited.cancel();}
