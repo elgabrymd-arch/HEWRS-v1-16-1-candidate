@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.owner-release-scope.v1",
-  "version": "1.24.2-b15-fit",
+  "version": "1.24.3-anchor-recovery",
   "owner_instruction": "Continue with 18 only for now",
   "owner_message_timestamp": "2026-09-25T02:44:23Z",
   "scope_applies_to": [
@@ -97,7 +97,13 @@
     "20 distinct qualified clothing options when available, honoring all explicit locks",
     "Existing DNA/compatibility/rotation preserved"
   ],
-  "current_patch_scope": "Append B15 Zegna photo-derived blazer; retain all earlier features and style/occasion rules",
+  "current_patch_scope": [
+    "Occasion model refreshed before automatic request validation",
+    "An empty generation result no longer triggers default outfit restoration when returning to Outfits",
+    "Typed no-match/conflicting-selection outcomes with explicit anchor-preserving recovery",
+    "Empty-result counts and disabled Log state remain coherent",
+    "Error retry and redacted request diagnostic"
+  ],
   "tie_display_update": "47 physical ties restored from provided source textures; all garment IDs, shape masks and numerical logic remain unchanged.",
   "owner_weather_update": {
     "timestamp": "2026-09-27T20:15:32Z",
@@ -137,7 +143,7 @@
     "desktop": "outfit left and item thumbnails/right",
     "ranking_data_and_modes_unchanged": true
   },
-  "current_increment": "B15 approved garment-only appearance integration",
+  "current_increment": "Anchor/style no-match recovery and safe occasion model refresh",
   "preserved_option_policy": {
     "target": 20,
     "unanchored_tie_max": 1,
@@ -221,5 +227,14 @@
     "b15_alpha_and_shirt_visibility_updated": true,
     "scoring_and_identity_unchanged": true,
     "new_colour_material_or_style_claims": false
+  },
+  "anchor_recovery_v1_24_3": {
+    "no_classifier_or_score_changes": true,
+    "no_lock_relaxation": true,
+    "no_new_wardrobe": true,
+    "b03_modern_after": 0,
+    "b03_hybrid_after": 18,
+    "recovery_requires_user_tap": true,
+    "stored_data_mutations": false
   }
 }

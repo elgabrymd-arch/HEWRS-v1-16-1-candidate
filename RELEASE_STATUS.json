@@ -122,7 +122,7 @@
   "preference_namespace": "hewrs:outfit-preferences:v1",
   "preference_cloud_sync": false,
   "schema": "hewrs.release-status.new-blazer.v1",
-  "version": "1.24.2-b15-fit",
+  "version": "1.24.3-anchor-recovery",
   "baseline": "1.24.1-b15",
   "scope": "Approved B15 garment-only layer and front/hem visibility integration",
   "complete_product_release": false,
@@ -142,21 +142,21 @@
   "preference_storage_unchanged": "Raw schema and existing records retained; new occasion validation and context-isolated model fitting added",
   "local_storage_keys_added": false,
   "new_feedback_seeded": false,
-  "full_style_generator_regression_completed": false,
-  "current_evidence": "evidence/b15_fit_v1_24_2/",
+  "full_style_generator_regression_completed": true,
+  "current_evidence": "ANCHOR_RECOVERY_V1_24_3.md and package TESTS_AND_RESULTS/",
   "inherited_evidence_is_historical": true,
-  "inherited_release_status": "provenance/b15_fit_v1_24_2/baseline_1241_RELEASE_STATUS.json",
+  "inherited_release_status": "provenance/anchor_recovery_v1_24_3/baseline_1242_RELEASE_STATUS.json",
   "deployment_performed_this_release": false,
   "physical_iphone_safari_test_performed_this_release": false,
   "hosted_bytes_independently_verified": false,
   "open_issues": [
-    "No deployment or physical iPhone/Safari verification in this release",
-    "Current source flags still constrain Modern; no threshold or garment relabelling to manufacture twenty",
-    "Sixteen catalogue-only shoe records remain unconnected; other shoe depictions not corrected",
+    "No hosted-byte verification or physical Safari test; exact owner error text was not supplied",
+    "Strict Modern classification remains restrictive: B03 and other documented anchors have no matching Modern candidates",
+    "Sixteen shoe records remain unconnected; other shoe depictions not corrected",
     "Explicit rejected-outfit recurrence remains unresolved",
-    "S02 artwork mismatch; held-out/S02 learning safeguards retained",
-    "Automatic shirt-only numerical ranking and catalogue-only jeans/T-shirts not installed",
-    "Dinner/Weekend automatic generation is Research only; other explicitly selected methods fail clearly"
+    "S02 artwork mismatch and its learning safeguards retained",
+    "Automatic shirt-only ranking and catalogue-only jeans/T-shirts remain unconnected",
+    "Dinner/Weekend automatic generation remains Research-only; other selected methods are not silently switched"
   ],
   "mobile_card_layout": {
     "default": "side-by-side",
@@ -165,15 +165,6 @@
     "thumbnails_click_to_enlarge": true,
     "short_viewport_item_pictures_control": true,
     "full_card_and_actions_can_require_scrolling_on_short_screens": true
-  },
-  "fresh_generation_scope": {
-    "direct_before_after": "B15-only Work AUTO; 20/20 identical ordered scores/selections",
-    "browser": "B15/DS001/PB001/shoe-15; tie/watch unrestricted,20 navigated",
-    "date": "2026-10-06 direct;2026-10-07 browser",
-    "method": "Research",
-    "learning": "inactive",
-    "weather": "not_assessed",
-    "wear": "empty synthetic"
   },
   "connected_blazer_ids": [
     "B01",
@@ -193,17 +184,33 @@
     "B15"
   ],
   "connected_blazer_count": 15,
-  "new_runtime_blazer_layers": 1,
+  "new_runtime_blazer_layers": 0,
   "owner_render_approval_claimed": true,
-  "new_blazer_style_matrix_completed": false,
+  "new_blazer_style_matrix_completed": true,
   "new_blazer_modern_anchor": "0 under unchanged classifier and available source-grounded features; do not invent relaxed tailoring or thresholds to force results",
-  "fresh_source_checks": 5,
-  "fresh_state_checks": 0,
-  "fresh_browser_assertions": 62,
-  "fresh_full_outfit_render_comparisons": 7,
   "owner_render_approval_scope": "Corrected B15 depiction approved 2026-10-07T00:48:11Z; generated avatar and other items not imported",
-  "B15_garment_alpha_changed": true,
-  "B15_shirt_occlusion_changed": true,
-  "fresh_B15_render_comparisons": 36,
-  "new_B15_visibility_masks": 1
+  "B15_garment_alpha_changed": false,
+  "B15_shirt_occlusion_changed": false,
+  "new_B15_visibility_masks": 0,
+  "fixed_paths": [
+    "Occasion model refreshed before automatic request validation",
+    "An empty generation result no longer triggers default outfit restoration when returning to Outfits",
+    "Typed no-match/conflicting-selection outcomes with explicit anchor-preserving recovery",
+    "Empty-result counts and disabled Log state remain coherent",
+    "Error retry and redacted request diagnostic"
+  ],
+  "fresh_verification": {
+    "paired_anchor_style_occasion_cases": 396,
+    "before_and_after_generations": 792,
+    "nonzero_configurations": 339,
+    "zero_match_configurations": 57,
+    "thrown_engine_errors_in_matrix": 0,
+    "exact_ordered_scores_and_classifications_preserved": true,
+    "source_groups": 14,
+    "browser_assertions": 45,
+    "native_frame_comparisons": 4,
+    "baseline_image_data_files_unchanged": 1075,
+    "learning_scope_test": "Synthetic active Work model; Work/Dinner/Weekend transitions; raw stored comparisons unchanged",
+    "scope": "33 topwear anchors \u00d7 four styles \u00d7 three occasions; all other items unlocked; 2026-10-12; formality any; unassessed weather; inactive matrix learning; empty synthetic wear. Not all possible settings."
+  }
 }

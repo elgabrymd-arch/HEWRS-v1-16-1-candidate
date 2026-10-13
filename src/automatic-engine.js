@@ -53,16 +53,20 @@ function create(inputs,options={}){
  function detail(e,q,shoe,watch){const a=evidence(shoe,watch),r=base.engine.evaluate(requestFor(e,q,a));need(r.score===e.row[2]&&r.display_score===e.row[3]&&r.candidate_eligible,'Clothing cache does not match unchanged source engine');return r;}
  function outfitID(s){return [s.suitId||s.blazerId||'SHIRT_ONLY',s.pantId||'SUIT_TROUSERS',s.shirtId,s.state,s.shoeId,s.watchId||'NO_WATCH'].join('|');}
  const styleFeasibility=new Map();
- function canMatchStyle(e,q,r){if(q.executiveStyle==='AUTO')return true;
+ function canMatchStyle(e,q,r,work){if(q.executiveStyle==='AUTO')return true;
   const key=[e.group.topwearId,e.row[0],e.row[1]==='NO_TIE',q.executiveStyle,q.dressMode,q.context.requiredFormality,q.sneakerStance,q.prefs.shoes.mode==='item'?q.prefs.shoes.id:'ALL_REGISTERED'].join('|');
-  if(styleFeasibility.has(key))return styleFeasibility.get(key);
-  const candidates=q.prefs.shoes.mode==='item'?[shoes.get(q.prefs.shoes.id)]:[...shoes.values()];
-  const available=candidates.filter(sh=>!root.HEWRSLegacyAccessories.shoe(sh,weatherItems(e,sh,null),q,r).rejected);
-  const shoeTypes=[...new Set(available.map(x=>x.subcategory==='Sneakers'?'sneaker':'other'))];let yes=false;
-  for(const shoeStyle of shoeTypes){const st=root.HEWRSEnsembleCompletion.classifyStyle(features.get(e.group.topwearId),features.get(e.row[0]),e.row[1]==='NO_TIE'?null:features.get(e.row[1]),r,{shoeStyle,controlled:true,evidence:{source_id:'ACTUAL_ELIGIBLE_FOOTWEAR_TYPES'}});if(st.authorityGate==='pass'&&st.classification===q.executiveStyle)yes=true;}
-  styleFeasibility.set(key,yes);return yes;
+  let cached=styleFeasibility.get(key);
+  if(!cached){
+   const candidates=q.prefs.shoes.mode==='item'?[shoes.get(q.prefs.shoes.id)]:[...shoes.values()];
+   const available=candidates.filter(sh=>!root.HEWRSLegacyAccessories.shoe(sh,weatherItems(e,sh,null),q,r).rejected);
+   const shoeTypes=[...new Set(available.map(x=>x.subcategory==='Sneakers'?'sneaker':'other'))],profiles=[];
+   for(const shoeStyle of shoeTypes){const st=root.HEWRSEnsembleCompletion.classifyStyle(features.get(e.group.topwearId),features.get(e.row[0]),e.row[1]==='NO_TIE'?null:features.get(e.row[1]),r,{shoeStyle,controlled:true,evidence:{source_id:'ACTUAL_ELIGIBLE_FOOTWEAR_TYPES'}});if(st.authorityGate==='pass')profiles.push({classification:st.classification,classic_foundation:st.classic_foundation,modern_intervention_count:st.modern_intervention_count});}
+   cached={matches:profiles.some(st=>st.classification===q.executiveStyle),profiles};styleFeasibility.set(key,cached);
+  }
+  for(const p of cached.profiles)work?.styleProfiles?.set(JSON.stringify(p),p);
+  return cached.matches;
  }
- function resolveCandidate(e,q,history,worn,capacity=null,reject=null,work={watches:new Map()}){const r=sourceResult(e,q);if(!r.candidate_eligible||r.context.status!=='eligible'){reject?.('SOURCE_OR_FORMALITY_HOLD');return null;}need(r.score===e.row[2]&&r.display_score===e.row[3],'Source-index score mismatch');if(!canMatchStyle(e,q,r)){reject?.('STYLE_LOCK');return null;}
+ function resolveCandidate(e,q,history,worn,capacity=null,reject=null,work={watches:new Map()}){const r=sourceResult(e,q);if(!r.candidate_eligible||r.context.status!=='eligible'){reject?.('SOURCE_OR_FORMALITY_HOLD');return null;}need(r.score===e.row[2]&&r.display_score===e.row[3],'Source-index score mismatch');if(!canMatchStyle(e,q,r,work)){reject?.('STYLE_LOCK');return null;}
   const top=weatherItems(e,null,null),policy=root.HEWRSLegacyAccessories;
   const pref=e.preference||(e.preference=personal.clothing(e.group.topwearId,e.row[0],e.row[1],e.pantId,e.row[2],q));
   const tieOrder=(a,b)=>cmp(worn.get(a.item.id)||'',worn.get(b.item.id)||'')||cmp(a.item.id,b.item.id);
@@ -91,7 +95,7 @@ function create(inputs,options={}){
    }
   }if(!hadStylePass&&pool.length){reject?.('STYLE_LOCK');}else if(!hadWeatherPass&&pool.length){reject?.('WEATHER');for(const msg of rejectedWeather)reject?.('WEATHER: '+msg);}else if(pool.length)reject?.('WATCH_OR_STYLE_LOCK');return null;
  }
- function* steps(q,catalogue,history){requireIndex();const work={watches:new Map()};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');
+ function* steps(q,catalogue,history){requireIndex();const work={watches:new Map(),styleProfiles:new Map()};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');
   const wearCheck=root.HEWRSLocalState.create(base,root.HEWRS_INPUT_SHA256,null);wearCheck.validate({schema:root.HEWRSLocalState.SCHEMA,source_lock:root.HEWRS_INPUT_SHA256,revision:0,session:null,events:history});
   const tieAudit=Object.fromEntries([...ties.keys(),'NO_TIE'].map(id=>[id,{id,matching_rows:0,source_eligible_clothing:0,source_holds:{},complete_evaluated:0,eligible_complete:0,rejection_reasons:{},best_complete:null,retained_candidates:0,selected_count:0}]));
   const diagnostics={tie_coverage:tieAudit,enumerated:0,examined:0,score_statuses:{},weather_style_or_accessory_holds:0,unbound_trouser_ids:[],numeric_candidates:0,domain_evaluated:0,rejection_reasons:{},preference_revision:personal.revision};let candidates=[];
@@ -159,7 +163,7 @@ function create(inputs,options={}){
    if(a.best_complete&&capacity){const e=initial.get([tops.get(a.best_complete.selection.suitId||a.best_complete.selection.blazerId).id,'shirt-'+a.best_complete.selection.shirtId,a.best_complete.selection.state,a.best_complete.selection.pantId?'pants-'+a.best_complete.selection.pantId:'SUIT_TROUSERS'].join('|'));if(e)a.best_candidate_final_constraint=capacity.issue(e);}
   }}
   diagnostics.examined=diagnostics.enumerated;
-  if(!accepted.length){finishTieAudit([],null);return {status:'no_qualified_candidate',options:[],diagnostics,reason:diagnostics.unbound_trouser_ids.length?'These trousers have no recorded numerical colour-profile binding. Exact manual Anchor selection remains available.':!diagnostics.numeric_candidates?'No source-eligible scored clothing satisfies the locks. Existing source holds remain excluded; no score or appearance was invented.':diagnostics.rejection_reasons.WEATHER?'Scored outfits exist but current weather/accessory rules exclude them. '+Object.keys(diagnostics.rejection_reasons).filter(x=>x.startsWith('WEATHER: ')).map(x=>x.slice(9)).slice(0,3).join('; '):'The selected style/accessory locks leave no eligible combination. No lock was relaxed.'};}
+  if(!accepted.length){finishTieAudit([],null);const no_match=root.HEWRSGenerationDiagnostics.describe(base,q,diagnostics,[...work.styleProfiles.values()]);return {status:'no_qualified_candidate',options:[],diagnostics,no_match,reason:no_match.message+(no_match.detail?' '+no_match.detail:'')};}
   // Rotation policy/history are unchanged; it now operates within 0.2 of the
   // best PERSONAL preference score, not a falsely relabelled original score.
   const slim=accepted.filter(x=>x.preference.score>=best-band-1e-9).map(x=>({id:x.id,items:x.items,result:{...x.result,display_score:x.preference.score}}));

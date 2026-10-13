@@ -171,3 +171,10 @@ html{color-scheme:dark;background:#060E19}body{margin:0;background:#060E19}
 /* V1.24.0 actual clothing/footwear style explanation; no garment styling. */
 .lb-style-explanation{font:11px/1.4 Arial,sans-serif;color:var(--secondary);margin:5px 0 0;overflow-wrap:anywhere}
 @media(max-width:759px){.lb-style-explanation{font-size:9px}}
+
+/* V1.24.3: recovery controls remain reachable when no card is returned. */
+.fx-recovery-actions{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.fx-recovery-actions[hidden]{display:none}
+.hewrs-ui .fx-recovery-actions button{min-height:44px;flex:1 1 145px;white-space:normal;font-size:12px}
+.fx-empty h2{font:22px/1.25 Georgia,serif;margin:0 0 12px;color:var(--gold)}
+.fx-empty p{margin:0 0 10px}.fx-empty p:last-child{margin-bottom:0}
