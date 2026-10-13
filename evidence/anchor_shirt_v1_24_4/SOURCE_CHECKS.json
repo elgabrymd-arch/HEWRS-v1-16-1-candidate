@@ -1,0 +1,256 @@
+{
+  "checks": [
+    {
+      "name": "All baseline runtime image/data bytes unchanged",
+      "passed": true,
+      "detail": {
+        "files": 1075
+      }
+    },
+    {
+      "name": "Ranking, classifier, watch/Modern rules, source gates, storage and all render modules unchanged",
+      "passed": true,
+      "detail": {
+        "module_files": 75,
+        "changed_runtime_modules": [
+          "src/application.js",
+          "src/generation-diagnostics.js"
+        ]
+      }
+    },
+    {
+      "name": "Exact universe: 15 blazers / 50 shirts / DS049 excluded",
+      "passed": true,
+      "detail": {
+        "blazers": [
+          "B01",
+          "B02",
+          "B03",
+          "B04",
+          "B05",
+          "B06",
+          "B07",
+          "B08",
+          "B09",
+          "B10",
+          "B11",
+          "B12",
+          "B13",
+          "B14",
+          "B15"
+        ],
+        "shirts": [
+          "DS017",
+          "DS035",
+          "DS036",
+          "DS051",
+          "DS034",
+          "DS037",
+          "DS038",
+          "DS032",
+          "DS033",
+          "DS046",
+          "DS003",
+          "DS020",
+          "DS045",
+          "DS010",
+          "DS011",
+          "DS028",
+          "DS029",
+          "DS030",
+          "DS044",
+          "DS013",
+          "DS026",
+          "DS031",
+          "DS009",
+          "DS012",
+          "DS050",
+          "DS016",
+          "DS048",
+          "DS039",
+          "DS042",
+          "DS043",
+          "DS040",
+          "DS041",
+          "DS001",
+          "DS002",
+          "DS004",
+          "DS005",
+          "DS006",
+          "DS007",
+          "DS008",
+          "DS014",
+          "DS015",
+          "DS018",
+          "DS019",
+          "DS021",
+          "DS022",
+          "DS023",
+          "DS024",
+          "DS025",
+          "DS027",
+          "DS047"
+        ]
+      }
+    },
+    {
+      "name": "750 blazer/shirt routing pairs preserve 270 supported and 480 unsupported combinations",
+      "passed": true,
+      "detail": {
+        "supported": 270,
+        "unconnected": 480,
+        "scope": "Routing validations, not 750 pair-anchored recommendation searches"
+      }
+    },
+    {
+      "name": "Four scoring holds explicitly identified in all 12 style/occasion settings",
+      "passed": true,
+      "detail": {
+        "actual_generations": 48,
+        "held_ids": [
+          "DS011",
+          "DS040",
+          "DS042",
+          "DS043"
+        ]
+      }
+    },
+    {
+      "name": "All 50 shirt picker warnings reflect source rather than invented permissions",
+      "passed": true,
+      "detail": 50
+    },
+    {
+      "name": "Unavailable blazer/shirt pair has explicit rendering explanation",
+      "passed": true,
+      "detail": {
+        "schema": "hewrs.generation-outcome.v1_24_4",
+        "kind": "no_match",
+        "code": "SHIRT_BLAZER_RENDERING_UNAVAILABLE",
+        "title": "This blazer/shirt combination is not connected",
+        "message": "DS017 has suit-mode rendering, but no connected full-length shirt layer for B03.",
+        "detail": "Both selected IDs are retained. Review the shirt or jacket selection; a different style cannot create the missing rendering connection.",
+        "anchor": "B03",
+        "shirt_anchor": "DS017",
+        "requested_style": "AUTO",
+        "source_eligible_clothing": 0,
+        "complete_candidates_checked": 0,
+        "alternative_styles": [],
+        "alternatives_require_new_search": true,
+        "locks_automatically_changed": false
+      }
+    },
+    {
+      "name": "Unsupported exact shirt/tie state and Tie-required conflict explained",
+      "passed": true,
+      "detail": {
+        "exact_tie": {
+          "schema": "hewrs.generation-outcome.v1_24_4",
+          "kind": "no_match",
+          "code": "SHIRT_TIE_STATE_UNAVAILABLE",
+          "title": "Selected shirt and tie requirements conflict",
+          "message": "DS041 has no connected tied state for this request.",
+          "detail": "No Tie must be selected deliberately with a compatible formality setting, or choose a shirt with the required tied state. Nothing has been substituted.",
+          "anchor": "DS041",
+          "shirt_anchor": "DS041",
+          "requested_style": "AUTO",
+          "source_eligible_clothing": 0,
+          "complete_candidates_checked": 0,
+          "alternative_styles": [],
+          "alternatives_require_new_search": true,
+          "locks_automatically_changed": false
+        },
+        "required_tie": {
+          "schema": "hewrs.generation-outcome.v1_24_4",
+          "kind": "no_match",
+          "code": "SHIRT_TIE_STATE_UNAVAILABLE",
+          "title": "Selected shirt and tie requirements conflict",
+          "message": "DS041 has no connected tied state for this request.",
+          "detail": "No Tie must be selected deliberately with a compatible formality setting, or choose a shirt with the required tied state. Nothing has been substituted.",
+          "anchor": "DS041",
+          "shirt_anchor": "DS041",
+          "requested_style": "AUTO",
+          "source_eligible_clothing": 0,
+          "complete_candidates_checked": 0,
+          "alternative_styles": [],
+          "alternatives_require_new_search": true,
+          "locks_automatically_changed": false
+        }
+      }
+    },
+    {
+      "name": "Modern shirt anchor gets exact retained-ID recovery",
+      "passed": true,
+      "detail": {
+        "schema": "hewrs.generation-outcome.v1_24_4",
+        "kind": "no_match",
+        "code": "STYLE_UNAVAILABLE",
+        "title": "No Modern match for DS017",
+        "message": "The search completed, but no outfit met the current Modern classification with these selections. This is not an image-loading error.",
+        "detail": "The checked clothing and footwear provide at most 2 qualifying modern elements. The current Modern rule requires three, or a recorded nonclassic foundation. Watches do not count; removing the No Tie limit does not change that rule.",
+        "anchor": "DS017",
+        "shirt_anchor": "DS017",
+        "requested_style": "MODERN",
+        "source_eligible_clothing": 864,
+        "complete_candidates_checked": 864,
+        "alternative_styles": [
+          "HYBRID",
+          "CLASSIC"
+        ],
+        "alternatives_require_new_search": true,
+        "locks_automatically_changed": false
+      }
+    },
+    {
+      "name": "Manual display remains valid for each held shirt in an existing suit",
+      "passed": true,
+      "detail": [
+        "DS011",
+        "DS040",
+        "DS042",
+        "DS043"
+      ]
+    },
+    {
+      "name": "Existing explicit conflicts still take precedence",
+      "passed": true
+    },
+    {
+      "name": "Modern no-tie policy and exact No Tie exception unchanged",
+      "passed": true
+    },
+    {
+      "name": "Diagnostic remains redacted",
+      "passed": true,
+      "detail": {
+        "schema": "hewrs.redacted-generation-diagnostic.v1_24_3",
+        "app_version": "test",
+        "created_at": "2026-10-12T14:49:22.876Z",
+        "context": {
+          "occasion": "work"
+        },
+        "preferences": {
+          "shirt": {
+            "mode": "item",
+            "id": "DS011"
+          }
+        },
+        "method": "research",
+        "requested_style": null,
+        "source_revision": null,
+        "status": "error",
+        "no_match": null,
+        "error": "Stored data or JSON validation failed. Original records were retained; raw data is omitted from this diagnostic.",
+        "returned_options": 0,
+        "counts": null,
+        "weather": {
+          "source": "manual",
+          "date": "2026-10-12"
+        },
+        "privacy": "No saved responses, learned coefficients, wear events, Favorites, credentials, coordinates, place names or account data included."
+      }
+    }
+  ],
+  "passed": true,
+  "scope": "Local actual source / separate synthetic diagnostic checks; no private owner records"
+}

@@ -1,0 +1,207 @@
+{
+  "checks": [
+    {
+      "name": "B03 Hybrid starts with 18 actual results",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancel new anchor preserves old list, selected B03 and session",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Applying same anchor preserves computed list and session",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Changed anchor invalidates list rather than showing prior results",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Anchor edit retains current selection, exact pixels and saved session",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No stale B03 recovery action after B04 change",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pending-generation page cannot silently restore a default outfit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pending Generate reachable at 320x568",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pending Generate reachable at 390x350",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pending Generate reachable at 390x844",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pending Generate reachable at 430x932",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pending Generate reachable at 1280x1000",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pending-page Generate runs current B04 anchor and unchanged Hybrid style",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New B04 card shows corresponding identities and decoded images",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reset Cancel retains list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Confirm Reset clears anchors and stale list, not saved current outfit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit View current still opens retained actual outfit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Shirt enlargement opens actual image",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual PNG download retains 1400x1900 dimensions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unsupported exact B03/DS017 pair gives typed no-match with both locks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS041 with explicit tie gives correct conflict, no silent tie removal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS011 warning visible before applying anchor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS011 still manually renders exact supported state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS040 warning visible before applying anchor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS040 still manually renders exact supported state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS042 warning visible before applying anchor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS042 still manually renders exact supported state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS043 warning visible before applying anchor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DS043 still manually renders exact supported state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No raw feedback, Favorites, or wear data written",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No page JS errors in lifecycle/diagnostic tests",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Synthetic Work feedback model is active",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Occasion work with activated Work learning completes without context exception",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Occasion dinner with activated Work learning completes without context exception",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Occasion weekend with activated Work learning completes without context exception",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Occasion work with activated Work learning completes without context exception",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All raw synthetic feedback bytes preserved after occasion tests",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Corrupt saved feedback blocks generation rather than becoming empty history",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Corruption no default substitution and no wear writes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No page JS errors in active-learning tests",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "scope": "Offline Chromium; actual controls, generated bundle and actual image bytes. Synthetic storage, synthetic active learning; no live/physical Safari/browser profile."
+}

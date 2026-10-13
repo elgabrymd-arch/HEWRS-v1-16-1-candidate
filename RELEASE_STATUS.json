@@ -122,9 +122,9 @@
   "preference_namespace": "hewrs:outfit-preferences:v1",
   "preference_cloud_sync": false,
   "schema": "hewrs.release-status.new-blazer.v1",
-  "version": "1.24.3-anchor-recovery",
-  "baseline": "1.24.1-b15",
-  "scope": "Approved B15 garment-only layer and front/hem visibility integration",
+  "version": "1.24.4-anchor-audit",
+  "baseline": "1.24.3-anchor-recovery",
+  "scope": "Every separate blazer/shirt anchor audit plus stale-selection and source-diagnostic correction",
   "complete_product_release": false,
   "source_lock_unchanged": true,
   "runtime_original_assets_unchanged": true,
@@ -143,9 +143,9 @@
   "local_storage_keys_added": false,
   "new_feedback_seeded": false,
   "full_style_generator_regression_completed": true,
-  "current_evidence": "ANCHOR_RECOVERY_V1_24_3.md and package TESTS_AND_RESULTS/",
+  "current_evidence": "BLAZER_SHIRT_ANCHOR_AUDIT_V1_24_4.md and separate test evidence package",
   "inherited_evidence_is_historical": true,
-  "inherited_release_status": "provenance/anchor_recovery_v1_24_3/baseline_1242_RELEASE_STATUS.json",
+  "inherited_release_status": "provenance/anchor_shirt_v1_24_4/baseline_1243_RELEASE_STATUS.json",
   "deployment_performed_this_release": false,
   "physical_iphone_safari_test_performed_this_release": false,
   "hosted_bytes_independently_verified": false,
@@ -193,24 +193,50 @@
   "B15_shirt_occlusion_changed": false,
   "new_B15_visibility_masks": 0,
   "fixed_paths": [
-    "Occasion model refreshed before automatic request validation",
-    "An empty generation result no longer triggers default outfit restoration when returning to Outfits",
-    "Typed no-match/conflicting-selection outcomes with explicit anchor-preserving recovery",
-    "Empty-result counts and disabled Log state remain coherent",
-    "Error retry and redacted request diagnostic"
+    "Committed anchor change invalidates stale results and old recovery actions",
+    "Reset invalidates obsolete list; Cancel/same-choice preserve valid results",
+    "Explicit held-shirt, unavailable blazer-shirt rendering and shirt/tie-state diagnostics",
+    "Pending-generation recovery preserves current saved outfit without implicit default substitution"
   ],
   "fresh_verification": {
-    "paired_anchor_style_occasion_cases": 396,
-    "before_and_after_generations": 792,
-    "nonzero_configurations": 339,
-    "zero_match_configurations": 57,
-    "thrown_engine_errors_in_matrix": 0,
-    "exact_ordered_scores_and_classifications_preserved": true,
-    "source_groups": 14,
-    "browser_assertions": 45,
-    "native_frame_comparisons": 4,
-    "baseline_image_data_files_unchanged": 1075,
-    "learning_scope_test": "Synthetic active Work model; Work/Dinner/Weekend transitions; raw stored comparisons unchanged",
-    "scope": "33 topwear anchors \u00d7 four styles \u00d7 three occasions; all other items unlocked; 2026-10-12; formality any; unassessed weather; inactive matrix learning; empty synthetic wear. Not all possible settings."
-  }
+    "version": "1.24.4-anchor-audit",
+    "primary_configurations": 780,
+    "before_full_engine_generations": 780,
+    "after_actual_UI_generations": 780,
+    "primary_nonempty": 588,
+    "primary_no_matches": 192,
+    "primary_exceptions": 0,
+    "pair_generations": 9000,
+    "pair_nonempty": 2304,
+    "pair_no_matches": 6696,
+    "pair_exceptions": 0,
+    "pair_outcome_counts": {
+      "OUTFITS_RETURNED": 2304,
+      "STYLE_UNAVAILABLE": 936,
+      "SHIRT_BLAZER_RENDERING_UNAVAILABLE": 5040,
+      "SHIRT_SCORING_HOLD": 720
+    },
+    "primary_outcome_counts": {
+      "OUTFITS_RETURNED": 588,
+      "STYLE_UNAVAILABLE": 144,
+      "SHIRT_SCORING_HOLD": 48
+    },
+    "browser_extended_checks": 40,
+    "browser_synthetic_swipe_anchor_count": 61,
+    "plans_checked_sum": 7561,
+    "primary_by_type": {
+      "blazer": {
+        "configurations": 180,
+        "nonempty": 132,
+        "no_match": 48
+      },
+      "shirt": {
+        "configurations": 600,
+        "nonempty": 456,
+        "no_match": 144
+      }
+    },
+    "scope": "Research method; 2026-10-12; any formality; unassessed weather; inactive primary/pair learning; empty synthetic wear. After primary via actual UI in offline Chromium; extra pairs direct engine. Extra active-learning/lifecycle tests separate. No live or physical Safari test."
+  },
+  "current_runtime_image_data_files_unchanged": 1075
 }

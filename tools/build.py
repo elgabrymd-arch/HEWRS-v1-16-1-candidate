@@ -13,7 +13,7 @@ def build(standalone=None):
  def fingerprint(path):return hashlib.sha256((R/path).read_bytes()).hexdigest()
  index='data/option-index.js';loader='src/runtime-loader.js';inputs='data/inputs.js'
  included=[x for x in SCRIPTS if x not in {loader,inputs,index}]
- code='/* HEWRS V1.24.3 anchor recovery startup bundle; generated from tools/build.py. */\n'
+ code='/* HEWRS V1.24.4 anchor audit startup bundle; generated from tools/build.py. */\n'
  for x in included:
   code+='\n/* SOURCE: '+x+' */\n'+(R/x).read_text()+'\n;\n'
  directory=R/'runtime';directory.mkdir(exist_ok=True)

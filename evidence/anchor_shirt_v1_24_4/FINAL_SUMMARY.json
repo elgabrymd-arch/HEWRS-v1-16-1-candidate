@@ -1,0 +1,40 @@
+{
+  "version": "1.24.4-anchor-audit",
+  "primary_configurations": 780,
+  "before_full_engine_generations": 780,
+  "after_actual_UI_generations": 780,
+  "primary_nonempty": 588,
+  "primary_no_matches": 192,
+  "primary_exceptions": 0,
+  "pair_generations": 9000,
+  "pair_nonempty": 2304,
+  "pair_no_matches": 6696,
+  "pair_exceptions": 0,
+  "pair_outcome_counts": {
+    "OUTFITS_RETURNED": 2304,
+    "STYLE_UNAVAILABLE": 936,
+    "SHIRT_BLAZER_RENDERING_UNAVAILABLE": 5040,
+    "SHIRT_SCORING_HOLD": 720
+  },
+  "primary_outcome_counts": {
+    "OUTFITS_RETURNED": 588,
+    "STYLE_UNAVAILABLE": 144,
+    "SHIRT_SCORING_HOLD": 48
+  },
+  "browser_extended_checks": 40,
+  "browser_synthetic_swipe_anchor_count": 61,
+  "plans_checked_sum": 7561,
+  "primary_by_type": {
+    "blazer": {
+      "configurations": 180,
+      "nonempty": 132,
+      "no_match": 48
+    },
+    "shirt": {
+      "configurations": 600,
+      "nonempty": 456,
+      "no_match": 144
+    }
+  },
+  "scope": "Research method; 2026-10-12; any formality; unassessed weather; inactive primary/pair learning; empty synthetic wear. After primary via actual UI in offline Chromium; extra pairs direct engine. Extra active-learning/lifecycle tests separate. No live or physical Safari test."
+}

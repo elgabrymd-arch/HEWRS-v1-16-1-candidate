@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.package-sha256.v1",
-  "version": "1.24.3-anchor-recovery",
+  "version": "1.24.4-anchor-audit",
   "files": [
     {
       "path": ".gitignore",
@@ -26,6 +26,11 @@
       "path": "B15_APPROVED_FIT_V1_24_2.md",
       "bytes": 5567,
       "sha256": "fb9d144a47954cef80d154e855bf2e712fa6e2960611995b3381f6abd2611b04"
+    },
+    {
+      "path": "BLAZER_SHIRT_ANCHOR_AUDIT_V1_24_4.md",
+      "bytes": 10149,
+      "sha256": "4a5ce3f429c453c1f825d6440bff4dcc639dcce6b50c18f1207d69d6c2eabcfd"
     },
     {
       "path": "CARD_LAYOUT_V1_23_2.md",
@@ -149,13 +154,13 @@
     },
     {
       "path": "RELEASE_SCOPE.json",
-      "bytes": 8128,
-      "sha256": "14ec50ffbb69d26045e7755bf10031b2f687c7a8319a523444f8a56ec89c8913"
+      "bytes": 8194,
+      "sha256": "129b6dc230a4966f9ecce11068f70fa89abd438f430400ade05c4e1a5ca6f5d9"
     },
     {
       "path": "RELEASE_STATUS.json",
-      "bytes": 6276,
-      "sha256": "3e39dbe05f4cc447fead1a4c67b183fa5681f08a7b6866d61182dfac1333de5a"
+      "bytes": 6919,
+      "sha256": "dc88a5c4c181e095a6e41a4dfdae3748f7c8bbc911419bb31a98a582844082d9"
     },
     {
       "path": "RESEARCH_RULES_V1_20_0.md",
@@ -169,8 +174,8 @@
     },
     {
       "path": "RUNTIME_REQUIRED.json",
-      "bytes": 91848,
-      "sha256": "1a24fef27c40a8c28846ad10be28b39f17d3e034760f08c9fa5cdc7c9bc92ee2"
+      "bytes": 91934,
+      "sha256": "bf24576d247678ca64d070e3b540e9bdfa4f906529eed8e5df77722aaef82f90"
     },
     {
       "path": "SHOE15_CORRECTION_V1_23_1.md",
@@ -180,7 +185,7 @@
     {
       "path": "STARTUP_RESOURCES.json",
       "bytes": 5942,
-      "sha256": "cc440bf1980edc57d4a6ecf91a634282f9115b1c0fe0f0c50a32d23505f93ba8"
+      "sha256": "1e9615e90753e9a0c3e74b02b325fa33076ef68488c63183816949e8c88d942d"
     },
     {
       "path": "STYLE_OCCASION_V1_24_0.md",
@@ -225,12 +230,12 @@
     {
       "path": "app.html",
       "bytes": 15450,
-      "sha256": "3d4f0d03205e999b96f0a335f2ed1a3e5c9b32934296610b0b0280251c4aa669"
+      "sha256": "4b588a1c4f6141771bb515398931a936ff59c51e3dbf83017e198117c0134810"
     },
     {
       "path": "app.template.html",
       "bytes": 14860,
-      "sha256": "57f9d24862586a3598f44af5df7c934ff2eb0108670439b7ef1a11389097583f"
+      "sha256": "4162dfcc0e6d16f79698120bbe03b12a47762169e1187c4d0c4d109a9428de1e"
     },
     {
       "path": "assemblies/1f101b4b9dc9101c36dc890deb7ef49464ae39f490ca93fd768ec3e7f7e073f5.png",
@@ -5178,6 +5183,21 @@
       "sha256": "7fd53971985c5d1530338d82459f2758c8b355f1392d5a0710996d92d0883000"
     },
     {
+      "path": "evidence/anchor_shirt_v1_24_4/EXTENDED_BROWSER_RESULT.json",
+      "bytes": 5341,
+      "sha256": "61c8ce9ac329ca42adcf11d5b1dc13c087fbafe7c1b520b1157792c05e074efd"
+    },
+    {
+      "path": "evidence/anchor_shirt_v1_24_4/FINAL_SUMMARY.json",
+      "bytes": 1247,
+      "sha256": "289c9da1421a02f8337ec09d9cbf629137cbec8dfa11e52bb7d94ddf14d2eb00"
+    },
+    {
+      "path": "evidence/anchor_shirt_v1_24_4/SOURCE_CHECKS.json",
+      "bytes": 7930,
+      "sha256": "155a74dfab7ffd3bb9856e95937cba71c18b774e0ec96c1436530251cbb19c4e"
+    },
+    {
       "path": "evidence/b01_b02_v1_12/BASELINE_V1_11.json",
       "bytes": 131300,
       "sha256": "950800bae889015317ca3f326b8832999478f7eba3cbee596e02f69b119b270c"
@@ -9120,7 +9140,7 @@
     {
       "path": "index.html",
       "bytes": 15450,
-      "sha256": "3d4f0d03205e999b96f0a335f2ed1a3e5c9b32934296610b0b0280251c4aa669"
+      "sha256": "4b588a1c4f6141771bb515398931a936ff59c51e3dbf83017e198117c0134810"
     },
     {
       "path": "provenance/anchor_recovery_v1_24_3/baseline_1242_PACKAGE_SHA256.json",
@@ -9136,6 +9156,26 @@
       "path": "provenance/anchor_recovery_v1_24_3/baseline_1242_RELEASE_STATUS.json",
       "bytes": 5560,
       "sha256": "1e448db9610c0d9811d0110e6435ff0c5010c5e319f01e1644cf86b2cf594a21"
+    },
+    {
+      "path": "provenance/anchor_shirt_v1_24_4/PROTECTED_V1243.json",
+      "bytes": 164766,
+      "sha256": "d88596e2649f2cc97480fd8490e651733729867b9a5c05c4ea2b7b8d1e15cd75"
+    },
+    {
+      "path": "provenance/anchor_shirt_v1_24_4/baseline_1243_PACKAGE_SHA256.json",
+      "bytes": 535494,
+      "sha256": "8c93a78e37a2ad21eafdcd8c1904a5ca4ec5c770e680a475631bf80090dab7ac"
+    },
+    {
+      "path": "provenance/anchor_shirt_v1_24_4/baseline_1243_RELEASE_SCOPE.json",
+      "bytes": 8128,
+      "sha256": "14ec50ffbb69d26045e7755bf10031b2f687c7a8319a523444f8a56ec89c8913"
+    },
+    {
+      "path": "provenance/anchor_shirt_v1_24_4/baseline_1243_RELEASE_STATUS.json",
+      "bytes": 6276,
+      "sha256": "3e39dbe05f4cc447fead1a4c67b183fa5681f08a7b6866d61182dfac1333de5a"
     },
     {
       "path": "provenance/b15_fit_v1_24_2/REGISTRATION.json",
@@ -11373,6 +11413,11 @@
       "sha256": "872cabe19c598d00eb2020c6fc054f434b667142ebc93ef4f6ad862611def686"
     },
     {
+      "path": "runtime/hewrs-8abd202af102771cadac.js",
+      "bytes": 1410901,
+      "sha256": "8abd202af102771cadac58be96db937810a3fa452c833de0094637fb8226a02f"
+    },
+    {
       "path": "runtime/hewrs-cd7066c3627d8e59e451.js",
       "bytes": 1398305,
       "sha256": "cd7066c3627d8e59e4511027cc17d9477de3fe133beb0a2a70fcf79baaae9afd"
@@ -11404,8 +11449,8 @@
     },
     {
       "path": "src/application.js",
-      "bytes": 96032,
-      "sha256": "1c2ac4c2a6b04b22d8e0e3e7014f42e71c0fb15487eb078c6a6cf616a65b8cc6"
+      "bytes": 97294,
+      "sha256": "fd2af494f5cc481ff81f79a8c0aa9cf2a061949f6f51d3a6cff47a69e540d8d7"
     },
     {
       "path": "src/approved-suit-sources.js",
@@ -11504,8 +11549,8 @@
     },
     {
       "path": "src/generation-diagnostics.js",
-      "bytes": 5528,
-      "sha256": "9c948b76ca97b59cb30d976c1dd91410447d2d90772f8a667582117ffca57907"
+      "bytes": 7900,
+      "sha256": "0b30926697f07d9a8b2f4270d8721896bce300c14c95100b7762d33cb8030134"
     },
     {
       "path": "src/hybrid-stylist.js",
@@ -12389,8 +12434,8 @@
     },
     {
       "path": "tools/build.py",
-      "bytes": 5799,
-      "sha256": "3ce9e343bdaf017007c88cc031aa6cd234f4380ca567fa3cec0d9ad0205bb500"
+      "bytes": 5796,
+      "sha256": "30676b281cc85f4859147753aa35f5efd5e0def00a8b9c0760e6a16a6cdc650e"
     },
     {
       "path": "tools/build_batch10.py",
@@ -12776,6 +12821,11 @@
       "path": "tools/verify_v1243.py",
       "bytes": 6530,
       "sha256": "d8adb481350363e95c5b2f22fa454f5244fd1681758252cbf9be242f257982e2"
+    },
+    {
+      "path": "tools/verify_v1244.py",
+      "bytes": 6801,
+      "sha256": "385f702c29dd51c7460dbca6cd8a80539fb79719b33008aa5900931877bf8791"
     },
     {
       "path": "tools/verify_v16.py",
