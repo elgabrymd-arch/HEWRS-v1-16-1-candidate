@@ -1,0 +1,750 @@
+{
+  "schema": "hewrs.shoe-reference-review.v1",
+  "revision": "shoe-reference-batch2-20261014-review",
+  "source_input_sha256": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "status": "local_visual_review_not_deployed",
+  "entries": [
+    {
+      "id": "shoe-11",
+      "source_key": "A2-04",
+      "source": {
+        "key": "A2-04",
+        "archive": "Oct 13, Archive 2(1).zip",
+        "file": "D9392931-B2F2-49C7-A1A5-434F08E84357.PNG",
+        "sha256": "4c1306f1e6b0b8deed6b77bf5512f745b41560e35bc8fa1270fc0e06b3d7b134",
+        "size": [
+          1402,
+          1122
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch2/sources/D9392931-B2F2-49C7-A1A5-434F08E84357.PNG"
+      },
+      "baseline_layer": "062200cdaac7f92f9acbc134779195a6f07f9fd8eb51b5a7c84924a7d2e6b4d2",
+      "catalogue_name": "Gucci Loafers \u2014 Dark Espresso Brown/Oxblood Horsebit, Polished Leather",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/d41da12b0a900df99d1f4f6441ac3f123d58309d1a61b790d779f20ad585177a.png",
+        "sha256": "d41da12b0a900df99d1f4f6441ac3f123d58309d1a61b790d779f20ad585177a",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/c4a2d86c8c7203ae1a5307e6c5f9659fad9abd0ecaa336eb3c72dd1bc1f6848e.png",
+        "sha256": "c4a2d86c8c7203ae1a5307e6c5f9659fad9abd0ecaa336eb3c72dd1bc1f6848e",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-11",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "4c1306f1e6b0b8deed6b77bf5512f745b41560e35bc8fa1270fc0e06b3d7b134",
+        "crop": [
+          132,
+          42,
+          1206,
+          1060
+        ]
+      },
+      "registration": {
+        "method": "Individual source-specific pair masks and uniform resampling. Angled references are rotated in image plane; no view synthesis, mirroring, artificial recolour or common shoe silhouette. Both supplied shoes retained.",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              147,
+              57,
+              795,
+              979
+            ],
+            "orientation_rotation_degrees_ccw": 21,
+            "rotated_crop": [
+              258,
+              43,
+              707,
+              1055
+            ],
+            "target_bbox": [
+              328,
+              2391,
+              481,
+              2736
+            ],
+            "uniform_scale": 0.3409090909090909,
+            "mask_sha256": "2e763d3ba2e483a16465c7cf1393088d22ad21943cfa3dddb77344297fd15c99"
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              603,
+              87,
+              1191,
+              1045
+            ],
+            "orientation_rotation_degrees_ccw": 18,
+            "rotated_crop": [
+              235,
+              43,
+              678,
+              1064
+            ],
+            "target_bbox": [
+              516,
+              2391,
+              666,
+              2736
+            ],
+            "uniform_scale": 0.3379040156709109,
+            "mask_sha256": "4edcd9f8b8bb97cf495b7549b8a4aed0012170ae4181572626d48035e01fa6a3"
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "source_perspective_limit": true,
+        "mask_paths": [
+          "provenance/shoe_reference_batch2/masks/shoe-11_0.png",
+          "provenance/shoe_reference_batch2/masks/shoe-11_1.png"
+        ]
+      },
+      "change_kind": "reference_artwork_correction"
+    },
+    {
+      "id": "shoe-13",
+      "source_key": "A3-10",
+      "source": {
+        "key": "A3-10",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "535D89B6-DFE1-40B9-B5F3-11D72E76AD37.PNG",
+        "sha256": "6a3942784b76a15f23baaf8247f0a38f9cd7cab7f94cf2850730cd9bd85ee658",
+        "size": [
+          1230,
+          1278
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch2/sources/535D89B6-DFE1-40B9-B5F3-11D72E76AD37.PNG"
+      },
+      "baseline_layer": "cd86e082451569b243cf693966658a8e16722f9cbb2bac9bdcb6c0364afc6110",
+      "catalogue_name": "Hermes Loafers \u2014 Black Kelly Hardware",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/cdf87d36a5042cf4d4bf22b1722652c73966f0bad700e1fd0737fb842c38473f.png",
+        "sha256": "cdf87d36a5042cf4d4bf22b1722652c73966f0bad700e1fd0737fb842c38473f",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/cc6130cff4b06a471d0c925d0747b1c32611652b4efdb9bd360b9c2ca2591de5.png",
+        "sha256": "cc6130cff4b06a471d0c925d0747b1c32611652b4efdb9bd360b9c2ca2591de5",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-13",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "6a3942784b76a15f23baaf8247f0a38f9cd7cab7f94cf2850730cd9bd85ee658",
+        "crop": [
+          90,
+          92,
+          1138,
+          1120
+        ]
+      },
+      "registration": {
+        "method": "Individual source-specific pair masks and uniform resampling. Angled references are rotated in image plane; no view synthesis, mirroring, artificial recolour or common shoe silhouette. Both supplied shoes retained.",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              105,
+              107,
+              613,
+              1105
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              504,
+              994
+            ],
+            "target_bbox": [
+              320,
+              2399,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.34,
+            "mask_sha256": "bf3c3977582bba47ea8284ce9803f46881ce64a8f85eedea5c384116fbfd5139"
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              615,
+              107,
+              1123,
+              1103
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              504,
+              992
+            ],
+            "target_bbox": [
+              506,
+              2400,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.34,
+            "mask_sha256": "1eeed25843a139e6e1369d0876fdb29377280599b62ace1d8e35fe7eed923930"
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "source_perspective_limit": false,
+        "mask_paths": [
+          "provenance/shoe_reference_batch2/masks/shoe-13_0.png",
+          "provenance/shoe_reference_batch2/masks/shoe-13_1.png"
+        ]
+      },
+      "change_kind": "reference_artwork_correction"
+    },
+    {
+      "id": "shoe-14",
+      "source_key": "A3-16",
+      "source": {
+        "key": "A3-16",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "F3081948-8A0C-4EF4-8135-1634FEB6077A.PNG",
+        "sha256": "80bd6d6409fdb92bffbadefa10e1fd1e6e4b81d4894826ae255cf2ceefa7f838",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch2/sources/F3081948-8A0C-4EF4-8135-1634FEB6077A.PNG"
+      },
+      "baseline_layer": "f2971619e825db0207164a6b244a2568fe7a1100a452ec111b7c00d96d20457e",
+      "catalogue_name": "Hermes Loafers \u2014 Cognac/Chestnut Kelly Hardware, Dark Espresso Patina",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/d693fa39914db70be94cdffb5181b6169fe81260ba689e583ccb57c3c6a0b142.png",
+        "sha256": "d693fa39914db70be94cdffb5181b6169fe81260ba689e583ccb57c3c6a0b142",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/123e620f4d077cb513fa6e62f1d2798fb282b6292ee889272095a4430bc88bb4.png",
+        "sha256": "123e620f4d077cb513fa6e62f1d2798fb282b6292ee889272095a4430bc88bb4",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-14",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "80bd6d6409fdb92bffbadefa10e1fd1e6e4b81d4894826ae255cf2ceefa7f838",
+        "crop": [
+          180,
+          28,
+          1262,
+          1038
+        ]
+      },
+      "registration": {
+        "method": "Individual source-specific pair masks and uniform resampling. Angled references are rotated in image plane; no view synthesis, mirroring, artificial recolour or common shoe silhouette. Both supplied shoes retained.",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              195,
+              43,
+              705,
+              1023
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              506,
+              976
+            ],
+            "target_bbox": [
+              320,
+              2407,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.3386454183266932,
+            "mask_sha256": "76173e7a24e7f9f6980654643d40f3f437a0c1083d1a3c3a1f626c8de3f7a67e"
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              739,
+              43,
+              1247,
+              1023
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              504,
+              976
+            ],
+            "target_bbox": [
+              506,
+              2406,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.34,
+            "mask_sha256": "a9ae65d43d1533f9d707525e5e061769e456bff932b717e50d6d8425a56cc08f"
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "source_perspective_limit": false,
+        "mask_paths": [
+          "provenance/shoe_reference_batch2/masks/shoe-14_0.png",
+          "provenance/shoe_reference_batch2/masks/shoe-14_1.png"
+        ]
+      },
+      "change_kind": "reference_artwork_correction"
+    },
+    {
+      "id": "shoe-17",
+      "source_key": "A3-14",
+      "source": {
+        "key": "A3-14",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "6232E9B4-0CB8-4F44-8B50-9F63FAD8F1F9.PNG",
+        "sha256": "f76c94f38efa0671172493cef71fedf6c71d09601d893a02681c7990835dacfb",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch2/sources/6232E9B4-0CB8-4F44-8B50-9F63FAD8F1F9.PNG"
+      },
+      "baseline_layer": "0637b9abf25e4ce3d70edfbc53e8bffd4c2a40cc7301df98bcf36af05f1e4b8f",
+      "catalogue_name": "Louis Vuitton Loafers \u2014 Black Damier",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/19502bc8402a9242ab4b4f5875d8b85f009e9360b99aa7da3ac4138fa7513f8a.png",
+        "sha256": "19502bc8402a9242ab4b4f5875d8b85f009e9360b99aa7da3ac4138fa7513f8a",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/8ebe44e12f9788f73134c30362c31d4735df6f854c062587c0b7a03ec861b30a.png",
+        "sha256": "8ebe44e12f9788f73134c30362c31d4735df6f854c062587c0b7a03ec861b30a",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-17",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "f76c94f38efa0671172493cef71fedf6c71d09601d893a02681c7990835dacfb",
+        "crop": [
+          214,
+          24,
+          1228,
+          1054
+        ]
+      },
+      "registration": {
+        "method": "Individual source-specific pair masks and uniform resampling. Angled references are rotated in image plane; no view synthesis, mirroring, artificial recolour or common shoe silhouette. Both supplied shoes retained.",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              229,
+              39,
+              709,
+              1037
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              476,
+              994
+            ],
+            "target_bbox": [
+              320,
+              2379,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.3601694915254237,
+            "mask_sha256": "5963711fefbad6af4d488790a1f17febd93e7acd52f2a3e0af184fd10f51d9eb"
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              737,
+              39,
+              1213,
+              1039
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              472,
+              996
+            ],
+            "target_bbox": [
+              506,
+              2376,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.36324786324786323,
+            "mask_sha256": "9b21559937fcb3bb1ad748a90170350c5af6189d556ff663ff122ce6af73228e"
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "source_perspective_limit": false,
+        "mask_paths": [
+          "provenance/shoe_reference_batch2/masks/shoe-17_0.png",
+          "provenance/shoe_reference_batch2/masks/shoe-17_1.png"
+        ]
+      },
+      "change_kind": "reference_artwork_correction"
+    },
+    {
+      "id": "shoe-19",
+      "source_key": "A3-13",
+      "source": {
+        "key": "A3-13",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "B1F49077-AF64-499E-B47E-B2C88E96802C.PNG",
+        "sha256": "9420ff16b00866c7390d568928ed82980bd8eee7a1645db4f20d79603c5b983c",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch2/sources/B1F49077-AF64-499E-B47E-B2C88E96802C.PNG"
+      },
+      "baseline_layer": "8f1862ca8457ee4fdb283472d3a432447abde26f6d0178576bba0db92a52a2ac",
+      "catalogue_name": "Louis Vuitton Loafers \u2014 Black Monogram",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/eb05a05a415c2ebec3b12a737093070cb13812905b24119b6aca6ba49fe0f06f.png",
+        "sha256": "eb05a05a415c2ebec3b12a737093070cb13812905b24119b6aca6ba49fe0f06f",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/75c65fd7d4ba0c829da6180881553989a716f2022e12dc3b75ed7f3b43c8c824.png",
+        "sha256": "75c65fd7d4ba0c829da6180881553989a716f2022e12dc3b75ed7f3b43c8c824",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-19",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "9420ff16b00866c7390d568928ed82980bd8eee7a1645db4f20d79603c5b983c",
+        "crop": [
+          204,
+          26,
+          1248,
+          1034
+        ]
+      },
+      "registration": {
+        "method": "Individual source-specific pair masks and uniform resampling. Angled references are rotated in image plane; no view synthesis, mirroring, artificial recolour or common shoe silhouette. Both supplied shoes retained.",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              219,
+              41,
+              703,
+              1017
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              480,
+              972
+            ],
+            "target_bbox": [
+              320,
+              2390,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.35714285714285715,
+            "mask_sha256": "206ce104d0ca3fad9558204d95b943b84a689a76d2542a0cf2d359f5a5e063f3"
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              749,
+              41,
+              1233,
+              1019
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              480,
+              974
+            ],
+            "target_bbox": [
+              506,
+              2390,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.35714285714285715,
+            "mask_sha256": "99ed6aa648288aa0b4aca3e0d16d0d7af907272311db99fb7a67f1e847493f93"
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "source_perspective_limit": false,
+        "mask_paths": [
+          "provenance/shoe_reference_batch2/masks/shoe-19_0.png",
+          "provenance/shoe_reference_batch2/masks/shoe-19_1.png"
+        ]
+      },
+      "change_kind": "reference_artwork_correction"
+    },
+    {
+      "id": "shoe-24",
+      "source_key": "A2-10",
+      "source": {
+        "key": "A2-10",
+        "archive": "Oct 13, Archive 2(1).zip",
+        "file": "B0E6939B-C963-4620-899C-E6EC39051433.PNG",
+        "sha256": "1b333ac940cf3ae6b496ccea3531983961ed216e2b89201230755ddcb51d57f5",
+        "size": [
+          1402,
+          1122
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch2/sources/B0E6939B-C963-4620-899C-E6EC39051433.PNG"
+      },
+      "baseline_layer": "468aed5ce39288377c93606cccc29b05cb627c6088a60f96438c90dba634d9ea",
+      "catalogue_name": "Louis Vuitton Drivers \u2014 Brown Multitone Damier Check",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/fbd08a1165835e019f63560b84e0208d0f6cfec1e0b07fdf928494fc84eaa2e8.png",
+        "sha256": "fbd08a1165835e019f63560b84e0208d0f6cfec1e0b07fdf928494fc84eaa2e8",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/f7fd40352b424d4b332fae0cdd41e476c9057f1ff47dc645aaf7408e20df77bb.png",
+        "sha256": "f7fd40352b424d4b332fae0cdd41e476c9057f1ff47dc645aaf7408e20df77bb",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-24",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "1b333ac940cf3ae6b496ccea3531983961ed216e2b89201230755ddcb51d57f5",
+        "crop": [
+          136,
+          28,
+          1188,
+          1104
+        ]
+      },
+      "registration": {
+        "method": "Individual source-specific pair masks and uniform resampling. Angled references are rotated in image plane; no view synthesis, mirroring, artificial recolour or common shoe silhouette. Both supplied shoes retained.",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              151,
+              43,
+              825,
+              997
+            ],
+            "orientation_rotation_degrees_ccw": 24,
+            "rotated_crop": [
+              291,
+              51,
+              725,
+              1093
+            ],
+            "target_bbox": [
+              333,
+              2391,
+              477,
+              2736
+            ],
+            "uniform_scale": 0.3310940499040307,
+            "mask_sha256": "4c34bb8ed063873178f4b70b273d45142e735804c5ca8b04499b8c5f8e807fb8"
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              587,
+              73,
+              1173,
+              1089
+            ],
+            "orientation_rotation_degrees_ccw": 17,
+            "rotated_crop": [
+              236,
+              36,
+              670,
+              1100
+            ],
+            "target_bbox": [
+              520,
+              2391,
+              661,
+              2736
+            ],
+            "uniform_scale": 0.3242481203007519,
+            "mask_sha256": "9aacd1f0c75aa718341176bba1b849d2eea1272fb8303d462c2cb98baa93d587"
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "source_perspective_limit": true,
+        "mask_paths": [
+          "provenance/shoe_reference_batch2/masks/shoe-24_0.png",
+          "provenance/shoe_reference_batch2/masks/shoe-24_1.png"
+        ]
+      },
+      "change_kind": "reference_artwork_correction"
+    },
+    {
+      "id": "shoe-46",
+      "source_key": "A2-06",
+      "source": {
+        "key": "A2-06",
+        "archive": "Oct 13, Archive 2(1).zip",
+        "file": "A9416DFC-E40B-4B0F-9C8F-ADEFEE3427FB.PNG",
+        "sha256": "b238f36cf36e6a726ffce10d96c246d5775db690dc3628617360720730c70ee7",
+        "size": [
+          1402,
+          1122
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch2/sources/A9416DFC-E40B-4B0F-9C8F-ADEFEE3427FB.PNG"
+      },
+      "baseline_layer": null,
+      "catalogue_name": "Brand not confirmed Dress Shoes \u2014 Tan/Beige Single Monk, Cap-Toe",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/273630a5bd96f1e0cdbced995a6049165fdf10517530c0f2f17e47943bc25e44.png",
+        "sha256": "273630a5bd96f1e0cdbced995a6049165fdf10517530c0f2f17e47943bc25e44",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/78a887e0100ee169ff3b907e7044aa8aea06a160b5a71912b639f75489ff7db7.png",
+        "sha256": "78a887e0100ee169ff3b907e7044aa8aea06a160b5a71912b639f75489ff7db7",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-46",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "b238f36cf36e6a726ffce10d96c246d5775db690dc3628617360720730c70ee7",
+        "crop": [
+          180,
+          54,
+          1200,
+          1056
+        ]
+      },
+      "registration": {
+        "method": "Individual source-specific pair masks and uniform resampling. Angled references are rotated in image plane; no view synthesis, mirroring, artificial recolour or common shoe silhouette. Both supplied shoes retained.",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              195,
+              75,
+              671,
+              1037
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              472,
+              958
+            ],
+            "target_bbox": [
+              320,
+              2389,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.36324786324786323,
+            "mask_sha256": "72faadbf0c09589f19c52566b0cbbb75ad0db3aa940a5995d0e486be4d529461"
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              721,
+              69,
+              1185,
+              1041
+            ],
+            "orientation_rotation_degrees_ccw": 0,
+            "rotated_crop": [
+              4,
+              4,
+              460,
+              968
+            ],
+            "target_bbox": [
+              506,
+              2377,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.37280701754385964,
+            "mask_sha256": "d46212b4c7cf1e198c3300591945876ed0b95163e1cbdd5511eb2800a59bd9ef"
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "source_perspective_limit": false,
+        "mask_paths": [
+          "provenance/shoe_reference_batch2/masks/shoe-46_0.png",
+          "provenance/shoe_reference_batch2/masks/shoe-46_1.png"
+        ]
+      },
+      "change_kind": "new_connection_for_existing_catalogue_id"
+    }
+  ]
+}

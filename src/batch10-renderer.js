@@ -15,10 +15,11 @@ function create(canvas,connection,resolveUrl,kind){
  function plan(s){if(!applies(s))return inherited.plan(s);connection.validateSelection(s);
   if(kind==='blazer'&&!connection.blazerConnection.isBlazer(s)||kind==='shirt-only'&&!connection.shirtOnlyConnection.isShirtOnly(s))throw Error('Wrong batch renderer mode');
   const parts=d.shirts[s.shirtId].modes[s.state==='NO_TIE'?'no_tie':'tied'],a=connection.blazerConnection.data.assembly;
-  const p={operation:'SOURCE_REGISTERED_BATCH16',kind,selection:structuredClone(s),avatar:connection.manifest.static.avatar,shoes:connection.shoeLayers[s.shoeId],pants:connection.blazerConnection.knownPant(s.pantId).layer,body:parts.base,tie:s.state==='NO_TIE'?null:d.ties[s.state],leaves:[parts.left,parts.right],hands:a.hands,cuffs:[]};
+  const p={operation:'SOURCE_REGISTERED_BATCH16',kind,selection:structuredClone(s),avatar:connection.manifest.static.avatar,shoes:connection.shoeLayers[s.shoeId],pants:connection.blazerConnection.knownPant(s.pantId).layer,reconstructed:!!root.HEWRSReconstructedShirts?.ids.includes(s.shirtId),rear:parts.rear||null,body:parts.base,tie:s.state==='NO_TIE'?null:d.ties[s.state],leaves:[parts.left,parts.right],hands:a.hands,cuffs:[]};
   if(s.shirtId==='DS023'&&connection.ds023Cleanup){p.body=connection.ds023Cleanup.modes[s.state==='NO_TIE'?'no_tie':'tied'].base;p.ds023Cleanup=true;p.pantsInForeground=kind==='shirt-only';}
   if(s.shirtId==='DS023'&&s.state!=='NO_TIE'&&connection.ds023Edges){const e=connection.ds023Edges.layers;p.body=e.base.layer;p.leaves=[e.left.layer,e.right.layer];if(s.state==='T017')p.tie=e.T017.layer;p.ds023Edges=true;}
   if(kind==='blazer'){const b=connection.blazerConnection.knownBlazer(s.blazerId),r=b.assembly||a;p.jacket=r.jacket;p.ownership=r.ownership||connection.blazerConnection.knownBlazer('B02').assembly.ownership;p.cuffOwnershipStart=r.sourceCuffOwnershipStart??1339;p.cuffs=[parts.left_cuff,parts.right_cuff];}
+  if(d.shirts[s.shirtId].shirt_only_trouser_ownership==='EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST')p.pantsInForeground=kind==='shirt-only';
   if(p.tie&&connection.tieFidelity){p.tie=connection.tieFidelity.replace(p.tie);p.tieFidelity=true;}
   return p;
  }
@@ -27,15 +28,15 @@ function create(canvas,connection,resolveUrl,kind){
   const p=new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>im.naturalWidth===W&&im.naturalHeight===H?resolve(im):reject(Error('Wrong batch source dimensions'));im.onerror=()=>reject(Error('Batch source failed to load; no garment substitution'));try{im.src=resolveUrl(v);}catch(e){reject(e);}});
   cache.set(v.sha256,p);p.catch(()=>{if(cache.get(v.sha256)===p)cache.delete(v.sha256);});while(cache.size>16)cache.delete(cache.keys().next().value);return p;
  }
- async function render(s){const token=++epoch;inherited.cancel();if(!applies(s))return inherited.render(s);const p=plan(s),descs=[p.avatar,p.shoes,p.pants,p.body,...(p.tie?[p.tie]:[]),...p.leaves,...p.hands,...p.cuffs,...(p.jacket?[p.jacket,p.ownership]:[])];
+ async function render(s){const token=++epoch;inherited.cancel();if(!applies(s))return inherited.render(s);const p=plan(s),descs=[...(p.rear?[p.rear]:[]),p.avatar,p.shoes,p.pants,p.body,...(p.tie?[p.tie]:[]),...p.leaves,...p.hands,...p.cuffs,...(p.jacket?[p.jacket,p.ownership]:[])];
   const images=await Promise.all(descs.map(load));if(token!==epoch)return {cancelled:true};const at=v=>images[descs.findIndex(x=>x.sha256===v.sha256)];
   const frame=document.createElement('canvas'),shirt=document.createElement('canvas');frame.width=shirt.width=W;frame.height=shirt.height=H;const fc=frame.getContext('2d',{willReadFrequently:true}),sc=shirt.getContext('2d',{willReadFrequently:true});
   try{
    let own=null;if(p.ownership){sc.drawImage(at(p.ownership),0,0);own=sc.getImageData(0,0,W,H).data;sc.clearRect(0,0,W,H);}
    sc.drawImage(at(p.body),0,0);if(p.tie)sc.drawImage(at(p.tie),0,0);for(const v of p.leaves)sc.drawImage(at(v),0,0);
    if(own){const px=sc.getImageData(0,0,W,H);for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=(y*W+x)*4;if(own[i]||y>=p.cuffOwnershipStart)px.data[i]=px.data[i+1]=px.data[i+2]=px.data[i+3]=0;}sc.putImageData(px,0,0);}
-   for(const v of [p.avatar,p.shoes,...(p.pantsInForeground?[]:[p.pants])])fc.drawImage(at(v),0,0);fc.drawImage(shirt,0,0);if(p.pantsInForeground)fc.drawImage(at(p.pants),0,0);if(p.jacket)fc.drawImage(at(p.jacket),0,0);for(const v of [...p.cuffs,...p.hands])fc.drawImage(at(v),0,0);
-   if(token!==epoch)return {cancelled:true};ctx.putImageData(fc.getImageData(0,0,W,H),0,0);return {status:'ready',selection:structuredClone(s),source_assembly:p.ds023Edges?'V1163_DS023_EDGE_MATTES':p.ds023Cleanup?'V1162_DS023_ALPHA_COMPOSITE':'V116_BATCH16_SOURCE_REGISTRATION',source_registration:d.shirts[s.shirtId].source_sha256,derivative_not_original:true};
+   for(const v of [...(p.rear?[p.rear]:[]),p.avatar,p.shoes,...(p.pantsInForeground?[]:[p.pants])])fc.drawImage(at(v),0,0);fc.drawImage(shirt,0,0);if(p.pantsInForeground)fc.drawImage(at(p.pants),0,0);if(p.jacket)fc.drawImage(at(p.jacket),0,0);for(const v of [...p.cuffs,...p.hands])fc.drawImage(at(v),0,0);
+   if(token!==epoch)return {cancelled:true};ctx.putImageData(fc.getImageData(0,0,W,H),0,0);return {status:'ready',selection:structuredClone(s),source_assembly:p.reconstructed?(d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH5')?'BATCH5_SOURCE_RECONSTRUCTION_CANDIDATE':d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH4')?'BATCH4_SOURCE_RECONSTRUCTION_CANDIDATE':d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH3')?'BATCH3_SOURCE_RECONSTRUCTION_CANDIDATE':d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH2')?'BATCH2_PDF_RECONSTRUCTION_CANDIDATE':'BATCH1_PDF_RECONSTRUCTION_CANDIDATE'):p.ds023Edges?'V1163_DS023_EDGE_MATTES':p.ds023Cleanup?'V1162_DS023_ALPHA_COMPOSITE':'V116_BATCH16_SOURCE_REGISTRATION',source_registration:d.shirts[s.shirtId].source_sha256,derivative_not_original:true};
   }finally{frame.width=frame.height=shirt.width=shirt.height=1;}
  }
  return Object.freeze({plan,render,cancel(){epoch++;inherited.cancel();},stats:()=>({...inherited.stats(),batch10Cache:cache.size,maxBatch10Images:16})});

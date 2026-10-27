@@ -1,0 +1,603 @@
+{
+  "schema": "hewrs.shoe-reference-review.v1",
+  "revision": "shoe-reference-batch1-20261014-review",
+  "source_input_sha256": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "status": "local_visual_review_not_deployed",
+  "entries": [
+    {
+      "id": "shoe-1",
+      "source_key": "A3-04",
+      "source": {
+        "key": "A3-04",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "6E95F08C-1651-4E4A-86AE-E51DAE152F09.PNG",
+        "sha256": "27c7f3a6c1a9fd83bfb6b0ba1dd79f5669a4fdbce4497db0ccfc7764792bcee5",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch1/sources/6E95F08C-1651-4E4A-86AE-E51DAE152F09.PNG"
+      },
+      "baseline_layer": "8618ba2177c408da5c18f2cfdbd7e4babf5f734e15ed7de61f0bebb2dae7fd95",
+      "catalogue_name": "Christian Louboutin Dress Shoes \u2014 Black Single Monk",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/4966805a42326334a4d5384c8d19235667dc2c88d54ecfacd0f07c818c0fcce8.png",
+        "sha256": "4966805a42326334a4d5384c8d19235667dc2c88d54ecfacd0f07c818c0fcce8",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/b0acc768664ca525b30c9a677e0616c9180562b0a4f6667b9f278e2f4b4c207f.png",
+        "sha256": "b0acc768664ca525b30c9a677e0616c9180562b0a4f6667b9f278e2f4b4c207f",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-1",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "27c7f3a6c1a9fd83bfb6b0ba1dd79f5669a4fdbce4497db0ccfc7764792bcee5",
+        "crop": [
+          182,
+          60,
+          1246,
+          998
+        ]
+      },
+      "registration": {
+        "method": "Source pixel cutout with source-specific mask; each real supplied left/right shoe uniformly resized independently under native trouser foreground; no mirrored second shoe, no old silhouette, no recolor",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              198,
+              80,
+              686,
+              978
+            ],
+            "target_bbox": [
+              320,
+              2423,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.3483606557377049
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              738,
+              76,
+              1230,
+              982
+            ],
+            "target_bbox": [
+              506,
+              2423,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.34552845528455284
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "own_mask_sha256": "c300acaf879cf92e1a35e00416d9d79515a76bca64b60afe4aea9b96c5a4f3f6"
+      }
+    },
+    {
+      "id": "shoe-2",
+      "source_key": "A3-09",
+      "source": {
+        "key": "A3-09",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "3B3AFE6A-BEDA-48D9-A44D-0077D0A50FC6.PNG",
+        "sha256": "d93c27585dfbdc56287e28137c5564711b5dbf41fe8e1871f16cd5e5f6b38a59",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch1/sources/3B3AFE6A-BEDA-48D9-A44D-0077D0A50FC6.PNG"
+      },
+      "baseline_layer": "995f48e4f65148fa40793807a3c3e9bf56250e5b78e53fe7b374bddc8f9104b5",
+      "catalogue_name": "Berluti Dress Shoes \u2014 Black Double Monk",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/bed20f651ff63ccf1f7e97fb73feff915638a7827e4a1d257f9520765101f55b.png",
+        "sha256": "bed20f651ff63ccf1f7e97fb73feff915638a7827e4a1d257f9520765101f55b",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/428472ef47c281e7c760e43cf34baef63e4dd7c37addfe07bef2122a26ff6f2c.png",
+        "sha256": "428472ef47c281e7c760e43cf34baef63e4dd7c37addfe07bef2122a26ff6f2c",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-2",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "d93c27585dfbdc56287e28137c5564711b5dbf41fe8e1871f16cd5e5f6b38a59",
+        "crop": [
+          204,
+          50,
+          1242,
+          1026
+        ]
+      },
+      "registration": {
+        "method": "Source pixel cutout with source-specific mask; each real supplied left/right shoe uniformly resized independently under native trouser foreground; no mirrored second shoe, no old silhouette, no recolor",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              220,
+              68,
+              708,
+              1010
+            ],
+            "target_bbox": [
+              320,
+              2408,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.3483606557377049
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              740,
+              66,
+              1226,
+              1010
+            ],
+            "target_bbox": [
+              506,
+              2406,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.3497942386831276
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "own_mask_sha256": "9ebeac15c5bd529f9d372e1fc9fca4f5598a01fe4de5f38e4a8cefc76e46bbc8"
+      }
+    },
+    {
+      "id": "shoe-9",
+      "source_key": "A3-06",
+      "source": {
+        "key": "A3-06",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "7BDB8CB5-8AA3-4EF0-896B-F30D2AAA01FD.PNG",
+        "sha256": "11b4637dd18f0447cf58c6f769e152f24c55de6ad166071f8ea3be38adb4c613",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch1/sources/7BDB8CB5-8AA3-4EF0-896B-F30D2AAA01FD.PNG"
+      },
+      "baseline_layer": "80f0417ec1ecbc37e03563c4cfa9ba6c569994d043df9a09882682f5cdfe18f2",
+      "catalogue_name": "Gucci Loafers \u2014 Cognac Horsebit",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/e68f957e27ee955221565ab4a72e1adeebc6f2b096905cce5845b28a0415cf87.png",
+        "sha256": "e68f957e27ee955221565ab4a72e1adeebc6f2b096905cce5845b28a0415cf87",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/adf6eb59574c194f028ecc354e5baa645082caac6eb4b13ac34d28df8fd1589e.png",
+        "sha256": "adf6eb59574c194f028ecc354e5baa645082caac6eb4b13ac34d28df8fd1589e",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-9",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "11b4637dd18f0447cf58c6f769e152f24c55de6ad166071f8ea3be38adb4c613",
+        "crop": [
+          164,
+          30,
+          1284,
+          1030
+        ]
+      },
+      "registration": {
+        "method": "Source pixel cutout with source-specific mask; each real supplied left/right shoe uniformly resized independently under native trouser foreground; no mirrored second shoe, no old silhouette, no recolor",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              180,
+              46,
+              706,
+              1014
+            ],
+            "target_bbox": [
+              320,
+              2423,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.3231939163498099
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              740,
+              46,
+              1268,
+              1012
+            ],
+            "target_bbox": [
+              506,
+              2425,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.32196969696969696
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "own_mask_sha256": "14ccc564a3a28f57745629fee200d1151cbc3648416c1df275ca026b757d65e8"
+      }
+    },
+    {
+      "id": "shoe-10",
+      "source_key": "A3-02",
+      "source": {
+        "key": "A3-02",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "19A02E19-57F8-472E-8E96-E4315B894237.PNG",
+        "sha256": "ae230b9ca3b57cf452e33ce2a4b31c1254940be8a334c0f9ce6ea926392ac760",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch1/sources/19A02E19-57F8-472E-8E96-E4315B894237.PNG"
+      },
+      "baseline_layer": "7418272ff3624bfbcc8c56dd753858c45609e2c00cb2c50bc4767efea48c0eed",
+      "catalogue_name": "Gucci Loafers \u2014 Cognac & Dark Espresso Brown Two-Tone GG Embossed Horsebit",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/d00de6a9e1f7c2b7a43551bb383e59ce405d4614a332f751932b19656726d57b.png",
+        "sha256": "d00de6a9e1f7c2b7a43551bb383e59ce405d4614a332f751932b19656726d57b",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/85e211427342cee824fc9cfbbc853768c9226b61002d950d82231351ff3f5b74.png",
+        "sha256": "85e211427342cee824fc9cfbbc853768c9226b61002d950d82231351ff3f5b74",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-10",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "ae230b9ca3b57cf452e33ce2a4b31c1254940be8a334c0f9ce6ea926392ac760",
+        "crop": [
+          162,
+          38,
+          1284,
+          1016
+        ]
+      },
+      "registration": {
+        "method": "Source pixel cutout with source-specific mask; each real supplied left/right shoe uniformly resized independently under native trouser foreground; no mirrored second shoe, no old silhouette, no recolor",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              178,
+              56,
+              704,
+              1000
+            ],
+            "target_bbox": [
+              320,
+              2431,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.3231939163498099
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              736,
+              54,
+              1268,
+              1000
+            ],
+            "target_bbox": [
+              506,
+              2434,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.31954887218045114
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "own_mask_sha256": "3d941b002c0d7db97953c5532d91c432b657687028c6c01dca5470555a9ce94b"
+      }
+    },
+    {
+      "id": "shoe-12",
+      "source_key": "A3-15",
+      "source": {
+        "key": "A3-15",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "D397D39B-73FA-4A88-A38D-29C091FFDEE2.PNG",
+        "sha256": "fd5a9ba817ed4a5ac4b027784d7cbe411dce5ac2711da2e5a7cde231b8c8bf95",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch1/sources/D397D39B-73FA-4A88-A38D-29C091FFDEE2.PNG"
+      },
+      "baseline_layer": "b8a306682211e32d81c028aff51aeb7e164213c6a1e0068741b7d7908656b96c",
+      "catalogue_name": "Gucci Loafers \u2014 Navy Suede Horsebit Loafer",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/529ffb76ddf7d4ae31e2fe0bd5cfa48d5e30e04116dba0ab6bd959a1b10ac014.png",
+        "sha256": "529ffb76ddf7d4ae31e2fe0bd5cfa48d5e30e04116dba0ab6bd959a1b10ac014",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/a4ae4638b3c74d8ad540249bd3c834fefa5070167b29e253757b0f74070fca4c.png",
+        "sha256": "a4ae4638b3c74d8ad540249bd3c834fefa5070167b29e253757b0f74070fca4c",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-12",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "fd5a9ba817ed4a5ac4b027784d7cbe411dce5ac2711da2e5a7cde231b8c8bf95",
+        "crop": [
+          154,
+          68,
+          1294,
+          1034
+        ]
+      },
+      "registration": {
+        "method": "Source pixel cutout with source-specific mask; each real supplied left/right shoe uniformly resized independently under native trouser foreground; no mirrored second shoe, no old silhouette, no recolor",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              170,
+              86,
+              706,
+              1018
+            ],
+            "target_bbox": [
+              320,
+              2440,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.31716417910447764
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              740,
+              84,
+              1278,
+              1018
+            ],
+            "target_bbox": [
+              506,
+              2441,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.3159851301115242
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "own_mask_sha256": "78022ccf10ecad4435d8366a4921afa904d85b9f8e8ea2587a7b5f872873e8c5"
+      }
+    },
+    {
+      "id": "shoe-20",
+      "source_key": "A3-07",
+      "source": {
+        "key": "A3-07",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "DEE43DDE-4399-4023-BFF4-53458B807F13.PNG",
+        "sha256": "8f282a023bc72a1876247c71a3d853900e8f9b067f931aae61a46cb3c1ac86c8",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch1/sources/DEE43DDE-4399-4023-BFF4-53458B807F13.PNG"
+      },
+      "baseline_layer": "826fa866e25ffbeca87e24cfa6ce33d80e6dbf3e095918a287a8146c4904dfb2",
+      "catalogue_name": "Dior Drivers \u2014 Black CD",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/4412b4a5b463ca0532108b9aaae372768fae319b1553bded3cc20e5ed6103ee1.png",
+        "sha256": "4412b4a5b463ca0532108b9aaae372768fae319b1553bded3cc20e5ed6103ee1",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/f398fed991ee77cd150dc65e22f7d1d1ef1ec50c5d5028223eec859abd6e4149.png",
+        "sha256": "f398fed991ee77cd150dc65e22f7d1d1ef1ec50c5d5028223eec859abd6e4149",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-20",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "8f282a023bc72a1876247c71a3d853900e8f9b067f931aae61a46cb3c1ac86c8",
+        "crop": [
+          208,
+          24,
+          1238,
+          1042
+        ]
+      },
+      "registration": {
+        "method": "Source pixel cutout with source-specific mask; each real supplied left/right shoe uniformly resized independently under native trouser foreground; no mirrored second shoe, no old silhouette, no recolor",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              224,
+              40,
+              702,
+              1026
+            ],
+            "target_bbox": [
+              320,
+              2385,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.35564853556485354
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              746,
+              40,
+              1222,
+              1026
+            ],
+            "target_bbox": [
+              506,
+              2384,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.35714285714285715
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "own_mask_sha256": "504762bbef561e40e3683ca03f19a900a613c8a7e63b8902c35f2fe7b2d5fd9c"
+      }
+    },
+    {
+      "id": "shoe-25",
+      "source_key": "A3-08",
+      "source": {
+        "key": "A3-08",
+        "archive": "Oct 14, Archive 1(1).zip",
+        "file": "36383629-15A6-4775-ACA8-9EBEEF5CD72F.PNG",
+        "sha256": "488a113e0142ad378e90b1d4d7b13f5ea125ae08b02e0a8a22491e1484f19e6a",
+        "size": [
+          1448,
+          1086
+        ],
+        "mode": "RGB",
+        "format": null,
+        "path": "provenance/shoe_reference_batch1/sources/36383629-15A6-4775-ACA8-9EBEEF5CD72F.PNG"
+      },
+      "baseline_layer": "11511eea3c3fdee7a2a6b0264c652e77121b6e2ad0dae80b6652f0fef0fd879a",
+      "catalogue_name": "Louis Vuitton Drivers \u2014 Grey Graphite Damier",
+      "mapping_status": "visual_match_candidate_not_owner_confirmed",
+      "layer": {
+        "url": "assets/fcdf3930551dba1dcaa756895a54cb505c88e4aa57fb9949d00d6527311a3ecd.png",
+        "sha256": "fcdf3930551dba1dcaa756895a54cb505c88e4aa57fb9949d00d6527311a3ecd",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "selected_registered_shoe_pair"
+      },
+      "thumbnail": {
+        "src": "ui/option-cards/3076c58e07d6bae3ab8fe3160ca08ea97c8ea89f1aeff57416cbf2c9d30b286f.png",
+        "sha256": "3076c58e07d6bae3ab8fe3160ca08ea97c8ea89f1aeff57416cbf2c9d30b286f",
+        "width": 384,
+        "height": 448,
+        "source_key": "shoe-25",
+        "source_kind": "owner_supplied_pair_reference",
+        "source_sha256": "488a113e0142ad378e90b1d4d7b13f5ea125ae08b02e0a8a22491e1484f19e6a",
+        "crop": [
+          208,
+          24,
+          1236,
+          1046
+        ]
+      },
+      "registration": {
+        "method": "Source pixel cutout with source-specific mask; each real supplied left/right shoe uniformly resized independently under native trouser foreground; no mirrored second shoe, no old silhouette, no recolor",
+        "maps": [
+          {
+            "side": 0,
+            "source_bbox": [
+              224,
+              40,
+              700,
+              1026
+            ],
+            "target_bbox": [
+              320,
+              2384,
+              490,
+              2736
+            ],
+            "uniform_scale": 0.35714285714285715
+          },
+          {
+            "side": 1,
+            "source_bbox": [
+              744,
+              44,
+              1220,
+              1030
+            ],
+            "target_bbox": [
+              506,
+              2384,
+              676,
+              2736
+            ],
+            "uniform_scale": 0.35714285714285715
+          }
+        ],
+        "upper_footwear_visibility_start": 2500,
+        "own_mask_sha256": "9c66d04172d8ea0909d9a0188398bffbf57c3099ee25d8f240f8c99efe16b753"
+      }
+    }
+  ]
+}

@@ -16,8 +16,8 @@ function create(inputs) {
   const base = prior.create(inputs), working = clone(root.HEWRS_NON_SUIT_SOURCES);
   for(const id of base.batch10.ids){
     const r=working.shirts[id];need(r,'Missing exact batch source ID');
-    r.registration=clone(base.batch10.shirts[id]);
-    for(const mode of ['blazer','shirt-only'])r.modes[mode]={...r.modes[mode],visual_available:true,status:'CONNECTED_SOURCE_DERIVED_REGISTRATION',missing_components:[]};
+    r.registration=clone(base.batch10.shirts[id]);r.reconstruction_candidate=root.HEWRSReconstructedShirts?.ids.includes(id)||false;
+    for(const mode of ['blazer','shirt-only'])r.modes[mode]={...r.modes[mode],visual_available:true,status:r.reconstruction_candidate?'RECONSTRUCTION_CANDIDATE':'CONNECTED_SOURCE_DERIVED_REGISTRATION',missing_components:[]};
   }
   working.counts={...working.counts,existing_full_shirt_ids:2+base.batch10.ids.length,source_component_only_ids:50-2-base.batch10.ids.length,newly_connected_visual_ids:base.batch10.ids.length};
   const registry = freeze(working);
@@ -48,7 +48,7 @@ function create(inputs) {
       need(base.blazerConnection.data.available_shirts.includes(id)&&base.shirtOnlyConnection.ids.includes(id),'Incomplete batch route');
       need(r.registration.id===id&&r.registration.history_id===base.records[id].history_id,'Changed batch identity');
       for(const [mode,parts]of Object.entries(r.registration.modes))for(const role of ['left','right'])
-        need(parts[role].sha256===base.manifest.shirts[id].states[mode][role].sha256,'Replaced current collar');
+        need(parts[role].sha256===base.manifest.shirts[id].states[mode][role].sha256||root.HEWRSReconstructedShirts?.isComponentOverride(id,mode,role,parts[role].sha256),'Replaced current collar');
     } else if (linked) {
       need(['DS001','DS014'].includes(id), 'A new full-shirt route requires an implemented renderer, not an allowlist edit');
       need(base.blazerConnection.data.available_shirts.includes(id) && base.shirtOnlyConnection.ids.includes(id), 'Missing V1.13 full-shirt route');

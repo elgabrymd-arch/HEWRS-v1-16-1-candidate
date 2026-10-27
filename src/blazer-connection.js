@@ -27,7 +27,7 @@ function create(inputs){
  const isBlazer=s=>s&&Object.hasOwn(s,'blazerId');
  function knownBlazer(id){const b=d.blazers[id];need(b,'Unknown exact blazer ID');return b;}
  function knownPant(id){const p=d.pants[id];need(p,'No approved active trouser color binding for this exact physical ID');return p;}
- function requireAssembly(s){const b=knownBlazer(s.blazerId);need(b.availability==='CONNECTED',b.id+': '+b.availability+'; no older garment or reference photograph is substituted.');need(d.available_shirts.includes(s.shirtId),'No connected full-length source for this exact blazer/shirt selection');need(s.state==='NO_TIE'||Object.hasOwn(d.assembly.ties,s.state),'Unknown connected tie/no-tie presentation');return b;}
+ function requireAssembly(s){const b=knownBlazer(s.blazerId);need(b.availability==='CONNECTED',b.id+': '+b.availability+'; no older garment or reference photograph is substituted.');need(d.available_shirts.includes(s.shirtId),'No connected full-length source for this exact blazer/shirt selection');need(s.state==='NO_TIE'||Object.hasOwn(d.assembly.ties,s.state),'Unknown connected tie/no-tie presentation');need(!batch.shirts[s.shirtId]||batch.shirts[s.shirtId].states.includes(s.state),'Unsupported state for this exact shirt');return b;}
  function validateSelection(s){
   need(s&&typeof s==='object'&&!Array.isArray(s),'Selection must be an object');
   const fields=isBlazer(s)?blazerFields:suitFields;

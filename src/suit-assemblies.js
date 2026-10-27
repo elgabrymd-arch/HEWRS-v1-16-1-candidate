@@ -44,7 +44,9 @@ function create(sources,manifest,shoeLayers,input=root.HEWRS_SUIT_ASSEMBLY_DATA)
    m.static.trousers=clone(pair.trousers);
   }
   if(pair.template==='S11'&&shirtId==='DS035'){m.ds035_s11_coverage={...clone(coverage),selected_suit_id:suitId};m.ds035_s11_edge={...clone(edge),selected_suit_id:suitId};}
-  if(shoeId!=='shoe-8')m.static.shoe=clone(shoeLayers[shoeId]);
+  // Always use the exact selected registration, including the legacy default shoe-8.
+  // A source replacement must not leave the suit on a stale built-in shoe.
+  m.static.shoe=clone(shoeLayers[shoeId]);
   return m;
  }
  function registeredView(suitId){

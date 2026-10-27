@@ -4,7 +4,7 @@
 (function(root){'use strict';
 const $=id=>document.getElementById(id),copy=x=>structuredClone(x),el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const need=(v,m)=>{if(!v)throw Error(m);};
-const APP_VERSION='HEWRS_CONNECTED_APP_V1_24_4_ANCHOR_AUDIT';
+const APP_VERSION='HEWRS_COMBINED_V1_25_0_R1';
 const connection=root.HEWRSCleanConnection.create(root.HEWRS_INPUTS);
 let backend;try{backend=root.localStorage;}catch{backend=null;}
 const visualStylist=root.HEWRSVisualStylistClient.create();connection.hybrid.setService(visualStylist);

@@ -1,0 +1,1242 @@
+{
+  "schema": "hewrs.shirt-reconstruction-batch2.v1",
+  "revision": "batch2-2026-10-13-review1",
+  "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "ids": [
+    "DS037",
+    "DS038",
+    "DS032",
+    "DS033",
+    "DS046"
+  ],
+  "assetPaths": {
+    "f27784b71f0676a4a4a01bae02096d20e36e9e8d9664cf2b7e7987d61160ba50": "assets/f27784b71f0676a4a4a01bae02096d20e36e9e8d9664cf2b7e7987d61160ba50.png",
+    "d550b423013dcc2c97f0b519f2c9d93c77132050c5860cf4329e0bbcec81a090": "assets/d550b423013dcc2c97f0b519f2c9d93c77132050c5860cf4329e0bbcec81a090.png",
+    "7be14a9d3d3a5d2dd786d43ca3db4975a8499b549594b2e97f630f9e7ca850b7": "assets/7be14a9d3d3a5d2dd786d43ca3db4975a8499b549594b2e97f630f9e7ca850b7.png",
+    "c374d5ebb417f7a1806cc685890f03c982f45eae244c9a217d96d49826e0f28a": "assets/c374d5ebb417f7a1806cc685890f03c982f45eae244c9a217d96d49826e0f28a.png",
+    "9e7313867a09cff168ce72c6fa6dfb12df0edbf8c5b05ceac8737e8b038ad024": "assets/9e7313867a09cff168ce72c6fa6dfb12df0edbf8c5b05ceac8737e8b038ad024.png",
+    "ccf31ec93ac091500a90b02f436d9a965e14d7592c5c2518969bff99fea1ccc0": "assets/ccf31ec93ac091500a90b02f436d9a965e14d7592c5c2518969bff99fea1ccc0.png",
+    "92ba4e4820f42b534cf70faf003a9536ba0fcd54cb5fe2f2acadaa47661ccd0a": "assets/92ba4e4820f42b534cf70faf003a9536ba0fcd54cb5fe2f2acadaa47661ccd0a.png",
+    "263596762dbce8861cc769ea3dc6b81c416dc9cd0cbef0515813e8cc11e16f53": "assets/263596762dbce8861cc769ea3dc6b81c416dc9cd0cbef0515813e8cc11e16f53.png",
+    "0abf3ccc825b43e01b79f9b33dbb995e8635b31acb093c9cbf5be64b59ed50b2": "assets/0abf3ccc825b43e01b79f9b33dbb995e8635b31acb093c9cbf5be64b59ed50b2.png",
+    "64ec2bbe1fe2cbec9a94840931d127ea19f8ce6be49d10848905f4084edcd73d": "assets/64ec2bbe1fe2cbec9a94840931d127ea19f8ce6be49d10848905f4084edcd73d.png",
+    "c7168bc7b2385cf82f046ffc9741c3339365f15261df43aa7162cc53b80ff283": "assets/c7168bc7b2385cf82f046ffc9741c3339365f15261df43aa7162cc53b80ff283.png",
+    "6767598e7696d0a6a1709f7fbbcbe003a57c7d447e49394d19e769c50ffb4f89": "assets/6767598e7696d0a6a1709f7fbbcbe003a57c7d447e49394d19e769c50ffb4f89.png",
+    "aa8d97ef44dcf854e69ebe8b262df2b1c5c426e8caed67651e0935a03582a488": "assets/aa8d97ef44dcf854e69ebe8b262df2b1c5c426e8caed67651e0935a03582a488.png",
+    "aae526f072612ce73a1d2d5092e4f6c77ed14c964427cbe01ed246aa12885f25": "assets/aae526f072612ce73a1d2d5092e4f6c77ed14c964427cbe01ed246aa12885f25.png",
+    "c358d42896af718f346fcf0c950641e8ec82c9a5b45266b3ae14a56155c176d0": "assets/c358d42896af718f346fcf0c950641e8ec82c9a5b45266b3ae14a56155c176d0.png",
+    "a19203916d32e721d757aa0ea78e122337ca1ca2844521aa3b5d7716df80a354": "assets/a19203916d32e721d757aa0ea78e122337ca1ca2844521aa3b5d7716df80a354.png",
+    "0412a322c71d500aaba2c745478cb6257e3d7dc9c1a1c58f0d201e2cc4cbf265": "assets/0412a322c71d500aaba2c745478cb6257e3d7dc9c1a1c58f0d201e2cc4cbf265.png",
+    "10661fbffba2c36dfadf715609ee6d8e6d2b33af48867fd1b32ac4736fb48e8c": "assets/10661fbffba2c36dfadf715609ee6d8e6d2b33af48867fd1b32ac4736fb48e8c.png",
+    "d732624d0681d7963bcf5a7efb6fb5a3c1ebb101fcbe109073b5b1f719c11eed": "assets/d732624d0681d7963bcf5a7efb6fb5a3c1ebb101fcbe109073b5b1f719c11eed.png",
+    "e3549a7b2c51524916b351753a8655eb71ad47e6fb66f25161acedc9fdec0fd1": "assets/e3549a7b2c51524916b351753a8655eb71ad47e6fb66f25161acedc9fdec0fd1.png",
+    "420b881d7743d955037900f09d4c7511706ea87d4bb1ef7d484fd6bad017a500": "assets/420b881d7743d955037900f09d4c7511706ea87d4bb1ef7d484fd6bad017a500.png",
+    "f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7": "assets/f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7.png",
+    "1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad": "assets/1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad.png",
+    "91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5": "assets/91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5.png",
+    "0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006": "assets/0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006.png",
+    "99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38": "assets/99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38.png",
+    "a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7": "assets/a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7.png",
+    "5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3": "assets/5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3.png",
+    "f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45": "assets/f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45.png",
+    "a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f": "assets/a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f.png",
+    "155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111": "assets/155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111.png"
+  },
+  "registrations": {
+    "DS037": {
+      "id": "DS037",
+      "history_id": "shirt-DS037",
+      "states": [
+        "NO_TIE",
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T037",
+        "T038",
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "status": "RECONSTRUCTED_PDF_REFERENCE_CANDIDATE",
+      "source_sha256": "dd24e7d8f39a88d50233102c6622883c62d95e27bbed2496e71f2d3615d08052",
+      "source_dimensions": [
+        453,
+        633
+      ],
+      "source_file": "DS037_PDF_SOURCE.jpeg",
+      "shirt_only_trouser_ownership": "EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST",
+      "modes": {
+        "no_tie": {
+          "base": {
+            "sha256": "f27784b71f0676a4a4a01bae02096d20e36e9e8d9664cf2b7e7987d61160ba50",
+            "url": "assets/f27784b71f0676a4a4a01bae02096d20e36e9e8d9664cf2b7e7987d61160ba50.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_no_tie_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "d550b423013dcc2c97f0b519f2c9d93c77132050c5860cf4329e0bbcec81a090",
+            "url": "assets/d550b423013dcc2c97f0b519f2c9d93c77132050c5860cf4329e0bbcec81a090.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_no_tie_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "7be14a9d3d3a5d2dd786d43ca3db4975a8499b549594b2e97f630f9e7ca850b7",
+            "url": "assets/7be14a9d3d3a5d2dd786d43ca3db4975a8499b549594b2e97f630f9e7ca850b7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_no_tie_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "c374d5ebb417f7a1806cc685890f03c982f45eae244c9a217d96d49826e0f28a",
+            "url": "assets/c374d5ebb417f7a1806cc685890f03c982f45eae244c9a217d96d49826e0f28a.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_no_tie_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "9e7313867a09cff168ce72c6fa6dfb12df0edbf8c5b05ceac8737e8b038ad024",
+            "url": "assets/9e7313867a09cff168ce72c6fa6dfb12df0edbf8c5b05ceac8737e8b038ad024.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_no_tie_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "ccf31ec93ac091500a90b02f436d9a965e14d7592c5c2518969bff99fea1ccc0",
+            "url": "assets/ccf31ec93ac091500a90b02f436d9a965e14d7592c5c2518969bff99fea1ccc0.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_no_tie_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        },
+        "tied": {
+          "base": {
+            "sha256": "92ba4e4820f42b534cf70faf003a9536ba0fcd54cb5fe2f2acadaa47661ccd0a",
+            "url": "assets/92ba4e4820f42b534cf70faf003a9536ba0fcd54cb5fe2f2acadaa47661ccd0a.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_tied_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "d550b423013dcc2c97f0b519f2c9d93c77132050c5860cf4329e0bbcec81a090",
+            "url": "assets/d550b423013dcc2c97f0b519f2c9d93c77132050c5860cf4329e0bbcec81a090.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_tied_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "263596762dbce8861cc769ea3dc6b81c416dc9cd0cbef0515813e8cc11e16f53",
+            "url": "assets/263596762dbce8861cc769ea3dc6b81c416dc9cd0cbef0515813e8cc11e16f53.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_tied_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "0abf3ccc825b43e01b79f9b33dbb995e8635b31acb093c9cbf5be64b59ed50b2",
+            "url": "assets/0abf3ccc825b43e01b79f9b33dbb995e8635b31acb093c9cbf5be64b59ed50b2.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_tied_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "9e7313867a09cff168ce72c6fa6dfb12df0edbf8c5b05ceac8737e8b038ad024",
+            "url": "assets/9e7313867a09cff168ce72c6fa6dfb12df0edbf8c5b05ceac8737e8b038ad024.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_tied_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "ccf31ec93ac091500a90b02f436d9a965e14d7592c5c2518969bff99fea1ccc0",
+            "url": "assets/ccf31ec93ac091500a90b02f436d9a965e14d7592c5c2518969bff99fea1ccc0.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_tied_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        }
+      }
+    },
+    "DS038": {
+      "id": "DS038",
+      "history_id": "shirt-DS038",
+      "states": [
+        "NO_TIE",
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T037",
+        "T038",
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "status": "RECONSTRUCTED_PDF_REFERENCE_CANDIDATE",
+      "source_sha256": "2cb1a66bbfcded462d7f861e79148d9d455504f92fe4adfdbd4a1445c37d1e20",
+      "source_dimensions": [
+        1022,
+        1536
+      ],
+      "source_file": "DS038_PDF_SOURCE.jpeg",
+      "shirt_only_trouser_ownership": "EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST",
+      "modes": {
+        "no_tie": {
+          "base": {
+            "sha256": "64ec2bbe1fe2cbec9a94840931d127ea19f8ce6be49d10848905f4084edcd73d",
+            "url": "assets/64ec2bbe1fe2cbec9a94840931d127ea19f8ce6be49d10848905f4084edcd73d.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_no_tie_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "c7168bc7b2385cf82f046ffc9741c3339365f15261df43aa7162cc53b80ff283",
+            "url": "assets/c7168bc7b2385cf82f046ffc9741c3339365f15261df43aa7162cc53b80ff283.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_no_tie_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "6767598e7696d0a6a1709f7fbbcbe003a57c7d447e49394d19e769c50ffb4f89",
+            "url": "assets/6767598e7696d0a6a1709f7fbbcbe003a57c7d447e49394d19e769c50ffb4f89.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_no_tie_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "aa8d97ef44dcf854e69ebe8b262df2b1c5c426e8caed67651e0935a03582a488",
+            "url": "assets/aa8d97ef44dcf854e69ebe8b262df2b1c5c426e8caed67651e0935a03582a488.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_no_tie_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "aae526f072612ce73a1d2d5092e4f6c77ed14c964427cbe01ed246aa12885f25",
+            "url": "assets/aae526f072612ce73a1d2d5092e4f6c77ed14c964427cbe01ed246aa12885f25.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_no_tie_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "c358d42896af718f346fcf0c950641e8ec82c9a5b45266b3ae14a56155c176d0",
+            "url": "assets/c358d42896af718f346fcf0c950641e8ec82c9a5b45266b3ae14a56155c176d0.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_no_tie_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        },
+        "tied": {
+          "base": {
+            "sha256": "a19203916d32e721d757aa0ea78e122337ca1ca2844521aa3b5d7716df80a354",
+            "url": "assets/a19203916d32e721d757aa0ea78e122337ca1ca2844521aa3b5d7716df80a354.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_tied_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "0412a322c71d500aaba2c745478cb6257e3d7dc9c1a1c58f0d201e2cc4cbf265",
+            "url": "assets/0412a322c71d500aaba2c745478cb6257e3d7dc9c1a1c58f0d201e2cc4cbf265.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_tied_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "10661fbffba2c36dfadf715609ee6d8e6d2b33af48867fd1b32ac4736fb48e8c",
+            "url": "assets/10661fbffba2c36dfadf715609ee6d8e6d2b33af48867fd1b32ac4736fb48e8c.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_tied_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "d732624d0681d7963bcf5a7efb6fb5a3c1ebb101fcbe109073b5b1f719c11eed",
+            "url": "assets/d732624d0681d7963bcf5a7efb6fb5a3c1ebb101fcbe109073b5b1f719c11eed.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_tied_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "e3549a7b2c51524916b351753a8655eb71ad47e6fb66f25161acedc9fdec0fd1",
+            "url": "assets/e3549a7b2c51524916b351753a8655eb71ad47e6fb66f25161acedc9fdec0fd1.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_tied_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "420b881d7743d955037900f09d4c7511706ea87d4bb1ef7d484fd6bad017a500",
+            "url": "assets/420b881d7743d955037900f09d4c7511706ea87d4bb1ef7d484fd6bad017a500.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS038_tied_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        }
+      }
+    },
+    "DS032": {
+      "id": "DS032",
+      "history_id": "shirt-DS032",
+      "states": [
+        "NO_TIE",
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T037",
+        "T038",
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "status": "RECONSTRUCTED_PDF_REFERENCE_CANDIDATE",
+      "source_sha256": "d02af0ab98e1a050c9feac64e9f05d80e6d688e273e373c1a6b5b3c538fd73f3",
+      "source_dimensions": [
+        453,
+        633
+      ],
+      "source_file": "DS032_PDF_SOURCE.jpeg",
+      "shirt_only_trouser_ownership": "EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST",
+      "modes": {
+        "no_tie": {
+          "base": {
+            "sha256": "f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7",
+            "url": "assets/f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_no_tie_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad",
+            "url": "assets/1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_no_tie_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5",
+            "url": "assets/91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_no_tie_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006",
+            "url": "assets/0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_no_tie_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38",
+            "url": "assets/99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_no_tie_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7",
+            "url": "assets/a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_no_tie_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        },
+        "tied": {
+          "base": {
+            "sha256": "5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3",
+            "url": "assets/5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_tied_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45",
+            "url": "assets/f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_tied_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f",
+            "url": "assets/a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_tied_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111",
+            "url": "assets/155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_tied_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38",
+            "url": "assets/99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_tied_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7",
+            "url": "assets/a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS032_tied_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        }
+      }
+    },
+    "DS033": {
+      "id": "DS033",
+      "history_id": "shirt-DS033",
+      "states": [
+        "NO_TIE",
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T037",
+        "T038",
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "status": "RECONSTRUCTED_PDF_REFERENCE_CANDIDATE",
+      "source_sha256": "d02af0ab98e1a050c9feac64e9f05d80e6d688e273e373c1a6b5b3c538fd73f3",
+      "source_dimensions": [
+        453,
+        633
+      ],
+      "source_file": "DS033_PDF_SOURCE.jpeg",
+      "shirt_only_trouser_ownership": "EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST",
+      "modes": {
+        "no_tie": {
+          "base": {
+            "sha256": "f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7",
+            "url": "assets/f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_no_tie_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad",
+            "url": "assets/1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_no_tie_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5",
+            "url": "assets/91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_no_tie_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006",
+            "url": "assets/0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_no_tie_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38",
+            "url": "assets/99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_no_tie_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7",
+            "url": "assets/a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_no_tie_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        },
+        "tied": {
+          "base": {
+            "sha256": "5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3",
+            "url": "assets/5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_tied_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45",
+            "url": "assets/f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_tied_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f",
+            "url": "assets/a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_tied_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111",
+            "url": "assets/155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_tied_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38",
+            "url": "assets/99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_tied_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7",
+            "url": "assets/a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS033_tied_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        }
+      }
+    },
+    "DS046": {
+      "id": "DS046",
+      "history_id": "shirt-DS046",
+      "states": [
+        "NO_TIE",
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T037",
+        "T038",
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "status": "RECONSTRUCTED_PDF_REFERENCE_CANDIDATE",
+      "source_sha256": "d02af0ab98e1a050c9feac64e9f05d80e6d688e273e373c1a6b5b3c538fd73f3",
+      "source_dimensions": [
+        453,
+        633
+      ],
+      "source_file": "DS046_PDF_SOURCE.jpeg",
+      "shirt_only_trouser_ownership": "EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST",
+      "modes": {
+        "no_tie": {
+          "base": {
+            "sha256": "f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7",
+            "url": "assets/f77f5ce6b2f537da6f3a838e02a3b89e06265aa2424a82ba0527af7dae9489f7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_no_tie_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad",
+            "url": "assets/1dd1ef13d165f9b0331748a1c3221ccd76328775c71a1d5563b2cf06a38473ad.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_no_tie_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5",
+            "url": "assets/91acc10ede4074bdbf8aac649dc328dd258f33033e541af59d19ed978fd4eeb5.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_no_tie_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006",
+            "url": "assets/0e5458dc6ea60b87048a65732d44c26bd9e3d564ba0a9b001f924ea074799006.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_no_tie_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38",
+            "url": "assets/99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_no_tie_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7",
+            "url": "assets/a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_no_tie_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        },
+        "tied": {
+          "base": {
+            "sha256": "5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3",
+            "url": "assets/5e07be236b15412357685164e4a88d3ff226baa6002a7d19f97ebed0b6c5a3d3.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_tied_base_BATCH2_RECONSTRUCTION"
+          },
+          "rear": {
+            "sha256": "f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45",
+            "url": "assets/f867e472a3b9a123afbb676a837f64d88c0a048fc987ab66d37d77994fcf8b45.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_tied_rear_BATCH2_RECONSTRUCTION"
+          },
+          "left": {
+            "sha256": "a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f",
+            "url": "assets/a18e9149d1cef9084a9ea6b41c2f1744e08ce9caa7f51ccc6c9912231a67000f.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_tied_left_BATCH2_RECONSTRUCTION"
+          },
+          "right": {
+            "sha256": "155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111",
+            "url": "assets/155e8a5bb12a62c1573f4789462eecae5c490f1082ed3e56223b5ae7680bc111.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_tied_right_BATCH2_RECONSTRUCTION"
+          },
+          "left_cuff": {
+            "sha256": "99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38",
+            "url": "assets/99ec7291f878e6e78f440302946c0e4fafa429ef47a17411b006b400fda90c38.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_tied_left_cuff_BATCH2_RECONSTRUCTION"
+          },
+          "right_cuff": {
+            "sha256": "a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7",
+            "url": "assets/a8a6bf7bdd0738c8a717c00948ee84db58bb8ba2b1b9b1ae76a1c36287bfe4a7.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS046_tied_right_cuff_BATCH2_RECONSTRUCTION"
+          }
+        }
+      }
+    }
+  },
+  "approval": "RECONSTRUCTION_CANDIDATE_NOT_YET_OWNER_APPROVED",
+  "source_basis": "Own embedded photos from owner-uploaded Active50 V4 PDF, plus exact same-ID collar/body references. DS037 is a partial fabric photograph; reconstructed fit is inferred. No stock/generated catalog board is used.",
+  "mapping": {
+    "outline_reference": "3aa7745127d8ec560aafd37d5fb09c0f05ef5b742121539d5ce6b394f67bac25",
+    "outline_rgb_used": false,
+    "recipes": {
+      "DS037": {
+        "source": "partial fabric photograph plus existing same-ID shirt front",
+        "fabric_crop": [
+          35,
+          320,
+          425,
+          465
+        ],
+        "unrelated_printed_garment_excluded": true,
+        "sleeve_drape": "inferred smooth fold shading; not recovered photographic sleeve shape",
+        "existing_body_reference": "2b42f7ec73b16ebacdab2291f97a0e42c51aebb595d731708b87ef19ca6b63e3",
+        "no_tie_collar_RGB_gain": [
+          0.7973856209150327,
+          0.7479674796747967,
+          0.6666666666666666
+        ],
+        "tied_collar_RGB_gain": [
+          0.7973856209150327,
+          0.7479674796747967,
+          0.6666666666666666
+        ]
+      },
+      "DS038": {
+        "source": "own full front catalogue photo",
+        "target_y": [
+          416,
+          460,
+          535,
+          745,
+          1000,
+          1250,
+          1389
+        ],
+        "torso_source_y": [
+          386,
+          439,
+          549,
+          636,
+          756,
+          875,
+          893
+        ],
+        "sleeve_source_y": [
+          440,
+          468,
+          528,
+          665,
+          818,
+          998,
+          1090
+        ],
+        "no_tie_collar_RGB_gain": [
+          0.9885057471264368,
+          1.0,
+          1.0
+        ],
+        "tied_collar_RGB_gain": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "DS032": {
+        "source": "own full front catalogue photo",
+        "target_y": [
+          416,
+          460,
+          535,
+          745,
+          1000,
+          1250,
+          1389
+        ],
+        "torso_source_y": [
+          180,
+          205,
+          250,
+          304,
+          373,
+          432,
+          442
+        ],
+        "sleeve_source_y": [
+          207,
+          224,
+          248,
+          329,
+          420,
+          499,
+          529
+        ],
+        "no_tie_collar_RGB_gain": [
+          0.9629629629629629,
+          0.9714285714285714,
+          0.9827586206896551
+        ],
+        "tied_collar_RGB_gain": [
+          0.9629629629629629,
+          0.9714285714285714,
+          0.9827586206896551
+        ]
+      },
+      "DS033": {
+        "source": "own full front catalogue photo",
+        "target_y": [
+          416,
+          460,
+          535,
+          745,
+          1000,
+          1250,
+          1389
+        ],
+        "torso_source_y": [
+          180,
+          205,
+          250,
+          304,
+          373,
+          432,
+          442
+        ],
+        "sleeve_source_y": [
+          207,
+          224,
+          248,
+          329,
+          420,
+          499,
+          529
+        ],
+        "no_tie_collar_RGB_gain": [
+          0.9629629629629629,
+          0.9714285714285714,
+          0.9827586206896551
+        ],
+        "tied_collar_RGB_gain": [
+          0.9629629629629629,
+          0.9714285714285714,
+          0.9827586206896551
+        ]
+      },
+      "DS046": {
+        "source": "own full front catalogue photo",
+        "target_y": [
+          416,
+          460,
+          535,
+          745,
+          1000,
+          1250,
+          1389
+        ],
+        "torso_source_y": [
+          180,
+          205,
+          250,
+          304,
+          373,
+          432,
+          442
+        ],
+        "sleeve_source_y": [
+          207,
+          224,
+          248,
+          329,
+          420,
+          499,
+          529
+        ],
+        "no_tie_collar_RGB_gain": [
+          0.9629629629629629,
+          0.9714285714285714,
+          0.9827586206896551
+        ],
+        "tied_collar_RGB_gain": [
+          0.9629629629629629,
+          0.9714285714285714,
+          0.9827586206896551
+        ]
+      }
+    },
+    "original_suit_components_modified": false,
+    "navy_trio_distinct_IDs_retained": true,
+    "DS037_fit_inferred": true,
+    "rear_collar": "behind original avatar, never over front of neck",
+    "collar_geometry": "each exact original per-ID alpha retained"
+  }
+}

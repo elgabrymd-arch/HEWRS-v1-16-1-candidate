@@ -22,7 +22,7 @@ function contract(inputs){
  need(Object.keys(d.ties).length===47,'Incomplete tie registrations');
  for(let n=1;n<=47;n++){const id='T'+String(n).padStart(3,'0');need(inputs.manifest.ties[id],'Unknown tie ID');descriptor(d.ties[id]);}
  for(const [hash,path]of Object.entries(d.assetPaths))need(path==='assets/'+hash+'.png','Unexpected registration asset path');
- return freeze(d);
+ return freeze(root.HEWRSShirtSourceRecovery.extendBatch(d,inputs));
 }
 root.HEWRSBatch10=Object.freeze({contract});
 })(globalThis);

@@ -17,7 +17,7 @@ function create(inputs){
   if(!isShirtOnly(s))return base.validateSelection(s);
   need(s&&!Array.isArray(s)&&Object.keys(s).length===fields.length&&fields.every(k=>Object.hasOwn(s,k))&&s.shirtOnly===true,'Incomplete or mixed shirt-only selection');
   need(ids.includes(s.shirtId),'No complete source assembly for this exact shirt-only selection');
-  need(data.states.includes(s.state),'Unknown full-shirt tie/no-tie state');
+  need(data.states.includes(s.state),'Unknown full-shirt tie/no-tie state');need(!base.batch10.shirts[s.shirtId]||base.batch10.shirts[s.shirtId].states.includes(s.state),'Unsupported state for this exact shirt');
   base.blazerConnection.knownPant(s.pantId);
   need(Object.hasOwn(base.shoeLayers,s.shoeId)&&base.catalogue.shoes.some(x=>x.id===s.shoeId&&!x.disabled),'Unknown exact footwear');
   need(s.watchId===null||base.catalogue.watches.some(x=>x.id===s.watchId),'Unknown watch ID');return clone(s);

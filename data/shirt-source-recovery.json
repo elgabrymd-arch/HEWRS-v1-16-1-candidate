@@ -1,0 +1,508 @@
+{
+  "schema": "hewrs.shirt-source-recovery.v1_24_5",
+  "revision": "hewrs.shirt-source-recovery.2026-10-12.v1",
+  "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "connected_additions": [
+    "DS009",
+    "DS041"
+  ],
+  "registrations": {
+    "DS009": {
+      "id": "DS009",
+      "history_id": "shirt-DS009",
+      "source_file": "shirt-DS006-generated.webp",
+      "source_sha256": "efedaadb283762c9acfb66e4e874fb8a8755f8c53f422c7bd3501ddb050cafa0",
+      "source_dimensions": [
+        600,
+        277
+      ],
+      "placket_source_x": 302,
+      "derived_cuffs_for_empty_current_components": {},
+      "modes": {
+        "no_tie": {
+          "base": {
+            "sha256": "3aa7745127d8ec560aafd37d5fb09c0f05ef5b742121539d5ce6b394f67bac25",
+            "url": "assets/3aa7745127d8ec560aafd37d5fb09c0f05ef5b742121539d5ce6b394f67bac25.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS006_NO_TIE_SOURCE_REGISTERED_BASE_WITHOUT_FRONT_LEAVES"
+          },
+          "left": {
+            "url": "assets/original_ids/DS006/no_tie/DS006_LEFT.png",
+            "role": "Native DS009 left",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "e950105c64c323b5ee4f6a8677b1a7991949b4812f8748e2a693e3e6218a13d1",
+            "alpha_bounds": [
+              375,
+              387,
+              496,
+              531
+            ]
+          },
+          "right": {
+            "url": "assets/original_ids/DS006/no_tie/DS006_RIGHT.png",
+            "role": "Native DS009 right",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "7444c2e3f4952910bc9849b6f6192c1a1ad6ee771e4a83d5813a519872dd7a2d",
+            "alpha_bounds": [
+              516,
+              388,
+              616,
+              526
+            ]
+          },
+          "left_cuff": {
+            "url": "assets/original_ids/DS006/tied/DS006_LEFT_CUFF.png",
+            "role": "Native DS009 left_cuff",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "9966303049e0db66ad097cea0a93c7cb7d7e81b656bbce77dc44f5f9cf745fb4",
+            "alpha_bounds": [
+              101,
+              1344,
+              206,
+              1390
+            ]
+          },
+          "right_cuff": {
+            "url": "assets/original_ids/DS006/tied/DS006_RIGHT_CUFF.png",
+            "role": "Native DS009 right_cuff",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "aaa36073742c940b26a0a5690780610073f730165b3ed8ad9eb09c2337227c54",
+            "alpha_bounds": [
+              785,
+              1339,
+              885,
+              1389
+            ]
+          }
+        },
+        "tied": {
+          "base": {
+            "sha256": "f9fa0d59e565f7a6eda4dacad94c0773fa6037445eee24a39f93ceae6670ac9f",
+            "url": "assets/f9fa0d59e565f7a6eda4dacad94c0773fa6037445eee24a39f93ceae6670ac9f.png",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS006_TIED_SOURCE_REGISTERED_BASE_WITHOUT_FRONT_LEAVES"
+          },
+          "left": {
+            "url": "assets/original_ids/DS006/tied/DS006_LEFT.png",
+            "role": "Native DS009 left",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "0a5c2e1e5fdb77d27784a384890ada70e92a9d984c9eadfcb4a91343e8adbb63",
+            "alpha_bounds": [
+              372,
+              387,
+              508,
+              535
+            ]
+          },
+          "right": {
+            "url": "assets/original_ids/DS006/tied/DS006_RIGHT.png",
+            "role": "Native DS009 right",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "f4b3bd9ed1eb77ee9a8e8d6e9a7f666426e37906f869a9f3aa679bb8a4b369f2",
+            "alpha_bounds": [
+              501,
+              388,
+              616,
+              530
+            ]
+          },
+          "left_cuff": {
+            "url": "assets/original_ids/DS006/tied/DS006_LEFT_CUFF.png",
+            "role": "Native DS009 left_cuff",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "9966303049e0db66ad097cea0a93c7cb7d7e81b656bbce77dc44f5f9cf745fb4",
+            "alpha_bounds": [
+              101,
+              1344,
+              206,
+              1390
+            ]
+          },
+          "right_cuff": {
+            "url": "assets/original_ids/DS006/tied/DS006_RIGHT_CUFF.png",
+            "role": "Native DS009 right_cuff",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "sha256": "aaa36073742c940b26a0a5690780610073f730165b3ed8ad9eb09c2337227c54",
+            "alpha_bounds": [
+              785,
+              1339,
+              885,
+              1389
+            ]
+          }
+        }
+      },
+      "states": [
+        "NO_TIE",
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T037",
+        "T038",
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "status": "CONNECTED_SOURCE_DERIVED_REGISTRATION",
+      "approval": "EXISTING_GARMENT_APPROVAL_UNCHANGED_NOT_NEW_DERIVATIVE_OWNER_ACCEPTANCE",
+      "recovery_method": "EXISTING_DOCUMENTED_DS006_DS009_SHARED_SOURCE",
+      "physical_identity_merged": false
+    },
+    "DS041": {
+      "id": "DS041",
+      "history_id": "shirt-DS041",
+      "source_file": "provenance/shirt_recovery_v1_24_5/DS041_ORIGINAL.jpeg",
+      "source_sha256": "f3f65eef446f5da20d87c7f01264f27389de481da53da2df93e25f0d22dce56a",
+      "source_dimensions": [
+        444,
+        618
+      ],
+      "source_provenance_directory": "provenance/ds041_v1_16_5",
+      "derived_cuffs_for_empty_current_components": {},
+      "modes": {
+        "no_tie": {
+          "base": {
+            "url": "assets/b587a1ec027e0b29013a6eb8164fcf482572e7436aa04c031ddbfba0005e4080.png",
+            "sha256": "b587a1ec027e0b29013a6eb8164fcf482572e7436aa04c031ddbfba0005e4080",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS041_NO_TIE_FULL_BODY_SOURCE_REGISTRATION_V1165"
+          },
+          "left": {
+            "url": "assets/shirts/DS041/DS041_FRONT_COLLAR_LEFT.png",
+            "sha256": "1b3a463477c08f29f82b9e8c89be04068de154d07df334664e7b420177cf5442",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS041_FRONT_COLLAR_LEFT"
+          },
+          "right": {
+            "url": "assets/shirts/DS041/DS041_FRONT_COLLAR_RIGHT.png",
+            "sha256": "4cb862302e0a7522766c4cb4ef5dc61bf78a969cc13b1fbab4373414d563b427",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS041_FRONT_COLLAR_RIGHT"
+          },
+          "left_cuff": {
+            "url": "assets/shirts/DS041/DS041_LEFT_CUFF.png",
+            "sha256": "269feabf20e00e5d84595206abdce1590cb6e22814f325d630362d1ac13f5b68",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS041_LEFT_CUFF"
+          },
+          "right_cuff": {
+            "url": "assets/shirts/DS041/DS041_RIGHT_CUFF.png",
+            "sha256": "8373089a12a0d87c9d86966a1c9bcbb8c43b2aea29adbe5c8ce471b05dd1f614",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS041_RIGHT_CUFF"
+          }
+        }
+      },
+      "states": [
+        "NO_TIE"
+      ],
+      "status": "CONNECTED_SOURCE_DERIVED_REGISTRATION",
+      "approval": "EXISTING_DS041_SOURCE_AND_NO_TIE_APPROVAL_PRESERVED; NEW_LOCAL_REGISTRATION_NOT_PRIOR_OWNER_VISUAL_ACCEPTANCE",
+      "shirt_only_trouser_ownership": "EXACT_EXISTING_TROUSER_LAYER_FOREGROUND_AT_WAIST",
+      "internal_arm_gap_stencil": "EXISTING_SHARED_SHELL_DS023_ALPHA_ONLY; NO_DS023_RGB",
+      "source_resolution_limit": "444x618 approved donor photo; cropped native cuffs. Current same-ID cuff plates retained. Spatially resampled registration, not a recovered high-resolution full-shirt asset.",
+      "recovery_method": "HASH_IDENTICAL_ARCHIVED_V1165_REGISTRATION"
+    }
+  },
+  "assetPaths": {
+    "b587a1ec027e0b29013a6eb8164fcf482572e7436aa04c031ddbfba0005e4080": "assets/b587a1ec027e0b29013a6eb8164fcf482572e7436aa04c031ddbfba0005e4080.png"
+  },
+  "resolved_holds": {
+    "DS011": {
+      "id": "DS011",
+      "effective_label": "Paul Fredrick \u2014 Cream/light grey; Geometric check",
+      "expected_primary": "Cream/light grey",
+      "expected_pattern": "Geometric check",
+      "expected_description": "Cream/light grey; Geometric check",
+      "expected_eligibility": {
+        "active": true,
+        "tie_pairing": true,
+        "source": {
+          "source_id": "HEWRS_CANONICAL_AUDIT_FREEZE_2026-08-29.json",
+          "locator": "shirts; shirt_tie_phase2b.excluded_from_tie_pairing_by_owner_instruction"
+        }
+      },
+      "expected_render_label": "Paul Fredrick \u2014 grey / cream geometric check",
+      "states": [
+        "NO_TIE",
+        "T001",
+        "T002",
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T037",
+        "T038",
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "body_sha256": {
+        "no_tie": "9bab5409eb5a2717be478407e26cd727da1f80ddf6e2ca10c835bb2f602ee719",
+        "tied": "4fe3a4c8699dd7eaae06e0beab592a351bfda4e3f285a148dd3eaba0b84d86a4"
+      },
+      "action": "USE_ALREADY_CURRENT_PINNED_DNA_NOT_HISTORICAL_NARRATIVE",
+      "feature_values_changed": false,
+      "stored_scores_changed": false
+    },
+    "DS040": {
+      "id": "DS040",
+      "effective_label": "Gucci \u2014 Taupe/beige-brown; Dense repeating GG monogram",
+      "expected_primary": "Taupe/beige-brown",
+      "expected_pattern": "Dense repeating GG monogram",
+      "expected_description": "Taupe/beige-brown; Dense repeating GG monogram",
+      "expected_eligibility": {
+        "active": true,
+        "tie_pairing": false,
+        "source": {
+          "source_id": "HEWRS_CANONICAL_AUDIT_FREEZE_2026-08-29.json",
+          "locator": "shirts; shirt_tie_phase2b.excluded_from_tie_pairing_by_owner_instruction"
+        }
+      },
+      "expected_render_label": "Gucci \u2014 tan GG monogram print",
+      "states": [
+        "NO_TIE"
+      ],
+      "body_sha256": {
+        "no_tie": "fcbfed17395011870ceecad70c0178659d1a09b93463805766c12e55b0f592b7"
+      },
+      "action": "USE_ALREADY_CURRENT_PINNED_DNA_NOT_HISTORICAL_NARRATIVE",
+      "feature_values_changed": false,
+      "stored_scores_changed": false
+    },
+    "DS042": {
+      "id": "DS042",
+      "effective_label": "Burberry \u2014 Tan/beige; Classic check",
+      "expected_primary": "Tan/beige",
+      "expected_pattern": "Classic check",
+      "expected_description": "Tan/beige; Classic check",
+      "expected_eligibility": {
+        "active": true,
+        "tie_pairing": false,
+        "source": {
+          "source_id": "HEWRS_CANONICAL_AUDIT_FREEZE_2026-08-29.json",
+          "locator": "shirts; shirt_tie_phase2b.excluded_from_tie_pairing_by_owner_instruction"
+        }
+      },
+      "expected_render_label": "Burberry \u2014 tan/black/red classic check",
+      "states": [
+        "NO_TIE"
+      ],
+      "body_sha256": {
+        "no_tie": "57e68dedd7533f9650b1eb7ce589c8e80bfa420446606a5513c7a88b7eece33f"
+      },
+      "action": "USE_ALREADY_CURRENT_PINNED_DNA_NOT_HISTORICAL_NARRATIVE",
+      "feature_values_changed": false,
+      "stored_scores_changed": false
+    },
+    "DS043": {
+      "id": "DS043",
+      "effective_label": "Burberry \u2014 Light grey/stone; Plaid/check",
+      "expected_primary": "Light grey/stone",
+      "expected_pattern": "Plaid/check",
+      "expected_description": "Light grey/stone; Plaid/check",
+      "expected_eligibility": {
+        "active": true,
+        "tie_pairing": false,
+        "source": {
+          "source_id": "HEWRS_CANONICAL_AUDIT_FREEZE_2026-08-29.json",
+          "locator": "shirts; shirt_tie_phase2b.excluded_from_tie_pairing_by_owner_instruction"
+        }
+      },
+      "expected_render_label": "Burberry \u2014 cream/black/navy diagonal check",
+      "states": [
+        "NO_TIE"
+      ],
+      "body_sha256": {
+        "no_tie": "bd8bf976c1866bc06fe0abe0df161b2b20225518653ad4f71a8b94e6ce5b07ba"
+      },
+      "action": "USE_ALREADY_CURRENT_PINNED_DNA_NOT_HISTORICAL_NARRATIVE",
+      "feature_values_changed": false,
+      "stored_scores_changed": false
+    }
+  },
+  "remaining_full_source_ids": [
+    "DS017",
+    "DS035",
+    "DS036",
+    "DS051",
+    "DS034",
+    "DS037",
+    "DS038",
+    "DS032",
+    "DS033",
+    "DS046",
+    "DS003",
+    "DS020",
+    "DS045",
+    "DS010",
+    "DS011",
+    "DS028",
+    "DS029",
+    "DS030",
+    "DS044",
+    "DS013",
+    "DS026",
+    "DS031",
+    "DS012",
+    "DS050",
+    "DS016",
+    "DS048",
+    "DS039",
+    "DS042",
+    "DS043",
+    "DS040"
+  ],
+  "scope": "PARTIAL_SOURCE_RECOVERY; 30 full non-suit shirt sources still unavailable",
+  "original_inputs_and_scores_modified": false
+}

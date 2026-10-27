@@ -4,10 +4,11 @@
 'use strict';
 const clone=x=>structuredClone(x),need=(v,m)=>{if(!v)throw Error(m);};
 function create(inputs,{configurationFilter,blazerMappings}={}){
- const p=root.HEWRSAdditionalBlazers.extendInputs(root.HEWRSShoePhotoCorrections.apply(root.HEWRSSourceCorrections.apply(inputs))),m=p.manifest;
+ const priorInputs=root.HEWRSAdditionalBlazers.extendInputs(root.HEWRSShoeReferenceBatch8.apply(root.HEWRSShoeReferenceBatch7.apply(root.HEWRSShoeReferenceBatch6.apply(root.HEWRSShoeReferenceBatch5.apply(root.HEWRSShoeReferenceBatch4.apply(root.HEWRSShoeReferenceBatch3.apply(root.HEWRSShoeReferenceBatch2.apply(root.HEWRSShoeReferenceBatch1.apply(root.HEWRSShoePhotoCorrections.apply(root.HEWRSSourceCorrections.apply(inputs))))))))))); const p=root.HEWRSFinalShoeBindings.apply(priorInputs),m=p.manifest;
  const suitSources=root.HEWRSApprovedSuitSources.create(root.HEWRS_APPROVED_SUITS_DATA,p.suitAliases);
  const assemblies=root.HEWRSSuitAssemblies.create(suitSources,m,p.shoeLayers);
  need(p.schema==='hewrs.clean.connection.inputs.v1','Unexpected input schema');
+ root.HEWRSShirtSourceRecovery.validateRecords(p);
  const features=new Map(p.features.records.map(r=>[r.id,r]));
  const aliases=new Map(p.suitAliases.map(r=>[r.source_id,r.app_id]));
  const reverse=new Map(p.suitAliases.map(r=>[r.app_id,r.source_id]));
@@ -24,9 +25,9 @@ function create(inputs,{configurationFilter,blazerMappings}={}){
   let label=generic?f.description:text;
   // Conflicting narrative mappings are not settled by array position. Display
   // the exact ID for these source records; the approved image is still usable.
-  if(['DS011','DS040','DS042','DS043'].includes(sid))label='Approved source layer';
+  if(root.HEWRSShirtSourceRecovery.label(sid))label=root.HEWRSShirtSourceRecovery.label(sid);
   Object.assign(legacy,{name:label,color:f.primary_text,pattern:f.pattern_text,
-   _canonical:{id:sid,label,source:'Active50 manifest + pinned feature record',source_text_disagreement:['DS011','DS040','DS042','DS043'].includes(sid)}});
+   _canonical:{id:sid,label,source:'Active50 manifest + pinned feature record',source_text_disagreement:false,source_reconciliation:root.HEWRSShirtSourceRecovery.label(sid)?root.HEWRSShirtSourceRecovery.revision:null}});
   records[sid]={id:sid,label,feature:clone(f),render_label:text,history_id:legacy.id,no_tie_only:m.shirts[sid].mode_policy==='NO_TIE_ONLY'};
  }
  for(const row of p.suitAliases){const item=catalogue.suits.find(s=>s.id===row.app_id),f=features.get(row.source_id);need(item&&f,'Broken suit alias');item.name=f.description;item.color=f.primary_text;item.pattern=f.pattern_text;item._canonical={id:row.source_id,source:'FEATURE_INPUTS.json'};}
@@ -35,7 +36,7 @@ function create(inputs,{configurationFilter,blazerMappings}={}){
  const registry=root.HEWRSStep3Scores.createRegistry(p.approved,p.approval);
  const source=root.HEWRSStep3Scores.withApprovedScores(base,root.HEWRSLogic,registry,p.logicData.ensembleComponents);
  const rawEngine=root.HEWRSEnsembleCompletion.createEngine({featureInputs:p.features,spec:p.spec,sourceEngine:source,logic:root.HEWRSLogic,rotationPolicy:p.logicData.rotationPolicy,additionalFoundation:root.HEWRSAdditionalBlazers.foundation});
- const textHolds=new Set(['DS011','DS040','DS042','DS043']);
+ const textHolds=new Set(root.HEWRSShirtSourceRecovery.heldIds(['DS011','DS040','DS042','DS043']));
  // Source-description conflicts may not silently generate a current score.
  // No stored value is changed and no render approval is withheld.
  function evaluate(q){

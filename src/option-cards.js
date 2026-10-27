@@ -7,7 +7,7 @@ function create(connection){
  const thumbs=root.HEWRS_OPTION_CARD_THUMBNAILS;
  need(thumbs?.schema==='hewrs.option-card-thumbnails.v1_21_1'&&thumbs.source_lock===root.HEWRS_INPUT_SHA256,'Wrong option-card thumbnail source');
  const cache=new Map();
- function thumb(group,id,mode){const t=mode?thumbs[group]?.[id]?.[mode]:thumbs[group]?.[id];if(!t)return null;need(/^ui\/option-cards\/[a-f0-9]{64}\.png$/.test(t.src)&&t.src.endsWith(t.sha256+'.png'),'Unbound card thumbnail');return clone(t);}
+ function thumb(group,id,mode,nonSuit=false){const override=nonSuit&&group==='shirts'?root.HEWRS_NON_SUIT_CARD_THUMBNAILS?.[id]?.[mode]:null;const t=override||(mode?thumbs[group]?.[id]?.[mode]:thumbs[group]?.[id]);if(!t)return null;need(/^ui\/option-cards\/[a-f0-9]{64}\.png$/.test(t.src)&&t.src.endsWith(t.sha256+'.png'),'Unbound card thumbnail');return clone(t);}
  function model(selection,meta={}){
   const s=connection.validateSelection(selection),mode=s.state==='NO_TIE'?'no_tie':'tied';
   const cat=connection.catalogue,top=s.suitId?cat.suits.find(x=>x.id===connection.aliases.get(s.suitId)):null;
@@ -16,7 +16,7 @@ function create(connection){
   const shoes=cat.shoes.find(x=>x.id===s.shoeId),watch=cat.watches.find(x=>x.id===s.watchId),tie=s.state==='NO_TIE'?null:s.state==='REFERENCE'?null:s.state;
   const items=[
    {role:s.shirtOnly?'Outfit mode':s.blazerId?'Blazer':'Suit',id:s.suitId||s.blazerId||null,name:topName,image:root.HEWRSAdditionalBlazers.photo(s.blazerId)},
-   {role:'Shirt',id:s.shirtId,name:connection.records[s.shirtId].label,image:thumb('shirts',s.shirtId,mode)},
+   {role:'Shirt',id:s.shirtId,name:connection.records[s.shirtId].label,image:thumb('shirts',s.shirtId,mode,!!(s.blazerId||s.shirtOnly))},
    {role:'Tie',id:tie,name:s.state==='NO_TIE'?'No Tie':s.state==='REFERENCE'?'Retained reference':connection.features.get(tie)?.description||tie,image:tie?thumb('ties',tie):null,empty:s.state==='NO_TIE'?'NO TIE':s.state==='REFERENCE'?'REFERENCE':null},
    {role:'Shoes',id:s.shoeId,name:shoes?.name||s.shoeId,image:thumb('shoes',s.shoeId)},
    {role:'Trousers',id:s.pantId||null,name:s.pantId?connection.blazerConnection.knownPant(s.pantId).label:'Matching trousers included with '+s.suitId,image:s.pantId?thumb('pants',s.pantId):null},
