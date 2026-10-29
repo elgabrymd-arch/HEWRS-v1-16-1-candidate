@@ -1,0 +1,22 @@
+/* Additive layout only; inherit the original app palette and typography. */
+.rd-dialog{width:min(1100px,96vw);max-width:96vw;max-height:94dvh;overflow:auto;padding:20px;border:1px solid currentColor;background:var(--bg);box-sizing:border-box}.rd-dialog::backdrop{background:rgba(0,0,0,.55)}.rd-head{display:flex;justify-content:space-between;gap:15px;align-items:center}.rd-head h2{font-size:1.25rem}.rd-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.rd-label{font-size:.8rem;display:flex;flex-direction:column;gap:5px;min-width:0}.rd-label select{font:inherit;width:100%;min-width:0;max-width:100%;padding:10px;border:1px solid currentColor;border-radius:6px;background:inherit;color:inherit}.rd-label option{background:var(--bg);color:inherit}.rd-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rd-result{display:flex;flex-direction:column;text-align:left;white-space:normal;gap:6px;padding:12px;min-width:0;overflow-wrap:anywhere}.rd-result span{font-size:.75rem;opacity:.8}.rd-count{font-weight:700}.rd-preview{margin:18px 0;padding:14px;border:1px solid currentColor;border-radius:9px;overflow-wrap:anywhere}.rd-visuals{display:grid;grid-template-columns:minmax(150px,26%) minmax(0,1fr);gap:18px;align-items:start}.rd-visuals canvas{width:100%;height:auto}.rd-visuals img{width:100%;height:auto;background:white}.rd-visuals p{line-height:1.5}#open-reviewed-dna{margin-top:18px}#rd-error:empty{display:none}@media(max-width:600px){.rd-dialog{padding:12px}.rd-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.rd-results{grid-template-columns:1fr}.rd-visuals{grid-template-columns:minmax(0,1fr)}.rd-visuals canvas{max-height:65dvh;width:auto;max-width:100%;margin:auto;display:block}.rd-head h2{font-size:1rem}.rd-preview{padding:8px}}
+
+/* Discovery reuses the original palette and exact option-card thumbnails. */
+.rd-explore-controls{margin:12px 0}.rd-explore-controls button{margin:4px 8px 4px 0}.rd-component-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rd-component-cards[hidden]{display:none}.rd-component-cards .lb-item{min-width:0}.rd-component-cards img{max-width:100%;object-fit:contain}.rd-results .rd-result strong{overflow-wrap:anywhere}.rd-preview[hidden],.rd-explore-controls[hidden]{display:none}
+
+@media(max-width:600px){
+.rd-preview[data-exploration="true"] .rd-visuals{grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:8px}
+.rd-preview[data-exploration="true"] .rd-visuals canvas{width:100%;height:auto;max-height:none;margin:0}
+.rd-preview[data-exploration="true"] .rd-component-cards{grid-template-columns:minmax(0,1fr);gap:4px}
+.rd-preview[data-exploration="true"] .rd-component-cards .lb-item{padding:5px 0;gap:6px}
+.rd-preview[data-exploration="true"] .rd-component-cards .lb-item.lb-with-swatch{grid-template-columns:44px minmax(0,1fr)}
+.rd-preview[data-exploration="true"] .rd-component-cards .lb-swatch{width:44px;height:52px;object-fit:contain}
+.rd-preview[data-exploration="true"] .rd-component-cards .lb-item-name{font-size:11px}
+.rd-preview[data-exploration="true"] .rd-component-cards .lb-item-role{font-size:9px}
+.rd-preview[data-exploration="true"] .rd-component-cards .lb-item-id{font-size:11px}
+}
+
+.pa-panel{border:1px solid var(--line,#3b4147);border-radius:10px;padding:12px;margin:12px 0;max-width:100%;overflow-wrap:anywhere}.pa-panel button{margin:4px;white-space:normal}.pa-panel h3{margin:0 0 8px}.pa-panel p{margin:8px 0}
+
+/* Automatic service controls; original image palette unchanged. */
+#auto-image-panel label{display:block;margin:12px 0}#auto-image-panel input[type=password]{display:block;box-sizing:border-box;width:100%;margin-top:5px}#auto-image-panel input[type=checkbox]{margin-right:8px}#auto-image-panel{overflow-wrap:anywhere}
