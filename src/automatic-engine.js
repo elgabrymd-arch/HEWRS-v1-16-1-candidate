@@ -95,6 +95,23 @@ function create(inputs,options={}){
    }
   }if(!hadStylePass&&pool.length){reject?.('STYLE_LOCK');}else if(!hadWeatherPass&&pool.length){reject?.('WEATHER');for(const msg of rejectedWeather)reject?.('WEATHER: '+msg);}else if(pool.length)reject?.('WATCH_OR_STYLE_LOCK');return null;
  }
+ function approvalMatchesEntry(a,e){
+  const o=a?.outfit||{};return (o.topwear||null)===e.group.topwearId&&(o.pants||null)===(e.pantId||null)&&o.shirt===e.row[0]&&(o.tie||'NO_TIE')===e.row[1];
+ }
+ function resolveApprovedCandidate(e,q,approval,worn,work){
+  const r=sourceResult(e,q);if(!r.candidate_eligible||r.context.status!=='eligible'||!canMatchStyle(e,q,r,work))return null;
+  const shoe=shoes.get(approval?.outfit?.shoe);if(!shoe||!matchesPref(q.prefs.shoes,shoe.id))return null;
+  const top=weatherItems(e,null,null),pref=e.preference||(e.preference=personal.clothing(e.group.topwearId,e.row[0],e.row[1],e.pantId,e.row[2],q)),policy=root.HEWRSLegacyAccessories;
+  const sh={item:shoe,assessment:policy.shoe(shoe,top,q,r),personal:personal.shoe(shoe,pref,q)};if(sh.assessment.rejected)return null;
+  const sty=root.HEWRSEnsembleCompletion.classifyStyle(features.get(e.group.topwearId),features.get(e.row[0]),e.row[1]==='NO_TIE'?null:features.get(e.row[1]),r,evidence(shoe,null));
+  if(sty.authorityGate!=='pass'||q.executiveStyle!=='AUTO'&&q.executiveStyle!==sty.classification)return null;
+  const wi={...top,shoes:shoe},env=root.HEWRSWeather.assess(wi,q.environment,q.context);if(!env.eligible)return null;
+  const choices=q.prefs.watch.mode==='none'?[{item:null,assessment:null,personal:personal.watch(null,pref,q)}]:(q.prefs.watch.mode==='item'?[watches.get(q.prefs.watch.id)]:[...watches.values()]).filter(Boolean).map(item=>({item,assessment:policy.watch(item,wi,q),personal:personal.watch(item,pref,q)}));
+  const tieOrder=(a,b)=>cmp(worn.get(a.item?.id)||'',worn.get(b.item?.id)||'')||cmp(a.item?.id||'',b.item?.id||'');
+  const w=choices.filter(x=>!x.assessment||!x.assessment.rejected).sort((a,b)=>b.personal.score-a.personal.score||tieOrder(a,b))[0];if(!w)return null;
+  const sel=selection(e,shoe,w.item);base.validateSelection(sel);
+  return {id:outfitID(sel),selection:sel,items:fullItems(e,shoe,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal},owner_approval:copy(approval)};
+ }
  function* steps(q,catalogue,history){requireIndex();const work={watches:new Map(),styleProfiles:new Map()};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');
   const wearCheck=root.HEWRSLocalState.create(base,root.HEWRS_INPUT_SHA256,null);wearCheck.validate({schema:root.HEWRSLocalState.SCHEMA,source_lock:root.HEWRS_INPUT_SHA256,revision:0,session:null,events:history});
   const tieAudit=Object.fromEntries([...ties.keys(),'NO_TIE'].map(id=>[id,{id,matching_rows:0,source_eligible_clothing:0,source_holds:{},complete_evaluated:0,eligible_complete:0,rejection_reasons:{},best_complete:null,retained_candidates:0,selected_count:0}]));
@@ -163,16 +180,35 @@ function create(inputs,options={}){
    if(a.best_complete&&capacity){const e=initial.get([tops.get(a.best_complete.selection.suitId||a.best_complete.selection.blazerId).id,'shirt-'+a.best_complete.selection.shirtId,a.best_complete.selection.state,a.best_complete.selection.pantId?'pants-'+a.best_complete.selection.pantId:'SUIT_TROUSERS'].join('|'));if(e)a.best_candidate_final_constraint=capacity.issue(e);}
   }}
   diagnostics.examined=diagnostics.enumerated;
+  const ownerBatch=root.HEWRSOutfitFeedback?.ownerBatch?.(),ownerOcc=root.HEWRSOutfitFeedback?.occasion?.(q.context.occasion)||q.context.occasion,approvedEligible=[];
+  for(const approval of ownerBatch?.approvals||[]){
+   if(root.HEWRSOutfitFeedback.occasion(approval.occasion)!==ownerOcc||!approval.outfit?.topwear)continue;
+   const e=allCandidates.find(x=>approvalMatchesEntry(approval,x));if(!e)continue;
+   const out=resolveApprovedCandidate(e,q,approval,worn,work);if(!out)continue;
+   let existing=accepted.find(x=>root.HEWRSOutfitFeedback.ownerApproval(x.selection,q.context)?.review_id===approval.review_id);
+   if(!existing){accepted.push(out);initial.set(e.key,out);best=Math.max(best,out.preference.score);existing=out;}
+   existing.owner_approval=copy(approval);approvedEligible.push(existing);
+  }
+  diagnostics.owner_approval_priority={revision:ownerBatch?.revision||null,eligible_exact_approvals:approvedEligible.map(x=>x.owner_approval.review_id),eligible_count:approvedEligible.length,assistant_assessments_used_as_owner_preference:false};
   if(!accepted.length){finishTieAudit([],null);const no_match=root.HEWRSGenerationDiagnostics.describe(base,q,diagnostics,[...work.styleProfiles.values()]);return {status:'no_qualified_candidate',options:[],diagnostics,no_match,reason:no_match.message+(no_match.detail?' '+no_match.detail:'')};}
-  // Rotation policy/history are unchanged; it now operates within 0.2 of the
-  // best PERSONAL preference score, not a falsely relabelled original score.
-  const slim=accepted.filter(x=>x.preference.score>=best-band-1e-9).map(x=>({id:x.id,items:x.items,result:{...x.result,display_score:x.preference.score}}));
+  // Stage 10 precedence: an eligible exact owner-approved outfit is a higher
+  // preference tier than model judgments. The unchanged wear-history rotation
+  // runs inside that tier; if no exact approval qualifies, the prior 0.2 band
+  // behavior is used without modification.
+  const rotationSource=approvedEligible.length?approvedEligible:accepted,rotationBest=Math.max(...rotationSource.map(x=>x.preference.score));
+  const slim=rotationSource.filter(x=>x.preference.score>=rotationBest-band-1e-9).map(x=>({id:x.id,items:x.items,result:{...x.result,display_score:x.preference.score}}));
   const rot=base.engine.selectForContext(slim,history,{style:q.executiveStyle,localDate:q.localDate});
-  rot.ranking_basis=personal.revision;rot.scope='Confirmed-wear rotation among near-equivalent personalized preferences; original compatibility remains separately preserved.';
-  const winner=rot.selected?accepted.find(e=>e.id===rot.selected.id):null;
+  rot.ranking_basis=approvedEligible.length?'explicit_exact_owner_approval_then_'+personal.revision:personal.revision;
+  rot.scope=approvedEligible.length?'Confirmed-wear rotation among eligible exact owner-approved outfits within the existing near-equivalent band; no garment-wide preference inferred.':'Confirmed-wear rotation among near-equivalent personalized preferences; original compatibility remains separately preserved.';
+  rot.owner_approval_tier_active=approvedEligible.length>0;
+  const winner=rot.selected?rotationSource.find(e=>e.id===rot.selected.id):null;
   const capacity=root.HEWRSOptionSetPolicy.create(q),selected=[],keys=new Set(),rechoices=new Map();
-  const seed=winner||accepted.slice().sort((a,b)=>b.preference.score-a.preference.score||cmp(a.entry.key,b.entry.key))[0];
-  if(seed&&!capacity.issue(seed)){seed.curation={decision:'best_preference_with_confirmed_history_rotation',redundancy:0};capacity.add(seed);selected.push(seed);keys.add(root.HEWRSOptionSetPolicy.clothingKey(seed));}
+  const seed=winner||rotationSource.slice().sort((a,b)=>b.preference.score-a.preference.score||cmp(a.entry.key,b.entry.key))[0];
+  if(seed&&!capacity.issue(seed)){seed.curation={decision:seed.owner_approval?'owner_approved_exact_outfit_with_confirmed_history_rotation':'best_preference_with_confirmed_history_rotation',redundancy:0};capacity.add(seed);selected.push(seed);keys.add(root.HEWRSOptionSetPolicy.clothingKey(seed));}
+  for(const approved of approvedEligible.slice().sort((a,b)=>b.preference.score-a.preference.score||cmp(a.entry.key,b.entry.key))){
+   if(selected.includes(approved)||capacity.issue(approved)||keys.has(root.HEWRSOptionSetPolicy.clothingKey(approved)))continue;
+   approved.curation={decision:'owner_approved_exact_outfit_priority',redundancy:0};capacity.add(approved);selected.push(approved);keys.add(root.HEWRSOptionSetPolicy.clothingKey(approved));if(selected.length>=q.limit)break;
+  }
   diagnostics.list_evaluated=0;diagnostics.option_cap_skips=0;
   while(selected.length<q.limit){let strongest=-Infinity,pool=[];
    for(let i=0;i<candidates.length;i++){const e=candidates[i];if(strongest!==-Infinity&&e.preferenceUpper<strongest-personal.curationBand-1e-9)break;
@@ -191,7 +227,7 @@ function create(inputs,options={}){
    const chosen=pool[0];capacity.add(chosen);selected.push(chosen);keys.add(root.HEWRSOptionSetPolicy.clothingKey(chosen));
    yield {phase:'curating-complete-outfits',examined:diagnostics.enumerated,returned:selected.length};
   }
-  const options=selected.map((e,i)=>{const score=detail(e.entry,q,e.items.shoes,e.items.watch);return {items:copy(e.items),formal:!!e.items.topwear.formal,dressMode:q.dressMode,context:q.context.occasion,styleEngine:q.executiveStyle,controlledRepetition:!winner&&rot.rotation?.status==='rotation_exception_requires_owner_confirmation',_hewrsConnected:{revision:REV,mode:'candidate',id:e.id,compatibility:score,preference:copy(e.preference),curation:copy(e.curation),is_recommendation:!!winner&&winner.id===e.id,rank:i+1,list_position:i+1,rank_scope:'personalized complete-outfit preference, then bounded visual curation; not a proven optimal set',production_enabled:false,source_spec_approved:false,accessory_method:'Contextual personal preference; inherited exclusions retained, no brand/price bonus',accessory_assessment:copy(e.accessory),environment:copy(e.environment),validation:{request:stable(q)},canonical_selection:copy(e.selection)}};});
+  const options=selected.map((e,i)=>{const score=detail(e.entry,q,e.items.shoes,e.items.watch);return {items:copy(e.items),formal:!!e.items.topwear.formal,dressMode:q.dressMode,context:q.context.occasion,styleEngine:q.executiveStyle,controlledRepetition:!winner&&rot.rotation?.status==='rotation_exception_requires_owner_confirmation',_hewrsConnected:{revision:REV,mode:'candidate',id:e.id,compatibility:score,preference:copy(e.preference),curation:copy(e.curation),owner_approval:e.owner_approval?copy(e.owner_approval):null,is_recommendation:!!winner&&winner.id===e.id,rank:i+1,list_position:i+1,rank_scope:e.owner_approval?'eligible exact owner-approved outfit tier, then unchanged wear-history rotation and bounded list curation':'personalized complete-outfit preference, then bounded visual curation; not a proven optimal set',production_enabled:false,source_spec_approved:false,accessory_method:'Contextual personal preference; inherited exclusions retained, no brand/price bonus',accessory_assessment:copy(e.accessory),environment:copy(e.environment),validation:{request:stable(q)},canonical_selection:copy(e.selection)}};});
   need(new Set(options.map(x=>x._hewrsConnected.id)).size===options.length,'Duplicate outfits in result');
   const option_policy=root.HEWRSOptionSetPolicy.inspect(options,q);finishTieAudit(options,capacity);
   return {status:winner?'candidate_recommendation':'compatibility_options_rotation_confirmation_required',options,diagnostics,rotation:rot,requested_options:q.limit,returned_options:options.length,option_policy,reason:options.length<q.limit?'Found '+options.length+' distinct outfits within source eligibility, locks, weather, one-use tie and two-use other-item limits. '+(sourceCapacity.pants<q.limit?'The '+diagnostics.source_capacity_bounds.distinct_scored_trouser_ids+' source-eligible physical trousers allow at most '+sourceCapacity.pants+' options at two uses each. ':'')+(sourceCapacity.tie<q.limit?'The available tie IDs and No Tie allowance cap this request at '+sourceCapacity.tie+' options. ':'')+'No duplicated clothing or relaxed constraint was used.':null,environment:copy(q.environment),coverage:{source_index_rows:index.counts.rows,preference_revision:personal.revision,unresolved_scores_excluded:true,all_retained_physical_ids_independent:true,compatibility_unchanged:true,preference_is_personal_heuristic:true,global_optimum_claimed:false}};
