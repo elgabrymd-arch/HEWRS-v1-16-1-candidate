@@ -19,7 +19,7 @@ function run(changes={},label='unlocked'){
 }
 const before=JSON.stringify(root.HEWRS_INPUTS);
 run();
-const b11=run({topwear:{mode:'item',id:'B11'}},'B11 anchored');
+const b11=run({topwear:{mode:'item',id:conn.blazerConnection.knownBlazer('B11').historyId}},'B11 anchored');
 for(const x of b11.options){
   assert.equal(x._hewrsConnected.canonical_selection.blazerId,'B11');
   assert.equal(x._hewrsConnected.canonical_selection.state,'NO_TIE','B11 tie not blocked');
