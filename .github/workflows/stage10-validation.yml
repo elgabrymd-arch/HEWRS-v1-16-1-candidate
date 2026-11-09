@@ -2,7 +2,7 @@ name: Stage 10 validation
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, stage10-integration ]
   workflow_dispatch:
 
 permissions:
