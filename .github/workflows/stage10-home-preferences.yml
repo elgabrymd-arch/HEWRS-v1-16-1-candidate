@@ -1,0 +1,44 @@
+name: Stage 10 Home preferences — isolated verification
+on:
+  push:
+    branches:
+      - fix/stage10-home-preference-persistence-20261109
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate source syntax
+        run: node --check src/application.js
+      - name: Rebuild generated runtime from source without publishing
+        run: python tools/build.py
+      - name: Check generated script integrity and source inclusion
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          r = Path('.')
+          m = json.loads((r/'STARTUP_RESOURCES.json').read_text())
+          p = m['startup_scripts'][2]
+          bundle = (r/p).read_bytes()
+          assert hashlib.sha256(bundle).hexdigest() == m['resource_integrity'][p]['sha256']
+          assert b'hewrs:home-preferences:v1:' in bundle
+          assert p in (r/'index.html').read_text()
+          print('PASS: rebuilt runtime includes source correction with matching integrity')
+          PY
+      - name: Install isolated browser test dependencies
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Test NO TIE persistence, reset and data separation
+        run: python tests/stage10-home-preferences-browser.py
