@@ -40,5 +40,27 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check playwright==1.56.0
           python -m playwright install --with-deps chromium
-      - name: Test NO TIE persistence, reset and data separation
+      - name: Build isolated Stage 10 integration release overlay
+        run: python tools/package_stage10_home_preferences.py
+      - name: Verify rebuilt Stage 10 runtime syntax
+        run: |
+          node --check "$(python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('dist/stage10-home-preferences/MANIFEST.json').read_text())
+          print(m['replacement_runtime']['path'])
+          PY
+          )"
+      - name: Test base Home preference persistence and data separation
         run: python tests/stage10-home-preferences-browser.py
+      - name: Test packaged Stage 10 integration and owner feedback
+        env:
+          HEWRS_TEST_PAGE: stage10-home-preferences-test.html
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Upload controlled Stage 10 overlay (no deployment)
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_STAGE10_HOME_PREFERENCES_CONTROLLED_OVERLAY
+          path: dist/stage10-home-preferences/
+          if-no-files-found: error
+          retention-days: 14
