@@ -5,6 +5,7 @@ Uses isolated browser storage. Never opens or edits real saved wardrobe data.
 """
 import functools
 import json
+import os
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -35,8 +36,13 @@ def main():
             page = browser.new_page()
             errors = []
             page.on("pageerror", lambda err: errors.append(str(err)))
-            page.goto(origin + "/index.html", wait_until="domcontentloaded")
+            target = os.environ.get("HEWRS_TEST_PAGE", "index.html")
+            page.goto(origin + "/" + target, wait_until="domcontentloaded")
             page.wait_for_function("globalThis.HEWRS_READY === true", timeout=60000)
+            if target.startswith("stage10-"):
+                page.wait_for_function("globalThis.HEWRSReviewedIntegration !== undefined", timeout=60000)
+                check("Stage 10 owner feedback and integration preserved", page.evaluate(
+                    "() => HEWRSApp.version.endsWith('_STAGE10') && !!HEWRSApp.ownerFeedback && !!HEWRSReviewedIntegration"))
             check("Initial six categories unlocked", page.evaluate(
                 "() => Object.values(HEWRSApp.ui.snapshot()).every(p => p.mode === 'any')"))
             wear_before = page.evaluate("() => JSON.stringify(HEWRSApp.store.snapshot())")
@@ -49,7 +55,9 @@ def main():
             storage_key = page.evaluate("() => 'hewrs:home-preferences:v1:' + HEWRS_INPUT_SHA256")
             stored = page.evaluate("(key) => localStorage.getItem(key)", storage_key)
             check("Six category choices are written to separate source-locked storage",
-                  bool(stored) and json.loads(stored)["preferences"]["tie"]["mode"] == "none")
+                  bool(stored) and set(json.loads(stored)["preferences"]) ==
+                  {"topwear", "shirt", "tie", "shoes", "bottoms", "watch"} and
+                  json.loads(stored)["preferences"]["tie"]["mode"] == "none")
 
             page.click("#mode-anchor")
             page.click("#mode-engine")
