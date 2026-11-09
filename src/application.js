@@ -4,9 +4,14 @@
 (function(root){'use strict';
 const $=id=>document.getElementById(id),copy=x=>structuredClone(x),el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const need=(v,m)=>{if(!v)throw Error(m);};
-const APP_VERSION='HEWRS_COMBINED_V1_25_0_R1';
-const connection=root.HEWRSCleanConnection.create(root.HEWRS_INPUTS);
+const APP_VERSION='HEWRS_COMBINED_V1_25_0_R1_STAGE10';
 let backend;try{backend=root.localStorage;}catch{backend=null;}
+const connection=root.HEWRSCleanConnection.create(root.HEWRS_INPUTS);
+function memoryStorage(){const m=new Map();return {get length(){return m.size;},key:i=>[...m.keys()][i]??null,getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(String(k),String(v)),removeItem:k=>m.delete(k)};}
+let ownerFeedback,ownerFeedbackPersistent=true;
+try{ownerFeedback=root.HEWRSOutfitFeedback.create({storage:backend,validateSelection:s=>connection.validateSelection(s)});ownerFeedback.refresh();}
+catch{ownerFeedbackPersistent=false;ownerFeedback=root.HEWRSOutfitFeedback.create({storage:memoryStorage(),validateSelection:s=>connection.validateSelection(s)});ownerFeedback.refresh();}
+connection.ownerFeedback.set(ownerFeedback);
 const visualStylist=root.HEWRSVisualStylistClient.create();connection.hybrid.setService(visualStylist);
 // Styling mode is separate from wear/Favorites. Credentials never enter storage.
 const STYLIST_KEY='hewrs:stylist-mode:v2';let stylistPreferenceWarning=null;
@@ -523,7 +528,7 @@ window.addEventListener('storage',e=>{if(e.key===store.key){generation++;rendere
 $('outfit-preferences').onclick=()=>preferencePanel.open();
 $('s02-source-photo').onclick=()=>{const d=root.HEWRSSourceCorrections.record(),{body,actions}=openSheet('S02 confirmed source',{list:true});const pic=el('img');pic.src=root.HEWRS_EMBEDDED_SOURCE_EVIDENCE?.S02||d.source_image_path;pic.alt='Owner-supplied S02 cloth photograph; muted brown with subtle charcoal/tan check';pic.style.maxWidth='100%';body.append(el('p',d.fields.description,'fx-caption'),pic,el('p',d.visual_limit,'fx-caption'));actions.append(button('Close',()=>dismissSheet()));};
 window.addEventListener('storage',e=>{if(e.key===learning.key||e.key===null){feedbackChanged();}});
-root.HEWRSApp=Object.freeze({version:APP_VERSION,diagnosticSnapshot,learning,preferencePanel,renderForPreference,feedbackChanged,connection,visualStylist,stylistSheet,renderForStylist,optionCards,restoreInitialOutfit,exportOptionCards,setCardLayout,cardSnapshot:()=>copy(cardPresentation),store,favorites,usage,weather,autoWeather,refreshAutomaticWeather,weatherSheet,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
+root.HEWRSApp=Object.freeze({version:APP_VERSION,diagnosticSnapshot,learning,preferencePanel,renderForPreference,feedbackChanged,ownerFeedback,ownerFeedbackPersistent,connection,visualStylist,stylistSheet,renderForStylist,optionCards,restoreInitialOutfit,exportOptionCards,setCardLayout,cardSnapshot:()=>copy(cardPresentation),store,favorites,usage,weather,autoWeather,refreshAutomaticWeather,weatherSheet,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
 const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:root.HEWRSStyleOccasions.occasion(saved.context.occasion),formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}if(saved?.mode==='anchor')ui.fromSelection(saved.selection);else ui.reset();setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
 // Home does not need a full-size avatar or the 112,392-row outfit index.
 // Restore the exact saved/current image only when Outfits is actually opened.
