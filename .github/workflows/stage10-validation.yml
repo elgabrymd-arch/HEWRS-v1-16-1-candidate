@@ -1,0 +1,119 @@
+name: Stage 10 validation
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-stage10:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find src vendor data -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+
+      - name: Owner feedback contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const F=require('./src/owner-feedback.js');
+          const assert=(x,m)=>{if(!x)throw Error(m)};
+          const b=F.ownerBatch();
+          assert(b.revision==='owner-batch10-20261029-v1','wrong owner batch');
+          assert(b.approvals.length===7,'expected seven exact approvals');
+          assert(F.ownerApproval({blazerId:'B03',pantId:'PG003',shirtId:'DS046',state:'NO_TIE',shoeId:'shoe-42',watchId:null},{occasion:'work'})?.review_id==='O21','O21 exact approval missing');
+          assert(!F.ownerApproval({blazerId:'B03',pantId:'PG003',shirtId:'DS046',state:'NO_TIE',shoeId:'shoe-41',watchId:null},{occasion:'work'}),'approval generalized across shoes');
+          assert(!F.ownerRuleCheck({blazerId:'B11',pantId:'PN003',shirtId:'DS037',state:'T001',shoeId:'shoe-15',watchId:null},{context:{occasion:'work',requiredFormality:'any'}}).allowed,'B11 tie rule failed');
+          assert(!F.ownerRuleCheck({blazerId:'B11',pantId:'PN003',shirtId:'DS037',state:'NO_TIE',shoeId:'shoe-1',watchId:null},{context:{occasion:'work',requiredFormality:'any'}}).allowed,'B11 footwear rule failed');
+          assert(!F.ownerRuleCheck({blazerId:'B01',pantId:'PN001',shirtId:'DS001',state:'NO_TIE',shoeId:'shoe-15',watchId:null},{context:{occasion:'work',requiredFormality:'any',owner_use_case:'summer_weekend_dinner'}}).allowed,'B01 work exclusion failed');
+          assert(!F.ownerRuleCheck({suitId:'S07',shirtId:'DS017',state:'T030',shoeId:'shoe-15',watchId:null},{context:{occasion:'work',requiredFormality:'any'}}).allowed,'S07 exact rejection failed');
+          const mem=(()=>{const m=new Map();return {get length(){return m.size},key:i=>[...m.keys()][i]??null,getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(String(k),String(v))}})();
+          const store=F.create({storage:mem,validateSelection:()=>true,now:()=> '2026-11-08T00:00:00Z',id:(()=>{let n=0;return()=> 't'+(++n)})()});
+          store.refresh();
+          const s={blazerId:'B02',pantId:'PG002',shirtId:'DS011',state:'T008',shoeId:'shoe-10',watchId:null};
+          store.hide(s,{context:'work',scope:'outfit'});
+          assert(!store.allowed(s,{occasion:'work'}),'saved hide not enforced');
+          assert(store.allowed({...s,shoeId:'shoe-11'},{occasion:'work'}),'saved exact hide generalized across shoes');
+          console.log(JSON.stringify({status:'PASS',approvals:b.approvals.length,owner_rules:true,saved_hide_exact:true}));
+          NODE
+
+      - name: Build from current sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/build.py
+
+      - name: Build and Stage 10 integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python <<'PY'
+          from pathlib import Path
+          import json, hashlib, re
+          R=Path('.')
+          x=json.loads((R/'STARTUP_RESOURCES.json').read_text())
+          assert len(x['startup_scripts'])==3
+          src=x['bundle_sources']
+          assert 'src/owner-feedback.js' in src
+          assert 'src/owner-feedback-integration.js' in src
+          assert src.index('src/owner-feedback.js') < src.index('src/style-occasion-policy.js')
+          assert src.index('src/owner-feedback-integration.js') > src.index('src/hybrid-stylist.js')
+          assert src.index('src/owner-feedback-integration.js') < src.index('src/application.js')
+          bundle=R/x['startup_scripts'][2]
+          assert bundle.is_file() and bundle.stat().st_size>0
+          b=bundle.read_text()
+          for needle in [
+            "hewrs.stage10.owner-feedback.v1",
+            "owner_approved_exact_outfit_priority",
+            "explicit_exact_owner_approval_then_",
+            "assistant_assessments_used_as_owner_preference:false",
+            "ownerFeedback.assertCurrent(ownerFeedbackToken)"
+          ]:
+            assert needle in b, needle
+          for path,row in x['resource_integrity'].items():
+            p=R/path
+            assert p.is_file(),path
+            assert p.stat().st_size==row['bytes'],path
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'],path
+          html=(R/'index.html').read_text()
+          assert bundle.name in html
+          assert 'HEWRS_COMBINED_V1_25_0_R1_STAGE10' in b
+          report={
+            'status':'PASS',
+            'startup_scripts':x['startup_scripts'],
+            'bundle_bytes':bundle.stat().st_size,
+            'bundle_sha256':hashlib.sha256(bundle.read_bytes()).hexdigest(),
+            'stage10_sources':['src/owner-feedback.js','src/owner-feedback-integration.js'],
+            'main_release_changed':False,
+            'rotation_selector_preserved':'base.engine.selectForContext(slim,history' in (R/'src/automatic-engine.js').read_text(),
+            'option_policy_preserved':'HEWRSOptionSetPolicy.inspect(options,q)' in (R/'src/automatic-engine.js').read_text(),
+          }
+          (R/'STAGE10_VALIDATION_REPORT.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report))
+          PY
+
+      - name: Upload validation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage10-validation
+          path: |
+            STAGE10_VALIDATION_REPORT.json
+            STARTUP_RESOURCES.json
+          if-no-files-found: error
