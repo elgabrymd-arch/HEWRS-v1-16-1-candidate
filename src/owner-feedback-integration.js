@@ -13,7 +13,7 @@ function create(inputs){
  const base=prior.create(inputs);let feedback=null;
  function setFeedback(value){
   need(value&&typeof value.refresh==='function'&&typeof value.match==='function'&&typeof value.assertCurrent==='function','Invalid owner-feedback store.');
-  feedback=value;return true;
+  feedback=value;base.hybrid?.setOwnerFeedback?.(value);return true;
  }
  function context(q){return q?.context||{occasion:'work',requiredFormality:'any'};}
  function selection(o,q){return base.selectionFromOption(o,q).selection;}
