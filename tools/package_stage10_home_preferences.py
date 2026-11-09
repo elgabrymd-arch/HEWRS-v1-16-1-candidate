@@ -123,7 +123,7 @@ def main() -> None:
         raise ValueError("Stage 10 image integration binding unexpectedly changed")
 
     # Preserve all original non-application modules, in byte-identical order.
-    if original[:start] != result[:start].decode("utf-8") or original[end:] != result[len((original[:start] + patched).encode("utf-8")):].decode("utf-8"):
+    if not result.decode("utf-8").startswith(original[:start]) or not result.decode("utf-8").endswith(original[end:]):
         raise ValueError("Non-application runtime bytes were altered")
     if new_sha == old_sha:
         raise ValueError("New runtime must differ from baseline")
