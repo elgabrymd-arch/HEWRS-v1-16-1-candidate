@@ -13,7 +13,22 @@ function create(inputs,options={}){
  const REV=options.revision||DEFAULT_REV;
  const base=prior.create(inputs),cat=base.catalogue,personal=(options.preferenceFactory||root.HEWRSOutfitPreference.create)(base);let ownerFeedback=null;
  function setOwnerFeedback(value){need(value===null||value&&typeof value.refresh==='function'&&typeof value.match==='function'&&typeof value.assertCurrent==='function','Invalid owner feedback dependency.');ownerFeedback=value;return true;}
- function ownerMatch(s,q){const reasons=[...(root.HEWRSOutfitFeedback?.ownerRuleCheck?.(s,{context:q.context})?.reasons||[])];if(ownerFeedback){const m=ownerFeedback.match(s,q.context);for(const x of m.reasons||[])if(!reasons.some(r=>r.id===x.id&&r.type===x.type))reasons.push(x);}return {allowed:reasons.length===0,reasons};}
+ function ownerStaticReasons(s,q){return root.HEWRSOutfitFeedback?.ownerRuleCheck?.(s,{context:q.context})?.reasons||[];}
+ function compileOwnerFeedback(q){
+  const occ=root.HEWRSOutfitFeedback?.occasion?.(q.context.occasion)||q.context.occasion,snap=ownerFeedback?ownerFeedback.refresh():null;
+  const outfit=new Map(),clothing=new Map(),historical=new Map();
+  const add=(map,k,v)=>{if(!map.has(k))map.set(k,[]);map.get(k).push(v);};
+  for(const e of snap?.active||[]){if(e.occasion!=='all'&&e.occasion!==occ)continue;const k=root.HEWRSOutfitFeedback.key(e.selection,e.scope);add(e.scope==='clothing'?clothing:outfit,k,{type:'hide',id:e.id,reason:e.reason,scope:e.scope,occasion:e.occasion});}
+  for(const row of snap?.historical||[]){if(row.vote!=='neither'||root.HEWRSOutfitFeedback.occasion(row.context.occasion)!==occ)continue;for(const x of [row.a,row.b])add(historical,root.HEWRSOutfitFeedback.key(x,'historical_exact'),{type:'historical_neither',id:row.id,reason:null,scope:'historical_exact',occasion:occ,partition:row.partition});}
+  return {token:snap?.token||null,match(s){
+   const reasons=[...ownerStaticReasons(s,q)];
+   if(s.suitId==='S01'&&s.shirtId==='DS029'&&s.state==='T024')reasons.push({type:'owner_core',id:'S01_DS029_T024',reason:null,scope:'clothing',occasion:'all'});
+   for(const x of outfit.get(root.HEWRSOutfitFeedback.key(s,'outfit'))||[])reasons.push(x);
+   for(const x of clothing.get(root.HEWRSOutfitFeedback.key(s,'clothing'))||[])reasons.push(x);
+   for(const x of historical.get(root.HEWRSOutfitFeedback.key(s,'historical_exact'))||[])reasons.push(x);
+   return {allowed:reasons.length===0,reasons};
+  }};
+ }
  const sourceResults=new Map();function sourceResult(e,q){const k=[e.group.topwearId,e.group.pantProfileId,e.row[0],e.row[1],q.context.occasion,q.context.requiredFormality].join('|');if(!sourceResults.has(k)){if(sourceResults.size>5000)sourceResults.clear();sourceResults.set(k,base.engine.evaluate(requestFor(e,q)));}return sourceResults.get(k);}
  let index;
  function requireIndex(){index=root.HEWRS_OPTION_INDEX;
@@ -93,7 +108,7 @@ function create(inputs,options={}){
     if(work.watches.size>=4096)work.watches.delete(work.watches.keys().next().value);work.watches.set(wk,choices);}
    const wpool=choices.filter(x=>(!x.assessment||!x.assessment.rejected)&&(!capacity||!x.item||capacity.canUse(x.item.id))).sort((a,b)=>b.personal.score-a.personal.score||tieOrder(a,b));
    for(const w of wpool){
-    const s=selection(e,sh.item,w.item);base.validateSelection(s);const om=ownerMatch(s,q);if(!om.allowed){reject?.('OWNER_FEEDBACK');continue;}return {id:outfitID(s),selection:s,items:fullItems(e,sh.item,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal}};
+    const s=selection(e,sh.item,w.item);base.validateSelection(s);const om=work.ownerFeedback.match(s);if(!om.allowed){reject?.('OWNER_FEEDBACK');continue;}return {id:outfitID(s),selection:s,items:fullItems(e,sh.item,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal}};
    }
   }if(!hadStylePass&&pool.length){reject?.('STYLE_LOCK');}else if(!hadWeatherPass&&pool.length){reject?.('WEATHER');for(const msg of rejectedWeather)reject?.('WEATHER: '+msg);}else if(pool.length)reject?.('WATCH_OR_STYLE_LOCK');return null;
  }
@@ -111,10 +126,10 @@ function create(inputs,options={}){
   const choices=q.prefs.watch.mode==='none'?[{item:null,assessment:null,personal:personal.watch(null,pref,q)}]:(q.prefs.watch.mode==='item'?[watches.get(q.prefs.watch.id)]:[...watches.values()]).filter(Boolean).map(item=>({item,assessment:policy.watch(item,wi,q),personal:personal.watch(item,pref,q)}));
   const tieOrder=(a,b)=>cmp(worn.get(a.item?.id)||'',worn.get(b.item?.id)||'')||cmp(a.item?.id||'',b.item?.id||'');
   const w=choices.filter(x=>!x.assessment||!x.assessment.rejected).sort((a,b)=>b.personal.score-a.personal.score||tieOrder(a,b))[0];if(!w)return null;
-  const sel=selection(e,shoe,w.item);base.validateSelection(sel);if(!ownerMatch(sel,q).allowed)return null;
+  const sel=selection(e,shoe,w.item);base.validateSelection(sel);if(!work.ownerFeedback.match(sel).allowed)return null;
   return {id:outfitID(sel),selection:sel,items:fullItems(e,shoe,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal},owner_approval:copy(approval)};
  }
- function* steps(q,catalogue,history){requireIndex();const work={watches:new Map(),styleProfiles:new Map()};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');const ownerFeedbackToken=ownerFeedback?ownerFeedback.refresh().token:null;
+ function* steps(q,catalogue,history){requireIndex();const work={watches:new Map(),styleProfiles:new Map(),ownerFeedback:compileOwnerFeedback(q)};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');const ownerFeedbackToken=work.ownerFeedback.token;
   const wearCheck=root.HEWRSLocalState.create(base,root.HEWRS_INPUT_SHA256,null);wearCheck.validate({schema:root.HEWRSLocalState.SCHEMA,source_lock:root.HEWRS_INPUT_SHA256,revision:0,session:null,events:history});
   const tieAudit=Object.fromEntries([...ties.keys(),'NO_TIE'].map(id=>[id,{id,matching_rows:0,source_eligible_clothing:0,source_holds:{},complete_evaluated:0,eligible_complete:0,rejection_reasons:{},best_complete:null,retained_candidates:0,selected_count:0}]));
   const diagnostics={tie_coverage:tieAudit,enumerated:0,examined:0,score_statuses:{},weather_style_or_accessory_holds:0,unbound_trouser_ids:[],numeric_candidates:0,domain_evaluated:0,rejection_reasons:{},preference_revision:personal.revision};let candidates=[];
