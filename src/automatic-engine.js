@@ -21,14 +21,16 @@ function create(inputs,options={}){
   const fastKeys=s=>{const a=[s.suitId||s.blazerId||'SHIRT_ONLY',s.pantId||'SUIT_TROUSERS',s.shirtId,s.state],c=a.join('|'),o=c+'|'+s.shoeId,h=o+'|'+(s.watchId||'NO_WATCH');return {clothing:c,outfit:o,historical:h};};
   for(const e of snap?.active||[]){if(e.occasion!=='all'&&e.occasion!==occ)continue;const k=fastKeys(e.selection);add(e.scope==='clothing'?clothing:outfit,k[e.scope],{type:'hide',id:e.id,reason:e.reason,scope:e.scope,occasion:e.occasion});}
   for(const row of snap?.historical||[]){if(row.vote!=='neither'||root.HEWRSOutfitFeedback.occasion(row.context.occasion)!==occ)continue;for(const x of [row.a,row.b])add(historical,fastKeys(x).historical,{type:'historical_neither',id:row.id,reason:null,scope:'historical_exact',occasion:occ,partition:row.partition});}
-  return {token:snap?.token||null,match(s){
+  function preWatch(s){
    const reasons=[...ownerStaticReasons(s,q)],k=fastKeys(s);
    if(s.suitId==='S01'&&s.shirtId==='DS029'&&s.state==='T024')reasons.push({type:'owner_core',id:'S01_DS029_T024',reason:null,scope:'clothing',occasion:'all'});
    for(const x of outfit.get(k.outfit)||[])reasons.push(x);
    for(const x of clothing.get(k.clothing)||[])reasons.push(x);
-   for(const x of historical.get(k.historical)||[])reasons.push(x);
    return {allowed:reasons.length===0,reasons};
-  }};
+  }
+  function watchSpecific(s){const rows=historical.get(fastKeys(s).historical)||[];return {allowed:rows.length===0,reasons:rows};}
+  function match(s){const a=preWatch(s);if(!a.allowed)return a;const b=watchSpecific(s);return b.allowed?a:{allowed:false,reasons:b.reasons};}
+  return {token:snap?.token||null,preWatch,watchSpecific,match};
  }
  const sourceResults=new Map();function sourceResult(e,q){const k=[e.group.topwearId,e.group.pantProfileId,e.row[0],e.row[1],q.context.occasion,q.context.requiredFormality].join('|');if(!sourceResults.has(k)){if(sourceResults.size>5000)sourceResults.clear();sourceResults.set(k,base.engine.evaluate(requestFor(e,q)));}return sourceResults.get(k);}
  let index;
@@ -99,6 +101,7 @@ function create(inputs,options={}){
    const sty=root.HEWRSEnsembleCompletion.classifyStyle(features.get(e.group.topwearId),features.get(e.row[0]),e.row[1]==='NO_TIE'?null:features.get(e.row[1]),r,evidence(sh.item,null));
    if(sty.authorityGate!=='pass'||q.executiveStyle!=='AUTO'&&q.executiveStyle!==sty.classification)continue;hadStylePass=true;
    const wi={...top,shoes:sh.item},env=root.HEWRSWeather.assess(wi,q.environment,q.context);if(!env.eligible){for(const msg of env.reasons||[])rejectedWeather.add(msg);if(!env.reasons?.length)rejectedWeather.add('Weather-domain score is below the existing minimum');continue;}hadWeatherPass=true;
+   const beforeWatch=selection(e,sh.item,null),ownerPre=work.ownerFeedback.preWatch(beforeWatch);if(!ownerPre.allowed){reject?.('OWNER_FEEDBACK');continue;}
    // Original watch functions depend on topwear, tie and shoe metadata, plus
    // the preference model's busy-pattern and warm-palette flags. Shirt/pant
    // identities are not watch inputs. The full IDs below safely over-key the
@@ -109,7 +112,7 @@ function create(inputs,options={}){
     if(work.watches.size>=4096)work.watches.delete(work.watches.keys().next().value);work.watches.set(wk,choices);}
    const wpool=choices.filter(x=>(!x.assessment||!x.assessment.rejected)&&(!capacity||!x.item||capacity.canUse(x.item.id))).sort((a,b)=>b.personal.score-a.personal.score||tieOrder(a,b));
    for(const w of wpool){
-    const s=selection(e,sh.item,w.item);base.validateSelection(s);const om=work.ownerFeedback.match(s);if(!om.allowed){reject?.('OWNER_FEEDBACK');continue;}return {id:outfitID(s),selection:s,items:fullItems(e,sh.item,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal}};
+    const s=selection(e,sh.item,w.item);base.validateSelection(s);const om=work.ownerFeedback.watchSpecific(s);if(!om.allowed){reject?.('OWNER_FEEDBACK');continue;}return {id:outfitID(s),selection:s,items:fullItems(e,sh.item,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal}};
    }
   }if(!hadStylePass&&pool.length){reject?.('STYLE_LOCK');}else if(!hadWeatherPass&&pool.length){reject?.('WEATHER');for(const msg of rejectedWeather)reject?.('WEATHER: '+msg);}else if(pool.length)reject?.('WATCH_OR_STYLE_LOCK');return null;
  }
@@ -124,10 +127,11 @@ function create(inputs,options={}){
   const sty=root.HEWRSEnsembleCompletion.classifyStyle(features.get(e.group.topwearId),features.get(e.row[0]),e.row[1]==='NO_TIE'?null:features.get(e.row[1]),r,evidence(shoe,null));
   if(sty.authorityGate!=='pass'||q.executiveStyle!=='AUTO'&&q.executiveStyle!==sty.classification)return null;
   const wi={...top,shoes:shoe},env=root.HEWRSWeather.assess(wi,q.environment,q.context);if(!env.eligible)return null;
+  if(!work.ownerFeedback.preWatch(selection(e,shoe,null)).allowed)return null;
   const choices=q.prefs.watch.mode==='none'?[{item:null,assessment:null,personal:personal.watch(null,pref,q)}]:(q.prefs.watch.mode==='item'?[watches.get(q.prefs.watch.id)]:[...watches.values()]).filter(Boolean).map(item=>({item,assessment:policy.watch(item,wi,q),personal:personal.watch(item,pref,q)}));
   const tieOrder=(a,b)=>cmp(worn.get(a.item?.id)||'',worn.get(b.item?.id)||'')||cmp(a.item?.id||'',b.item?.id||'');
   const w=choices.filter(x=>!x.assessment||!x.assessment.rejected).sort((a,b)=>b.personal.score-a.personal.score||tieOrder(a,b))[0];if(!w)return null;
-  const sel=selection(e,shoe,w.item);base.validateSelection(sel);if(!work.ownerFeedback.match(sel).allowed)return null;
+  const sel=selection(e,shoe,w.item);base.validateSelection(sel);if(!work.ownerFeedback.watchSpecific(sel).allowed)return null;
   return {id:outfitID(sel),selection:sel,items:fullItems(e,shoe,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal},owner_approval:copy(approval)};
  }
  function* steps(q,catalogue,history){requireIndex();const work={watches:new Map(),styleProfiles:new Map(),ownerFeedback:compileOwnerFeedback(q)};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');const ownerFeedbackToken=work.ownerFeedback.token;
