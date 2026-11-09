@@ -104,7 +104,7 @@ const preferencePanel=root.HEWRSPreferencePanel.create({connection,learning,open
 function localToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function icon(name){const n=document.createElementNS('http://www.w3.org/2000/svg','svg');for(const[k,v]of Object.entries({class:'fx-icon',viewBox:'0 0 24 24',fill:'none',stroke:'currentColor','stroke-width':'1.5','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true'}))n.setAttribute(k,v);const u=document.createElementNS(n.namespaceURI,'use');u.setAttribute('href','#fx-icon-'+name);n.append(u);return n;}
 function ids(s){if(!s)return 'No outfit selected';return (s.shirtOnly?'Shirt only · '+s.pantId:s.blazerId?s.blazerId+' · '+s.pantId:s.suitId)+' · '+s.shirtId+' · '+(s.state==='NO_TIE'?'No Tie':s.state);}
-function status(text,error=false){$('status').textContent=text;$('home-notice').textContent=text;$('home-notice').dataset.error=String(error);}
+function status(text,error=false){const shown=homePreferenceStorageWarning&&!String(text).includes(homePreferenceStorageWarning)?String(text)+' '+homePreferenceStorageWarning:String(text);$('status').textContent=shown;$('home-notice').textContent=shown;$('home-notice').dataset.error=String(error||!!homePreferenceStorageWarning);}
 function errorText(error){return error instanceof Error?error.message:String(error);}
 function setMode(v){need(['anchor','engine'].includes(v),'Unknown selection workflow');mode=v;for(const k of ['anchor','engine'])$('mode-'+k).setAttribute('aria-pressed',String(v===k));}
 function updateHome(){
