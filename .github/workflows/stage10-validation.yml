@@ -54,6 +54,12 @@ jobs:
           console.log(JSON.stringify({status:'PASS',approvals:b.approvals.length,owner_rules:true,saved_hide_exact:true}));
           NODE
 
+      - name: Bounded Stage 10 end-to-end generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/stage10-bounded-generation.cjs
+
       - name: Build from current sources
         shell: bash
         run: |
