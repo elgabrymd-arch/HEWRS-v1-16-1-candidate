@@ -18,14 +18,15 @@ function create(inputs,options={}){
   const occ=root.HEWRSOutfitFeedback?.occasion?.(q.context.occasion)||q.context.occasion,snap=ownerFeedback?ownerFeedback.refresh():null;
   const outfit=new Map(),clothing=new Map(),historical=new Map();
   const add=(map,k,v)=>{if(!map.has(k))map.set(k,[]);map.get(k).push(v);};
-  for(const e of snap?.active||[]){if(e.occasion!=='all'&&e.occasion!==occ)continue;const k=root.HEWRSOutfitFeedback.key(e.selection,e.scope);add(e.scope==='clothing'?clothing:outfit,k,{type:'hide',id:e.id,reason:e.reason,scope:e.scope,occasion:e.occasion});}
-  for(const row of snap?.historical||[]){if(row.vote!=='neither'||root.HEWRSOutfitFeedback.occasion(row.context.occasion)!==occ)continue;for(const x of [row.a,row.b])add(historical,root.HEWRSOutfitFeedback.key(x,'historical_exact'),{type:'historical_neither',id:row.id,reason:null,scope:'historical_exact',occasion:occ,partition:row.partition});}
+  const fastKeys=s=>{const a=[s.suitId||s.blazerId||'SHIRT_ONLY',s.pantId||'SUIT_TROUSERS',s.shirtId,s.state],c=a.join('|'),o=c+'|'+s.shoeId,h=o+'|'+(s.watchId||'NO_WATCH');return {clothing:c,outfit:o,historical:h};};
+  for(const e of snap?.active||[]){if(e.occasion!=='all'&&e.occasion!==occ)continue;const k=fastKeys(e.selection);add(e.scope==='clothing'?clothing:outfit,k[e.scope],{type:'hide',id:e.id,reason:e.reason,scope:e.scope,occasion:e.occasion});}
+  for(const row of snap?.historical||[]){if(row.vote!=='neither'||root.HEWRSOutfitFeedback.occasion(row.context.occasion)!==occ)continue;for(const x of [row.a,row.b])add(historical,fastKeys(x).historical,{type:'historical_neither',id:row.id,reason:null,scope:'historical_exact',occasion:occ,partition:row.partition});}
   return {token:snap?.token||null,match(s){
-   const reasons=[...ownerStaticReasons(s,q)];
+   const reasons=[...ownerStaticReasons(s,q)],k=fastKeys(s);
    if(s.suitId==='S01'&&s.shirtId==='DS029'&&s.state==='T024')reasons.push({type:'owner_core',id:'S01_DS029_T024',reason:null,scope:'clothing',occasion:'all'});
-   for(const x of outfit.get(root.HEWRSOutfitFeedback.key(s,'outfit'))||[])reasons.push(x);
-   for(const x of clothing.get(root.HEWRSOutfitFeedback.key(s,'clothing'))||[])reasons.push(x);
-   for(const x of historical.get(root.HEWRSOutfitFeedback.key(s,'historical_exact'))||[])reasons.push(x);
+   for(const x of outfit.get(k.outfit)||[])reasons.push(x);
+   for(const x of clothing.get(k.clothing)||[])reasons.push(x);
+   for(const x of historical.get(k.historical)||[])reasons.push(x);
    return {allowed:reasons.length===0,reasons};
   }};
  }
