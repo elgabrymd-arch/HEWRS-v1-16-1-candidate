@@ -20,11 +20,11 @@ def main():
   print(('PASS ' if value else 'FAIL ')+name,flush=True)
   assert value,name
  def pixel(p):
-  return hashlib.sha256(base64.b64decode(p.evaluate("document.getElementById('avatar').toDataURL('image/png')").split(',')[1])).hexdigest()
+  return hashlib.sha256(base64.b64decode(p.evaluate("()=>document.getElementById('avatar').toDataURL('image/png')").split(',')[1])).hexdigest()
  def openpage(ctx,path):
   p=ctx.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)))
   p.goto(origin+path,wait_until='domcontentloaded')
-  p.wait_for_function('globalThis.HEWRS_READY===true && !!globalThis.HEWRSReviewedIntegration')
+  p.wait_for_function('()=>globalThis.HEWRS_READY===true && !!globalThis.HEWRSReviewedIntegration')
   return p
  def fixture_context(browser):
   c=browser.new_context(viewport={'width':390,'height':844})
@@ -33,7 +33,7 @@ def main():
    else: external.append(r.request.url);r.abort()
   c.route('**/*',route);return c
  def run(p,style):
-  p.evaluate("HEWRSApp.showPage('home')")
+  p.evaluate("()=>HEWRSApp.showPage('home')")
   p.click('#style-button');p.select_option('#style-select',style);p.get_by_role('button',name='Apply',exact=True).click()
   p.click('#generate-options')
   p.wait_for_function("style=>{const s=HEWRSApp.state();return !s.busy&&s.page==='outfits'&&s.request?.executiveStyle===style&&Array.isArray(s.report?.options);}",arg=style,timeout=360000)
@@ -58,15 +58,15 @@ def main():
    p.click('[data-page="home"]');p.click('#pref-tie');p.locator('[data-item-id="NO_TIE"]').click();p.click('#picker-apply')
    stored=p.evaluate('()=>Object.fromEntries(Object.entries(localStorage))')
    state=p.evaluate('()=>({wear:HEWRSApp.store.snapshot(),favorites:HEWRSApp.favorites.snapshot(),preferences:HEWRSApp.ui.snapshot()})')
-   p.goto(origin+'/',wait_until='domcontentloaded');p.wait_for_function('globalThis.HEWRS_READY===true')
+   p.goto(origin+'/',wait_until='domcontentloaded');p.wait_for_function('()=>globalThis.HEWRS_READY===true')
    ck('Same-origin handoff preserves all saved storage bytes',p.evaluate('()=>Object.fromEntries(Object.entries(localStorage))')==stored)
    ck('Favorite IDs, synthetic wear ledger and NO TIE preference preserved',p.evaluate('()=>({wear:HEWRSApp.store.snapshot(),favorites:HEWRSApp.favorites.snapshot(),preferences:HEWRSApp.ui.snapshot()})')==state)
-   ck('Restored NO TIE remains distinct from Engine Choice',p.evaluate("HEWRSApp.ui.snapshot().tie.mode==='none'"))
+   ck('Restored NO TIE remains distinct from Engine Choice',p.evaluate("()=>HEWRSApp.ui.snapshot().tie.mode==='none'"))
    p.click('[data-page="rotation"]');p.click('#favorites-button');p.locator('[data-favorite-open]').first.click()
-   p.wait_for_function("document.getElementById('avatar').dataset.status==='ready'")
-   ck('Saved favorite opens with unchanged exact selection',p.evaluate('HEWRSApp.state().selection')==s)
-   p.goto(origin+'/app.html',wait_until='domcontentloaded');p.wait_for_function('globalThis.HEWRS_READY===true')
-   ck('Alternate app.html also loads accepted Standard',p.evaluate("HEWRSApp.version==='HEWRS_COMBINED_V1_25_0_R1_STAGE10' && !!HEWRSApp.ownerFeedback"))
+   p.wait_for_function("()=>document.getElementById('avatar').dataset.status==='ready' && HEWRSApp.state().page==='outfits' && !document.getElementById('fx-sheet').open")
+   ck('Saved favorite opens with unchanged exact selection',p.evaluate('()=>HEWRSApp.state().selection')==s)
+   p.goto(origin+'/app.html',wait_until='domcontentloaded');p.wait_for_function('()=>globalThis.HEWRS_READY===true')
+   ck('Alternate app.html also loads accepted Standard',p.evaluate("()=>HEWRSApp.version==='HEWRS_COMBINED_V1_25_0_R1_STAGE10' && !!HEWRSApp.ownerFeedback"))
    ck('No real-provider request or external transfer',not external)
    ck('No JavaScript page errors',not errors)
    ctx.close();b.close()
