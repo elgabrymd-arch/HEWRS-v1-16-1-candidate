@@ -1,0 +1,63 @@
+name: Stage 11 MODERN policy — isolated evaluation
+on:
+  push:
+    branches:
+      - feature/stage11-modern-style-policy-20261113
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  classify-and-generate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and regression syntax
+        run: |
+          node --check vendor/ensemble-completion.js
+          node --check tests/stage11-modern-policy.cjs
+      - name: Fetch exact current main ref for protected file comparison
+        run: git fetch --depth=1 origin main:refs/remotes/origin/main
+      - name: Verify wardrobe source identity is retained
+        run: |
+          git diff --exit-code origin/main -- data/ src/automatic-engine.js src/option-set-policy.js src/style-occasion-policy.js src/legacy-accessories.js src/owner-feedback-integration.js 2>/dev/null || {
+            echo 'Protected source changed unexpectedly'; exit 1;
+          }
+      - name: Run six-context generation and classifier regression
+        run: node tests/stage11-modern-policy.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install isolated browser tests
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Build isolated Stage 11 MODERN integration overlay
+        run: python tools/package_stage11_modern_policy.py
+      - name: Check modified Stage 10 runtime syntax and provenance
+        run: |
+          node --check "$(python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('dist/stage11-modern-policy/MANIFEST.json').read_text())
+          assert obj['untouched_embedded_modules']==105
+          assert obj['owner_feedback_preserved_exactly']
+          print(obj['replacement_runtime'])
+          PY
+          )"
+      - name: Re-test original Home preference persistence on revised Stage 10 app
+        env:
+          HEWRS_TEST_PAGE: stage11-modern-test.html
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Verify MODERN Work Dinner Weekend in real Stage 10 browser
+        run: python tests/stage11-modern-integration-browser.py
+      - name: Upload tested Stage 11 overlay without publishing
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_STAGE11_MODERN_STYLE_POLICY_CANDIDATE
+          path: dist/stage11-modern-policy/
+          if-no-files-found: error
+          retention-days: 14

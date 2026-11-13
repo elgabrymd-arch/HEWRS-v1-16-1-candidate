@@ -156,10 +156,16 @@
   if(a.shoeStyle==='sneaker')modern.push({id:'sneakers',source:a.evidence||null,controlled:a.controlled!==false});
   if(a.shoeStyle==='sneaker'&&!a.evidence?.source_id)return {status:'unknown',classification:null,authorityGate:'unknown',outfit_style_score:null,reason:'Accessory style claims need provenance.'};
   const controlled=modern.every(x=>x.controlled),n=modern.length;
-  const style=top.classicFoundation===true&&controlled&&n===0?'CLASSIC':top.classicFoundation===true&&controlled&&n>=1&&n<=2?'HYBRID':controlled&&(n>=3||top.classicFoundation===false)?'MODERN':null;
+  // Stage 11 owner-directed MODERN breadth: a deliberate sneaker/relaxed-tailoring
+  // intervention paired with another recorded element qualifies as contemporary
+  // tailoring. Two modest elements alone (e.g. lustre + open collar) stay HYBRID.
+  // No watch, colour/score bonus, sneaker substitution or changed hard hold.
+  const substantial=modern.some(x=>x.id==='sneakers'||x.id==='relaxed_tailoring');
+  const qualifiesModern=controlled&&(top.classicFoundation===false||n>=3||(n>=2&&substantial));
+  const style=qualifiesModern?'MODERN':top.classicFoundation===true&&controlled&&n===0?'CLASSIC':top.classicFoundation===true&&controlled&&n>=1&&n<=2?'HYBRID':null;
   return {status:style?'proposed_classification':'unknown',classification:style,authorityGate:style?'pass':'unknown',classic_foundation:top.classicFoundation,
    modern_interventions:modern,modern_intervention_count:n,outfit_style_score:null,compatibility_adjustment:0,
-   rule:'Hybrid requires a classic foundation and one or two controlled clothing/footwear elements; watches never determine style.',classification_revision:'hewrs.watch-independent-style.v1_24_0',watch_contribution:0,evidence_status:'new_outfit_classification_not_frozen_blazer_affinity'};
+   rule:'Modern: three controlled interventions, or two including registered sneakers/relaxed tailoring; nonclassic foundation also qualifies. Hybrid: remaining one or two controlled elements; watches never determine style.',classification_revision:'hewrs.watch-independent-style.v1_25_1',watch_contribution:0,evidence_status:'new_outfit_classification_not_frozen_blazer_affinity'};
  }
  function contextCheck(context,top,shirt,tie,facts){
   const q=context||{},checks=[],f=facts||{};
