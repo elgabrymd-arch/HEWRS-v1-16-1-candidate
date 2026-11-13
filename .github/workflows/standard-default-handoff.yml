@@ -1,0 +1,116 @@
+name: Standard default handoff — build and browser verification
+on:
+  push:
+    branches: [release/standard-default-handoff-20261113, main]
+    paths:
+      - .github/workflows/standard-default-handoff.yml
+      - tools/finalize_standard_handoff.py
+      - tests/standard-handoff-browser.py
+      - release/standard/**
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: standard-default-handoff-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Retain exact accepted comparison reference
+        run: git fetch --depth=1 origin 5e071d9be76cbcba0f8a1d1c60720bb9a57feab1
+      - name: Prepare source alignment or verify existing frozen build
+        run: |
+          if test -f STANDARD_RELEASE.json; then
+            python tools/build.py
+          else
+            python tools/finalize_standard_handoff.py
+          fi
+      - name: Verify exact runtime, launch page, modules and dependencies
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          r=Path('.')
+          m=json.loads((r/'STANDARD_RELEASE.json').read_text())
+          digest=lambda p:hashlib.sha256((r/p).read_bytes()).hexdigest()
+          assert m['accepted_commit']=='5e071d9be76cbcba0f8a1d1c60720bb9a57feab1'
+          assert digest(m['runtime'])==m['runtime_sha256']
+          for p in ('index.html','app.html','stage10-integration.html'): assert digest(p)==m['entrypoint_sha256'],p
+          assert len(m['modules'])==107
+          for p,h in m['modules'].items(): assert digest(p)==h,p
+          for p,h in m['integration_resources'].items(): assert digest(p)==h,p
+          assert len(m['integration_resources'])>=14
+          print('PASS exact accepted runtime/HTML, 107 source modules and all integration resources')
+          PY
+          git diff --exit-code 5e071d9be76cbcba0f8a1d1c60720bb9a57feab1 -- assets assemblies data ui vendor runtime stage10-integration.html src/local-state.js src/favorites-state.js src/outfit-learning.js src/atomic-renderer.js src/style-occasion-policy.js src/legacy-accessories.js src/weather-context.js src/option-set-policy.js feedback-candidate hewrs-stage10-integration-panel.js
+          node --check src/application.js
+          node --check src/automatic-engine.js
+          node --check src/hybrid-stylist.js
+          node --check src/owner-feedback.js
+          node --check src/owner-feedback-integration.js
+      - name: Install isolated test browser
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Verify NO TIE persistence on promoted main page
+        env:
+          HEWRS_TEST_PAGE: index.html
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Verify address handoff, generation and native-avatar parity
+        run: python tests/standard-handoff-browser.py
+      - name: Verify deterministic rebuild and refusal of unapproved runtime
+        run: |
+          python - <<'PY'
+          import hashlib,subprocess
+          from pathlib import Path
+          paths=['index.html','app.html','STARTUP_RESOURCES.json','runtime/hewrs-bbbcec41d08f91585f4a.js']
+          snap=lambda:{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in paths}
+          before=snap();subprocess.run(['python','tools/build.py'],check=True);assert snap()==before
+          source=Path('src/style-occasion-policy.js');original=source.read_bytes()
+          try:
+            source.write_bytes(original+b'\n/* isolated unapproved source fixture */\n')
+            failed=subprocess.run(['python','tools/build.py'],capture_output=True,text=True)
+            assert failed.returncode!=0 and 'accepted baseline' in failed.stderr
+            assert snap()==before
+          finally: source.write_bytes(original)
+          subprocess.run(['python','tools/build.py'],check=True);assert snap()==before
+          print('PASS repeat build identical; unapproved runtime rejected without overwriting launch files')
+          PY
+      - name: Package handoff evidence and exact changed files
+        run: |
+          python - <<'PY'
+          import hashlib,json,shutil
+          from pathlib import Path
+          paths=['index.html','app.html','app.template.html','STARTUP_RESOURCES.json','STANDARD_RELEASE.json','tools/build.py','src/owner-feedback.js','src/owner-feedback-integration.js','src/automatic-engine.js','src/hybrid-stylist.js','src/application.js','release/standard/SOURCE_ALIGNMENT.json','release/standard/HANDOFF.md','evidence/standard_handoff/RESULT.json','evidence/standard_handoff/default-modern-390x844.png']
+          out=Path('dist/standard-handoff');out.mkdir(parents=True,exist_ok=True);hashes={}
+          for name in paths:
+            p=Path(name);q=out/name;q.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,q);hashes[name]=hashlib.sha256(p.read_bytes()).hexdigest()
+          (out/'HANDOFF_SHA256.json').write_text(json.dumps(hashes,indent=2)+'\n')
+          PY
+      - name: Commit only verified generated files to release branch, never main
+        if: github.ref == 'refs/heads/release/standard-default-handoff-20261113'
+        run: |
+          git add index.html app.html app.template.html STARTUP_RESOURCES.json STANDARD_RELEASE.json tools/build.py src/owner-feedback.js src/owner-feedback-integration.js src/automatic-engine.js src/hybrid-stylist.js src/application.js release/standard/SOURCE_ALIGNMENT.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Materialize verified accepted Standard default handoff [skip ci]'
+            git push origin HEAD:release/standard-default-handoff-20261113
+          fi
+          git rev-parse HEAD > dist/standard-handoff/VERIFIED_BRANCH_COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: HEWRS_STANDARD_DEFAULT_HANDOFF_VERIFIED
+          path: dist/standard-handoff/
+          if-no-files-found: error
+          retention-days: 30
