@@ -1,0 +1,28 @@
+name: Stage 11 MODERN policy — isolated evaluation
+on:
+  push:
+    branches:
+      - feature/stage11-modern-style-policy-20261113
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  classify-and-generate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and regression syntax
+        run: |
+          node --check vendor/ensemble-completion.js
+          node --check tests/stage11-modern-policy.cjs
+      - name: Verify wardrobe source identity is retained
+        run: |
+          git diff --exit-code origin/main -- data/ src/automatic-engine.js src/option-set-policy.js src/style-occasion-policy.js src/legacy-accessories.js src/owner-feedback-integration.js 2>/dev/null || {
+            echo 'Protected source changed unexpectedly'; exit 1;
+          }
+      - name: Run six-context generation and classifier regression
+        run: node tests/stage11-modern-policy.cjs
