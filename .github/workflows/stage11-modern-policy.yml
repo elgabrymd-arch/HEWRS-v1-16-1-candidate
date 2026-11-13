@@ -19,6 +19,8 @@ jobs:
         run: |
           node --check vendor/ensemble-completion.js
           node --check tests/stage11-modern-policy.cjs
+      - name: Fetch exact current main ref for protected file comparison
+        run: git fetch --depth=1 origin main:refs/remotes/origin/main
       - name: Verify wardrobe source identity is retained
         run: |
           git diff --exit-code origin/main -- data/ src/automatic-engine.js src/option-set-policy.js src/style-occasion-policy.js src/legacy-accessories.js src/owner-feedback-integration.js 2>/dev/null || {
