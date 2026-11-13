@@ -3,9 +3,10 @@
   "startup_scripts": [
     "src/runtime-loader.js",
     "data/inputs.js",
-    "runtime/hewrs-e4a15a43288d24227f9a.js"
+    "runtime/hewrs-bbbcec41d08f91585f4a.js"
   ],
   "bundle_sources": [
+    "src/owner-feedback.js",
     "src/style-occasion-policy.js",
     "data/owner-source-corrections.js",
     "src/source-corrections.js",
@@ -98,6 +99,7 @@
     "data/preference-followup.js",
     "src/researched-preference.js",
     "src/hybrid-stylist.js",
+    "src/owner-feedback-integration.js",
     "data/stylist-service-config.js",
     "src/visual-stylist-client.js",
     "src/facelift-state.js",
@@ -116,6 +118,7 @@
   "script_order": [
     "src/runtime-loader.js",
     "data/inputs.js",
+    "src/owner-feedback.js",
     "src/style-occasion-policy.js",
     "data/owner-source-corrections.js",
     "src/source-corrections.js",
@@ -209,6 +212,7 @@
     "data/preference-followup.js",
     "src/researched-preference.js",
     "src/hybrid-stylist.js",
+    "src/owner-feedback-integration.js",
     "data/stylist-service-config.js",
     "src/visual-stylist-client.js",
     "src/facelift-state.js",
@@ -223,8 +227,8 @@
     "src/preference-panel.js",
     "src/application.js"
   ],
-  "bytes_if_current_sources_were_unbundled": 12263173,
-  "bytes_at_home": 6199190,
+  "bytes_if_current_sources_were_unbundled": 12299621,
+  "bytes_at_home": 6235730,
   "resource_integrity": {
     "src/runtime-loader.js": {
       "bytes": 3280,
@@ -234,9 +238,9 @@
       "bytes": 4465381,
       "sha256": "d4060df8ec8f400f62e2a160b6798ca5f15b940d030c9b63e901b58e0344c3fb"
     },
-    "runtime/hewrs-e4a15a43288d24227f9a.js": {
-      "bytes": 1730529,
-      "sha256": "e4a15a43288d24227f9addb7a331fb224a2de1d842186d205dfbb0764cdc693b"
+    "runtime/hewrs-bbbcec41d08f91585f4a.js": {
+      "bytes": 1767069,
+      "sha256": "bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150"
     },
     "data/option-index.js": {
       "bytes": 6072082,
@@ -246,5 +250,22 @@
       "bytes": 27379,
       "sha256": "f45ceea1448218fbc0feac7b92b05f18ac247045193d316f879af181103ecf34"
     }
+  },
+  "accepted_standard_commit": "5e071d9be76cbcba0f8a1d1c60720bb9a57feab1",
+  "integration_resources": {
+    "src/application.css": "f45ceea1448218fbc0feac7b92b05f18ac247045193d316f879af181103ecf34",
+    "feedback-candidate/feedback.css": "fdc4db1521184cd79866e64b50e224f9655bd5823692d803a9171bbcd29ed1f5",
+    "feedback-candidate/reviewed/native-reviewed-panel.css": "a50f347fbe67254dfa39216700034f07a05bf700ad4fae0dbd7f9b8ea953f6ee",
+    "src/runtime-loader.js": "0df23483645700982dfc34a8bfda70cf6a44d09b058779adad7a2df240ed7f1a",
+    "data/inputs.js": "d4060df8ec8f400f62e2a160b6798ca5f15b940d030c9b63e901b58e0344c3fb",
+    "runtime/hewrs-bbbcec41d08f91585f4a.js": "bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150",
+    "feedback-candidate/reviewed/rebuild-core.js": "b2ce0aa56cf277a45ac6e16bc95aacbdbefd3a5916e21a71940e1838e4db7ad8",
+    "hewrs-pipeline-08c53932a2495e05.js": "08c53932a2495e05f8ccc32fa03fcf4e02a8bd7ce6daa08db1ffbb9926a6d66d",
+    "hewrs-stage10-integration-panel.js": "8ec9755263949218f69e2095b36c3fbeab56ac10c7c24c6449a882501c6175a4",
+    "feedback-candidate/reviewed/image-assessment.js": "0c5d2b6ca68b7726b2b6404808d7702c8d19b05a69774be3f086f017f7ca67a2",
+    "feedback-candidate/reviewed/image-assessment-store.js": "28cd3b7caba3b5d3e5c70efbc34ad20125aac203ef6c5e8102252423ebfcce23",
+    "hewrs-batch10-image-panel-f200023e7632fa28.js": "f200023e7632fa28ea1ef3cacc4b4974d751ae8efecf9146eeabb9ec14c7885c",
+    "feedback-candidate/reviewed/automatic-image-client.js": "1b12eb5a5c7aef7cec1b14dd057ec98318eebb20798079659ec77fef6093a7aa",
+    "feedback-candidate/reviewed/automatic-image-panel.js": "43dc758765b9a69d73a9e2405d4c07d14f1d4085cc17e8824a41a9ca9c76b796"
   }
 }
