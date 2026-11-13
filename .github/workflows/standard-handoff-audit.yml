@@ -1,0 +1,51 @@
+name: Standard handoff — read-only source audit
+on:
+  push:
+    branches: [release/standard-default-handoff-20261113]
+    paths: [.github/workflows/standard-handoff-audit.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit exact accepted bundle and collect source snapshot
+        run: |
+          python - <<'PY'
+          import hashlib,json,re,subprocess,zipfile
+          from pathlib import Path
+          R=Path('.')
+          runtime=R/'runtime/hewrs-bbbcec41d08f91585f4a.js'
+          raw=runtime.read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150'
+          html=(R/'stage10-integration.html').read_bytes()
+          assert hashlib.sha256(html).hexdigest()=='e5a4e23588ffef53c8668de5afd181e87f90cb1efcbec5442a341a1cd35cceb8'
+          code=raw.decode('utf-8'); marks=list(re.finditer(r'\n/\* SOURCE: ([^*]+) \*/\n',code)); rows=[]; reconstructed=code[:marks[0].start()]
+          for i,m in enumerate(marks):
+            end=marks[i+1].start() if i+1<len(marks) else len(code)
+            section=code[m.end():end]; assert section.endswith('\n;\n')
+            source=section[:-3]; path=m.group(1); b=source.encode('utf-8')
+            disk=(R/path).read_bytes() if (R/path).is_file() else None
+            sha=lambda x: hashlib.sha256(x).hexdigest() if x is not None else None
+            rows.append({'path':path,'matches':disk==b,'source_exists':disk is not None,'embedded_sha256':sha(b),'disk_sha256':sha(disk),'embedded_bytes':len(b)})
+            reconstructed+=m.group(0)+source+'\n;\n'
+          assert reconstructed.encode('utf-8')==raw and len(rows)==107
+          out=R/'handoff-audit'; out.mkdir()
+          report={'accepted_commit':'5e071d9be76cbcba0f8a1d1c60720bb9a57feab1','runtime':str(runtime),'module_count':len(rows),'source_mismatches':[x for x in rows if not x['matches']],'modules':rows}
+          (out/'audit.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in report.items() if k!='modules'},indent=2))
+          files=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          with zipfile.ZipFile(out/'source-tree.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for f in files:
+              p=Path(f)
+              if not f or not p.is_file(): continue
+              if (f.startswith(('src/','vendor/','data/','tools/','tests/','feedback-candidate/reviewed/','.github/')) and p.suffix in ('.js','.mjs','.cjs','.json','.py','.html','.css','.md','.yml','.txt')) or ('/' not in f and p.suffix in ('.html','.js','.json','.md')) or f==str(runtime): z.write(p,f)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_STANDARD_HANDOFF_SOURCE_AUDIT
+          path: handoff-audit/
+          if-no-files-found: error
+          retention-days: 14
