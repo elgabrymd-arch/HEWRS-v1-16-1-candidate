@@ -47,7 +47,7 @@ def main():
                     page.get_by_role('button', name='Apply', exact=True).click()
                 assert page.evaluate("()=>HEWRSApp.state().context.style==='MODERN'"), 'Modern selection lost'
                 page.click('#generate-options')
-                page.wait_for_function("()=>!HEWRSApp.state().busy && HEWRSApp.state().report!==null", timeout=360000)
+                page.wait_for_function("()=>{const s=HEWRSApp.state();return !s.busy&&s.page==='outfits'&&s.context.style==='MODERN'&&s.request?.context?.occasion===s.context.occasion&&Array.isArray(s.report?.options);}", timeout=360000)
                 info=page.evaluate("""()=>{const a=HEWRSApp.state(),r=a.report||{},q=a.request;
                 const invalid=(r.options||[]).filter(o=>{
                   const s=o._hewrsConnected.canonical_selection;
