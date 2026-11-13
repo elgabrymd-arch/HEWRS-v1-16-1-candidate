@@ -1,0 +1,101 @@
+name: Stage 10 Home preferences — isolated verification
+on:
+  push:
+    branches:
+      - fix/stage10-home-preference-persistence-20261109
+      - main
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate source syntax
+        run: node --check src/application.js
+      - name: Rebuild generated runtime from source without publishing
+        run: python tools/build.py
+      - name: Check generated script integrity and source inclusion
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          r = Path('.')
+          m = json.loads((r/'STARTUP_RESOURCES.json').read_text())
+          p = m['startup_scripts'][2]
+          bundle = (r/p).read_bytes()
+          assert hashlib.sha256(bundle).hexdigest() == m['resource_integrity'][p]['sha256']
+          assert b'hewrs:home-preferences:v1:' in bundle
+          assert p in (r/'index.html').read_text()
+          print('PASS: rebuilt runtime includes source correction with matching integrity')
+          PY
+      - name: Install isolated browser test dependencies
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Check deployed Stage 10 runtime against corrected source
+        if: github.ref == 'refs/heads/main'
+        run: |
+          python - <<'PY'
+          import base64, hashlib, re
+          from pathlib import Path
+          source=Path('src/application.js').read_text()
+          html=Path('stage10-integration.html').read_text()
+          m=re.search(r'<script defer src="(runtime/hewrs-[a-f0-9]{20}\.js)" integrity="sha256-([A-Za-z0-9+/=]+)"></script>',html)
+          assert m, 'Stage 10 runtime binding not found'
+          raw=Path(m.group(1)).read_bytes()
+          sha=hashlib.sha256(raw).hexdigest()
+          assert sha[:20] in m.group(1)
+          assert base64.b64encode(bytes.fromhex(sha)).decode()==m.group(2)
+          deployed=raw.decode('utf-8')
+          begin=source.index('// Home category choices have their own versioned, source-locked storage.')
+          end=source.index('function resolveUrl(d)',begin)
+          block=source[begin:end].strip()
+          assert block in deployed, 'Live Stage 10 bundle does not match corrected preference source'
+          assert 'connection.ownerFeedback.set(ownerFeedback)' in deployed
+          assert '/* SOURCE: src/owner-feedback-integration.js */' in deployed
+          assert 'hewrs-stage10-integration-panel.js' in html
+          assert 'feedback-candidate/reviewed/automatic-image-panel.js' in html
+          print('PASS: deployed Stage 10 runtime matches corrected source, SRI and preserved modules')
+          PY
+      - name: Build isolated Stage 10 integration release overlay
+        if: github.ref != 'refs/heads/main'
+        run: python tools/package_stage10_home_preferences.py
+      - name: Verify rebuilt Stage 10 runtime syntax
+        if: github.ref != 'refs/heads/main'
+        run: |
+          node --check "$(python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('dist/stage10-home-preferences/MANIFEST.json').read_text())
+          print(m['replacement_runtime']['path'])
+          PY
+          )"
+      - name: Test base Home preference persistence and data separation
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Test packaged Stage 10 integration and owner feedback
+        if: github.ref != 'refs/heads/main'
+        env:
+          HEWRS_TEST_PAGE: stage10-home-preferences-test.html
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Test deployed Stage 10 integration and owner feedback
+        if: github.ref == 'refs/heads/main'
+        env:
+          HEWRS_TEST_PAGE: stage10-integration.html
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Upload controlled Stage 10 overlay (no deployment)
+        if: github.ref != 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_STAGE10_HOME_PREFERENCES_CONTROLLED_OVERLAY
+          path: dist/stage10-home-preferences/
+          if-no-files-found: error
+          retention-days: 14

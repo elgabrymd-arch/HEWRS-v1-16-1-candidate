@@ -49,6 +49,33 @@ async function refreshAutomaticWeather(trigger='resume',force=false,duringSubmit
 const learning=root.HEWRSOutfitLearning.create(connection,root.HEWRS_INPUT_SHA256,backend);
 const favorites=root.HEWRSFavorites.create(connection,root.HEWRS_INPUT_SHA256,backend);
 const store=root.HEWRSLocalState.create(connection,root.HEWRS_INPUT_SHA256,backend),ui=root.HEWRSFaceliftModel.create(connection),urlCache=new Map();
+// Home category choices have their own versioned, source-locked storage.
+// They are never inferred from a generated outfit and never written to the wear or Favorites ledgers.
+const HOME_PREF_KEY='hewrs:home-preferences:v1:'+root.HEWRS_INPUT_SHA256;
+let homePreferenceStorageWarning=null,homePreferenceStorageBlocked=false;
+function restoreHomePreferences(){
+ if(!backend)return false;
+ try{
+  const raw=backend.getItem(HOME_PREF_KEY);
+  if(raw===null)return false;
+  const record=JSON.parse(raw);
+  need(record?.schema==='hewrs.home-preferences.v1'&&record.source_lock===root.HEWRS_INPUT_SHA256,'Saved Home preferences do not match the current source');
+  ui.replace(record.preferences); // Existing six-category/active-ID validation; no substitutions.
+  return true;
+ }catch(e){
+  homePreferenceStorageBlocked=true;homePreferenceStorageWarning='Saved Home preferences could not be restored; original stored data was retained: '+e.message;
+  return false;
+ }
+}
+function persistHomePreferences(){
+ if(!backend||homePreferenceStorageBlocked)return;
+ try{
+  const record={schema:'hewrs.home-preferences.v1',source_lock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot()};
+  const value=JSON.stringify(record);
+  backend.setItem(HOME_PREF_KEY,value);
+  need(backend.getItem(HOME_PREF_KEY)===value,'Home preference write could not be verified');
+ }catch(e){homePreferenceStorageWarning='Home preferences are session-only: '+e.message;status(homePreferenceStorageWarning,true);}
+}
 function resolveUrl(d){need(Object.hasOwn(connection.assetPaths,d.sha256),'Unbound image hash; no fallback');if(root.HEWRS_EMBEDDED_IMAGES){if(!urlCache.has(d.sha256)){const v=root.HEWRS_EMBEDDED_IMAGES[d.sha256];need(v,'Embedded image missing');urlCache.set(d.sha256,'data:image/png;base64,'+v);}return urlCache.get(d.sha256);}return connection.assetPaths[d.sha256];}
 const renderer=root.HEWRSAtomicRenderer.create($('avatar'),connection,{resolveUrl});
 const optionCards=root.HEWRSOptionCards.create(connection);let cardPresentation=null,cardPresentationKey=null;
@@ -77,7 +104,7 @@ const preferencePanel=root.HEWRSPreferencePanel.create({connection,learning,open
 function localToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function icon(name){const n=document.createElementNS('http://www.w3.org/2000/svg','svg');for(const[k,v]of Object.entries({class:'fx-icon',viewBox:'0 0 24 24',fill:'none',stroke:'currentColor','stroke-width':'1.5','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true'}))n.setAttribute(k,v);const u=document.createElementNS(n.namespaceURI,'use');u.setAttribute('href','#fx-icon-'+name);n.append(u);return n;}
 function ids(s){if(!s)return 'No outfit selected';return (s.shirtOnly?'Shirt only · '+s.pantId:s.blazerId?s.blazerId+' · '+s.pantId:s.suitId)+' · '+s.shirtId+' · '+(s.state==='NO_TIE'?'No Tie':s.state);}
-function status(text,error=false){$('status').textContent=text;$('home-notice').textContent=text;$('home-notice').dataset.error=String(error);}
+function status(text,error=false){const shown=homePreferenceStorageWarning&&!String(text).includes(homePreferenceStorageWarning)?String(text)+' '+homePreferenceStorageWarning:String(text);$('status').textContent=shown;$('home-notice').textContent=shown;$('home-notice').dataset.error=String(error||!!homePreferenceStorageWarning);}
 function errorText(error){return error instanceof Error?error.message:String(error);}
 function setMode(v){need(['anchor','engine'].includes(v),'Unknown selection workflow');mode=v;for(const k of ['anchor','engine'])$('mode-'+k).setAttribute('aria-pressed',String(v===k));}
 function updateHome(){
@@ -173,7 +200,7 @@ function openPicker(cat){
  const brands=selectField('Brand',[{value:'',label:'All brands'},...[...new Set(pickerRows.map(x=>x.brand).filter(Boolean))].sort().map(v=>({value:v,label:v}))],'','picker-brand');filters.append(types.wrap,brands.wrap);
  const family=ui.families[cat]?selectField('Color',[{value:'',label:'All colors'},...ui.families[cat].map(v=>({value:v,label:v.charAt(0).toUpperCase()+v.slice(1)}))],'','picker-color'):null;if(family)filters.append(family.wrap);
  const list=el('div',undefined,'fx-picker-list');list.id='picker-list';const count=el('p','', 'fx-caption');count.id='picker-count';body.append(search,filters,count,list);
- const apply=button('Apply',()=>{const before=JSON.stringify(ui.snapshot());ui.commit();dismissSheet(false);if(before!==JSON.stringify(ui.snapshot())){generation++;renderer.cancel();setBusy(false);invalidateRecommendations('Selections changed. Generate again to use the current exact anchors.');}updateHome();status('Preference applied. Generate to display the resulting outfit.');},true);apply.id='picker-apply';actions.append(button('Cancel',()=>dismissSheet()),apply);
+ const apply=button('Apply',()=>{const before=JSON.stringify(ui.snapshot());ui.commit();persistHomePreferences();dismissSheet(false);if(before!==JSON.stringify(ui.snapshot())){generation++;renderer.cancel();setBusy(false);invalidateRecommendations('Selections changed. Generate again to use the current exact anchors.');}updateHome();status('Preference applied. Generate to display the resulting outfit.');},true);apply.id='picker-apply';actions.append(button('Cancel',()=>dismissSheet()),apply);
  function setSegment(isEngine){engine.setAttribute('aria-pressed',String(isEngine));mine.setAttribute('aria-pressed',String(!isEngine));}
  function addChoice(c,label,id,extra='',disabled=false){const n=el('button',undefined,'fx-choice');n.type='button';if(id){n.dataset.itemId=id;n.append(el('span',id,'fx-choice-id'));}n.append(el('span',label,'fx-choice-name'));if(extra)n.append(el('small',extra));n.disabled=disabled;n.setAttribute('aria-pressed',String(JSON.stringify(c)===JSON.stringify(ui.draft()?.choice)));n.onclick=()=>{ui.choose(c);setSegment(c.mode==='any');renderChoices();};list.append(n);}
  function renderChoices(){const d=ui.draft();if(!d)return;list.replaceChildren();const selected=d.choice;setSegment(selected?.mode==='any');const deferredDraft=pickerScope.limited&&selected?.mode==='item'&&!ui.availability(cat,selected.id).visual_available;apply.disabled=!selected||deferredDraft;note.textContent=deferredDraft?selected.id+' is retained from your suit selection. Choose an available shirt for this mode; Cancel keeps your preferences.':'Apply changes only this preference. Cancel discards the draft.';
@@ -505,7 +532,7 @@ function showInsights(){
  actions.append(button('Close',()=>dismissSheet()));calculate();
 }
 
-function resetPreferences(){const{body,actions}=openSheet('Reset preferences');body.append(el('p','Clear all six Home preferences? Your current outfit and wear history will remain unchanged.','fx-caption'));actions.append(button('Cancel',()=>dismissSheet()),button('Confirm reset',()=>{const before=JSON.stringify(ui.snapshot());ui.reset();producing=null;dismissSheet(false);if(before!==JSON.stringify(ui.snapshot())){generation++;renderer.cancel();setBusy(false);invalidateRecommendations('Preferences reset. Generate again with all categories unlocked.');}updateHome();setMode('engine');status('All six preferences are unlocked. Generate Options lets HEWRS choose the complete outfit.');}));}
+function resetPreferences(){const{body,actions}=openSheet('Reset preferences');body.append(el('p','Clear all six Home preferences? Your current outfit and wear history will remain unchanged.','fx-caption'));actions.append(button('Cancel',()=>dismissSheet()),button('Confirm reset',()=>{const before=JSON.stringify(ui.snapshot());ui.reset();persistHomePreferences();producing=null;dismissSheet(false);if(before!==JSON.stringify(ui.snapshot())){generation++;renderer.cancel();setBusy(false);invalidateRecommendations('Preferences reset. Generate again with all categories unlocked.');}updateHome();setMode('engine');status('All six preferences are unlocked. Generate Options lets HEWRS choose the complete outfit.');}));}
 // One modal owner, one router and one logging transaction for both buttons.
 $('fx-sheet-close').onclick=()=>dismissSheet();$('fx-sheet').addEventListener('cancel',e=>{e.preventDefault();dismissSheet();});$('fx-sheet').addEventListener('click',e=>{if(e.target!==$('fx-sheet'))return;const r=$('fx-sheet').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dismissSheet();});
 for(const n of document.querySelectorAll('[data-page]'))n.onclick=()=>showPage(n.dataset.page);$('back-home').onclick=()=>showPage('home');for(const n of document.querySelectorAll('[data-picker]'))n.onclick=()=>openPicker(n.dataset.picker);
@@ -524,12 +551,12 @@ $('outfit-preferences').onclick=()=>preferencePanel.open();
 $('s02-source-photo').onclick=()=>{const d=root.HEWRSSourceCorrections.record(),{body,actions}=openSheet('S02 confirmed source',{list:true});const pic=el('img');pic.src=root.HEWRS_EMBEDDED_SOURCE_EVIDENCE?.S02||d.source_image_path;pic.alt='Owner-supplied S02 cloth photograph; muted brown with subtle charcoal/tan check';pic.style.maxWidth='100%';body.append(el('p',d.fields.description,'fx-caption'),pic,el('p',d.visual_limit,'fx-caption'));actions.append(button('Close',()=>dismissSheet()));};
 window.addEventListener('storage',e=>{if(e.key===learning.key||e.key===null){feedbackChanged();}});
 root.HEWRSApp=Object.freeze({version:APP_VERSION,diagnosticSnapshot,learning,preferencePanel,renderForPreference,feedbackChanged,connection,visualStylist,stylistSheet,renderForStylist,optionCards,restoreInitialOutfit,exportOptionCards,setCardLayout,cardSnapshot:()=>copy(cardPresentation),store,favorites,usage,weather,autoWeather,refreshAutomaticWeather,weatherSheet,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
-const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:root.HEWRSStyleOccasions.occasion(saved.context.occasion),formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}if(saved?.mode==='anchor')ui.fromSelection(saved.selection);else ui.reset();setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
+const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:root.HEWRSStyleOccasions.occasion(saved.context.occasion),formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}if(!restoreHomePreferences()){if(saved?.mode==='anchor'&&!homePreferenceStorageBlocked)ui.fromSelection(saved.selection);else ui.reset();}setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
 // Home does not need a full-size avatar or the 112,392-row outfit index.
 // Restore the exact saved/current image only when Outfits is actually opened.
 pendingInitialOutfit={selection:connection.validateSelection(saved?.selection||defaultSelection),context:copy(saved?.context||currentContext()),localDate:saved?.localDate||ctx.localDate};
 root.HEWRS_READY=true;root.HEWRS_OUTFIT_READY=false;setBusy(false);updateHome();
-status(saved?'Ready. Your saved outfit is available under View current outfit.':'Ready. Choose preferences or Generate Options.');showPage('home');
+status(homePreferenceStorageWarning|| (saved?'Ready. Your saved outfit is available under View current outfit.':'Ready. Choose preferences or Generate Options.'),!!homePreferenceStorageWarning);showPage('home');
 root.HEWRSRuntimeLoader?.ready();
 refreshAutomaticWeather('startup').catch(e=>status(e.message,true));
 
