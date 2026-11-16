@@ -12,6 +12,9 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 UNMODIFIED_SUIT_ITEMS_SHA256 = "ef387c6def364917b098de99d5bf59f8dd684d533a616b2831309493d452471c"
+APPROVED_S13_SHA256 = "510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a"
+APPROVED_S02_PATTERN_SHA256 = "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2"
+PHOTO_MATCH_NOTES = {"S02": "Pattern approved · color review", "S13": "Approved photo match"}
 
 
 class Quiet(SimpleHTTPRequestHandler):
@@ -54,7 +57,7 @@ def main():
         suit_manifest = json.loads((ROOT / "data/suit-picker-images.json").read_text())
         corrected = {key for key, value in suit_manifest["items"].items()
                      if value["source_kind"] == "corrected_avatar_preview"}
-        check("Only S02 and S13 have pending photo-match previews", corrected == {"S02", "S13"})
+        check("Only S02 and S13 have corrected photo-match previews", corrected == {"S02", "S13"})
         unmodified = {key: value for key, value in suit_manifest["items"].items() if key not in corrected}
         unmodified_digest = hashlib.sha256(json.dumps(unmodified, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         check("Other 16 suit preview descriptors match the published baseline", unmodified_digest == UNMODIFIED_SUIT_ITEMS_SHA256)
@@ -62,7 +65,13 @@ def main():
             item = suit_manifest["items"][identifier]
             proof = suit_manifest["provenance"][identifier]
             check(identifier + " binds the packaged candidate image", hashlib.sha256((ROOT / item["src"]).read_bytes()).hexdigest() == item["sha256"])
-            check(identifier + " remains pending owner review", proof["appearance_status"] == "PHOTO_MATCH_REVIEW_PENDING" and proof["owner_approved"] is False)
+            check(identifier + " carries its explicit approval label", item["source_note"] == PHOTO_MATCH_NOTES[identifier])
+            if identifier == "S13":
+                check("S13 approval is recorded without changing its accepted pixels", proof["appearance_status"] == "PHOTO_MATCH_OWNER_APPROVED" and proof["owner_approved"] is True and item["owner_approved"] is True and item["sha256"] == APPROVED_S13_SHA256)
+            else:
+                pattern = proof["pattern_reference"]
+                check("S02 retains pattern-only approval while its corrected color is under review", proof["appearance_status"] == "PHOTO_MATCH_COLOR_REVIEW_PENDING" and proof["owner_approved"] is False and item["owner_approved"] is False and proof["pattern_approved"] is True and pattern["sha256"] == APPROVED_S02_PATTERN_SHA256)
+                check("S02 approved pattern reference remains byte-identical", hashlib.sha256((ROOT / pattern["path"]).read_bytes()).hexdigest() == APPROVED_S02_PATTERN_SHA256)
         with sync_playwright() as pw:
             browser = pw.chromium.launch(headless=True, executable_path=shutil.which("chromium"), args=["--no-sandbox"])
             for width, height, touch in ((390, 844, True), (1280, 900, False)):
@@ -158,7 +167,7 @@ def main():
                           (['S02','S13'].includes(id)?'corrected_avatar_preview':'native_avatar_preview');
                     }""", identifier))
                     if identifier in corrected:
-                        check(f"{width}px: {identifier} visibly marks the photo match for review", button.get_by_text("Photo match · review", exact=True).is_visible() and "awaiting owner review" in button.get_attribute("title"))
+                        check(f"{width}px: {identifier} visibly preserves its actual approval scope", button.get_by_text(PHOTO_MATCH_NOTES[identifier], exact=True).is_visible() and PHOTO_MATCH_NOTES[identifier] in button.get_attribute("title"))
                         check(f"{width}px: {identifier} decodes at native dimensions", button.locator("img").evaluate("im => im.naturalWidth === 996 && im.naturalHeight === 2748"))
                 check(f"{width}px: suit draft clicks leave saved data unchanged", state(page) == suit_baseline)
                 check(f"{width}px: suit image rendering and draft clicks perform zero storage writes", page.evaluate("__PICKER_STORAGE_WRITES.length") == suit_write_start)
@@ -172,17 +181,31 @@ def main():
                 page.screenshot(path=str(args.output / f"suit-picker-{width}.png"), full_page=True)
                 page.fill("#picker-search", "S02")
                 page.wait_for_function("() => {const im=document.querySelector('#picker-list button[data-item-id=\"S02\"] img');return im?.complete && im.naturalWidth>0;}")
-                check(f"{width}px: S02 visibly identifies the pending photo match", page.locator("#picker-list button").count() == 1 and page.locator('button[data-item-id="S02"]').get_by_text("Photo match · review", exact=True).is_visible())
+                check(f"{width}px: S02 visibly identifies its approved pattern and pending color", page.locator("#picker-list button").count() == 1 and page.locator('button[data-item-id="S02"]').get_by_text(PHOTO_MATCH_NOTES["S02"], exact=True).is_visible())
                 review_link = page.locator("#hewrs-suit-photo-review a")
                 check(f"{width}px: photo review link is outside selection buttons", review_link.is_visible() and review_link.get_attribute("href") == "suit-photo-review.html?item=S02" and page.locator("#picker-list button a, #picker-list button button").count() == 0)
                 before_review, before_review_writes = state(page), page.evaluate("__PICKER_STORAGE_WRITES.length")
                 with page.expect_popup() as opened:
                     review_link.click()
                 review_page = opened.value
-                review_page.wait_for_load_state("domcontentloaded")
-                check(f"{width}px: larger photo review opens the requested S02 page", review_page.url == origin + "/suit-photo-review.html?item=S02")
+                expected_review_url = origin + "/suit-photo-review.html?item=S02"
+                # A popup can initially expose about:blank's already-fired DOM
+                # event. Await the actual destination before checking identity.
+                review_page.wait_for_url(expected_review_url, wait_until="domcontentloaded")
+                check(f"{width}px: larger photo review opens the requested S02 page ({review_page.url})", review_page.url == expected_review_url)
                 review_page.wait_for_function("() => document.images.length > 0 && Array.from(document.images).every(im => im.complete && im.naturalWidth > 0)")
                 check(f"{width}px: larger photo review loads its images", review_page.locator("img").count() > 0)
+                check(f"{width}px: S02 review preserves pattern-only approval", review_page.locator("#review-status").inner_text() == PHOTO_MATCH_NOTES["S02"] and review_page.locator("#full-image").get_attribute("src") == suit_manifest["items"]["S02"]["src"])
+                check(f"{width}px: larger review fits the viewport", review_page.evaluate("() => document.documentElement.scrollWidth <= innerWidth + 1"))
+                review_page.locator('button[data-suit="S13"]').click()
+                review_page.wait_for_function("src => Array.from(document.images).every(im => im.getAttribute('src') === src && im.complete && im.naturalWidth === 996 && im.naturalHeight === 2748)", arg=suit_manifest["items"]["S13"]["src"])
+                check(f"{width}px: S13 shows the approved immutable appearance", review_page.locator("#review-status").inner_text() == "Approved" and review_page.url == origin + "/suit-photo-review.html?item=S13")
+                review_page.locator('button[data-mode="before"]').click()
+                review_page.wait_for_function("src => document.getElementById('full-image').getAttribute('src') === src && document.getElementById('full-image').complete", arg=suit_manifest["provenance"]["S13"]["before"]["path"])
+                check(f"{width}px: previous S13 rendering is not mislabeled as approved", review_page.locator("#review-status").inner_text() == "Previous rendering")
+                review_page.locator('button[data-mode="corrected"]').click()
+                review_page.wait_for_function("src => document.getElementById('full-image').getAttribute('src') === src && document.getElementById('full-image').complete", arg=suit_manifest["items"]["S13"]["src"])
+                check(f"{width}px: returning to accepted S13 restores its approval label", review_page.locator("#review-status").inner_text() == "Approved")
                 check(f"{width}px: larger photo review performs zero storage writes", review_page.evaluate("__PICKER_STORAGE_WRITES.length") == 0)
                 review_page.close()
                 check(f"{width}px: photo review preserves picker data without writes", state(page) == before_review and page.evaluate("__PICKER_STORAGE_WRITES.length") == before_review_writes)
@@ -252,7 +275,7 @@ def main():
             check("Suit review link opens all 18 Suits directly", page.locator("#picker-type").input_value() == "suit" and page.locator("#picker-list .hewrs-blazer-picker-choice").count() == 0)
             page.goto(origin + "/blazer-picker-preview.html?show=suits&item=S02", wait_until="domcontentloaded")
             page.wait_for_function("globalThis.HEWRS_READY === true && !!document.querySelector('#picker-list .hewrs-suit-picker-choice img')")
-            check("S02 review link preserves its explicit review label", page.locator("#picker-search").input_value() == "S02" and page.locator("#picker-list button").count() == 1 and page.locator('button[data-item-id="S02"]').get_by_text("Photo match · review", exact=True).is_visible())
+            check("S02 review link preserves its explicit approval scope", page.locator("#picker-search").input_value() == "S02" and page.locator("#picker-list button").count() == 1 and page.locator('button[data-item-id="S02"]').get_by_text(PHOTO_MATCH_NOTES["S02"], exact=True).is_visible())
             context.close()
             browser.close()
         release = json.loads((ROOT / "STANDARD_RELEASE.json").read_text())

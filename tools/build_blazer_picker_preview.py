@@ -12,6 +12,8 @@ BASELINE = "40c9756656e3e50a183dc2da2ff81ff9df5d9bbc"
 AVATAR_SHA256 = "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d"
 UNMODIFIED_SUIT_ITEMS_SHA256 = "ef387c6def364917b098de99d5bf59f8dd684d533a616b2831309493d452471c"
 PHOTO_MATCH_IDS = {"S02", "S13"}
+S13_APPROVED_SHA256 = "510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a"
+S02_APPROVED_PATTERN_SHA256 = "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2"
 
 
 def sha(path):
@@ -27,11 +29,29 @@ def integrity(path):
 def validate_photo_match(identifier, thumbnail, provenance):
     assert identifier in PHOTO_MATCH_IDS, "Photo-match scope must remain S02/S13"
     assert thumbnail["source_kind"] == "corrected_avatar_preview"
-    assert thumbnail["source_note"] == "Photo match · review"
     assert (thumbnail["width"], thumbnail["height"]) == (996, 2748)
     assert thumbnail["history_id"] == "suit-" + str(int(identifier[1:]) - 1)
-    assert provenance["appearance_status"] == "PHOTO_MATCH_REVIEW_PENDING"
-    assert provenance["owner_approved"] is False, "Candidate is not an appearance approval"
+    if identifier == "S13":
+        assert thumbnail["source_note"] == "Approved photo match"
+        assert thumbnail["owner_approved"] is True and provenance["owner_approved"] is True
+        assert provenance["appearance_status"] == "PHOTO_MATCH_OWNER_APPROVED"
+        assert thumbnail["sha256"] == S13_APPROVED_SHA256, "Approved S13 pixels changed"
+        approval = provenance["owner_approval"]
+        assert approval["approved_image_sha256"] == S13_APPROVED_SHA256
+        assert approval["scope"] == "suit_appearance" and approval["date"] == "2026-11-16"
+    else:
+        assert thumbnail["source_note"] == "Pattern approved · color review"
+        assert thumbnail["owner_approved"] is False and provenance["owner_approved"] is False
+        assert thumbnail["pattern_approved"] is True and provenance["pattern_approved"] is True
+        assert provenance["appearance_status"] == "PHOTO_MATCH_COLOR_REVIEW_PENDING"
+        pattern = provenance["pattern_reference"]
+        assert pattern["sha256"] == S02_APPROVED_PATTERN_SHA256
+        assert sha(pattern["path"]) == S02_APPROVED_PATTERN_SHA256, "Approved S02 pattern source changed"
+        approval = provenance["pattern_approval"]
+        assert approval["approved_image_sha256"] == S02_APPROVED_PATTERN_SHA256
+        assert approval["scope"] == "pattern_only" and approval["date"] == "2026-11-16"
+        assert provenance["color_choice"] == "previous_brown"
+        assert provenance["color_reference"] == provenance["before"], "Wrong approved brown reference"
     assert provenance["selection"]["suitId"] == identifier
     assert (provenance["native_width"], provenance["native_height"]) == (996, 2748)
     assert provenance["preserve_non_garment_pixels"] is True
@@ -178,7 +198,7 @@ def build():
     assert not corrected_ids or corrected_ids == PHOTO_MATCH_IDS, "Both requested photo matches must be present"
     suit_manifest = {key: suits[key] for key in ("schema", "source_lock", "items")}
     (ROOT / "data/suit-picker-images.js").write_text(
-        ("/* Native suit references; S02/S13 photo matches are pending owner review. */\n"
+        ("/* Corrected suits: S13 owner-approved; S02 approved pattern with color review pending. */\n"
          if corrected_ids else "/* Native suit references; S02 retains the confirmed owner cloth photograph. */\n")
         + "globalThis.HEWRS_SUIT_PICKER_IMAGES = " + json.dumps(suit_manifest, indent=2) + ";\n")
     html = (ROOT / "index.html").read_text()

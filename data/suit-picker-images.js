@@ -1,4 +1,4 @@
-/* Native suit references; S02/S13 photo matches are pending owner review. */
+/* Corrected suits: S13 owner-approved; S02 approved pattern with color review pending. */
 globalThis.HEWRS_SUIT_PICKER_IMAGES = {
   "schema": "hewrs.suit-picker-images.v1",
   "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
@@ -14,15 +14,17 @@ globalThis.HEWRS_SUIT_PICKER_IMAGES = {
       "object_position": "50% 26%"
     },
     "S02": {
-      "src": "ui/suit-photo-review/f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2.png",
-      "sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2",
+      "src": "ui/suit-photo-review/053e639ef74d2f85e37f5ed47af04b07db77977faacf58cee6df99e4cf067d07.png",
+      "sha256": "053e639ef74d2f85e37f5ed47af04b07db77977faacf58cee6df99e4cf067d07",
       "width": 996,
       "height": 2748,
-      "label": "Charcoal grey \u00b7 subtle tonal check",
+      "label": "Muted medium brown \u00b7 subtle tonal check",
       "history_id": "suit-1",
       "source_kind": "corrected_avatar_preview",
       "object_position": "50% 26%",
-      "source_note": "Photo match \u00b7 review"
+      "source_note": "Pattern approved \u00b7 color review",
+      "owner_approved": false,
+      "pattern_approved": true
     },
     "S03": {
       "src": "ui/option-cards/0955285d703704958185db3b91671456637c5c98f882412767f414136745d278.png",
@@ -133,7 +135,8 @@ globalThis.HEWRS_SUIT_PICKER_IMAGES = {
       "history_id": "suit-12",
       "source_kind": "corrected_avatar_preview",
       "object_position": "50% 26%",
-      "source_note": "Photo match \u00b7 review"
+      "source_note": "Approved photo match",
+      "owner_approved": true
     },
     "S14": {
       "src": "ui/option-cards/8a1b2e6bdee00ab42207599a249e832b259c2b7d572bec24bdcc2756999e0c84.png",

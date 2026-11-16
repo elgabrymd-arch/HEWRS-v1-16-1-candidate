@@ -28,15 +28,17 @@
       "object_position": "50% 26%"
     },
     "S02": {
-      "src": "ui/suit-photo-review/f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2.png",
-      "sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2",
+      "src": "ui/suit-photo-review/053e639ef74d2f85e37f5ed47af04b07db77977faacf58cee6df99e4cf067d07.png",
+      "sha256": "053e639ef74d2f85e37f5ed47af04b07db77977faacf58cee6df99e4cf067d07",
       "width": 996,
       "height": 2748,
-      "label": "Charcoal grey · subtle tonal check",
+      "label": "Muted medium brown · subtle tonal check",
       "history_id": "suit-1",
       "source_kind": "corrected_avatar_preview",
       "object_position": "50% 26%",
-      "source_note": "Photo match · review"
+      "source_note": "Pattern approved · color review",
+      "owner_approved": false,
+      "pattern_approved": true
     },
     "S03": {
       "src": "ui/option-cards/0955285d703704958185db3b91671456637c5c98f882412767f414136745d278.png",
@@ -147,7 +149,8 @@
       "history_id": "suit-12",
       "source_kind": "corrected_avatar_preview",
       "object_position": "50% 26%",
-      "source_note": "Photo match · review"
+      "source_note": "Approved photo match",
+      "owner_approved": true
     },
     "S14": {
       "src": "ui/option-cards/8a1b2e6bdee00ab42207599a249e832b259c2b7d572bec24bdcc2756999e0c84.png",
@@ -440,7 +443,7 @@
       "storage_writes_during_render": 0
     },
     "S02": {
-      "appearance_status": "PHOTO_MATCH_REVIEW_PENDING",
+      "appearance_status": "PHOTO_MATCH_COLOR_REVIEW_PENDING",
       "owner_approved": false,
       "selection": {
         "suitId": "S02",
@@ -637,7 +640,7 @@
       "input_photo_sha256": "c558b15151ad9ddfefc115a6e9c18d0d0c696768b08381ef1f6b42cb4eff05e1",
       "generated_image_sha256": "092c53c403185e5cd27aefb926963ac7551bd295e57cffee40ac6471ca454537",
       "native_non_garment_rgba_sha256": "32c625cd50e312beade058a8b1f13366997dbdda041e98c03009f9568f85e16a",
-      "native_rgba_sha256": "ed65d7305f0a0e9cf9b53c2be19807501a7386edcd2e0ab6809a21fcb95794b4",
+      "native_rgba_sha256": "2661b1385a1b7530368e13c9db71b1ed719db0c34e508c337b1162f4b9abc4de",
       "before": {
         "path": "ui/suit-photo-review/602f0e20ad7c078df99c569c9f6dd0d5460e0ca1bf1b0fb64b0efacc88c87a11.png",
         "sha256": "602f0e20ad7c078df99c569c9f6dd0d5460e0ca1bf1b0fb64b0efacc88c87a11"
@@ -650,15 +653,56 @@
         "native_non_garment_rgba_before_sha256": "32c625cd50e312beade058a8b1f13366997dbdda041e98c03009f9568f85e16a",
         "non_garment_pixels_changed": 0,
         "alpha_pixels_changed": 0,
-        "garment_pixels_changed": 1166992,
+        "garment_pixels_changed": 1164946,
         "edge_color_extension_pixels": 33411,
         "max_edge_extension": 24
       },
-      "recipe": "Built-in image edit for garment fabric; proportional registration, nearest interior edge colors, immutable ownership-mask composition, original non-garment RGBA and alpha restored exactly.",
+      "recipe": "Approved fine-pattern pixels retained at their exact native coordinates; uniform CIELAB translation matches the prior owner-preferred brown reference, with only RGB rounding and original ownership-mask edge blending. Original alpha and non-garment RGBA remain identical.",
       "local_baseline_renderer": "Unchanged native source renderer using Skia; Chromium pixel identity is not asserted.",
-      "visual_limit": "Latest owner-identified photograph controls this review; indoor lighting is not a calibrated color measurement. Historical brown description and appearance-learning guard remain unchanged.",
+      "visual_limit": "Owner approved the new pattern and identified the previous brown as correct. This candidate changes only its color; combined final color remains available for review. Historical appearance-learning guard remains unchanged.",
       "saved_state_unchanged": true,
-      "storage_writes_during_render": 0
+      "storage_writes_during_render": 0,
+      "pattern_approved": true,
+      "pattern_reference": {
+        "path": "ui/suit-photo-review/f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2.png",
+        "sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2"
+      },
+      "pattern_approval": {
+        "date": "2026-11-16",
+        "scope": "pattern_only",
+        "approved_image_sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2",
+        "source": "explicit_owner_confirmation"
+      },
+      "color_choice": "previous_brown",
+      "color_reference": {
+        "path": "ui/suit-photo-review/602f0e20ad7c078df99c569c9f6dd0d5460e0ca1bf1b0fb64b0efacc88c87a11.png",
+        "sha256": "602f0e20ad7c078df99c569c9f6dd0d5460e0ca1bf1b0fb64b0efacc88c87a11"
+      },
+      "color_transform": {
+        "method": "Uniform CIELAB color translation within immutable garment ownership mask",
+        "pattern_source_sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2",
+        "color_source_sha256": "602f0e20ad7c078df99c569c9f6dd0d5460e0ca1bf1b0fb64b0efacc88c87a11",
+        "reference_median_lab": [
+          29.487401673405408,
+          2.174034774151817,
+          5.1771674662840494
+        ],
+        "pattern_median_lab": [
+          26.146115904070797,
+          0.44234068176063346,
+          -0.7476868589419094
+        ],
+        "delta_lab": [
+          3.341285769334611,
+          1.7316940923911837,
+          5.924854325225959
+        ],
+        "spatial_resampling": false,
+        "pattern_pixels_redrawn": false,
+        "maximum_luminance_rounding_residual": 0.22748360490557218,
+        "mean_luminance_rounding_residual": 0.10507048895555594
+      },
+      "color_guidance_image_sha256": "87f566ee48bec05f9bd73ec8fe343d813062be5d81ca16217fa9a1ca1d2a3906"
     },
     "S03": {
       "selection": {
@@ -3037,8 +3081,8 @@
       "storage_writes_during_render": 0
     },
     "S13": {
-      "appearance_status": "PHOTO_MATCH_REVIEW_PENDING",
-      "owner_approved": false,
+      "appearance_status": "PHOTO_MATCH_OWNER_APPROVED",
+      "owner_approved": true,
       "selection": {
         "suitId": "S13",
         "shirtId": "DS001",
@@ -3255,7 +3299,13 @@
       "local_baseline_renderer": "Unchanged native source renderer using Skia; Chromium pixel identity is not asserted.",
       "visual_limit": "Photo-matched fine plaid rendering; exact thread repeat and fabric color remain limited by the photograph.",
       "saved_state_unchanged": true,
-      "storage_writes_during_render": 0
+      "storage_writes_during_render": 0,
+      "owner_approval": {
+        "date": "2026-11-16",
+        "scope": "suit_appearance",
+        "approved_image_sha256": "510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a",
+        "source": "explicit_owner_confirmation"
+      }
     },
     "S14": {
       "selection": {

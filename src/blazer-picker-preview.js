@@ -5,6 +5,7 @@
   if (root.HEWRSBlazerPickerPreview) return;
 
   const enhanced = new WeakSet();
+  const approvedS13Sha = '510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a';
   let body = null;
   let observer = null;
   const observation = {childList: true, subtree: true};
@@ -13,10 +14,14 @@
     const descriptor = manifest.items?.[row.sourceId];
     if (!descriptor || descriptor.history_id !== row.id) return null;
     if (!['owner_approved_reference', 'owner_reference_photo', 'native_avatar_preview', 'corrected_avatar_preview'].includes(descriptor.source_kind)) return null;
-    if (descriptor.source_kind === 'corrected_avatar_preview' &&
-        (row.kind !== 'suit' || !['S02', 'S13'].includes(row.sourceId) ||
-         descriptor.source_note !== 'Photo match · review' ||
-         descriptor.width !== 996 || descriptor.height !== 2748)) return null;
+    if (descriptor.source_kind === 'corrected_avatar_preview') {
+      const approved = row.sourceId === 'S13' && descriptor.owner_approved === true &&
+        descriptor.sha256 === approvedS13Sha && descriptor.source_note === 'Approved photo match';
+      const colorReview = row.sourceId === 'S02' && descriptor.owner_approved === false &&
+        descriptor.pattern_approved === true && descriptor.source_note === 'Pattern approved · color review';
+      if (row.kind !== 'suit' || !(approved || colorReview) ||
+          descriptor.width !== 996 || descriptor.height !== 2748) return null;
+    }
     if (typeof descriptor.label !== 'string' || !descriptor.label.trim()) return null;
     if (!/^[a-f0-9]{64}$/.test(descriptor.sha256 || '')) return null;
     // Only a local relative image from the pinned manifest is eligible.
@@ -36,7 +41,9 @@
       owner_reference_photo: 'Owner-supplied garment photograph.',
       owner_approved_reference: 'Owner-approved reference image.',
       native_avatar_preview: 'Approved garment on the existing app avatar.',
-      corrected_avatar_preview: 'Photo-matched garment on the existing app avatar; awaiting owner review.',
+      corrected_avatar_preview: descriptor.owner_approved === true
+        ? 'Owner-approved corrected garment on the existing app avatar.'
+        : 'Owner-approved pattern on the existing app avatar; brown color correction awaiting review.',
     }[descriptor.source_kind];
     const frame = document.createElement('span');
     frame.className = 'hewrs-blazer-picker-image';
@@ -147,7 +154,7 @@
     refresh();
   }
 
-  root.HEWRSBlazerPickerPreview = Object.freeze({version: '2', refresh});
+  root.HEWRSBlazerPickerPreview = Object.freeze({version: '3', refresh});
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start, {once: true});
   } else {
