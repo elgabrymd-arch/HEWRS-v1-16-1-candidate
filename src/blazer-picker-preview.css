@@ -68,6 +68,29 @@
   line-height: 1.4;
 }
 
+.hewrs-suit-photo-review {
+  margin: 0 0 10px;
+}
+
+.hewrs-suit-photo-review[hidden] {
+  display: none;
+}
+
+.hewrs-suit-photo-review a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--selected);
+  font-size: 13px;
+  line-height: 1.5;
+  text-underline-offset: 3px;
+}
+
+.hewrs-suit-photo-review a:focus-visible {
+  outline: 2px solid var(--selected);
+  outline-offset: 3px;
+}
+
 .hewrs-ui #picker-list :is(.hewrs-blazer-picker-choice, .hewrs-suit-picker-choice):focus-visible {
   outline: 2px solid var(--selected);
   outline-offset: 2px;

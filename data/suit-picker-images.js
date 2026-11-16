@@ -1,4 +1,4 @@
-/* Native suit references; S02 retains the confirmed owner cloth photograph. */
+/* Native suit references; S02/S13 photo matches are pending owner review. */
 globalThis.HEWRS_SUIT_PICKER_IMAGES = {
   "schema": "hewrs.suit-picker-images.v1",
   "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
@@ -14,15 +14,15 @@ globalThis.HEWRS_SUIT_PICKER_IMAGES = {
       "object_position": "50% 26%"
     },
     "S02": {
-      "src": "ui/source-evidence/S02-owner-crop.png",
-      "sha256": "6b0b52b796c0c97b1445d45469e8b7945684d321a447e915947daf0fa90ee2be",
-      "width": 1005,
-      "height": 1110,
-      "label": "Muted medium brown",
+      "src": "ui/suit-photo-review/f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2.png",
+      "sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2",
+      "width": 996,
+      "height": 2748,
+      "label": "Charcoal grey \u00b7 subtle tonal check",
       "history_id": "suit-1",
-      "source_kind": "owner_reference_photo",
-      "object_position": "50% 50%",
-      "source_note": "Original cloth photo"
+      "source_kind": "corrected_avatar_preview",
+      "object_position": "50% 26%",
+      "source_note": "Photo match \u00b7 review"
     },
     "S03": {
       "src": "ui/option-cards/0955285d703704958185db3b91671456637c5c98f882412767f414136745d278.png",
@@ -125,14 +125,15 @@ globalThis.HEWRS_SUIT_PICKER_IMAGES = {
       "object_position": "50% 26%"
     },
     "S13": {
-      "src": "ui/option-cards/efe79f0b0aff86b7019b576607d5b9221ac00adf61d7b6dfce9f2f2e036af9d8.png",
-      "sha256": "efe79f0b0aff86b7019b576607d5b9221ac00adf61d7b6dfce9f2f2e036af9d8",
-      "width": 360,
-      "height": 993,
-      "label": "Medium-dark slate blue",
+      "src": "ui/suit-photo-review/510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a.png",
+      "sha256": "510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a",
+      "width": 996,
+      "height": 2748,
+      "label": "Blue-charcoal \u00b7 fine glen check",
       "history_id": "suit-12",
-      "source_kind": "native_avatar_preview",
-      "object_position": "50% 26%"
+      "source_kind": "corrected_avatar_preview",
+      "object_position": "50% 26%",
+      "source_note": "Photo match \u00b7 review"
     },
     "S14": {
       "src": "ui/option-cards/8a1b2e6bdee00ab42207599a249e832b259c2b7d572bec24bdcc2756999e0c84.png",

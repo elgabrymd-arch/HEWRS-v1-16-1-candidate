@@ -28,15 +28,15 @@
       "object_position": "50% 26%"
     },
     "S02": {
-      "src": "ui/source-evidence/S02-owner-crop.png",
-      "sha256": "6b0b52b796c0c97b1445d45469e8b7945684d321a447e915947daf0fa90ee2be",
-      "width": 1005,
-      "height": 1110,
-      "label": "Muted medium brown",
+      "src": "ui/suit-photo-review/f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2.png",
+      "sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2",
+      "width": 996,
+      "height": 2748,
+      "label": "Charcoal grey · subtle tonal check",
       "history_id": "suit-1",
-      "source_kind": "owner_reference_photo",
-      "object_position": "50% 50%",
-      "source_note": "Original cloth photo"
+      "source_kind": "corrected_avatar_preview",
+      "object_position": "50% 26%",
+      "source_note": "Photo match · review"
     },
     "S03": {
       "src": "ui/option-cards/0955285d703704958185db3b91671456637c5c98f882412767f414136745d278.png",
@@ -139,14 +139,15 @@
       "object_position": "50% 26%"
     },
     "S13": {
-      "src": "ui/option-cards/efe79f0b0aff86b7019b576607d5b9221ac00adf61d7b6dfce9f2f2e036af9d8.png",
-      "sha256": "efe79f0b0aff86b7019b576607d5b9221ac00adf61d7b6dfce9f2f2e036af9d8",
-      "width": 360,
-      "height": 993,
-      "label": "Medium-dark slate blue",
+      "src": "ui/suit-photo-review/510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a.png",
+      "sha256": "510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a",
+      "width": 996,
+      "height": 2748,
+      "label": "Blue-charcoal · fine glen check",
       "history_id": "suit-12",
-      "source_kind": "native_avatar_preview",
-      "object_position": "50% 26%"
+      "source_kind": "corrected_avatar_preview",
+      "object_position": "50% 26%",
+      "source_note": "Photo match · review"
     },
     "S14": {
       "src": "ui/option-cards/8a1b2e6bdee00ab42207599a249e832b259c2b7d572bec24bdcc2756999e0c84.png",
@@ -439,14 +440,225 @@
       "storage_writes_during_render": 0
     },
     "S02": {
-      "source_photo": {
-        "path": "ui/source-evidence/S02-owner-crop.png",
-        "sha256": "6b0b52b796c0c97b1445d45469e8b7945684d321a447e915947daf0fa90ee2be"
+      "appearance_status": "PHOTO_MATCH_REVIEW_PENDING",
+      "owner_approved": false,
+      "selection": {
+        "suitId": "S02",
+        "shirtId": "DS001",
+        "state": "NO_TIE",
+        "shoeId": "shoe-15",
+        "watchId": null
       },
-      "appearance_status": "ORIGINAL_CLOTH_REFERENCE_RENDER_PENDING",
-      "current_source_revision": "hewrs.owner-source.s02.2026-09-29.v1",
-      "owner_confirmation": "2026-09-29T12:54:08Z",
-      "visual_limit": "The existing S02 layer has a more pronounced check than the owner photo. Images are not changed by this update. Comparisons featuring S02 show this caveat and are excluded from training until the depiction is reconciled."
+      "native_width": 996,
+      "native_height": 2748,
+      "avatar": {
+        "url": "assets/shared/S05_VISIBLE_BODY.png",
+        "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+        "rect": [
+          0,
+          0,
+          996,
+          2748
+        ],
+        "role": "S05_VISIBLE_BODY",
+        "path": "assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png"
+      },
+      "sources": [
+        {
+          "url": "assets/07c472f8cdd3d5d81e2929979d30be9cf19c0f08f14a2e35de0540f37f829de2.png",
+          "sha256": "07c472f8cdd3d5d81e2929979d30be9cf19c0f08f14a2e35de0540f37f829de2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "selected_registered_shoe_pair",
+          "path": "assets/07c472f8cdd3d5d81e2929979d30be9cf19c0f08f14a2e35de0540f37f829de2.png"
+        },
+        {
+          "url": "assets/9213ab289d4751b83ef772849ab567d0ee99a3ead980acbf2b229c910633aed2.png",
+          "sha256": "9213ab289d4751b83ef772849ab567d0ee99a3ead980acbf2b229c910633aed2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S02/TROUSERS.png",
+          "path": "assets/9213ab289d4751b83ef772849ab567d0ee99a3ead980acbf2b229c910633aed2.png"
+        },
+        {
+          "url": "assets/original_ids/DS001/no_tie/DS001_RIGHT_CUFF.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "role": "right_cuff",
+          "alpha_bounds": null,
+          "evidence_status": "UNAVAILABLE_CUFF_NO_SUBSTITUTE",
+          "path": "assets/99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0.png"
+        },
+        {
+          "url": "assets/shared/S05_VISIBLE_BODY.png",
+          "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_VISIBLE_BODY",
+          "path": "assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png"
+        },
+        {
+          "url": "assets/original_ids/DS001/no_tie/DS001_BODY.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "da5bb883ad62277c394a8f7196514c1315467193b5170c017cb1fd0914fc5476",
+          "role": "body",
+          "alpha_bounds": [
+            350,
+            416,
+            650,
+            837
+          ],
+          "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE",
+          "path": "assets/da5bb883ad62277c394a8f7196514c1315467193b5170c017cb1fd0914fc5476.png"
+        },
+        {
+          "url": "assets/original_ids/DS001/no_tie/DS001_LEFT.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "fcfc66292f61b65ce5b9669d2acc254d847d809be0f90efcf89bd317f7c38a9e",
+          "role": "left",
+          "alpha_bounds": [
+            376,
+            405,
+            484,
+            525
+          ],
+          "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE",
+          "path": "assets/fcfc66292f61b65ce5b9669d2acc254d847d809be0f90efcf89bd317f7c38a9e.png"
+        },
+        {
+          "url": "assets/original_ids/DS001/no_tie/DS001_RIGHT.png",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "sha256": "7dc82da051699dd24fe7ffc5971185f324167dce06ae8202782f05e470eaac9f",
+          "role": "right",
+          "alpha_bounds": [
+            528,
+            415,
+            607,
+            525
+          ],
+          "evidence_status": "FITTED_NATIVE_SOURCE_REVIEW_CANDIDATE",
+          "path": "assets/7dc82da051699dd24fe7ffc5971185f324167dce06ae8202782f05e470eaac9f.png"
+        },
+        {
+          "url": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png",
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "REGISTERED_GARMENT_RGBA",
+          "source_path": "static/layers/S02/JACKET.png",
+          "display_alpha_mask": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          },
+          "path": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png"
+        },
+        {
+          "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "S05_NECK_JUNCTION_KEEP",
+          "path": "assets/c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545.png"
+        },
+        {
+          "url": "assets/shared/LEFT_HAND.png",
+          "sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "LEFT_HAND",
+          "path": "assets/8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34.png"
+        },
+        {
+          "url": "assets/shared/RIGHT_HAND.png",
+          "sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ],
+          "role": "RIGHT_HAND",
+          "path": "assets/3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9.png"
+        }
+      ],
+      "preserve_non_garment_pixels": true,
+      "input_photo_sha256": "c558b15151ad9ddfefc115a6e9c18d0d0c696768b08381ef1f6b42cb4eff05e1",
+      "generated_image_sha256": "092c53c403185e5cd27aefb926963ac7551bd295e57cffee40ac6471ca454537",
+      "native_non_garment_rgba_sha256": "32c625cd50e312beade058a8b1f13366997dbdda041e98c03009f9568f85e16a",
+      "native_rgba_sha256": "ed65d7305f0a0e9cf9b53c2be19807501a7386edcd2e0ab6809a21fcb95794b4",
+      "before": {
+        "path": "ui/suit-photo-review/602f0e20ad7c078df99c569c9f6dd0d5460e0ca1bf1b0fb64b0efacc88c87a11.png",
+        "sha256": "602f0e20ad7c078df99c569c9f6dd0d5460e0ca1bf1b0fb64b0efacc88c87a11"
+      },
+      "ownership_mask": {
+        "path": "ui/suit-photo-review/247aa0d2ca6670d8bc6b788d95d56a8953048c3c195fb5686b1787b5c9fee085.png",
+        "sha256": "247aa0d2ca6670d8bc6b788d95d56a8953048c3c195fb5686b1787b5c9fee085"
+      },
+      "verification": {
+        "native_non_garment_rgba_before_sha256": "32c625cd50e312beade058a8b1f13366997dbdda041e98c03009f9568f85e16a",
+        "non_garment_pixels_changed": 0,
+        "alpha_pixels_changed": 0,
+        "garment_pixels_changed": 1166992,
+        "edge_color_extension_pixels": 33411,
+        "max_edge_extension": 24
+      },
+      "recipe": "Built-in image edit for garment fabric; proportional registration, nearest interior edge colors, immutable ownership-mask composition, original non-garment RGBA and alpha restored exactly.",
+      "local_baseline_renderer": "Unchanged native source renderer using Skia; Chromium pixel identity is not asserted.",
+      "visual_limit": "Latest owner-identified photograph controls this review; indoor lighting is not a calibrated color measurement. Historical brown description and appearance-learning guard remain unchanged.",
+      "saved_state_unchanged": true,
+      "storage_writes_during_render": 0
     },
     "S03": {
       "selection": {
@@ -2825,6 +3037,8 @@
       "storage_writes_during_render": 0
     },
     "S13": {
+      "appearance_status": "PHOTO_MATCH_REVIEW_PENDING",
+      "owner_approved": false,
       "selection": {
         "suitId": "S13",
         "shirtId": "DS001",
@@ -2834,7 +3048,6 @@
       },
       "native_width": 996,
       "native_height": 2748,
-      "native_rgba_sha256": "c5fb7db26ac0694fde3de810ca8c9689998406ef90315274dffee23c4a180c8d",
       "avatar": {
         "url": "assets/shared/S05_VISIBLE_BODY.png",
         "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
@@ -2846,43 +3059,6 @@
         ],
         "role": "S05_VISIBLE_BODY",
         "path": "assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png"
-      },
-      "jacket": {
-        "url": "assets/1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537.png",
-        "sha256": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
-        "rect": [
-          0,
-          0,
-          996,
-          2748
-        ],
-        "role": "REGISTERED_GARMENT_RGBA",
-        "source_path": "static/layers/S13/JACKET.png",
-        "display_alpha_mask": {
-          "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
-          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
-          "rect": [
-            0,
-            0,
-            996,
-            2748
-          ],
-          "role": "S05_NECK_JUNCTION_KEEP"
-        },
-        "path": "assets/1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537.png"
-      },
-      "trousers": {
-        "url": "assets/3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1.png",
-        "sha256": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
-        "rect": [
-          0,
-          0,
-          996,
-          2748
-        ],
-        "role": "REGISTERED_GARMENT_RGBA",
-        "source_path": "static/layers/S13/TROUSERS.png",
-        "path": "assets/3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1.png"
       },
       "sources": [
         {
@@ -3054,11 +3230,30 @@
           "path": "assets/3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9.png"
         }
       ],
-      "template": "S11",
-      "source_compositor_template": "S05",
-      "review": "ACTIVE50_STAGING_EXISTING_COMPONENTS",
-      "recipe": "Exact native renderer canvas; proportional high-quality canvas downsample only",
-      "thumbnail_rgba_sha256": "aa3c3f3fa09322eb299ca8d93415da22a451dd2d9656394239b5944635d0567d",
+      "preserve_non_garment_pixels": true,
+      "input_photo_sha256": "e20092691c14e62e7bf0254ed76b5875a809533965738d2aac0648283407a784",
+      "generated_image_sha256": "af1e790f78b7710edbc8b2f8bc46078b59737cc6c87872f2cb90523a3a6d6ca7",
+      "native_non_garment_rgba_sha256": "32c625cd50e312beade058a8b1f13366997dbdda041e98c03009f9568f85e16a",
+      "native_rgba_sha256": "e50f1b9c63959b49e5520a96422d96affc27c7bcd0013aaefb8f7bbe3e06d972",
+      "before": {
+        "path": "ui/suit-photo-review/78665b0d498df9edb4b127661170468d482cd772b58b6be7ca6a7f33dc95c8fa.png",
+        "sha256": "78665b0d498df9edb4b127661170468d482cd772b58b6be7ca6a7f33dc95c8fa"
+      },
+      "ownership_mask": {
+        "path": "ui/suit-photo-review/247aa0d2ca6670d8bc6b788d95d56a8953048c3c195fb5686b1787b5c9fee085.png",
+        "sha256": "247aa0d2ca6670d8bc6b788d95d56a8953048c3c195fb5686b1787b5c9fee085"
+      },
+      "verification": {
+        "native_non_garment_rgba_before_sha256": "32c625cd50e312beade058a8b1f13366997dbdda041e98c03009f9568f85e16a",
+        "non_garment_pixels_changed": 0,
+        "alpha_pixels_changed": 0,
+        "garment_pixels_changed": 1167139,
+        "edge_color_extension_pixels": 36504,
+        "max_edge_extension": 38
+      },
+      "recipe": "Built-in image edit for garment fabric; proportional registration, nearest interior edge colors, immutable ownership-mask composition, original non-garment RGBA and alpha restored exactly.",
+      "local_baseline_renderer": "Unchanged native source renderer using Skia; Chromium pixel identity is not asserted.",
+      "visual_limit": "Photo-matched fine plaid rendering; exact thread repeat and fabric color remain limited by the photograph.",
       "saved_state_unchanged": true,
       "storage_writes_during_render": 0
     },

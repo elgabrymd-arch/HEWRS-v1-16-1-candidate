@@ -12,7 +12,11 @@
   function descriptorFor(manifest, row) {
     const descriptor = manifest.items?.[row.sourceId];
     if (!descriptor || descriptor.history_id !== row.id) return null;
-    if (!['owner_approved_reference', 'owner_reference_photo', 'native_avatar_preview'].includes(descriptor.source_kind)) return null;
+    if (!['owner_approved_reference', 'owner_reference_photo', 'native_avatar_preview', 'corrected_avatar_preview'].includes(descriptor.source_kind)) return null;
+    if (descriptor.source_kind === 'corrected_avatar_preview' &&
+        (row.kind !== 'suit' || !['S02', 'S13'].includes(row.sourceId) ||
+         descriptor.source_note !== 'Photo match · review' ||
+         descriptor.width !== 996 || descriptor.height !== 2748)) return null;
     if (typeof descriptor.label !== 'string' || !descriptor.label.trim()) return null;
     if (!/^[a-f0-9]{64}$/.test(descriptor.sha256 || '')) return null;
     // Only a local relative image from the pinned manifest is eligible.
@@ -32,6 +36,7 @@
       owner_reference_photo: 'Owner-supplied garment photograph.',
       owner_approved_reference: 'Owner-approved reference image.',
       native_avatar_preview: 'Approved garment on the existing app avatar.',
+      corrected_avatar_preview: 'Photo-matched garment on the existing app avatar; awaiting owner review.',
     }[descriptor.source_kind];
     const frame = document.createElement('span');
     frame.className = 'hewrs-blazer-picker-image';
@@ -82,6 +87,28 @@
     image.src = descriptor.src;
   }
 
+  function refreshReviewLink(manifest) {
+    const eligible = manifest?.schema === 'hewrs.suit-picker-images.v1' &&
+      manifest.source_lock === root.HEWRS_INPUT_SHA256 &&
+      ['S02', 'S13'].every(id => manifest.items?.[id]?.source_kind === 'corrected_avatar_preview');
+    let note = body.querySelector('#hewrs-suit-photo-review');
+    if (!eligible) { note?.remove(); return; }
+    if (!note) {
+      note = document.createElement('p');
+      note.id = 'hewrs-suit-photo-review';
+      note.className = 'hewrs-suit-photo-review';
+      const link = document.createElement('a');
+      link.href = 'suit-photo-review.html?item=S02';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'Review S02 / S13 photo matches';
+      link.setAttribute('aria-label', 'Review larger S02 and S13 photo matches in a new tab');
+      note.append(link);
+      body.prepend(note);
+    }
+    note.hidden = body.querySelector('#picker-type')?.value === 'blazer';
+  }
+
   function refresh() {
     const app = root.HEWRSApp;
     if (!body || !app || app.ui.draft()?.category !== 'topwear') return;
@@ -95,6 +122,7 @@
     // Disconnect during our own child moves to avoid observing our additions.
     observer?.disconnect();
     try {
+      refreshReviewLink(root.HEWRS_SUIT_PICKER_IMAGES);
       for (const button of list.querySelectorAll('button.fx-choice[data-item-id]')) {
         if (enhanced.has(button)) continue;
         const sourceId = button.dataset.itemId;
@@ -119,7 +147,7 @@
     refresh();
   }
 
-  root.HEWRSBlazerPickerPreview = Object.freeze({version: '1', refresh});
+  root.HEWRSBlazerPickerPreview = Object.freeze({version: '2', refresh});
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start, {once: true});
   } else {

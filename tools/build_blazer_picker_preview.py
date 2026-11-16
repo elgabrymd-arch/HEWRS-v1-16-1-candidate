@@ -4,18 +4,86 @@ from pathlib import Path
 import base64
 import hashlib
 import json
-from PIL import Image
+import re
+from PIL import Image, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = "40c9756656e3e50a183dc2da2ff81ff9df5d9bbc"
+AVATAR_SHA256 = "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d"
+UNMODIFIED_SUIT_ITEMS_SHA256 = "ef387c6def364917b098de99d5bf59f8dd684d533a616b2831309493d452471c"
+PHOTO_MATCH_IDS = {"S02", "S13"}
 
 
 def sha(path):
-    return hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+    resolved = (ROOT / path).resolve()
+    resolved.relative_to(ROOT.resolve())
+    return hashlib.sha256(resolved.read_bytes()).hexdigest()
 
 
 def integrity(path):
     return "sha256-" + base64.b64encode(bytes.fromhex(sha(path))).decode()
+
+
+def validate_photo_match(identifier, thumbnail, provenance):
+    assert identifier in PHOTO_MATCH_IDS, "Photo-match scope must remain S02/S13"
+    assert thumbnail["source_kind"] == "corrected_avatar_preview"
+    assert thumbnail["source_note"] == "Photo match · review"
+    assert (thumbnail["width"], thumbnail["height"]) == (996, 2748)
+    assert thumbnail["history_id"] == "suit-" + str(int(identifier[1:]) - 1)
+    assert provenance["appearance_status"] == "PHOTO_MATCH_REVIEW_PENDING"
+    assert provenance["owner_approved"] is False, "Candidate is not an appearance approval"
+    assert provenance["selection"]["suitId"] == identifier
+    assert (provenance["native_width"], provenance["native_height"]) == (996, 2748)
+    assert provenance["preserve_non_garment_pixels"] is True
+    # Original private photos and generated intermediates remain private. Their
+    # hashes identify inputs; the build only reads the packaged native sources.
+    for field in ("input_photo_sha256", "generated_image_sha256", "native_non_garment_rgba_sha256"):
+        assert re.fullmatch(r"[a-f0-9]{64}", provenance[field]), "Missing input identity: " + field
+    avatar = provenance["avatar"]
+    assert avatar["sha256"] == AVATAR_SHA256
+    assert sha(avatar["path"]) == AVATAR_SHA256, "Frozen avatar source changed"
+    assert Image.open(ROOT / avatar["path"]).size == (996, 2748)
+    assert provenance["sources"], "Candidate requires its native source inputs"
+    assert any(d["path"] == avatar["path"] and d["sha256"] == AVATAR_SHA256
+               for d in provenance["sources"]), "Frozen avatar missing from source inputs"
+    for descriptor in provenance["sources"]:
+        assert sha(descriptor["path"]) == descriptor["sha256"], "Photo-match native source changed"
+    for name in ("before", "ownership_mask"):
+        descriptor = provenance[name]
+        assert sha(descriptor["path"]) == descriptor["sha256"], "Photo-match proof asset changed: " + name
+        with Image.open(ROOT / descriptor["path"]) as image:
+            assert image.size == (996, 2748), "Photo-match proof geometry changed: " + name
+    assert sha(thumbnail["src"]) == thumbnail["sha256"], "Photo-match candidate bytes changed"
+    with Image.open(ROOT / thumbnail["src"]) as image:
+        assert image.size == (996, 2748), "Photo-match candidate geometry changed"
+        candidate = image.convert("RGBA")
+    with Image.open(ROOT / provenance["before"]["path"]) as image:
+        before = image.convert("RGBA")
+    with Image.open(ROOT / provenance["ownership_mask"]["path"]) as image:
+        # Zero ownership means fully protected. Any nonzero ownership permits
+        # garment RGB changes, while the entire alpha channel remains frozen.
+        protected = image.convert("L").point(lambda value: 255 if value == 0 else 0)
+    alpha_difference = ImageChops.difference(candidate.getchannel("A"), before.getchannel("A"))
+    alpha_changed = sum(alpha_difference.histogram()[1:])
+    assert alpha_changed == 0, "Photo-match candidate changed original alpha"
+    zero = Image.new("RGBA", (996, 2748), (0, 0, 0, 0))
+    protected_candidate = Image.composite(candidate, zero, protected)
+    protected_before = Image.composite(before, zero, protected)
+    channels = ImageChops.difference(protected_candidate, protected_before).split()
+    changed = channels[0]
+    for channel in channels[1:]:
+        changed = ImageChops.lighter(changed, channel)
+    non_garment_changed = sum(changed.histogram()[1:])
+    assert non_garment_changed == 0, "Photo-match candidate changed protected non-garment pixels"
+    protected_hash = hashlib.sha256(protected_candidate.tobytes()).hexdigest()
+    before_hash = hashlib.sha256(protected_before.tobytes()).hexdigest()
+    verification = provenance["verification"]
+    assert protected_hash == provenance["native_non_garment_rgba_sha256"], "Candidate protected-pixel proof mismatch"
+    assert before_hash == verification["native_non_garment_rgba_before_sha256"], "Original protected-pixel proof mismatch"
+    assert protected_hash == before_hash
+    assert verification["non_garment_pixels_changed"] == non_garment_changed == 0
+    assert verification["alpha_pixels_changed"] == alpha_changed == 0
+    assert hashlib.sha256(candidate.tobytes()).hexdigest() == provenance["native_rgba_sha256"], "Candidate native RGBA proof mismatch"
 
 
 def build():
@@ -85,12 +153,19 @@ def build():
     assert list(suits["items"]) == [f"S{i:02d}" for i in range(1, 19)]
     assert suits["runtime"] == {"path": release["runtime"], "sha256": release["runtime_sha256"]}
     assert suits["standard_unchanged"] and suits["saved_state_unchanged"]
+    unmodified = {key: value for key, value in suits["items"].items() if key not in PHOTO_MATCH_IDS}
+    encoded = json.dumps(unmodified, sort_keys=True, separators=(",", ":")).encode()
+    assert hashlib.sha256(encoded).hexdigest() == UNMODIFIED_SUIT_ITEMS_SHA256, "Unrelated suit preview changed"
     correction = json.loads((ROOT / "data/owner-source-corrections.json").read_text())
+    corrected_ids = set()
     for identifier, thumbnail in suits["items"].items():
         assert sha(thumbnail["src"]) == thumbnail["sha256"], "Wrong suit image: " + identifier
         assert Image.open(ROOT / thumbnail["src"]).size == (thumbnail["width"], thumbnail["height"])
         provenance = suits["provenance"][identifier]
-        if identifier == "S02":
+        if thumbnail["source_kind"] == "corrected_avatar_preview":
+            validate_photo_match(identifier, thumbnail, provenance)
+            corrected_ids.add(identifier)
+        elif identifier == "S02":
             assert thumbnail["src"] == correction["source_image_path"]
             assert thumbnail["sha256"] == correction["source_image_sha256"]
             assert thumbnail["source_kind"] == "owner_reference_photo"
@@ -100,9 +175,11 @@ def build():
             assert provenance["selection"]["suitId"] == identifier
             for descriptor in provenance["sources"]:
                 assert sha(descriptor["path"]) == descriptor["sha256"], "Native suit source changed"
+    assert not corrected_ids or corrected_ids == PHOTO_MATCH_IDS, "Both requested photo matches must be present"
     suit_manifest = {key: suits[key] for key in ("schema", "source_lock", "items")}
     (ROOT / "data/suit-picker-images.js").write_text(
-        "/* Native suit references; S02 retains the confirmed owner cloth photograph. */\n"
+        ("/* Native suit references; S02/S13 photo matches are pending owner review. */\n"
+         if corrected_ids else "/* Native suit references; S02 retains the confirmed owner cloth photograph. */\n")
         + "globalThis.HEWRS_SUIT_PICKER_IMAGES = " + json.dumps(suit_manifest, indent=2) + ";\n")
     html = (ROOT / "index.html").read_text()
     # The preview CDN redirects existing binary images to this exact repository.
