@@ -1,4 +1,4 @@
-/* Existing approved image references; presentation only. */
+/* Existing approved references and native avatar render; presentation only. */
 globalThis.HEWRS_BLAZER_PICKER_IMAGES = {
   "schema": "hewrs.blazer-picker-images.v1",
   "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
@@ -145,13 +145,13 @@ globalThis.HEWRS_BLAZER_PICKER_IMAGES = {
       "history_id": "blazer-source-B14"
     },
     "B15": {
-      "src": "ui/option-cards/1117478ceac051bcaa36ec985d835ef2a68a6a06bae868b7e9214b1ba33c5f87.png",
-      "sha256": "1117478ceac051bcaa36ec985d835ef2a68a6a06bae868b7e9214b1ba33c5f87",
-      "width": 574,
-      "height": 896,
+      "src": "ui/option-cards/08f72f46419e72b6b756a6b54730474f357b12df4a4861fea7ffda0b7922490b.png",
+      "sha256": "08f72f46419e72b6b756a6b54730474f357b12df4a4861fea7ffda0b7922490b",
+      "width": 996,
+      "height": 2748,
       "label": "Stone / warm greige",
-      "source_kind": "owner_reference_photo",
-      "object_position": "50% 50%",
+      "source_kind": "native_avatar_preview",
+      "object_position": "50% 26%",
       "history_id": "blazer-source-B15"
     }
   }

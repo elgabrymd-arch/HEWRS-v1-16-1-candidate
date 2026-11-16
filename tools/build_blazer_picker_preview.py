@@ -51,20 +51,32 @@ def build():
     for record in added["records"]:
         binding = record["binding"]
         identifier = binding["id"]
-        thumbnail = binding["sourcePhoto"]["thumbnail"]
         assert identifier not in items
-        assert sha(thumbnail["src"]) == thumbnail["sha256"], "Wrong owner photo: " + identifier
+        assert identifier == "B15", "Review the native avatar source for the new blazer"
+        thumbnail = json.loads((ROOT / "data/blazer-picker-b15-avatar.json").read_text())
+        assert thumbnail["schema"] == "hewrs.blazer-picker-native-avatar.v1"
+        assert thumbnail["selection"]["blazerId"] == identifier
+        assert thumbnail["source_lock"] == added["source_lock"]
+        assert thumbnail["source_assembly"] == "APPROVED_B15_GARMENT_ONLY_REGISTERED_LAYER"
+        assert thumbnail["runtime"] == {"path": release["runtime"], "sha256": release["runtime_sha256"]}
+        assert thumbnail["jacket"]["sha256"] == binding["assembly"]["jacket"]["sha256"]
+        assert thumbnail["ownership_mask"]["sha256"] == binding["assembly"]["ownership"]["sha256"]
+        assert thumbnail["standard_unchanged"] and thumbnail["saved_state_unchanged"]
+        for descriptor in thumbnail["sources"]:
+            assert sha(descriptor["path"]) == descriptor["sha256"], "Native avatar source changed"
+        assert sha(thumbnail["src"]) == thumbnail["sha256"], "Wrong native B15 preview"
         width, height = Image.open(ROOT / thumbnail["src"]).size
+        assert (width, height) == (thumbnail["width"], thumbnail["height"]) == (996, 2748)
         items[identifier] = {
             "src": thumbnail["src"], "sha256": thumbnail["sha256"],
             "width": width, "height": height, "label": labels[identifier],
-            "source_kind": "owner_reference_photo", "object_position": "50% 50%",
+            "source_kind": "native_avatar_preview", "object_position": "50% 26%",
             "history_id": binding["historyId"],
         }
     assert list(items) == [f"B{i:02d}" for i in range(1, 16)], "Blazer coverage changed; review bindings"
     manifest = {"schema": "hewrs.blazer-picker-images.v1", "source_lock": added["source_lock"],
                 "baseline_commit": BASELINE, "items": items}
-    js = "/* Existing approved image references; presentation only. */\n"
+    js = "/* Existing approved references and native avatar render; presentation only. */\n"
     js += "globalThis.HEWRS_BLAZER_PICKER_IMAGES = " + json.dumps(manifest, indent=2) + ";\n"
     (ROOT / "data/blazer-picker-images.js").write_text(js)
     html = (ROOT / "index.html").read_text()
@@ -84,17 +96,23 @@ def build():
         tags.append(f'<script defer src="{path}?v={sha(path)[:16]}" integrity="{integrity(path)}"></script>')
     tags.append('''<script>
 window.addEventListener('DOMContentLoaded', function () {
-  if (new URLSearchParams(location.search).get('show') !== 'blazers') return;
+  var query = new URLSearchParams(location.search);
+  if (query.get('show') !== 'blazers') return;
   if (!globalThis.HEWRS_READY || !globalThis.HEWRSApp) return;
   HEWRSApp.openPicker('topwear');
   var type = document.getElementById('picker-type');
   if (type) { type.value = 'blazer'; type.dispatchEvent(new Event('change', {bubbles:true})); }
+  var item = query.get('item');
+  var search = document.getElementById('picker-search');
+  if (search && Object.hasOwn(HEWRS_BLAZER_PICKER_IMAGES.items, item)) {
+    search.value = item; search.dispatchEvent(new Event('input', {bubbles:true}));
+  }
 });
 </script>''')
     html = html.replace("</body>", "\n".join(tags) + "\n</body>", 1)
     (ROOT / "blazer-picker-preview.html").write_text(html)
     print(json.dumps({"preview": "blazer-picker-preview.html", "blazers": len(items),
-                      "approved_references": 14, "owner_photos": 1, "standard_unchanged": True}))
+                      "approved_references": 14, "native_avatar_previews": 1, "standard_unchanged": True}))
 
 
 if __name__ == "__main__":

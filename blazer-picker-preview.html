@@ -50,15 +50,21 @@
 
 <script defer src="feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7a"></script>
 <script defer src="feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9"></script>
-<script defer src="data/blazer-picker-images.js?v=bb1d09199b5afb72" integrity="sha256-ux0JGZta+3L7urvFFbRJfkRj87EFrc8Du2kD6ffROB8="></script>
-<script defer src="src/blazer-picker-preview.js?v=b3c118792ee90989" integrity="sha256-s8EYeS7pCYk7PusBlvzrb+D9KEwaNrluKn4rgtxoUNA="></script>
+<script defer src="data/blazer-picker-images.js?v=c0178b39872881e6" integrity="sha256-wBeLOYcogeYG3+DJHIuuo5sD0+Y2y4HNegOgs0BMjJE="></script>
+<script defer src="src/blazer-picker-preview.js?v=bac2bad4c9f4e5f7" integrity="sha256-usK61Mn05fdyTo10k7vlslf3yzCqpCZwbEm5TWVRts8="></script>
 <script>
 window.addEventListener('DOMContentLoaded', function () {
-  if (new URLSearchParams(location.search).get('show') !== 'blazers') return;
+  var query = new URLSearchParams(location.search);
+  if (query.get('show') !== 'blazers') return;
   if (!globalThis.HEWRS_READY || !globalThis.HEWRSApp) return;
   HEWRSApp.openPicker('topwear');
   var type = document.getElementById('picker-type');
   if (type) { type.value = 'blazer'; type.dispatchEvent(new Event('change', {bubbles:true})); }
+  var item = query.get('item');
+  var search = document.getElementById('picker-search');
+  if (search && Object.hasOwn(HEWRS_BLAZER_PICKER_IMAGES.items, item)) {
+    search.value = item; search.dispatchEvent(new Event('input', {bubbles:true}));
+  }
 });
 </script>
 </body></html>

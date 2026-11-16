@@ -12,7 +12,7 @@
   function descriptorFor(manifest, row) {
     const descriptor = manifest.items?.[row.sourceId];
     if (!descriptor || descriptor.history_id !== row.id) return null;
-    if (!['owner_approved_reference', 'owner_reference_photo'].includes(descriptor.source_kind)) return null;
+    if (!['owner_approved_reference', 'owner_reference_photo', 'native_avatar_preview'].includes(descriptor.source_kind)) return null;
     if (typeof descriptor.label !== 'string' || !descriptor.label.trim()) return null;
     if (!/^[a-f0-9]{64}$/.test(descriptor.sha256 || '')) return null;
     // Only a local relative image from the pinned manifest is eligible.
@@ -28,8 +28,11 @@
     if (!id || !name) return;
 
     const fullLabel = name.textContent;
-    const sourceNote = descriptor.source_kind === 'owner_reference_photo'
-      ? 'Owner-supplied garment photograph.' : 'Owner-approved reference image.';
+    const sourceNote = {
+      owner_reference_photo: 'Owner-supplied garment photograph.',
+      owner_approved_reference: 'Owner-approved reference image.',
+      native_avatar_preview: 'Approved blazer on the existing app avatar.',
+    }[descriptor.source_kind];
     const frame = document.createElement('span');
     frame.className = 'hewrs-blazer-picker-image';
     frame.dataset.sourceKind = descriptor.source_kind;
