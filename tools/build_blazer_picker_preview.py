@@ -68,6 +68,10 @@ def build():
     js += "globalThis.HEWRS_BLAZER_PICKER_IMAGES = " + json.dumps(manifest, indent=2) + ";\n"
     (ROOT / "data/blazer-picker-images.js").write_text(js)
     html = (ROOT / "index.html").read_text()
+    # The preview CDN redirects existing binary images to this exact repository.
+    # Permit only that image source in the opt-in page; Standard CSP stays intact.
+    html = html.replace("img-src 'self' data: blob:;",
+                        "img-src 'self' data: blob: https://raw.githubusercontent.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/;", 1)
     start = html.index("<title>")
     stop = html.index("</title>", start) + len("</title>")
     html = html[:start] + "<title>HEWRS · Blazer photo selector preview</title>" + html[stop:]
