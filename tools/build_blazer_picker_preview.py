@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build only the opt-in Blazer picker preview; preserve accepted Standard bytes."""
+"""Build only the opt-in Suit / Blazer picker; preserve accepted Standard bytes."""
 from pathlib import Path
 import base64
 import hashlib
@@ -79,6 +79,31 @@ def build():
     js = "/* Existing approved references and native avatar render; presentation only. */\n"
     js += "globalThis.HEWRS_BLAZER_PICKER_IMAGES = " + json.dumps(manifest, indent=2) + ";\n"
     (ROOT / "data/blazer-picker-images.js").write_text(js)
+    suits = json.loads((ROOT / "data/suit-picker-images.json").read_text())
+    assert suits["schema"] == "hewrs.suit-picker-images.v1"
+    assert suits["source_lock"] == added["source_lock"]
+    assert list(suits["items"]) == [f"S{i:02d}" for i in range(1, 19)]
+    assert suits["runtime"] == {"path": release["runtime"], "sha256": release["runtime_sha256"]}
+    assert suits["standard_unchanged"] and suits["saved_state_unchanged"]
+    correction = json.loads((ROOT / "data/owner-source-corrections.json").read_text())
+    for identifier, thumbnail in suits["items"].items():
+        assert sha(thumbnail["src"]) == thumbnail["sha256"], "Wrong suit image: " + identifier
+        assert Image.open(ROOT / thumbnail["src"]).size == (thumbnail["width"], thumbnail["height"])
+        provenance = suits["provenance"][identifier]
+        if identifier == "S02":
+            assert thumbnail["src"] == correction["source_image_path"]
+            assert thumbnail["sha256"] == correction["source_image_sha256"]
+            assert thumbnail["source_kind"] == "owner_reference_photo"
+            assert thumbnail["source_note"] == "Original cloth photo"
+        else:
+            assert thumbnail["source_kind"] == "native_avatar_preview"
+            assert provenance["selection"]["suitId"] == identifier
+            for descriptor in provenance["sources"]:
+                assert sha(descriptor["path"]) == descriptor["sha256"], "Native suit source changed"
+    suit_manifest = {key: suits[key] for key in ("schema", "source_lock", "items")}
+    (ROOT / "data/suit-picker-images.js").write_text(
+        "/* Native suit references; S02 retains the confirmed owner cloth photograph. */\n"
+        + "globalThis.HEWRS_SUIT_PICKER_IMAGES = " + json.dumps(suit_manifest, indent=2) + ";\n")
     html = (ROOT / "index.html").read_text()
     # The preview CDN redirects existing binary images to this exact repository.
     # Permit only that image source in the opt-in page; Standard CSP stays intact.
@@ -86,25 +111,28 @@ def build():
                         "img-src 'self' data: blob: https://raw.githubusercontent.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/;", 1)
     start = html.index("<title>")
     stop = html.index("</title>", start) + len("</title>")
-    html = html[:start] + "<title>HEWRS · Blazer photo selector preview</title>" + html[stop:]
+    html = html[:start] + "<title>HEWRS · Suit / Blazer photo selector preview</title>" + html[stop:]
     css = "src/blazer-picker-preview.css"
     html = html.replace("</head>", '<meta name="robots" content="noindex,nofollow">\n'
                         + f'<link rel="stylesheet" href="{css}?v={sha(css)[:16]}" integrity="{integrity(css)}">\n</head>', 1)
-    html = html.replace("Dress with intention", "Blazer photo selector · Test version", 1)
+    html = html.replace("Dress with intention", "Suit / Blazer photo selector · Test version", 1)
     tags = []
-    for path in ("data/blazer-picker-images.js", "src/blazer-picker-preview.js"):
+    for path in ("data/blazer-picker-images.js", "data/suit-picker-images.js", "src/blazer-picker-preview.js"):
         tags.append(f'<script defer src="{path}?v={sha(path)[:16]}" integrity="{integrity(path)}"></script>')
     tags.append('''<script>
 window.addEventListener('DOMContentLoaded', function () {
   var query = new URLSearchParams(location.search);
-  if (query.get('show') !== 'blazers') return;
+  var show = query.get('show');
+  var kind = show === 'blazers' ? 'blazer' : show === 'suits' ? 'suit' : null;
+  if (!kind) return;
   if (!globalThis.HEWRS_READY || !globalThis.HEWRSApp) return;
   HEWRSApp.openPicker('topwear');
   var type = document.getElementById('picker-type');
-  if (type) { type.value = 'blazer'; type.dispatchEvent(new Event('change', {bubbles:true})); }
+  if (type) { type.value = kind; type.dispatchEvent(new Event('change', {bubbles:true})); }
   var item = query.get('item');
   var search = document.getElementById('picker-search');
-  if (search && Object.hasOwn(HEWRS_BLAZER_PICKER_IMAGES.items, item)) {
+  var images = kind === 'suit' ? HEWRS_SUIT_PICKER_IMAGES : HEWRS_BLAZER_PICKER_IMAGES;
+  if (search && Object.hasOwn(images.items, item)) {
     search.value = item; search.dispatchEvent(new Event('input', {bubbles:true}));
   }
 });
@@ -112,7 +140,7 @@ window.addEventListener('DOMContentLoaded', function () {
     html = html.replace("</body>", "\n".join(tags) + "\n</body>", 1)
     (ROOT / "blazer-picker-preview.html").write_text(html)
     print(json.dumps({"preview": "blazer-picker-preview.html", "blazers": len(items),
-                      "approved_references": 14, "native_avatar_previews": 1, "standard_unchanged": True}))
+                      "suits": len(suits["items"]), "standard_unchanged": True}))
 
 
 if __name__ == "__main__":

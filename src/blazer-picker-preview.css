@@ -1,5 +1,5 @@
 /* Scoped to the opt-in Blazers rows; standard picker rows keep their layout. */
-.hewrs-ui #picker-list .fx-choice.hewrs-blazer-picker-choice {
+.hewrs-ui #picker-list .fx-choice:is(.hewrs-blazer-picker-choice, .hewrs-suit-picker-choice) {
   display: grid;
   grid-template-columns: 88px minmax(0, 1fr);
   align-items: center;
@@ -44,12 +44,12 @@
   min-width: 0;
 }
 
-.hewrs-blazer-picker-choice .fx-choice-id {
+:is(.hewrs-blazer-picker-choice, .hewrs-suit-picker-choice) .fx-choice-id {
   font-size: 14px;
   letter-spacing: .03em;
 }
 
-.hewrs-blazer-picker-choice .fx-choice-name {
+:is(.hewrs-blazer-picker-choice, .hewrs-suit-picker-choice) .fx-choice-name {
   font-size: 15px;
   line-height: 1.4;
 }
@@ -62,13 +62,19 @@
   overflow-wrap: anywhere;
 }
 
-.hewrs-ui #picker-list .hewrs-blazer-picker-choice:focus-visible {
+.hewrs-picker-source-note {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.hewrs-ui #picker-list :is(.hewrs-blazer-picker-choice, .hewrs-suit-picker-choice):focus-visible {
   outline: 2px solid var(--selected);
   outline-offset: 2px;
 }
 
 @media (max-width: 360px) {
-  .hewrs-ui #picker-list .fx-choice.hewrs-blazer-picker-choice {
+  .hewrs-ui #picker-list .fx-choice:is(.hewrs-blazer-picker-choice, .hewrs-suit-picker-choice) {
     grid-template-columns: 76px minmax(0, 1fr);
     gap: 10px;
     padding-inline: 8px;

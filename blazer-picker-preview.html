@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Blazer photo selector preview</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://raw.githubusercontent.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/; connect-src 'self' https://api.open-meteo.com https://geocoding-api.open-meteo.com https://hewrs-ai-service.onrender.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Suit / Blazer photo selector preview</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://raw.githubusercontent.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/; connect-src 'self' https://api.open-meteo.com https://geocoding-api.open-meteo.com https://hewrs-ai-service.onrender.com; object-src 'none'; base-uri 'self'; form-action 'none'">
 <link rel="stylesheet" href="src/application.css?v=f45ceea1448218fb"><link rel="stylesheet" href="feedback-candidate/feedback.css">
 <link rel="stylesheet" href="feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67">
 <style id="hewrs-pipeline-layout">
 #rd-pipeline-ranked,#rd-pipeline-queue{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0;margin:8px 0 16px}#rd-pipeline-ranked>h3,#rd-pipeline-ranked>p,#rd-pipeline-ranked>details,#rd-pipeline-queue>h3,#rd-pipeline-queue>p,#rd-pipeline-queue>details{grid-column:1/-1;min-width:0}#rd-results details .rd-result{width:100%;margin:8px 0}#rd-results summary{cursor:pointer;padding:10px 0;overflow-wrap:anywhere}@media(max-width:600px){#rd-pipeline-ranked,#rd-pipeline-queue{grid-template-columns:minmax(0,1fr)}}
 </style><meta name="robots" content="noindex,nofollow">
-<link rel="stylesheet" href="src/blazer-picker-preview.css?v=5b830e5d9fd69a89" integrity="sha256-W4MOXZ/WmomYgWWmQGtXkLTm6XpaM/sGHiXnA8ij9IA=">
+<link rel="stylesheet" href="src/blazer-picker-preview.css?v=66cfad7fffb6a0f9" integrity="sha256-Zs+tf/+2oPm+CQplkJCD7YYLkNKteqbb/c5DsvyPm08=">
 </head>
 <body><svg class="fx-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="fx-icon-suits" viewBox="0 0 24 24"><path d="m8 3-5 3-1 13 4 1 1-11v12h10V9l1 11 4-1-1-13-5-3-4 7zM8 3l4 7 4-7M12 10v11M8 3l-1 5 3 3M16 3l1 5-3 3"></path></symbol><symbol id="fx-icon-blazers" viewBox="0 0 24 24"><path d="m8 3-5 3-1 13 4 1 1-11v12h10V9l1 11 4-1-1-13-5-3-4 7zM8 3l4 7 4-7M12 10v11M8 3l-1 5 3 3M16 3l1 5-3 3"></path></symbol><symbol id="fx-icon-shirts" viewBox="0 0 24 24"><path d="m8 3-5 3-1 14h4l1-11v12h10V9l1 11h4L21 6l-5-3zM8 3l4 5 4-5M12 8v13"></path></symbol><symbol id="fx-icon-ties" viewBox="0 0 24 24"><path d="M8 3h8l-2 5 3 11-5 3-5-3 3-11zM10 8h4"></path></symbol><symbol id="fx-icon-shoes" viewBox="0 0 24 24"><path d="M3 12c4 0 7-2 9-6l4 4 4 1c2 1 2 3 1 6H3zM3 17v3h18v-3M11 9l2 2m-5 0 2 2"></path></symbol><symbol id="fx-icon-pants" viewBox="0 0 24 24"><path d="M6 3h12l2 18h-6L12 8l-2 13H4zM6 6h12M12 3v5"></path></symbol><symbol id="fx-icon-jeans" viewBox="0 0 24 24"><path d="M6 3h12l2 18h-6L12 9l-2 12H4zM6 6h12M12 3v6M6 6c0 3 2 3 3 3M18 6c0 3-2 3-3 3"></path></symbol><symbol id="fx-icon-tshirts" viewBox="0 0 24 24"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4M8 3a4 4 0 0 0 8 0"></path></symbol><symbol id="fx-icon-watches" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle><path d="M8 6V2h8v4M8 18v4h8v-4M12 8v4l3 2"></path></symbol><symbol id="fx-icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></symbol><symbol id="fx-icon-outfits" viewBox="0 0 24 24"><path d="M9 6a3 3 0 0 1 6 0c0 2-3 2-3 4v1L3 17v3h18v-3l-9-6"></path></symbol><symbol id="fx-icon-wardrobe" viewBox="0 0 24 24"><rect height="18" rx="1" width="16" x="4" y="3"></rect><path d="M12 3v18M9 11v3m6-3v3"></path></symbol><symbol id="fx-icon-rotation" viewBox="0 0 24 24"><path d="M4 8a8 8 0 0 1 13-3l3 3M20 3v5h-5M20 16a8 8 0 0 1-13 3l-3-3M4 21v-5h5"></path></symbol><symbol id="fx-icon-back" viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"></path></symbol><symbol id="fx-icon-next" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></symbol></svg>
 <div id="app" class="hewrs-ui" data-facelift="v1_11" data-outfit-layout="cards" data-page-view="home">
-<header class="fx-header"><button id="back-home" class="fx-icon-button" aria-label="Back to Home" hidden><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-back"></use></svg></button><div class="fx-brand-block"><div class="fx-brand">HEWRS</div><div class="fx-tagline">Blazer photo selector · Test version</div></div><button class="fx-weather" id="weather-button" type="button"><strong id="weather-label">Weather / location</strong><span id="header-date">Current date</span></button><button id="quick-log" class="fx-text-button" hidden>Log</button></header>
+<header class="fx-header"><button id="back-home" class="fx-icon-button" aria-label="Back to Home" hidden><svg class="fx-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#fx-icon-back"></use></svg></button><div class="fx-brand-block"><div class="fx-brand">HEWRS</div><div class="fx-tagline">Suit / Blazer photo selector · Test version</div></div><button class="fx-weather" id="weather-button" type="button"><strong id="weather-label">Weather / location</strong><span id="header-date">Current date</span></button><button id="quick-log" class="fx-text-button" hidden>Log</button></header>
 <main class="fx-page fx-home" id="page-home">
 <noscript><p class="fx-warning">JavaScript is required for outfit selection and saved data. This file is not a static outfit preview.</p></noscript>
 <div class="fx-context"><button type="button" id="work-button" class="fx-context-tile"><span class="fx-kicker">Work</span><strong id="work-label">Not loaded</strong><small>Setting</small></button><button type="button" id="style-button" class="fx-context-tile"><span class="fx-kicker">Style</span><strong id="style-label">Not loaded</strong><small>Profile</small></button><button type="button" id="season-button" class="fx-context-tile"><span class="fx-kicker">Season</span><strong id="season-label">Not set</strong><small id="season-caption">Set weather</small></button></div>
@@ -51,18 +51,22 @@
 <script defer src="feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7a"></script>
 <script defer src="feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9"></script>
 <script defer src="data/blazer-picker-images.js?v=c0178b39872881e6" integrity="sha256-wBeLOYcogeYG3+DJHIuuo5sD0+Y2y4HNegOgs0BMjJE="></script>
-<script defer src="src/blazer-picker-preview.js?v=bac2bad4c9f4e5f7" integrity="sha256-usK61Mn05fdyTo10k7vlslf3yzCqpCZwbEm5TWVRts8="></script>
+<script defer src="data/suit-picker-images.js?v=0361e66deca580c4" integrity="sha256-A2HmbeylgMSH5lfgoNgjZEE42yvTrKtfsvcWAhNtSQ4="></script>
+<script defer src="src/blazer-picker-preview.js?v=ceceb7827f691eb7" integrity="sha256-zs63gn9pHrdrNvozZnVCSPv+9ZHtEeiZmn5eivu/xfI="></script>
 <script>
 window.addEventListener('DOMContentLoaded', function () {
   var query = new URLSearchParams(location.search);
-  if (query.get('show') !== 'blazers') return;
+  var show = query.get('show');
+  var kind = show === 'blazers' ? 'blazer' : show === 'suits' ? 'suit' : null;
+  if (!kind) return;
   if (!globalThis.HEWRS_READY || !globalThis.HEWRSApp) return;
   HEWRSApp.openPicker('topwear');
   var type = document.getElementById('picker-type');
-  if (type) { type.value = 'blazer'; type.dispatchEvent(new Event('change', {bubbles:true})); }
+  if (type) { type.value = kind; type.dispatchEvent(new Event('change', {bubbles:true})); }
   var item = query.get('item');
   var search = document.getElementById('picker-search');
-  if (search && Object.hasOwn(HEWRS_BLAZER_PICKER_IMAGES.items, item)) {
+  var images = kind === 'suit' ? HEWRS_SUIT_PICKER_IMAGES : HEWRS_BLAZER_PICKER_IMAGES;
+  if (search && Object.hasOwn(images.items, item)) {
     search.value = item; search.dispatchEvent(new Event('input', {bubbles:true}));
   }
 });

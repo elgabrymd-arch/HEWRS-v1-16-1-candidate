@@ -1,4 +1,4 @@
-/* Opt-in Blazers picker presentation. Existing choice handlers, IDs and
+/* Opt-in Suit / Blazer picker presentation. Existing choice handlers, IDs and
  * Apply/Cancel own selection; this module does not write preferences or DNA. */
 (function (root) {
   'use strict';
@@ -31,7 +31,7 @@
     const sourceNote = {
       owner_reference_photo: 'Owner-supplied garment photograph.',
       owner_approved_reference: 'Owner-approved reference image.',
-      native_avatar_preview: 'Approved blazer on the existing app avatar.',
+      native_avatar_preview: 'Approved garment on the existing app avatar.',
     }[descriptor.source_kind];
     const frame = document.createElement('span');
     frame.className = 'hewrs-blazer-picker-image';
@@ -64,10 +64,17 @@
     // The original button and its click closure remain the selection authority.
     while (button.firstChild) copy.append(button.firstChild);
     name.textContent = descriptor.label;
+    if (descriptor.source_note) {
+      const note = document.createElement('small');
+      note.className = 'hewrs-picker-source-note';
+      note.textContent = descriptor.source_note;
+      copy.append(note);
+    }
     button.append(frame, copy);
-    button.classList.add('hewrs-blazer-picker-choice');
+    button.classList.add(row.kind === 'suit' ? 'hewrs-suit-picker-choice' : 'hewrs-blazer-picker-choice');
     button.title = (button.title ? button.title + '\n' : '') +
-      row.sourceId + ' — ' + fullLabel + '\n' + sourceNote;
+      row.sourceId + ' — ' + fullLabel + '\n' + sourceNote +
+      (descriptor.source_note ? '\n' + descriptor.source_note : '');
     if (!button.hasAttribute('aria-label')) {
       button.setAttribute('aria-label', row.sourceId + ' — ' + fullLabel);
     }
@@ -77,10 +84,11 @@
 
   function refresh() {
     const app = root.HEWRSApp;
-    const manifest = root.HEWRS_BLAZER_PICKER_IMAGES;
-    if (!body || !app || app.ui.draft()?.category !== 'topwear' ||
-        manifest?.schema !== 'hewrs.blazer-picker-images.v1' ||
-        manifest.source_lock !== root.HEWRS_INPUT_SHA256) return;
+    if (!body || !app || app.ui.draft()?.category !== 'topwear') return;
+    const manifests = {
+      blazer: [root.HEWRS_BLAZER_PICKER_IMAGES, 'hewrs.blazer-picker-images.v1'],
+      suit: [root.HEWRS_SUIT_PICKER_IMAGES, 'hewrs.suit-picker-images.v1'],
+    };
     const list = body.querySelector('#picker-list');
     if (!list) return;
 
@@ -91,8 +99,10 @@
         if (enhanced.has(button)) continue;
         const sourceId = button.dataset.itemId;
         const rows = app.ui.rows.topwear.filter(row =>
-          row.kind === 'blazer' && row.sourceId === sourceId);
+          Object.hasOwn(manifests, row.kind) && row.sourceId === sourceId);
         if (rows.length !== 1) continue;
+        const [manifest, schema] = manifests[rows[0].kind];
+        if (manifest?.schema !== schema || manifest.source_lock !== root.HEWRS_INPUT_SHA256) continue;
         const descriptor = descriptorFor(manifest, rows[0]);
         if (descriptor) enhanceButton(button, rows[0], descriptor);
       }
