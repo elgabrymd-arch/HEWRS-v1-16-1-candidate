@@ -27,6 +27,8 @@ jobs:
         run: python tests/blazer-picker-preview-browser.py --output preview-verification
       - name: Export approved B15 on the frozen native avatar
         run: python tools/export_b15_picker_avatar.py --output preview-verification
+      - name: Export suit picker images from current approved sources
+        run: python tools/export_suit_picker_avatars.py --output preview-verification
       - uses: actions/upload-artifact@v4
         if: always()
         with:
