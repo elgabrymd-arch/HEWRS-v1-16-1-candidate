@@ -1,0 +1,51 @@
+{
+  "schema": "hewrs.outfit-feedback-hosted-repair.v1",
+  "tested_code_commit": "a00a4cbfd6c7317dab0adc14d5d31a7310dee54b",
+  "entrypoint": "outfit-feedback-preview.html",
+  "scope": "opt_in_review_only_not_main_release",
+  "reproduced_failure": {
+    "affected_commit": "77a9c561f51340a40a5789d0fbf8ef92f77da2e5",
+    "baseline_local_options": 20,
+    "feedback_preview_local_options": 20,
+    "local_option_selections_identical": true,
+    "hosted_displayed_options": 0,
+    "observed_error": "Failed to execute 'getImageData' on 'CanvasRenderingContext2D': The canvas has been tainted by cross-origin data.",
+    "diagnostic_run_id": 44011676704,
+    "diagnostic_artifact_id": 14297415443
+  },
+  "repair": "Request native renderer Image objects with anonymous CORS before assigning src. The preview CDN redirects binary images to raw.githubusercontent.com; the prior no-CORS load tainted the compositing canvas. No image bytes, garment IDs, styling rules or accepted runtime files were changed.",
+  "actual_validation": {
+    "workflow_run_id": 44012198727,
+    "job_id": 133801611213,
+    "artifact_id": 14298065137,
+    "result_json_sha256": "4a6eebd978460ed9abd8e2e8ee413c03161bc37650b65e60d5e73b5ed4d50997",
+    "scenarios": [
+      {"name":"local-desktop", "browser":"Chromium", "viewport":[1280,900], "checks_passed":20, "initial_generated_options":20},
+      {"name":"hosted-desktop", "browser":"Chromium", "viewport":[1280,900], "checks_passed":20, "initial_generated_options":20},
+      {"name":"hosted-phone", "browser":"Chromium mobile emulation", "viewport":[390,900], "checks_passed":20, "initial_generated_options":20}
+    ],
+    "checks_passed": 60,
+    "checks_failed": 0,
+    "application_page_errors": 0,
+    "http_resource_errors": 0,
+    "paid_provider_requests": 0,
+    "application_runtime_mocked": false,
+    "renderer_mocked": false,
+    "feedback_store_mocked": false,
+    "csp_bypassed": false,
+    "owner_browser_accessed": false,
+    "browser_storage": "isolated fresh test contexts, not owner data",
+    "covered": ["Generate displays 20 options under default test settings", "native avatar completes", "next option navigation", "sample displayed RGBA equals the unchanged native renderer", "Cancel makes no feedback writes", "temporary rejection and alternative", "locks, wear and Favorites preserved", "new Generate clears temporary skips", "permanent reason and note", "permanent rejection survives reload", "regeneration excludes rejected combination", "Undo removes active veto", "all 50 registered shirt thumbnails decode", "all 47 registered tie thumbnails decode"],
+    "physical_iphone_or_safari_tested": false,
+    "all_styles_and_every_possible_anchor_exhaustively_tested": false
+  },
+  "preservation": {
+    "standard_entrypoint_hashes_verified": true,
+    "standard_runtime_hash_verified": true,
+    "approved_garment_assets_modified": false,
+    "frozen_avatar_asset_modified": false,
+    "main_branch_modified": false,
+    "user_preferences_reset": false
+  },
+  "supersedes": "Fixture-only validation in outfit-rejection-preview-20261117.json is not the validation basis for this repaired preview. Its source hashes describe the earlier preview revision."
+}
