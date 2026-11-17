@@ -8,6 +8,19 @@
   if (root.HEWRSRejectionPreviewCore) return;
   const clone = x => structuredClone(x);
   const need = (v, m) => { if (!v) throw Error(m); };
+  // The preview CDN redirects binary assets to raw.githubusercontent.com.
+  // Native renderer images must request anonymous CORS BEFORE their src is set;
+  // otherwise the successfully loaded image taints every downstream canvas.
+  // This changes transport only. Native prototypes, dimensions, URLs, original
+  // image bytes, renderer arithmetic and all accepted source files are retained.
+  const NativeImage = root.Image;
+  root.Image = new Proxy(NativeImage, {
+    construct(target, args, newTarget) {
+      const image = Reflect.construct(target, args, newTarget);
+      image.crossOrigin = 'anonymous';
+      return image;
+    }
+  });
   let gate = null, app = null, pool = null;
   const temporary = new Map(), listeners = new Set();
   let revision = 0;
@@ -25,8 +38,6 @@
     need(selection.state === 'REFERENCE' || gate.match(selection, viewContext(canvas)).allowed, 'This outfit was rejected. Undo its rejection or choose another combination.');
     return snapshot.token;
   }
-  // Each native renderer still draws the original pixels. Its final frame is
-  // staged off-screen so a rejection arriving during image loading cannot flash.
   function wrapRenderer(namespace) {
     if (!namespace?.create) return namespace;
     return Object.freeze({...namespace, create(visible, connection, options) {
@@ -56,8 +67,6 @@
       });
     }});
   }
-  // Retain the already-generated eligible pool for a replacement without a paid
-  // call, changing a lock, or changing generation/scoring/rotation algorithms.
   function wrapConnection(namespace) {
     if (!namespace?.create) return namespace;
     return Object.freeze({...namespace, create(...args) {
@@ -121,8 +130,6 @@
       const old = base.refresh().active.find(e => e.scope === value.scope && e.occasion === value.occasion && F.key(e.selection, e.scope) === F.key(selection, value.scope));
       if (old) return clone(old);
       if (!value.note) return base.hide(selection, {scope:value.scope, context:value.occasion, reason:value.reason});
-      // The existing validator retains additional owner note metadata; old and
-      // new exports round-trip the same append-only event, without a second key.
       const event = {schema:F.SCHEMA, id:uid(), at:new Date().toISOString(), type:'hide', actor:'owner', selection,
         scope:value.scope, occasion:value.occasion, reason:value.reason, note:value.note};
       base.importData({schema:F.EXPORT, events:[event]}); return clone(event);
@@ -167,6 +174,6 @@
     if (!row || !app.connection.controller.verifyCachedOption(row, pool.request, app.connection.catalogue)) return null;
     return {selection:getSelection(row), option:row, context:clone(pool.request.context), localDate:pool.request.localDate};
   }
-  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-review-1',
-    diagnostics:() => ({attached:!!gate, hasPool:!!pool, temporaryCount:temporary.size})});
+  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-review-2',
+    diagnostics:() => ({attached:!!gate, hasPool:!!pool, temporaryCount:temporary.size, imageTransport:'anonymous-cors'})});
 })(globalThis);
