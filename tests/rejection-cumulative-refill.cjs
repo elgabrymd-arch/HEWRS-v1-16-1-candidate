@@ -62,4 +62,20 @@ assert.equal(reopened.restore(first.id),true);
 assert.equal(reopened.allowed(selections[0],{occasion:'work'}),true);
 for(const s of selections.slice(1))
   assert.equal(reopened.allowed(s,{occasion:'work'}),false);
-console.log('Cumulative rejection ledger: 20 hides, 100 generations across occasions, watch variation, reload, scope and undo passed');
+// Full clothing rejection must also block changed shoes, not just changed watches.
+const entire=selections[0];
+const fullReject=reopened.hide(entire,{context:'all',scope:'clothing'});
+for(let generation=1;generation<=100;generation++) {
+  const next=store();next.refresh();
+  for(const occasion of ['work','weekend','dinner']) {
+    for(const shoeId of ['shoe-1','shoe-2','shoe-48']) {
+      assert.equal(next.allowed({...entire,shoeId,watchId:'watch-varied'},{occasion}),false,
+        'Clothing rejection leaked into generation '+generation+' with '+shoeId);
+    }
+  }
+}
+assert.equal(reopened.allowed({...entire,shirtId:'DS051',shoeId:'shoe-2'},{occasion:'work'}),true,
+  'Blocking a clothing combination must not ban individual garments');
+assert.equal(reopened.restore(fullReject.id),true);
+assert.equal(reopened.allowed({...entire,shoeId:'shoe-2'},{occasion:'work'}),true);
+console.log('Cumulative rejection ledger: 20 hides, 100 generations across occasions, watch and shoe variation, 100 future generations, reload, scope and undo passed');
