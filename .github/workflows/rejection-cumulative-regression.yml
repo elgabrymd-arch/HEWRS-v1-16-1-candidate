@@ -18,3 +18,5 @@ jobs:
         run: node --check src/outfit-rejection-core.js
       - name: Verify 20 cumulative permanent rejections and reload
         run: node tests/rejection-cumulative-refill.cjs
+      - name: Verify same-generation refill guard
+        run: node tests/rejection-same-generation-guard.cjs
