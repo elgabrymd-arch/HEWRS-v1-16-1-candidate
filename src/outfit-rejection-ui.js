@@ -72,14 +72,34 @@
     const selected=structuredClone(state.selection), key=F.key(selected,'historical_exact');
     const {body,actions,error}=newDialog('Reject this outfit');
     body.append(element('p',describe(selected),'fx-caption'),element('p','By default, reject this clothing combination permanently with ANY shoes or watch. Individual garments remain available for other combinations.','fx-caption'));
-    const reason=select('rejection-reason','Reason (optional)',reasons);body.append(reason.label);
+    // These are explanatory diagnoses, never global item bans.
+    // Keep stored v1 reason codes compatible with existing exports/validators.
+    const issueChoices=[
+      ['', 'Entire clothing combination is wrong', null, 'clothing'],
+      ['shirt_tie_suit', 'Shirt and tie do not work with this suit/blazer', 'other', 'clothing'],
+      ['tie_shirt', 'Shirt is fine; tie does not work with this shirt', 'other', 'clothing'],
+      ['shirt_suit', 'Suit/blazer is fine; shirt does not work with it', 'other', 'clothing'],
+      ['tie_suit', 'Suit/blazer is fine; tie does not work with it', 'other', 'clothing'],
+      ['footwear', 'Shoes do not work with this outfit; clothes are fine', 'footwear', 'outfit'],
+      ['colors', 'Color combination does not work', 'colors', 'clothing'],
+      ['patterns', 'Pattern combination does not work', 'patterns', 'clothing'],
+      ['formality', 'Too formal or too casual', 'formality', 'clothing'],
+      ['other', 'Other reason (describe below)', 'other', 'clothing']
+    ];
+    const issue=select('rejection-issue','What does not work?',issueChoices.map(x=>[x[0],x[1]]));body.append(issue.label);
     const noteLabel=element('label','More detail (optional)'),note=element('textarea');note.id='rejection-note';note.rows=3;note.maxLength=500;
     note.placeholder='For example: this tie does not work with this shirt.';noteLabel.append(note);body.append(noteLabel);
     const advanced=element('details');advanced.append(element('summary','Rejection scope'));
     const scope=select('rejection-scope','What should be hidden?',[['clothing','Entire clothing combination — any shoes or watch (default)'],['outfit','Only this exact clothing + shoe combination — any watch']]);
     const occasion=select('rejection-occasion','Where should it apply?',[['all','Every occasion'],['current','This occasion only ('+state.context.occasion+')']]);
     advanced.append(scope.label,occasion.label);body.append(advanced);
-    body.append(element('p','The other outfits stay in your list. Available replacements are added automatically, up to 20, using your current selections and outfit rules. Reject once stays active during replacement and clears on your next Generate or page reload. Never show again blocks the clothing combination in all future generations and occasions, with any shoes or watch, until Undo. The restriction is saved in this browser.','fx-caption'));
+    // Footwear-only dissatisfaction must NOT silently ban the clothing with all shoes.
+    // The exact outfit scope preserves the suit, shirt and tie as reusable.
+    issue.input.addEventListener('change',()=>{
+      const choice=issueChoices.find(x=>x[0]===issue.input.value);
+      if(choice)scope.input.value=choice[3];
+    });
+    body.append(element('p','The other outfits stay in your list. Available replacements are added automatically, up to 20, using your current selections and outfit rules. Reject once stays active during replacement and clears on your next Generate or page reload. Never show again applies to all future generations and occasions until Undo. Default scope bans this clothing combination with any shoes or watch. If the shoes alone are wrong, select the footwear issue: only the current clothing-and-shoe pairing is banned; other shoes remain eligible. Each garment is still reusable in other combinations. The restriction is saved in this browser.','fx-caption'));
     const cancel=button('Cancel','rejection-cancel',closeDialog);
     const once=button('Reject once','rejection-once',()=>commit(false));
     const forever=button('Never show again','rejection-permanent',()=>commit(true));forever.className='hewrs-rejection-primary';
@@ -90,7 +110,10 @@
       if(now.busy||!now.selection||F.key(now.selection,'historical_exact')!==key){error.textContent='The displayed outfit changed. Close this panel and review the current outfit.';return;}
       pending=true;cancel.disabled=once.disabled=forever.disabled=true;error.textContent='';
       try {
-        const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason:reason.input.value||null,note:note.value};
+        const chosen=issueChoices.find(x=>x[0]===issue.input.value);
+        const detail=note.value.trim(),diagnosis=chosen?.[0] ? 'Issue: '+chosen[1]+'.' : '';
+        const savedNote=[diagnosis,detail].filter(Boolean).join(' ').slice(0,500);
+        const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason:chosen?.[2]||null,note:savedNote};
         const event=permanent?fb.hide(selected,settings):fb.skip(selected,settings);lastId=event.id;
         closeDialog();
         const prefix=permanent?'Rejection saved. ':'Rejected for this session. ';
