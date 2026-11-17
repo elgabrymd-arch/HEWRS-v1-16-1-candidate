@@ -71,15 +71,15 @@
     const state=original.state(); if(pending||state.busy||!state.selection||state.selection.state==='REFERENCE'||!currentAllowed(state))return;
     const selected=structuredClone(state.selection), key=F.key(selected,'historical_exact');
     const {body,actions,error}=newDialog('Reject this outfit');
-    body.append(element('p',describe(selected),'fx-caption'),element('p','Reject the combination, not the individual garments. A watch change does not make the same rejected outfit new.','fx-caption'));
+    body.append(element('p',describe(selected),'fx-caption'),element('p','By default, reject this clothing combination permanently with ANY shoes or watch. Individual garments remain available for other combinations.','fx-caption'));
     const reason=select('rejection-reason','Reason (optional)',reasons);body.append(reason.label);
     const noteLabel=element('label','More detail (optional)'),note=element('textarea');note.id='rejection-note';note.rows=3;note.maxLength=500;
     note.placeholder='For example: this tie does not work with this shirt.';noteLabel.append(note);body.append(noteLabel);
     const advanced=element('details');advanced.append(element('summary','Rejection scope'));
-    const scope=select('rejection-scope','What should be hidden?',[['outfit','These clothes and shoes — any watch'],['clothing','This clothing combination — any shoes or watch']]);
+    const scope=select('rejection-scope','What should be hidden?',[['clothing','Entire clothing combination — any shoes or watch (default)'],['outfit','Only this exact clothing + shoe combination — any watch']]);
     const occasion=select('rejection-occasion','Where should it apply?',[['all','Every occasion'],['current','This occasion only ('+state.context.occasion+')']]);
     advanced.append(scope.label,occasion.label);body.append(advanced);
-    body.append(element('p','The other outfits stay in your list. Available replacements are added automatically, up to 20, using your current selections and outfit rules. Reject once stays active during replacement and clears on your next Generate or page reload. Never show again is saved in this browser until you undo it.','fx-caption'));
+    body.append(element('p','The other outfits stay in your list. Available replacements are added automatically, up to 20, using your current selections and outfit rules. Reject once stays active during replacement and clears on your next Generate or page reload. Never show again blocks the clothing combination in all future generations and occasions, with any shoes or watch, until Undo. The restriction is saved in this browser.','fx-caption'));
     const cancel=button('Cancel','rejection-cancel',closeDialog);
     const once=button('Reject once','rejection-once',()=>commit(false));
     const forever=button('Never show again','rejection-permanent',()=>commit(true));forever.className='hewrs-rejection-primary';
