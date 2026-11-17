@@ -1,0 +1,38 @@
+{
+  "schema": "hewrs.outfit-rejection-preview.v1",
+  "base_commit": "f565248840e951d2fa0fe79a78627815203de2ea",
+  "scope": "opt_in_preview_only",
+  "entrypoint": "outfit-feedback-preview.html",
+  "user_request_timestamp_utc": "2026-11-17T03:05:14Z",
+  "persistent_store": "existing hewrs:outfit-feedback:v1:event: namespace",
+  "rejection_modes": ["temporary_current_list_or_review_session", "permanent_until_explicit_undo"],
+  "default_scope": "these clothes and shoes, any watch, every occasion",
+  "optional_scope": "same clothing combination, any shoes/watch; current occasion only",
+  "reasons": ["colors", "patterns", "formality", "footwear", "other"],
+  "optional_owner_note_limit": 500,
+  "new_storage_namespaces": 0,
+  "automatic_provider_calls_added": 0,
+  "automatic_model_training_added": false,
+  "preserved": ["all existing files", "all garment images", "S02 and S13 approvals", "frozen avatar assets", "garment IDs", "exact Home selections", "wear log and Favorites"],
+  "source_sha256": {
+    "outfit-feedback-preview.html": "f3a4084dec5f57ef1fd45faec93a248b59884747cc231bd4f99a46cfe2197cd3",
+    "src/outfit-feedback-preview-loader.js": "f2071f1402a2e4a1231d3795039570f48170de3b06f4c36ee84e19ca0badb963",
+    "src/outfit-rejection-core.js": "b06d4d9f3130f05a2d90eb34cef4e6a5d8c43d100ca42ab7cd6ce205abd2c794",
+    "src/outfit-rejection-ui.js": "3a72eb6fb86da1b1d5e77a9a7c8f743d585f355e3c6921437536d4704ae6f90d",
+    "src/outfit-rejection.css": "4dea171a131d2116cbcd11b24b8d7c6c19e9e24054d23cf71f3974f6786bf634"
+  },
+  "validation": {
+    "offline_browser_contract_checks_passed": 39,
+    "failed": 0,
+    "browser_errors": [],
+    "viewport_widths": [320, 390, 1280],
+    "native_application_in_tests": "synthetic API fixture",
+    "feedback_in_tests": "synthetic append-only contract fixture, not the full native owner-rule or learning implementation",
+    "storage_in_tests": "in-memory simulation including reopen and export/import",
+    "render_in_tests": "synthetic pixels, not real garment-image loading",
+    "live_host_verified": false,
+    "whole_application_regression_verified": false,
+    "no_main_deployment": true
+  },
+  "review_status": "awaiting hosted application validation and owner review"
+}
