@@ -42,6 +42,18 @@ for (let i=0; i<selections.length; i++) {
 const reopened = store();
 assert.equal(reopened.refresh().active.length,20);
 for(const s of selections) assert.equal(reopened.allowed(s,{occasion:'dinner'}),false);
+// A permanent "all" rejection is global across new generations and occasions.
+for (let generation=1; generation<=100; generation++) {
+  const gate=store(); gate.refresh();
+  const occasion=['work','dinner','weekend'][generation%3];
+  for (const selection of selections) {
+    assert.equal(gate.allowed(selection,{occasion}),false,
+      'Permanent rejection leaked into generation '+generation+' for '+occasion);
+    const changedWatch={...selection,watchId:'watch-check'};
+    assert.equal(gate.allowed(changedWatch,{occasion}),false,
+      'Watch change bypassed saved rejection in generation '+generation);
+  }
+}
 const stillAllowed = {...selections[0],shoeId:'shoe-2'};
 assert.equal(reopened.allowed(stillAllowed,{occasion:'work'}),true,
   'Exact outfit scope must not ban different footwear');
@@ -50,4 +62,4 @@ assert.equal(reopened.restore(first.id),true);
 assert.equal(reopened.allowed(selections[0],{occasion:'work'}),true);
 for(const s of selections.slice(1))
   assert.equal(reopened.allowed(s,{occasion:'work'}),false);
-console.log('Cumulative rejection ledger: 20 sequential hides, reload, scope and undo passed');
+console.log('Cumulative rejection ledger: 20 hides, 100 generations across occasions, watch variation, reload, scope and undo passed');
