@@ -74,6 +74,19 @@
       if (!connection.ownerFeedback || !connection.controller) return connection;
       const controller = connection.controller;
       function remember(result, request, history) {
+        // Check the entire active rejection ledger on every generation/refill.
+        // An out-of-date producer must fail closed rather than repopulate a
+        // previously rejected outfit after several sequential replacements.
+        if (result?.status !== 'cancelled' && Array.isArray(result?.options) && gate) {
+          const live = gate.refresh();
+          const context = request?.context || {occasion:'work'};
+          for (const option of result.options) {
+            const selection = connection.selectionFromOption(option, request).selection;
+            need(gate.match(selection, context).allowed,
+              'A generated replacement matches a saved rejection. The current list was not replaced.');
+          }
+          gate.assertCurrent(live.token);
+        }
         if (result?.status !== 'cancelled' && Array.isArray(result?.options)) {
           const state = root.HEWRSApp?.state();
           pool = {result, request:clone(request), history:clone(history),
