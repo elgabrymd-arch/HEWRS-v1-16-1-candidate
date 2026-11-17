@@ -91,7 +91,9 @@
           const img = doc.createElement('img');
           img.alt = ''; img.setAttribute('aria-hidden', 'true');
           img.width = image.width; img.height = image.height;
-          img.loading = 'lazy'; img.decoding = 'async';
+          // Load the complete 1.46 MB catalogue up front. Native lazy loading
+          // can leave the last ties blank inside the iframe's scrolling dialog.
+          img.loading = 'eager'; img.decoding = 'async';
           img.dataset.sourceId = row.id; img.dataset.sourceSha256 = image.sha256;
           const unavailable = doc.createElement('span');
           unavailable.className = 'hewrs-tie-picker-unavailable';
@@ -111,7 +113,7 @@
     observer?.disconnect();
     observer = new root.MutationObserver(refresh);
     observer.observe(body, {childList:true, subtree:true});
-    root.HEWRSTiePickerPreview = Object.freeze({version:'1', ids:Object.freeze([...ids]), refresh});
+    root.HEWRSTiePickerPreview = Object.freeze({version:'2', ids:Object.freeze([...ids]), refresh});
     const tagline = doc.querySelector('.fx-tagline');
     if (tagline) tagline.textContent = 'Suit / Blazer / Tie photo selector · Test version';
     app.openPicker('tie');
