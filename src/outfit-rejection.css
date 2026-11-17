@@ -1,0 +1,27 @@
+/* Scoped review UI; no garment image, avatar, catalogue or scoring changes. */
+.hewrs-rejection-dialog,.hewrs-rejection-dialog *{box-sizing:border-box;min-width:0}
+#outfit-output[data-rejection-hidden="true"]{display:none!important}
+#reject-outfit{border-color:#ab7c73;color:#f2d2c8;min-height:44px}
+.hewrs-rejection-bar{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;padding:14px;border:1px solid var(--strong,#374153);border-radius:10px}
+.hewrs-rejection-bar[hidden]{display:none}
+#rejection-status{flex:1 0 100%;margin:0;line-height:1.6}
+#rejection-status:empty{display:none}
+#rejection-status[data-error="true"]{color:#f2b7a8}
+.hewrs-rejection-bar button{min-height:44px}
+.hewrs-rejection-dialog{color:#eee3cf;background:#101b2b;border:1px solid #485160;border-radius:14px;padding:22px;width:min(590px,calc(100vw - 24px));max-height:calc(100dvh - 32px);overflow:auto}
+.hewrs-rejection-dialog::backdrop{background:#0009}
+.hewrs-rejection-dialog h2{margin:0 0 16px;font-size:23px}
+.hewrs-rejection-dialog label{display:flex;flex-direction:column;gap:8px;margin:14px 0;font-size:14px}
+.hewrs-rejection-dialog select,.hewrs-rejection-dialog textarea{color:#eee3cf;background:#08111e;border:1px solid #566174;border-radius:7px;padding:11px;width:100%;font:inherit;min-height:44px}
+.hewrs-rejection-dialog textarea{resize:vertical}
+.hewrs-rejection-dialog summary{cursor:pointer;padding:10px 0;min-height:44px}
+.hewrs-rejection-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.hewrs-rejection-dialog button{font:inherit;cursor:pointer;border:1px solid #596779;border-radius:8px;padding:10px 14px;color:#eee3cf;background:#18273c;min-height:44px}
+.hewrs-rejection-dialog button:disabled{opacity:.45;cursor:not-allowed}
+.hewrs-rejection-dialog button.hewrs-rejection-primary{background:#613b36;border-color:#ab7c73}
+.hewrs-rejection-dialog :focus-visible{outline:2px solid #e6c48c;outline-offset:3px}
+.hewrs-rejection-record{padding:14px 0;border-bottom:1px solid #3a4655;overflow-wrap:anywhere}
+.hewrs-rejection-record p{margin:8px 0}
+.hewrs-rejection-note{white-space:pre-wrap}
+.hewrs-rejection-download{display:block;padding:12px;color:#e6c48c}
+@media(max-width:440px){.hewrs-rejection-dialog{padding:17px}.hewrs-rejection-actions button{width:100%}.fx-output-actions{flex-wrap:wrap}#reject-outfit{flex:1 0 100%}}

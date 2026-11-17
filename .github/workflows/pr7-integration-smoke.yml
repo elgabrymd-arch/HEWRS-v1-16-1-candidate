@@ -1,0 +1,71 @@
+name: HEWRS PR7 integrated browser smoke
+on:
+  push:
+    branches:
+      - integration/photo-pickers-rejection-refill-20261117
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integration-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check exact integration sources
+        run: |
+          node --check src/photo-picker-integration.js
+          node --check src/outfit-rejection-ui.js
+          node --check src/outfit-rejection-core.js
+          node --check src/outfit-refill-engine.js
+          node --check src/outfit-refill-application.js
+          node --check outfit-feedback.js
+      - name: Install Chromium browser test dependency
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Integrated app entry point and existing UI smoke
+        run: |
+          python - <<'PY'
+          import threading
+          from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+          from playwright.sync_api import sync_playwright
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self, *args): pass
+          server=ThreadingHTTPServer(('127.0.0.1', 0), Quiet)
+          threading.Thread(target=server.serve_forever, daemon=True).start()
+          with sync_playwright() as pw:
+              browser=pw.chromium.launch(headless=True, args=['--no-sandbox'])
+              page=browser.new_page(viewport={'width':390,'height':844})
+              errors=[]
+              page.on('pageerror', lambda error:errors.append(str(error)))
+              page.route('https://api.open-meteo.com/**',lambda route:route.abort())
+              page.route('https://geocoding-api.open-meteo.com/**',lambda route:route.abort())
+              page.goto('http://127.0.0.1:%s/index.html'%server.server_port,wait_until='domcontentloaded')
+              page.locator('#pref-shirt:not([disabled])').wait_for(timeout=90000)
+              page.locator('#reject-outfit').wait_for(state='attached',timeout=20000)
+              assert not errors, errors
+              assert page.locator('#pref-shirt').is_enabled()
+              assert page.locator('#pref-tie').is_enabled()
+              page.click('#pref-shirt')
+              page.locator('#picker-list').wait_for(timeout=30000)
+              assert page.locator('#picker-list button[data-item-id]').count()>0
+              assert page.locator('#picker-list img[data-source-id]').count()>0, 'Shirt photo rows absent'
+              page.locator('#fx-sheet-close').click()
+              page.click('#pref-tie')
+              page.locator('#picker-list').wait_for(timeout=30000)
+              assert page.locator('#picker-list img[data-source-id]').count()>0, 'Tie photo rows absent'
+              page.locator('#fx-sheet-close').click()
+              page.click('#view-current')
+              page.locator('#selection-ids').wait_for(timeout=60000)
+              page.locator('#reject-outfit').wait_for(state='visible',timeout=60000)
+              assert page.locator('#reject-outfit').count()==1
+              assert page.locator('#manage-outfit-rejections').count()==1
+              assert not errors, errors
+              print('PASS: index.html boot, shirt/tie thumbnails, reject/undo controls wired, no uncaught JS errors')
+              browser.close()
+          server.shutdown()
+          PY
