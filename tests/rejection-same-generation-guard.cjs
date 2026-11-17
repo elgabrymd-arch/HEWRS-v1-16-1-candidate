@@ -20,6 +20,7 @@ const base = {
 };
 const root = {
   Image:class Image{},
+  structuredClone,
   crypto: {randomUUID:()=> 'stable-test-uuid'},
   HEWRSOutfitFeedback: {key: s => s.id, occasion: x=>x||'work',stable:JSON.stringify},
   HEWRSApp: {
