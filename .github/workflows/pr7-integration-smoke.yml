@@ -45,8 +45,8 @@ jobs:
               page.route('https://api.open-meteo.com/**',lambda route:route.abort())
               page.route('https://geocoding-api.open-meteo.com/**',lambda route:route.abort())
               page.goto('http://127.0.0.1:%s/index.html'%server.server_port,wait_until='domcontentloaded')
-              page.wait_for_function('window.HEWRS_READY===true && !!window.HEWRSApp',timeout=90000)
-              page.wait_for_function('!!window.HEWRSApp.rejection && !!window.HEWRSPhotoPickers',timeout=20000)
+              page.locator('#pref-shirt:not([disabled])').wait_for(timeout=90000)
+              page.locator('#reject-outfit').wait_for(state='attached',timeout=20000)
               assert not errors, errors
               assert page.locator('#pref-shirt').is_enabled()
               assert page.locator('#pref-tie').is_enabled()
@@ -60,8 +60,8 @@ jobs:
               assert page.locator('#picker-list img[data-source-id]').count()>0, 'Tie photo rows absent'
               page.locator('#fx-sheet-close').click()
               page.click('#view-current')
-              page.wait_for_function('!!window.HEWRSApp.state().selection',timeout=60000)
-              page.wait_for_function('!window.HEWRSApp.state().busy',timeout=60000)
+              page.locator('#selection-ids').wait_for(timeout=60000)
+              page.locator('#reject-outfit').wait_for(state='visible',timeout=60000)
               assert page.locator('#reject-outfit').count()==1
               assert page.locator('#manage-outfit-rejections').count()==1
               assert not errors, errors
