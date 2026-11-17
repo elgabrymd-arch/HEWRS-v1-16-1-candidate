@@ -9,6 +9,9 @@ html:has(body.tie-preview-host),body.tie-preview-host{margin:0;width:100%;height
 #tie-preview-app[data-ready="true"]{visibility:visible}
 .hewrs-ui #picker-list .fx-choice.hewrs-tie-picker-choice{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:center;gap:14px;min-height:132px;padding:8px 12px;text-align:left}
 .hewrs-tie-picker-image{display:flex;align-items:center;justify-content:center;width:96px;height:112px;overflow:hidden;border:1px solid var(--strong);border-radius:7px;background:var(--panel)}
+/* Neutral backing separates the two near-solid navy ties from the navy UI. */
+.hewrs-tie-picker-choice[data-item-id="T022"] .hewrs-tie-picker-image,.hewrs-tie-picker-choice[data-item-id="T028"] .hewrs-tie-picker-image{background:#b8b8b8}
+.hewrs-tie-picker-choice[data-item-id="T022"] .hewrs-tie-picker-unavailable,.hewrs-tie-picker-choice[data-item-id="T028"] .hewrs-tie-picker-unavailable{color:#303030}
 .hewrs-tie-picker-image img{display:block;width:100%;height:100%;object-fit:contain}
 .hewrs-tie-picker-image img[hidden],.hewrs-tie-picker-unavailable[hidden]{display:none}
 .hewrs-tie-picker-copy{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0}
