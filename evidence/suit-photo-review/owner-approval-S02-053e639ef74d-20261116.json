@@ -1,0 +1,54 @@
+{
+  "schema": "hewrs.suit-photo-review-owner-approval.v1",
+  "item_id": "S02",
+  "history_id": "suit-1",
+  "decision": "APPROVED",
+  "scope": "suit_appearance",
+  "approved_components": ["brown_color", "new_subtle_tonal_check_pattern"],
+  "owner_confirmation": {
+    "text": "Perfect approve",
+    "message_timestamp_utc": "2026-11-16T23:59:25Z",
+    "source": "explicit_owner_confirmation_in_conversation"
+  },
+  "reviewed_version": {
+    "commit_sha": "2cc7b0f70781445a1e090e86f13586f28de4d30b",
+    "page": "suit-photo-review.html?item=S02",
+    "mode": "corrected",
+    "image_path": "ui/suit-photo-review/053e639ef74d2f85e37f5ed47af04b07db77977faacf58cee6df99e4cf067d07.png",
+    "image_sha256": "053e639ef74d2f85e37f5ed47af04b07db77977faacf58cee6df99e4cf067d07",
+    "width": 996,
+    "height": 2748
+  },
+  "prior_pattern_approval": {
+    "approved_pattern_image_sha256": "f4695fb61944ee6dbad35e16c616bed4f7dbe3734ba46ff49a1e6ddb441a85c2",
+    "date": "2026-11-16",
+    "scope": "pattern_only"
+  },
+  "supersedes": {
+    "item_id": "S02",
+    "previous_status": "PHOTO_MATCH_COLOR_REVIEW_PENDING",
+    "previous_status_commit_sha": "2cc7b0f70781445a1e090e86f13586f28de4d30b"
+  },
+  "preservation_requirements": {
+    "S02": "Preserve the exact approved image; do not recolor, redraw, or change its pattern without a new explicit owner instruction.",
+    "S13": {
+      "decision": "APPROVED_PREVIOUSLY",
+      "image_sha256": "510ca7db687817fe34239f07bb18914022d81beeaffcb4c294b721409ed6836a",
+      "instruction": "Retain the previously approved rendering unchanged."
+    },
+    "avatar": {
+      "path": "assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png",
+      "sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+      "instruction": "Keep the frozen avatar unchanged."
+    }
+  },
+  "recording_scope": {
+    "approval_record_only": true,
+    "image_changes": false,
+    "standard_app_changes": false,
+    "runtime_changes": false,
+    "saved_preference_changes": false,
+    "ui_approval_label_updated_by_this_record": false,
+    "release_or_integration_approval_inferred": false
+  }
+}
