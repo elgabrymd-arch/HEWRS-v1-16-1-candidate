@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https://raw.githubusercontent.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>HEWRS · S02 / S13 photo review</title>
+  <link rel="stylesheet" href="src/suit-photo-review.css">
+  <script defer src="data/suit-picker-images.js"></script>
+  <script defer src="src/suit-photo-review.js"></script>
+</head>
+<body>
+  <main>
+    <header class="review-header">
+      <div><p class="eyebrow">HEWRS / WARDROBE</p><h1>Suit photo review</h1><p class="intro">Fabric corrections on your frozen avatar.</p></div>
+      <a id="picker-link" class="quiet-link" href="blazer-picker-preview.html?show=suits">All suits <span aria-hidden="true">↗</span></a>
+    </header>
+    <section class="review-controls" aria-label="Review controls">
+      <div class="item-tabs" role="group" aria-label="Suit"><button type="button" data-suit="S02" aria-pressed="true">S02</button><button type="button" data-suit="S13" aria-pressed="false">S13</button></div>
+      <div class="mode-tabs" role="group" aria-label="Image version"><button type="button" data-mode="corrected" aria-pressed="true">Corrected</button><button type="button" data-mode="before" aria-pressed="false">Previous</button></div>
+    </section>
+    <section class="suit-heading" aria-live="polite"><div><h2 id="suit-title">S02</h2><p id="suit-description"></p></div><span id="review-status" class="review-badge">Awaiting your review</span></section>
+    <section class="image-grid">
+      <figure class="avatar-card"><figcaption id="full-caption">Corrected preview · full outfit</figcaption><div class="full-image-wrap"><img id="full-image" width="996" height="2748" alt="" decoding="async"></div></figure>
+      <div class="detail-column"><figure class="detail-card"><figcaption>Fabric detail</figcaption><div class="detail-image-wrap"><img id="detail-image" width="996" height="2748" alt="" decoding="async"></div></figure><div class="review-note"><p id="comparison-note"></p><a id="full-size-link" class="full-size-link" href="#" target="_blank" rel="noopener">Open full-size image <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+    <p id="image-error" role="alert" hidden>The image could not load. Reload this page to retry.</p>
+    <footer>Appearance candidates for review. The approved avatar is preserved.</footer>
+  </main>
+</body>
+</html>

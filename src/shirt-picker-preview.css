@@ -1,0 +1,21 @@
+/* Presentation for the shirt review page; native selection controls stay intact. */
+html:has(body.shirt-preview-host),body.shirt-preview-host{margin:0;width:100%;height:100%;overflow:hidden}
+.shirt-preview-host{background:#08111e;color:#eee3cf;font:16px/1.5 system-ui,-apple-system,sans-serif}
+#shirt-preview-status{position:fixed;inset:0;display:grid;align-content:center;justify-items:center;padding:24px;text-align:center}
+#shirt-preview-status[hidden]{display:none}
+#shirt-preview-status h1{font-size:24px;font-weight:500}
+#shirt-preview-status a{color:inherit;padding:12px;text-underline-offset:4px}
+#shirt-preview-app{display:block;border:0;width:100%;height:100vh;height:100dvh;visibility:hidden}
+#shirt-preview-app[data-ready="true"]{visibility:visible}
+.hewrs-ui #picker-list .fx-choice.hewrs-shirt-picker-choice{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:center;gap:14px;min-height:132px;padding:8px 12px;text-align:left}
+.hewrs-shirt-picker-image{display:flex;align-items:center;justify-content:center;width:96px;height:112px;overflow:hidden;border:1px solid var(--strong);border-radius:7px;background:#b8b8b8}
+.hewrs-shirt-picker-image img{display:block;width:100%;height:100%;object-fit:contain}
+.hewrs-shirt-picker-image img[hidden],.hewrs-shirt-picker-unavailable[hidden]{display:none}
+.hewrs-shirt-picker-copy{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0}
+.hewrs-shirt-picker-copy .fx-choice-id{font-size:14px;letter-spacing:.03em}
+.hewrs-shirt-picker-copy .fx-choice-name{font-size:15px;line-height:1.4;overflow-wrap:anywhere}
+.hewrs-shirt-picker-copy small{line-height:1.4;overflow-wrap:anywhere}
+.hewrs-shirt-picker-unavailable{font:11px/1.4 system-ui,sans-serif;color:#303030;text-align:center;padding:8px;overflow-wrap:anywhere}
+#hewrs-shirt-picker-note{color:var(--muted);font-size:12px;line-height:1.5;margin:0 0 10px}
+.hewrs-ui #picker-list .hewrs-shirt-picker-choice:focus-visible{outline:2px solid var(--selected);outline-offset:2px}
+@media(max-width:360px){.hewrs-ui #picker-list .fx-choice.hewrs-shirt-picker-choice{grid-template-columns:84px minmax(0,1fr);gap:10px;padding-inline:8px;min-height:116px}.hewrs-shirt-picker-image{width:84px;height:98px}}
