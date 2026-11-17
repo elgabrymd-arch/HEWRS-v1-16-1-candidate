@@ -17,7 +17,7 @@
     const id=button.dataset.itemId,row=app.ui.rows[category]?.find(x=>x.id===id&&x.sourceId===id);
     const descriptor=category==="shirt"?map?.[id]?.no_tie:map?.[id];
     const key=category==="shirt"?id+"/no_tie":id;
-    if(!row||!descriptor||descriptor.source_key!==key||!/^ui\\/option-cards\\/[a-f0-9]{64}\\.png$/.test(descriptor.src)||descriptor.sha256+".png"!==descriptor.src.split("/").pop())continue;
+    if(!row||!descriptor||descriptor.source_key!==key||!descriptor.src.startsWith("ui/option-cards/")||!/^[a-f0-9]{64}$/.test(descriptor.sha256)||descriptor.sha256+".png"!==descriptor.src.split("/").pop())continue;
     const name=button.querySelector(".fx-choice-name");if(!name)continue;
     const picture=document.createElement("span");picture.className="hewrs-"+category+"-picker-image";
     const img=document.createElement("img");img.width=192;img.height=224;img.alt="";img.setAttribute("aria-hidden","true");img.loading="eager";img.decoding="async";img.dataset.sourceId=id;img.dataset.sourceSha256=descriptor.sha256;
