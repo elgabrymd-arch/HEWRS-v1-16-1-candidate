@@ -174,6 +174,6 @@
     if (!row || !app.connection.controller.verifyCachedOption(row, pool.request, app.connection.catalogue)) return null;
     return {selection:getSelection(row), option:row, context:clone(pool.request.context), localDate:pool.request.localDate};
   }
-  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-review-2',
+  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-autofill-1',
     diagnostics:() => ({attached:!!gate, hasPool:!!pool, temporaryCount:temporary.size, imageTransport:'anonymous-cors'})});
 })(globalThis);

@@ -1,5 +1,6 @@
 /* Derive an opt-in page from the exact reviewed entrypoint. No accepted file
- * is rewritten. Git-blob identity verifies both content and byte length. */
+ * is rewritten. Git-blob identity verifies both content and byte length.
+ * The separate refill runtime keeps every other accepted module unchanged. */
 (async function () {
   'use strict';
   const frame = document.getElementById('shirt-preview-app');
@@ -17,7 +18,16 @@
     const pattern = /<script\b[^>]*\bsrc="runtime\/hewrs-bbbcec41d08f91585f4a\.js"[^>]*><\/script>/g;
     const matches = html.match(pattern);
     if (matches?.length !== 1) throw Error('The approved runtime binding is unavailable.');
-    html = html.replace(pattern, '<script defer src="src/outfit-rejection-core.js"></script>\n' + matches[0] + '\n<script defer src="src/outfit-rejection-ui.js"></script>');
+    const manifestResponse = await fetch('data/outfit-refill-runtime.json');
+    if (!manifestResponse.ok) throw Error('The refill preview runtime record could not load.');
+    const manifest = await manifestResponse.json();
+    if (manifest.schema !== 'hewrs.outfit-refill-preview.v1' || manifest.runtime !== 'runtime/outfit-refill-preview.js' ||
+        !/^sha256-[A-Za-z0-9+/]{43}=$/.test(manifest.integrity) ||
+        manifest.baseline_sha256 !== 'bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150') {
+      throw Error('The refill preview runtime record is incompatible.');
+    }
+    const runtimeTag = '<script defer src="' + manifest.runtime + '" integrity="' + manifest.integrity + '"></script>';
+    html = html.replace(pattern, '<script defer src="src/outfit-rejection-core.js"></script>\n' + runtimeTag + '\n<script defer src="src/outfit-rejection-ui.js"></script>');
     html = html.replace('</head>', '<link rel="stylesheet" href="src/outfit-rejection.css">\n</head>');
     frame.srcdoc = html;
     // The retained shirt decorator opens its picker without saving a choice.

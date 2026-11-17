@@ -1,18 +1,21 @@
 name: Outfit feedback real-application browser checks
 on:
   push:
-    branches: [feature/blazer-photo-selector-20261116]
+    branches: [feature/blazer-photo-selector-20261116, feature/reject-autofill-20261117]
     paths:
       - '.github/workflows/outfit-feedback-browser.yml'
       - 'tests/outfit-feedback-*.py'
       - 'src/outfit-*'
       - 'outfit-feedback-preview.html'
+      - 'runtime/outfit-refill-preview.js'
+      - 'data/outfit-refill-runtime.json'
+      - 'tools/build-outfit-feedback-preview.py'
 permissions:
   contents: read
 jobs:
   actual-browser:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,6 +29,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Check actual generation, native pixels, rejection, persistence and galleries
         run: python tests/outfit-feedback-acceptance.py
+      - name: Check preserved outfit lists and automatic rejection refill
+        run: python tests/outfit-feedback-refill.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

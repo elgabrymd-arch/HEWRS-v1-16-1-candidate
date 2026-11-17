@@ -38,10 +38,14 @@
     if (original.ownerFeedbackPersistent !== true && !notice.textContent) say('Permanent feedback storage is unavailable. Temporary rejection still works; no existing records were cleared.',true);
   }
   function invalidateFeedback() {
-    try {fb.refresh();feedbackError=null;} catch(error) {feedbackError=error.message;}
-    refreshControls();
-    original.cancel(); original.feedbackChanged();
-    if (feedbackError) say('Feedback could not be read: '+feedbackError+' Existing records were retained.',true);
+    try {
+      fb.refresh();feedbackError=null;
+      refreshControls();
+      original.rejectionChanged();
+    } catch(error) {
+      feedbackError=error.message;
+      say('Feedback could not be checked: '+feedbackError+' Existing choices and records were retained.',true);
+    }
     refreshControls();
   }
   fb.subscribe(invalidateFeedback);
@@ -75,7 +79,7 @@
     const scope=select('rejection-scope','What should be hidden?',[['outfit','These clothes and shoes — any watch'],['clothing','This clothing combination — any shoes or watch']]);
     const occasion=select('rejection-occasion','Where should it apply?',[['all','Every occasion'],['current','This occasion only ('+state.context.occasion+')']]);
     advanced.append(scope.label,occasion.label);body.append(advanced);
-    body.append(element('p','Reject once lasts for this list/review session and clears on your next Generate or page reload. Never show again is saved in this browser until you undo it. Reasons are retained with permanent rejections; no automatic model training is started.','fx-caption'));
+    body.append(element('p','The other outfits stay in your list. Available replacements are added automatically, up to 20, using your current selections and outfit rules. Reject once stays active during replacement and clears on your next Generate or page reload. Never show again is saved in this browser until you undo it.','fx-caption'));
     const cancel=button('Cancel','rejection-cancel',closeDialog);
     const once=button('Reject once','rejection-once',()=>commit(false));
     const forever=button('Never show again','rejection-permanent',()=>commit(true));forever.className='hewrs-rejection-primary';
@@ -89,16 +93,15 @@
         const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason:reason.input.value||null,note:note.value};
         const event=permanent?fb.hide(selected,settings):fb.skip(selected,settings);lastId=event.id;
         closeDialog();
-        const next=core.replacement(selected);
-        if(next){
-          const result=await original.apply(next.selection,{origin:'engine',option:next.option,score:next.option._hewrsConnected?.compatibility,
-            context:next.context,localDate:next.localDate,keepPreferences:true});
-          if(result?.cancelled)throw Error('Replacement was cancelled. The rejection remains saved and can be undone.');
-          original.showPage('outfits');
-          say((permanent?'Rejection saved. ':'Rejected for this session. ')+'A different eligible outfit is shown. Your exact selections were not changed.');
-        }else{
-          original.showPage('outfits');
-          say((permanent?'Rejection saved. ':'Rejected for this session. ')+'No different eligible option remains in the current list. Generate a new list or undo; no selected item was unlocked.');
+        const prefix=permanent?'Rejection saved. ':'Rejected for this session. ';
+        say(prefix+'Keeping the other outfits and finding replacements…');
+        const result=await original.refillRejected();
+        if(result?.cancelled) {
+          say(prefix+'Replacement stopped because the current review changed. Your remaining outfits were retained.');
+        } else {
+          const count=result?.count??original.state().optionCount,target=result?.target??20;
+          const addition=result?.added?result.added+' new outfit'+(result.added===1?'':'s')+' added. ':'';
+          say(prefix+addition+count+' of '+target+' outfits available. '+(result?.reason||'Your other outfits and exact selections were retained.'));
         }
       } catch(problem) {
         error.textContent=problem.message;say(problem.message,true);
@@ -108,7 +111,7 @@
   }
   function undoLast() {
     if(pending||!lastId)return;
-    try {const id=lastId;fb.restore(id);lastId=null;say('Rejection undone. Other rejection rules still apply. Generate to review eligible options.');refreshControls();}
+    try {const id=lastId;fb.restore(id);lastId=null;say('Rejection undone. Your current list is retained. The combination is eligible again on your next Generate; other rejection rules still apply.');refreshControls();}
     catch(error){say(error.message,true);}
   }
   function openManager() {
@@ -155,6 +158,6 @@
   // Compatibility aliases are installed before the reviewed panel captures app.
   // Both names point to exactly the same gate and persistent owner-feedback log.
   root.HEWRSApp=Object.freeze({...original,ownerFeedback:fb,outfitFeedback:fb,hiddenOutfitsSheet:openManager,
-    rejection:Object.freeze({open:openReject,manage:openManager,undo:undoLast,revision:'rejection-review-1'})});
+    rejection:Object.freeze({open:openReject,manage:openManager,undo:undoLast,revision:'rejection-autofill-1'})});
   refreshControls();
 })(globalThis);
