@@ -96,7 +96,7 @@
           if (!id || !name) continue;
           const {row, image} = binding, originalLabel = name.textContent;
           const displayLabel = category === 'shirt' && /source-repaired collar\/body pilot/.test(originalLabel)
-            ? (app.connection.catalogue.shirts.find(item => item.id === 'shirt-' + row.id)?.name || row.id)
+            ? (root.HEWRS_INPUTS.originalCatalogue.shirts.find(item => item.id === 'shirt-' + row.id)?.name || row.id)
             : originalLabel;
           const picture = doc.createElement('span'); picture.className = prefix + '-image';
           const img = doc.createElement('img');
