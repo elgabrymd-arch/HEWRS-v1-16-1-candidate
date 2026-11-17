@@ -95,6 +95,9 @@
           const id = button.querySelector('.fx-choice-id'), name = button.querySelector('.fx-choice-name');
           if (!id || !name) continue;
           const {row, image} = binding, originalLabel = name.textContent;
+          const displayLabel = category === 'shirt' && /source-repaired collar\/body pilot/.test(originalLabel)
+            ? (app.connection.catalogue.shirts.find(item => item.id === 'shirt-' + row.id)?.name || row.id)
+            : originalLabel;
           const picture = doc.createElement('span'); picture.className = prefix + '-image';
           const img = doc.createElement('img');
           img.alt = ''; img.setAttribute('aria-hidden', 'true');
@@ -109,10 +112,10 @@
           picture.append(img, unavailable);
           const copy = doc.createElement('span'); copy.className = prefix + '-copy';
           while (button.firstChild) copy.append(button.firstChild);
-          if (category === 'tie' && typeof row.color === 'string' && row.color.trim()) name.textContent = row.color.trim();
+          name.textContent = category === 'tie' && typeof row.color === 'string' && row.color.trim() ? row.color.trim() : displayLabel;
           button.append(picture, copy); button.classList.add(prefix + '-choice');
-          button.title = (button.title ? button.title + '\n' : '') + row.id + ' — ' + originalLabel;
-          if (!button.hasAttribute('aria-label')) button.setAttribute('aria-label', row.id + ' — ' + originalLabel);
+          button.title = (button.title ? button.title + '\n' : '') + row.id + ' — ' + displayLabel;
+          if (!button.hasAttribute('aria-label')) button.setAttribute('aria-label', row.id + ' — ' + displayLabel);
           enhanced.add(button); img.src = image.src;
         }
       } finally { observer.observe(body, {childList:true, subtree:true}); }
