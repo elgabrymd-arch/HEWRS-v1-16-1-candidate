@@ -1,0 +1,1506 @@
+{
+  "schema": "hewrs.rejection-autofill.verification.v1",
+  "date": "2026-11-17",
+  "tested_commit": "84b18a9bfe0329878d4d81d9cc9525c9de959c1c",
+  "preview_url": "https://rawcdn.githack.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/84b18a9bfe0329878d4d81d9cc9525c9de959c1c/outfit-feedback-preview.html",
+  "runtime_sha256": "2762729a59ef21292bda3c33e98252c1760a1845e3ae9bb4e5b4dbbe22205c83",
+  "baseline_runtime_sha256": "bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150",
+  "workflow": {
+    "run_id": 44071724729,
+    "job_id": 133999351675,
+    "url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44071724729",
+    "conclusion": "success",
+    "artifact_id": 14322583042,
+    "artifact_digest": "sha256:2344f57c0655796699ad260af9d3bd4c851703ae282e1bacbb0a1d1a7236ce65"
+  },
+  "actual_browser_summaries": [
+    {
+      "test": "local-desktop",
+      "passed": true,
+      "initial_options": 20,
+      "exception": null,
+      "errors": [],
+      "http_errors": []
+    },
+    {
+      "test": "hosted-desktop",
+      "passed": true,
+      "initial_options": 20,
+      "exception": null,
+      "errors": [],
+      "http_errors": []
+    },
+    {
+      "test": "hosted-phone",
+      "passed": true,
+      "initial_options": 20,
+      "exception": null,
+      "errors": [],
+      "http_errors": []
+    },
+    {
+      "test": "refill-local-desktop",
+      "passed": true,
+      "exception": null,
+      "errors": [],
+      "http_errors": []
+    },
+    {
+      "test": "refill-hosted-desktop",
+      "passed": true,
+      "exception": null,
+      "errors": [],
+      "http_errors": []
+    },
+    {
+      "test": "refill-hosted-phone",
+      "passed": true,
+      "exception": null,
+      "errors": [],
+      "http_errors": []
+    }
+  ],
+  "checks_passed": 279,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "suite": "local-desktop",
+      "name": "Generate displays 20 actual outfit choices",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Visible avatar is complete",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Rejection control is available",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Next displays actual option 2",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Displayed pixels equal the unchanged native renderer",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Cancel writes no feedback",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Temporary reject shows a different outfit",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Temporary reject is not permanently saved",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Locks, wear and Favorites survive rejection",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "New Generate returns 20 and clears temporary skips",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Permanent rejection retains reason and note",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Permanent rejection displays another outfit",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Permanent rejection persists after reload",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Regeneration excludes the rejected combination",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "Undo removes the active veto",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "50 shirt images load",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "47 tie images load",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "No paid provider request",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "No application page errors",
+      "passed": true
+    },
+    {
+      "suite": "local-desktop",
+      "name": "No failed HTTP resources",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Generate displays 20 actual outfit choices",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Visible avatar is complete",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Rejection control is available",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Next displays actual option 2",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Displayed pixels equal the unchanged native renderer",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Cancel writes no feedback",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Temporary reject shows a different outfit",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Temporary reject is not permanently saved",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Locks, wear and Favorites survive rejection",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "New Generate returns 20 and clears temporary skips",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Permanent rejection retains reason and note",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Permanent rejection displays another outfit",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Permanent rejection persists after reload",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Regeneration excludes the rejected combination",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "Undo removes the active veto",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "50 shirt images load",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "47 tie images load",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "No paid provider request",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "No application page errors",
+      "passed": true
+    },
+    {
+      "suite": "hosted-desktop",
+      "name": "No failed HTTP resources",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Generate displays 20 actual outfit choices",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Visible avatar is complete",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Rejection control is available",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Next displays actual option 2",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Displayed pixels equal the unchanged native renderer",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Cancel writes no feedback",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Temporary reject shows a different outfit",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Temporary reject is not permanently saved",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Locks, wear and Favorites survive rejection",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "New Generate returns 20 and clears temporary skips",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Permanent rejection retains reason and note",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Permanent rejection displays another outfit",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Permanent rejection persists after reload",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Regeneration excludes the rejected combination",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "Undo removes the active veto",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "50 shirt images load",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "47 tie images load",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "No paid provider request",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "No application page errors",
+      "passed": true
+    },
+    {
+      "suite": "hosted-phone",
+      "name": "No failed HTTP resources",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Initial list contains 20 actual outfits",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Initial list: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Initial list: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Initial list: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Initial list: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Initial list: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Initial list: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "First rejection restores 20 without Generate",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "All 19 original accepted rows are unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After first rejection: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After first rejection: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After first rejection: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After first rejection: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After first rejection: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After first rejection: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Two rejections still leave 20 actual choices",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "All 18 original accepted rows are unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Exactly 18 original rows plus two new rows remain",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Both rejected combinations are absent",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "New rows have genuinely new outfits, ignoring watch changes",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Both temporary rejections survive automatic refill",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Temporary rejection created no permanent entries",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pins, wear history and Favorites remain unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Changing only the watch cannot evade the rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After two rejections: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After two rejections: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After two rejections: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After two rejections: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After two rejections: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "After two rejections: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Previous wraps from first to twentieth option",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Next wraps from twentieth to first option",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Undo removes just the last temporary rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Explicit Generate clears temporary skips and returns 20",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Permanent rejection also refills to 20",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Permanent rejection preserves its 19 accepted rows",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Permanent reason and note are saved",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Permanent rejection persists after reload",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Regeneration cannot return permanent rejected outfit",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Manager undo removes permanent rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC generates real options",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC preserves accepted rows",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC retains selected occasion and style",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "work/CLASSIC: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID generates real options",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID preserves accepted rows",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID retains selected occasion and style",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "dinner/HYBRID: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN generates real options",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN preserves accepted rows",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN retains selected occasion and style",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "weekend/MODERN: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pinned-shirt request has actual choices",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Refill preserves exact pinned shirt",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Refill preserves every accepted pinned row",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Refill does not unlock pins or change records",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pinned shirt refill: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pinned shirt refill: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pinned shirt refill: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pinned shirt refill: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pinned shirt refill: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Pinned shirt refill: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Tight exact pins produce only one unique outfit",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Exhaustion is 0 actual choices, never fake replacements",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Exhaustion retains all exact pins",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Exhaustion reports the actual shortage",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Rejected exhausted outfit is hidden",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "Refill makes no paid provider requests",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "No uncaught application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-local-desktop",
+      "name": "All requested application resources load",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Initial list contains 20 actual outfits",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Initial list: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Initial list: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Initial list: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Initial list: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Initial list: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Initial list: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "First rejection restores 20 without Generate",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "All 19 original accepted rows are unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After first rejection: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After first rejection: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After first rejection: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After first rejection: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After first rejection: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After first rejection: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Two rejections still leave 20 actual choices",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "All 18 original accepted rows are unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Exactly 18 original rows plus two new rows remain",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Both rejected combinations are absent",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "New rows have genuinely new outfits, ignoring watch changes",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Both temporary rejections survive automatic refill",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Temporary rejection created no permanent entries",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pins, wear history and Favorites remain unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Changing only the watch cannot evade the rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After two rejections: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After two rejections: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After two rejections: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After two rejections: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After two rejections: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "After two rejections: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Previous wraps from first to twentieth option",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Next wraps from twentieth to first option",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Undo removes just the last temporary rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Explicit Generate clears temporary skips and returns 20",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Permanent rejection also refills to 20",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Permanent rejection preserves its 19 accepted rows",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Permanent reason and note are saved",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Permanent rejection persists after reload",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Regeneration cannot return permanent rejected outfit",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Manager undo removes permanent rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pinned-shirt request has actual choices",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Refill preserves exact pinned shirt",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Refill preserves every accepted pinned row",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Refill does not unlock pins or change records",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pinned shirt refill: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pinned shirt refill: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pinned shirt refill: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pinned shirt refill: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pinned shirt refill: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Pinned shirt refill: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Tight exact pins produce only one unique outfit",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Exhaustion is 0 actual choices, never fake replacements",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Exhaustion retains all exact pins",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Exhaustion reports the actual shortage",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Rejected exhausted outfit is hidden",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "Refill makes no paid provider requests",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "No uncaught application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-desktop",
+      "name": "All requested application resources load",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Initial list contains 20 actual outfits",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Initial list: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Initial list: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Initial list: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Initial list: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Initial list: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Initial list: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "First rejection restores 20 without Generate",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "All 19 original accepted rows are unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After first rejection: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After first rejection: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After first rejection: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After first rejection: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After first rejection: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After first rejection: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Two rejections still leave 20 actual choices",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "All 18 original accepted rows are unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Exactly 18 original rows plus two new rows remain",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Both rejected combinations are absent",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "New rows have genuinely new outfits, ignoring watch changes",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Both temporary rejections survive automatic refill",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Temporary rejection created no permanent entries",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pins, wear history and Favorites remain unchanged",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Changing only the watch cannot evade the rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After two rejections: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After two rejections: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After two rejections: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After two rejections: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After two rejections: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "After two rejections: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Previous wraps from first to twentieth option",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Next wraps from twentieth to first option",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Undo removes just the last temporary rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Explicit Generate clears temporary skips and returns 20",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Permanent rejection also refills to 20",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Permanent rejection preserves its 19 accepted rows",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Permanent reason and note are saved",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Permanent rejection persists after reload",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Regeneration cannot return permanent rejected outfit",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Manager undo removes permanent rejection",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pinned-shirt request has actual choices",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Refill preserves exact pinned shirt",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Refill preserves every accepted pinned row",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Refill does not unlock pins or change records",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pinned shirt refill: true option count matches the stored list",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pinned shirt refill: no duplicated clothing or watch-only variants",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pinned shirt refill: every row passes the real generator validation",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pinned shirt refill: every row passes current rejection rules",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pinned shirt refill: navigator shows the actual count",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Pinned shirt refill: actual garment pixels rendered",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Generation completed without an application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Tight exact pins produce only one unique outfit",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Exhaustion is 0 actual choices, never fake replacements",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Exhaustion retains all exact pins",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Exhaustion reports the actual shortage",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Rejected exhausted outfit is hidden",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "Refill makes no paid provider requests",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "No uncaught application error",
+      "passed": true
+    },
+    {
+      "suite": "refill-hosted-phone",
+      "name": "All requested application resources load",
+      "passed": true
+    }
+  ],
+  "direct_published_browser": {
+    "tested": true,
+    "initial_count": 20,
+    "rejected_original_outfits": 2,
+    "after_first_count": 20,
+    "after_second_count": 20,
+    "temporary_only": true,
+    "newly_displayed_outfits": [
+      "B03 + PG003 + DS046 + NO_TIE + shoe-42",
+      "S15 + DS008 + T044 + shoe-3"
+    ],
+    "navigator": "Option 20 of 20"
+  },
+  "native_engine": {
+    "initial_count": 20,
+    "retained_count": 18,
+    "refilled_count": 20,
+    "retained_rows_deep_equal": true,
+    "initial_ms": 9242,
+    "refill_ms": 3425,
+    "pinned_exhaustion": "1 to 0, exact pins retained",
+    "malformed_retained_rejected": true,
+    "duplicate_retained_rejected": true,
+    "cancellation_passed": true
+  },
+  "scope": {
+    "generators": [
+      "research",
+      "heuristic"
+    ],
+    "visual_provider_refill": false,
+    "preserves_accepted_rows": true,
+    "preserves_exact_pins": true,
+    "watch_only_variants_count_as_new": false,
+    "temporary_rejections_survive_refill": true,
+    "permanent_rejections_survive_reload": true,
+    "honest_shortage": true,
+    "standard_release_unchanged": true
+  },
+  "limitations": [
+    "Browser UI checks used Chromium desktop and mobile viewport; no claim of an on-device iOS Safari run.",
+    "Shortages can remain when no additional eligible distinct options are found under existing pins and list rules.",
+    "Live-provider and curated methods retain surviving options but do not automatically make provider calls for refill."
+  ]
+}
