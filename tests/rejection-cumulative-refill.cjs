@@ -78,4 +78,19 @@ assert.equal(reopened.allowed({...entire,shirtId:'DS051',shoeId:'shoe-2'},{occas
   'Blocking a clothing combination must not ban individual garments');
 assert.equal(reopened.restore(fullReject.id),true);
 assert.equal(reopened.allowed({...entire,shoeId:'shoe-2'},{occasion:'work'}),true);
+// Reject suit+shirt+tie as a precise triple: other suits can still wear the pair.
+const threePiece={suitId:'S03',shirtId:'DS010',state:'T022',shoeId:'shoe-4',watchId:null};
+const threePieceEvent=reopened.hide(threePiece,{context:'all',scope:'clothing',reason:'other'});
+const tripleGate=store(); tripleGate.refresh();
+for(const occasion of ['work','dinner','weekend']) {
+  assert.equal(tripleGate.allowed({...threePiece,shoeId:'shoe-19'},{occasion}),false,
+    'Rejected suit/shirt/tie triple returned with new shoes');
+  assert.equal(tripleGate.allowed({...threePiece,suitId:'S04'},{occasion}),true,
+    'Other suit with same shirt+tie must remain eligible');
+  assert.equal(tripleGate.allowed({...threePiece,shirtId:'DS011'},{occasion}),true,
+    'Same suit with new shirt must remain eligible');
+  assert.equal(tripleGate.allowed({...threePiece,state:'T023'},{occasion}),true,
+    'Same suit and shirt with new tie must remain eligible');
+}
+assert.equal(reopened.restore(threePieceEvent.id),true);
 console.log('Cumulative rejection ledger: 20 hides, 100 generations across occasions, watch and shoe variation, 100 future generations, reload, scope and undo passed');
