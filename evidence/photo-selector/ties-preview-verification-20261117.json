@@ -1,0 +1,28 @@
+{
+  "schema": "hewrs.tie-picker-preview-verification.v1",
+  "base_commit": "bd44d468810cedadbeb22e1ffb2d3d4f944536fe",
+  "implementation": "Opt-in same-origin iframe around the unchanged suit/blazer app; native tie buttons are decorated without replacing their handlers.",
+  "source_authority": "HEWRS_OPTION_CARD_THUMBNAILS.ties and HEWRSApp.ui.rows.tie from the accepted runtime",
+  "required_ids": "T001-T047",
+  "new_garment_images": 0,
+  "source_files_sha256": {
+    "tie-picker-preview.html": "473bb47f4c7dd657dde8cd15849d08458a03ada4c5c2c186343f31197e7d80ef",
+    "src/tie-picker-preview.css": "f3ee4836a15c6878031c8e4656096805f233efd21e90c7039e1f7bf9f07d83a8",
+    "src/tie-picker-preview.js": "d0d1011484d8dfc9b33e6ecf6bcf1e8c33eab9dcac86feaf592cce74b11bd297"
+  },
+  "local_tests": {
+    "type": "offline_synthetic_browser_contract",
+    "checks_passed": 192,
+    "viewport_widths": [320, 390, 1280],
+    "test_script_sha256": "296e66f07868c5b7b10d3f95f4bd0049706f47e956f30a33475261e3aab7d7e7",
+    "full_local_result_sha256": "bcec492cc1e5065cd02aa83d3b365994c218074e91615fbfa317228edffd6225",
+    "covered": ["47 ID/image bindings", "native handler retention", "draft clicks without writes", "Apply/Cancel", "No Tie versus Engine Choice", "search and color family filtering", "keyboard selection", "missing-image fallback without substitution", "duplicate load-event resilience", "unrelated category isolation", "immutable catalogue rows"],
+    "persistence_uses_synthetic_storage": true,
+    "actual_garment_images_used_in_test": false,
+    "CSP_and_network_tested": false,
+    "whole_application_regression_tested": false,
+    "live_host_tested": false
+  },
+  "remaining_validation": "Open the published preview in a normal browser, confirm all actual tie images load, and verify native application behavior on desktop and phone before main-app integration.",
+  "preservation": "Additive preview files only; all existing source, images, runtime, avatar, and standard entrypoints are retained. No new storage schema or paid API call is introduced. Native Apply retains its existing preference write."
+}

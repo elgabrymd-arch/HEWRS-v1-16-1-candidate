@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; frame-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>HEWRS · Tie photo selector preview</title>
+  <link rel="stylesheet" href="src/tie-picker-preview.css">
+  <script defer src="src/tie-picker-preview.js"></script>
+</head>
+<body class="tie-preview-host">
+  <section id="tie-preview-status" role="status" aria-live="polite">
+    <h1>Tie photo selector</h1>
+    <p id="tie-preview-message">Loading your existing wardrobe and tie images…</p>
+    <a href="blazer-picker-preview.html?show=suits">Return to the suit selector</a>
+  </section>
+  <iframe id="tie-preview-app" title="HEWRS wardrobe with tie photo selection" src="blazer-picker-preview.html" aria-busy="true"></iframe>
+  <noscript>JavaScript is required. No saved selections have been changed.</noscript>
+</body>
+</html>
