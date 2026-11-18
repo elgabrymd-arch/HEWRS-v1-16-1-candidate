@@ -16,7 +16,7 @@ function create(inputs){
  for(const id of base.blazerConnection.availableIds)tops.set(id,cat.blazers.find(x=>x.id===base.blazerConnection.knownBlazer(id).historyId));
  const identifiedWatch=w=>!w||!/reserved|placeholder|unresolved|current collection/i.test((w.name||'')+' '+(w.color||''));
  function plain(q){const p=copy(q);delete p.stylist;return p;}
- function prepare(c){const m=c.stylistMode||mode;need(MODES.includes(m),'Unknown styling method');const q=(m==='research'?research:base).makeRequest(c);if(!q.automatic)return q;need(q.context.occasion==='work'||m==='research','Dinner and Weekend require the Research-based generator; the selected method was not changed.');return {...q,stylist:{revision:REV,mode:m}};}
+ function prepare(c){const m=c.stylistMode||mode;need(MODES.includes(m),'Unknown styling method');const q=(m==='research'?research:base).makeRequest(c);if(!q.automatic)return q;need(q.context.occasion==='work'||m==='research'||m==='visual','Dinner and Weekend require the Research-based or Live visual AI generator; the selected method was not changed.');return {...q,stylist:{revision:REV,mode:m}};}
  function valid(q){need(q?.automatic&&q.stylist?.revision===REV&&MODES.includes(q.stylist.mode),'Unknown stylist request');
   const p=engineFor(q).automatic.prepare({preferences:q.prefs,occasion:q.context?.occasion,formality:q.context?.requiredFormality,localDate:q.localDate,environment:q.environment,style:q.executiveStyle});need(stable(p)===stable(plain(q)),'Changed automatic request');return q;}
  function matches(p,id,itemId){return p.mode==='any'||p.mode==='none'&&id===null||p.mode==='item'&&(p.id===id||p.id===itemId)||p.mode==='family'&&id!==null&&base.preference.matchesFamily(id,p.id);}
