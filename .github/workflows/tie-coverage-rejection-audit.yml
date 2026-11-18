@@ -1,0 +1,47 @@
+name: Tie coverage and rejection storage diagnosis
+on:
+  push:
+    branches:
+      - audit/tie-coverage-rejection-scale-20261118
+    paths:
+      - .github/workflows/tie-coverage-rejection-audit.yml
+      - tests/rejection-scale-audit.cjs
+      - tests/rejection-startup-audit-browser.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-diagnosis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify diagnostic branch preserves the actual candidate
+        run: |
+          git fetch --depth=1 origin 69545e85bf4ee0719d29dc81bade011332c4caf8
+          git diff --exit-code 69545e85bf4ee0719d29dc81bade011332c4caf8 -- \
+            src runtime assets assemblies data vendor ui ui-assets \
+            index.html app.html tools STANDARD_RELEASE.json outfit-feedback.js
+          python tools/build_tie_candidate.py --check
+      - name: Generate distinct validated synthetic rejection fixture
+        run: node tests/rejection-scale-audit.cjs --fixture-only
+      - name: Install isolated browser tests
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Measure startup failure behavior and actual browser storage capacity
+        run: python tests/rejection-startup-audit-browser.py
+      - name: Preserve observations without owner data or deployment
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_REJECTION_STORAGE_BROWSER_AUDIT
+          path: evidence/tie_coverage_rejection_scale/browser-audit.json
+          if-no-files-found: warn
+          retention-days: 14
