@@ -79,6 +79,7 @@
       ['shirt_tie_suit', 'Shirt and tie do not work with this suit/blazer', 'other', 'clothing'],
       ['tie_shirt', 'Shirt is fine; tie does not work with this shirt', 'other', 'clothing'],
       ['shirt_suit', 'Suit/blazer is fine; shirt does not work with it', 'other', 'clothing'],
+      ['shirt_appearance', 'I do not like the shirt', 'other', 'clothing'],
       ['tie_suit', 'Suit/blazer is fine; tie does not work with it', 'other', 'clothing'],
       ['footwear', 'Shoes do not work with this outfit; clothes are fine', 'footwear', 'outfit'],
       ['colors', 'Color combination does not work', 'colors', 'clothing'],
