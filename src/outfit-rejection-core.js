@@ -2,6 +2,7 @@
  * Original outfit feedback retains its v1 meaning. Explicit tie feedback has
  * a separate immutable log. Temporary skips remain session memory.
  * Visible renders commit only after the same veto is rechecked atomically.
+ * A failed read blocks work; unreadable permanent data is never an empty log.
  */
 (function (root) {
   'use strict';
@@ -73,6 +74,17 @@
       const connection = namespace.create(...args);
       if (!connection.ownerFeedback || !connection.controller) return connection;
       const controller = connection.controller;
+      function beforeGeneration() {
+        need(gate, 'The shared outfit feedback record is not ready.');
+        // Validate both permanent ledgers before invoking any local or remote
+        // producer. The existing post-check remains necessary for changes made
+        // while asynchronous generation is running.
+        return gate.refresh().token;
+      }
+      function afterGeneration(result, request, history, token) {
+        if (result?.status !== 'cancelled') gate.assertCurrent(token);
+        return remember(result, request, history);
+      }
       function remember(result, request, history) {
         // Check the entire active rejection ledger on every generation/refill.
         // An out-of-date producer must fail closed rather than repopulate a
@@ -95,8 +107,14 @@
         return result;
       }
       return Object.freeze({...connection, controller:Object.freeze({...controller,
-        generate:(q, c, h) => remember(controller.generate(q, c, h), q, h),
-        generateAsync:async(q, c, h, o) => remember(await controller.generateAsync(q, c, h, o), q, h)
+        generate(q, c, h) {
+          const token = beforeGeneration();
+          return afterGeneration(controller.generate(q, c, h), q, h, token);
+        },
+        async generateAsync(q, c, h, o) {
+          const token = beforeGeneration();
+          return afterGeneration(await controller.generateAsync(q, c, h, o), q, h, token);
+        }
       })});
     }});
   }
@@ -126,11 +144,18 @@
     const matches = (event, selection, occasion) => (event.occasion === 'all' || event.occasion === occasion) &&
       (!T.isScope(event.scope) || /^T\d{3}$/.test(selection.state || selection.tie)) && scopeKey(event.selection, event.scope) === scopeKey(selection, event.scope);
     function snapshot() {
-      const s = base.refresh(), t = ties.refresh();
-      assertDistinctIds(s.events, t.events);
-      return {...s, events:[...s.events, ...t.events], active:[...s.active, ...t.active],
-        token:s.token + '\n' + t.token + '\nreview-skips:' + revision,
-        temporary:[...temporary.values()].map(clone)};
+      try {
+        const s = base.refresh(), t = ties.refresh();
+        assertDistinctIds(s.events, t.events);
+        return {...s, events:[...s.events, ...t.events], active:[...s.active, ...t.active],
+          token:s.token + '\n' + t.token + '\nreview-skips:' + revision,
+          temporary:[...temporary.values()].map(clone)};
+      } catch (error) {
+        // Keep the original ledgers and their bytes. All views use the same
+        // explicit blocked state, including callers outside the main card.
+        app.setFeedbackReadError?.(error);
+        throw error;
+      }
     }
     function match(s, context) {
       s = F.normal(s);
@@ -152,6 +177,7 @@
       return {scope, occasion, reason, note};
     }
     function hide(s, options = {}) {
+      snapshot();
       need(app.ownerFeedbackPersistent === true, 'Permanent saving is unavailable. No permanent rejection was recorded.');
       const value = choices(options), selection = F.normal(app.connection.validateSelection(s));
       if (T.isScope(value.scope)) return ties.hide(selection, {...value, context:value.occasion});
@@ -254,6 +280,6 @@
     if (!row || !app.connection.controller.verifyCachedOption(row, pool.request, app.connection.catalogue)) return null;
     return {selection:getSelection(row), option:row, context:clone(pool.request.context), localDate:pool.request.localDate};
   }
-  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'tie-feedback-rotation-1',
+  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-read-failure-1',
     diagnostics:() => ({attached:!!gate, hasPool:!!pool, temporaryCount:temporary.size, imageTransport:'anonymous-cors'})});
 })(globalThis);

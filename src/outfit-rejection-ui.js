@@ -15,40 +15,56 @@
   const notice = element('p','', 'fx-caption'); notice.id='rejection-status'; notice.setAttribute('role','status');
   const undoButton = button('Undo last rejection','undo-outfit-rejection',undoLast);
   const manageButton = button('Rejections · outfits and ties','manage-outfit-rejections',openManager);
-  bar.append(notice,undoButton,manageButton); $('outfit-output').after(bar);
+  const retryButton = button('Retry rejection check','retry-rejection-check-outfits',()=>invalidateFeedback(true));
+  retryButton.hidden=true;bar.append(notice,retryButton,undoButton,manageButton); $('outfit-output').after(bar);
   const rejectButton = button('Reject outfit + reason','reject-outfit',openReject);
   $('regenerate').before(rejectButton);
   const homeManage = button('Rejections · outfits and ties · undo / backup','home-outfit-rejections',openManager);
   homeManage.className='fx-wide-card'; $('page-home').append(homeManage);
+  const homeFailure=element('section',undefined,'hewrs-rejection-bar');homeFailure.id='rejection-home-error';homeFailure.hidden=true;
+  const homeNotice=element('p','','fx-warning');homeNotice.id='rejection-home-status';homeNotice.setAttribute('role','alert');
+  const homeRetry=button('Retry rejection check','retry-rejection-check',()=>invalidateFeedback(true));
+  homeFailure.append(homeNotice,homeRetry);homeManage.before(homeFailure);
   function say(text, error=false) {notice.textContent=text; notice.dataset.error=String(error);}
+  function readFailure(error){feedbackError=error==null?null:String(error.message||error);original.setFeedbackReadError(feedbackError);}
+  function failureMessage(){return 'Saved rejections could not be checked. Generation and outfit display are paused. '+feedbackError+' Existing records were retained.';}
   function currentAllowed(state) {
     if (feedbackError) return false;
     if (!state.selection || state.selection.state === 'REFERENCE') return true;
     return fb.allowed(state.selection, {...state.context, requiredFormality:state.context.formality});
   }
   function refreshControls() {
+    feedbackError=original.feedbackReadError||null;
     const state=original.state(); let allowed=false;
-    try {allowed=currentAllowed(state);} catch(error) {feedbackError=error.message;say(error.message,true);}
+    try {allowed=currentAllowed(state);} catch(error) {readFailure(error);}
     const output=$('outfit-output');
     if (!allowed) output.setAttribute('data-rejection-hidden','true');
     else output.removeAttribute('data-rejection-hidden');
     rejectButton.disabled=pending||state.busy||!state.selection||state.selection.state==='REFERENCE'||output.hidden||!allowed;
-    undoButton.disabled=pending||!lastId;
+    undoButton.disabled=pending||!lastId||!!feedbackError;
     bar.hidden=!(state.selection||lastId||feedbackError);
-    if (original.ownerFeedbackPersistent !== true && !notice.textContent) say('Permanent feedback storage is unavailable. Temporary rejection still works; no existing records were cleared.',true);
-  }
-  function invalidateFeedback() {
-    try {
-      fb.refresh();feedbackError=null;
-      refreshControls();
-      original.rejectionChanged();
-    } catch(error) {
-      feedbackError=error.message;
-      say('Feedback could not be checked: '+feedbackError+' Existing choices and records were retained.',true);
+    homeFailure.hidden=!feedbackError;homeNotice.textContent=feedbackError?failureMessage():'';
+    retryButton.hidden=!feedbackError;retryButton.disabled=homeRetry.disabled=pending||state.busy;
+    if(feedbackError){
+      say(failureMessage(),true);
+      for(const id of ['generate-options','regenerate','generate-current-selections','open-results','prev-option','next-option'])if($(id))$(id).disabled=true;
     }
+  }
+  function invalidateFeedback(retrying=false,reconcile=true) {
+    const previousError=feedbackError||original.feedbackReadError;
+    let failure=null;
+    try {
+      fb.refresh();readFailure(null);
+    } catch(error) {failure=error;readFailure(error);}
+    // Reconciliation also cancels any pending result. It must run even if the
+    // first read failed, so an old list/render cannot continue in the background.
+    if(reconcile||failure){try{original.rejectionChanged();}catch(error){failure=failure||error;readFailure(failure);}}
+    if(!failure&&(retrying||previousError))say('Saved rejections were checked. Existing rules remain active. Generate when ready.');
     refreshControls();
+    return !failure;
   }
   fb.subscribe(invalidateFeedback);
+  root.addEventListener('hewrs:feedback-read-state',refreshControls);
   root.addEventListener('storage', event=>{if(event.key===null||(fb.prefixes||[fb.prefix]).some(prefix=>event.key?.startsWith(prefix)))invalidateFeedback();});
   function closeDialog() {if(dialog?.open)dialog.close();}
   function newDialog(title) {
@@ -73,7 +89,8 @@
     return event.scope==='clothing'?'Clothing combination, any shoes/watch':'Clothes and shoes, any watch';
   }
   function openReject() {
-    const state=original.state(); if(pending||state.busy||!state.selection||state.selection.state==='REFERENCE'||!currentAllowed(state))return;
+    const state=original.state(); if(pending||state.busy||!state.selection||state.selection.state==='REFERENCE')return;
+    try{fb.refresh();if(!currentAllowed(state))return;}catch(error){readFailure(error);invalidateFeedback();return;}
     const selected=structuredClone(state.selection), key=F.key(selected,'historical_exact');
     const {body,actions,error}=newDialog('Reject this outfit');
     body.append(element('p',describe(selected),'fx-caption'),element('p','Choose exactly what to hide. Reasons add detail; they do not change an explicitly selected scope.','fx-caption'));
@@ -226,6 +243,10 @@
   // Compatibility aliases are installed before the reviewed panel captures app.
   // Both names point to exactly the same gate across the two feedback logs.
   root.HEWRSApp=Object.freeze({...original,ownerFeedback:fb,outfitFeedback:fb,hiddenOutfitsSheet:openManager,
-    rejection:Object.freeze({open:openReject,manage:openManager,undo:undoLast,revision:'tie-feedback-rotation-1'})});
-  refreshControls();
+    get ownerFeedbackPersistent(){return original.ownerFeedbackPersistent;},
+    get feedbackReadError(){return original.feedbackReadError;},
+    rejection:Object.freeze({open:openReject,manage:openManager,undo:undoLast,retry:()=>invalidateFeedback(true),revision:'rejection-read-failure-1'})});
+  // A healthy first read must not cancel the automatic weather request that
+  // application startup just began. Failed reads still cancel/reconcile.
+  invalidateFeedback(false,false);
 })(globalThis);
