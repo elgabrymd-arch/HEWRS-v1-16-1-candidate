@@ -44,11 +44,13 @@
   listing.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;';
   const preview = make('dialog');
   preview.id = 'ai-five-preview';
-  preview.style.cssText = 'max-width:min(92vw,480px);max-height:92vh;overflow:auto;border-radius:12px;padding:18px;';
+  preview.style.cssText = 'box-sizing:border-box;max-width:min(92vw,480px);max-height:92vh;max-height:92dvh;overflow:auto;border-radius:12px;padding:18px;';
   const previewTitle = make('h3'), previewImage = make('img');
   previewTitle.id = 'ai-five-preview-title'; preview.setAttribute('aria-labelledby', previewTitle.id);
-  previewImage.style.cssText = 'display:block;width:100%;max-width:420px;height:auto;';
+  previewTitle.style.margin = '0 0 10px';
+  previewImage.style.cssText = 'display:block;max-width:100%;max-height:calc(92vh - 150px);max-height:calc(92dvh - 150px);width:auto;height:auto;margin:0 auto;object-fit:contain;';
   const close = make('button', 'Close preview'); close.type = 'button';
+  close.style.marginBottom = '10px';
   close.onclick = () => preview.close();
   preview.append(previewTitle, close, previewImage);
   section.append(heading, intro, settings, consentLabel, button, cancel, info, listing, preview);

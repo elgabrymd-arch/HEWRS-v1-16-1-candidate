@@ -234,6 +234,10 @@ def main():
                 wait_until(page, "document.getElementById('ai-five-preview').open")
                 assert occasion in page.inner_text("#ai-five-preview-title")
                 page.locator("#ai-five-preview img").evaluate("image=>image.decode()")
+                assert page.locator("#ai-five-preview img").evaluate("""image=>{
+                  const box=image.getBoundingClientRect();
+                  return box.top>=0 && box.bottom<=innerHeight && box.width>0 && box.height>0;
+                }"""), "The full outfit, including shoes, must fit within the phone viewport"
                 assert page.evaluate(SNAPSHOT) == before, "Full AI avatar preview mutated the native app"
                 if screenshot_dir and index == 0 and preview_index == 0:
                     page.screenshot(path=str(Path(screenshot_dir) / "ai-five-full-avatar.png"))
