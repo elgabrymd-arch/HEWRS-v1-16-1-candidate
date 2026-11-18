@@ -8,6 +8,7 @@ import functools
 import json
 import os
 import threading
+import time
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -25,6 +26,24 @@ DATE = "2026-10-20"
 class Quiet(SimpleHTTPRequestHandler):
     def log_message(self, *args):
         pass
+
+
+def wait_until(page, expression, timeout_ms=180000):
+    """Poll through DevTools without evaluating strings inside the page.
+
+    Playwright wait_for_function currently uses globalThis.eval in the main
+    world; the app's unchanged CSP correctly forbids it. page.evaluate sends
+    this function directly through the browser protocol instead.
+    """
+    deadline = time.monotonic() + timeout_ms / 1000
+    predicate = "() => Boolean(" + expression + ")"
+    while True:
+        if page.evaluate(predicate):
+            return
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise AssertionError("Timed out waiting for browser condition: " + expression)
+        time.sleep(min(0.1, remaining))
 
 
 SNAPSHOT = """() => {
@@ -79,6 +98,7 @@ def main():
         Path(screenshot_dir).mkdir(parents=True, exist_ok=True)
     browser = None
     page = None
+    pw = None
 
     def respond(route, status, payload=None):
         headers = {"Access-Control-Allow-Origin": origin,
@@ -141,119 +161,134 @@ def main():
         route.abort()
 
     try:
-        with sync_playwright() as pw:
-            executable = os.environ.get("CHROMIUM_PATH")
-            if not executable and not Path(pw.chromium.executable_path).is_file():
-                executable = "/usr/bin/chromium" if Path("/usr/bin/chromium").is_file() else None
-            browser = pw.chromium.launch(headless=True, args=["--no-sandbox"],
-                                         **({"executable_path": executable} if executable else {}))
-            context = browser.new_context(viewport={"width": 390, "height": 844}, service_workers="block")
-            context.route("**/*", intercept)
-            page = context.new_page()
-            page.set_default_timeout(180000)
-            page.on("pageerror", lambda error: page_errors.append(str(error)))
-            page.goto(origin + "/index.html", wait_until="domcontentloaded")
-            page.wait_for_function("globalThis.HEWRS_READY === true && !!globalThis.HEWRSAIFivePanel")
-            config.update(page.evaluate("HEWRS_AI_FIVE_SERVICE_CONFIG"))
-            assert config["enabled"] is True
-            assert requests == [], "AI service requested before a user action"
-            page.evaluate("HEWRSApp.autoWeather.cancel()")
+        pw = sync_playwright().start()
+        executable = os.environ.get("CHROMIUM_PATH")
+        if not executable and not Path(pw.chromium.executable_path).is_file():
+            executable = "/usr/bin/chromium" if Path("/usr/bin/chromium").is_file() else None
+        browser = pw.chromium.launch(headless=True, args=["--no-sandbox"],
+                                     **({"executable_path": executable} if executable else {}))
+        context = browser.new_context(viewport={"width": 390, "height": 844}, service_workers="block")
+        context.route("**/*", intercept)
+        page = context.new_page()
+        page.set_default_timeout(180000)
+        page.on("pageerror", lambda error: page_errors.append(str(error)))
+        page.goto(origin + "/index.html", wait_until="domcontentloaded")
+        wait_until(page, "globalThis.HEWRS_READY === true && !!globalThis.HEWRSAIFivePanel", timeout_ms=30000)
+        config.update(page.evaluate("HEWRS_AI_FIVE_SERVICE_CONFIG"))
+        assert config["enabled"] is True
+        assert requests == [], "AI service requested before a user action"
+        page.evaluate("HEWRSApp.autoWeather.cancel()")
 
-            for index, occasion in enumerate(("work", "dinner", "weekend")):
-                result = page.evaluate("""async ({occasion,date})=>{
-                  const app=HEWRSApp; app.autoWeather.cancel();
-                  await app.generate({automatic:true,stylistMode:'research',
-                    preferences:app.ui.snapshot(),occasion,formality:'any',style:'AUTO',localDate:date,
-                    environment:app.weather.request(date)});
-                  const state=app.state();
-                  return {count:state.optionCount,occasion:state.request?.context?.occasion,
-                    busy:state.busy,avatar:document.getElementById('avatar').dataset.status};
-                }""", {"occasion": occasion, "date": DATE})
-                assert result == {"count": 20, "occasion": occasion, "busy": False, "avatar": "ready"}, result
-                page.wait_for_function("HEWRSAIFivePanel.diagnostics().count === 0")
-                fixtures.clear()
-                fixtures.update(page.evaluate(FIXTURES))
-                assert len(fixtures["selected"]) == 5, "Five valid distinct fixture selections unavailable"
-                assert fixtures["originalGate"] == [{"id": "B11", "allowed": False}, {"id": "B01", "allowed": False}]
+        for index, occasion in enumerate(("work", "dinner", "weekend")):
+            result = page.evaluate("""async ({occasion,date})=>{
+              const app=HEWRSApp; app.autoWeather.cancel();
+              await app.generate({automatic:true,stylistMode:'research',
+                preferences:app.ui.snapshot(),occasion,formality:'any',style:'AUTO',localDate:date,
+                environment:app.weather.request(date)});
+              const state=app.state();
+              return {count:state.optionCount,occasion:state.request?.context?.occasion,
+                busy:state.busy,avatar:document.getElementById('avatar').dataset.status};
+            }""", {"occasion": occasion, "date": DATE})
+            assert result == {"count": 20, "occasion": occasion, "busy": False, "avatar": "ready"}, result
+            wait_until(page, "HEWRSAIFivePanel.diagnostics().count === 0")
+            fixtures.clear()
+            fixtures.update(page.evaluate(FIXTURES))
+            assert len(fixtures["selected"]) == 5, "Five valid distinct fixture selections unavailable"
+            assert fixtures["originalGate"] == [{"id": "B11", "allowed": False}, {"id": "B01", "allowed": False}]
 
-                if index == 0:
-                    page.locator("#hewrs-ai-five summary").click()
-                    page.fill("#ai-five-token", TOKEN)
-                    page.click("#ai-five-connect")
-                    page.wait_for_function("HEWRSAIFivePanel.diagnostics().available === true")
-                    assert page.input_value("#ai-five-token") == "", "Service token remained in input"
-                    # Verify both UI consent enforcement and that no request is sent.
-                    page.click("#generate-ai-five")
-                    page.wait_for_function("!HEWRSAIFivePanel.diagnostics().running")
-                    assert len(requests) == 1 and requests[0]["path"].endswith("/status")
-                    assert "Allow the paid request" in page.inner_text("#ai-five-status")
-                    page.check("#ai-five-consent")
-
-                before = page.evaluate(SNAPSHOT)
-                assert TOKEN not in json.dumps(before), "Fixture credential leaked into native storage/state"
+            if index == 0:
+                page.locator("#hewrs-ai-five summary").click()
+                page.fill("#ai-five-token", TOKEN)
+                page.click("#ai-five-connect")
+                wait_until(page, "HEWRSAIFivePanel.diagnostics().available === true || "
+                           "document.getElementById('ai-five-status').textContent.startsWith('AI connection unavailable:')",
+                           timeout_ms=20000)
+                assert page.evaluate("() => HEWRSAIFivePanel.diagnostics().available"), page.inner_text("#ai-five-status")
+                assert page.input_value("#ai-five-token") == "", "Service token remained in input"
+                # Verify both UI consent enforcement and that no request is sent.
                 page.click("#generate-ai-five")
-                page.wait_for_function("!HEWRSAIFivePanel.diagnostics().running")
-                diagnostic = page.evaluate("HEWRSAIFivePanel.diagnostics()")
-                status = page.inner_text("#ai-five-status")
-                assert diagnostic["hasResult"] and diagnostic["count"] == 5, {"diagnostic": diagnostic, "status": status}
-                assert diagnostic["live_ai_used"] is False
-                assert "Test fixtures; no live AI generation" in status
-                assert page.locator("#ai-five-results > article").count() == 5
-                assert page.locator("#ai-five-results > article > strong").all_text_contents() == ["Test fixture " + str(i) for i in range(1, 6)]
-                displayed = page.locator("#ai-five-results > article > p.fx-caption:first-of-type").all_text_contents()
-                assert "B11" in displayed[0] and "B01" in displayed[1]
-                assert all("T017" in text and "shoe-3" in text for text in displayed[:2])
-                assert page.evaluate(SNAPSHOT) == before, "AI generation changed native state, avatar or saved data"
-                page.wait_for_function("[...document.querySelectorAll('#ai-five-results img')].every(i=>i.complete && i.naturalWidth===420 && i.naturalHeight===1160)")
+                wait_until(page, "!HEWRSAIFivePanel.diagnostics().running")
+                assert len(requests) == 1 and requests[0]["path"].endswith("/status")
+                assert "Allow the paid request" in page.inner_text("#ai-five-status")
+                page.check("#ai-five-consent")
 
-                for preview_index in (0, 1):
-                    page.locator('[data-ai-five-index="' + str(preview_index) + '"]').click()
-                    page.wait_for_function("document.getElementById('ai-five-preview').open")
-                    assert occasion in page.inner_text("#ai-five-preview-title")
-                    page.locator("#ai-five-preview img").evaluate("image=>image.decode()")
-                    assert page.evaluate(SNAPSHOT) == before, "Full AI avatar preview mutated the native app"
-                    if screenshot_dir and index == 0 and preview_index == 0:
-                        page.screenshot(path=str(Path(screenshot_dir) / "ai-five-full-avatar.png"))
-                    page.get_by_role("button", name="Close preview", exact=True).click()
-                assert page.evaluate(SNAPSHOT) == before, "Closing the AI preview mutated native state"
-                findings.append({"occasion": occasion, "native": 20, "independent_fixture_options": 5,
-                    "duplicate_watch_variants_removed": 2, "full_avatar_preview": "unchanged native state/pixels/storage",
-                    "legacy_B11_B01_garment_rules_exempted_only_for_AI": True,
-                    "explicit_fixture_label": True})
-                print("AI_FIVE_BROWSER", json.dumps(findings[-1]), flush=True)
+            before = page.evaluate(SNAPSHOT)
+            assert TOKEN not in json.dumps(before), "Fixture credential leaked into native storage/state"
+            page.click("#generate-ai-five")
+            wait_until(page, "!HEWRSAIFivePanel.diagnostics().running")
+            diagnostic = page.evaluate("HEWRSAIFivePanel.diagnostics()")
+            status = page.inner_text("#ai-five-status")
+            assert diagnostic["hasResult"] and diagnostic["count"] == 5, {"diagnostic": diagnostic, "status": status}
+            assert diagnostic["live_ai_used"] is False
+            assert "Test fixtures; no live AI generation" in status
+            assert page.locator("#ai-five-results > article").count() == 5
+            assert page.locator("#ai-five-results > article > strong").all_text_contents() == ["Test fixture " + str(i) for i in range(1, 6)]
+            displayed = page.locator("#ai-five-results > article > p.fx-caption:first-of-type").all_text_contents()
+            assert "B11" in displayed[0] and "B01" in displayed[1]
+            assert all("T017" in text and "shoe-3" in text for text in displayed[:2])
+            assert page.evaluate(SNAPSHOT) == before, "AI generation changed native state, avatar or saved data"
+            wait_until(page, "[...document.querySelectorAll('#ai-five-results img')].every(i=>i.complete && i.naturalWidth===420 && i.naturalHeight===1160)")
 
-            # An actual explicit outfit rejection must invalidate the displayed
-            # AI results and close their dialog, even for exempted B11 styling.
-            page.locator('[data-ai-five-index="0"]').click()
-            page.evaluate("""selection=>HEWRSRejectionPreviewCore.attach(HEWRSApp).hide(selection,
-              {context:{occasion:'weekend',requiredFormality:'any'},scope:'outfit'})""", fixtures["selected"][0])
-            page.wait_for_function("HEWRSAIFivePanel.diagnostics().count===0 && !document.getElementById('ai-five-preview').open")
-            assert page.locator("#ai-five-results > article").count() == 0
-            assert not page.evaluate("document.querySelector('#ai-five-preview img').hasAttribute('src')")
-            assert len([r for r in requests if r["path"].endswith("/generate")]) == 3
-            assert not route_errors, route_errors
-            assert not page_errors, page_errors
-            print(json.dumps({"result": "PASS", "runtime": "actual index.html and outfit-refill-preview.js",
-                "findings": findings, "explicit_rejection_invalidated_result": True,
-                "intercepted_fixture_requests": requests, "external_requests_blocked": len(blocked),
-                "provider_calls": 0}, indent=2), flush=True)
-            browser.close()
-            browser = None
-    except Exception:
+            for preview_index in (0, 1):
+                page.locator('[data-ai-five-index="' + str(preview_index) + '"]').click()
+                wait_until(page, "document.getElementById('ai-five-preview').open")
+                assert occasion in page.inner_text("#ai-five-preview-title")
+                page.locator("#ai-five-preview img").evaluate("image=>image.decode()")
+                assert page.evaluate(SNAPSHOT) == before, "Full AI avatar preview mutated the native app"
+                if screenshot_dir and index == 0 and preview_index == 0:
+                    page.screenshot(path=str(Path(screenshot_dir) / "ai-five-full-avatar.png"))
+                page.get_by_role("button", name="Close preview", exact=True).click()
+            assert page.evaluate(SNAPSHOT) == before, "Closing the AI preview mutated native state"
+            findings.append({"occasion": occasion, "native": 20, "independent_fixture_options": 5,
+                "duplicate_watch_variants_removed": 2, "full_avatar_preview": "unchanged native state/pixels/storage",
+                "legacy_B11_B01_garment_rules_exempted_only_for_AI": True,
+                "explicit_fixture_label": True})
+            print("AI_FIVE_BROWSER", json.dumps(findings[-1]), flush=True)
+
+        # An actual explicit outfit rejection must invalidate the displayed
+        # AI results and close their dialog, even for exempted B11 styling.
+        page.locator('[data-ai-five-index="0"]').click()
+        page.evaluate("""selection=>HEWRSRejectionPreviewCore.attach(HEWRSApp).hide(selection,
+          {context:{occasion:'weekend',requiredFormality:'any'},scope:'outfit'})""", fixtures["selected"][0])
+        wait_until(page, "HEWRSAIFivePanel.diagnostics().count===0 && !document.getElementById('ai-five-preview').open")
+        assert page.locator("#ai-five-results > article").count() == 0
+        assert not page.evaluate("document.querySelector('#ai-five-preview img').hasAttribute('src')")
+        assert len([r for r in requests if r["path"].endswith("/generate")]) == 3
+        assert not route_errors, route_errors
+        assert not page_errors, page_errors
+        print(json.dumps({"result": "PASS", "runtime": "actual index.html and outfit-refill-preview.js",
+            "findings": findings, "explicit_rejection_invalidated_result": True,
+            "intercepted_fixture_requests": requests, "external_requests_blocked": len(blocked),
+            "provider_calls": 0}, indent=2), flush=True)
+        browser.close()
+        browser = None
+    except Exception as error:
+        failure = {"error": str(error), "page_errors": page_errors, "route_errors": route_errors}
         if page is not None:
             try:
-                print("AI_FIVE_BROWSER_FAILURE", json.dumps({"status": page.inner_text("#ai-five-status"),
-                    "diagnostic": page.evaluate("HEWRSAIFivePanel?.diagnostics()"),
-                    "page_errors": page_errors, "route_errors": route_errors}), flush=True)
-                if screenshot_dir:
+                failure.update(page.evaluate("""() => ({
+                  status:document.getElementById('ai-five-status')?.textContent ?? null,
+                  diagnostic:globalThis.HEWRSAIFivePanel?.diagnostics?.() ?? null,
+                  native_ready:globalThis.HEWRS_READY===true
+                })"""))
+            except Exception as capture_error:
+                failure["diagnostic_error"] = str(capture_error)
+            if screenshot_dir:
+                try:
                     page.screenshot(path=str(Path(screenshot_dir) / "ai-five-failure.png"))
-            except Exception:
-                pass
+                except Exception as capture_error:
+                    failure["screenshot_error"] = str(capture_error)
+        print("AI_FIVE_BROWSER_FAILURE", json.dumps(failure), flush=True)
         raise
     finally:
         if browser is not None:
             try:
                 browser.close()
+            except Exception:
+                pass
+        if pw is not None:
+            try:
+                pw.stop()
             except Exception:
                 pass
         server.shutdown()
