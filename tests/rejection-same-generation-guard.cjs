@@ -22,7 +22,8 @@ const root = {
   Image:class Image{},
   structuredClone,
   crypto: {randomUUID:()=> 'stable-test-uuid'},
-  HEWRSOutfitFeedback: {key: s => s.id, occasion: x=>x||'work',stable:JSON.stringify},
+  HEWRSOutfitFeedback: {key: s => s.id, normal:s=>s, occasion: x=>x||'work',stable:JSON.stringify},
+  HEWRSTieFeedback: require('../src/tie-feedback.js'),
   HEWRSApp: {
     ownerFeedback:base,
     connection,

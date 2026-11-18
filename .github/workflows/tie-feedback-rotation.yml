@@ -1,0 +1,62 @@
+name: Tie feedback and exposure rotation candidate
+on:
+  push:
+    branches:
+      - fix/tie-feedback-rotation-20261118
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  candidate-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch the exact reviewed candidate base
+        run: git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
+      - name: Verify preserved wardrobe, scores, avatar and Standard sources
+        run: |
+          git diff --exit-code febe4148fc0b27ee2018d84408714ee1fe712015 -- \
+            assets assemblies data vendor ui \
+            STANDARD_RELEASE.json tools/build.py src/application.js \
+            src/automatic-engine.js src/owner-feedback.js outfit-feedback.js \
+            src/local-state.js src/favorites-state.js src/researched-preference.js \
+            src/outfit-preference.js src/option-set-policy.js \
+            src/style-occasion-policy.js src/owner-feedback-integration.js \
+            src/*renderer.js src/tie-fidelity.js
+          git diff --exit-code febe4148fc0b27ee2018d84408714ee1fe712015 -- runtime ':!runtime/outfit-refill-preview.js'
+      - name: Verify preview bundle reproduction and entrypoint integrity
+        run: |
+          python tools/build_tie_candidate.py --verify-base --check
+          node --check runtime/outfit-refill-preview.js
+          node --check src/tie-feedback.js
+          node --check src/tie-exposure.js
+          node --check src/outfit-rejection-core.js
+          node --check src/outfit-rejection-ui.js
+      - name: Test feedback semantics, exposure storage and real engine behavior
+        run: |
+          node tests/tie-feedback.cjs
+          node tests/tie-exposure.cjs
+          node tests/tie-engine-integration.cjs
+          node tests/rejection-cumulative-refill.cjs
+          node tests/rejection-same-generation-guard.cjs
+      - name: Install isolated browser tests
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the committed candidate in Chromium
+        run: python tests/tie-feedback-rotation-browser.py
+      - name: Preserve browser evidence without deployment
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_TIE_FEEDBACK_ROTATION_EVIDENCE
+          path: evidence/tie_feedback_rotation/
+          if-no-files-found: warn
+          retention-days: 14

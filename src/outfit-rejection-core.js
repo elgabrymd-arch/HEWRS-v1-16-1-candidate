@@ -1,6 +1,6 @@
-/* Additive review bridge installed BEFORE the unchanged runtime.
- * The existing owner-feedback store remains the only persistent rejection log.
- * Temporary skips are session memory, never silently promoted to permanent bans.
+/* Additive review bridge installed BEFORE the candidate runtime.
+ * Original outfit feedback retains its v1 meaning. Explicit tie feedback has
+ * a separate immutable log. Temporary skips remain session memory.
  * Visible renders commit only after the same veto is rechecked atomically.
  */
 (function (root) {
@@ -23,10 +23,10 @@
   });
   let gate = null, app = null, pool = null;
   const temporary = new Map(), listeners = new Set();
-  let revision = 0;
+  let revision = 0, importing = false;
   const api = () => root.HEWRSOutfitFeedback;
   const uid = () => root.crypto?.randomUUID?.() || Array.from(root.crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('');
-  function notify() { for (const fn of listeners) { try { fn(); } catch (_) {} } }
+  function notify() { if (importing) return; for (const fn of listeners) { try { fn(); } catch (_) {} } }
   function viewContext(canvas) {
     if (canvas.id === 'rd-canvas' && root.HEWRSReviewedIntegration) return root.HEWRSReviewedIntegration.ownerContext();
     const state = app?.state();
@@ -113,23 +113,37 @@
     app = application;
     const base = app.ownerFeedback;
     need(base?.hide && base?.match && base?.importData, 'The existing owner feedback store is unavailable.');
-    const F = api();
+    const F = api(), T = root.HEWRSTieFeedback;
+    need(T?.create, 'The explicit tie feedback module is unavailable.');
+    let storage = null;
+    try { storage = root.localStorage; } catch (_) {}
+    const ties = T.create({storage, feedback:F, validateSelection:s => app.connection.validateSelection(s)});
+    function assertDistinctIds(outfitEvents, tieEvents) {
+      const ids = new Set(outfitEvents.map(event => event.id));
+      need(!tieEvents.some(event => ids.has(event.id)), 'Outfit and tie feedback have conflicting event IDs. Existing records were retained.');
+    }
+    const scopeKey = (selection, scope) => T.isScope(scope) ? T.key(selection, scope) : F.key(selection, scope);
+    const matches = (event, selection, occasion) => (event.occasion === 'all' || event.occasion === occasion) &&
+      (!T.isScope(event.scope) || /^T\d{3}$/.test(selection.state || selection.tie)) && scopeKey(event.selection, event.scope) === scopeKey(selection, event.scope);
     function snapshot() {
-      const s = base.refresh();
-      return {...s, token:s.token + '\nreview-skips:' + revision,
+      const s = base.refresh(), t = ties.refresh();
+      assertDistinctIds(s.events, t.events);
+      return {...s, events:[...s.events, ...t.events], active:[...s.active, ...t.active],
+        token:s.token + '\n' + t.token + '\nreview-skips:' + revision,
         temporary:[...temporary.values()].map(clone)};
     }
     function match(s, context) {
+      s = F.normal(s);
       const result = base.match(s, context), occasion = F.occasion(typeof context === 'string' ? context : context?.occasion);
-      const reasons = [...result.reasons];
+      const reasons = [...result.reasons, ...ties.match(s, context).reasons];
       for (const event of temporary.values()) {
-        if ((event.occasion === 'all' || event.occasion === occasion) && F.key(event.selection, event.scope) === F.key(s, event.scope)) reasons.push({id:event.id, type:'temporary_skip', scope:event.scope, occasion:event.occasion, reason:event.reason});
+        if (matches(event, s, occasion)) reasons.push({id:event.id, type:'temporary_skip', scope:event.scope, occasion:event.occasion, reason:event.reason});
       }
       return {...result, allowed:reasons.length === 0, reasons};
     }
     function choices(options = {}) {
       const scope = options.scope || 'outfit';
-      need(['outfit', 'clothing'].includes(scope), 'Choose an outfit or clothing combination, never a garment ban.');
+      need(['outfit', 'clothing', 'tie', 'shirt_tie'].includes(scope), 'Choose a listed rejection scope.');
       const occasion = F.occasion(typeof options.context === 'object' ? options.context.occasion : options.context || 'all');
       const reason = options.reason || null;
       need([null, 'colors', 'patterns', 'formality', 'footwear', 'other'].includes(reason), 'Choose a listed reason.');
@@ -140,6 +154,7 @@
     function hide(s, options = {}) {
       need(app.ownerFeedbackPersistent === true, 'Permanent saving is unavailable. No permanent rejection was recorded.');
       const value = choices(options), selection = F.normal(app.connection.validateSelection(s));
+      if (T.isScope(value.scope)) return ties.hide(selection, {...value, context:value.occasion});
       const old = base.refresh().active.find(e => e.scope === value.scope && e.occasion === value.occasion && F.key(e.selection, e.scope) === F.key(selection, value.scope));
       if (old) return clone(old);
       if (!value.note) return base.hide(selection, {scope:value.scope, context:value.occasion, reason:value.reason});
@@ -149,17 +164,69 @@
     }
     function skip(s, options = {}) {
       const value = choices(options), selection = F.normal(app.connection.validateSelection(s));
+      if (T.isScope(value.scope)) T.key(selection, value.scope);
       const event = {id:'skip_' + uid(), type:'temporary_skip', selection, ...value};
       temporary.set(event.id, event); revision++; notify(); return clone(event);
     }
     function restore(id) {
       if (temporary.delete(id)) { revision++; notify(); return true; }
+      const t = ties.refresh(), s = base.refresh();
+      assertDistinctIds(s.events, t.events);
+      if (t.events.some(event => event.id === id)) return ties.restore(id);
       return base.restore(id);
     }
     function clearTemporary(emit = true) { if (temporary.size) { temporary.clear(); revision++; if (emit) notify(); } }
     function reorder(rows, selection, context) { return base.reorder(rows, selection, context).filter(row => match(row && selection(row), context).allowed); }
+    function exportData() {
+      snapshot();
+      return {schema:T.BUNDLE_EXPORT, exported_at:new Date().toISOString(),
+        outfit_feedback:base.exportData(), tie_feedback:ties.exportData()};
+    }
+    function memoryStorage() {
+      const rows = new Map();
+      return {get length() {return rows.size;}, key:i => [...rows.keys()][i] ?? null,
+        getItem:k => rows.get(k) ?? null, setItem:(k, v) => rows.set(k, String(v))};
+    }
+    function importData(document) {
+      need(app.ownerFeedbackPersistent === true, 'Permanent storage is unavailable. Import was not attempted.');
+      let outfitDocument = null, tieDocument = null;
+      if (document?.schema === F.EXPORT) outfitDocument = document;
+      else if (document?.schema === T.EXPORT) tieDocument = document;
+      else {
+        need(document?.schema === T.BUNDLE_EXPORT && document.outfit_feedback?.schema === F.EXPORT && document.tie_feedback?.schema === T.EXPORT,
+          'Unsupported outfit and tie feedback backup.');
+        outfitDocument = document.outfit_feedback; tieDocument = document.tie_feedback;
+      }
+      // Validate both complete merges before changing either real ledger. This
+      // catches unknown scopes, orphaned restores and ID conflicts up front.
+      // Browser storage has no multi-key transaction: a quota/security failure
+      // is reported as incomplete and the same backup can safely be retried.
+      const oldOutfits = base.exportData(), oldTies = ties.exportData();
+      let mergedOutfits = oldOutfits.events, mergedTies = oldTies.events;
+      if (outfitDocument) {
+        const preview = F.create({storage:memoryStorage(), validateSelection:s => app.connection.validateSelection(s)});
+        preview.importData(oldOutfits); preview.importData(outfitDocument); mergedOutfits = preview.snapshot().events;
+      }
+      if (tieDocument) {
+        need(ties.persistent, 'Permanent tie feedback storage is unavailable. Import was not attempted.');
+        const preview = T.create({storage:memoryStorage(), feedback:F, validateSelection:s => app.connection.validateSelection(s)});
+        preview.importData(oldTies); preview.importData(tieDocument); mergedTies = preview.snapshot().events;
+      }
+      assertDistinctIds(mergedOutfits, mergedTies);
+      importing = true;
+      try {
+        if (outfitDocument) base.importData(outfitDocument);
+        if (tieDocument) ties.importData(tieDocument);
+        return snapshot();
+      } catch (error) {
+        throw Error('Feedback import did not complete: ' + error.message + ' Existing records were retained. Retry the complete backup.');
+      } finally { importing = false; notify(); }
+    }
+    base.subscribe(notify); ties.subscribe(notify);
     gate = Object.freeze({...base, hide, skip, restore, clearTemporary,
       refresh:snapshot, snapshot, match, allowed:(s, c) => match(s, c).allowed,
+      exportData, importData, prefixes:Object.freeze([base.prefix, T.PREFIX].filter(Boolean)),
+      persistentForScope:scope => app.ownerFeedbackPersistent === true && (!T.isScope(scope) || ties.persistent),
       token:() => snapshot().token,
       assertCurrent(token) { need(snapshot().token === token, 'Outfit feedback changed while this result was loading. Nothing rejected was displayed.'); return true; },
       reorder,
@@ -167,7 +234,7 @@
         const eligible = reorder(rows, getSelection, context).filter(row => F.key(getSelection(row)) !== F.key(current));
         return eligible.find(row => F.key(getSelection(row), 'clothing') !== F.key(current, 'clothing')) || eligible[0] || null;
       },
-      subscribe(fn) { listeners.add(fn); const unsubscribe = base.subscribe(fn); return () => {listeners.delete(fn); unsubscribe();}; }
+      subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); }
     });
     app.connection.ownerFeedback.set(gate);
     return gate;
@@ -187,6 +254,6 @@
     if (!row || !app.connection.controller.verifyCachedOption(row, pool.request, app.connection.catalogue)) return null;
     return {selection:getSelection(row), option:row, context:clone(pool.request.context), localDate:pool.request.localDate};
   }
-  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-autofill-1',
+  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'tie-feedback-rotation-1',
     diagnostics:() => ({attached:!!gate, hasPool:!!pool, temporaryCount:temporary.size, imageTransport:'anonymous-cors'})});
 })(globalThis);

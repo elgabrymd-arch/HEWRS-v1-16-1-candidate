@@ -6,6 +6,7 @@ const $=id=>document.getElementById(id),copy=x=>structuredClone(x),el=(tag,text,
 const need=(v,m)=>{if(!v)throw Error(m);};
 const APP_VERSION='HEWRS_COMBINED_V1_25_0_R1_STAGE10';
 let backend;try{backend=root.localStorage;}catch{backend=null;}
+const tieExposure=root.HEWRSTieExposure.create(backend);
 const connection=root.HEWRSCleanConnection.create(root.HEWRS_INPUTS);
 function memoryStorage(){const m=new Map();return {get length(){return m.size;},key:i=>[...m.keys()][i]??null,getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(String(k),String(v)),removeItem:k=>m.delete(k)};}
 let ownerFeedback,ownerFeedbackPersistent=true;
@@ -349,16 +350,31 @@ async function restoreInitialOutfit(){
   .finally(()=>{initialOutfitPromise=null;updateHome();});
  return initialOutfitPromise;
 }
+function recordTieSuggestions(q,rows,id,kind){
+ if(!q?.automatic||q.stylist&&!['research','heuristic'].includes(q.stylist.mode)||!rows.length)return;
+ let result;
+ try{
+  const saved=tieExposure.commit(id,rows.map(o=>connection.selectionFromOption(o,q).selection),{occasion:q.context.occasion,kind});
+  result={saved:true,recorded:saved.recorded,event_id:saved.eventId||null,option_count:rows.length};
+ }catch(error){result={saved:false,recorded:false,error:errorText(error),option_count:rows.length};}
+ // Commit happens after the list and its first avatar have been accepted.
+ // Navigation/restoring an outfit never calls this function. Refills supply only
+ // newly appended choices, so retained choices are not counted a second time.
+ if(report){report.diagnostics=report.diagnostics||{};report.diagnostics.tie_exposure={...(report.diagnostics.tie_exposure||{}),last_commit:result};}
+ let notice=$('tie-exposure-notice');if(!notice){notice=el('p','','fx-caption');notice.id='tie-exposure-notice';$('outfit-summary').after(notice);}
+ notice.textContent=result.saved?'Tie variety considers earlier suggestions for this occasion. Suggestions do not count as wear.':'Tie suggestion history could not be saved. Variety across lists may be limited. '+result.error;
+ if(!result.saved)status('Outfit list ready. Tie suggestion history could not be saved: '+result.error,true);
+}
 async function generate(c,extra={}){
  lastAttemptRequest=null;autoWeather.cancel();
  const prefRead=syncLearningFor({occasion:c.occasion||ctx.occasion,requiredFormality:c.formality||ctx.formality});optionPreferenceToken=prefRead.token;
- const q=connection.makeRequest(c),previousKey=current?selectionKey(current):null,previousRequest=lastRequest?JSON.stringify(lastRequest):null,token=++generation;renderer.cancel();lastRequest=copy(q);lastAttemptRequest=copy(q);options=[];report=null;optionIndex=-1;currentOption=null;
+ const q=connection.makeRequest(c),previousKey=current?selectionKey(current):null,previousRequest=lastRequest?JSON.stringify(lastRequest):null,token=++generation,exposureId=tieExposure.newId();renderer.cancel();lastRequest=copy(q);lastAttemptRequest=copy(q);options=[];report=null;optionIndex=-1;currentOption=null;if($('tie-exposure-notice'))$('tie-exposure-notice').textContent='';
  producing={kind:'engine',config:copy(c),prefs:copy(extra.prefs||ui.snapshot()),mode,context:copy(ctx)};setBusy(true);status('Building outfits…');
  try{if(q.automatic&&(!q.stylist||['research','heuristic'].includes(q.stylist.mode))){status('Loading outfit index… First generation only.');await root.HEWRSRuntimeLoader.ensureIndex();if(token!==generation)return {cancelled:true};}const read=store.readForGeneration();optionHistoryToken=read.token;const r=await connection.controller.generateAsync(q,connection.catalogue,read.events,{isCancelled:()=>token!==generation,renderForStylist,onProgress:p=>{if(token===generation){const msg=p.phase==='rendering-for-visual-review'?'Preparing actual outfit images: '+(p.examined||0)+(p.total?' / '+p.total:''):p.phase==='reviewing-complete-outfits-for-each-tie'?'Evaluating complete outfits… '+(p.domain_evaluated||0)+(p.tie?' · '+p.tie:''):p.phase==='outfit-accessory-evaluation'?'Evaluating complete outfits… '+(p.domain_evaluated||0):p.phase==='scoring-shortlisted-clothing'?'Scoring verified candidates… '+(p.examined||0)+' / '+(p.total||0):p.phase==='curating-complete-outfits'?'Curating options… '+(p.returned||0):'Building outfits… '+(p.examined||0)+(p.total?' / '+p.total:'');status(msg);}}});if(token!==generation||r.status==='cancelled')return {cancelled:true};
   store.assertCurrent(read.token);learning.assertCurrent(prefRead.token);need(connection.controller.verifyOptionSet(r.options||[],q),'Returned options violate current physical-item limits or source bindings');report=r;options=r.options||[];const styleMix=Object.entries(options.reduce((a,o)=>{const s=o._hewrsConnected?.compatibility?.style?.classification;if(s)a[s]=(a[s]||0)+1;return a;},{})).map(([s,n])=>n+' '+(styleLabels[s]||s)).join(' · ');$('outfit-summary').textContent=options.length+' options · '+(r.stylist?(r.stylist.live_ai_used?'Live visual outfit assessment. ':'Local curated reference selection; no live AI. '):q.automatic?(q.stylist?.mode==='research'?'Research-based wardrobe generator; no live AI. ':'Existing heuristic ranking. '):'')+(r.diagnostics?.examined||0)+' source candidates checked. Unanchored ties: once per list; other items: at most twice. '+(root.HEWRSStyleOccasions.noTieCap(q)===null?'No separate No Tie cap.':'No Tie: at most twice unless selected.')+(styleMix?' '+styleMix+'.':'')+(q.automatic?' '+weatherSummary(q.environment)+(r.reason?' '+r.reason:''):'');
   if(!options.length){const outcome=r.no_match||{kind:'no_match',code:'NO_MATCH',title:'No matching outfits',message:r.reason||'No complete outfit matches these selections.',alternative_styles:[]};presentEmpty(outcome.message,outcome);status('Search complete: no matching outfits. Selections retained.');showPage('outfits');return r;}
   let index=0;if(previousKey&&previousRequest===JSON.stringify(q)){const match=options.findIndex(o=>selectionKey(connection.selectionFromOption(o,q).selection)===previousKey);if(match>=0)index=match;}
-  const o=options[index],b=connection.selectionFromOption(o,q);const frame=await apply(b.selection,{token,historyToken:read.token,preferenceToken:prefRead.token,origin:'engine',option:o,score:o._hewrsConnected.compatibility,context:q.context,localDate:q.localDate,keepPreferences:true});if(token!==generation||frame.cancelled)return {cancelled:true};optionIndex=index;presentFrame();displayCurrent();showPage('outfits');return r;
+  const o=options[index],b=connection.selectionFromOption(o,q);const frame=await apply(b.selection,{token,historyToken:read.token,preferenceToken:prefRead.token,origin:'engine',option:o,score:o._hewrsConnected.compatibility,context:q.context,localDate:q.localDate,keepPreferences:true});if(token!==generation||frame.cancelled)return {cancelled:true};optionIndex=index;presentFrame();displayCurrent();showPage('outfits');recordTieSuggestions(q,options,exposureId,'generation');return r;
  }catch(e){if(token===generation){refreshHistory();showGenerationFailure(e);}throw e;}
  finally{if(token===generation){setBusy(false);displayCurrent();}}
 }
@@ -422,7 +438,7 @@ async function refillRejected(){
   const reason='Automatic replacement is available for the local wardrobe generators. Remaining choices are retained; no provider request was made.';
   rejectionSummary(reason);return {added:0,retained:options.length,count:options.length,target,reason};
  }
- const retained=options.slice(),retainedValues=retained.map(stable),kept=retained.length,token=++generation;
+ const retained=options.slice(),retainedValues=retained.map(stable),kept=retained.length,token=++generation,exposureId=tieExposure.newId();
  renderer.cancel();autoWeather.cancel();setBusy(true);
  let feedbackToken,historyToken,preferenceToken;
  function assertCurrent(){
@@ -480,7 +496,7 @@ async function refillRejected(){
    try{store.saveSession(sessionValue(current,origin,ctx.localDate,q.context));optionHistoryToken=store.readForGeneration().token;}
    catch(error){status(reason+' Session could not be saved: '+errorText(error),true);}
   }
-  rejectionSummary(reason);refreshHistory();showPage('outfits');
+  rejectionSummary(reason);refreshHistory();showPage('outfits');recordTieSuggestions(q,next.slice(kept),exposureId,'refill');
   return {added,retained:kept,count:options.length,target,reason};
  }catch(error){
   if(token!==generation)return {added:0,retained:kept,count:options.length,target,cancelled:true,reason:errorText(error)};
@@ -495,6 +511,7 @@ async function refillRejected(){
 }
 
 function invalidateRecommendations(reason='Local history changed. Generate again for a current rotation recommendation.'){
+ if($('tie-exposure-notice'))$('tie-exposure-notice').textContent='';
  optionHistoryToken=null;optionPreferenceToken=null;options=[];lastRequest=null;lastAttemptRequest=null;report={status:'not_generated',reason};optionIndex=-1;currentOption=null;origin='manual';producing=null;
  $('outfit-summary').textContent=reason;displayCurrent();
  presentEmpty(reason,{kind:'needs_generation',code:'REQUEST_CHANGED',title:'Generate for your current selections',message:reason,detail:'The previous recommendation list is no longer current. Your last displayed outfit and saved records are retained.',alternative_styles:[]});
@@ -686,7 +703,7 @@ window.addEventListener('storage',e=>{if(e.key===store.key){generation++;rendere
 $('outfit-preferences').onclick=()=>preferencePanel.open();
 $('s02-source-photo').onclick=()=>{const d=root.HEWRSSourceCorrections.record(),{body,actions}=openSheet('S02 confirmed source',{list:true});const pic=el('img');pic.src=root.HEWRS_EMBEDDED_SOURCE_EVIDENCE?.S02||d.source_image_path;pic.alt='Owner-supplied S02 cloth photograph; muted brown with subtle charcoal/tan check';pic.style.maxWidth='100%';body.append(el('p',d.fields.description,'fx-caption'),pic,el('p',d.visual_limit,'fx-caption'));actions.append(button('Close',()=>dismissSheet()));};
 window.addEventListener('storage',e=>{if(e.key===learning.key||e.key===null){feedbackChanged();}});
-root.HEWRSApp=Object.freeze({version:APP_VERSION,diagnosticSnapshot,learning,preferencePanel,renderForPreference,feedbackChanged,rejectionChanged,refillRejected,ownerFeedback,ownerFeedbackPersistent,connection,visualStylist,stylistSheet,renderForStylist,optionCards,restoreInitialOutfit,exportOptionCards,setCardLayout,cardSnapshot:()=>copy(cardPresentation),store,favorites,usage,weather,autoWeather,refreshAutomaticWeather,weatherSheet,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
+root.HEWRSApp=Object.freeze({version:APP_VERSION,diagnosticSnapshot,learning,preferencePanel,renderForPreference,feedbackChanged,rejectionChanged,refillRejected,ownerFeedback,ownerFeedbackPersistent,tieExposure,connection,visualStylist,stylistSheet,renderForStylist,optionCards,restoreInitialOutfit,exportOptionCards,setCardLayout,cardSnapshot:()=>copy(cardPresentation),store,favorites,usage,weather,autoWeather,refreshAutomaticWeather,weatherSheet,renderer,ui,apply,generate,cancel,showPage,setMode,openPicker,submit,resolveUrl,state:()=>({selection:copy(current),origin,mode,report:copy(report),request:copy(lastRequest),optionCount:options.length,optionIndex,page:pageName,score:copy(score),sourceLock:root.HEWRS_INPUT_SHA256,preferences:ui.snapshot(),context:copy(ctx),busy})});
 const saved=store.snapshot().session;if(saved){setMode(saved.mode);ctx={occasion:root.HEWRSStyleOccasions.occasion(saved.context.occasion),formality:saved.context.requiredFormality,style:'AUTO',localDate:saved.localDate};}if(!restoreHomePreferences()){if(saved?.mode==='anchor'&&!homePreferenceStorageBlocked)ui.fromSelection(saved.selection);else ui.reset();}setMode(mode);updateHome();renderGroups();refreshHistory();for(const b of document.querySelectorAll('[data-runtime]'))if(b.dataset.choice!=='included')b.disabled=false;
 // Home does not need a full-size avatar or the 112,392-row outfit index.
 // Restore the exact saved/current image only when Outfits is actually opened.
