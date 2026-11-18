@@ -71,7 +71,7 @@
     const state=original.state(); if(pending||state.busy||!state.selection||state.selection.state==='REFERENCE'||!currentAllowed(state))return;
     const selected=structuredClone(state.selection), key=F.key(selected,'historical_exact');
     const {body,actions,error}=newDialog('Reject this outfit');
-    body.append(element('p',describe(selected),'fx-caption'),element('p','By default, reject this clothing combination permanently with ANY shoes or watch. Individual garments remain available for other combinations.','fx-caption'));
+    body.append(element('p',describe(selected),'fx-caption'),element('p','Choose one or more reasons. Only outfit combinations are hidden; individual garments stay available.','fx-caption'));
     // These are explanatory diagnoses, never global item bans.
     // Keep stored v1 reason codes compatible with existing exports/validators.
     const issueChoices=[
@@ -81,13 +81,24 @@
       ['shirt_suit', 'Suit/blazer is fine; shirt does not work with it', 'other', 'clothing'],
       ['shirt_appearance', 'I do not like the shirt', 'other', 'clothing'],
       ['tie_suit', 'Suit/blazer is fine; tie does not work with it', 'other', 'clothing'],
-      ['footwear', 'Shoes do not work with this outfit; clothes are fine', 'footwear', 'outfit'],
+      ['footwear', 'Shoes do not work with this outfit', 'footwear', 'outfit'],
       ['colors', 'Color combination does not work', 'colors', 'clothing'],
       ['patterns', 'Pattern combination does not work', 'patterns', 'clothing'],
       ['formality', 'Too formal or too casual', 'formality', 'clothing'],
       ['other', 'Other reason (describe below)', 'other', 'clothing']
     ];
-    const issue=select('rejection-issue','What does not work?',issueChoices.map(x=>[x[0],x[1]]));body.append(issue.label);
+    const issueFieldset=element('fieldset');issueFieldset.id='rejection-issues';
+    issueFieldset.append(element('legend','What does not work? Select all that apply.'));
+    const issueInputs=new Map();
+    for(const [value,title] of issueChoices){
+      const label=element('label',undefined,'hewrs-rejection-choice');
+      const input=element('input');input.type='checkbox';input.value=value;
+      input.id='rejection-issue-'+(value||'entire');input.checked=value==='';
+      label.append(input,element('span',title));issueFieldset.append(label);
+      issueInputs.set(value,input);
+    }
+    body.append(issueFieldset);
+    const chosenIssues=()=>issueChoices.filter(([value])=>issueInputs.get(value).checked);
     const noteLabel=element('label','More detail (optional)'),note=element('textarea');note.id='rejection-note';note.rows=3;note.maxLength=500;
     note.placeholder='For example: this tie does not work with this shirt.';noteLabel.append(note);body.append(noteLabel);
     const advanced=element('details');advanced.append(element('summary','Rejection scope'));
@@ -96,11 +107,21 @@
     advanced.append(scope.label,occasion.label);body.append(advanced);
     // Footwear-only dissatisfaction must NOT silently ban the clothing with all shoes.
     // The exact outfit scope preserves the suit, shirt and tie as reusable.
-    issue.input.addEventListener('change',()=>{
-      const choice=issueChoices.find(x=>x[0]===issue.input.value);
-      if(choice)scope.input.value=choice[3];
-    });
-    body.append(element('p','The other outfits stay in your list. Available replacements are added automatically, up to 20, using your current selections and outfit rules. Reject once stays active during replacement and clears on your next Generate or page reload. Never show again applies to all future generations and occasions until Undo. Default scope bans this clothing combination with any shoes or watch. If the shoes alone are wrong, select the footwear issue: only the current clothing-and-shoe pairing is banned; other shoes remain eligible. Each garment is still reusable in other combinations. The restriction is saved in this browser.','fx-caption'));
+    for(const [value,input] of issueInputs){
+      input.addEventListener('change',()=>{
+        if(input.checked){
+          if(value===''){
+            for(const [other,box] of issueInputs)if(other!=='')box.checked=false;
+          }else{
+            issueInputs.get('').checked=false;
+          }
+        }
+        if(!chosenIssues().length)issueInputs.get('').checked=true;
+        // When shoes are among the issues, default to the narrower outfit scope.
+        scope.input.value=chosenIssues().some(([id])=>id==='footwear')?'outfit':'clothing';
+      });
+    }
+    body.append(element('p','Multiple reasons are saved together on one rejection. Other outfits stay available and replacements refill up to 20. Reject once resets on the next Generate or page reload; Never show again stays saved until Undo. By default clothing issues hide this clothing combination with any shoes or watch. Selecting a shoe issue, even with other reasons, defaults to the narrower exact clothing-and-shoe combination with any watch. You can change the scope above. Individual garments are never banned.','fx-caption'));
     const cancel=button('Cancel','rejection-cancel',closeDialog);
     const once=button('Reject once','rejection-once',()=>commit(false));
     const forever=button('Never show again','rejection-permanent',()=>commit(true));forever.className='hewrs-rejection-primary';
@@ -109,12 +130,18 @@
       if(pending)return;
       const now=original.state();
       if(now.busy||!now.selection||F.key(now.selection,'historical_exact')!==key){error.textContent='The displayed outfit changed. Close this panel and review the current outfit.';return;}
+      const chosen=chosenIssues();
+      const descriptions=chosen.filter(([id])=>id).map(([,label])=>label);
+      const diagnosis=descriptions.length?(descriptions.length===1?'Issue: ':'Issues: ')+descriptions.join('; ')+'.':'';
+      const savedNote=[diagnosis,note.value.trim()].filter(Boolean).join(' ');
+      if(savedNote.length>500){
+        error.textContent='Reasons and details exceed 500 characters. Shorten the optional note.';return;
+      }
+      // Schema v1 stores multiple reasons as one readable note, using "other".
+      const reason=chosen.length===1?(chosen[0][2]||null):'other';
       pending=true;cancel.disabled=once.disabled=forever.disabled=true;error.textContent='';
       try {
-        const chosen=issueChoices.find(x=>x[0]===issue.input.value);
-        const detail=note.value.trim(),diagnosis=chosen?.[0] ? 'Issue: '+chosen[1]+'.' : '';
-        const savedNote=[diagnosis,detail].filter(Boolean).join(' ').slice(0,500);
-        const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason:chosen?.[2]||null,note:savedNote};
+        const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason,note:savedNote};
         const event=permanent?fb.hide(selected,settings):fb.skip(selected,settings);lastId=event.id;
         closeDialog();
         const prefix=permanent?'Rejection saved. ':'Rejected for this session. ';
@@ -131,7 +158,7 @@
         error.textContent=problem.message;say(problem.message,true);
       } finally {pending=false;cancel.disabled=once.disabled=false;forever.disabled=original.ownerFeedbackPersistent!==true;refreshControls();}
     }
-    dialog.showModal();issue.input.focus();
+    dialog.showModal();issueInputs.get('').focus();
   }
   function undoLast() {
     if(pending||!lastId)return;
