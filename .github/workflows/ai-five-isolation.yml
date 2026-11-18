@@ -26,6 +26,8 @@ jobs:
         run: node tests/ai-five-exclusion.test.cjs
       - name: Three occasion and stale-generation regression
         run: node tests/ai-five-flow.test.cjs
+      - name: Real HEWRS 20 plus five wardrobe fixture integration (no provider)
+        run: node tests/ai-five-real20.integration.test.cjs
       - name: Separate live panel fixture smoke (no network)
         run: node tests/ai-five-panel-smoke.test.cjs
       - name: Verify both branch-only entrypoints preserve order
