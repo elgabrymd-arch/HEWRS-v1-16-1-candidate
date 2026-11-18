@@ -14,6 +14,10 @@
 .hewrs-rejection-dialog label{display:flex;flex-direction:column;gap:8px;margin:14px 0;font-size:14px}
 .hewrs-rejection-dialog select,.hewrs-rejection-dialog textarea{color:#eee3cf;background:#08111e;border:1px solid #566174;border-radius:7px;padding:11px;width:100%;font:inherit;min-height:44px}
 .hewrs-rejection-dialog textarea{resize:vertical}
+.hewrs-rejection-dialog fieldset{border:1px solid #485160;border-radius:8px;padding:8px 12px;min-width:0}
+.hewrs-rejection-dialog legend{font-size:14px;font-weight:600;padding:0 5px}
+.hewrs-rejection-dialog label.hewrs-rejection-choice{display:flex;flex-direction:row;align-items:flex-start;gap:10px;margin:7px 0;padding:5px 0;line-height:1.4;cursor:pointer}
+.hewrs-rejection-dialog .hewrs-rejection-choice input[type="checkbox"]{flex:0 0 auto;width:20px;height:20px;margin:1px 0 0;accent-color:#e6c48c;cursor:pointer}
 .hewrs-rejection-dialog summary{cursor:pointer;padding:10px 0;min-height:44px}
 .hewrs-rejection-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .hewrs-rejection-dialog button{font:inherit;cursor:pointer;border:1px solid #596779;border-radius:8px;padding:10px 14px;color:#eee3cf;background:#18273c;min-height:44px}

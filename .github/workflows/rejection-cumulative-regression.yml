@@ -1,0 +1,25 @@
+name: Rejection cumulative regression
+on:
+  push:
+    branches:
+      - fix/rejection-cumulative-refill-20261117
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  rejection-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check rejection core syntax
+        run: node --check src/outfit-rejection-core.js && node --check src/outfit-rejection-ui.js
+      - name: Verify 20 cumulative permanent rejections and reload
+        run: node tests/rejection-cumulative-refill.cjs
+      - name: Verify same-generation refill guard
+        run: node tests/rejection-same-generation-guard.cjs
