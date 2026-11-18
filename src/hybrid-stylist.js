@@ -50,35 +50,59 @@ function create(inputs){
    const k=root.HEWRSOptionSetPolicy.fullKey(e);if(seen.has(k))continue;seen.add(k);
    rows.push(option(e,q,'curated',r.id,r.rationale+(adapted?' Explicit accessory lock applied and rechecked.':'')));
   }return {rows,rejected};}
- function select(rows,q,h,method){checkHistory(h);const capacity=root.HEWRSOptionSetPolicy.create(q),chosen=[];let rotation=null;
+ function select(rows,q,h,method,limit=q.limit){checkHistory(h);const capacity=root.HEWRSOptionSetPolicy.create(q),chosen=[];let rotation=null;
   // Reference order is editorial, not a 9.9 aesthetic score. Use the existing
   // confirmed-history policy only among the same top assessment tier.
   const bestGrade=rows.find(x=>x._hewrsConnected.stylist.grade!=='avoid')?._hewrsConnected.stylist.grade;
-  const tier=rows.filter(o=>o._hewrsConnected.stylist.grade===bestGrade&&o._hewrsConnected.stylist.grade!=='avoid').slice(0,q.limit);
+  const tier=rows.filter(o=>o._hewrsConnected.stylist.grade===bestGrade&&o._hewrsConnected.stylist.grade!=='avoid').slice(0,limit);
   if(tier.length){const slim=tier.map(o=>({id:o._hewrsConnected.id,items:o.items,result:{candidate_eligible:true,display_score:10,score:10,ids:o._hewrsConnected.compatibility.ids,style:assess(o._hewrsConnected.canonical_selection,q).style,context:{status:'eligible'}}}));
    rotation=base.engine.selectForContext(slim,h,{style:q.executiveStyle,localDate:q.localDate});rotation.ranking_basis='Equal editorial/visual tier; temporary constant utility is NOT a compatibility or styling grade.';
    if(h.length&&rotation.selected){const idx=rows.findIndex(o=>o._hewrsConnected.id===rotation.selected.id);if(idx>=0)rows=[rows[idx],...rows.filter((_,i)=>i!==idx)];}
   }
-  for(const o of rows){if(o._hewrsConnected.stylist.grade==='avoid'||capacity.issue(o))continue;capacity.add(o);o._hewrsConnected.rank=chosen.length+1;o._hewrsConnected.list_position=chosen.length+1;o._hewrsConnected.is_recommendation=!!rotation?.selected&&rotation.selected.id===o._hewrsConnected.id;o.controlledRepetition=!rotation?.selected&&rotation?.rotation?.status==='rotation_exception_requires_owner_confirmation';chosen.push(o);if(chosen.length===q.limit)break;}
+  for(const o of rows){if(o._hewrsConnected.stylist.grade==='avoid'||capacity.issue(o))continue;capacity.add(o);o._hewrsConnected.rank=chosen.length+1;o._hewrsConnected.list_position=chosen.length+1;o._hewrsConnected.is_recommendation=!!rotation?.selected&&rotation.selected.id===o._hewrsConnected.id;o.controlledRepetition=!rotation?.selected&&rotation?.rotation?.status==='rotation_exception_requires_owner_confirmation';chosen.push(o);if(chosen.length===limit)break;}
   for(const o of chosen){issued.add(stable([q,o]));while(issued.size>4096)issued.delete(issued.values().next().value);}
-  return {status:'stylist_options',options:chosen,rotation,requested_options:q.limit,returned_options:chosen.length,option_policy:capacity.snapshot(),stylist:{revision:REV,method,live_ai_used:method==='visual'},diagnostics:{examined:rows.length},reason:chosen.length<q.limit?'Found '+chosen.length+' matching '+(method==='curated'?'reference-library':'visually reviewed')+' outfits. Locks, weather, source holds, one-use ties and two-use other-item caps were retained; no heuristic filler was added.':null};}
+  return {status:'stylist_options',options:chosen,rotation,requested_options:limit,returned_options:chosen.length,option_policy:capacity.snapshot(),stylist:{revision:REV,method,live_ai_used:method==='visual'},diagnostics:{examined:rows.length},reason:chosen.length<limit?'Found '+chosen.length+' matching '+(method==='curated'?'reference-library':'visually reviewed')+' outfits. Locks, weather, source holds, one-use ties and two-use other-item caps were retained; no heuristic filler was added.':null};}
  function verify(o,q){try{valid(q);const a=o?._hewrsConnected;need(a?.revision===REV&&a.validation?.request===stable(q)&&a.stylist?.schema===SCHEMA&&issued.has(stable([q,o])),'Stale or altered stylist option');need(['curated','visual'].includes(a.stylist.method),'Unknown assessment method');const e=assess(a.canonical_selection,q);need(e.eligible&&stable(o.items)===stable(e.items),'Changed IDs/eligibility');need(a.id===root.HEWRSOptionSetPolicy.fullKey(e),'Changed option identity');need(stable(a.compatibility)===stable(e.compatibility)&&stable(a.environment)===stable(e.environment),'Changed source evidence');return true;}catch{return false;}}
  function curated(q,h){valid(q);const pool=curatedPool(q);const r=select(pool.rows,q,h,'curated');r.diagnostics.library_records=lib.records.length;r.diagnostics.rejected=pool.rejected;return r;}
  async function visual(q,h,opts){valid(q);checkHistory(h);need(remote?.ready(),'Live visual service is not connected. Choose Curated reference library or configure the secure service under Style → Stylist settings.','VISUAL_NOT_CONNECTED');need(opts.renderForStylist,'Visual renderer is unavailable');
+  // Generate and validate the real HEWRS up-to-20 baseline for this same request.
+  // No AI calls may be charged until that reference set has been constructed.
+  await root.HEWRSRuntimeLoader?.ensureIndex?.();
+  if(opts.isCancelled?.())return {status:'cancelled',options:[]};
+  const engineRequest=research.makeRequest({automatic:true,preferences:copy(q.prefs),occasion:q.context.occasion,formality:q.context.requiredFormality,localDate:q.localDate,environment:copy(q.environment),style:q.executiveStyle});
+  need(engineRequest.context.occasion===q.context.occasion&&engineRequest.source_lock===q.source_lock,'HEWRS baseline does not match the AI request','AI_BASELINE_MISMATCH');
+  const engine=await research.controller.generateAsync(engineRequest,cat,h,{isCancelled:opts.isCancelled,onProgress:opts.onProgress});
+  if(opts.isCancelled?.()||engine?.status==='cancelled')return {status:'cancelled',options:[]};
+  need(Array.isArray(engine?.options)&&engine.options.length<=20&&research.controller.verifyOptionSet(engine.options,engineRequest),'Current HEWRS baseline could not be verified; no AI request was sent','AI_BASELINE_UNVERIFIED');
+  const prohibited=new Set(engine.options.map(o=>root.HEWRSOptionSetPolicy.clothingKey(o)));
+  need(prohibited.size===engine.options.length,'HEWRS baseline contains duplicate clothing configurations','AI_BASELINE_DUPLICATE');
   const proposal=await remote.propose(q,opts);if(opts.isCancelled?.())return {status:'cancelled',options:[]};
   need(Array.isArray(proposal.proposals)&&proposal.proposals.length<=40,'Malformed visual proposals');
-  const pool=curatedPool(q),rows=[],seen=new Set(),reject=[];
-  // Independent references are included before model proposals; not just old top15.
-  const add=(e,id,why,method)=>{if(!e.eligible){reject.push({id,code:e.code,reason:e.reason});return;}const k=root.HEWRSOptionSetPolicy.fullKey(e);if(seen.has(k))return;seen.add(k);rows.push(option(e,q,method,id,why));};
-  for(const o of pool.rows.slice(0,20))add(assess(o._hewrsConnected.canonical_selection,q),o._hewrsConnected.stylist.reference_id,o._hewrsConnected.stylist.explanation,'visual');
-  for(const [i,x]of proposal.proposals.entries())add(assess(x.selection,q),'AI_PROPOSAL_'+i,x.rationale,'visual');
-  need(rows.length,'No proposed/reference outfit passes the current locks and source/condition rules.','VISUAL_NO_ELIGIBLE');
+  const rows=[],seen=new Set(),reject=[];
+  // Wardrobe novelty is based on topwear/shirt/tie/trousers. Merely replacing
+  // the shoes or watch is not a fresh outfit relative to the engine's twenty.
+  const add=(e,id,why)=>{
+   if(!e.eligible){reject.push({id,code:e.code,reason:e.reason});return;}
+   const k=root.HEWRSOptionSetPolicy.clothingKey(e);
+   if(prohibited.has(k)){reject.push({id,code:'ENGINE_20_OVERLAP',reason:'Core garments are already in the current HEWRS options.'});return;}
+   if(seen.has(k)){reject.push({id,code:'AI_DUPLICATE_CLOTHING',reason:'Another AI candidate already uses these core garments.'});return;}
+   seen.add(k);rows.push(option(e,q,'visual',id,why));
+  };
+  // Do not pad creative output with previously authored curated references.
+  for(const [i,x]of proposal.proposals.entries())add(assess(x.selection,q),'AI_PROPOSAL_'+i,x.rationale);
+  need(rows.length,'No novel AI proposal qualified. The existing HEWRS choices were not recycled.','VISUAL_NO_NOVEL');
   const images=[];for(let i=0;i<rows.length;i++){if(opts.isCancelled?.())return {status:'cancelled',options:[]};opts.onProgress?.({phase:'rendering-for-visual-review',examined:i+1,total:rows.length});const o=rows[i];images.push({candidate_id:'C'+String(i+1).padStart(3,'0'),selection:copy(o._hewrsConnected.canonical_selection),image:await opts.renderForStylist(o._hewrsConnected.canonical_selection)});}
   const judged=await remote.evaluate(q,images,proposal.job_id,opts);if(opts.isCancelled?.())return {status:'cancelled',options:[]};need(judged?.method==='live_visual'&&judged.ranking?.length===rows.length,'Incomplete visual assessment');
   const ids=new Set(),ranked=[];for(const r of judged.ranking){const i=images.findIndex(x=>x.candidate_id===r.candidate_id);need(i>=0&&!ids.has(r.candidate_id)&&['recommended','strong','exploratory','avoid'].includes(r.grade)&&typeof r.explanation==='string'&&r.explanation.length<=1200,'Unknown, duplicate or invalid assessed candidate');ids.add(r.candidate_id);const o=copy(rows[i]);Object.assign(o._hewrsConnected.stylist,{grade:r.grade,explanation:r.explanation,provider:judged.provider,model:judged.model,job_id:judged.job_id,visually_reviewed:true});ranked.push(o);}
-  // Coarse model grades only; no invented 9.99 score. Preserve model order within grade.
   const grades=['recommended','strong','exploratory','avoid'];ranked.sort((a,b)=>grades.indexOf(a._hewrsConnected.stylist.grade)-grades.indexOf(b._hewrsConnected.stylist.grade));
-  const out=select(ranked,q,h,'visual');out.diagnostics.proposal_rejections=reject;out.stylist.provider=judged.provider;out.stylist.model=judged.model;out.stylist.candidates_visually_reviewed=rows.length;return out;
+  const out=select(ranked,q,h,'visual',5);
+  need(out.options.every(o=>!prohibited.has(root.HEWRSOptionSetPolicy.clothingKey(o))),'Selected AI outfit repeats the current HEWRS baseline','AI_OVERLAP');
+  out.stylist.provider=judged.provider;out.stylist.model=judged.model;out.stylist.candidates_visually_reviewed=rows.length;
+  out.stylist.engine_option_count=engine.options.length;out.stylist.non_overlap_validated=true;out.stylist.novelty_basis='topwear/shirt/tie/trousers (shoe or watch changes alone do not count)';
+  out.diagnostics.proposal_rejections=reject;out.diagnostics.engine_overlaps_removed=reject.filter(x=>x.code==='ENGINE_20_OVERLAP').length;
+  // Local result only for a future 20+5 display. Never persisted or passed to AI.
+  out.engine_comparison={request:engineRequest,options:engine.options};
+  return out;
  }
  function generate(q,catArg,h){if(!q?.stylist)return base.controller.generate(q,catArg,h);valid(q);need(stable(catArg)===stable(cat),'Changed catalogue');if(['research','heuristic'].includes(q.stylist.mode))return engineFor(q).controller.generate(plain(q),catArg,h);need(q.stylist.mode==='curated','Visual mode requires asynchronous generation');return curated(q,h);}
  async function generateAsync(q,catArg,h,opts={}){if(!q?.stylist)return base.controller.generateAsync(q,catArg,h,opts);valid(q);need(stable(catArg)===stable(cat),'Changed catalogue');if(['research','heuristic'].includes(q.stylist.mode))return engineFor(q).controller.generateAsync(plain(q),catArg,h,opts);if(opts.isCancelled?.())return {status:'cancelled',options:[]};return q.stylist.mode==='visual'?visual(q,h,opts):curated(q,h);}
