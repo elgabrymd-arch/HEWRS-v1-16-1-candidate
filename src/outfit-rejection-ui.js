@@ -130,7 +130,7 @@
         error.textContent=problem.message;say(problem.message,true);
       } finally {pending=false;cancel.disabled=once.disabled=false;forever.disabled=original.ownerFeedbackPersistent!==true;refreshControls();}
     }
-    dialog.showModal();reason.input.focus();
+    dialog.showModal();issue.input.focus();
   }
   function undoLast() {
     if(pending||!lastId)return;
