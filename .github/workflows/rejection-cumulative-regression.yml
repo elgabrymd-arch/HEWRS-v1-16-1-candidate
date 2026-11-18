@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - fix/rejection-cumulative-refill-20261117
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   rejection-test:
