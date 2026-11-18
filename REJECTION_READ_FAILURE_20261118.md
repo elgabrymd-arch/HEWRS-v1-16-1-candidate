@@ -92,3 +92,54 @@ The dedicated workflow checks protected source files, reproduces the candidate
 bundle, runs the focused guards and existing feedback regressions, then verifies
 failure/recovery and healthy generation/refill in Chromium. It performs no
 deployment.
+
+## Verified result — November 18, 2026
+
+The dedicated [CI run 44378646012](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44378646012)
+passed against implementation commit `be75a0c2091f668624f8d2a9ad877aaf98beedfe`.
+The following evidence commit changes documentation and saved observations only.
+
+| Verification | Result |
+| --- | --- |
+| New rejection read guards | 15 tests passed |
+| Existing tie-feedback semantics | 9 tests passed |
+| Existing tie-exposure semantics | 10 tests passed |
+| Cumulative rejection and same-generation fixtures | Both passed |
+| Actual Chromium failure/recovery checks | 31 assertions passed |
+| Existing Chromium generation, rejection and refill checks | 40 assertions passed |
+| Original protected sources and candidate build reproduction | Passed |
+| Uncaught browser page errors | 0 |
+| External/provider requests | 0 |
+
+The startup assertions capture the interface before probing the ledger, so the
+probe cannot create the blocked state being tested. Both malformed saved records
+and a storage read exception blocked generation at startup with no options,
+visible pixel commits or lazy index request. Failed retry retained the original
+bytes. A successful retry restored use of the same ledgers and preserved their
+exclusions. One real generation after recovery returned 20 valid options with
+both saved bans enforced and the avatar ready.
+
+The new browser tests also exercised corruption during native generation and
+image loading, reviewed-outfit rendering, PNG preparation, revocation of a
+prepared download after a real cross-tab storage event, and closure of an open
+enlarged view. The two mobile screenshots were visually reviewed at 390 × 844.
+All profiles and rejection records used for testing were synthetic.
+
+Saved evidence:
+
+- `evidence/rejection_read_failure/RESULT.json` — 31 assertions and observations.
+- `evidence/rejection_read_failure/CI_VALIDATION.json` — tested commit, workflow,
+  artifact digest, protected build hash and individual evidence-file digests.
+- `evidence/rejection_read_failure/*.png` — blocked Home and recovered outfit.
+- `evidence/tie_feedback_rotation/RESULT.json` — the 40 healthy regressions rerun
+  against this implementation, with associated screenshots and synthetic backup.
+
+Artifact SHA-256:
+`a3c8f40ed6493a58de902b3f866fb31832e481fd645d4d1af0a74ecb96ee4f8f`.
+
+Candidate runtime SHA-256:
+`750a74e768d1368a2c8ab682e2056e5c5359dea068b42032659f0b502e37230e`.
+
+This confirms the read-failure repair. It does not establish 30,000-record
+capacity, change the bounded engine search, recover corrupt records
+automatically, or change the live application.

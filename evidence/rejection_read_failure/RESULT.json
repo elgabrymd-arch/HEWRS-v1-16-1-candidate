@@ -1,0 +1,458 @@
+{
+  "schema": "hewrs.rejection-read-failure-browser.v1",
+  "synthetic_data_only": true,
+  "actual_owner_usage": false,
+  "checks": [
+    {
+      "name": "clothing: both valid saved rejections remain enforced after reload",
+      "passed": true
+    },
+    {
+      "name": "clothing: unreadable feedback is blocked at startup with a visible Home error",
+      "passed": true
+    },
+    {
+      "name": "clothing: startup retains all saved and unreadable bytes",
+      "passed": true
+    },
+    {
+      "name": "clothing: controller, Generate and manual render all reject unreadable feedback",
+      "passed": true
+    },
+    {
+      "name": "clothing: blocked calls publish no options, pixels, exposure or lazy index request",
+      "passed": true
+    },
+    {
+      "name": "Reviewed outfit rendering also rejects unreadable feedback without publishing pixels",
+      "passed": true
+    },
+    {
+      "name": "clothing: retry cannot bypass an unchanged corrupt record",
+      "passed": true
+    },
+    {
+      "name": "clothing: same-page retry recovers only after a successful read and preserves both bans",
+      "passed": true
+    },
+    {
+      "name": "tie: both valid saved rejections remain enforced after reload",
+      "passed": true
+    },
+    {
+      "name": "tie: unreadable feedback is blocked at startup with a visible Home error",
+      "passed": true
+    },
+    {
+      "name": "tie: startup retains all saved and unreadable bytes",
+      "passed": true
+    },
+    {
+      "name": "tie: controller, Generate and manual render all reject unreadable feedback",
+      "passed": true
+    },
+    {
+      "name": "tie: blocked calls publish no options, pixels, exposure or lazy index request",
+      "passed": true
+    },
+    {
+      "name": "tie: retry cannot bypass an unchanged corrupt record",
+      "passed": true
+    },
+    {
+      "name": "tie: same-page retry recovers only after a successful read and preserves both bans",
+      "passed": true
+    },
+    {
+      "name": "A real generation after recovery returns 20 valid options and still applies both saved bans",
+      "passed": true
+    },
+    {
+      "name": "Failure, retry and recovery generation leave wear events and Favorites unchanged",
+      "passed": true
+    },
+    {
+      "name": "An actual storage read exception blocks startup without discarding saved exclusions",
+      "passed": true
+    },
+    {
+      "name": "Retry recovers from a transient storage exception on the same page and still enforces the original ban",
+      "passed": true
+    },
+    {
+      "name": "Native generation detects corruption introduced after its first real progress phase",
+      "passed": true
+    },
+    {
+      "name": "Failed native generation publishes no new pixels or exposure and retains the corrupt record",
+      "passed": true
+    },
+    {
+      "name": "Corruption during a real image request prevents the pending avatar from committing",
+      "passed": true
+    },
+    {
+      "name": "Export before_create: unreadable feedback prevents a PNG URL or download link from publishing",
+      "passed": true
+    },
+    {
+      "name": "Export before_create: failure preserves rejection bytes, current outfit, wear, Favorites and exposure",
+      "passed": true
+    },
+    {
+      "name": "Export during_png: unreadable feedback prevents a PNG URL or download link from publishing",
+      "passed": true
+    },
+    {
+      "name": "Export during_png: failure preserves rejection bytes, current outfit, wear, Favorites and exposure",
+      "passed": true
+    },
+    {
+      "name": "A prepared PNG download is revoked when another tab makes rejection data unreadable",
+      "passed": true
+    },
+    {
+      "name": "Export prepared_link: failure preserves rejection bytes, current outfit, wear, Favorites and exposure",
+      "passed": true
+    },
+    {
+      "name": "A real cross-tab read failure closes the enlarged avatar and hides the main outfit without deleting feedback",
+      "passed": true
+    },
+    {
+      "name": "No external or provider requests were made",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser page exceptions occurred",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "clothing_startup": {
+      "passive": {
+        "feedbackReadError": "Unreadable rejection record. Existing data were not cleared.",
+        "persistent": false,
+        "homeError": "Saved rejections could not be checked. Generation and outfit display are paused. Unreadable rejection record. Existing data were not cleared. Existing records were retained.",
+        "homeVisible": true,
+        "generateDisabled": true,
+        "optionCount": 0,
+        "visibleWrites": [],
+        "indexRequests": 0
+      },
+      "probe": {
+        "readError": "Unreadable rejection record. Existing data were not cleared.",
+        "active": null
+      },
+      "exposureEvents": 0
+    },
+    "clothing_blocked_apis": {
+      "before": {
+        "writes": 0,
+        "index": 0,
+        "exposure": 0
+      },
+      "outcome": {
+        "controller": {
+          "blocked": true,
+          "error": "Unreadable rejection record. Existing data were not cleared."
+        },
+        "application": {
+          "blocked": true,
+          "error": "Unreadable rejection record. Existing data were not cleared."
+        },
+        "render": {
+          "blocked": true,
+          "error": "Unreadable rejection record. Existing data were not cleared."
+        }
+      },
+      "after": {
+        "writes": 0,
+        "index": 0,
+        "exposure": 0
+      },
+      "optionCount": 0
+    },
+    "reviewed_panel_block": {
+      "blocked": true,
+      "error": "Unreadable rejection record. Existing data were not cleared.",
+      "before": 0,
+      "after": 0,
+      "currentId": null
+    },
+    "clothing_recovery": {
+      "passive": {
+        "feedbackReadError": null,
+        "persistent": true,
+        "homeError": "",
+        "homeVisible": false,
+        "generateDisabled": false,
+        "optionCount": 0,
+        "visibleWrites": [],
+        "indexRequests": 0
+      },
+      "probe": {
+        "readError": null,
+        "active": 2
+      },
+      "exposureEvents": 0
+    },
+    "tie_startup": {
+      "passive": {
+        "feedbackReadError": "Unreadable tie rejection record. Existing records were retained.",
+        "persistent": false,
+        "homeError": "Saved rejections could not be checked. Generation and outfit display are paused. Unreadable tie rejection record. Existing records were retained. Existing records were retained.",
+        "homeVisible": true,
+        "generateDisabled": true,
+        "optionCount": 0,
+        "visibleWrites": [],
+        "indexRequests": 0
+      },
+      "probe": {
+        "readError": "Unreadable tie rejection record. Existing records were retained.",
+        "active": null
+      },
+      "exposureEvents": 0
+    },
+    "tie_blocked_apis": {
+      "before": {
+        "writes": 0,
+        "index": 0,
+        "exposure": 0
+      },
+      "outcome": {
+        "controller": {
+          "blocked": true,
+          "error": "Unreadable tie rejection record. Existing records were retained."
+        },
+        "application": {
+          "blocked": true,
+          "error": "Unreadable tie rejection record. Existing records were retained."
+        },
+        "render": {
+          "blocked": true,
+          "error": "Unreadable tie rejection record. Existing records were retained."
+        }
+      },
+      "after": {
+        "writes": 0,
+        "index": 0,
+        "exposure": 0
+      },
+      "optionCount": 0
+    },
+    "tie_recovery": {
+      "passive": {
+        "feedbackReadError": null,
+        "persistent": true,
+        "homeError": "",
+        "homeVisible": false,
+        "generateDisabled": false,
+        "optionCount": 0,
+        "visibleWrites": [],
+        "indexRequests": 0
+      },
+      "probe": {
+        "readError": null,
+        "active": 2
+      },
+      "exposureEvents": 0
+    },
+    "real_generation_after_recovery": {
+      "count": 20,
+      "valid": true,
+      "allowed": true,
+      "ids": [
+        "S10|SUIT_TROUSERS|DS036|NO_TIE|shoe-11|watch-AP09",
+        "S13|SUIT_TROUSERS|DS017|T030|shoe-11|watch-AP09",
+        "S01|SUIT_TROUSERS|DS028|T024|shoe-4|watch-AP06",
+        "S11|SUIT_TROUSERS|DS020|T010|shoe-1|watch-R09",
+        "B02|PG001|DS035|T015|shoe-1|watch-R09",
+        "S06|SUIT_TROUSERS|DS025|T040|shoe-2|watch-R11",
+        "S15|SUIT_TROUSERS|DS008|T044|shoe-2|watch-R11",
+        "S04|SUIT_TROUSERS|DS029|T029|shoe-3|watch-R13",
+        "B08|PB001|DS040|NO_TIE|shoe-13|watch-AP06",
+        "S11|SUIT_TROUSERS|DS022|T036|shoe-3|watch-R13",
+        "S07|SUIT_TROUSERS|DS002|T018|shoe-7|watch-R14",
+        "S13|SUIT_TROUSERS|DS035|T023|shoe-7|watch-R14",
+        "S01|SUIT_TROUSERS|DS007|T039|shoe-4|watch-AP10",
+        "B02|PN002|DS005|T012|shoe-46|watch-AP10",
+        "S02|SUIT_TROUSERS|DS006|T003|shoe-46|watch-AP13",
+        "S05|SUIT_TROUSERS|DS044|T028|shoe-5|watch-AP13",
+        "S03|SUIT_TROUSERS|DS009|T007|shoe-5|watch-P02",
+        "S09|SUIT_TROUSERS|DS001|T009|shoe-6|watch-P01",
+        "S10|SUIT_TROUSERS|DS004|T016|shoe-6|watch-P01",
+        "B04|PN002|DS017|T017|shoe-49|watch-P03"
+      ],
+      "avatar": "ready",
+      "active": 2
+    },
+    "storage_read_failure_startup": {
+      "passive": {
+        "feedbackReadError": "Unreadable rejection record. Existing data were not cleared.",
+        "persistent": false,
+        "homeError": "Saved rejections could not be checked. Generation and outfit display are paused. Unreadable rejection record. Existing data were not cleared. Existing records were retained.",
+        "homeVisible": true,
+        "generateDisabled": true,
+        "optionCount": 0,
+        "visibleWrites": [],
+        "indexRequests": 0
+      },
+      "probe": {
+        "readError": "Unreadable rejection record. Existing data were not cleared.",
+        "active": null
+      },
+      "exposureEvents": 0
+    },
+    "corrupt_during_generation": {
+      "progress": 224,
+      "injected": true,
+      "error": "Unreadable rejection record. Existing data were not cleared.",
+      "returned": false,
+      "before": {
+        "writes": 1,
+        "exposure": 1
+      },
+      "after": {
+        "writes": 1,
+        "exposure": 1
+      },
+      "badBytes": "{broken during generation"
+    },
+    "corrupt_during_render": {
+      "before": {
+        "selection": {
+          "suitId": "S10",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "shoeId": "shoe-11",
+          "watchId": "watch-AP09"
+        },
+        "writes": 1,
+        "exposure": 0
+      },
+      "after": {
+        "error": "Unreadable rejection record. Existing data were not cleared.",
+        "selection": {
+          "suitId": "S10",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "shoeId": "shoe-11",
+          "watchId": "watch-AP09"
+        },
+        "writes": 1,
+        "exposure": 0,
+        "badBytes": "{broken during render"
+      },
+      "injection": {
+        "armed": true,
+        "triggered": true,
+        "asset": "assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png"
+      }
+    },
+    "export_before_create": {
+      "after": {
+        "error": "Unreadable rejection record. Existing data were not cleared.",
+        "sheetOpen": false,
+        "urls": [],
+        "revoked": [],
+        "wear": [],
+        "favorites": {
+          "schema": "hewrs.connected-app.favorites.v1",
+          "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+          "revision": 0,
+          "items": []
+        },
+        "selection": {
+          "suitId": "S10",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "shoeId": "shoe-11",
+          "watchId": "watch-AP09"
+        },
+        "writes": 1,
+        "exposure": 0
+      },
+      "preparedUrl": null,
+      "downloads": [],
+      "originalRecordsRetained": true,
+      "corruptRecordRetained": true
+    },
+    "export_during_png": {
+      "after": {
+        "error": "Unreadable rejection record. Existing data were not cleared.",
+        "sheetOpen": false,
+        "urls": [],
+        "revoked": [],
+        "wear": [],
+        "favorites": {
+          "schema": "hewrs.connected-app.favorites.v1",
+          "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+          "revision": 0,
+          "items": []
+        },
+        "selection": {
+          "suitId": "S10",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "shoeId": "shoe-11",
+          "watchId": "watch-AP09"
+        },
+        "writes": 1,
+        "exposure": 0
+      },
+      "preparedUrl": null,
+      "downloads": [],
+      "originalRecordsRetained": true,
+      "corruptRecordRetained": true
+    },
+    "export_prepared_link": {
+      "after": {
+        "error": "Unreadable rejection record. Existing data were not cleared.",
+        "sheetOpen": false,
+        "urls": [
+          "blob:http://127.0.0.1:46137/3cb66603-050d-44b7-9876-a398b970838a"
+        ],
+        "revoked": [
+          "blob:http://127.0.0.1:46137/3cb66603-050d-44b7-9876-a398b970838a"
+        ],
+        "wear": [],
+        "favorites": {
+          "schema": "hewrs.connected-app.favorites.v1",
+          "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+          "revision": 0,
+          "items": []
+        },
+        "selection": {
+          "suitId": "S10",
+          "shirtId": "DS036",
+          "state": "NO_TIE",
+          "shoeId": "shoe-11",
+          "watchId": "watch-AP09"
+        },
+        "writes": 1,
+        "exposure": 0
+      },
+      "preparedUrl": "blob:http://127.0.0.1:46137/3cb66603-050d-44b7-9876-a398b970838a",
+      "downloads": [],
+      "originalRecordsRetained": true,
+      "corruptRecordRetained": true
+    },
+    "enlarged_view_failure": {
+      "error": "Unreadable rejection record. Existing data were not cleared.",
+      "sheetOpen": false,
+      "mainHidden": true,
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-11",
+        "watchId": "watch-AP09"
+      }
+    }
+  },
+  "external_requests": [],
+  "page_errors": [],
+  "browser_version": "141.0.7390.37",
+  "status": "passed"
+}

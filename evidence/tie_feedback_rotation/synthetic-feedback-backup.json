@@ -1,0 +1,51 @@
+{
+  "schema": "hewrs.outfit-and-tie-feedback.export.v1",
+  "exported_at": "2026-11-18T19:17:57.283Z",
+  "outfit_feedback": {
+    "schema": "hewrs.outfit-feedback.export.v1",
+    "exported_at": "2026-11-18T19:17:57.284Z",
+    "events": []
+  },
+  "tie_feedback": {
+    "schema": "hewrs.tie-feedback.export.v1",
+    "exported_at": "2026-11-18T19:17:57.284Z",
+    "events": [
+      {
+        "schema": "hewrs.tie-feedback.event.v1",
+        "id": "tie_24cbefbc-aa0f-4ff4-ba10-84ab2ffde212",
+        "at": "2026-11-18T19:17:53.058Z",
+        "type": "hide",
+        "actor": "owner",
+        "selection": {
+          "suitId": "S13",
+          "shirtId": "DS017",
+          "state": "T030",
+          "shoeId": "shoe-11",
+          "watchId": "watch-AP09"
+        },
+        "scope": "shirt_tie",
+        "occasion": "work",
+        "reason": "other",
+        "note": "Issues: Shoes do not work with this outfit; Pattern combination does not work."
+      },
+      {
+        "schema": "hewrs.tie-feedback.event.v1",
+        "id": "tie_dc627f53-0c60-49bb-9077-5cbcdcf78075",
+        "at": "2026-11-18T19:17:36.957Z",
+        "type": "hide",
+        "actor": "owner",
+        "selection": {
+          "suitId": "S18",
+          "shirtId": "DS001",
+          "state": "T019",
+          "shoeId": "shoe-3",
+          "watchId": "watch-AP09"
+        },
+        "scope": "tie",
+        "occasion": "all",
+        "reason": "other",
+        "note": "Issues: Shoes do not work with this outfit; Pattern combination does not work."
+      }
+    ]
+  }
+}
