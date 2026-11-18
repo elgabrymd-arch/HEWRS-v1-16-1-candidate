@@ -1,0 +1,913 @@
+{
+  "schema": "hewrs.rejection-scale-audit.v1",
+  "synthetic": true,
+  "actual_owner_usage": false,
+  "runtime": "v24.22.3",
+  "platform": "linux",
+  "measured_at": "2026-11-18T15:14:27.834Z",
+  "fixture_storage": "In-memory Storage-compatible Map with O(1) key(index), no quota and no disk IO.",
+  "limitations": [
+    "Timings include possible concurrent CPU work; not phone/browser latency measurements.",
+    "Direct seeding isolates read/match/write cost at a given accumulated size; it is not 30,000 sequential UI clicks.",
+    "Canonical selections are validated by the actual connection; fixture combinations are not claimed to be attractive or generated recommendations.",
+    "UTF-8 serialized size and UTF-16 payload size are measured; browser-specific quota accounting is not simulated."
+  ],
+  "source_sha256": {
+    "src/owner-feedback.js": "54ac378212c068eeeb0460ee07996a79ec9a0e4c26cf65f7e86b445f3157839f",
+    "src/tie-feedback.js": "f54a73b040880274321a995e50038d970fde2bac6b330cbdf0d91503cfc1e3f2",
+    "src/outfit-rejection-core.js": "89d3a701f1db53a848fdb65ec9f63e0481c41e36402a3322f338178aba144a71",
+    "src/outfit-refill-application.js": "987402ff401b3f1e6c0024f20e3bfb942db3c98ab6c4c1b20d962c330508b92b",
+    "src/outfit-rejection-ui.js": "1509f5f26c0d93a845d027ed5892e79069b72a05a8118de14d713afb84b68b6b"
+  },
+  "outfit": [
+    {
+      "events": 30,
+      "distinct_active_rejections": 30,
+      "storage": {
+        "keys": 30,
+        "utf8_payload_bytes": 9330,
+        "utf16_payload_bytes": 18660
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 2.874,
+          "storage_calls": {
+            "key": 30,
+            "get": 30,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_snapshot_clone": {
+          "milliseconds": 0.519,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_token": {
+          "milliseconds": 0.045,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 0.558,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 2.013,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 1.6,
+          "storage_calls": {
+            "key": 30,
+            "get": 30,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 4.077,
+          "storage_calls": {
+            "key": 60,
+            "get": 120,
+            "set": 30,
+            "remove": 0
+          },
+          "accepted": true
+        },
+        "hide_duplicate": {
+          "milliseconds": 1.42,
+          "storage_calls": {
+            "key": 30,
+            "get": 30,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 4.617,
+          "storage_calls": {
+            "key": 91,
+            "get": 93,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 4.744,
+          "storage_calls": {
+            "key": 94,
+            "get": 96,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 8485,
+      "backup": {
+        "compact_json_bytes": 8166,
+        "pretty_json_bytes": 12352
+      },
+      "verified": {
+        "oldest_and_latest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    },
+    {
+      "events": 100,
+      "distinct_active_rejections": 100,
+      "storage": {
+        "keys": 100,
+        "utf8_payload_bytes": 31100,
+        "utf16_payload_bytes": 62200
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 4.115,
+          "storage_calls": {
+            "key": 100,
+            "get": 100,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_snapshot_clone": {
+          "milliseconds": 0.711,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_token": {
+          "milliseconds": 0.001,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 0.192,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 3.59,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 3.915,
+          "storage_calls": {
+            "key": 100,
+            "get": 100,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 16.951,
+          "storage_calls": {
+            "key": 200,
+            "get": 400,
+            "set": 100,
+            "remove": 0
+          },
+          "accepted": true
+        },
+        "hide_duplicate": {
+          "milliseconds": 3.809,
+          "storage_calls": {
+            "key": 100,
+            "get": 100,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 14.825,
+          "storage_calls": {
+            "key": 301,
+            "get": 303,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 13.834,
+          "storage_calls": {
+            "key": 304,
+            "get": 306,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 28225,
+      "backup": {
+        "compact_json_bytes": 26996,
+        "pretty_json_bytes": 40912
+      },
+      "verified": {
+        "oldest_and_latest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    },
+    {
+      "events": 1000,
+      "distinct_active_rejections": 1000,
+      "storage": {
+        "keys": 1000,
+        "utf8_payload_bytes": 311000,
+        "utf16_payload_bytes": 622000
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 37.363,
+          "storage_calls": {
+            "key": 1000,
+            "get": 1000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_snapshot_clone": {
+          "milliseconds": 7.59,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_token": {
+          "milliseconds": 0.002,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 2.007,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 29.808,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 66.28,
+          "storage_calls": {
+            "key": 1000,
+            "get": 1000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 112.988,
+          "storage_calls": {
+            "key": 2000,
+            "get": 4000,
+            "set": 1000,
+            "remove": 0
+          },
+          "accepted": true
+        },
+        "hide_duplicate": {
+          "milliseconds": 36.053,
+          "storage_calls": {
+            "key": 1000,
+            "get": 1000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 136.446,
+          "storage_calls": {
+            "key": 3001,
+            "get": 3003,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 126.341,
+          "storage_calls": {
+            "key": 3004,
+            "get": 3006,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 282025,
+      "backup": {
+        "compact_json_bytes": 269096,
+        "pretty_json_bytes": 408112
+      },
+      "verified": {
+        "oldest_and_latest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    },
+    {
+      "events": 30000,
+      "distinct_active_rejections": 30000,
+      "storage": {
+        "keys": 30000,
+        "utf8_payload_bytes": 9330000,
+        "utf16_payload_bytes": 18660000
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 1238.453,
+          "storage_calls": {
+            "key": 30000,
+            "get": 30000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_snapshot_clone": {
+          "milliseconds": 470.568,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "cached_token": {
+          "milliseconds": 0.005,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 47.767,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 934.088,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 865.519,
+          "storage_calls": {
+            "key": 30000,
+            "get": 30000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 0.064,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          },
+          "accepted": false,
+          "error": "Unsupported feedback backup."
+        },
+        "hide_duplicate": {
+          "milliseconds": 649.69,
+          "storage_calls": {
+            "key": 30000,
+            "get": 30000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 2418.976,
+          "storage_calls": {
+            "key": 90001,
+            "get": 90003,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 2322.956,
+          "storage_calls": {
+            "key": 90004,
+            "get": 90006,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 8460025,
+      "backup": {
+        "compact_json_bytes": 8070096,
+        "pretty_json_bytes": 12240112
+      },
+      "verified": {
+        "oldest_and_latest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    }
+  ],
+  "tie_history": [
+    {
+      "events": 30,
+      "distinct_active_rejections": 30,
+      "restored_hide_events": 0,
+      "storage": {
+        "keys": 30,
+        "utf8_payload_bytes": 9840,
+        "utf16_payload_bytes": 19680
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 1.811,
+          "storage_calls": {
+            "key": 30,
+            "get": 30,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 1.276,
+          "storage_calls": {
+            "key": 30,
+            "get": 30,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 15.93,
+          "storage_calls": {
+            "key": 600,
+            "get": 600,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 1.347,
+          "storage_calls": {
+            "key": 30,
+            "get": 30,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 2.832,
+          "storage_calls": {
+            "key": 30,
+            "get": 90,
+            "set": 30,
+            "remove": 0
+          },
+          "accepted": true
+        },
+        "hide_duplicate": {
+          "milliseconds": 0.813,
+          "storage_calls": {
+            "key": 30,
+            "get": 30,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 2.874,
+          "storage_calls": {
+            "key": 91,
+            "get": 93,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 2.574,
+          "storage_calls": {
+            "key": 94,
+            "get": 96,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 9087,
+      "backup": {
+        "compact_json_bytes": 8613,
+        "pretty_json_bytes": 13039
+      },
+      "verified": {
+        "oldest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    },
+    {
+      "events": 100,
+      "distinct_active_rejections": 100,
+      "restored_hide_events": 0,
+      "storage": {
+        "keys": 100,
+        "utf8_payload_bytes": 32800,
+        "utf16_payload_bytes": 65600
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 2.246,
+          "storage_calls": {
+            "key": 100,
+            "get": 100,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 2.179,
+          "storage_calls": {
+            "key": 100,
+            "get": 100,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 48.531,
+          "storage_calls": {
+            "key": 2000,
+            "get": 2000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 2.251,
+          "storage_calls": {
+            "key": 100,
+            "get": 100,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 4.428,
+          "storage_calls": {
+            "key": 100,
+            "get": 300,
+            "set": 100,
+            "remove": 0
+          },
+          "accepted": true
+        },
+        "hide_duplicate": {
+          "milliseconds": 2.461,
+          "storage_calls": {
+            "key": 100,
+            "get": 100,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 13.403,
+          "storage_calls": {
+            "key": 301,
+            "get": 303,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 7.397,
+          "storage_calls": {
+            "key": 304,
+            "get": 306,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 30227,
+      "backup": {
+        "compact_json_bytes": 28493,
+        "pretty_json_bytes": 43209
+      },
+      "verified": {
+        "oldest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    },
+    {
+      "events": 1000,
+      "distinct_active_rejections": 1000,
+      "restored_hide_events": 0,
+      "storage": {
+        "keys": 1000,
+        "utf8_payload_bytes": 328000,
+        "utf16_payload_bytes": 656000
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 20.988,
+          "storage_calls": {
+            "key": 1000,
+            "get": 1000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 25.111,
+          "storage_calls": {
+            "key": 1000,
+            "get": 1000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 466.706,
+          "storage_calls": {
+            "key": 20000,
+            "get": 20000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 21.938,
+          "storage_calls": {
+            "key": 1000,
+            "get": 1000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 47.716,
+          "storage_calls": {
+            "key": 1000,
+            "get": 3000,
+            "set": 1000,
+            "remove": 0
+          },
+          "accepted": true
+        },
+        "hide_duplicate": {
+          "milliseconds": 22.445,
+          "storage_calls": {
+            "key": 1000,
+            "get": 1000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 75.079,
+          "storage_calls": {
+            "key": 3001,
+            "get": 3003,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 77.932,
+          "storage_calls": {
+            "key": 3004,
+            "get": 3006,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 302027,
+      "backup": {
+        "compact_json_bytes": 284093,
+        "pretty_json_bytes": 431109
+      },
+      "verified": {
+        "oldest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    },
+    {
+      "events": 30000,
+      "distinct_active_rejections": 1000,
+      "restored_hide_events": 14500,
+      "storage": {
+        "keys": 30000,
+        "utf8_payload_bytes": 7665000,
+        "utf16_payload_bytes": 15330000
+      },
+      "operations": {
+        "refresh": {
+          "milliseconds": 483.96,
+          "storage_calls": {
+            "key": 30000,
+            "get": 30000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_oldest": {
+          "milliseconds": 470.254,
+          "storage_calls": {
+            "key": 30000,
+            "get": 30000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "match_twenty": {
+          "milliseconds": 9487.434,
+          "storage_calls": {
+            "key": 600000,
+            "get": 600000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "export": {
+          "milliseconds": 478.962,
+          "storage_calls": {
+            "key": 30000,
+            "get": 30000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "import": {
+          "milliseconds": 0.077,
+          "storage_calls": {
+            "key": 0,
+            "get": 0,
+            "set": 0,
+            "remove": 0
+          },
+          "accepted": false,
+          "error": "Unsupported tie feedback backup."
+        },
+        "hide_duplicate": {
+          "milliseconds": 463.25,
+          "storage_calls": {
+            "key": 30000,
+            "get": 30000,
+            "set": 0,
+            "remove": 0
+          }
+        },
+        "hide_new": {
+          "milliseconds": 1673.616,
+          "storage_calls": {
+            "key": 90001,
+            "get": 90003,
+            "set": 1,
+            "remove": 0
+          }
+        },
+        "restore_oldest": {
+          "milliseconds": 1615.285,
+          "storage_calls": {
+            "key": 90004,
+            "get": 90006,
+            "set": 1,
+            "remove": 0
+          }
+        }
+      },
+      "token_utf8_bytes": 6885027,
+      "backup": {
+        "compact_json_bytes": 6403093,
+        "pretty_json_bytes": 9406609
+      },
+      "verified": {
+        "oldest_rejected_after_reopen": true,
+        "duplicate_writes_no_event": true,
+        "append_at_capacity_preserves_oldest": true,
+        "undo_appends_without_deleting_original": true
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "Outfit import limit is per document, not accumulated ledger size",
+      "passed": true,
+      "events": 30000,
+      "chunk_sizes": [
+        20000,
+        10000
+      ],
+      "milliseconds": 4110.61
+    },
+    {
+      "name": "Merged gate refuses further import once its existing outfit backup exceeds 20,000 events",
+      "passed": true,
+      "existing_events": 30000,
+      "incoming_events": 1,
+      "error": "Unsupported feedback backup."
+    },
+    {
+      "name": "Actual startup fallback permits a previously rejected outfit when another outfit record is corrupt",
+      "passed": true,
+      "executed_code": "Exact startup initialization slice, plus actual shared gate attach; no DOM/render execution.",
+      "persistent": false,
+      "active_enforced": 0,
+      "original_keys_retained": 2,
+      "previously_rejected_allowed": true
+    },
+    {
+      "name": "Corrupt tie feedback fails closed and preserves every stored byte",
+      "passed": true,
+      "error": "Unreadable tie rejection record. Existing records were retained.",
+      "original_keys_retained": 2
+    },
+    {
+      "name": "30,000-record backup exceeds current UI file-size gate even with compact serialization",
+      "passed": true,
+      "compact_json_bytes": 8070096,
+      "pretty_json_bytes": 12240112,
+      "ui_max_bytes": 5242880
+    }
+  ],
+  "fixture": {
+    "canonical_outfit_selections": 30002,
+    "distinct_valid_shirt_tie_pairs": 2162,
+    "watch_id": null,
+    "selection_validation": "Actual HEWRSCleanConnection.validateSelection; no score-generation claim."
+  },
+  "duration_seconds": 50.219,
+  "complete": true
+}
