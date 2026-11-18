@@ -1,0 +1,44 @@
+name: AI Five isolated integration
+on:
+  push:
+    branches:
+      - feature/ai-five-distinct-20261117
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source syntax
+        run: |
+          node --check src/ai-five-exclusion.js
+          node --check src/ai-five-flow.js
+          node --check src/ai-five-panel.js
+      - name: Pure deterministic overlap regression
+        run: node tests/ai-five-exclusion.test.cjs
+      - name: Three occasion and stale-generation regression
+        run: node tests/ai-five-flow.test.cjs
+      - name: Separate live panel fixture smoke (no network)
+        run: node tests/ai-five-panel-smoke.test.cjs
+      - name: Verify both branch-only entrypoints preserve order
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          a=Path("index.html").read_text()
+          b=Path("app.html").read_text()
+          assert a==b, "Inconsistent test entrypoints"
+          scripts=["src/ai-five-exclusion.js","src/ai-five-flow.js","src/ai-five-panel.js"]
+          assert all(a.count(x)==1 for x in scripts)
+          assert a.index(scripts[0])<a.index(scripts[1])<a.index(scripts[2])
+          assert a.index("runtime/outfit-refill-preview.js")<a.index(scripts[0])
+          assert "HEWRSApp" not in scripts
+          print("PASS branch-only boot order; no change to original runtime")
+          PY
