@@ -30,7 +30,7 @@ assert.equal(fixtures.length,5,'Need five distinct renderable wardrobe fixtures'
 let calls=0;
 const flow=Flow.create({
   read:()=>({options:native.options,request:q}),
-  service:{ready:()=>true,propose:async r=>{calls++;assert.equal(r.context.occasion,'work');return {proposals:fixtures};}},
+  service:{ready:()=>true,propose:async r=>{calls++;assert.equal(r.context.occasion,'work');assert.deepEqual(r.excluded_outfit_keys,Array.from(native.options,P.garmentKey));return {proposals:fixtures};}},
   validate:s=>{try{c.validateSelection(s);return true;}catch{return false;}},
   ownerAllows:()=>true,rotationAllows:()=>true
 });
@@ -38,6 +38,7 @@ const flow=Flow.create({
  const out=await flow.generate();
  assert.equal(calls,1);
  assert.equal(out.options.length,5);
+ assert.equal(out.live_ai_used,false);
  P.assertDisjoint(native.options,out.options);
  assert.equal(native.options.length,20);
  console.log('PASS real HEWRS twenty + five distinct renderable owned-wardrobe fixtures; no live provider');

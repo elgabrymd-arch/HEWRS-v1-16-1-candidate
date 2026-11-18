@@ -11,36 +11,57 @@ permissions:
 jobs:
   guard:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Validate source syntax
         run: |
-          node --check src/ai-five-exclusion.js
-          node --check src/ai-five-flow.js
-          node --check src/ai-five-panel.js
-      - name: Pure deterministic overlap regression
-        run: node tests/ai-five-exclusion.test.cjs
-      - name: Three occasion and stale-generation regression
-        run: node tests/ai-five-flow.test.cjs
-      - name: Real HEWRS 20 plus five wardrobe fixture integration (no provider)
-        run: node tests/ai-five-real20.integration.test.cjs
-      - name: Separate live panel fixture smoke (no network)
-        run: node tests/ai-five-panel-smoke.test.cjs
-      - name: Verify both branch-only entrypoints preserve order
+          for file in src/ai-five-*.js data/ai-five-service-config.js; do node --check "$file"; done
+          python -m py_compile tests/ai-five-browser.py
+      - name: Deterministic overlap and stale-state regression
         run: |
-          python3 - <<'PY'
+          node tests/ai-five-exclusion.test.cjs
+          node tests/ai-five-flow.test.cjs
+      - name: Service protocol with injected HTTP responses
+        run: node tests/ai-five-client.test.cjs
+      - name: Actual native rotation and explicit outfit veto regression
+        run: node tests/ai-five-native.test.cjs
+      - name: Real HEWRS twenty plus five owned-wardrobe fixtures
+        run: node tests/ai-five-real20.integration.test.cjs
+      - name: Verify additive entrypoints and disabled generation
+        run: |
+          python - <<'PY'
           from pathlib import Path
           a=Path("index.html").read_text()
           b=Path("app.html").read_text()
-          assert a==b, "Inconsistent test entrypoints"
-          scripts=["src/ai-five-exclusion.js","src/ai-five-flow.js","src/ai-five-panel.js"]
+          assert a==b, "Inconsistent development entrypoints"
+          scripts=["src/ai-five-exclusion.js","src/ai-five-native.js","src/ai-five-flow.js",
+                   "data/ai-five-service-config.js","src/ai-five-client.js","src/ai-five-panel.js"]
           assert all(a.count(x)==1 for x in scripts)
-          assert a.index(scripts[0])<a.index(scripts[1])<a.index(scripts[2])
-          assert a.index("runtime/outfit-refill-preview.js")<a.index(scripts[0])
-          assert "HEWRSApp" not in scripts
-          print("PASS branch-only boot order; no change to original runtime")
+          assert [a.index(x) for x in scripts] == sorted(a.index(x) for x in scripts)
+          assert a.index("runtime/outfit-refill-preview.js") < a.index(scripts[0])
+          assert "enabled:false" in Path("data/ai-five-service-config.js").read_text()
+          print("PASS additive boot order and disabled generation")
           PY
+      - name: Install browser test runtime
+        run: |
+          python -m pip install playwright==1.62.0
+          python -m playwright install --with-deps chromium
+      - name: Actual browser, approved avatar and unchanged native state
+        env:
+          AI_FIVE_SCREENSHOT_DIR: ${{ runner.temp }}/ai-five-browser
+        run: python tests/ai-five-browser.py
+      - name: Retain browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-five-browser-evidence
+          path: ${{ runner.temp }}/ai-five-browser
+          if-no-files-found: ignore
+          retention-days: 2
