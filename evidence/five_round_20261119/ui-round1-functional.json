@@ -1,0 +1,26 @@
+{
+  "runs": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/five-round-ui.cjs",
+        "tests/five-round-ui-rejection.cjs",
+        "tests/five-round-ui-preferences.cjs",
+        "tests/all-rejections-ui.cjs"
+      ],
+      "returncode": 0,
+      "stdout": "\u2714 Every reason saves its stated scope and requests only its intended replacement pieces (179.882486ms)\n\u2714 Every generic qualifier preserves each single specific diagnosis (174.550667ms)\n\u2714 Every pair of distinct specific diagnoses blocks saving until a valid explicit scope is chosen (117.080702ms)\n\u2714 Removing a conflicting reason resumes inference before any manual scope override (4.660763ms)\n\u2714 Manual scopes remain authoritative over later reasons and determine targeted replacements (28.315479ms)\n\u2714 Footwear with generic details changes shoes; mixed specific reasons with explicit outfit use a general refill (10.760711ms)\n\u2714 No Tie and shirt-only outfits expose only applicable reasons and scopes (9.617011ms)\n\u2714 Blazer pair/triple scopes retain the blazer ID in their visible description and saved selection (12.304049ms)\n\u2714 Reject once uses the same scope/replacement semantics and selected occasion without permanent hide (3.026422ms)\n\u2714 Pending save freezes all settings and uses click-time scope, occasion and reasons (3.682512ms)\n\u2714 Invalid scope or occasion and stale displayed selections never save a rejection (7.139548ms)\n\u2714 Cancel saves no record and no replacement request (6.306654ms)\n\u2714 Queued preference vote handles rejection before the actual write (15.785765ms)\n\u2714 Queued preference vote handles close before the actual write (6.181253ms)\n\u2714 Queued preference vote handles unchanged before the actual write (3.749342ms)\n\u2714 Closing during the feedback check after acquiring the lock prevents a vote (4.118893ms)\n\u2714 Current shirt-only comparison choices name the configuration and exact trousers (2.890756ms)\n\u2714 All 1024 combinations of specific reasons and generic qualifiers infer one target or require an explicit scope (3954.606297ms)\n\u2714 An explicit scope controls all ten combined reasons without losing any reason or exceeding storage limits (42.860992ms)\n\u2714 Whole-combination checkbox clears diagnoses without overriding an earlier explicit scope (3.57579ms)\n\u2714 Click-time intent stays fixed while the first durable synchronization is pending (4.087973ms)\n\u2714 Changing the displayed outfit or occasion during pre-save synchronization prevents the write (5.044006ms)\n\u2714 The manager shows accepted historical wire and canonical tie records without rewriting stored records (98.668937ms)\n\u2714 Exact blazer and shirt-only pickers use the same approved DS026 detail as their option card (11.450426ms)\n\u2714 Every registered non-suit no-tie override is displayed under an exact blazer anchor (23.171188ms)\n\u2714 Suit and unanchored pickers preserve the original suit detail and exact tie thumbnails (2.265026ms)\n\u2714 Photo decoration does not change a draft, exact item, choice ordering or duplicate an image (1.724221ms)\n\u2714 DS002 and DS004 show their existing pinned garment descriptions in picker and option cards (1.122633ms)\n\u2714 Presentation inspection preserves all garment records, source metadata and approved thumbnail descriptors (6.289645ms)\n\u2139 tests 29\n\u2139 suites 0\n\u2139 pass 29\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 16371.505292\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tests/all-rejections-entrypoints.cjs"
+      ],
+      "returncode": 0,
+      "stdout": "PASS: Apply checks the destination occasion before rendering or saving\nPASS: Apply forwards an allowed destination occasion to the renderer\nPASS: Card export blocks a rejection before preparation\nPASS: Card export blocks a rejection during preparation\nPASS: Reviewed save disables scope, occasion and reason during persistence\nPASS: Reviewed save persists the settings captured at the initial click\nPASS: Larger view cannot copy pixels rejected during feedback synchronization\nPASS: A new preference image is blocked before rendering in its rejected occasion\nPASS: Preference rendering uses the actual pair occasion instead of Home occasion\nPASS: Preference image publication rejects a changed feedback revision\nPASS: New comparison blocks rejected pair at initial boundary without saving a vote\nPASS: New comparison blocks rejected pair at during boundary without saving a vote\nPASS: New comparison blocks rejected pair at vote boundary without saving a vote\nPASS: Application multi-row replacement success retains atomic publication\nPASS: Application multi-row replacement cancel retains atomic publication\nPASS: Application multi-row replacement first_exhausted retains atomic publication\nPASS: Application multi-row replacement wrong_part retains atomic publication\nALL REJECTIONS ENTRYPOINTS: 17 checks passed\n",
+      "stderr": ""
+    }
+  ]
+}

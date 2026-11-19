@@ -1,0 +1,137 @@
+{
+  "schema": "hewrs.five-round-audit.storage-cross-review.v1",
+  "round": 2,
+  "auditor": "tie_rejection_audit",
+  "recorded_at_utc": "2026-11-19T06:50:44.030353+00:00",
+  "scope": "Independent cross-review of other owners' presentation/context/rejection manager/preference UI changes. This is one input to the whole application audit, not a five-round completion claim.",
+  "status": "one_additional_ui_cancellation_defect_confirmed_owner_fixed_independent_regression_passed",
+  "reviewed_files": [
+    {
+      "file": "src/photo-picker-integration.js",
+      "review_depth": "full changed source and full refresh/decorator lifecycle",
+      "coverage": "Exact current topwear mode chooses non-suit thumbnail; approved source/hash/path/source-key checks; immutable IDs/drafts and error fallback.",
+      "sha256_at_report": "179f29d38c8a7dbbd6b23bba7b8fc3ae8bad49affce6a3232b5ef35d3835e363"
+    },
+    {
+      "file": "src/facelift-state.js",
+      "review_depth": "full source plus changed label helper",
+      "coverage": "Exact placeholder-only label resolution; selectedTop/draft lifecycle; no repair metadata or source data mutation.",
+      "sha256_at_report": "4a665b702c40b3546387ff88f538d3055588da933539a971358396d9a13ed456"
+    },
+    {
+      "file": "src/option-cards.js",
+      "review_depth": "full model/render/export boundary; numeric/pixel policy not changed",
+      "coverage": "New shirt label dependency, correct contextual source variant, field escaping, cancellation and model preservation.",
+      "sha256_at_report": "4133b10ddc630490fcd926347489a059363d6f1ddd31cd9f28b69c6699b05d4b"
+    },
+    {
+      "file": "src/outfit-rejection-ui.js",
+      "review_depth": "manager normalization plus reason/confirmation/Undo boundaries",
+      "coverage": "Canonical display-only copies, preserved raw notes and saved occasion alias, original event ID for Undo; eight scopes remain validated.",
+      "sha256_at_report": "d3194747c465b3c22aca7fbf5fe2222fe44539a1734ef5b6e790a69cd832dc5b"
+    },
+    {
+      "file": "src/preference-panel.js",
+      "review_depth": "full current source with async boundaries",
+      "coverage": "Initial feedback preflight, vote queue, file-read epoch, pause/import/Undo confirmation, captured modal cancellation and onChanged after real commit.",
+      "sha256_at_report": "603221b90fc72323d63216e70ebaf6c00344c82acf4dfe0c60bb22fb826887c9"
+    },
+    {
+      "file": "src/outfit-learning.js",
+      "review_depth": "actual store exercised through UI",
+      "coverage": "Private reviewed tickets and queued native-lock guards preserved while cancelling inactive dialogs.",
+      "sha256_at_report": "aefa43caffcdf3210251fd038ac10255569e6df6655c12f52fda059f2de9084f"
+    },
+    {
+      "file": "src/outfit-refill-application.js",
+      "review_depth": "modal/open/dismiss/button and learning host contracts only",
+      "coverage": "Actual generic button captures originating modal token; stale queued errors cannot affect a different modal. Full central review belongs to root.",
+      "sha256_at_report": "cfe9dd5ddb7f583026595d21c873664b25778d2071a06d314414358a30443727"
+    }
+  ],
+  "confirmed_findings": [
+    {
+      "id": "STORAGE-R2-01",
+      "title": "Queued preference pause, import and Undo could commit after dismissal and reopen a stale panel",
+      "source": "src/preference-panel.js",
+      "before_evidence": "evidence/five_round_20261119/storage-round2-preference-queue-before.json",
+      "reproduction": "Actual production preference panel and actual learning store with a queued native-lock model. Start pause/import-confirm/Undo-confirm, close or replace the originating modal before its lock callback enters, release the lock. All six cases still mutated saved data and reopened Outfit preferences over the current UI.",
+      "baseline": {
+        "test": "tests/five-round-storage-ui-queue.cjs",
+        "pass": 3,
+        "fail": 6,
+        "note": "Three uninterrupted actions passed; six cancelled actions failed."
+      },
+      "fix_owner": "s05_reproduction",
+      "fix": "saveForPanel captures each action modal token, refuses the mutation inside exclusive when inactive, only calls onChanged for a real save, and only reopens review when the originating modal remains current.",
+      "independent_verification": {
+        "test": "tests/five-round-storage-ui-queue.cjs",
+        "pass": 9,
+        "fail": 0,
+        "skip": 0,
+        "scope": "All six close/replace cancellations preserve the complete durable state and current panel; all three uninterrupted actions still succeed exactly once."
+      }
+    }
+  ],
+  "other_review_results": [
+    "Photo picker selects the approved reconstructed non-suit no-tie detail only under an exact blazer or shirt-only anchor. Suit and unanchored paths retain the original suit detail. DS026 contextual difference is intentional and preserved.",
+    "The thumbnail descriptor is still checked for the current approved input hash, exact garment identity, constrained source key/type, SHA-256 filename and repository-relative image path. No URL or source-pixel substitution was introduced.",
+    "The shirt label helper replaces only the exact old source-repaired collar/body pilot placeholder with its existing pinned description. Original manifest/history/provenance values remain unchanged.",
+    "Rejection manager normalizes a separate selection/occasion display copy. Source event bytes and notes remain intact, saved alias labels remain visible, and Undo uses the original event ID.",
+    "Queued vote rechecks the captured comparison context and feedback token after lock acquisition. Comparison preflight and delayed file read respect modal replacement and the most recent file choice.",
+    "A potential stale-error concern was checked against the actual central button wrapper: it already suppresses errors when the action modal token changed, so no redundant catch or further code change is required."
+  ],
+  "existing_suites_independently_rerun": {
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "tests/five-round-ui.cjs",
+      "tests/five-round-ui-rejection.cjs",
+      "tests/five-round-ui-preferences.cjs"
+    ],
+    "exit_code": 0,
+    "counts": {
+      "tests": 22,
+      "pass": 22,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "tests": [
+      "Queued preference vote handles rejection before the actual write",
+      "Queued preference vote handles close before the actual write",
+      "Queued preference vote handles unchanged before the actual write",
+      "Closing during the feedback check after acquiring the lock prevents a vote",
+      "Current shirt-only comparison choices name the configuration and exact trousers",
+      "Delayed comparison preflight cannot reopen after close",
+      "Delayed comparison preflight cannot reopen after other_panel",
+      "Delayed preference file reading cannot reopen after close",
+      "Delayed preference file reading cannot reopen after other_panel",
+      "Only the latest preference file selection can publish its reviewed preview",
+      "All 1024 combinations of specific reasons and generic qualifiers infer one target or require an explicit scope",
+      "An explicit scope controls all ten combined reasons without losing any reason or exceeding storage limits",
+      "Whole-combination checkbox clears diagnoses without overriding an earlier explicit scope",
+      "Click-time intent stays fixed while the first durable synchronization is pending",
+      "Changing the displayed outfit or occasion during pre-save synchronization prevents the write",
+      "The manager shows accepted historical wire and canonical tie records without rewriting stored records",
+      "Exact blazer and shirt-only pickers use the same approved DS026 detail as their option card",
+      "Every registered non-suit no-tie override is displayed under an exact blazer anchor",
+      "Suit and unanchored pickers preserve the original suit detail and exact tie thumbnails",
+      "Photo decoration does not change a draft, exact item, choice ordering or duplicate an image",
+      "DS002 and DS004 show their existing pinned garment descriptions in picker and option cards",
+      "Presentation inspection preserves all garment records, source metadata and approved thumbnail descriptors"
+    ]
+  },
+  "application_source_edits_by_this_agent": [],
+  "test_files_added_by_this_agent": [
+    "tests/five-round-storage-ui-queue.cjs"
+  ],
+  "unresolved_confirmed_defects": [],
+  "limitations": [
+    "The nine-case queue harness uses a controlled lock queue and DOM surface, with actual preference UI/store functions. Browser focus, native lock availability and two-tab browser scheduling remain root-owned verification.",
+    "Existing UI suite includes 1024 combinations of reason checkboxes within one test; this is not reported as 1024 distinct tests.",
+    "No additional asset visual/pixel-equality claim is made by this storage/UI cross-review. Root owns the source atlases, full photo matrix and frozen-asset integrity checks.",
+    "Only the stated source paths and boundaries were independently reviewed; full central application routing/rule review is handled by the other owners."
+  ]
+}

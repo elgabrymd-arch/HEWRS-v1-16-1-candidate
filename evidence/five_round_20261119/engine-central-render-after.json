@@ -1,0 +1,53 @@
+{
+  "schema": "hewrs.central-render-cancellation-regressions.v1",
+  "status": "passed",
+  "passed": 11,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "preference: a stalled private render settles after cancellation and releases timer/canvas",
+      "passed": true
+    },
+    {
+      "name": "preference: healthy rendering retains its exact crop geometry and releases the watcher",
+      "passed": true
+    },
+    {
+      "name": "preference: image failure preserves the error and releases timer/canvas",
+      "passed": true
+    },
+    {
+      "name": "stylist: a stalled private render settles after cancellation and releases timer/canvas",
+      "passed": true
+    },
+    {
+      "name": "stylist: healthy rendering retains its exact crop geometry and releases the watcher",
+      "passed": true
+    },
+    {
+      "name": "stylist: image failure preserves the error and releases timer/canvas",
+      "passed": true
+    },
+    {
+      "name": "Card book: cancelling a stalled native render settles without producing a file",
+      "passed": true
+    },
+    {
+      "name": "Card book: healthy export preserves exact IDs, escaping, order and preview size",
+      "passed": true
+    },
+    {
+      "name": "Card book: native image error clears the cancellation watcher",
+      "passed": true
+    },
+    {
+      "name": "Changing stylist method cancels pending native/provider/weather work",
+      "passed": true
+    },
+    {
+      "name": "A deferred result from the previous method cannot render or publish a list",
+      "passed": true
+    }
+  ],
+  "scope": "Actual application functions and option-card book with controlled native renderer and tracked real timers. No pixel or engine-score claim."
+}

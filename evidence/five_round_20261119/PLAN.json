@@ -1,0 +1,77 @@
+{
+  "schema": "hewrs.five-round-product-audit.v1",
+  "baseline_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "authorization": "Audit the whole app in five rounds; fix confirmed defects and publish the verified product without further approval prompts.",
+  "scope": {
+    "product": "Current HEWRS application, its reachable review/wardrobe/photo interfaces, generation and rule layers, persistent data, rendered assets, build and publication chain",
+    "special_focus": "All 50 registered shirt identities, photo identity, No Tie/tied collars, source provenance, same-ID rendering across suit/blazer/shirt-only routes",
+    "repository_inventory": "Every tracked code file is inventoried. Historical snapshots, generated duplicates and inactive entrypoints are identified explicitly; they are not silently treated as current runtime source.",
+    "data_boundary": "Synthetic test profiles only; no owner browser data is accessed or reset. Original identities, approved source images, stored scores and historical records remain authoritative."
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "name": "Complete inventory and source-contract review",
+      "status": "complete",
+      "evidence": [
+        "INVENTORY.json",
+        "ui-round4-reachability.json",
+        "engine-round1.json",
+        "ui-round1.json",
+        "storage-round1.json",
+        "root-round1-2.json"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Independent rule, data and asset verification",
+      "status": "complete",
+      "evidence": [
+        "engine-round2.json",
+        "ui-round2.json",
+        "storage-round2.json",
+        "INTEGRITY-confirmed.json",
+        "engine-route-matrix.json"
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Actual browser and visual coverage",
+      "status": "in_progress",
+      "evidence": [
+        "ui-round3-lineage.json",
+        "ui-round4-webkit-retry.json",
+        "ui-round5-visual-review.json"
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Adversarial state, concurrency and failure review",
+      "status": "complete",
+      "evidence": [
+        "engine-regenerate-before.json",
+        "engine-regenerate-after.json",
+        "storage-round4-current-context-before.json",
+        "storage-round4-curated-rejection-before.json",
+        "engine-hybrid-rejections-after.json",
+        "storage-round4-logout-cancel.json",
+        "storage-round4-visual-peer-before.json",
+        "ui-round4.json",
+        "engine-round4.json",
+        "storage-round4-visual-peer-after.json",
+        "storage-round4.json"
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Final cross-review, regressions and live publication",
+      "status": "in_progress",
+      "evidence": [
+        "engine-round5.json",
+        "storage-round5.json",
+        "root-round5-prepublication.json"
+      ]
+    }
+  ],
+  "closure_rule": "Every confirmed material defect requires a repair and a regression result. Remaining limitations and unverified boundaries must be stated explicitly; a pass count is not proof of universal correctness."
+}

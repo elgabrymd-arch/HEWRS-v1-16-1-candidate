@@ -4,6 +4,30 @@
  * No live AI request, fitted taste model, default-engine replacement or exact-memory generalization.
  */
 (function(root){'use strict';const app=root.HEWRSApp;if(!app||!root.HEWRS_READY)return;const F=root.HEWRSOutfitFeedback,fb=app.outfitFeedback,$=id=>document.getElementById(id),copy=x=>structuredClone(x),el=(t,text,cls)=>{const n=document.createElement(t);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;},BASE='feedback-candidate/reviewed/';
+/* BEGIN GENERATED REVIEWED MODULE DELIVERY */
+const MODULE_DELIVERY=Object.freeze({
+  "feedback-candidate/reviewed/rebuild-core.js": {
+    "src": "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf277a4",
+    "integrity": "sha256-ss4KpWzyd6RaxuFryVqsvb79OlkW4hpxlA4YOOTbetg="
+  },
+  "feedback-candidate/reviewed/reviewed-selector.js": {
+    "src": "feedback-candidate/reviewed/reviewed-selector.js?v=824bd5028806769a",
+    "integrity": "sha256-gkvVAogGdpqUaBrrk1AoyZbAaV7E3PaiZnoOItouIfg="
+  },
+  "feedback-candidate/reviewed/native-reviewed-bridge.js": {
+    "src": "feedback-candidate/reviewed/native-reviewed-bridge.js?v=59cb1663805bf9c2",
+    "integrity": "sha256-WcsWY4Bb+cIOQ7WYlIC7jr6wr1jYkStfMyxg25Dec48="
+  },
+  "hewrs-stage93-ranking-v2.js": {
+    "src": "hewrs-stage93-ranking-v2.js?v=bb83e38d6cf72518",
+    "integrity": "sha256-u4PjjWz3JRjG6U+hiymsCeKBGGsu02JvLbN6+N2CDf0="
+  },
+  "hewrs-batch10-discovery-16eeb4d0b24f21a9.js": {
+    "src": "hewrs-batch10-discovery-16eeb4d0b24f21a9.js?v=16eeb4d0b24f21a9",
+    "integrity": "sha256-Fu600LJPIamtmDQIYexb7wEBpUQvzVJ2ZWB6GKkxoQQ="
+  }
+});
+/* END GENERATED REVIEWED MODULE DELIVERY */
 let pipeline=null,pipelineResult=null,reviewRevision=0;
 let discovery=null,discoveryLoading=null,explorationResult=null,searchAbort=null,explorationBatch=0,searchCache=null;const inferred=new Map();let extraEntries=[];const extraImages=new Map();
 let loaded=null,bridge=null,ranker=null,data=null,dialog=null,renderer=null,currentId=null,epoch=0,lastResult=null,watchId=null,lastHide=null,actionBusy=false;
@@ -12,7 +36,7 @@ async function synchronizeFeedback(){if(fb.sync)await fb.sync();return fb.refres
 async function publishFeedback(token,apply){if(fb.withCurrent)return fb.withCurrent(token,apply);fb.assertCurrent(token);return apply();}
 function setActionBusy(value){actionBusy=value;if(!dialog)return;for(const control of dialog.querySelectorAll('.rd-controls select,#rd-hide-scope,#rd-hide-occasion,#rd-hide-reason,#rd-reset,#rd-explore-more,#rd-hide,#rd-undo,#rd-close,#rd-manage'))control.disabled=value;if(!value){$('rd-undo').disabled=!lastHide;$('rd-hide').disabled=!currentId;}}
 function feedbackChanged(){if(!dialog)return;invalidate();$('rd-results').replaceChildren();const problem=fb.status?.().blocked;$('rd-count').textContent=problem?'Saved rejections could not be checked. Reopen this panel after retrying the rejection check.':'Saved rejections changed. Reopen this panel or change a filter to refresh the results.';if(problem)$('rd-error').textContent=problem;}
-function js(url){return new Promise((resolve,reject)=>{const n=el('script');n.src=url;n.onload=resolve;n.onerror=()=>reject(Error('Candidate module failed to load.'));document.head.append(n);});}
+function js(url){const binding=MODULE_DELIVERY[url.split('?',1)[0]];if(!binding)return Promise.reject(Error('Unknown candidate module.'));return new Promise((resolve,reject)=>{const n=el('script');n.src=binding.src;n.integrity=binding.integrity;n.onload=resolve;n.onerror=()=>{n.remove();reject(Error('Candidate module failed to load. Reload the complete update, then retry.'));};document.head.append(n);});}
 async function load({initialUpdate=true}={}){if(loaded)return loaded;loaded=(async()=>{for(const p of ['rebuild-core.js','reviewed-selector.js','native-reviewed-bridge.js','personalized-reviewed-ranking.js'])await js(p==='personalized-reviewed-ranking.js'?"hewrs-stage93-ranking-v2.js?v=f9192bb1e036":BASE+p);const r=await fetch(BASE+'review-data.json',{cache:'no-cache'});if(!r.ok)throw Error('Reviewed data unavailable.');data=await r.json();if(data.source_input_sha256!==root.HEWRS_INPUT_SHA256)throw Error('Unsupported baseline.');bridge=root.HEWRSNativeReviewedBridge.create(app.connection,data.catalogue,data.reviews,data.rules);ranker=root.HEWRSPersonalizedRanking.create({catalogue:data.catalogue,bridge,feedback:fb,numerical:data.comparison_r3});build(initialUpdate);state.ready=true;return bridge;})().catch(e=>{loaded=null;state.error=e.message;throw e;});return loaded;}
 function selectField(id,title,rows){const l=el('label',title,'rd-label'),s=el('select');s.id=id;for(const[v,t]of rows){const o=el('option',t);o.value=v;s.append(o);}l.append(s);return l;}
 const key=o=>root.HEWRSRebuildCore.outfitKey(o),tags=o=>[o.topwear||'SHIRT ONLY',o.pants,o.shirt,o.tie||'NO TIE',o.shoe].filter(Boolean).join(' + ');

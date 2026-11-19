@@ -15,7 +15,7 @@
   el('full-caption').textContent=mode==='corrected'?(item.owner_approved===true?'Approved preview · full outfit':'Brown color correction · full outfit'):'Previous rendering · full outfit';
   el('review-status').textContent=mode==='corrected'?(item.owner_approved===true?'Approved':'Pattern approved · color review'):'Previous rendering';
   document.querySelector('footer').textContent=item.owner_approved===true?'Owner-approved appearance. The approved avatar is preserved.':'Pattern approved; brown color correction awaiting review. The approved avatar is preserved.';
-  el('comparison-note').textContent=notes[selected];el('full-size-link').href=src;el('picker-link').href='blazer-picker-preview.html?show=suits&item='+selected;
+  el('comparison-note').textContent=notes[selected];el('full-size-link').href=src;el('picker-link').href='index.html';el('picker-link').textContent='Back to HEWRS';
   document.querySelectorAll('[data-suit]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.suit===selected)));
   document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
  }

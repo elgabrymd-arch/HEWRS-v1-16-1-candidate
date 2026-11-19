@@ -350,11 +350,15 @@
         // build thousands of DOM rows or clone/sort the full event history.
         for(let i=start;i<end;i++){
           const event=i<temporary.length?temporary[i]:active[active.length-1-(i-temporary.length)];
+          // Imported v1 records may use legacy wire IDs and Work aliases.
+          // Normalize only this display copy; keep original event bytes intact.
+          const view={...event,selection:F.normal(event.selection),occasion:F.occasion(event.occasion)};
           const row=element('article',undefined,'hewrs-rejection-record');row.dataset.eventId=event.id;
           row.dataset.scope=event.scope;
-          const top=event.selection.suitId?'Suit '+event.selection.suitId:'Blazer '+event.selection.blazerId;
-          const title=event.scope==='shirt'?'Shirt '+event.selection.shirtId:event.scope==='topwear_shirt'?top+' + shirt '+event.selection.shirtId:event.scope==='topwear_shirt_tie'?top+' + shirt '+event.selection.shirtId+' + tie '+event.selection.state:event.scope==='tie'?'Tie '+event.selection.state:event.scope==='shirt_tie'?'Shirt '+event.selection.shirtId+' + tie '+event.selection.state:event.scope==='topwear_tie'?top+' + tie '+event.selection.state:describe(event.selection);
-          row.append(element('strong',title),element('p',(event.type==='temporary_skip'?'Temporary · ':'Saved · ')+(event.occasion==='all'?'Every occasion':event.occasion)+' · '+describeScope(event),'fx-caption'));
+          const top=view.selection.suitId?'Suit '+view.selection.suitId:'Blazer '+view.selection.blazerId;
+          const title=view.scope==='shirt'?'Shirt '+view.selection.shirtId:view.scope==='topwear_shirt'?top+' + shirt '+view.selection.shirtId:view.scope==='topwear_shirt_tie'?top+' + shirt '+view.selection.shirtId+' + tie '+view.selection.state:view.scope==='tie'?'Tie '+view.selection.state:view.scope==='shirt_tie'?'Shirt '+view.selection.shirtId+' + tie '+view.selection.state:view.scope==='topwear_tie'?top+' + tie '+view.selection.state:describe(view.selection);
+          row.append(element('strong',title),element('p',(view.type==='temporary_skip'?'Temporary · ':'Saved · ')+(view.occasion==='all'?'Every occasion':view.occasion)+' · '+describeScope(view),'fx-caption'));
+          if(event.occasion!==view.occasion)row.append(element('p','Saved occasion: '+event.occasion,'fx-caption'));
           if(event.reason)row.append(element('p',reasons.find(r=>r[0]===event.reason)?.[1]||event.reason));
           if(event.note)row.append(element('p',String(event.note),'hewrs-rejection-note'));
           row.append(button('Undo this rejection','undo-'+event.id,()=>run(async()=>{

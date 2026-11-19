@@ -1,0 +1,19 @@
+{
+  "scenario": "An IndexedDB peer commits after request start while revision notification is unavailable or delayed",
+  "banned": {
+    "suitId": "S10",
+    "shirtId": "DS022",
+    "state": "T022",
+    "shoeId": "shoe-3",
+    "watchId": "watch-P05"
+  },
+  "peer_match_allowed": false,
+  "rendered": 20,
+  "rejected_rendered": true,
+  "evaluated": 20,
+  "rejected_evaluated": true,
+  "result_options": 14,
+  "error": null,
+  "final_durable_guard": "Saved rejections changed during generation or rendering. No unchecked result was accepted.",
+  "transport": "in-process fixture; no external calls"
+}

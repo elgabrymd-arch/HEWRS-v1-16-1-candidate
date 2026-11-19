@@ -1,0 +1,11 @@
+{
+  "test": "deterministic interleaving after a stale comparison read and before write",
+  "a_claimed": true,
+  "b_cache": [
+    "favorite_tab_b"
+  ],
+  "durable": [
+    "favorite_tab_a"
+  ],
+  "writes_are_not_a_storage_transaction": true
+}

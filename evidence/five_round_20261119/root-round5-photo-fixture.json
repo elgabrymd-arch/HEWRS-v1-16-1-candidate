@@ -1,0 +1,15 @@
+{
+  "schema": "hewrs.five-round-photo-harness-correction.v1",
+  "failed_candidate_commit": "e06d906229f5fd918b44578a1c0d45fa59d773b3",
+  "run_id": 44509915589,
+  "finding": "The photo fixture called ownerFeedback.undo after its complete shirt/collar/picker and rejected-current-view checks. The actual facade exposes restore(target); independent UI Undo lifecycle checks passed.",
+  "repair": "Call ownerFeedback.restore(id), then invoke the existing rejection reconciliation. No application code or assertion is changed.",
+  "source_contract": [
+    "src/outfit-rejection-core.js:create durable facade restore(id)",
+    "src/owner-feedback.js:restore(target)",
+    "tests/all-rejections-browser.py actual UI Undo lifecycle"
+  ],
+  "final_photo_harness_sha256": "947d6b6538928d89676e57ceee5fa5c40ce2930c01234ab2b4d807c291bf19cb",
+  "runtime_unchanged_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+  "next_gate": "Complete corrected Chromium and WebKit photo workflows; previous failed runs are retained, not counted as complete passes."
+}

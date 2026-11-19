@@ -1,0 +1,124 @@
+{
+  "schema": "hewrs.five-round-engine-cross-review.v1",
+  "round": 2,
+  "auditor": "deployment_audit",
+  "generated_utc": "2026-11-19T06:36:45.180331+00:00",
+  "scope": "Independent read-only cross-review of root central application changes, private render callsites, current source/build binding and photo browser harness. Application fixes belong to root; this agent added the focused regression file only.",
+  "status": "two_additional_central_defects_confirmed_root_fixed_and_regressions_passed",
+  "reviewed_application_boundaries": [
+    "presentFrame final feedback gate and no-current protection",
+    "viewCurrentOutfit async feedback preflight and captured generation",
+    "apply/generate captured request and final feedback publication",
+    "showFavorites cross-tab refresh and blocked-state presentation",
+    "Wardrobe Use exact item preference persistence, cancellation and invalidation",
+    "Wear and Favorites imports latest file-read epoch and modal token",
+    "Clear Wear Log captured store token before confirmation",
+    "renderForPreference private renderer cancellation",
+    "renderForStylist private renderer cancellation and retained face crop",
+    "setStylistMode cancellation of an earlier generation",
+    "optionCards.book native render cancellation and final file creation"
+  ],
+  "confirmed_findings": [
+    {
+      "id": "ENGINE-R2-001",
+      "title": "Private render hooks did not propagate cancellation to a stalled native renderer",
+      "before_evidence": "evidence/five_round_20261119/engine-central-render-cancel-probe.json",
+      "reproduction": "Actual render hooks with controlled never-settling Image events. Preference cancellation callback became true but private cancel was never called; 14 images and the promise remained pending. Direct private-renderer cancellation settled correctly. Stylist private rendering had the same inaccessible cancellation boundary.",
+      "fix_owner": "root",
+      "fixed_files": [
+        "src/outfit-refill-application.js",
+        "src/option-cards.js"
+      ],
+      "fix": "Poll the captured generation or caller cancellation every 50 ms while awaiting the private renderer, invoke its cancel, and clear the interval in finally. Card-book export uses its caller cancellation in the same way.",
+      "verification": "Stalled cancel, healthy completion, native error, exact crop geometry and interval/canvas cleanup tested for preference, stylist and book."
+    },
+    {
+      "id": "ENGINE-R2-002",
+      "title": "Changing stylist method allowed a pending result from the old method to publish",
+      "before_evidence": "evidence/five_round_20261119/engine-method-generation-race.json",
+      "reproduction": "Actual generate/setStylistMode/invalidateRecommendations control flow with a simulated accepted deferred generator result. Research-to-Curated left generation unchanged; the old Research result then rendered and published. This isolates orchestration and does not claim to test engine scoring.",
+      "fix_owner": "root",
+      "fixed_files": [
+        "src/outfit-refill-application.js"
+      ],
+      "fix": "Advance the generation and cancel native, visual service and weather work before invalidating recommendations.",
+      "verification": "The current method-change test observes each cancellation and no render/publication after the prior result is released."
+    }
+  ],
+  "additional_ui_race_reported": {
+    "path": "src/preference-panel.js",
+    "finding": "The comparison modal/cancellation ticket was created only after awaited rejection preflight; closing or opening another panel during preflight could later be overwritten.",
+    "owner": "s05_reproduction",
+    "status": "Owner independently reproduced and repaired, reporting focused preference suite 7/7. This is reported cross-review evidence, not counted in this file as another own test result."
+  },
+  "browser_harness_review": [
+    {
+      "gap": "Initial native pixel matrix omitted the DS035 S11-template coverage/edge branch modified in Round 1.",
+      "action": "Root accepted adding both No Tie and T029 for all 14 HEWRSApp.connection.assemblies.widerDS035SuitIds (28 comparisons).",
+      "ids": [
+        "S02",
+        "S03",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "gap": "Picker checks initially verified source metadata but not successful image decoding or visible absence of fallback.",
+      "action": "Root accepted explicit decode/natural dimension/visibility assertions before screenshot."
+    },
+    {
+      "qualification": "The original 47-tie sweep did not request baseline comparison. The original 321 baseline comparisons and 368 total frames must not be reported as 368 pixel-equality comparisons. Later added DS035 cases should be counted from final RESULT, not from this planning total."
+    }
+  ],
+  "accepted_reviewed_fixes": [
+    "Final presentation checks current rejection rules before exposing a retained canvas, including View current.",
+    "View current checks generation after asynchronous feedback refresh.",
+    "Favorites opening refreshes the store, blocks unreadable data and storage events update an open Favorites sheet.",
+    "Wear and Favorites file readers retain only the most recently chosen file in the same modal.",
+    "Clear Wear Log validates the captured raw store token before preparing the empty-event restore."
+  ],
+  "regressions": {
+    "file": "tests/five-round-app-cancellation.cjs",
+    "evidence": "evidence/five_round_20261119/engine-central-render-after.json",
+    "passed": 11,
+    "failed": 0,
+    "limitations": "Actual application functions and option-card book with controlled native renderer and tracked real timers. No pixel or engine-score claim."
+  },
+  "independent_loader_cross_review": {
+    "owner": "s05_reproduction",
+    "reported_result": "Pending cache eviction, late failure identity checks, A-B-A retry, same-hash resolved-URL changes, retained completed cache and resolver correction passed; no loader defect found.",
+    "file": "tests/five-round-ui-cross-review.cjs",
+    "not_counted_as_own_executed_tests": true
+  },
+  "no_application_edits_by_this_agent_in_round": true,
+  "limitations": [
+    "This is one cross-review round, not a claim of five complete independent passes.",
+    "Real browser pixel/thumbnail matrix and final delivery hash verification remain root-owned.",
+    "Focused renderer orchestration regressions use a controlled native renderer; native transport behavior is independently exercised by the 54-check actual renderer suite.",
+    "General card-thumbnail loads still have the existing 15-second timeout; this round fixes the previously unbounded native render await."
+  ],
+  "file_sha256": {
+    "src/outfit-refill-application.js": "5710da27911c73aa383456fdc30342a2641ec5900c5ad3e750a2df56dee9154d",
+    "src/option-cards.js": "4133b10ddc630490fcd926347489a059363d6f1ddd31cd9f28b69c6699b05d4b",
+    "src/preference-panel.js": "94ce8b0264fc8a74e5c236f931a9fa0e89f7c089f85e53a022e1f2ba7ad00019",
+    "src/photo-picker-integration.js": "179f29d38c8a7dbbd6b23bba7b8fc3ae8bad49affce6a3232b5ef35d3835e363",
+    "src/suit-assemblies.js": "068b09d6cf785385227a22f918124fd29478b087e09524f8bd620e797e3d40de",
+    "src/hybrid-stylist.js": "4a8cf486a3c21d83f51b726d2de58c645e9ccf15931630b4e59eb7118d1ccf34",
+    "tools/build_tie_candidate.py": "bd07db9bd1e3a23033786e1f6c9162c04978237930840c157daf24c7da221c53",
+    "tests/tie-engine-loader.cjs": "9b6879e1f7f4c17c05aa9ca1f7c1dcb707583356201c8a3f4d289e7bb45d51a4",
+    "tests/five-round-photos-browser.py": "37a08ee9d130c55ff22240ec956056b82cd09ecd01a3f68956bd68989927cded",
+    "tests/five-round-app-actions.cjs": "9ebbea0cc369463bc31160466828f06ffdabe63368ecba44472967ca6f19063a",
+    "tests/five-round-app-visibility.cjs": "e379311b103c7eac999a68b2a74b965716dd54bf6030bc6acc5a37328518d054",
+    "tests/five-round-app-cancellation.cjs": "2016040aeceb20e87127de93808583292b1f071f6196d0cd9495b653d68101c3"
+  }
+}

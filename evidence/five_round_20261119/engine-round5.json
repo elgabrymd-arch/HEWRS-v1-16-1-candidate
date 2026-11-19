@@ -1,0 +1,161 @@
+{
+  "schema": "hewrs.five-round-final-application-review.v1",
+  "round": 5,
+  "auditor": "app_final_review",
+  "generated_utc": "2026-11-19T10:46:34.987841+00:00",
+  "scope": "Continue the saved audit: asynchronous current-app view, generation-preflight, render-navigation and committed-storage UI lifetimes. No restart or duplicate claim of five complete independent audits.",
+  "status": "Scoped source review and focused regressions passed; rebuilt browser and publication gates remain root-coordinated.",
+  "confirmed_defects": [
+    {
+      "id": "APP-R5-001",
+      "title": "Delayed rejection reads could replace a newer dialog or reopen a closed dialog",
+      "functions": [
+        "resultSheet",
+        "largerOutfit",
+        "exportOptionCards",
+        "viewCurrentOutfit"
+      ],
+      "before": "engine-round5-modal-before.json",
+      "before_regression": "engine-round5-modal-before-tests.log",
+      "before_result": {
+        "tests": 25,
+        "passed": 6,
+        "failed": 19
+      },
+      "repair": "Each async view reserves the current modal epoch and captures generation/page ownership before reading rejection state. Newer requests, opening/closing a dialog, generation/context changes, and page changes invalidate old publication. Larger view rechecks ownership inside its delayed durable transaction. Healthy actions remain available."
+    },
+    {
+      "id": "APP-R5-002",
+      "title": "Result and wear-history selections navigated after cancelled or superseded rendering",
+      "functions": [
+        "resultSheet row onclick",
+        "historyRow view onclick"
+      ],
+      "before_regression": "engine-round5-modal-before-tests.log",
+      "repair": "Inspect the actual render result and captured generation/modal/page ownership before navigation; result-row errors are suppressed after the initiating action is superseded."
+    },
+    {
+      "id": "APP-R5-003",
+      "title": "Submit could continue after automatic-weather cancellation or settings opened during its initial rejection read",
+      "functions": [
+        "submit"
+      ],
+      "before_regression": "engine-round5-submit-before.log",
+      "before_result": {
+        "tests": 9,
+        "passed": 8,
+        "failed": 1,
+        "qualification": "This before log was captured after adding the weather-status cancellation fix but before adding modal-epoch ownership. The failing test independently reproduces generation behind the newer settings panel."
+      },
+      "repair": "Check cancelled automatic-weather status as well as generation ownership; retain the original modal epoch through both initial asynchronous preflights."
+    },
+    {
+      "id": "APP-R5-004",
+      "title": "Closing card export during its preparation rejection read could still start encoding its released canvas",
+      "functions": [
+        "exportOptionCards.prepare"
+      ],
+      "repair": "Stop immediately after the awaited rejection read if the export panel was closed or replaced, before image/card-book encoding."
+    },
+    {
+      "id": "APP-R5-005",
+      "title": "Committed wear/clear/restore continuations could dismiss a newer panel or overwrite a newer view",
+      "independent_finder": "recover_checkpoint storage final review",
+      "functions": [
+        "startLog confirmation",
+        "confirmClear confirmation",
+        "backup restore confirmation"
+      ],
+      "repair": "A completed mutation remains committed, and recommendations/history refresh reflect it. Only the owning panel can dismiss itself or publish its success message. Old wear transactions cannot clear newer transactions. Restore cannot apply the old saved session or clear a newer preview after its original panel changed. Post-render backup messaging also respects action ownership.",
+      "test": "tests/five-round-storage-postcommit.cjs",
+      "result": {
+        "passed": 9,
+        "failed": 0,
+        "qualification": "Actual local-state store and application handlers with the Web Locks completion promise deliberately held after its synchronous commit."
+      }
+    }
+  ],
+  "regressions": [
+    {
+      "file": "tests/five-round-app-modal-lifetime.cjs",
+      "passed": 30,
+      "failed": 0,
+      "log": "engine-round5-lifetime-after.log"
+    },
+    {
+      "file": "tests/five-round-ui-context.cjs",
+      "passed": 9,
+      "failed": 0,
+      "log": "engine-round5-lifetime-after.log"
+    },
+    {
+      "file": "tests/five-round-storage-postcommit.cjs",
+      "passed": 9,
+      "failed": 0,
+      "execution": "Independent reviewer; actual durable local-state implementation"
+    },
+    {
+      "file": "tests/all-rejections-entrypoints.cjs",
+      "passed": 17,
+      "failed": 0
+    },
+    {
+      "file": "tests/all-rejections-export-context.cjs",
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "file": "tests/five-round-storage-current-context.cjs",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "file": "tests/five-round-app-actions.cjs",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "file": "tests/five-round-app-cancellation.cjs",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "file": "tests/five-round-app-regenerate.cjs",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "file": "tests/five-round-storage-backups.cjs",
+      "passed": 20,
+      "failed": 0
+    },
+    {
+      "file": "tests/five-round-storage-ui-queue.cjs",
+      "passed": 9,
+      "failed": 0
+    }
+  ],
+  "test_harness_updates": "Three existing export/context harnesses now declare the actual application generation, modalEpoch and pageName globals used by the ownership checks. Existing rejection/context assertions were preserved.",
+  "preservation": {
+    "garment_or_avatar_pixels_edited": false,
+    "wardrobe_catalogue_or_ids_edited": false,
+    "styling_scoring_or_rejection_matching_rules_edited": false,
+    "owner_browser_data_accessed": false,
+    "provider_calls": 0,
+    "runtime_build_performed_by_this_reviewer": false
+  },
+  "limitations": [
+    "Controlled deferred operations validate orchestration and actual storage behavior, not browser-native scheduling or image pixels. Root coordinates complete Chromium/WebKit gates and source-protected rebuild/publication.",
+    "Existing passing assertion counts are not counted as additional distinct audit passes.",
+    "A committed user-authorized storage mutation is preserved even when its UI is superseded; stale UI does not reverse a completed save."
+  ],
+  "reviewed_file_sha256": {
+    "src/outfit-refill-application.js": "7861703eebe4638696e0a508d95cf5e433d2c3c0e9b4fe01ca319d0ce6cee859",
+    "tests/five-round-app-modal-lifetime.cjs": "f593fb7d33bbaa3bb6b4228a4fde8af8d8f23900975a0b452ce107803a4f25c5",
+    "tests/five-round-ui-context.cjs": "2d7f93e5ded48d3f7a2029d58b92b827196a8ce2b3291860574a3fae4af41a42",
+    "tests/five-round-storage-postcommit.cjs": "80949ba3a382cd65d111595d9181d30aeae264621a382f7acd88c4f6c2dcea50",
+    "tests/all-rejections-entrypoints.cjs": "a3d9808878c493c1d7f77605ec4b2d858f291934e1efb5d0ce7dd5144d9bd321",
+    "tests/all-rejections-export-context.cjs": "e41c42b8562077c8984888f8d5d1a1e3dff0b055f6a93921ea6cc5801f27e956",
+    "tests/five-round-storage-current-context.cjs": "d1d3f98c595333b9fbdb85748f3f01cd8b944f57a773956550ee9cf87c3ffdbb"
+  }
+}

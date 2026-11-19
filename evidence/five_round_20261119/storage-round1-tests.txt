@@ -1,0 +1,575 @@
+TAP version 13
+# {"audit":"independent scope/occasion oracle","comparisons":7296}
+# Subtest: independent all-scope oracle covers each garment role, outfit mode and occasion
+ok 1 - independent all-scope oracle covers each garment role, outfit mode and occasion
+  ---
+  duration_ms: 637.836223
+  type: 'test'
+  ...
+# Subtest: legacy occasion labels and wire selections are matched without rewriting migrated bytes
+ok 2 - legacy occasion labels and wire selections are matched without rewriting migrated bytes
+  ---
+  duration_ms: 54.617385
+  type: 'test'
+  ...
+# Subtest: accepted wire selections are normalized only for strict catalogue checks, never in the immutable record
+ok 3 - accepted wire selections are normalized only for strict catalogue checks, never in the immutable record
+  ---
+  duration_ms: 41.173082
+  type: 'test'
+  ...
+# Subtest: shirt, jacket–shirt and exact triple scopes require only their named garment relationship
+ok 4 - shirt, jacket–shirt and exact triple scopes require only their named garment relationship
+  ---
+  duration_ms: 8.958905
+  type: 'test'
+  ...
+# Subtest: readers without new scope support fail closed and leave both storage ledgers untouched
+ok 5 - readers without new scope support fail closed and leave both storage ledgers untouched
+  ---
+  duration_ms: 10.339923
+  type: 'test'
+  ...
+# Subtest: production apply and visible renderer use the destination occasion in both directions
+ok 6 - production apply and visible renderer use the destination occasion in both directions
+  ---
+  duration_ms: 24.078898
+  type: 'test'
+  ...
+# Subtest: visible renderer captures supplied context before awaiting and rejects feedback changes before pixels commit
+ok 7 - visible renderer captures supplied context before awaiting and rejects feedback changes before pixels commit
+  ---
+  duration_ms: 11.408023
+  type: 'test'
+  ...
+# Subtest: all-occasion and single-occasion records remain independent under Undo and duplicate import
+ok 8 - all-occasion and single-occasion records remain independent under Undo and duplicate import
+  ---
+  duration_ms: 118.202385
+  type: 'test'
+  ...
+# Subtest: Undo of one overlapping scope cannot undo any other active scope
+ok 9 - Undo of one overlapping scope cannot undo any other active scope
+  ---
+  duration_ms: 34.791527
+  type: 'test'
+  ...
+# Subtest: temporary exclusions use identical scopes but do not survive export, reload or clear
+ok 10 - temporary exclusions use identical scopes but do not survive export, reload or clear
+  ---
+  duration_ms: 42.258336
+  type: 'test'
+  ...
+# Subtest: mixed-scope backup round-trips preserve rejection IDs, exact notes, original schemas and Undo
+ok 11 - mixed-scope backup round-trips preserve rejection IDs, exact notes, original schemas and Undo
+  ---
+  duration_ms: 28.496077
+  type: 'test'
+  ...
+# Subtest: concurrent IndexedDB writers preserve every scope, deduplicate aliases and reject stale publication
+ok 12 - concurrent IndexedDB writers preserve every scope, deduplicate aliases and reject stale publication
+  ---
+  duration_ms: 9.159257
+  type: 'test'
+  ...
+# Subtest: legacy readers observe other writers and Undo immediately for every scope and temporary checks fail closed
+ok 13 - legacy readers observe other writers and Undo immediately for every scope and temporary checks fail closed
+  ---
+  duration_ms: 6.560377
+  type: 'test'
+  ...
+# Subtest: invalid combined imports and every scoped transaction abort leave prior durable state intact
+ok 14 - invalid combined imports and every scoped transaction abort leave prior durable state intact
+  ---
+  duration_ms: 11.841075
+  type: 'test'
+  ...
+# Subtest: unreadable legacy namespaces and failed IndexedDB reads block checks without clearing records
+ok 15 - unreadable legacy namespaces and failed IndexedDB reads block checks without clearing records
+  ---
+  duration_ms: 8.482589
+  type: 'test'
+  ...
+# Subtest: historical Neither is an exact outfit/context veto; other votes and training rank cannot undo it
+ok 16 - historical Neither is an exact outfit/context veto; other votes and training rank cannot undo it
+  ---
+  duration_ms: 6.082834
+  type: 'test'
+  ...
+# Subtest: historical Neither recorded for all occasions remains exact, including watch, through migration and backup
+ok 17 - historical Neither recorded for all occasions remains exact, including watch, through migration and backup
+  ---
+  duration_ms: 16.441774
+  type: 'test'
+  ...
+# Subtest: static owner prohibitions and explicit approved outfits cannot bypass saved rejections
+ok 18 - static owner prohibitions and explicit approved outfits cannot bypass saved rejections
+  ---
+  duration_ms: 45.438347
+  type: 'test'
+  ...
+# Subtest: overlapping tie exposure appends preserve both successful immutable events
+ok 19 - overlapping tie exposure appends preserve both successful immutable events
+  ---
+  duration_ms: 45.134049
+  type: 'test'
+  ...
+# Subtest: concurrent image assessment transactions retain both distinct successful batches
+ok 20 - concurrent image assessment transactions retain both distinct successful batches
+  ---
+  duration_ms: 30.821193
+  type: 'test'
+  ...
+# Subtest: concurrent conflicting image assessments refuse the second transaction without replacing the first
+ok 21 - concurrent conflicting image assessments refuse the second transaction without replacing the first
+  ---
+  duration_ms: 17.820575
+  type: 'test'
+  ...
+# Subtest: concurrent identical image batches are idempotent and withdrawal is limited to the named batch
+ok 22 - concurrent identical image batches are idempotent and withdrawal is limited to the named batch
+  ---
+  duration_ms: 4.872777
+  type: 'test'
+  ...
+# Subtest: aborted image assessment append reports failure and retains all previously committed records
+ok 23 - aborted image assessment append reports failure and retains all previously committed records
+  ---
+  duration_ms: 6.183814
+  type: 'test'
+  ...
+# Subtest: wear export reads the current durable record, including another tab additions
+ok 24 - wear export reads the current durable record, including another tab additions
+  ---
+  duration_ms: 18.799957
+  type: 'test'
+  ...
+# Subtest: wear export preserves newly corrupt current bytes instead of claiming a clean cached backup
+ok 25 - wear export preserves newly corrupt current bytes instead of claiming a clean cached backup
+  ---
+  duration_ms: 4.853874
+  type: 'test'
+  ...
+# Subtest: wear export refuses stale cached bytes when the durable read fails and recovers without writes
+ok 26 - wear export refuses stale cached bytes when the durable read fails and recovers without writes
+  ---
+  duration_ms: 7.327808
+  type: 'test'
+  ...
+# Subtest: wear session-memory export still works and caller edits cannot change stored state
+ok 27 - wear session-memory export still works and caller edits cannot change stored state
+  ---
+  duration_ms: 4.379065
+  type: 'test'
+  ...
+# Subtest: wear stale-tab writes and failed persistence never overwrite prior records or report success
+ok 28 - wear stale-tab writes and failed persistence never overwrite prior records or report success
+  ---
+  duration_ms: 9.556795
+  type: 'test'
+  ...
+# Subtest: wear verified write recovery reports persistent saving after a prior quota failure
+ok 29 - wear verified write recovery reports persistent saving after a prior quota failure
+  ---
+  duration_ms: 1.728891
+  type: 'test'
+  ...
+# Subtest: favorites export reads the current durable record, including another tab additions
+ok 30 - favorites export reads the current durable record, including another tab additions
+  ---
+  duration_ms: 3.208612
+  type: 'test'
+  ...
+# Subtest: favorites export preserves newly corrupt current bytes instead of claiming a clean cached backup
+ok 31 - favorites export preserves newly corrupt current bytes instead of claiming a clean cached backup
+  ---
+  duration_ms: 1.063085
+  type: 'test'
+  ...
+# Subtest: favorites export refuses stale cached bytes when the durable read fails and recovers without writes
+ok 32 - favorites export refuses stale cached bytes when the durable read fails and recovers without writes
+  ---
+  duration_ms: 1.502567
+  type: 'test'
+  ...
+# Subtest: favorites session-memory export still works and caller edits cannot change stored state
+ok 33 - favorites session-memory export still works and caller edits cannot change stored state
+  ---
+  duration_ms: 1.987713
+  type: 'test'
+  ...
+# Subtest: favorites stale-tab writes and failed persistence never overwrite prior records or report success
+ok 34 - favorites stale-tab writes and failed persistence never overwrite prior records or report success
+  ---
+  duration_ms: 3.943006
+  type: 'test'
+  ...
+# Subtest: favorites verified write recovery reports persistent saving after a prior quota failure
+ok 35 - favorites verified write recovery reports persistent saving after a prior quota failure
+  ---
+  duration_ms: 4.816013
+  type: 'test'
+  ...
+# Subtest: Favorites refresh exposes peer additions/removals and retains corrupt bytes during failed reads
+ok 36 - Favorites refresh exposes peer additions/removals and retains corrupt bytes during failed reads
+  ---
+  duration_ms: 4.527916
+  type: 'test'
+  ...
+# Subtest: Favorites duplicate-save path cannot claim an item another tab already removed is still saved
+ok 37 - Favorites duplicate-save path cannot claim an item another tab already removed is still saved
+  ---
+  duration_ms: 4.784853
+  type: 'test'
+  ...
+# Subtest: Favorites import no-op still validates that its reviewed storage snapshot is current
+ok 38 - Favorites import no-op still validates that its reviewed storage snapshot is current
+  ---
+  duration_ms: 8.400651
+  type: 'test'
+  ...
+# Subtest: Favorites import stays bound to its preview after a refresh or export updates the cache
+ok 39 - Favorites import stays bound to its preview after a refresh or export updates the cache
+  ---
+  duration_ms: 2.478163
+  type: 'test'
+  ...
+# Subtest: Wear restore cannot erase changes that arrived after the displayed backup preview
+ok 40 - Wear restore cannot erase changes that arrived after the displayed backup preview
+  ---
+  duration_ms: 2.211257
+  type: 'test'
+  ...
+# Subtest: Wear restore rejects a stale preview after a same-tab write
+ok 41 - Wear restore rejects a stale preview after a same-tab write
+  ---
+  duration_ms: 1.50412
+  type: 'test'
+  ...
+# Subtest: Wear restore keeps the exact validated backup identity and supports explicit clearing
+ok 42 - Wear restore keeps the exact validated backup identity and supports explicit clearing
+  ---
+  duration_ms: 3.426753
+  type: 'test'
+  ...
+# Subtest: Import confirmations reject a payload modified after its preview
+ok 43 - Import confirmations reject a payload modified after its preview
+  ---
+  duration_ms: 2.410503
+  type: 'test'
+  ...
+# Subtest: legacy image preparation retains its existing packet API for an allowed outfit
+ok 44 - legacy image preparation retains its existing packet API for an allowed outfit
+  ---
+  duration_ms: 46.707206
+  type: 'test'
+  ...
+# Subtest: legacy real export handler downloads exactly once after its final rejection check
+ok 45 - legacy real export handler downloads exactly once after its final rejection check
+  ---
+  duration_ms: 16.050482
+  type: 'test'
+  ...
+# Subtest: legacy rejection during final packet hashing refuses both publication and actual export
+ok 46 - legacy rejection during final packet hashing refuses both publication and actual export
+  ---
+  duration_ms: 11.575362
+  type: 'test'
+  ...
+# Subtest: indexed image preparation retains its existing packet API for an allowed outfit
+ok 47 - indexed image preparation retains its existing packet API for an allowed outfit
+  ---
+  duration_ms: 127.57024
+  type: 'test'
+  ...
+# Subtest: indexed real export handler downloads exactly once after its final rejection check
+ok 48 - indexed real export handler downloads exactly once after its final rejection check
+  ---
+  duration_ms: 12.153266
+  type: 'test'
+  ...
+# Subtest: indexed rejection during final packet hashing refuses both publication and actual export
+ok 49 - indexed rejection during final packet hashing refuses both publication and actual export
+  ---
+  duration_ms: 17.259638
+  type: 'test'
+  ...
+# Subtest: temporary skip while the final packet is being prepared blocks export without persisting it
+ok 50 - temporary skip while the final packet is being prepared blocks export without persisting it
+  ---
+  duration_ms: 10.33239
+  type: 'test'
+  ...
+# Subtest: image export captures same-ID outfit and refuses changes during final packet preparation
+ok 51 - image export captures same-ID outfit and refuses changes during final packet preparation
+  ---
+  duration_ms: 11.157418
+  type: 'test'
+  ...
+# Subtest: image export captures occasion and refuses changes during final packet preparation
+ok 52 - image export captures occasion and refuses changes during final packet preparation
+  ---
+  duration_ms: 4.750799
+  type: 'test'
+  ...
+# Subtest: image export captures anchor and refuses changes during final packet preparation
+ok 53 - image export captures anchor and refuses changes during final packet preparation
+  ---
+  duration_ms: 7.223135
+  type: 'test'
+  ...
+# Subtest: image export captures watch and refuses changes during final packet preparation
+ok 54 - image export captures watch and refuses changes during final packet preparation
+  ---
+  duration_ms: 2.4568
+  type: 'test'
+  ...
+# Subtest: image export captures owner-use context and refuses changes during final packet preparation
+ok 55 - image export captures owner-use context and refuses changes during final packet preparation
+  ---
+  duration_ms: 3.211732
+  type: 'test'
+  ...
+# Subtest: image export captures entry status and refuses changes during final packet preparation
+ok 56 - image export captures entry status and refuses changes during final packet preparation
+  ---
+  duration_ms: 7.164622
+  type: 'test'
+  ...
+# Subtest: a changed rejection during board loading prevents the final exchange request entirely
+ok 57 - a changed rejection during board loading prevents the final exchange request entirely
+  ---
+  duration_ms: 0.990662
+  type: 'test'
+  ...
+# Subtest: a peer rejection at the queued publication boundary prevents the actual download
+ok 58 - a peer rejection at the queued publication boundary prevents the actual download
+  ---
+  duration_ms: 8.068511
+  type: 'test'
+  ...
+# Subtest: failed initial durable feedback read releases busy and permits a repaired-storage retry
+ok 59 - failed initial durable feedback read releases busy and permits a repaired-storage retry
+  ---
+  duration_ms: 1.37702
+  type: 'test'
+  ...
+# Subtest: a previously saved Work-only rejection blocks Work but permits the same allowed Dinner request
+ok 60 - a previously saved Work-only rejection blocks Work but permits the same allowed Dinner request
+  ---
+  duration_ms: 7.133218
+  type: 'test'
+  ...
+# Subtest: candidate panel preserves the frozen Standard resource and every image/source/import operation
+ok 61 - candidate panel preserves the frozen Standard resource and every image/source/import operation
+  ---
+  duration_ms: 1.97654
+  type: 'test'
+  ...
+# Subtest: Preference backup duplicate identity is independent of JSON property order and preserves original records
+ok 62 - Preference backup duplicate identity is independent of JSON property order and preserves original records
+  ---
+  duration_ms: 20.116772
+  type: 'test'
+  ...
+# Subtest: True preference ID/pair conflicts remain rejected without overwriting original votes
+ok 63 - True preference ID/pair conflicts remain rejected without overwriting original votes
+  ---
+  duration_ms: 23.798203
+  type: 'test'
+  ...
+# Subtest: Preference import retains existing learning switch and rejects stale confirmation tokens
+ok 64 - Preference import retains existing learning switch and rejects stale confirmation tokens
+  ---
+  duration_ms: 5.09169
+  type: 'test'
+  ...
+# Subtest: Preference read/export failures retain bytes and recover only after a valid read
+ok 65 - Preference read/export failures retain bytes and recover only after a valid read
+  ---
+  duration_ms: 2.846685
+  type: 'test'
+  ...
+# Subtest: Source locks, reserved validation groups and vote metadata remain guarded
+ok 66 - Source locks, reserved validation groups and vote metadata remain guarded
+  ---
+  duration_ms: 4.552388
+  type: 'test'
+  ...
+# Subtest: Preference confirmation rejects mutated or forged previews without changing existing enable state or votes
+ok 67 - Preference confirmation rejects mutated or forged previews without changing existing enable state or votes
+  ---
+  duration_ms: 10.216601
+  type: 'test'
+  ...
+# Subtest: Preference merge accepts the original reviewed backup once and consumes its approval ticket
+ok 68 - Preference merge accepts the original reviewed backup once and consumes its approval ticket
+  ---
+  duration_ms: 7.474063
+  type: 'test'
+  ...
+# Subtest: wear queued tabs cannot both claim a stale write; fresh retry retains both records
+ok 69 - wear queued tabs cannot both claim a stale write; fresh retry retains both records
+  ---
+  duration_ms: 45.08944
+  type: 'test'
+  ...
+# Subtest: wear refresh during lock wait cannot authorize the originally stale action
+ok 70 - wear refresh during lock wait cannot authorize the originally stale action
+  ---
+  duration_ms: 16.176775
+  type: 'test'
+  ...
+# Subtest: wear persistent writes fail explicitly without a browser lock, but reads and export work
+ok 71 - wear persistent writes fail explicitly without a browser lock, but reads and export work
+  ---
+  duration_ms: 12.763119
+  type: 'test'
+  ...
+# Subtest: wear memory-only mode uses a local queue without requiring browser locks
+ok 72 - wear memory-only mode uses a local queue without requiring browser locks
+  ---
+  duration_ms: 6.378161
+  type: 'test'
+  ...
+# Subtest: wear callback failure releases the lock without installing a phantom save
+ok 73 - wear callback failure releases the lock without installing a phantom save
+  ---
+  duration_ms: 11.886909
+  type: 'test'
+  ...
+# Subtest: favorites queued tabs cannot both claim a stale write; fresh retry retains both records
+ok 74 - favorites queued tabs cannot both claim a stale write; fresh retry retains both records
+  ---
+  duration_ms: 16.608141
+  type: 'test'
+  ...
+# Subtest: favorites refresh during lock wait cannot authorize the originally stale action
+ok 75 - favorites refresh during lock wait cannot authorize the originally stale action
+  ---
+  duration_ms: 5.963216
+  type: 'test'
+  ...
+# Subtest: favorites persistent writes fail explicitly without a browser lock, but reads and export work
+ok 76 - favorites persistent writes fail explicitly without a browser lock, but reads and export work
+  ---
+  duration_ms: 8.029338
+  type: 'test'
+  ...
+# Subtest: favorites memory-only mode uses a local queue without requiring browser locks
+ok 77 - favorites memory-only mode uses a local queue without requiring browser locks
+  ---
+  duration_ms: 5.274558
+  type: 'test'
+  ...
+# Subtest: favorites callback failure releases the lock without installing a phantom save
+ok 78 - favorites callback failure releases the lock without installing a phantom save
+  ---
+  duration_ms: 8.599043
+  type: 'test'
+  ...
+# Subtest: learning queued tabs cannot both claim a stale write; fresh retry retains both records
+ok 79 - learning queued tabs cannot both claim a stale write; fresh retry retains both records
+  ---
+  duration_ms: 14.439596
+  type: 'test'
+  ...
+# Subtest: learning refresh during lock wait cannot authorize the originally stale action
+ok 80 - learning refresh during lock wait cannot authorize the originally stale action
+  ---
+  duration_ms: 4.563482
+  type: 'test'
+  ...
+# Subtest: learning persistent writes fail explicitly without a browser lock, but reads and export work
+ok 81 - learning persistent writes fail explicitly without a browser lock, but reads and export work
+  ---
+  duration_ms: 3.74425
+  type: 'test'
+  ...
+# Subtest: learning memory-only mode uses a local queue without requiring browser locks
+ok 82 - learning memory-only mode uses a local queue without requiring browser locks
+  ---
+  duration_ms: 1.178561
+  type: 'test'
+  ...
+# Subtest: learning callback failure releases the lock without installing a phantom save
+ok 83 - learning callback failure releases the lock without installing a phantom save
+  ---
+  duration_ms: 3.501679
+  type: 'test'
+  ...
+# Subtest: Wear, Favorites and learning acquire different lock namespaces without schema changes
+ok 84 - Wear, Favorites and learning acquire different lock namespaces without schema changes
+  ---
+  duration_ms: 4.549808
+  type: 'test'
+  ...
+# Subtest: fresh exposure starts empty and never interprets wear or rejection records
+ok 85 - fresh exposure starts empty and never interprets wear or rejection records
+  ---
+  duration_ms: 37.190669
+  type: 'test'
+  ...
+# Subtest: generation replay is idempotent after reload; new lists count each displayed row
+ok 86 - generation replay is idempotent after reload; new lists count each displayed row
+  ---
+  duration_ms: 4.173662
+  type: 'test'
+  ...
+# Subtest: refill records only caller-supplied new rows without re-counting retained options
+ok 87 - refill records only caller-supplied new rows without re-counting retained options
+  ---
+  duration_ms: 2.030848
+  type: 'test'
+  ...
+# Subtest: occasions remain independent and open-collar rows do not consume capacity
+ok 88 - occasions remain independent and open-collar rows do not consume capacity
+  ---
+  duration_ms: 8.585314
+  type: 'test'
+  ...
+# Subtest: independent tabs add immutable events without overwriting each other
+ok 89 - independent tabs add immutable events without overwriting each other
+  ---
+  duration_ms: 0.992066
+  type: 'test'
+  ...
+# Subtest: corrupt or unknown records fail closed for tracking and remain untouched
+ok 90 - corrupt or unknown records fail closed for tracking and remain untouched
+  ---
+  duration_ms: 0.948551
+  type: 'test'
+  ...
+# Subtest: unavailable storage is reported without a fabricated ephemeral history
+ok 91 - unavailable storage is reported without a fabricated ephemeral history
+  ---
+  duration_ms: 0.368824
+  type: 'test'
+  ...
+# Subtest: quota failure and capacity limit preserve earlier exposure
+ok 92 - quota failure and capacity limit preserve earlier exposure
+  ---
+  duration_ms: 1.371713
+  type: 'test'
+  ...
+# Subtest: invalid selections, conflicting fields, oversize batches and mutated records are rejected
+ok 93 - invalid selections, conflicting fields, oversize batches and mutated records are rejected
+  ---
+  duration_ms: 4.249899
+  type: 'test'
+  ...
+# Subtest: constructor accepts browser Storage directly and exposes unique injectable IDs
+ok 94 - constructor accepts browser Storage directly and exposes unique injectable IDs
+  ---
+  duration_ms: 3.425598
+  type: 'test'
+  ...
+1..94
+# tests 94
+# suites 0
+# pass 94
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1574.682166

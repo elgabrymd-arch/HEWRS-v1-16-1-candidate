@@ -1,0 +1,167 @@
+{
+  "schema": "hewrs.five-round-engine-adversarial.v1",
+  "round": 4,
+  "auditor": "deployment_audit",
+  "generated_utc": "2026-11-19T07:10:26.807871+00:00",
+  "scope": "Current Regenerate weather/manual continuation and Curated/Visual feedback ordering, plus policy-correct browser evidence harness repair.",
+  "reviewed_files": {
+    "src/outfit-refill-application.js": [
+      "Regenerate onclick",
+      "refreshAutomaticWeather",
+      "autoWeather onApplied",
+      "invalidateRecommendations",
+      "setStylistMode",
+      "cancel",
+      "submit/generate token comparison"
+    ],
+    "src/automatic-weather.js": [
+      "refresh flight/epoch ownership",
+      "cancel",
+      "onApplied publication"
+    ],
+    "src/hybrid-stylist.js": [
+      "curatedPool",
+      "select/history/capacity",
+      "visual proposal/render/evaluate flow",
+      "feedback dependency wiring",
+      "verify and issue tokens"
+    ],
+    "src/owner-feedback-integration.js": [
+      "post-generation veto and feedback wiring"
+    ],
+    "src/outfit-rejection-core.js": [
+      "before/after-generation token gate",
+      "reviewed native render context"
+    ],
+    "src/owner-feedback.js": [
+      "B01/B11 declared owner constraints",
+      "matching all rejection scopes and historical Neither"
+    ],
+    "src/reviewed-rejection-integration.js": [
+      "exact B01 context/request",
+      "load/update exploration/render route"
+    ],
+    "hewrs-batch10-discovery-16eeb4d0b24f21a9.js": [
+      "exact anchor search/inspect for B01 fixture"
+    ],
+    "tests/five-round-photos-browser.py": [
+      "full matrix control flow",
+      "owner-specific blazer fixtures",
+      "baseline native equality",
+      "atlas/RESULT persistence"
+    ],
+    "tests/five-round-state-browser.py": [
+      "Favorites storage-event replacement versus obsolete queued-error presentation"
+    ],
+    "src/rejection-database.js": [
+      "syncInternal durable read behavior",
+      "read/refresh/assertCurrent cached behavior",
+      "withCurrent atomic meta guard and assertCurrentAsync"
+    ]
+  },
+  "confirmed_defects": [
+    {
+      "id": "ENGINE-R4-001",
+      "title": "Regenerate restarted after weather cancellation or a newer user action",
+      "before": "evidence/five_round_20261119/engine-regenerate-before.json",
+      "reproduction": "Actual Regenerate onclick, actual automatic-weather coordinator and actual method/context/Cancel functions with a deferred weather transport. All three cancellation routes still invoked generate once after the coordinator returned cancelled. Manual cancelled rendering still navigated to Outfits.",
+      "repair_owner": "root",
+      "fixed_file": "src/outfit-refill-application.js",
+      "repair": "Own a generation token, recheck after weather, stop on cancelled weather, pass ownership through manual apply, suppress stale navigation/error publication.",
+      "after": "evidence/five_round_20261119/engine-regenerate-after.json",
+      "test": "tests/five-round-app-regenerate.cjs",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "id": "ENGINE-R4-002",
+      "title": "Curated and Visual candidates consumed capacity before explicit rejection filtering",
+      "independent_finder": "tie_rejection_audit",
+      "before": "evidence/five_round_20261119/storage-round4-curated-rejection-before.json",
+      "reproduction": "Curated Work had 15 rows. Rejecting S10/DS022/T022 clothing yielded 14 although 5 permitted rows fit the remaining capacity. Visual candidates also reached render/evaluation before the outer final veto.",
+      "repair_owner": "deployment_audit",
+      "fixed_file": "src/hybrid-stylist.js",
+      "repair": "Retain authoritative feedback dependency. Filter static owner constraints and saved rejections before Curated shortlist, history priority and capacity. Filter proposed Visual outfits before rendering/evaluation. Validate captured feedback through durable assertCurrentAsync after every async Visual boundary and before issuing options. Keep final outer veto.",
+      "after": "evidence/five_round_20261119/engine-hybrid-rejections-after.json",
+      "test": "tests/five-round-engine-hybrid-rejections.cjs",
+      "passed": 23,
+      "failed": 0,
+      "observed_recovery": "15 Curated choices retained with permitted S11/DS022/T022 replacement; no unintended global T022 exclusion."
+    },
+    {
+      "id": "ENGINE-R4-003",
+      "title": "Cached feedback checks missed an already committed peer rejection before visual image assessment",
+      "independent_finder": "tie_rejection_audit",
+      "before": "evidence/five_round_20261119/storage-round4-visual-peer-before.json",
+      "reproduction": "Actual IndexedDB facades share one database but have BroadcastChannel disabled. A peer commits a clothing rejection during propose. Synchronous refresh/assertCurrent still used the old generating-facade cache, allowing 20 private renders and 20 fixture evaluation images including the rejected outfit. The final durable publication guard rejected the result; this was not a final-display bypass.",
+      "repair_owner": "deployment_audit",
+      "fixed_file": "src/hybrid-stylist.js",
+      "repair": "Use the dependency atomic assertCurrentAsync where available, before propose and after each awaited stage; recheck cancellation and dependency identity. Retain synchronous pool/capacity filtering and final publication veto.",
+      "test": "tests/five-round-engine-hybrid-rejections.cjs",
+      "after": "evidence/five_round_20261119/engine-hybrid-rejections-after.json",
+      "observed": "No BroadcastChannel: commit during propose produces 0 renders/0 evaluations; commit during first render produces 1 render/0 evaluations; commit during evaluate prevents result publication. Healthy real-database continuation succeeds.",
+      "counted_with": "The same 23-check hybrid suite; not an additional 23 tests."
+    }
+  ],
+  "harness_findings": [
+    {
+      "kind": "invalid_fixture_not_application_defect",
+      "file": "tests/five-round-photos-browser.py",
+      "finding": "Common tied Work/dress-trouser fixture violates B01 and B11 owner rules. It must not be used to certify supported rendering.",
+      "repair": "Retain explicit blocked tests. B11 uses No Tie. B01 uses actual reviewed exploration with B01/PT006/DS026/NO_TIE/shoe-8, dinner, explicit summer_weekend_dinner. Exact discovery considered 1 clothing state and 1 shoe; native selection/owner policy validated locally. Browser route requires all 15 blazer IDs, identical baseline pixels, no approval or Home substitution claim."
+    },
+    {
+      "kind": "evidence_persistence",
+      "file": "tests/five-round-photos-browser.py",
+      "finding": "Missing DejaVu font caused atlas finally to fail before saving RESULT.",
+      "repair": "Use Pillow default font fallback; preserve primary failure and save RESULT in inner finally even if atlas fails."
+    },
+    {
+      "kind": "legitimate_async_UI_outcome",
+      "independent_finder": "s05_reproduction",
+      "file": "tests/five-round-state-browser.py",
+      "finding": "Favorites storage listener may replace the queued modal before rejection; the obsolete error must then be suppressed.",
+      "repair": "Require either a fresh refusal or exact cross-tab-refresh notice plus a recorded new non-null storage event. Durable preservation and explicit retry remain mandatory. Later WebKit transport-cache harness refinement is UI-owner work."
+    }
+  ],
+  "preservation": {
+    "source_pixels_changed": false,
+    "wardrobe_data_changed": false,
+    "source_numerical_scores_changed": false,
+    "editorial_reference_order_changed": false,
+    "provider_or_paid_calls_in_tests": 0
+  },
+  "limitations": [
+    "No local browser was launched; real Chromium/WebKit evidence is produced in root-coordinated CI.",
+    "The Regenerate test executes actual orchestration with deferred endpoint spies; it is not a pixel test.",
+    "The Visual tests use an in-process service fixture. They prove local eligibility and lifecycle boundaries, not remote model quality.",
+    "A remote proposal may itself name a banned outfit; local filtering now excludes that proposal before rendering, provider evaluation, rotation and capacity.",
+    "Curated and Visual remain finite/shortlist-based modes. The fix does not promise 20 choices or implement automatic refill for them.",
+    "This report is the fourth coordinated round contribution, not five independent whole-app passes."
+  ],
+  "reviewed_file_sha256": {
+    "src/outfit-refill-application.js": "78099bdc35a7f4189000a0eb53a4dfee1cea5cf91e9ecbb48683d674c9c66c57",
+    "src/automatic-weather.js": "b74837e7dfb7aeec83c5dfa523cbd69e77c857c78a6bbb2dcf3457f297a5fcba",
+    "src/hybrid-stylist.js": "16cb7f18d33e79b100c5dd6d10ad74deec7476d317dd4083a4d9aad3c4fc7a57",
+    "src/owner-feedback-integration.js": "ba32d6d31754eb29e717a6c47b9d1acd43441e47f2bcfe0d5d5bbd1d665594ab",
+    "src/outfit-rejection-core.js": "859edc166dd95e1d42de1e0a3c62e68833461cc4aa0f5f4434dcbf96462a32dd",
+    "src/owner-feedback.js": "03668782cb16631a90e8c3d5f7e64f05ff1695af4071ae1e3da3c9428b8c7b82",
+    "src/reviewed-rejection-integration.js": "e598414dca714ddf9c06149c4f8af2a40583cbdf6c277ab131f384fdb041f6ff",
+    "hewrs-batch10-discovery-16eeb4d0b24f21a9.js": "16eeb4d0b24f21a9ad98340861ec5bef0101a5442fcd527665607a18a931a104",
+    "tests/five-round-photos-browser.py": "bfab770cda211cf69f716bd2c7ed95f8ef5d22840e02e3a4f7cae2d161708be0",
+    "tests/five-round-state-browser.py": "7e7bf2df13e6b181f7ef1602b334e7afc70b9e8e0b2fc771927fba2fec0eddef",
+    "src/rejection-database.js": "8befbd68827f7b7254b75518843d97942ba4ffeacb1220f628f5173188f1676a"
+  },
+  "unique_regression_suites": [
+    {
+      "file": "tests/five-round-app-regenerate.cjs",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "file": "tests/five-round-engine-hybrid-rejections.cjs",
+      "passed": 23,
+      "failed": 0
+    }
+  ]
+}

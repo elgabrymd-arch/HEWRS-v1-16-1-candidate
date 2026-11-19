@@ -1,0 +1,52 @@
+{
+  "source": "src/outfit-refill-application.js",
+  "actualMethods": true,
+  "controlledEndpoints": [
+    "weather.locate",
+    "generate",
+    "apply"
+  ],
+  "checks": [
+    {
+      "name": "Regenerate cannot resume after method during its actual automatic-weather preflight",
+      "passed": true
+    },
+    {
+      "name": "Regenerate cannot resume after context during its actual automatic-weather preflight",
+      "passed": true
+    },
+    {
+      "name": "Regenerate cannot resume after cancel during its actual automatic-weather preflight",
+      "passed": true
+    },
+    {
+      "name": "Regenerate cannot resume after weather_cancel_only during its actual automatic-weather preflight",
+      "passed": true
+    },
+    {
+      "name": "Healthy Regenerate continues after its own weather refresh with current date and exact preferences",
+      "passed": true
+    },
+    {
+      "name": "Overlapping Regenerate clicks share weather but only the newest action may generate",
+      "passed": true
+    },
+    {
+      "name": "Manual Regenerate cancelled result respects the current action before navigation or error publication",
+      "passed": true
+    },
+    {
+      "name": "Manual Regenerate healthy result respects the current action before navigation or error publication",
+      "passed": true
+    },
+    {
+      "name": "Manual Regenerate stale_error result respects the current action before navigation or error publication",
+      "passed": true
+    }
+  ],
+  "passed": 9,
+  "failed": 0,
+  "limitations": [
+    "This isolates handler ownership; real pixels and browser UI are verified separately."
+  ]
+}

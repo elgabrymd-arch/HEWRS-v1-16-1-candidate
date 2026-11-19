@@ -1,62 +1,41 @@
-# HEWRS option cards — V1.23.2 (includes shoe-15)
+# HEWRS
 
-This is a cumulative incremental update for your existing app. It installs over
-exact V1.23.0 (from the seven-part handoff) OR exact V1.23.1-shoe15. The correct
-starting version is detected from its manifest. The previous shoe-15 patch does
-not have to be installed separately. This is not a standalone app.
+[Open the current application](https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/).
 
-The running Outfits screen now keeps the full outfit on the left and the current
-item pictures/IDs/names on the right. Tap a thumbnail to enlarge its picture.
-Item pictures opens all roles. Navigation, Full/Collar/Enlarge, Standard view,
-export, weather, scoring, Favorites, history and feedback are retained.
+`index.html` and `app.html` are identical current entrypoints. The active delivery is `runtime/outfit-refill-preview.js`, generated from current candidate sources with `tools/build_tie_candidate.py`.
 
-## Apply to the existing local app folder
+## Current audit
 
-Extract the ZIP. In its extracted HEWRS_OPTION_CARDS_UPDATE_V1_23_2 folder run:
+The November 19, 2026 audit covers the complete current application graph: generation, all rejection scopes, shirt photographs and collars, image transport, comparison/learning, Favorites, confirmed wear, imports/exports, cross-tab state, and delivery integrity.
 
-    python -B apply_update.py "/path/to/current/app" --dry-run
-    python -B apply_update.py "/path/to/current/app"
-    python -B "/path/to/current/app/tools/verify_card_layout.py"
+[PLAN.json](evidence/five_round_20261119/PLAN.json) records the actual status of the five passes. [FIVE_ROUND_AUDIT_20261119.md](FIVE_ROUND_AUDIT_20261119.md) records findings, validation and limits. The **Five-round total product audit**, **Audit every rejection path**, and **Verify live rejection integration** workflows retain browser evidence.
 
-The target is the folder containing your existing index.html and
-PACKAGE_SHA256.json, NOT the whole private handoff directory. Use Python 3.9+;
-the installer/verifier use the standard library only. No npm build is required.
-The source bundle, entry points, CSS fingerprint and SRI are already built.
+A tie-only replacement preserves the accepted shirt, jacket, trousers, shoes and watch. Exact scopes and occasions remain binding. An exhausted finite search returns fewer eligible options; it does not relax a rejection to fill twenty slots. Unreadable rejection storage pauses generation and display.
 
-The installer checks every baseline file and patch payload before changing any
-file. It refuses unknown versions or edited/extra app files (Git metadata and
-Python bytecode caches are ignored). Existing later edits are not overwritten.
-No browser storage, feedback, wear, Favorites, network, Git or credentials are
-accessed. Do not clear browser data to apply this update.
+## Source authority
 
-Producing or applying this local ZIP does NOT update the hosted site. Deployment
-must use the updated existing application folder. Do not publish this whole ZIP
-or the private handoff. UPDATE is a partial file tree, not a complete site.
+The registered catalogue, approved garment/avatar images, original numerical score data, and frozen Standard release remain authoritative. The audit repairs application behavior and image transport; it does not redraw approved images or invent replacement identities or scores.
 
-## Rollback
+The active shirt roster is DS001–DS048, DS050 and DS051. DS049 remains retired. DS040–DS043 are No Tie only. DS026 intentionally keeps its earlier suit insert and the separately approved small-gingham source outside suits. No Tie describes tie absence, not a promise that every source photograph has an unbuttoned collar.
 
-Choose the same starting version reported during installation:
+Tests use disposable synthetic profiles. Updating the application does not require clearing browser data.
 
-    python -B apply_update.py "/path/to/current/app" --rollback-to 1.23.1-shoe15 --dry-run
-    python -B apply_update.py "/path/to/current/app" --rollback-to 1.23.1-shoe15
+## Reproduce current delivery
 
-Or, to restore the original V1.23.0 before either correction:
+```bash
+python3 tools/build_tie_candidate.py --check --verify-base
+python3 tools/audit_active_delivery.py
+python3 tools/audit_product_inventory.py
+node tools/audit_current_catalogue.cjs
+python3 tools/audit_product_integrity.py
+```
 
-    python -B apply_update.py "/path/to/current/app" --rollback-to 1.23.0 --dry-run
-    python -B apply_update.py "/path/to/current/app" --rollback-to 1.23.0
+After an intentional current-source change, use `python3 tools/build_tie_candidate.py --write`. It pins direct scripts/styles, the lazy option index, reviewed-panel modules, and the suit-photo utility to actual content hashes and SRI. The pinned earlier candidate must still reproduce byte for byte.
 
-Rollback also verifies every current file before restoring original bytes and
-removing new paths. Later changes cause a refusal, not a blind overwrite.
+The workflow installs isolated fake-indexeddb, Playwright and Pillow dependencies and runs behavioral checks in Chromium and WebKit. WebKit is not a physical iPhone test. Optional paid-service checks use controlled responses and make no provider call.
 
-## Contents
+## Retained history
 
-UPDATE/ contains the changed/new app files, including the shoe-15 correction,
-rebuilt runtime, source, current manifest, tests and evidence. ROLLBACK/ contains
-exact original changed files for both supported baselines. MANIFESTS/ contains
-the exact version manifests. PATCH.json gives per-file before/after identities.
-CORRECTION_REPORT.md describes executed tests and limits. PACKAGING_TESTS.json
-records the actual apply/rollback checks for both baselines.
+The original [V1.23.2 update instructions](docs/history/README-option-cards-v1_23_2.md), `RELEASE_SCOPE.json`, frozen manifests/runtimes, rollback trees and older audits describe their own checkpoints. They are retained historical records, not the current publication receipt.
 
-The real Classic/Hybrid zero-result condition, missing shoe connections, other
-shoe appearance issues and rejected-outfit recurrence are not fixed by this UI
-change. Physical iPhone/Safari and hosted-cache behavior have not been tested.
+The [code inventory](evidence/five_round_20261119/INVENTORY.json) and [lineage review](evidence/five_round_20261119/ui-round4-reachability.json) distinguish reachable code, tests/tools, historical copies and alternate entrypoints. Historical direct URLs remain separate applications; the current interface does not navigate into them.

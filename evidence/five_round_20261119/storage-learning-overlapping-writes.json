@@ -1,0 +1,11 @@
+{
+  "test": "lockless learning fallback: two tabs overlap after validated getItem read before setItem",
+  "both_claimed_saved": true,
+  "durable_ids": [
+    "pref_tab_a"
+  ],
+  "peer_cache_ids": [
+    "pref_tab_b"
+  ],
+  "conclusion": "The earlier successful peer vote is silently replaced because a JavaScript promise is not a cross-tab transaction."
+}
