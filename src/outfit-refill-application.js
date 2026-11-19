@@ -10,10 +10,14 @@ const tieExposure=root.HEWRSTieExposure.create(backend);
 const connection=root.HEWRSCleanConnection.create(root.HEWRS_INPUTS);
 // Keep the actual persistent ledger when validation fails. Its blocked state
 // must not become an empty, permissive session ledger.
-const ownerFeedback=root.HEWRSOutfitFeedback.create({storage:backend,validateSelection:s=>connection.validateSelection(s)});
+need(root.HEWRSRejectionDatabase?.create,'The rejection database module is missing.');
+let rejectionDatabase;try{rejectionDatabase=root.indexedDB;}catch{rejectionDatabase=null;}
+const ownerFeedback=root.HEWRSRejectionDatabase.create({indexedDB:rejectionDatabase,legacyStorage:backend,
+ feedback:root.HEWRSOutfitFeedback,tieFeedback:root.HEWRSTieFeedback,
+ validateSelection:s=>connection.validateSelection(s),onBlocked:error=>setFeedbackReadError(error)});
 let feedbackReadError=null;
 try{ownerFeedback.refresh();}catch(error){feedbackReadError=errorText(error);}
-function feedbackPersistent(){const s=ownerFeedback.status();return s.persistent===true&&s.ready===true&&!s.blocked&&!feedbackReadError;}
+function feedbackPersistent(){const s=ownerFeedback.status();return s.persistent===true&&s.ready===true&&!s.blocked&&!s.stale&&!feedbackReadError;}
 connection.ownerFeedback.set(ownerFeedback);
 const visualStylist=root.HEWRSVisualStylistClient.create();connection.hybrid.setService(visualStylist);
 // Styling mode is separate from wear/Favorites. Credentials never enter storage.
@@ -182,9 +186,10 @@ function weatherSheet(){
  const applyWeather=button('Apply',()=>{need(!pending,'Wait for the lookup to finish');need(ready(),'Choose a valid location/date result or complete the manual conditions');cancelLookup();if(!draftAuto)autoWeather.disable();weather.apply(draft);ctx={...ctx,localDate:draftDate};dismissSheet(false);invalidateRecommendations('Weather settings updated. Generate again for current conditions.');updateHome();status(weatherSummary(weather.snapshot()));},true);applyWeather.id='weather-apply';
  actions.append(button('Cancel',()=>dismissSheet()),skip,applyWeather);setFields();
 }
-function largerOutfit(){
+async function largerOutfit(){
  need(current&&!busy,'Wait for the outfit to finish loading');
- try{checkRejectionFeedback();}catch{return;}
+ try{await checkRejectionFeedbackAsync();}catch{return;}
+ if(!current||busy)return;
  const {body,actions}=openSheet('Larger outfit view',{list:true});
  modal.kind='outfit_large';
  body.append(el('p',ids(current)+' · Display zoom only; garment geometry is unchanged.','fx-caption'));
@@ -293,8 +298,9 @@ function cardItemPictures(){
  actions.append(button('Close',()=>dismissSheet()));
 }
 function setCardLayout(v){need(v==='cards'||v==='standard','Unknown presentation');$('app').dataset.outfitLayout=v;$('layout-cards').setAttribute('aria-pressed',String(v==='cards'));$('layout-standard').setAttribute('aria-pressed',String(v==='standard'));}
-function exportOptionCards(){if(!current||busy)return;
- try{checkRejectionFeedback();}catch{return;}
+async function exportOptionCards(){if(!current||busy)return;
+ try{await checkRejectionFeedbackAsync();}catch{return;}
+ if(!current||busy)return;
  const models=options.length?options.map((o,i)=>cardModel(connection.selectionFromOption(o,lastRequest).selection,o,i+1,options.length)):[cardModel(current,null,null,null)],one=copy(cardPresentation);
  const source=document.createElement('canvas');source.width=996;source.height=2748;source.getContext('2d').drawImage($('avatar'),0,0);
  let stopped=false,working=false,urls=[];
@@ -304,9 +310,10 @@ function exportOptionCards(){if(!current||busy)return;
  const progress=el('p','Choose an export. The saved file is a snapshot, not an application update.','fx-caption');progress.id='card-export-status';progress.setAttribute('role','status');
  const downloads=el('div',undefined,'fx-data-actions');downloads.id='card-export-downloads';
  async function prepare(kind){if(working)return;working=true;pngButton.disabled=bookButton.disabled=true;downloads.replaceChildren();progress.textContent=kind==='png'?'Preparing the current card…':'Preparing '+models.length+' existing option cards…';
-  try{const feedbackToken=checkRejectionFeedback().token;const blob=kind==='png'?await optionCards.png(one,source):await optionCards.book(models,{resolveUrl,isCancelled:()=>stopped||modal?.token!==token,onProgress:p=>{if(!stopped)progress.textContent='Prepared '+p.completed+' of '+p.total+' cards…';}});if(stopped||modal?.token!==token)return;
-   rejectionGate().assertCurrent(feedbackToken);
-   const url=URL.createObjectURL(blob);urls.push(url);const link=el('a',kind==='png'?'Save card image (PNG)':'Save all '+models.length+' cards (HTML)','lb-download');link.href=url;link.download='HEWRS_'+(kind==='png'?'OPTION_CARD':'OPTION_CARDS_'+models.length)+'_'+one.date.replace(/[^0-9-]/g,'')+(kind==='png'?'.png':'.html');link.id='card-export-save';downloads.append(link);progress.textContent=kind==='png'?'Card ready. Select Save card image.':'Cards ready. Save the HTML, then open it on any device. Browser Print / Save as PDF uses one card per page.';
+  try{const feedbackToken=(await checkRejectionFeedbackAsync()).token;const blob=kind==='png'?await optionCards.png(one,source):await optionCards.book(models,{resolveUrl,isCancelled:()=>stopped||modal?.token!==token,onProgress:p=>{if(!stopped)progress.textContent='Prepared '+p.completed+' of '+p.total+' cards…';}});if(stopped||modal?.token!==token)return;
+   const publish=()=>{if(stopped||modal?.token!==token)return;rejectionGate().assertCurrent(feedbackToken);
+    const url=URL.createObjectURL(blob);urls.push(url);const link=el('a',kind==='png'?'Save card image (PNG)':'Save all '+models.length+' cards (HTML)','lb-download');link.href=url;link.download='HEWRS_'+(kind==='png'?'OPTION_CARD':'OPTION_CARDS_'+models.length)+'_'+one.date.replace(/[^0-9-]/g,'')+(kind==='png'?'.png':'.html');link.id='card-export-save';downloads.append(link);progress.textContent=kind==='png'?'Card ready. Select Save card image.':'Cards ready. Save the HTML, then open it on any device. Browser Print / Save as PDF uses one card per page.';};
+   if(rejectionGate().withCurrent)await rejectionGate().withCurrent(feedbackToken,publish);else publish();
   }catch(e){if(!stopped)progress.textContent='Export not completed: '+e.message;}finally{working=false;if(!stopped){pngButton.disabled=bookButton.disabled=false;}}
  }
  const pngButton=button('Create current card image',()=>prepare('png')),bookButton=button('Create all '+models.length+' cards',()=>prepare('html'));pngButton.id='export-card-png';bookButton.id='export-cards-html';body.append(note,pngButton,bookButton,progress,downloads);actions.append(button('Close / cancel export',()=>dismissSheet()));
@@ -335,17 +342,21 @@ function showGenerationFailure(error){
 } 
 function sessionValue(s,o,date,context){return {selection:copy(s),origin:o,mode,localDate:date,context:root.HEWRSStyleOccasions.context(copy(context))};}
 async function apply(s,opts={}){
- checkRejectionFeedback();
+ const token=opts.token??++generation;if(opts.token===undefined)renderer.cancel();
+ const feedbackToken=(await checkRejectionFeedbackAsync()).token;
+ if(token!==generation)return {cancelled:true};
  autoWeather.cancel();
- const token=opts.token??++generation;if(opts.token===undefined)renderer.cancel();connection.validateSelection(s);if(s.shirtOnly&&opts.origin&&opts.origin!=='manual')throw Error('Shirt-only is an exact manual selection');
+ connection.validateSelection(s);if(s.shirtOnly&&opts.origin&&opts.origin!=='manual')throw Error('Shirt-only is an exact manual selection');
  const previousSelection=current?copy(current):null;const priorBusy=busy;setBusy(true);status(current?'Loading next outfit…':'Loading approved source layers…');
  try{if(opts.historyToken)store.assertCurrent(opts.historyToken);if(opts.preferenceToken)learning.assertCurrent(opts.preferenceToken);const out=await renderer.render(s);if(token!==generation||out.cancelled)return {cancelled:true};
   if(opts.historyToken||opts.preferenceToken){try{if(opts.historyToken)store.assertCurrent(opts.historyToken);if(opts.preferenceToken)learning.assertCurrent(opts.preferenceToken);}catch(e){if(previousSelection)await renderer.render(previousSelection);else $('outfit-output').hidden=true;throw e;}}
+  const publish=()=>{if(token!==generation)return {cancelled:true};rejectionGate().assertCurrent(feedbackToken);
   current=copy(s);pendingInitialOutfit=null;root.HEWRS_OUTFIT_READY=true;origin=opts.origin||'manual';currentOption=opts.option||null;score=opts.score||connection.scoreSelection(s,opts.context||currentContext());
   if(s.shirtOnly)setMode('anchor');if(opts.localDate)ctx.localDate=opts.localDate;if(opts.context){ctx.occasion=root.HEWRSStyleOccasions.occasion(opts.context.occasion);ctx.formality=opts.context.requiredFormality;}
   if(!opts.keepPreferences)ui.fromSelection(s);presentFrame();displayCurrent();updateHome();
   if(opts.save!==false){try{store.saveSession(sessionValue(s,origin,ctx.localDate,opts.context||currentContext()));if(opts.historyToken)optionHistoryToken=store.readForGeneration().token;}catch(e){status('Outfit ready. '+e.message,true);refreshHistory();return out;}}
   refreshHistory();status(origin==='engine'?'Engine result ready.':'Selection ready.');return out;
+  };return rejectionGate().withCurrent?await rejectionGate().withCurrent(feedbackToken,publish):publish();
  }catch(e){if(token===generation)status('Selection not applied: '+e.message,true);throw e;}
  finally{if(token===generation){setBusy(priorBusy&&opts.token!==undefined);displayCurrent();}}
 }
@@ -376,20 +387,24 @@ function recordTieSuggestions(q,rows,id,kind){
  if(!result.saved)status('Outfit list ready. Tie suggestion history could not be saved: '+result.error,true);
 }
 async function generate(c,extra={}){
- checkRejectionFeedback();
+ const token=++generation;renderer.cancel();autoWeather.cancel();
+ const feedbackToken=(await checkRejectionFeedbackAsync()).token;
+ if(token!==generation)return {cancelled:true};
  lastAttemptRequest=null;autoWeather.cancel();
  const prefRead=syncLearningFor({occasion:c.occasion||ctx.occasion,requiredFormality:c.formality||ctx.formality});optionPreferenceToken=prefRead.token;
- const q=connection.makeRequest(c),previousKey=current?selectionKey(current):null,previousRequest=lastRequest?JSON.stringify(lastRequest):null,token=++generation,exposureId=tieExposure.newId();renderer.cancel();lastRequest=copy(q);lastAttemptRequest=copy(q);options=[];report=null;optionIndex=-1;currentOption=null;if($('tie-exposure-notice'))$('tie-exposure-notice').textContent='';
+ const q=connection.makeRequest(c),previousKey=current?selectionKey(current):null,previousRequest=lastRequest?JSON.stringify(lastRequest):null,exposureId=tieExposure.newId();lastRequest=copy(q);lastAttemptRequest=copy(q);options=[];report=null;optionIndex=-1;currentOption=null;if($('tie-exposure-notice'))$('tie-exposure-notice').textContent='';
  producing={kind:'engine',config:copy(c),prefs:copy(extra.prefs||ui.snapshot()),mode,context:copy(ctx)};setBusy(true);status('Building outfits…');
  try{if(q.automatic&&(!q.stylist||['research','heuristic'].includes(q.stylist.mode))){status('Loading outfit index… First generation only.');await root.HEWRSRuntimeLoader.ensureIndex();if(token!==generation)return {cancelled:true};}const read=store.readForGeneration();optionHistoryToken=read.token;const r=await connection.controller.generateAsync(q,connection.catalogue,read.events,{isCancelled:()=>token!==generation,renderForStylist,onProgress:p=>{if(token===generation){const msg=p.phase==='rendering-for-visual-review'?'Preparing actual outfit images: '+(p.examined||0)+(p.total?' / '+p.total:''):p.phase==='reviewing-complete-outfits-for-each-tie'?'Evaluating complete outfits… '+(p.domain_evaluated||0)+(p.tie?' · '+p.tie:''):p.phase==='outfit-accessory-evaluation'?'Evaluating complete outfits… '+(p.domain_evaluated||0):p.phase==='scoring-shortlisted-clothing'?'Scoring verified candidates… '+(p.examined||0)+' / '+(p.total||0):p.phase==='curating-complete-outfits'?'Curating options… '+(p.returned||0):'Building outfits… '+(p.examined||0)+(p.total?' / '+p.total:'');status(msg);}}});if(token!==generation||r.status==='cancelled')return {cancelled:true};
   store.assertCurrent(read.token);learning.assertCurrent(prefRead.token);need(connection.controller.verifyOptionSet(r.options||[],q),'Returned options violate current physical-item limits or source bindings');report=r;options=r.options||[];const styleMix=Object.entries(options.reduce((a,o)=>{const s=o._hewrsConnected?.compatibility?.style?.classification;if(s)a[s]=(a[s]||0)+1;return a;},{})).map(([s,n])=>n+' '+(styleLabels[s]||s)).join(' · ');$('outfit-summary').textContent=options.length+' options · '+(r.stylist?(r.stylist.live_ai_used?'Live visual outfit assessment. ':'Local curated reference selection; no live AI. '):q.automatic?(q.stylist?.mode==='research'?'Research-based wardrobe generator; no live AI. ':'Existing heuristic ranking. '):'')+(r.diagnostics?.examined||0)+' source candidates checked. Unanchored ties: once per list; other items: at most twice. '+(root.HEWRSStyleOccasions.noTieCap(q)===null?'No separate No Tie cap.':'No Tie: at most twice unless selected.')+(styleMix?' '+styleMix+'.':'')+(q.automatic?' '+weatherSummary(q.environment)+(r.reason?' '+r.reason:''):'');
-  if(!options.length){const outcome=r.no_match||{kind:'no_match',code:'NO_MATCH',title:'No matching outfits',message:r.reason||'No complete outfit matches these selections.',alternative_styles:[]};presentEmpty(outcome.message,outcome);status('Search complete: no matching outfits. Selections retained.');showPage('outfits');return r;}
+  if(!options.length){const outcome=r.no_match||{kind:'no_match',code:'NO_MATCH',title:'No matching outfits',message:r.reason||'No complete outfit matches these selections.',alternative_styles:[]};presentEmpty(outcome.message,outcome);status((r.no_match?.message||'No matching outfits were found under the current selections and list limits.')+' Selections retained.');showPage('outfits');return r;}
   let index=0;if(previousKey&&previousRequest===JSON.stringify(q)){const match=options.findIndex(o=>selectionKey(connection.selectionFromOption(o,q).selection)===previousKey);if(match>=0)index=match;}
-  const o=options[index],b=connection.selectionFromOption(o,q);const frame=await apply(b.selection,{token,historyToken:read.token,preferenceToken:prefRead.token,origin:'engine',option:o,score:o._hewrsConnected.compatibility,context:q.context,localDate:q.localDate,keepPreferences:true});if(token!==generation||frame.cancelled)return {cancelled:true};optionIndex=index;presentFrame();displayCurrent();showPage('outfits');recordTieSuggestions(q,options,exposureId,'generation');return r;
+  const o=options[index],b=connection.selectionFromOption(o,q);const frame=await apply(b.selection,{token,historyToken:read.token,preferenceToken:prefRead.token,origin:'engine',option:o,score:o._hewrsConnected.compatibility,context:q.context,localDate:q.localDate,keepPreferences:true});if(token!==generation||frame.cancelled)return {cancelled:true};
+  const publish=()=>{if(token!==generation)return {cancelled:true};rejectionGate().assertCurrent(feedbackToken);optionIndex=index;presentFrame();displayCurrent();showPage('outfits');recordTieSuggestions(q,options,exposureId,'generation');return r;};
+  return rejectionGate().withCurrent?await rejectionGate().withCurrent(feedbackToken,publish):publish();
  }catch(e){if(token===generation){refreshHistory();showGenerationFailure(e);}throw e;}
  finally{if(token===generation){setBusy(false);displayCurrent();}}
 }
-async function submit(){if(busy)return;lastAttemptRequest=null;try{checkRejectionFeedback();await refreshAutomaticWeather('generate');need(root.HEWRSLocalState.date(ctx.localDate),'Enter a valid local date');syncLearningFor(currentContext());const tentative=ui.operation(mode,{...ctx,environment:{source:'not_assessed',date:ctx.localDate}});const op=tentative.kind==='manual'?tentative:ui.operation(mode,{...ctx,environment:weather.request(ctx.localDate)});if(op.kind==='manual'){options=[];optionIndex=-1;lastRequest=null;report=null;producing={kind:'manual',selection:copy(op.selection),prefs:copy(op.prefs),mode,context:copy(ctx)};$('outfit-summary').textContent='Exact manual selection; existing score-source holds do not block supported rendering.';const r=await apply(op.selection,{origin:'manual',keepPreferences:true,context:currentContext(),localDate:ctx.localDate});if(!r.cancelled)showPage('outfits');}else await generate(op.config,{prefs:op.prefs});}catch(e){showGenerationFailure(e);}}
+async function submit(){if(busy)return;const token=++generation;lastAttemptRequest=null;try{await checkRejectionFeedbackAsync();if(token!==generation)return {cancelled:true};await refreshAutomaticWeather('generate');if(token!==generation)return {cancelled:true};need(root.HEWRSLocalState.date(ctx.localDate),'Enter a valid local date');syncLearningFor(currentContext());const tentative=ui.operation(mode,{...ctx,environment:{source:'not_assessed',date:ctx.localDate}});const op=tentative.kind==='manual'?tentative:ui.operation(mode,{...ctx,environment:weather.request(ctx.localDate)});if(op.kind==='manual'){options=[];optionIndex=-1;lastRequest=null;report=null;producing={kind:'manual',selection:copy(op.selection),prefs:copy(op.prefs),mode,context:copy(ctx)};$('outfit-summary').textContent='Exact manual selection; existing score-source holds do not block supported rendering.';const r=await apply(op.selection,{token,origin:'manual',keepPreferences:true,context:currentContext(),localDate:ctx.localDate});if(!r.cancelled)showPage('outfits');}else await generate(op.config,{prefs:op.prefs});}catch(e){if(token===generation)showGenerationFailure(e);}}
 function cancel(){visualStylist.cancel();autoWeather.cancel();generation++;renderer.cancel();setBusy(false);status('Pending work cancelled. Previous complete outfit retained.');if(current){try{if(current.state!=='REFERENCE'&&!rejectionGate().allowed(current,lastRequest?.context||currentContext()))rejectionSummary('Replacement cancelled. The remaining choices are retained.');else{presentFrame();displayCurrent();}}catch{$('outfit-output').hidden=true;}}}
 /* Preview-only rejection reconciliation. The accepted application source remains
  * untouched. Retained options stay byte-for-byte stable; only new verified rows
@@ -419,6 +434,10 @@ function setFeedbackReadError(error){
 }
 function checkRejectionFeedback(){
  try{const snapshot=rejectionGate().refresh();setFeedbackReadError(null);return snapshot;}
+ catch(error){setFeedbackReadError(error);throw error;}
+}
+async function checkRejectionFeedbackAsync(){
+ try{const gate=rejectionGate();if(gate.sync)await gate.sync();return checkRejectionFeedback();}
  catch(error){setFeedbackReadError(error);throw error;}
 }
 function rejectionSummary(reason=''){
@@ -465,8 +484,10 @@ function rejectionChanged(){
  }
 }
 async function refillRejected(){
- checkRejectionFeedback();
+ const token=++generation;
+ await checkRejectionFeedbackAsync();
  const target=root.HEWRSOptionSetPolicy.target,stable=root.HEWRSOutfitFeedback.stable;
+ if(token!==generation)return {added:0,retained:options.length,count:options.length,target,cancelled:true};
  const gate=rejectionGate(),q=lastRequest&&copy(lastRequest),produced=producing&&copy(producing);
  if(!q||!produced||produced.kind!=='engine'){
   const reason='No generated list is available to refill. Generate using your current selections.';
@@ -476,7 +497,7 @@ async function refillRejected(){
   const reason='Automatic replacement is available for the local wardrobe generators. Remaining choices are retained; no provider request was made.';
   rejectionSummary(reason);return {added:0,retained:options.length,count:options.length,target,reason};
  }
- const retained=options.slice(),retainedValues=retained.map(stable),kept=retained.length,token=++generation,exposureId=tieExposure.newId();
+ const retained=options.slice(),retainedValues=retained.map(stable),kept=retained.length,exposureId=tieExposure.newId();
  renderer.cancel();autoWeather.cancel();setBusy(true);
  let feedbackToken,historyToken,preferenceToken;
  function assertCurrent(){
@@ -527,6 +548,7 @@ async function refillRejected(){
    assertCurrent();
   }
   const reason=next.length<target?'Only '+next.length+' eligible, distinct options were found under the current selections and list limits.':'The list is back to '+target+' distinct options.';
+  const publish=()=>{assertCurrent();
   options=next;optionIndex=index;currentOption=index>=0?options[index]:null;
   report={...generated,options,returned_options:options.length,requested_options:target,option_policy:root.HEWRSOptionSetPolicy.inspect(options,q),
    refill:{target,count:options.length,retained:kept,added,pending:false},reason};
@@ -536,6 +558,7 @@ async function refillRejected(){
   }
   rejectionSummary(reason);refreshHistory();showPage('outfits');recordTieSuggestions(q,next.slice(kept),exposureId,'refill');
   return {added,retained:kept,count:options.length,target,reason};
+  };return gate.withCurrent?await gate.withCurrent(feedbackToken,publish):publish();
  }catch(error){
   if(token!==generation)return {added:0,retained:kept,count:options.length,target,cancelled:true,reason:errorText(error)};
   // Keep the filtered accepted list and its navigation after a failed refill.
@@ -556,7 +579,7 @@ function invalidateRecommendations(reason='Local history changed. Generate again
 }
 function details(){if(!current)return;const{body,actions}=openSheet('Outfit details');if(currentOption?._hewrsConnected?.preference?.explanation)body.append(el('p',currentOption._hewrsConnected.preference.explanation,'fx-caption'));if(currentOption?._hewrsConnected?.stylist)body.append(el('p',currentOption._hewrsConnected.stylist.explanation,'fx-caption'));for(const r of itemsFor(current)){const row=el('div',undefined,'fx-details-item');row.append(el('strong',r.role+(r.id?' · '+r.id:'')),el('span',r.name));body.append(row);}body.append(el('p','Watch ID and name are shown; watch imagery is deferred.','fx-caption'));actions.append(button('Close',()=>dismissSheet()));}
 function scoreDetails(){const{body,actions}=openSheet('Score details');body.append(el('p',Number.isFinite(score?.display_score)?score.display_score.toFixed(2)+' / 10 — Current source-based compatibility — '+(score.style?.classification||score.status):'A score is unavailable for this selection. It is not zero.','fx-caption'),el('pre',JSON.stringify({stylist:currentOption?._hewrsConnected?.stylist||null,personalized_preference:currentOption?._hewrsConnected?.preference||null,list_curation:currentOption?._hewrsConnected?.curation||null,current_source_derived_compatibility:score,source_correction:current?.suitId==='S02'?root.HEWRSSourceCorrections.record():null,weather:currentOption?._hewrsConnected?.environment||null,accessories:currentOption?._hewrsConnected?.accessory_assessment||null},null,2)));actions.append(button('Close',()=>dismissSheet()));}
-function resultSheet(){try{checkRejectionFeedback();}catch{return;}const{body,actions}=openSheet('Outfit options');modal.kind='outfit_results';if(!options.length)body.append(el('p',report?.reason||'No current Engine options.','fx-caption'));for(const [i,o]of options.entries()){const s=connection.selectionFromOption(o,lastRequest).selection;const b=el('button',undefined,'fx-choice');b.append(el('span',(i+1)+' · '+ids(s),'fx-choice-id'),el('span',connection.records[s.shirtId].label,'fx-choice-name'),el('span',o._hewrsConnected.stylist?(o._hewrsConnected.stylist.method==='visual'?'Visual AI · '+o._hewrsConnected.stylist.grade:'Curated reference'):o._hewrsConnected.preference?o._hewrsConnected.preference.score.toFixed(1)+' / 10 · '+(o._hewrsConnected.preference.revision==='hewrs.researched-styling.v1_24_0'?(o._hewrsConnected.preference.learning?.active?'learned local preference':'research-informed local fit'):'personal styling fit'):o._hewrsConnected.compatibility.display_score.toFixed(2)+' / 10 · original compatibility','fx-option-score'));b.onclick=async()=>{try{dismissSheet();await selectOption(i);showPage('outfits');}catch(e){status(e.message,true);}};body.append(b);}actions.append(button('Close',()=>dismissSheet()));}
+async function resultSheet(){try{await checkRejectionFeedbackAsync();}catch{return;}const{body,actions}=openSheet('Outfit options');modal.kind='outfit_results';if(!options.length)body.append(el('p',report?.reason||'No current Engine options.','fx-caption'));for(const [i,o]of options.entries()){const s=connection.selectionFromOption(o,lastRequest).selection;const b=el('button',undefined,'fx-choice');b.append(el('span',(i+1)+' · '+ids(s),'fx-choice-id'),el('span',connection.records[s.shirtId].label,'fx-choice-name'),el('span',o._hewrsConnected.stylist?(o._hewrsConnected.stylist.method==='visual'?'Visual AI · '+o._hewrsConnected.stylist.grade:'Curated reference'):o._hewrsConnected.preference?o._hewrsConnected.preference.score.toFixed(1)+' / 10 · '+(o._hewrsConnected.preference.revision==='hewrs.researched-styling.v1_24_0'?(o._hewrsConnected.preference.learning?.active?'learned local preference':'research-informed local fit'):'personal styling fit'):o._hewrsConnected.compatibility.display_score.toFixed(2)+' / 10 · original compatibility','fx-option-score'));b.onclick=async()=>{try{dismissSheet();await selectOption(i);showPage('outfits');}catch(e){status(e.message,true);}};body.append(b);}actions.append(button('Close',()=>dismissSheet()));}
 function canLog(){return !!current&&!busy&&!$('outfit-output').hidden&&current.state!=='REFERENCE'&&!store.status().blocked;}
 function startLog(){if(!canLog()||logTransaction?.pending)return;if(modal?.kind==='wear')return;
  const sel=copy(current),o=origin,date=ctx.localDate,id='wear_'+(root.crypto?.randomUUID?.()||Date.now()+'_'+Math.random().toString(16).slice(2));const{body,actions,token}=openSheet('Log This Outfit',{cancel:()=>{if(!logTransaction?.pending)logTransaction=null;updateLogButtons();}});modal.kind='wear';

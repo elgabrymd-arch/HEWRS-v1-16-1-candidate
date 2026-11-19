@@ -49,18 +49,25 @@
       let epoch = 0, last = null;
       return Object.freeze({...original,
         async render(selection) {
-          const turn = ++epoch, token = assertVisible(selection, visible);
+          const turn = ++epoch;
+          if (gate?.sync) await gate.sync();
+          if (turn !== epoch) return {cancelled:true};
+          const token = assertVisible(selection, visible);
           visible.dataset.loading = 'true';
           try {
             const result = await original.render(selection);
             if (turn !== epoch || result?.cancelled) return {cancelled:true};
-            gate.assertCurrent(token);
-            assertVisible(selection, visible);
-            const pixels = off.getContext('2d', {willReadFrequently:true}).getImageData(0, 0, off.width, off.height);
-            visible.getContext('2d', {willReadFrequently:true}).putImageData(pixels, 0, 0);
-            for (const key of Object.keys(visible.dataset)) delete visible.dataset[key];
-            Object.assign(visible.dataset, off.dataset, {loading:'false'});
-            last = clone(selection); return result;
+            const publish = () => {
+              if (turn !== epoch) return {cancelled:true};
+              gate.assertCurrent(token);
+              assertVisible(selection, visible);
+              const pixels = off.getContext('2d', {willReadFrequently:true}).getImageData(0, 0, off.width, off.height);
+              visible.getContext('2d', {willReadFrequently:true}).putImageData(pixels, 0, 0);
+              for (const key of Object.keys(visible.dataset)) delete visible.dataset[key];
+              Object.assign(visible.dataset, off.dataset, {loading:'false'});
+              last = clone(selection); return result;
+            };
+            return gate.withCurrent ? await gate.withCurrent(token, publish) : publish();
           } finally { if (turn === epoch) visible.dataset.loading = 'false'; }
         },
         cancel() { epoch++; original.cancel(); visible.dataset.loading = 'false'; },
@@ -108,12 +115,18 @@
       }
       return Object.freeze({...connection, controller:Object.freeze({...controller,
         generate(q, c, h) {
+          need(!gate?.requiresAsync, 'Saved rejections require asynchronous generation. Use generateAsync.');
           const token = beforeGeneration();
           return afterGeneration(controller.generate(q, c, h), q, h, token);
         },
         async generateAsync(q, c, h, o) {
+          if (gate?.sync) await gate.sync();
           const token = beforeGeneration();
-          return afterGeneration(await controller.generateAsync(q, c, h, o), q, h, token);
+          const result = await controller.generateAsync(q, c, h, o);
+          if (result?.status !== 'cancelled' && gate.withCurrent) {
+            return gate.withCurrent(token, () => afterGeneration(result, q, h, token));
+          }
+          return afterGeneration(result, q, h, token);
         }
       })});
     }});
@@ -126,8 +139,83 @@
   }
   intercept('HEWRSAtomicRenderer', wrapRenderer);
   intercept('HEWRSCleanConnection', wrapConnection);
+  // The database owns permanent records and indexed matching. This wrapper
+  // adds only session skips and the candidate's publication/replacement gate.
+  function attachDatabase(application) {
+    app = application;
+    const base = app.ownerFeedback, F = api(), T = root.HEWRSTieFeedback;
+    let cached = null, cachedBase = null, cachedRevision = -1;
+    const fail = error => { app.setFeedbackReadError?.(error); throw error; };
+    function snapshot() {
+      try {
+        const value = base.refresh();
+        if (cachedBase !== value || cachedRevision !== revision) {
+          cached = Object.freeze({...value, token:value.token+'\nreview-skips:'+revision,
+            temporary:Object.freeze([...temporary.values()].map(event => Object.freeze(clone(event))))});
+          cachedBase = value; cachedRevision = revision;
+        }
+        return cached;
+      } catch (error) { return fail(error); }
+    }
+    function match(value, context) {
+      snapshot();
+      const selection = F.normal(value), result = base.match(selection, context);
+      const occasion = F.occasion(typeof context === 'string' ? context : context?.occasion);
+      const reasons = [...result.reasons];
+      for (const event of temporary.values()) {
+        if (event.occasion !== 'all' && event.occasion !== occasion) continue;
+        const tied = T.isScope(event.scope);
+        if (tied && selection.state === 'NO_TIE') continue;
+        const getKey = tied ? T.key : F.key;
+        if (getKey(event.selection,event.scope) === getKey(selection,event.scope))
+          reasons.push({id:event.id,type:'temporary_skip',scope:event.scope,occasion:event.occasion,reason:event.reason});
+      }
+      return {...result,allowed:reasons.length===0,reasons};
+    }
+    function skip(value, options={}) {
+      snapshot();
+      const selection = F.normal(app.connection.validateSelection(value));
+      const scope = options.scope || 'outfit';
+      need(['outfit','clothing','tie','shirt_tie'].includes(scope),'Choose a listed rejection scope.');
+      if (T.isScope(scope)) T.key(selection,scope);
+      const occasion = F.occasion(typeof options.context === 'object' ? options.context.occasion : options.context || 'all');
+      const reason = options.reason || null, note = String(options.note || '').trim();
+      need([null,'colors','patterns','formality','footwear','other'].includes(reason) && note.length<=500,'Invalid rejection details.');
+      const event = {id:'skip_'+uid(),type:'temporary_skip',selection,scope,occasion,reason,note};
+      temporary.set(event.id,event);revision++;notify();return clone(event);
+    }
+    function clearTemporary(emit=true) { if (temporary.size) {temporary.clear();revision++;if(emit)notify();} }
+    function assertCurrent(token) { need(snapshot().token===token,'Outfit feedback changed while this result was loading. Nothing rejected was displayed.');return true; }
+    async function sync(options) { try {await base.sync(options);return snapshot();} catch(error) {return fail(error);} }
+    async function withCurrent(token, callback) {
+      assertCurrent(token);
+      const permanentToken = base.token();
+      try {return await base.withCurrent(permanentToken,()=>{assertCurrent(token);return callback();});}
+      catch(error) {if(base.status().blocked||base.status().stale)app.setFeedbackReadError?.(error);throw error;}
+    }
+    function reorder(rows, getSelection, context) {
+      return base.reorder(rows,getSelection,context).filter(row=>match(getSelection(row),context).allowed);
+    }
+    gate = Object.freeze({...base, ready:base.ready, refresh:snapshot, snapshot, sync,
+      get persistent(){return base.status().persistent;},
+      retry:()=>sync({forceLegacy:true}), match, allowed:(s,c)=>match(s,c).allowed,
+      skip, clearTemporary, token:()=>snapshot().token, assertCurrent,
+      assertCurrentAsync:token=>withCurrent(token,()=>true), withCurrent, reorder,
+      async restore(id) {if(temporary.delete(id)){revision++;notify();return true;}return base.restore(id);},
+      persistentForScope:()=>base.status().persistent===true && base.status().ready===true && !base.status().blocked && !base.status().stale,
+      alternative(current,rows,getSelection,context) {
+        const eligible=reorder(rows,getSelection,context).filter(row=>F.key(getSelection(row))!==F.key(current));
+        return eligible.find(row=>F.key(getSelection(row),'clothing')!==F.key(current,'clothing'))||eligible[0]||null;
+      },
+      subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);}
+    });
+    base.subscribe(notify);
+    app.connection.ownerFeedback.set(gate);
+    return gate;
+  }
   function attach(application) {
     if (gate) return gate;
+    if (application.ownerFeedback?.storageKind === 'indexeddb') return attachDatabase(application);
     app = application;
     const base = app.ownerFeedback;
     need(base?.hide && base?.match && base?.importData, 'The existing owner feedback store is unavailable.');
@@ -280,6 +368,6 @@
     if (!row || !app.connection.controller.verifyCachedOption(row, pool.request, app.connection.catalogue)) return null;
     return {selection:getSelection(row), option:row, context:clone(pool.request.context), localDate:pool.request.localDate};
   }
-  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-read-failure-1',
+  root.HEWRSRejectionPreviewCore = Object.freeze({attach, replacement, revision:'rejection-database-integration-1',
     diagnostics:() => ({attached:!!gate, hasPool:!!pool, temporaryCount:temporary.size, imageTransport:'anonymous-cors'})});
 })(globalThis);

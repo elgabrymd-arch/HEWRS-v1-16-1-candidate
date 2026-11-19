@@ -26,9 +26,11 @@ EXCLUDED = {'src/runtime-loader.js', 'data/inputs.js', 'data/option-index.js'}
 DEPENDENCIES = [
     'src/tie-exposure.js',
     'src/tie-feedback.js',
+    'src/rejection-database.js',
     'src/outfit-rejection-core.js',
     RUNTIME,
     'src/outfit-rejection-ui.js',
+    'src/reviewed-rejection-integration.js',
 ]
 
 
@@ -62,7 +64,7 @@ def entrypoint(path, digest):
     positions = [scripts.index(src) for src in DEPENDENCIES]
     # The two independent data stores may load in either order, but both must
     # exist before the rejection bridge and before candidate application boot.
-    if not (max(positions[:2]) < positions[2] < positions[3] < positions[4]):
+    if not (max(positions[:2]) < positions[2] < positions[3] < positions[4] < positions[5] < positions[6]):
         raise ValueError(path + ': tie preview dependencies have the wrong load order.')
     pattern = r'(<script\b[^>]*\bsrc="' + re.escape(RUNTIME) + r'(?:\?[^\"]*)?"[^>]*\bintegrity=")[^"]+("[^>]*>)'
     updated, count = re.subn(pattern, lambda m: m[1] + digest + m[2], html)
