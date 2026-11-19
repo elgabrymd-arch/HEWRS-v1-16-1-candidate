@@ -102,17 +102,23 @@ let current=null,currentOption=null,score=null,origin='manual',mode='engine',pag
 let ctx={occasion:'work',formality:'any',style:'AUTO',localDate:localToday()};
 let lastAttemptRequest=null;
 let pendingInitialOutfit=null, initialOutfitPromise=null;
-let rejectionPosition=0;
-async function renderForPreference(selection,isCancelled=()=>false){
+let rejectionPosition=0,rejectionRemoved=null;
+async function checkPreferenceFeedback(selections,context,token=null){
+ const snapshot=await checkRejectionFeedbackAsync(),gate=rejectionGate();if(token!==null)gate.assertCurrent(token);
+ need(selections.every(selection=>gate.allowed(selection,context)),'An outfit in this comparison was rejected for its occasion. Choose another comparison.');return snapshot.token;
+}
+async function renderForPreference(selection,isCancelled=()=>false,context=currentContext()){
+ const feedbackToken=await checkPreferenceFeedback([selection],context);
  const canvas=document.createElement('canvas'),off=root.HEWRSAtomicRenderer.create(canvas,connection,{resolveUrl});
  try{const out=await off.render(selection);need(!out.cancelled&&!isCancelled(),'Preference render cancelled');
   const pic=document.createElement('canvas');pic.width=420;pic.height=1160;const pc=pic.getContext('2d');pc.fillStyle='#060e19';pc.fillRect(0,0,420,1160);pc.drawImage(canvas,0,0,996,2748,0,0,420,1160);const full=pic.toDataURL('image/jpeg',.9);
-  pic.width=420;pic.height=490;pc.fillStyle='#060e19';pc.fillRect(0,0,420,490);pc.drawImage(canvas,170,390,656,766,0,0,420,490);const detail=pic.toDataURL('image/jpeg',.93);pic.width=pic.height=1;return {full,detail};
+  pic.width=420;pic.height=490;pc.fillStyle='#060e19';pc.fillRect(0,0,420,490);pc.drawImage(canvas,170,390,656,766,0,0,420,490);const detail=pic.toDataURL('image/jpeg',.93);pic.width=pic.height=1;
+  const publish=()=>{const gate=rejectionGate();gate.assertCurrent(feedbackToken);need(!isCancelled()&&gate.allowed(selection,context),'Preference render cancelled or rejected.');return {full,detail};};return rejectionGate().withCurrent?await rejectionGate().withCurrent(feedbackToken,publish):publish();
  }finally{off.cancel();canvas.width=canvas.height=1;}
 }
 function syncLearningFor(context){const read=learning.model(context);connection.hybrid.setLearningModel(read.model);return read;}
 function feedbackChanged(){generation++;renderer.cancel();setBusy(false);optionPreferenceToken=null;invalidateRecommendations('Outfit preferences changed. Generate again for the current local model.');try{connection.hybrid.setLearningModel(learning.model(currentContext()).model);}catch{}updateHome();}
-const preferencePanel=root.HEWRSPreferencePanel.create({connection,learning,openSheet,closeSheet:()=>dismissSheet(),active:token=>modal?.token===token,makeButton:button,selectField,error:sheetError,onChanged:feedbackChanged,render:renderForPreference,selectionItems:s=>optionCards.model(s).items,options:()=>options.map(o=>copy(o._hewrsConnected.canonical_selection)),context:currentContext});
+const preferencePanel=root.HEWRSPreferencePanel.create({connection,learning,openSheet:(title,settings)=>{const sheet=openSheet(title,settings);if(title==='Which complete outfit do you prefer?')modal.kind='outfit_comparison';return sheet;},closeSheet:()=>dismissSheet(),active:token=>modal?.token===token,makeButton:button,selectField,error:sheetError,onChanged:feedbackChanged,render:renderForPreference,checkFeedback:checkPreferenceFeedback,selectionItems:s=>optionCards.model(s).items,options:()=>options.map(o=>copy(o._hewrsConnected.canonical_selection)),context:currentContext});
 
 function localToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function icon(name){const n=document.createElementNS('http://www.w3.org/2000/svg','svg');for(const[k,v]of Object.entries({class:'fx-icon',viewBox:'0 0 24 24',fill:'none',stroke:'currentColor','stroke-width':'1.5','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true'}))n.setAttribute(k,v);const u=document.createElementNS(n.namespaceURI,'use');u.setAttribute('href','#fx-icon-'+name);n.append(u);return n;}
@@ -188,14 +194,16 @@ function weatherSheet(){
 }
 async function largerOutfit(){
  need(current&&!busy,'Wait for the outfit to finish loading');
- try{await checkRejectionFeedbackAsync();}catch{return;}
+ let feedbackToken;try{feedbackToken=(await checkRejectionFeedbackAsync()).token;}catch{return;}
  if(!current||busy)return;
+ const publish=()=>{const gate=rejectionGate();gate.assertCurrent(feedbackToken);need(current&&!busy&&(current.state==='REFERENCE'||gate.allowed(current,currentContext())),'This outfit was rejected. Choose an allowed outfit before opening the larger view.');
  const {body,actions}=openSheet('Larger outfit view',{list:true});
  modal.kind='outfit_large';
  body.append(el('p',ids(current)+' · Display zoom only; garment geometry is unchanged.','fx-caption'));
  const wrap=el('div',undefined,'fx-large-preview'),canvas=el('canvas');canvas.id='large-avatar';canvas.width=996;canvas.height=2748;canvas.setAttribute('aria-label','Enlarged copy of the current outfit');canvas.getContext('2d').drawImage($('avatar'),0,0);wrap.dataset.fit='false';wrap.append(canvas);
  const hint=el('p','Scroll to see the whole outfit. Fit shows it all at once.','fx-caption');body.append(wrap,hint);
  const fit=button('Fit',()=>{wrap.dataset.fit='true';body.scrollTop=0;}),large=button('Larger',()=>{wrap.dataset.fit='false';body.scrollTop=0;});fit.id='large-outfit-fit';large.id='large-outfit-zoom';actions.append(fit,large,button('Close',()=>dismissSheet()));
+ };return rejectionGate().withCurrent?await rejectionGate().withCurrent(feedbackToken,publish):publish();
 }
 
 function contextSheet(kind){
@@ -301,7 +309,8 @@ function setCardLayout(v){need(v==='cards'||v==='standard','Unknown presentation
 async function exportOptionCards(){if(!current||busy)return;
  try{await checkRejectionFeedbackAsync();}catch{return;}
  if(!current||busy)return;
- const models=options.length?options.map((o,i)=>cardModel(connection.selectionFromOption(o,lastRequest).selection,o,i+1,options.length)):[cardModel(current,null,null,null)],one=copy(cardPresentation);
+ const models=options.length?options.map((o,i)=>cardModel(connection.selectionFromOption(o,lastRequest).selection,o,i+1,options.length)):[cardModel(current,null,null,null)],one=copy(cardPresentation),exportContext=copy(lastRequest?.context||currentContext());
+ function assertExportAllowed(kind){const gate=rejectionGate(),rows=kind==='png'?[one]:models;need(rows.every(model=>model?.selection&&(model.selection.state==='REFERENCE'||gate.allowed(model.selection,exportContext))),'An outfit in this export was rejected. Close the export and review the current allowed options.');}
  const source=document.createElement('canvas');source.width=996;source.height=2748;source.getContext('2d').drawImage($('avatar'),0,0);
  let stopped=false,working=false,urls=[];
  const {body,actions,token}=openSheet('Export option cards',{list:true,cancel:()=>{stopped=true;source.width=source.height=1;for(const u of urls)URL.revokeObjectURL(u);urls=[];}});
@@ -310,8 +319,8 @@ async function exportOptionCards(){if(!current||busy)return;
  const progress=el('p','Choose an export. The saved file is a snapshot, not an application update.','fx-caption');progress.id='card-export-status';progress.setAttribute('role','status');
  const downloads=el('div',undefined,'fx-data-actions');downloads.id='card-export-downloads';
  async function prepare(kind){if(working)return;working=true;pngButton.disabled=bookButton.disabled=true;downloads.replaceChildren();progress.textContent=kind==='png'?'Preparing the current card…':'Preparing '+models.length+' existing option cards…';
-  try{const feedbackToken=(await checkRejectionFeedbackAsync()).token;const blob=kind==='png'?await optionCards.png(one,source):await optionCards.book(models,{resolveUrl,isCancelled:()=>stopped||modal?.token!==token,onProgress:p=>{if(!stopped)progress.textContent='Prepared '+p.completed+' of '+p.total+' cards…';}});if(stopped||modal?.token!==token)return;
-   const publish=()=>{if(stopped||modal?.token!==token)return;rejectionGate().assertCurrent(feedbackToken);
+  try{const feedbackToken=(await checkRejectionFeedbackAsync()).token;assertExportAllowed(kind);const blob=kind==='png'?await optionCards.png(one,source):await optionCards.book(models,{resolveUrl,isCancelled:()=>stopped||modal?.token!==token,onProgress:p=>{if(!stopped)progress.textContent='Prepared '+p.completed+' of '+p.total+' cards…';}});if(stopped||modal?.token!==token)return;
+   const publish=()=>{if(stopped||modal?.token!==token)return;rejectionGate().assertCurrent(feedbackToken);assertExportAllowed(kind);
     const url=URL.createObjectURL(blob);urls.push(url);const link=el('a',kind==='png'?'Save card image (PNG)':'Save all '+models.length+' cards (HTML)','lb-download');link.href=url;link.download='HEWRS_'+(kind==='png'?'OPTION_CARD':'OPTION_CARDS_'+models.length)+'_'+one.date.replace(/[^0-9-]/g,'')+(kind==='png'?'.png':'.html');link.id='card-export-save';downloads.append(link);progress.textContent=kind==='png'?'Card ready. Select Save card image.':'Cards ready. Save the HTML, then open it on any device. Browser Print / Save as PDF uses one card per page.';};
    if(rejectionGate().withCurrent)await rejectionGate().withCurrent(feedbackToken,publish);else publish();
   }catch(e){if(!stopped)progress.textContent='Export not completed: '+e.message;}finally{working=false;if(!stopped){pngButton.disabled=bookButton.disabled=false;}}
@@ -343,18 +352,20 @@ function showGenerationFailure(error){
 function sessionValue(s,o,date,context){return {selection:copy(s),origin:o,mode,localDate:date,context:root.HEWRSStyleOccasions.context(copy(context))};}
 async function apply(s,opts={}){
  const token=opts.token??++generation;if(opts.token===undefined)renderer.cancel();
+ const targetContext=copy(opts.context||currentContext());
  const feedbackToken=(await checkRejectionFeedbackAsync()).token;
  if(token!==generation)return {cancelled:true};
  autoWeather.cancel();
  connection.validateSelection(s);if(s.shirtOnly&&opts.origin&&opts.origin!=='manual')throw Error('Shirt-only is an exact manual selection');
- const previousSelection=current?copy(current):null;const priorBusy=busy;setBusy(true);status(current?'Loading next outfit…':'Loading approved source layers…');
- try{if(opts.historyToken)store.assertCurrent(opts.historyToken);if(opts.preferenceToken)learning.assertCurrent(opts.preferenceToken);const out=await renderer.render(s);if(token!==generation||out.cancelled)return {cancelled:true};
-  if(opts.historyToken||opts.preferenceToken){try{if(opts.historyToken)store.assertCurrent(opts.historyToken);if(opts.preferenceToken)learning.assertCurrent(opts.preferenceToken);}catch(e){if(previousSelection)await renderer.render(previousSelection);else $('outfit-output').hidden=true;throw e;}}
-  const publish=()=>{if(token!==generation)return {cancelled:true};rejectionGate().assertCurrent(feedbackToken);
-  current=copy(s);pendingInitialOutfit=null;root.HEWRS_OUTFIT_READY=true;origin=opts.origin||'manual';currentOption=opts.option||null;score=opts.score||connection.scoreSelection(s,opts.context||currentContext());
-  if(s.shirtOnly)setMode('anchor');if(opts.localDate)ctx.localDate=opts.localDate;if(opts.context){ctx.occasion=root.HEWRSStyleOccasions.occasion(opts.context.occasion);ctx.formality=opts.context.requiredFormality;}
+ need(s.state==='REFERENCE'||rejectionGate().allowed(s,targetContext),'This outfit was rejected for the selected occasion. Undo its rejection or choose another combination.');
+ const previousSelection=current?copy(current):null,previousContext=copy(currentContext());const priorBusy=busy;setBusy(true);status(current?'Loading next outfit…':'Loading approved source layers…');
+ try{if(opts.historyToken)store.assertCurrent(opts.historyToken);if(opts.preferenceToken)learning.assertCurrent(opts.preferenceToken);const out=await renderer.render(s,{context:targetContext});if(token!==generation||out.cancelled)return {cancelled:true};
+  if(opts.historyToken||opts.preferenceToken){try{if(opts.historyToken)store.assertCurrent(opts.historyToken);if(opts.preferenceToken)learning.assertCurrent(opts.preferenceToken);}catch(e){if(previousSelection)await renderer.render(previousSelection,{context:previousContext});else $('outfit-output').hidden=true;throw e;}}
+  const publish=()=>{if(token!==generation)return {cancelled:true};rejectionGate().assertCurrent(feedbackToken);need(s.state==='REFERENCE'||rejectionGate().allowed(s,targetContext),'This outfit was rejected for the selected occasion. Nothing was applied.');
+  current=copy(s);pendingInitialOutfit=null;root.HEWRS_OUTFIT_READY=true;origin=opts.origin||'manual';currentOption=opts.option||null;score=opts.score||connection.scoreSelection(s,targetContext);
+  if(s.shirtOnly)setMode('anchor');if(opts.localDate)ctx.localDate=opts.localDate;if(opts.context){ctx.occasion=root.HEWRSStyleOccasions.occasion(targetContext.occasion);ctx.formality=targetContext.requiredFormality;}
   if(!opts.keepPreferences)ui.fromSelection(s);presentFrame();displayCurrent();updateHome();
-  if(opts.save!==false){try{store.saveSession(sessionValue(s,origin,ctx.localDate,opts.context||currentContext()));if(opts.historyToken)optionHistoryToken=store.readForGeneration().token;}catch(e){status('Outfit ready. '+e.message,true);refreshHistory();return out;}}
+  if(opts.save!==false){try{store.saveSession(sessionValue(s,origin,ctx.localDate,targetContext));if(opts.historyToken)optionHistoryToken=store.readForGeneration().token;}catch(e){status('Outfit ready. '+e.message,true);refreshHistory();return out;}}
   refreshHistory();status(origin==='engine'?'Engine result ready.':'Selection ready.');return out;
   };return rejectionGate().withCurrent?await rejectionGate().withCurrent(feedbackToken,publish):publish();
  }catch(e){if(token===generation)status('Selection not applied: '+e.message,true);throw e;}
@@ -415,7 +426,7 @@ function setFeedbackReadError(error){
  feedbackReadError=next;
  if(next){
   if(changed){generation++;renderer.cancel();visualStylist.cancel();autoWeather.cancel();root.HEWRSReviewedIntegration?.cancelSearch?.();}
-  if(['outfit_export','outfit_large','outfit_results'].includes(modal?.kind))dismissSheet();
+  if(['outfit_export','outfit_large','outfit_results','outfit_comparison'].includes(modal?.kind))dismissSheet();
   $('outfit-output').hidden=true;
   const box=$('outfit-empty');box.dataset.kind='feedback_read_error';box.replaceChildren(el('p',feedbackFailureMessage()));box.hidden=false;$('outfit-empty-actions').hidden=true;
   for(const id of ['open-results','prev-option','next-option','view-current'])$(id).disabled=true;
@@ -460,6 +471,7 @@ function rejectionChanged(){
  const gate=rejectionGate();
  try{
   gate.refresh();
+  if(['outfit_export','outfit_large','outfit_results','outfit_comparison'].includes(modal?.kind))dismissSheet();
   if(!lastRequest){
    if(current&&current.state!=='REFERENCE'&&!gate.allowed(current,currentContext()))rejectionSummary('The rejected outfit is hidden. No generated list is available to refill.');
    else if(current){presentFrame();displayCurrent();}
@@ -468,7 +480,7 @@ function rejectionChanged(){
   const previous=options,priorIndex=optionIndex;
   options=previous.filter(o=>gate.allowed(connection.selectionFromOption(o,lastRequest).selection,lastRequest.context));
   const removed=previous.length-options.length;
-  if(removed)rejectionPosition=Math.max(0,priorIndex);
+  if(removed){rejectionPosition=Math.max(0,priorIndex);const kept=new Set(options);rejectionRemoved={request:root.HEWRSOutfitFeedback.stable(lastRequest),token:gate.refresh().token,selections:previous.filter(o=>!kept.has(o)).map(o=>copy(connection.selectionFromOption(o,lastRequest).selection))};}
   optionIndex=current?options.findIndex(o=>selectionKey(connection.selectionFromOption(o,lastRequest).selection)===selectionKey(current)):-1;
   if(optionIndex<0)currentOption=null;
   else currentOption=options[optionIndex];
@@ -483,7 +495,7 @@ function rejectionChanged(){
   throw error;
  }
 }
-async function refillRejected({replaceTieFor=null}={}){
+async function refillRejected({replaceFor=null,replaceParts=null,replaceTieFor=null}={}){
  const token=++generation;
  await checkRejectionFeedbackAsync();
  const target=root.HEWRSOptionSetPolicy.target,stable=root.HEWRSOutfitFeedback.stable;
@@ -499,7 +511,10 @@ async function refillRejected({replaceTieFor=null}={}){
  }
  const retained=options.slice(),retainedValues=retained.map(stable),kept=retained.length,exposureId=tieExposure.newId();
  renderer.cancel();autoWeather.cancel();setBusy(true);
- let feedbackToken,historyToken,preferenceToken,replacement=null;
+ let feedbackToken,historyToken,preferenceToken,replacement=null,parts=null;
+ const replacementResults=[],replacementSources=[],appendedSources=[];
+ const replacementFields=['suitId','blazerId','shirtOnly','pantId','shirtId','state','shoeId','watchId'],roleFields={shirt:'shirtId',tie:'state',shoes:'shoeId'};
+ function matchesReplacement(selection,source){const changed=parts.map(p=>roleFields[p]);return replacementFields.every(k=>changed.includes(k)?selection[k]!==source[k]:(selection[k]??null)===(source[k]??null))&&(!parts.includes('tie')||/^T\d{3}$/.test(selection.state));}
  function assertCurrent(){
   need(token===generation,'Replacement was cancelled; remaining choices are retained.');
   need(stable(lastRequest)===stable(q)&&stable(producing)===stable(produced),'The generating request changed. Generate for the current selections.');
@@ -513,23 +528,45 @@ async function refillRejected({replaceTieFor=null}={}){
   need(retained.every(o=>gate.allowed(connection.selectionFromOption(o,q).selection,q.context)),'A retained option was rejected during replacement.');
  }
  try{
-  if(replaceTieFor!==null){
-   replacement=copy(connection.validateSelection(replaceTieFor));
-   need(/^T\d{3}$/.test(replacement.state),'Tie replacement requires an actual rejected tie.');
+  need(!(replaceTieFor!==null&&replaceFor!==null),'Choose one replacement source.');
+  if(replaceTieFor!==null){replaceFor=replaceTieFor;replaceParts=replaceParts||['tie'];}
+  if(replaceFor!==null){
+   replacement=copy(connection.validateSelection(replaceFor));
+   need(Array.isArray(replaceParts)&&replaceParts.length>0&&new Set(replaceParts).size===replaceParts.length&&replaceParts.every(p=>Object.hasOwn(roleFields,p)),'Invalid replacement parts.');
+   parts=['shirt','tie','shoes'].filter(p=>replaceParts.includes(p));need(['shirt','tie','shirt,tie','shoes'].includes(parts.join(',')),'Unsupported replacement part combination.');
+   if(parts.includes('tie'))need(/^T\d{3}$/.test(replacement.state),'Tie replacement requires an actual rejected tie.');
    need(!gate.allowed(replacement,q.context),'The selected outfit has no active rejection to replace.');
-  }
+  }else need(replaceParts===null,'Replacement parts require an original outfit.');
   need(optionHistoryToken&&optionPreferenceToken,'The list no longer has current history and preference checks. Generate for the current selections.');
   store.assertCurrent(optionHistoryToken);learning.assertCurrent(optionPreferenceToken);
   const history=store.readForGeneration();historyToken=history.token;preferenceToken=optionPreferenceToken;feedbackToken=gate.refresh().token;
   assertCurrent();
+  if(replacement){
+   replacementSources.push(replacement);
+   const identities=new Set([selectionKey(replacement)]);
+   if(rejectionRemoved?.request===stable(q)&&rejectionRemoved.token===feedbackToken)for(const source of rejectionRemoved.selections){
+    const identity=selectionKey(source);if(identities.has(identity)||gate.allowed(source,q.context))continue;
+    identities.add(identity);replacementSources.push(source);
+   }
+  }
   let generated={...(report||{}),options:retained};
   if(kept<target){
-   status(replacement?'Keeping the accepted pieces and finding a different tie…':'Keeping '+kept+' choices and finding '+(target-kept)+' replacement'+(target-kept===1?'':'s')+'…');
-   generated=await connection.controller.generateAsync(q,connection.catalogue,history.events,{
-    retainedOptions:retained,replaceTieFor:replacement,isCancelled:()=>token!==generation,
-    onProgress:()=>{if(token===generation)status(replacement?'Finding a different tie · suit/blazer, shirt and accessories retained…':'Finding replacements · '+kept+' accepted choices retained…');}
-   });
-   if(token!==generation||generated?.status==='cancelled')return {added:0,retained:kept,count:options.length,target,cancelled:true};
+   status(replacement?'Keeping the accepted pieces and finding different '+parts.join(' and ')+'…':'Keeping '+kept+' choices and finding '+(target-kept)+' replacement'+(target-kept===1?'':'s')+'…');
+   for(const source of replacement?replacementSources:[null]){
+    if(generated.options.length>=target)break;
+    assertCurrent();const priorRows=generated.options,priorValues=priorRows.map(stable);
+    const nextResult=await connection.controller.generateAsync(q,connection.catalogue,history.events,{
+     retainedOptions:priorRows,replaceFor:source,replaceParts:parts,isCancelled:()=>token!==generation,
+     onProgress:()=>{if(token===generation)status(replacement?'Finding different '+parts.join(' and ')+' · other accepted pieces retained…':'Finding replacements · '+kept+' accepted choices retained…');}
+    });
+    if(token!==generation||nextResult?.status==='cancelled')return {added:0,retained:kept,count:options.length,target,cancelled:true};
+    assertCurrent();need(Array.isArray(nextResult?.options)&&nextResult.options.length>=priorRows.length&&priorValues.every((value,i)=>stable(nextResult.options[i])===value),'Replacement changed an accepted choice; the existing list was retained.');
+    if(source){const added=nextResult.options.length-priorRows.length;need(added<=1,'A targeted replacement returned more than one outfit for the same original.');
+     for(const option of nextResult.options.slice(priorRows.length)){need(matchesReplacement(connection.selectionFromOption(option,q).selection,source),'Replacement changed an accepted garment or accessory.');appendedSources.push(source);}
+     replacementResults.push({original:copy(source),added,reason:nextResult.reason||null});
+    }
+    generated=nextResult;
+   }
   }
   assertCurrent();
   const next=generated?.options;
@@ -538,11 +575,8 @@ async function refillRejected({replaceTieFor=null}={}){
   need(connection.controller.verifyOptionSet(next,q),'Replacement violates current wardrobe bindings or item limits.');
   need(next.every(o=>gate.allowed(connection.selectionFromOption(o,q).selection,q.context)),'Replacement contains a rejected combination.');
   if(replacement){
-   need(next.length-kept<=1,'Tie replacement returned more than one changed outfit.');
-   for(const option of next.slice(kept)){
-    const selected=connection.selectionFromOption(option,q).selection;
-    need(/^T\d{3}$/.test(selected.state)&&selected.state!==replacement.state&&['suitId','blazerId','pantId','shirtId','shoeId','watchId'].every(k=>(selected[k]??null)===(replacement[k]??null)),'Tie replacement changed an accepted garment or accessory. The remaining choices were retained.');
-   }
+   need(next.length-kept===appendedSources.length&&new Set(appendedSources.map(selectionKey)).size===appendedSources.length,'A removed outfit was replaced more than once.');
+   for(const [i,option]of next.slice(kept).entries())need(matchesReplacement(connection.selectionFromOption(option,q).selection,appendedSources[i]),'Replacement changed an accepted garment or accessory. The remaining choices were retained.');
   }
   const identities=next.map(o=>root.HEWRSOutfitFeedback.key(connection.selectionFromOption(o,q).selection));
   need(new Set(identities).size===identities.length,'Replacement repeats an outfit with a watch change.');
@@ -559,11 +593,15 @@ async function refillRejected({replaceTieFor=null}={}){
    if(token!==generation||frame?.cancelled)return {added:0,retained:kept,count:options.length,target,cancelled:true};
    assertCurrent();
   }
-  const reason=replacement?(generated.reason||(added?'Changed only the tie; the accepted pieces were retained.':'No compatible different tie was found with the accepted pieces. The remaining outfits were retained.')):next.length<target?'Only '+next.length+' eligible, distinct options were found under the current selections and list limits.':'The list is back to '+target+' distinct options.';
+  const component=parts?.join(' and '),firstReplacement=replacementResults[0];
+  const reason=replacement?(replacementResults.length===1?(firstReplacement.reason||(added?'Changed only the '+component+'; the accepted pieces were retained.':'No compatible different '+component+' was found with the accepted pieces. The remaining outfits were retained.')):
+   (firstReplacement&&!firstReplacement.added?'No compatible replacement was found for the displayed outfit while retaining its accepted pieces. ':'')+'Replaced '+added+' of '+replacementSources.length+' removed outfits by changing only the '+component+'. All other garments and accessories were retained for each replacement. '+(added<replacementSources.length?'The other removed outfits have no compatible replacement with their accepted pieces under the current selections and list limits. ':'')+next.length+' of '+target+' outfits are available.'):
+   next.length<target?'Only '+next.length+' eligible, distinct options were found under the current selections and list limits.':'The list is back to '+target+' distinct options.';
   const publish=()=>{assertCurrent();
   options=next;optionIndex=index;currentOption=index>=0?options[index]:null;
   report={...generated,options,returned_options:options.length,requested_options:target,option_policy:root.HEWRSOptionSetPolicy.inspect(options,q),
-   refill:{target,count:options.length,retained:kept,added,pending:false},reason};
+   refill:{target,count:options.length,retained:kept,added,pending:false,...(replacement?{parts:copy(parts),replacements:copy(replacementResults)}:{})},reason};
+  rejectionRemoved=null;
   if(index>=0){
    try{store.saveSession(sessionValue(current,origin,ctx.localDate,q.context));optionHistoryToken=store.readForGeneration().token;}
    catch(error){status(reason+' Session could not be saved: '+errorText(error),true);}
@@ -585,7 +623,7 @@ async function refillRejected({replaceTieFor=null}={}){
 
 function invalidateRecommendations(reason='Local history changed. Generate again for a current rotation recommendation.'){
  if($('tie-exposure-notice'))$('tie-exposure-notice').textContent='';
- optionHistoryToken=null;optionPreferenceToken=null;options=[];lastRequest=null;lastAttemptRequest=null;report={status:'not_generated',reason};optionIndex=-1;currentOption=null;origin='manual';producing=null;
+ optionHistoryToken=null;optionPreferenceToken=null;options=[];lastRequest=null;lastAttemptRequest=null;report={status:'not_generated',reason};optionIndex=-1;currentOption=null;origin='manual';producing=null;rejectionRemoved=null;
  $('outfit-summary').textContent=reason;displayCurrent();
  presentEmpty(reason,{kind:'needs_generation',code:'REQUEST_CHANGED',title:'Generate for your current selections',message:reason,detail:'The previous recommendation list is no longer current. Your last displayed outfit and saved records are retained.',alternative_styles:[]});
 }

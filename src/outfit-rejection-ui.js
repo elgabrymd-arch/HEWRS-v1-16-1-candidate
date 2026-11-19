@@ -1,5 +1,6 @@
-/* Main-card rejection with explicit outfit, tie or garment–tie scope.
- * Reasons never silently broaden scope. Original feedback remains unchanged.
+/* Main-card rejection with explicit outfit, item and garment-pairing scopes.
+ * Conflicting diagnoses require an explicit scope. Existing records retain
+ * their original meaning; reasons are never retroactively reinterpreted.
  */
 (function (root) {
   'use strict';
@@ -17,12 +18,12 @@
   const bar = element('section', undefined, 'hewrs-rejection-bar'); bar.id='rejection-bar';
   const notice = element('p','', 'fx-caption'); notice.id='rejection-status'; notice.setAttribute('role','status');
   const undoButton = button('Undo last rejection','undo-outfit-rejection',undoLast);
-  const manageButton = button('Rejections · outfits and ties','manage-outfit-rejections',openManager);
+  const manageButton = button('Rejections · outfits and items','manage-outfit-rejections',openManager);
   const retryButton = button('Retry rejection check','retry-rejection-check-outfits',()=>invalidateFeedback(true));
   retryButton.hidden=true;bar.append(notice,retryButton,undoButton,manageButton); $('outfit-output').after(bar);
   const rejectButton = button('Reject outfit + reason','reject-outfit',openReject);
   $('regenerate').before(rejectButton);
-  const homeManage = button('Rejections · outfits and ties · undo / backup','home-outfit-rejections',openManager);
+  const homeManage = button('Rejections · outfits and items · undo / backup','home-outfit-rejections',openManager);
   homeManage.className='fx-wide-card'; $('page-home').append(homeManage);
   const homeFailure=element('section',undefined,'hewrs-rejection-bar');homeFailure.id='rejection-home-error';homeFailure.hidden=true;
   const homeNotice=element('p','','fx-warning');homeNotice.id='rejection-home-status';homeNotice.setAttribute('role','alert');
@@ -148,6 +149,9 @@
   }
   function describe(s) {return [s.suitId||s.blazerId||'SHIRT ONLY',s.pantId,s.shirtId,s.state==='NO_TIE'?'No Tie':s.state,s.shoeId].filter(Boolean).join(' · ');}
   function describeScope(event) {
+    if(event.scope==='shirt')return 'Shirt '+event.selection.shirtId+' with any outfit';
+    if(event.scope==='topwear_shirt')return (event.selection.suitId?'Suit '+event.selection.suitId:'Blazer '+event.selection.blazerId)+' + shirt '+event.selection.shirtId+' with any tie, trousers, shoes or watch';
+    if(event.scope==='topwear_shirt_tie')return (event.selection.suitId?'Suit '+event.selection.suitId:'Blazer '+event.selection.blazerId)+' + shirt '+event.selection.shirtId+' + tie '+event.selection.state+' with any trousers, shoes or watch';
     if(event.scope==='tie')return 'Tie '+event.selection.state+' with any shirt or outfit';
     if(event.scope==='shirt_tie')return 'Shirt '+event.selection.shirtId+' + tie '+event.selection.state+' with any suit/blazer, trousers, shoes or watch';
     if(event.scope==='topwear_tie')return (event.selection.suitId?'Suit '+event.selection.suitId:'Blazer '+event.selection.blazerId)+' + tie '+event.selection.state+' with any shirt, trousers, shoes or watch';
@@ -159,41 +163,56 @@
     const state=original.state(); if(pending||state.busy||!state.selection||state.selection.state==='REFERENCE')return;
     try{if(!currentAllowed(state))return;}catch(error){readFailure(error);refreshControls();return;}
     const selected=structuredClone(state.selection), key=F.key(selected,'historical_exact');
-    const {body,actions,error}=newDialog('Reject this outfit');
-    body.append(element('p',describe(selected),'fx-caption'),element('p','A shirt–tie or suit/blazer–tie reason selects that pairing below. You can choose a different scope; your choice takes priority.','fx-caption'));
+    const {body,actions,error}=newDialog('Reject this outfit'),rejectionDialog=dialog;
+    const hasShirt=/^DS\d{3}$/.test(selected.shirtId||''),hasTie=/^T\d{3}$/.test(selected.state),hasTopwear=!!(selected.suitId||selected.blazerId);
+    body.append(element('p',describe(selected),'fx-caption'),element('p','A specific reason selects the item or pairing to hide. Reasons that describe different targets require a scope choice. Your explicit scope always takes priority.','fx-caption'));
     const scopeRows=[['clothing','Entire clothing combination — any shoes or watch (default)'],['outfit','Only this exact clothing + shoe combination — any watch']];
-    if(/^T\d{3}$/.test(selected.state)){
+    if(hasShirt){
+      scopeRows.push(['shirt','This shirt itself: '+selected.shirtId+' — with any outfit']);
+      if(hasTopwear)scopeRows.push(['topwear_shirt','This suit/blazer–shirt pair: '+(selected.suitId||selected.blazerId)+' + '+selected.shirtId+' — with any tie']);
+    }
+    if(hasTie&&hasShirt){
       scopeRows.push(['shirt_tie','This shirt–tie pair: '+selected.shirtId+' + '+selected.state+' — with any outfit']);
-      if(selected.suitId||selected.blazerId)scopeRows.push(['topwear_tie','This suit/blazer–tie pair: '+(selected.suitId||selected.blazerId)+' + '+selected.state+' — with any shirt']);
+      if(hasTopwear){
+        scopeRows.push(['topwear_tie','This suit/blazer–tie pair: '+(selected.suitId||selected.blazerId)+' + '+selected.state+' — with any shirt']);
+        scopeRows.push(['topwear_shirt_tie','This suit/blazer + shirt + tie: '+(selected.suitId||selected.blazerId)+' + '+selected.shirtId+' + '+selected.state+' — with any trousers or shoes']);
+      }
       scopeRows.push(['tie','This tie itself: '+selected.state+' — with any shirt or outfit']);
     }
     const scope=select('rejection-scope','What should be hidden?',scopeRows);
+    const unresolvedScope=element('option','Choose what this rejection should hide');unresolvedScope.value='';unresolvedScope.disabled=true;unresolvedScope.hidden=true;scope.input.prepend(unresolvedScope);scope.input.value='clothing';
     const occasion=select('rejection-occasion','Where should it apply?',[['all','Every occasion'],['current','This occasion only ('+state.context.occasion+')']]);
     const scopeDescription=element('p','', 'fx-caption');scopeDescription.id='rejection-scope-description';
-    body.append(scope.label,occasion.label,scopeDescription);
+    const scopeValidation=element('p','', 'fx-warning');scopeValidation.id='rejection-scope-validation';scopeValidation.setAttribute('role','alert');scopeValidation.hidden=true;
+    body.append(scope.label,occasion.label,scopeDescription,scopeValidation);
     let scopeChosen=false;
     function updateScopeDescription(){
-      const target=describeScope({scope:scope.input.value,selection:selected});
-      scopeDescription.textContent='Hide: '+target+'. Applies to '+(occasion.input.value==='all'?'every occasion':state.context.occasion)+'.';
+      const valid=scopeRows.some(([value])=>value===scope.input.value);
+      scopeDescription.textContent=valid?'Hide: '+describeScope({scope:scope.input.value,selection:selected})+'. Applies to '+(occasion.input.value==='all'?'every occasion':state.context.occasion)+'.':'No scope selected. No rejection will be saved until you choose what to hide.';
     }
-    scope.input.addEventListener('change',()=>{scopeChosen=true;updateScopeDescription();forever.disabled=!fb.persistentForScope(scope.input.value);});
-    occasion.input.addEventListener('change',updateScopeDescription);updateScopeDescription();
-    // An unambiguous pairing diagnosis chooses its contextual scope. It never
-    // bans the tie itself or changes a scope the owner explicitly selected.
+    scope.input.addEventListener('change',()=>{scopeChosen=true;updateChoices();});
+    occasion.input.addEventListener('change',()=>updateChoices());
+    // A specific diagnosis chooses its stated scope. Item-wide shirt rejection
+    // is stated in the checkbox itself; generic reasons never imply an item ban.
     // Keep stored v1 reason codes compatible with existing exports/validators.
     const issueChoices=[
       ['', 'Entire clothing combination is wrong', null, 'clothing'],
-      ['shirt_tie_suit', 'Shirt and tie do not work with this suit/blazer', 'other', 'clothing'],
+      ['shirt_tie_suit', 'Shirt and tie do not work with this suit/blazer', 'other', 'topwear_shirt_tie'],
       ['tie_shirt', 'Shirt is fine; tie does not work with this shirt', 'other', 'shirt_tie'],
-      ['shirt_suit', 'Suit/blazer is fine; shirt does not work with it', 'other', 'clothing'],
-      ['shirt_appearance', 'I do not like the shirt', 'other', 'clothing'],
+      ['shirt_suit', 'Suit/blazer is fine; shirt does not work with it', 'other', 'topwear_shirt'],
+      ['shirt_appearance', 'I do not like this shirt — hide it with any outfit', 'other', 'shirt'],
       ['tie_suit', 'Suit/blazer is fine; tie does not work with it', 'other', 'topwear_tie'],
       ['footwear', 'Shoes do not work with this outfit', 'footwear', 'outfit'],
       ['colors', 'Color combination does not work', 'colors', 'clothing'],
       ['patterns', 'Pattern combination does not work', 'patterns', 'clothing'],
       ['formality', 'Too formal or too casual', 'formality', 'clothing'],
       ['other', 'Other reason (describe below)', 'other', 'clothing']
-    ];
+    ].filter(([id])=>{
+      if(['shirt_tie_suit','tie_shirt','tie_suit'].includes(id)&&!hasTie)return false;
+      if(['shirt_tie_suit','shirt_suit','tie_suit'].includes(id)&&!hasTopwear)return false;
+      if(['shirt_tie_suit','tie_shirt','shirt_suit','shirt_appearance'].includes(id)&&!hasShirt)return false;
+      return id!=='footwear'||!!selected.shoeId;
+    });
     const issueFieldset=element('fieldset');issueFieldset.id='rejection-issues';
     issueFieldset.append(element('legend','What does not work? Select all that apply.'));
     const issueInputs=new Map();
@@ -206,10 +225,32 @@
     }
     body.append(issueFieldset);
     const chosenIssues=()=>issueChoices.filter(([value])=>issueInputs.get(value).checked);
+    const specificIds=new Set(['shirt_tie_suit','tie_shirt','shirt_suit','shirt_appearance','tie_suit','footwear']);
+    function choiceError(){
+      const chosen=chosenIssues();
+      if(!chosen.length)return 'Select a reason for this rejection.';
+      if(!scopeChosen&&new Set(chosen.filter(([id])=>specificIds.has(id)).map(([, , ,target])=>target)).size>1)return 'These reasons describe different items or pairings. Choose what this rejection should hide. One explicit scope will be saved; the reasons remain attached as notes.';
+      if(!scopeRows.some(([value])=>value===scope.input.value))return 'Choose a scope that applies to the displayed outfit.';
+      if(!['all','current'].includes(occasion.input.value))return 'Choose every occasion or this occasion only.';
+      return '';
+    }
+    function updateChoices(infer=false){
+      const chosen=chosenIssues();
+      if(infer&&!scopeChosen){
+        const targets=[...new Set(chosen.filter(([id])=>specificIds.has(id)).map(([, , ,target])=>target))];
+        scope.input.value=targets.length>1?'':targets[0]||'clothing';
+      }
+      const problem=choiceError();
+      unresolvedScope.hidden=scope.input.value!=='';
+      scopeValidation.textContent=problem;scopeValidation.hidden=!problem;
+      updateScopeDescription();
+      once.disabled=pending||!!problem;
+      forever.disabled=pending||!!problem||!fb.persistentForScope(scope.input.value);
+    }
     const noteLabel=element('label','More detail (optional)'),note=element('textarea');note.id='rejection-note';note.rows=3;note.maxLength=500;
     note.placeholder='For example: this tie does not work with this shirt.';noteLabel.append(note);body.append(noteLabel);
-    // Footwear-only dissatisfaction must NOT silently ban the clothing with all shoes.
-    // The exact outfit scope preserves the suit, shirt and tie as reusable.
+    // Different diagnosed targets cannot silently collapse to a weaker scope.
+    // Color/pattern/formality details can annotate one specific target.
     for(const [value,input] of issueInputs){
       input.addEventListener('change',()=>{
         if(input.checked){
@@ -220,29 +261,23 @@
           }
         }
         if(!chosenIssues().length)issueInputs.get('').checked=true;
-        if(!scopeChosen){
-          const chosen=chosenIssues(),ids=new Set(chosen.map(([id])=>id));
-          const pairs=[...new Set(chosen.map(([, , ,target])=>target).filter(target=>target==='shirt_tie'||target==='topwear_tie'))];
-          const pairingOnly=chosen.every(([id])=>['tie_shirt','tie_suit','colors','patterns','formality','other'].includes(id));
-          // Footwear-only feedback keeps its existing exact-outfit scope.
-          // General color/pattern details may describe a selected pairing;
-          // two different pairing diagnoses retain the clothing default.
-          const target=ids.has('footwear')?'outfit':pairingOnly&&pairs.length===1?pairs[0]:'clothing';
-          scope.input.value=scopeRows.some(([value])=>value===target)?target:'clothing';
-        }
-        updateScopeDescription();
-        forever.disabled=!fb.persistentForScope(scope.input.value);
+        updateChoices(true);
       });
     }
-    body.append(element('p','Reject once lasts until the next Generate or page reload. Never show again stays saved until Undo. Pairing rejections keep each item available with other partners. For a tie or pairing rejection, the replacement keeps the other pieces and changes only the tie when an eligible alternative exists.','fx-caption'));
+    body.append(element('p','Reject once lasts until the next Generate or page reload. Never show again stays saved until Undo. A pairing rejection leaves each item available with other partners. A shirt, tie or shoes-only correction preserves the other pieces; a shirt-and-tie correction changes both. A replacement is shown only when an eligible alternative exists.','fx-caption'));
     const cancel=button('Cancel','rejection-cancel',closeDialog);
     const once=button('Reject once','rejection-once',()=>commit(false));
     const forever=button('Never show again','rejection-permanent',()=>commit(true));forever.className='hewrs-rejection-primary';
-    forever.disabled=!fb.persistentForScope(scope.input.value);actions.append(cancel,once,forever);
+    actions.append(cancel,once,forever);updateChoices();
+    function pendingControls(value){
+      for(const control of rejectionDialog.querySelectorAll('button,input,select,textarea'))control.disabled=value;
+      if(!value)updateChoices();
+    }
     async function commit(permanent) {
       if(pending)return;
+      const problem=choiceError();if(problem){scopeValidation.textContent=problem;scopeValidation.hidden=false;error.textContent=problem;return;}
       const now=original.state();
-      if(now.busy||!now.selection||F.key(now.selection,'historical_exact')!==key){error.textContent='The displayed outfit changed. Close this panel and review the current outfit.';return;}
+      if(now.busy||!now.selection||F.key(now.selection,'historical_exact')!==key||now.context.occasion!==state.context.occasion){error.textContent='The displayed outfit or occasion changed. Close this panel and review the current outfit.';return;}
       const chosen=chosenIssues();
       const descriptions=chosen.filter(([id])=>id).map(([,label])=>label);
       const diagnosis=descriptions.length?(descriptions.length===1?'Issue: ':'Issues: ')+descriptions.join('; ')+'.':'';
@@ -252,11 +287,13 @@
       }
       // Schema v1 stores multiple reasons as one readable note, using "other".
       const reason=chosen.length===1?(chosen[0][2]||null):'other';
-      pending=true;cancel.disabled=once.disabled=forever.disabled=true;error.textContent='';refreshControls();
+      const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason,note:savedNote};
+      const specific=chosen.filter(([id])=>specificIds.has(id));
+      const replaceParts=['tie','shirt_tie','topwear_tie'].includes(settings.scope)?['tie']:['shirt','topwear_shirt'].includes(settings.scope)?['shirt']:settings.scope==='topwear_shirt_tie'?['shirt','tie']:settings.scope==='outfit'&&specific.length===1&&specific[0][0]==='footwear'?['shoes']:null;
+      pending=true;pendingControls(true);error.textContent='';refreshControls();
       try {
-        const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason,note:savedNote};
         await prepareMutation();
-        const latest=original.state();if(latest.busy||!latest.selection||F.key(latest.selection,'historical_exact')!==key)throw Error('The displayed outfit changed. Review the current outfit before rejecting it.');
+        const latest=original.state();if(latest.busy||!latest.selection||F.key(latest.selection,'historical_exact')!==key||latest.context.occasion!==state.context.occasion)throw Error('The displayed outfit or occasion changed. Review the current outfit before rejecting it.');
         const event=await (permanent?fb.hide(selected,settings):fb.skip(selected,settings));lastId=event.id;
         // This action owns reconciliation and refill. Its store notification is
         // deferred so a late subscriber cannot cancel the refill it just began.
@@ -264,8 +301,7 @@
         closeDialog();
         const prefix=permanent?'Rejection saved. ':'Rejected for this session. ';
         say(prefix+'Keeping the other outfits and finding replacements…');
-        const tieOnly=['tie','shirt_tie','topwear_tie'].includes(settings.scope);
-        const result=await original.refillRejected(tieOnly?{replaceTieFor:selected}:undefined);
+        const result=await original.refillRejected(replaceParts?{replaceFor:selected,replaceParts}:undefined);
         if(result?.cancelled) {
           say(prefix+'Replacement stopped because the current review changed. Your remaining outfits were retained.');
         } else {
@@ -275,23 +311,23 @@
         }
       } catch(problem) {
         error.textContent=problem.message;say(problem.message,true);
-      } finally {cancel.disabled=once.disabled=false;forever.disabled=!fb.persistentForScope(scope.input.value);finishMutation();}
+      } finally {finishMutation();pendingControls(false);}
     }
     dialog.showModal();scope.input.focus();
   }
   async function undoLast() {
     if(pending||!lastId)return;
     pending=true;refreshControls();
-    try {const id=lastId;await prepareMutation();await fb.restore(id);await reconcileMutation();lastId=null;say('Rejection undone. Your current list is retained. This outfit, pair or tie can appear on your next Generate; other rejection rules still apply.');}
+    try {const id=lastId;await prepareMutation();await fb.restore(id);await reconcileMutation();lastId=null;say('Rejection undone. Your current list is retained. This outfit, item or pairing can appear on your next Generate; other rejection rules still apply.');}
     catch(error){say(error.message,true);}
     finally{finishMutation();}
   }
   async function openManager() {
     if(pending||checking)return;
     try{await synchronize();}catch(problem){readFailure(problem);refreshControls();return;}
-    const {body,actions,error}=newDialog('Rejected outfits and ties'),manager=dialog;
+    const {body,actions,error}=newDialog('Rejected outfits and items'),manager=dialog;
     let page=0;
-    body.append(element('p','Each saved rejection shows its exact scope and occasion. Backups include permanent outfit, garment–tie pairing and tie feedback with reasons. Temporary skips are not backed up. Older outfit backups keep their original meaning when imported.','fx-caption'));
+    body.append(element('p','Each saved rejection shows its exact scope and occasion. Backups include permanent outfit, item and pairing feedback with reasons. Temporary skips are not backed up. Older backups keep their original meaning when imported.','fx-caption'));
     const total=element('p','','fx-caption');total.id='rejection-record-count';
     const pageStatus=element('p','','fx-caption');pageStatus.id='rejection-page-status';pageStatus.setAttribute('role','status');
     const previous=button('Previous page','rejection-prev-page',()=>{if(!pending&&page>0){page--;redraw();}});
@@ -316,7 +352,8 @@
           const event=i<temporary.length?temporary[i]:active[active.length-1-(i-temporary.length)];
           const row=element('article',undefined,'hewrs-rejection-record');row.dataset.eventId=event.id;
           row.dataset.scope=event.scope;
-          const title=event.scope==='tie'?'Tie '+event.selection.state:event.scope==='shirt_tie'?'Shirt '+event.selection.shirtId+' + tie '+event.selection.state:event.scope==='topwear_tie'?(event.selection.suitId?'Suit '+event.selection.suitId:'Blazer '+event.selection.blazerId)+' + tie '+event.selection.state:describe(event.selection);
+          const top=event.selection.suitId?'Suit '+event.selection.suitId:'Blazer '+event.selection.blazerId;
+          const title=event.scope==='shirt'?'Shirt '+event.selection.shirtId:event.scope==='topwear_shirt'?top+' + shirt '+event.selection.shirtId:event.scope==='topwear_shirt_tie'?top+' + shirt '+event.selection.shirtId+' + tie '+event.selection.state:event.scope==='tie'?'Tie '+event.selection.state:event.scope==='shirt_tie'?'Shirt '+event.selection.shirtId+' + tie '+event.selection.state:event.scope==='topwear_tie'?top+' + tie '+event.selection.state:describe(event.selection);
           row.append(element('strong',title),element('p',(event.type==='temporary_skip'?'Temporary · ':'Saved · ')+(event.occasion==='all'?'Every occasion':event.occasion)+' · '+describeScope(event),'fx-caption'));
           if(event.reason)row.append(element('p',reasons.find(r=>r[0]===event.reason)?.[1]||event.reason));
           if(event.note)row.append(element('p',String(event.note),'hewrs-rejection-note'));

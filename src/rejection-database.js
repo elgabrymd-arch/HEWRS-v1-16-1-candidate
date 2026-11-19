@@ -94,8 +94,8 @@ function create({indexedDB=root.indexedDB,keyRange=root.IDBKeyRange,legacyStorag
    need(typeof event.id==='string'&&/^[A-Za-z0-9_-]{1,150}$/.test(event.id),'Invalid rejection event ID.');
    need(['hide','restore','preferences','withdraw_preferences'].includes(event.type),'Unknown feedback action. Existing records were retained.');
    if(event.type==='hide'){
-    need(event.actor==='owner','A rejection must be an explicit owner action.');F.normal(event.selection);validateSelection?.(event.selection);
-    need(['outfit','clothing'].includes(event.scope),'Unknown rejection scope.');F.occasion(event.occasion);
+    need(event.actor==='owner','A rejection must be an explicit owner action.');canonical(event.selection);
+    need(F.isScope(event.scope),'Unknown rejection scope.');F.key(event.selection,event.scope);F.occasion(event.occasion);
     need([null,'colors','patterns','formality','footwear','other'].includes(event.reason),'Unknown reason; not inferred.');
    }else if(event.type==='restore'||event.type==='withdraw_preferences')need(typeof event.target==='string'&&/^[A-Za-z0-9_-]{1,150}$/.test(event.target),'Invalid undo target.');
    else F.validatePreference(event.payload,validateSelection);
@@ -142,9 +142,12 @@ function create({indexedDB=root.indexedDB,keyRange=root.IDBKeyRange,legacyStorag
   const changedBuckets=new Set();
   function bucket(k){if(!changedBuckets.has(k)||!next.index.has(k)){next.index.set(k,new Set(next.index.get(k)||[]));changedBuckets.add(k);}return next.index.get(k);}
   for(const target of affected){
-   const prior=base.active.get(target);if(prior){const k=lookup(prior.scope,prior.occasion,scopeKey(prior.selection,prior.scope));bucket(k).delete(target);if(!next.index.get(k).size)next.index.delete(k);}
+   const prior=base.active.get(target);if(prior){const k=lookup(prior.scope,F.occasion(prior.occasion),scopeKey(prior.selection,prior.scope));bucket(k).delete(target);if(!next.index.get(k).size)next.index.delete(k);}
    next.active.delete(target);const event=next.byId.get(target);
-   if(event?.type==='hide'&&!next.restored.has(target)){next.active.set(target,event);bucket(lookup(event.scope,event.occasion,scopeKey(event.selection,event.scope))).add(target);}
+   // Normalize the derived lookup, not the stored event or its persisted
+   // integrity record. This also reads existing databases without rewriting
+   // legacy occasion labels or requiring an IndexedDB schema migration.
+   if(event?.type==='hide'&&!next.restored.has(target)){next.active.set(target,event);bucket(lookup(event.scope,F.occasion(event.occasion),scopeKey(event.selection,event.scope))).add(target);}
   }
   if(historyChanged){
    next.imports=new Map([...next.byId.values()].filter(e=>e.type==='preferences'&&!next.withdrawn.has(e.id)).sort((a,b)=>a.id.localeCompare(b.id)).map(e=>[e.id,e]));
@@ -275,7 +278,7 @@ function create({indexedDB=root.indexedDB,keyRange=root.IDBKeyRange,legacyStorag
   });
  }
  function choices(options={}){
-  const scope=options.scope||'outfit';need(['outfit','clothing'].includes(scope)||T.isScope(scope),'Choose a listed rejection scope.');
+  const scope=options.scope||'outfit';need(F.isScope(scope)||T.isScope(scope),'Choose a listed rejection scope.');
   const occasion=F.occasion(typeof options.context==='object'?options.context.occasion:options.context||'all'),reason=options.reason||null,note=String(options.note||'').trim();
   need([null,'colors','patterns','formality','footwear','other'].includes(reason),'Choose a listed reason.');need(note.length<=500,'Keep the reason within 500 characters.');return{scope,occasion,reason,note};
  }
@@ -312,11 +315,11 @@ function create({indexedDB=root.indexedDB,keyRange=root.IDBKeyRange,legacyStorag
  function match(selection,context={}){
   read();stats.matchCalls++;const selected=F.normal(selection),occasion=F.occasion(typeof context==='string'?context:context.occasion),why=F.ownerRuleCheck(selected,{context}).reasons;
   if(selected.suitId==='S01'&&selected.shirtId==='DS029'&&selected.state==='T024')why.push({type:'owner_core',id:'S01_DS029_T024',reason:null,scope:'clothing',occasion:'all'});
-  for(const scope of ['outfit','clothing','tie','shirt_tie','topwear_tie']){
-   if(T.isScope(scope)&&!T.canMatch(selected,scope))continue;const key=scopeKey(selected,scope);
+  for(const scope of [...F.SCOPES,'tie','shirt_tie','topwear_tie']){
+   if(!(T.isScope(scope)?T:F).canMatch(selected,scope))continue;const key=scopeKey(selected,scope);
    for(const occ of occasion==='all'?['all']:['all',occasion])for(const target of model.index.get(lookup(scope,occ,key))||[]){const event=model.active.get(target);why.push({type:'hide',id:event.id,reason:event.reason,scope:event.scope,occasion:event.occasion});}
   }
-  for(const record of model.neither.get(lookup('historical_exact',occasion,F.key(selected,'historical_exact')))?.values()||[])why.push({type:'historical_neither',id:record.id,reason:null,scope:'historical_exact',occasion,partition:record.partition});
+  for(const savedOccasion of occasion==='all'?['all']:['all',occasion])for(const record of model.neither.get(lookup('historical_exact',savedOccasion,F.key(selected,'historical_exact')))?.values()||[])why.push({type:'historical_neither',id:record.id,reason:null,scope:'historical_exact',occasion:savedOccasion,partition:record.partition});
   return{allowed:why.length===0,reasons:why};
  }
  function reorder(rows,getSelection,context){

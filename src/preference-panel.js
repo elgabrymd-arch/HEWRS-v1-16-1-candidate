@@ -43,7 +43,8 @@ function create(h){const {connection,learning,openSheet,closeSheet,active,makeBu
    const aa=options[+a.input.value],bb=options[+b.input.value];if(root.HEWRSOutfitLearning.selectionKey(aa)===root.HEWRSOutfitLearning.selectionKey(bb))throw Error('Choose two different outfits');const held=new Set(pilot().validation_topwear);showPair({id:null,a:aa,b:bb,context:h.context(),partition:held.has(aa.suitId||aa.blazerId)||held.has(bb.suitId||bb.blazerId)?'validation':'training'},chooseCurrent,review);
   },true));
  }
- async function showPair(pair,next,skip){const d=data(),p=copy(pair);let cancelled=false,ready=false;
+ async function showPair(pair,next,skip){const d=data(),p=copy(pair);let cancelled=false,ready=false,rejectionToken=null;
+  if(h.checkFeedback)try{rejectionToken=await h.checkFeedback([p.a,p.b],p.context);}catch(error){const {body,actions}=openSheet('Comparison unavailable');body.append(node('p',error.message+'. No preference saved.','fx-warning'));actions.append(makeButton('Skip without saving',skip),makeButton('Learning status',review));return;}
   const {body,actions,token}=openSheet('Which complete outfit do you prefer?',{list:true,cancel:()=>{cancelled=true;}});
   const ok=()=>!cancelled&&active(token),bank=root.HEWRS_PREFERENCE_FOLLOWUP.records.some(x=>x.id===p.id)?root.HEWRS_PREFERENCE_FOLLOWUP:pilot();body.append(node('p',(p.partition==='validation'?'Reserved check: saved for evaluation, never fitted. ':'Training: A/B teaches relative preference; Both/Neither teaches complete-outfit acceptability. ')+(p.id?`${bank.records.findIndex(x=>x.id===p.id)+1} / ${bank.records.length}. `:'')+(p.focus?`Focus: ${p.focus==='shirt'?'only the shirt changes':p.focus==='whole_outfit'?'compare the complete looks':p.focus}.`:''),'fx-caption'));
   body.append(node('p','Occasion: '+root.HEWRSStyleOccasions.labels[root.HEWRSStyleOccasions.occasion(p.context.occasion)]+'. Weather-neutral styling comparison. Neither outfit is logged as worn. Method labels and calculated scores are hidden; image order does not imply a winner.','fx-caption'));
@@ -54,18 +55,20 @@ function create(h){const {connection,learning,openSheet,closeSheet,active,makeBu
   const info=node('p','Loading both actual outfit renders…','fx-caption');info.id='pref-pair-status';body.append(info);
   const voteBtns=[];for(const [vote,label]of [['A','Prefer A'],['B','Prefer B'],['both','Both work'],['neither','Neither works']]){const btn=makeButton(label,async()=>{
    if(!ready||!ok())throw Error('Wait for both outfit images');
+   try{if(h.checkFeedback)await h.checkFeedback([p.a,p.b],p.context,rejectionToken);if(!ok())return;}catch(e){grid.hidden=true;ready=false;for(const b of voteBtns)b.disabled=true;info.textContent='Comparison unavailable: '+e.message+'. No preference saved.';return;}
    const row={id:'pref_'+Date.now()+'_'+Math.random().toString(36).slice(2,11),created_at:new Date().toISOString(),a:p.a,b:p.b,vote,reason:reasons.input.value,partition:p.partition,pilot_id:p.id||null,context:p.context,source_revision:root.HEWRSSourceCorrections.revision};
    await learning.exclusive(()=>learning.add(row,d.token));ready=false;onChanged();for(const b of voteBtns)b.disabled=true;info.textContent=(learning.status().persistent?'Preference saved.':'Saved only in this tab’s session memory; export to retain it.')+' Wear history and Favorites were not changed.';const n=makeButton('Next comparison',next,true);n.id='pref-next';actions.replaceChildren(makeButton('Learning status',review),n);
   });btn.id='pref-vote-'+vote;btn.disabled=true;voteBtns.push(btn);actions.append(btn);}
   actions.append(makeButton('Skip without saving',skip),makeButton('Close',closeSheet));
   try{
-   for(const card of cards){const images=await render(card.s,()=>!ok());if(!ok())return;card.images=images;card.img.src=images.full;card.toggle.disabled=false;await card.img.decode();}
+   for(const card of cards){const images=await render(card.s,()=>!ok(),p.context);if(h.checkFeedback)await h.checkFeedback([p.a,p.b],p.context,rejectionToken);if(!ok())return;card.images=images;card.img.src=images.full;card.toggle.disabled=false;await card.img.decode();}
+   if(h.checkFeedback)await h.checkFeedback([p.a,p.b],p.context,rejectionToken);
    learning.assertCurrent(d.token);if(!ok())return;
    if(p.a.suitId==='S02'||p.b.suitId==='S02'){info.textContent='S02 cannot teach preferences until its known source/render mismatch is resolved. Your approved brown DNA is active; no vote will be saved.';return;}
    for(const s of [p.a,p.b]){const e=connection.hybrid.researchPreference.describeSelection(s,p.context);if(!e.eligible)throw Error('This comparison has an unresolved source or compatibility restriction: '+e.reason);}
    const pk=root.HEWRSOutfitLearning.contextPairKey(p.a,p.b,p.context);if(d.state.comparisons.some(r=>root.HEWRSOutfitLearning.contextPairKey(r.a,r.b,r.context)===pk)){info.textContent='This exact pair already has saved feedback. No duplicate vote will be added.';return;}
    ready=true;for(const b of voteBtns)b.disabled=false;info.textContent='Both source renders loaded. Choose only when you have compared the complete looks.';
-  }catch(e){if(ok())info.textContent='Comparison unavailable: '+e.message+'. No preference saved.';}
+  }catch(e){if(ok()){grid.hidden=true;ready=false;for(const b of voteBtns)b.disabled=true;info.textContent='Comparison unavailable: '+e.message+'. No preference saved.';}}
  }
  return Object.freeze({open:review,pilot:nextPilot,followup:nextFollowup,compare:chooseCurrent,showPair});
 }

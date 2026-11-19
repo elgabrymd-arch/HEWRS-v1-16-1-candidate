@@ -10,7 +10,7 @@ let loaded=null,bridge=null,ranker=null,data=null,dialog=null,renderer=null,curr
 const state={ready:false,currentId:null,request:null,error:null,rendered:0,mode:'stage10_integration_candidate',busy:false};
 async function synchronizeFeedback(){if(fb.sync)await fb.sync();return fb.refresh();}
 async function publishFeedback(token,apply){if(fb.withCurrent)return fb.withCurrent(token,apply);fb.assertCurrent(token);return apply();}
-function setActionBusy(value){actionBusy=value;if(!dialog)return;for(const control of dialog.querySelectorAll('.rd-controls select,#rd-reset,#rd-explore-more,#rd-hide,#rd-undo,#rd-close,#rd-manage'))control.disabled=value;if(!value){$('rd-undo').disabled=!lastHide;$('rd-hide').disabled=!currentId;}}
+function setActionBusy(value){actionBusy=value;if(!dialog)return;for(const control of dialog.querySelectorAll('.rd-controls select,#rd-hide-scope,#rd-hide-occasion,#rd-hide-reason,#rd-reset,#rd-explore-more,#rd-hide,#rd-undo,#rd-close,#rd-manage'))control.disabled=value;if(!value){$('rd-undo').disabled=!lastHide;$('rd-hide').disabled=!currentId;}}
 function feedbackChanged(){if(!dialog)return;invalidate();$('rd-results').replaceChildren();const problem=fb.status?.().blocked;$('rd-count').textContent=problem?'Saved rejections could not be checked. Reopen this panel after retrying the rejection check.':'Saved rejections changed. Reopen this panel or change a filter to refresh the results.';if(problem)$('rd-error').textContent=problem;}
 function js(url){return new Promise((resolve,reject)=>{const n=el('script');n.src=url;n.onload=resolve;n.onerror=()=>reject(Error('Candidate module failed to load.'));document.head.append(n);});}
 async function load({initialUpdate=true}={}){if(loaded)return loaded;loaded=(async()=>{for(const p of ['rebuild-core.js','reviewed-selector.js','native-reviewed-bridge.js','personalized-reviewed-ranking.js'])await js(p==='personalized-reviewed-ranking.js'?"hewrs-stage93-ranking-v2.js?v=f9192bb1e036":BASE+p);const r=await fetch(BASE+'review-data.json',{cache:'no-cache'});if(!r.ok)throw Error('Reviewed data unavailable.');data=await r.json();if(data.source_input_sha256!==root.HEWRS_INPUT_SHA256)throw Error('Unsupported baseline.');bridge=root.HEWRSNativeReviewedBridge.create(app.connection,data.catalogue,data.reviews,data.rules);ranker=root.HEWRSPersonalizedRanking.create({catalogue:data.catalogue,bridge,feedback:fb,numerical:data.comparison_r3});build(initialUpdate);state.ready=true;return bridge;})().catch(e=>{loaded=null;state.error=e.message;throw e;});return loaded;}
@@ -87,11 +87,12 @@ async function render(id){
 async function hide(){
  if(actionBusy||!currentId)throw Error('No settled outfit to hide.');
  const id=currentId,e=entry(id),s=native(e),q=request(),wasExplore=isExplore()||(isPipeline()&&e.kind==='unreviewed_possibility'),wasAsync=isExplore()||isPipeline();
+ const settings={context:$('rd-hide-occasion').value==='all'?'all':q.occasion,scope:$('rd-hide-scope').value,reason:$('rd-hide-reason').value||null};
  setActionBusy(true);
  try{
   await synchronizeFeedback();
   if(currentId!==id||JSON.stringify(q)!==JSON.stringify(request()))throw Error('The displayed outfit changed. Review the current outfit before rejecting it.');
-  const event=await fb.hide(s,{context:$('rd-hide-occasion').value==='all'?'all':q.occasion,scope:$('rd-hide-scope').value,reason:$('rd-hide-reason').value||null});
+  const event=await fb.hide(s,settings);
   lastHide=event.id;await app.rejectionChanged();
   const updated=await update();
   if(wasAsync&&(!updated||JSON.stringify(q)!==JSON.stringify(request())))return {hidden:id,replacement:null,cancelled:true};
