@@ -37,11 +37,15 @@
     {
       "number": 3,
       "name": "Actual browser and visual coverage",
-      "status": "in_progress",
+      "status": "complete",
       "evidence": [
         "ui-round3-lineage.json",
         "ui-round4-webkit-retry.json",
-        "ui-round5-visual-review.json"
+        "ui-round5-visual-review.json",
+        "ui-round5-complete-collar-review.json",
+        "ui-round5-native-collar-acceptance.json",
+        "ui-round5-final-chromium.json",
+        "ui-round5-final-webkit.json"
       ]
     },
     {
@@ -65,13 +69,23 @@
     {
       "number": 5,
       "name": "Final cross-review, regressions and live publication",
-      "status": "in_progress",
+      "status": "complete",
       "evidence": [
         "engine-round5.json",
         "storage-round5.json",
-        "root-round5-prepublication.json"
+        "root-round5-prepublication.json",
+        "root-round5-photo-fixture.json",
+        "RELEASE.json",
+        "live-thumbnail-verifier-correction.json",
+        "live-lifecycle-thumbnail-readiness.json",
+        "live-round5-final.json",
+        "live-round5-visual-final.json"
       ]
     }
   ],
-  "closure_rule": "Every confirmed material defect requires a repair and a regression result. Remaining limitations and unverified boundaries must be stated explicitly; a pass count is not proof of universal correctness."
+  "closure_rule": "Every confirmed material defect requires a repair and a regression result. Remaining limitations and unverified boundaries must be stated explicitly; a pass count is not proof of universal correctness.",
+  "status": "complete",
+  "completed_at_utc": "2026-11-19T11:51:06.947501+00:00",
+  "accepted_application_merge": "a6874baf58c19f8a0ece853dd0fd5237fd457d5c",
+  "accepted_live_verifier": "7621ce47446b9b62b022c01bbb35e8e962931d7c"
 }

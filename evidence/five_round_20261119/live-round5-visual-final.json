@@ -1,0 +1,171 @@
+{
+  "schema": "hewrs.live-photo-state-reconciliation.v2",
+  "status": "PASS_PHOTO_AND_STATE_SCOPE",
+  "recorded_at_utc": "2026-11-19T11:49:57.139474+00:00",
+  "reviewer": "/root/visual_final_review",
+  "live_run_id": 44516353326,
+  "live_head": "7621ce47446b9b62b022c01bbb35e8e962931d7c",
+  "live_url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/",
+  "runtime_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+  "accepted_candidate_head": "7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6",
+  "accepted_candidate_run": 44510840257,
+  "published_baseline_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "live_runtime_identity": {
+    "publication_result_path": "/workspace/scratch/0c5080ac53d0/verification/live762/publication/rejection_publication/RESULT.json",
+    "publication_result_sha256": "f837cb5176648e5cbb4b9cdbb24aacc9b9b5a0ade1bd8afd07a2a8e1df1e2bb6",
+    "publication_passed": 32,
+    "publication_failed": 0,
+    "live_file_hashes_matching_current_checkout": 31,
+    "actual_runtime_response": {
+      "path": "runtime/outfit-refill-preview.js?v=d4231feabdc5bcad",
+      "status": 200,
+      "sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+      "expected_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+      "bytes": 1828992,
+      "matches": true
+    },
+    "accepted_and_release_git_runtime_sha_verified": true,
+    "accepted_to_release_changed_files": [
+      "A\tevidence/five_round_20261119/live-lifecycle-thumbnail-readiness.json",
+      "A\tevidence/five_round_20261119/live-thumbnail-verifier-correction.json",
+      "M\ttests/all-rejections-browser.py",
+      "M\ttests/rejection-live-publication.py"
+    ],
+    "application_and_image_changes": []
+  },
+  "browsers": {
+    "chromium": {
+      "artifact_id": 14526720296,
+      "archive_sha256": "4f3b2c9d7bf9b721c85a23981dc0f7917a539f524424f834c36bbb9432051bfe",
+      "archive_bytes": 288301136,
+      "archive_digest_verified": true,
+      "photo": {
+        "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44516353326/photos_chromium/chromium/live-photos/RESULT.json",
+        "result_sha256": "4479937b5f591215a3bbfab86f5b1515f516c87570730a59e86c255812ab8283",
+        "passed": 2393,
+        "failed": 0,
+        "native_frames": 396,
+        "full_frame_rgba_equal_candidate": 396,
+        "native_collar_pngs": 288,
+        "native_png_file_hashes_verified_equal_candidate": 288,
+        "native_collar_rgba_hashes_equal_candidate": 288,
+        "complete_detail_sheets_equal_actual_visual_review": 10,
+        "same_browser_published_baseline_equal": 349,
+        "same_browser_published_baseline_compared": 349,
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": [],
+        "owner_data_accessed": false
+      },
+      "state": {
+        "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44516353326/photos_chromium/chromium/live-photos/chromium_live-state_RESULT.json",
+        "result_sha256": "9d46b50f11df23323a445cd972f8bee13134cbfa5382724834875ed05527e695",
+        "passed": 85,
+        "failed": 0,
+        "page_errors": [],
+        "http_errors": [],
+        "external_requests": [],
+        "request_failures": [
+          {
+            "page": "render-tab",
+            "phase": "stalled-native-render",
+            "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/90c3c10c3452238194e68b859f665a9ab015d26d7876657962d81cd1708a0b0c.png",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "page": "render-tab",
+            "phase": "stalled-comparison-render",
+            "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "deliberately_stalled_urls": [
+          "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/90c3c10c3452238194e68b859f665a9ab015d26d7876657962d81cd1708a0b0c.png",
+          "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png"
+        ],
+        "owner_data_accessed": false,
+        "expected_held_image_abort_count": 2,
+        "unexpected_request_failures": []
+      }
+    },
+    "webkit": {
+      "artifact_id": 14526805684,
+      "archive_sha256": "a3a1870b2f9d01d6b0ce2cd4c6f1b3168dc35d7885d46606bd3fd00011bacaaf",
+      "archive_bytes": 230381497,
+      "archive_digest_verified": true,
+      "photo": {
+        "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44516353326/photos_webkit/webkit/live-photos/RESULT.json",
+        "result_sha256": "83825dd3947e081260e9581d51cc9874bedd8a67f71044f73df6350fb6121e7a",
+        "passed": 2393,
+        "failed": 0,
+        "native_frames": 396,
+        "full_frame_rgba_equal_candidate": 396,
+        "native_collar_pngs": 288,
+        "native_png_file_hashes_verified_equal_candidate": 288,
+        "native_collar_rgba_hashes_equal_candidate": 288,
+        "complete_detail_sheets_equal_actual_visual_review": 10,
+        "same_browser_published_baseline_equal": 349,
+        "same_browser_published_baseline_compared": 349,
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": [],
+        "owner_data_accessed": false
+      },
+      "state": {
+        "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44516353326/photos_webkit/webkit/live-photos/webkit_live-state_RESULT.json",
+        "result_sha256": "ac8897cfe406dcaab06672c9c0761046937429395e396fc708b6d59d3849e4bb",
+        "passed": 85,
+        "failed": 0,
+        "page_errors": [],
+        "http_errors": [],
+        "external_requests": [],
+        "request_failures": [],
+        "deliberately_stalled_urls": [
+          "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/90c3c10c3452238194e68b859f665a9ab015d26d7876657962d81cd1708a0b0c.png",
+          "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png"
+        ],
+        "owner_data_accessed": false,
+        "expected_held_image_abort_count": 0,
+        "unexpected_request_failures": []
+      }
+    }
+  },
+  "totals": {
+    "photo_checks_passed": 4786,
+    "photo_checks_failed": 0,
+    "state_checks_passed": 170,
+    "state_checks_failed": 0,
+    "native_frames_equal_candidate": 792,
+    "native_collar_pngs_and_rgba_equal_candidate": 576,
+    "complete_collar_sheets_equal_inspected": 20,
+    "unexpected_request_failures": 0
+  },
+  "visual_review_reuse": {
+    "actual_visual_review": "ci_44509915589/COMPLETE_NATIVE_COLLAR_VISUAL_REVIEW.json",
+    "actual_visual_review_sha256": "58e3f71558aed31c3179d765bbf79b2afe4a73ed90fb83f7dfcfbea7773beafd",
+    "accepted_candidate_reconciliation": "ci_44510840257/FINAL_NATIVE_COLLAR_ACCEPTANCE.json",
+    "accepted_candidate_reconciliation_sha256": "a3e97a42c453f782098cfd25623c2111d081aa6ba39e1fb047c29df9bdf6227a",
+    "prior_live_photo_state_reconciliation": "live_44513982945/LIVE_PHOTO_STATE_RECONCILIATION.json",
+    "prior_live_photo_state_reconciliation_sha256": "6fc3d163054d999eac95fe4052aaaa85efedb54da41b8b37913dbdab5e613b07",
+    "basis": "Live same-browser full-frame RGBA hashes, native PNG bytes/recorded RGBA hashes and all complete detail-sheet hashes equal the already inspected candidate. No repeated visual inspection is claimed.",
+    "native_capture_source_bbox": [
+      170,
+      330,
+      656,
+      826
+    ],
+    "complete_detail_source_bbox": [
+      320,
+      330,
+      360,
+      260
+    ],
+    "native_detail_scale": "1:1"
+  },
+  "state_scope": "Real two-tab lock contention, durable Favorites/wear saves and exports, stale-write refusal/retry, modal cancellation, storage-event refresh, hidden rejected outfit, cancelled held native/comparison rendering and exact retry; fresh synthetic profiles.",
+  "artwork_limits_retained": "Existing DS023 cutout edges, DS040 stretched texture band and documented collar/placket joins and context-specific source differences remain. Equality does not certify seamless reconstruction, physical color or measured fit.",
+  "scope_boundary": "This file closes live photo/collar and concurrent-state evidence only. Other workflow jobs are recorded by the workflow monitoring reviewer.",
+  "source_test_or_asset_edits_by_reviewer": false
+}

@@ -1,0 +1,134 @@
+{
+  "schema": "hewrs.final-photo-reconciliation.v1",
+  "run_id": 44510840257,
+  "head": "7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6",
+  "browser": "chromium",
+  "zip_sha256": "1ec0feb253ed7600e8c023346eeb12390ebe61ee9b62126126160145c76280d1",
+  "zip_bytes": 288219879,
+  "zip_digest_verified": true,
+  "result_sha256": "6b02cc27e066be5081705edefbc3ebe11d14fd35acab94fea8f47ac2044f4b2c",
+  "checks_passed": 2393,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "frames": 396,
+  "full_frames_equal_visually_reviewed_run": 396,
+  "published_same_browser_baseline_comparisons": 349,
+  "published_baseline_matches": 349,
+  "native_crop_records_equal_reviewed_run": 288,
+  "native_png_zip_entries": 288,
+  "native_png_file_hashes_verified": 288,
+  "complete_detail_sheets_equal_visually_reviewed_images": 10,
+  "detail_sheet_files": [
+    {
+      "path": "chromium/photos/complete-collar-details-01.png",
+      "sha256": "97e8bf0f426dc4e292d3680d34a60c17c6d8edc18df7655fc2861f3d9b715d1e",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-02.png",
+      "sha256": "963145eb6c1c56fa55fe097f5abbf22503fa4ef440730498b895036c8cf8b30b",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-03.png",
+      "sha256": "86b0a538856e042db15b95e1d4bccb77b92866ca9d885f7209132509a2aa4a40",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-04.png",
+      "sha256": "44c8fcc450b48f709124ca1a42a61a5abed3f65c5862975430178508b7e37571",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-05.png",
+      "sha256": "5e26372612f1dd5e9a58ae458d6017ecfbe95a2fde4c32b71eeb5257b8d75cc3",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-06.png",
+      "sha256": "1de45a68bf510816890c5513073939f526bd0eed91d6cc382d0f6f75a1793f4e",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-07.png",
+      "sha256": "9facc22ad9f05a672553d4f9fa44f93b958c1f689f96c59d424afe03b22e5210",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-08.png",
+      "sha256": "2c3a5aaf61c05d55df0fe44de2ec7d0ee7616903307653637d9acb8b25175015",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-09.png",
+      "sha256": "8cd5886d50d68a5eed3be70f1639a15c346d10cb3b040ab2301f18ed8995f350",
+      "equals_visually_inspected": true
+    },
+    {
+      "path": "chromium/photos/complete-collar-details-10.png",
+      "sha256": "278e378dd5c110bb95bd78ae69326a6ab5a1a3dfc668582b9d36fc7247f24b38",
+      "equals_visually_inspected": true
+    }
+  ],
+  "page_errors": [],
+  "failed_requests": [],
+  "http_errors": [],
+  "external_requests": [],
+  "owner_data_accessed": false,
+  "started_at": "2026-11-19T11:06:24.356328+00:00",
+  "completed_at": "2026-11-19T11:10:31.791342+00:00",
+  "last_checks": [
+    {
+      "name": "Manual rejection hides the rendered outfit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "View current cannot resurrect a rejected shirt/tie pairing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Blocked navigation explains the rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Undo restores the allowed complete frame",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Photo and collar audit creates no wear or Favorites writes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Only the explicit synthetic rejection and Undo were recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No external service requests were made",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No application browser exceptions occurred",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No missing application or image responses occurred",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No non-cancellation network failures occurred",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "reconciliation_failures": [],
+  "visual_review_reused": "ci_44509915589/COMPLETE_NATIVE_COLLAR_VISUAL_REVIEW.json; same-browser396 full frames,288 native crops and10 complete detail sheets verified unchanged."
+}

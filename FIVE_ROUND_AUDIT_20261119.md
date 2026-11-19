@@ -1,10 +1,57 @@
 # HEWRS — five-round application audit
 
+**Complete and published.** All five audit passes are closed. The final live workflow, deployment and Home-preferences checks passed against the verified application bytes. The image and device/service limitations below remain explicit.
+
 ## Release boundary
 
-This audit starts from `59d9097f9a74104d6b4a1e6ff964f62c56a1ca03` and repairs the current application at `index.html` / `app.html`. The branch is `audit/five-round-total-20261119`. [PLAN.json](evidence/five_round_20261119/PLAN.json) records actual completion status; pending gates are not counted as passed.
+This audit starts from `59d9097f9a74104d6b4a1e6ff964f62c56a1ca03` and repairs the current application at `index.html` / `app.html`. Work from `audit/five-round-total-20261119` was merged through [PR 14](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/pull/14). [PLAN.json](evidence/five_round_20261119/PLAN.json) records actual completion status; pending gates are not counted as passed.
 
 The owner authorized audit, repairs and publication, with particular attention to S05, the very dark navy T029 tie, every rejection scope, shirt photographs and collars. Tests use disposable synthetic profiles. No owner browser ledger, credentials, wear history or Favorites are accessed or reset.
+
+## Published build
+
+Application: [HEWRS](https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/).
+
+| Release identity | Value |
+| --- | --- |
+| Application merge | [`a6874baf58c19f8a0ece853dd0fd5237fd457d5c`](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/commit/a6874baf58c19f8a0ece853dd0fd5237fd457d5c) |
+| Candidate tested before publication | `7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6` |
+| Final live-verifier commit | [`7621ce47446b9b62b022c01bbb35e8e962931d7c`](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/commit/7621ce47446b9b62b022c01bbb35e8e962931d7c) |
+| Application bundle SHA-256 | `d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8` |
+| Recovery branch | `backup/pre-five-round-audit-release-20261119` at the original baseline |
+
+The two verifier commits (`393231d3`, then `7621ce47`) change test readiness and diagnostics only. Their application files are identical to the application merge. [RELEASE.json](evidence/five_round_20261119/RELEASE.json) identifies the final verification runs, counts and explicit boundaries.
+
+## Acceptance evidence
+
+These counts describe separate forms of evidence and are not added into a purported number of unique behaviors.
+
+| Verification | Accepted result | Evidence |
+| --- | --- | --- |
+| Focused application, storage, cancellation and dialog tests | 183 Node tests passed; none failed or skipped | [Final local gate](evidence/five_round_20261119/root-round5-prepublication.json) |
+| Complete candidate audit | All five source/photo/state jobs passed | [Candidate workflow](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44510840257) |
+| All-rejection regression | All six jobs passed; 874 original Chromium/WebKit reason/lifecycle assertions passed | [Rejection workflow](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44510840209) |
+| Cumulative source and baseline regression | Passed | [Cumulative workflow](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44510840210) |
+| Candidate photo coverage | 2,393 checks and 396 frames per browser; zero failed checks | [Native acceptance](evidence/five_round_20261119/ui-round5-native-collar-acceptance.json) |
+| Native visual preservation | 349 same-browser baseline comparisons per browser; 288 verified native collar crops per browser; twenty complete sheets actually inspected | [Complete visual review](evidence/five_round_20261119/ui-round5-complete-collar-review.json) |
+| Active delivery bindings | 66 content-hash/SRI/direct/lazy/utility bindings passed | [Final delivery gate](evidence/five_round_20261119/root-round5-prepublication.json) |
+
+The final [hosted verification workflow](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44516353326) completed with all seven jobs successful at `7621ce47446b9b62b022c01bbb35e8e962931d7c`:
+
+| Final live verification | Observed result |
+| --- | --- |
+| Published resources and twenty rejection/refill cycles | 32 assertions passed; all 31 checked live resources matched their exact hashes; every cycle retained twenty valid options and every permanent rejection survived reload. |
+| S05 tie-only reasons and persistence | 68 assertions passed in each browser. |
+| All rejection reasons and lifecycle controls | 252 reason assertions plus 185 lifecycle assertions passed per browser: 874 original assertions total. |
+| Supplemental mounted-image readiness | 122 reason-suite boundaries plus 146 lifecycle boundaries per browser: 536 passed, zero failed. These are separate from the original assertion counts. |
+| Published photos and collars | 2,393 photo checks passed per browser; 396 frames, 288 native collar crops and ten complete collar-detail sheets per browser matched the accepted candidate and actual visual review. |
+| Concurrent saves, cancellation and storage state | 85 checks passed per browser. |
+| Home preferences | [13 current-app and fourteen retained Stage 10 checks passed](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44516353211). |
+| Deployment | [Verified application deployment succeeded](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44516352705). |
+
+The accepted live suites report zero unexpected browser, request or HTTP errors and no external/provider requests. Chromium's cancellation test deliberately aborts two held image requests; those exact URLs and phases remain recorded as expected test actions. The strict rejection-suite network gate has no cancellation exemptions. The previously cancelled T026 thumbnail decoded successfully six times in the final WebKit lifecycle run, including before scripted reload.
+
+[Final live evidence](evidence/five_round_20261119/live-round5-final.json) records exact heads, job outcomes, artifact digests, counts and the preserved failed attempts. [Final photo/state reconciliation](evidence/five_round_20261119/live-round5-visual-final.json) binds the measured live runtime hash and all native image comparisons to the earlier actual visual inspection. The final documentation commit changes reports and evidence only.
 
 ## Five passes
 
@@ -59,7 +106,19 @@ The picker fix uses the registered non-suit thumbnail only in an exact non-suit 
 
 Native pixel equality establishes that the transport changes preserve approved rendering. It does not mean every approved reconstruction is photographically seamless or that every physical shirt has a visually unique source. Visible pre-existing source characteristics are documented in the visual reviews.
 
-The final visual cross-review also records visible suit/non-suit differences for DS039, DS040 and DS043, alongside the previously documented DS026 difference. The reconstruction recipes explicitly retain the original suit inserts while sourcing the non-suit fabric separately. Some approved collar composites retain visible seams or flat neck bands. These observations are preserved as source limitations; no new garment-photo approval or image regeneration is asserted.
+The complete native visual review covers twenty collar-detail sheets: ten per browser, with all 288 supported identity/context/state cells per browser visible at native scale. The final corrected artifacts reproduce all inspected sheet, native-crop and full-frame hashes. The capture starts above the highest registered collar pixels; an earlier crop that clipped some collar tops is retained as an evidence limitation superseded by the complete review. See [complete collar review](evidence/five_round_20261119/ui-round5-complete-collar-review.json) and [final native acceptance](evidence/five_round_20261119/ui-round5-native-collar-acceptance.json).
+
+The review records these preserved source-artwork limitations:
+
+| Identities | Observed limitation |
+| --- | --- |
+| DS001, DS014 | Tied non-suit collars retain flat raised neck bands. |
+| DS017, DS034, DS035, DS036, DS051 | Some No Tie non-suit collar/placket joins retain hard edges or thin skin-tone bars; DS035 also has a stepped grey transition. |
+| DS023 | Jagged cutout pixels remain around the No Tie neckline. |
+| DS040 | The wider non-suit shirt-only image retains a horizontal chest band of vertically stretched GG texture. |
+| DS026, DS039, DS040, DS042, DS043 | Same-ID suit/non-suit pattern, color or cloth differences remain. Registered recipes retain the original suit inserts and source the non-suit fabric separately. |
+
+These observations are baseline-equal source limitations. No new garment-photo approval, reconstruction replacement, physical-garment fidelity claim or image regeneration is asserted.
 
 ## Persistence and cancellation
 
@@ -67,7 +126,7 @@ Wear and Favorites mutations use actual browser Web Locks and recheck durable st
 
 Exports reread current durable storage. Readable corrupt bytes remain exportable for recovery. Unreadable storage produces an error rather than a fake empty backup. Cross-tab key removal and actual `key === null` clear events refresh both stores.
 
-Modal-lifetime checks cover Favorite save/removal/import; wear save/restore/clear; comparison votes; learning Pause/import/Undo; and delayed file reads. Closing/replacing the panel prevents queued writes or reopening over newer work. Latest-file-read guards prevent an older read from replacing a newer preview.
+Modal-lifetime checks cover Favorite save/removal/import; wear save/restore/clear; comparison votes; learning Pause/import/Undo; and delayed file reads. Closing/replacing the panel prevents uncommitted stale writes and obsolete UI continuations from reopening over newer work. An already committed authorized save remains durable. Latest-file-read guards prevent an older read from replacing a newer preview.
 
 Native image cancellation settles pending promises, removes pending cache entries, ignores late callbacks and permits exact retry. Completed decoded images remain reusable. Private comparison, stylist and export renderers receive cancellation and release their canvases. Browser checks require settlement before a deliberately stalled transport is released and preservation of the previous committed selection/pixels.
 
@@ -81,7 +140,13 @@ The builder and independent delivery audit verify sixty-six direct/lazy/utility 
 
 ## Evidence qualifications
 
-Reports distinguish product defects from incorrect test assumptions. The initial thumbnail validator wrongly treated approved same-ID batch suffixes as mismatches. The first browser fixture attempted a prohibited B01 combination. WebKit can complete a retry from cache without a second network event. A photo harness supplied a UI diagnosis ID as a stored reason, which the store correctly rejected. These failures remain documented and require complete reruns.
+Reports distinguish product defects from incorrect test assumptions. The initial thumbnail validator wrongly treated approved same-ID batch suffixes as mismatches. The first browser fixture attempted a prohibited B01 combination. WebKit can complete a retry from cache without a second network event. A photo harness supplied a UI diagnosis ID as a stored reason, which the store correctly rejected. Each failed attempt remains documented; only complete successful reruns count toward acceptance.
+
+The final photo fixture also called a nonexistent `undo` method instead of the store's `restore` API. After that test-only correction, the complete photo suite passed 2,393 checks in each browser. The accepted artifacts reproduce the native images actually inspected during the preceding run; the earlier incomplete workflow is not counted as successful.
+
+The first post-publication run stopped at an immediate thumbnail-readiness assertion before running its rejection cycles. Its artifact did not record individual image readiness, so the exact cause cannot be established from that attempt. The corrected verifier waits for the current mounted images within a fixed deadline and then strictly checks expected count, completed decode, positive dimensions and absence of hidden/error fallbacks. The application itself is unchanged. The subsequent live run passed that assertion and all twenty rejection cycles. Both attempts are recorded in [the verifier correction](evidence/five_round_20261119/live-thumbnail-verifier-correction.json).
+
+A later live WebKit lifecycle run passed its preceding behavior checks but failed its final aggregate network check on one T026 card-thumbnail request with `Load request cancelled`. Its HTTP, browser-exception and external-request arrays were empty. The harness performed scripted transitions and teardown after avatar/runtime readiness without independently waiting for mounted card thumbnails; its record did not identify the cancellation phase. That makes test-triggered cancellation plausible, but does not establish the precise cause. The strict test correction and subsequent evidence are recorded in [the lifecycle thumbnail review](evidence/five_round_20261119/live-lifecycle-thumbnail-readiness.json). No application change or cancellation allowlist is implied.
 
 Finite evidence establishes the stated contracts and observed rendering. It does not prove universal correctness, garment color under every lighting condition, every assistive-technology behavior, or physical iPhone behavior. Chromium and WebKit run directly. Optional paid-service paths use controlled responses and actual local state without provider calls or claims about model judgment quality.
 

@@ -1,7 +1,7 @@
 {
   "schema": "hewrs.live-lifecycle-thumbnail-readiness.v1",
   "recorded_at_utc": "2026-11-19T11:31:37.900409+00:00",
-  "status": "TEST_CORRECTION_PENDING_STRICT_LIVE_RERUN",
+  "status": "STRICT_LIVE_RERUN_PASSED",
   "failed_attempt": {
     "head": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
     "run_id": 44513982945,
@@ -41,5 +41,25 @@
   ],
   "application_changed": false,
   "application_bundle_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
-  "acceptance": "A complete subsequent live run must satisfy the corrected strict checks. This failed attempt remains failed."
+  "acceptance": "The complete subsequent live workflow passed with the strict network aggregate intact. The old failed attempt remains failed; the exact trigger of its original cancellation is not retroactively asserted.",
+  "accepted_rerun": {
+    "head": "7621ce47446b9b62b022c01bbb35e8e962931d7c",
+    "run_id": 44516353326,
+    "workflow_conclusion": "success",
+    "all_jobs_successful": 7,
+    "webkit_lifecycle_job": 135535591671,
+    "webkit_lifecycle_checks_passed": 185,
+    "webkit_lifecycle_checks_failed": 0,
+    "webkit_lifecycle_image_readiness_passed": 146,
+    "webkit_lifecycle_image_readiness_failed": 0,
+    "all_rejection_assertions_passed": 874,
+    "all_rejection_image_readiness_boundaries_passed": 536,
+    "all_rejection_error_arrays_empty": true,
+    "T026_decoded_successful_observations": 6,
+    "T026_dimensions": [
+      192,
+      224
+    ],
+    "final_evidence": "live-round5-final.json"
+  }
 }
