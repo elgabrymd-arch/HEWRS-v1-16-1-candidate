@@ -483,7 +483,7 @@ function rejectionChanged(){
   throw error;
  }
 }
-async function refillRejected(){
+async function refillRejected({replaceTieFor=null}={}){
  const token=++generation;
  await checkRejectionFeedbackAsync();
  const target=root.HEWRSOptionSetPolicy.target,stable=root.HEWRSOutfitFeedback.stable;
@@ -499,7 +499,7 @@ async function refillRejected(){
  }
  const retained=options.slice(),retainedValues=retained.map(stable),kept=retained.length,exposureId=tieExposure.newId();
  renderer.cancel();autoWeather.cancel();setBusy(true);
- let feedbackToken,historyToken,preferenceToken;
+ let feedbackToken,historyToken,preferenceToken,replacement=null;
  function assertCurrent(){
   need(token===generation,'Replacement was cancelled; remaining choices are retained.');
   need(stable(lastRequest)===stable(q)&&stable(producing)===stable(produced),'The generating request changed. Generate for the current selections.');
@@ -513,16 +513,21 @@ async function refillRejected(){
   need(retained.every(o=>gate.allowed(connection.selectionFromOption(o,q).selection,q.context)),'A retained option was rejected during replacement.');
  }
  try{
+  if(replaceTieFor!==null){
+   replacement=copy(connection.validateSelection(replaceTieFor));
+   need(/^T\d{3}$/.test(replacement.state),'Tie replacement requires an actual rejected tie.');
+   need(!gate.allowed(replacement,q.context),'The selected outfit has no active rejection to replace.');
+  }
   need(optionHistoryToken&&optionPreferenceToken,'The list no longer has current history and preference checks. Generate for the current selections.');
   store.assertCurrent(optionHistoryToken);learning.assertCurrent(optionPreferenceToken);
   const history=store.readForGeneration();historyToken=history.token;preferenceToken=optionPreferenceToken;feedbackToken=gate.refresh().token;
   assertCurrent();
   let generated={...(report||{}),options:retained};
   if(kept<target){
-   status('Keeping '+kept+' choices and finding '+(target-kept)+' replacement'+(target-kept===1?'':'s')+'…');
+   status(replacement?'Keeping the accepted pieces and finding a different tie…':'Keeping '+kept+' choices and finding '+(target-kept)+' replacement'+(target-kept===1?'':'s')+'…');
    generated=await connection.controller.generateAsync(q,connection.catalogue,history.events,{
-    retainedOptions:retained,isCancelled:()=>token!==generation,
-    onProgress:()=>{if(token===generation)status('Finding replacements · '+kept+' accepted choices retained…');}
+    retainedOptions:retained,replaceTieFor:replacement,isCancelled:()=>token!==generation,
+    onProgress:()=>{if(token===generation)status(replacement?'Finding a different tie · suit/blazer, shirt and accessories retained…':'Finding replacements · '+kept+' accepted choices retained…');}
    });
    if(token!==generation||generated?.status==='cancelled')return {added:0,retained:kept,count:options.length,target,cancelled:true};
   }
@@ -532,6 +537,13 @@ async function refillRejected(){
   need(retainedValues.every((value,i)=>stable(next[i])===value),'Replacement changed an accepted choice; the existing list was retained.');
   need(connection.controller.verifyOptionSet(next,q),'Replacement violates current wardrobe bindings or item limits.');
   need(next.every(o=>gate.allowed(connection.selectionFromOption(o,q).selection,q.context)),'Replacement contains a rejected combination.');
+  if(replacement){
+   need(next.length-kept<=1,'Tie replacement returned more than one changed outfit.');
+   for(const option of next.slice(kept)){
+    const selected=connection.selectionFromOption(option,q).selection;
+    need(/^T\d{3}$/.test(selected.state)&&selected.state!==replacement.state&&['suitId','blazerId','pantId','shirtId','shoeId','watchId'].every(k=>(selected[k]??null)===(replacement[k]??null)),'Tie replacement changed an accepted garment or accessory. The remaining choices were retained.');
+   }
+  }
   const identities=next.map(o=>root.HEWRSOutfitFeedback.key(connection.selectionFromOption(o,q).selection));
   need(new Set(identities).size===identities.length,'Replacement repeats an outfit with a watch change.');
   const added=next.length-kept;
@@ -547,7 +559,7 @@ async function refillRejected(){
    if(token!==generation||frame?.cancelled)return {added:0,retained:kept,count:options.length,target,cancelled:true};
    assertCurrent();
   }
-  const reason=next.length<target?'Only '+next.length+' eligible, distinct options were found under the current selections and list limits.':'The list is back to '+target+' distinct options.';
+  const reason=replacement?(generated.reason||(added?'Changed only the tie; the accepted pieces were retained.':'No compatible different tie was found with the accepted pieces. The remaining outfits were retained.')):next.length<target?'Only '+next.length+' eligible, distinct options were found under the current selections and list limits.':'The list is back to '+target+' distinct options.';
   const publish=()=>{assertCurrent();
   options=next;optionIndex=index;currentOption=index>=0?options[index]:null;
   report={...generated,options,returned_options:options.length,requested_options:target,option_policy:root.HEWRSOptionSetPolicy.inspect(options,q),

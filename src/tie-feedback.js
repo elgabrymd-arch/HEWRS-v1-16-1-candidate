@@ -1,4 +1,4 @@
-/* Explicit owner tie and shirt–tie exclusions. Existing outfit feedback stays
+/* Explicit owner tie, shirt–tie and suit/blazer–tie exclusions. Existing outfit feedback stays
  * in its original namespace and keeps its original meaning. Each new event is
  * immutable so simultaneous tabs cannot replace one another's rejection log. */
 (function (root, factory) {
@@ -14,12 +14,22 @@
   const clone = value => structuredClone(value);
   const need = (value, message) => { if (!value) throw Error(message); };
   const plain = value => value && typeof value === 'object' && !Array.isArray(value) && [Object.prototype, null].includes(Object.getPrototypeOf(value));
-  const isScope = scope => scope === 'tie' || scope === 'shirt_tie';
+  const isScope = scope => scope === 'tie' || scope === 'shirt_tie' || scope === 'topwear_tie';
+  const topwear = selection => selection?.suitId || selection?.blazerId || selection?.topwear;
+  // A valid outfit without a tie or jacket cannot match a contextual jacket–tie
+  // rule. Keep this separate from key(), which rejects invalid new records.
+  const canMatch = (selection, scope) => isScope(scope) && /^T\d{3}$/.test(selection?.state || selection?.tie) &&
+    (scope !== 'topwear_tie' || /^[SB]\d{2}$/.test(topwear(selection)));
   function key(selection, scope) {
-    need(isScope(scope), 'Choose a tie or shirt–tie rejection scope.');
+    need(isScope(scope), 'Choose a tie, shirt–tie or suit/blazer–tie rejection scope.');
     const tie = selection?.state || selection?.tie, shirt = selection?.shirtId || selection?.shirt;
     need(/^T\d{3}$/.test(tie), 'This rejection requires an actual tie. No Tie cannot be rejected as a garment.');
     if (scope === 'tie') return tie;
+    if (scope === 'topwear_tie') {
+      const jacket = topwear(selection);
+      need(/^[SB]\d{2}$/.test(jacket), 'A suit/blazer–tie rejection requires an exact suit or blazer ID.');
+      return jacket + '|' + tie;
+    }
     need(/^DS\d{3}$/.test(shirt), 'A shirt–tie rejection requires an exact shirt ID.');
     return shirt + '|' + tie;
   }
@@ -133,10 +143,12 @@
       const occasion = feedback.occasion(typeof context === 'string' ? context : context.occasion);
       if (!snapshot.active.length) return {allowed:true, reasons:[]};
       const canonical = selection(value);
-      // An open collar never matches an explicit tie or shirt–tie rejection.
+      // An open collar never matches a tie rejection; a shirt-only outfit
+      // cannot match a suit/blazer–tie rule even when it has the same tie.
       if (canonical.state === 'NO_TIE') return {allowed:true, reasons:[]};
       const reasons = [];
       for (const event of snapshot.active) if ((event.occasion === 'all' || event.occasion === occasion) &&
+        canMatch(canonical, event.scope) &&
         key(event.selection, event.scope) === key(canonical, event.scope)) {
         reasons.push({type:'hide', id:event.id, scope:event.scope, occasion:event.occasion, reason:event.reason});
       }
@@ -151,5 +163,5 @@
       exportData, importData, token:() => refresh().token, persistent, prefix:PREFIX,
       subscribe(fn) { observers.add(fn); return () => observers.delete(fn); }});
   }
-  return Object.freeze({create, key, isScope, PREFIX, SCHEMA, EXPORT, BUNDLE_EXPORT});
+  return Object.freeze({create, key, isScope, canMatch, PREFIX, SCHEMA, EXPORT, BUNDLE_EXPORT});
 });

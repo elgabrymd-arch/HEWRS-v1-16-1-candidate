@@ -56,6 +56,27 @@ async function main(){
   assert.equal(native.gate.match(pair,{occasion:'dinner'}).allowed,true);
  });
  native.ties.restore(pairVeto.id);
+ const contextual=load(),s05Config=config('work',{topwear:{mode:'item',id:contextual.connection.aliases.get('S05')}});
+ const s05=run(contextual,'S05-before-contextual-tie-rejection',s05Config);
+ const rejected=selection(s05.r.options.find(o=>selection(o).state!=='NO_TIE'));
+ const contextualEvent=contextual.ties.hide(rejected,{scope:'topwear_tie',context:'work',reason:'other',note:'Synthetic suit is fine; tie does not work with it'});
+ const keptS05=s05.r.options.filter(o=>contextual.gate.match(selection(o),s05.q.context).allowed),originalS05=Array.from(keptS05,o=>JSON.stringify(o)),refillStart=performance.now();
+ const s05Refill=await contextual.connection.controller.generateAsync(s05.q,contextual.connection.catalogue,[],{retainedOptions:keptS05});
+ record('S05-contextual-tie-refill',s05Refill,s05.q,performance.now()-refillStart);
+ check('S05 contextual rejection replaces its tie without changing the suit anchor or accepted rows',()=>{
+  assert.equal(s05Refill.options.length,20);assert.equal(contextual.connection.controller.verifyOptionSet(s05Refill.options,s05.q),true);
+  assert.deepEqual(Array.from(s05Refill.options.slice(0,keptS05.length),o=>JSON.stringify(o)),originalS05);
+  assert.ok(s05Refill.options.every(o=>selection(o).suitId==='S05'&&selection(o).state!==rejected.state));
+  assert.equal(contextual.gate.match(contextual.g.structuredClone({...rejected,shirtId:rejected.shirtId==='DS001'?'DS002':'DS001'}),{occasion:'work'}).allowed,false);
+  assert.equal(contextual.gate.match(contextual.g.structuredClone({...rejected,suitId:'S06'}),{occasion:'work'}).allowed,true);
+  assert.equal(contextual.gate.match(rejected,{occasion:'dinner'}).allowed,true);
+ });
+ const elsewhere=run(contextual,'same-tie-remains-eligible-with-other-topwear',config('work',{tie:{mode:'item',id:rejected.state}}));
+ check('Suit–tie rejection keeps that tie available with other suits and blazers',()=>{
+  assert.ok(elsewhere.r.options.length>0);assert.ok(elsewhere.r.options.every(o=>selection(o).state===rejected.state&&selection(o).suitId!=='S05'));
+ });
+ contextual.ties.restore(contextualEvent.id);
+ check('Undo restores the contextual suit–tie pairing',()=>assert.equal(contextual.gate.match(rejected,{occasion:'work'}).allowed,true));
  for(const occasion of ['dinner','weekend']){
   const result=run(native,'independent-'+occasion,config(occasion));
   check(occasion+' keeps its occasion and has no fabricated Work exposure',()=>{

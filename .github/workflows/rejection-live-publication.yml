@@ -13,6 +13,7 @@ on:
       - 'src/reviewed-rejection-integration.js'
       - 'src/tie-*.js'
       - 'tests/rejection-live-publication.py'
+      - 'tests/tie-reason-scope-browser.py'
       - '.github/workflows/rejection-live-publication.yml'
   workflow_dispatch:
 
@@ -38,10 +39,16 @@ jobs:
         run: python -m pip install --disable-pip-version-check playwright==1.56.0
       - name: Verify published files and twenty consecutive rejection refills
         run: python tests/rejection-live-publication.py --publication-wait 600
+      - name: Verify published S05 tie-only reasons and persistence in Chromium
+        run: python tests/tie-reason-scope-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser chromium
+      - name: Verify published S05 tie-only reasons and persistence in WebKit
+        run: python tests/tie-reason-scope-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser webkit
       - name: Preserve live verification evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: HEWRS_LIVE_REJECTION_PUBLICATION_EVIDENCE
-          path: evidence/rejection_publication/
+          path: |
+            evidence/rejection_publication/
+            evidence/tie_reason_scope/
           if-no-files-found: error

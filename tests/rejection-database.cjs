@@ -52,6 +52,44 @@ test('duplicate imported hides remain separately undoable; new hide deduplicates
  await db.importData(outfit([event('copy-three')]));assert.equal(db.allowed(A),false);await db.restore('copy-three');assert.equal(db.allowed(A),true);db.close();
 });
 
+test('contextual jacket–tie records migrate and index exact pairs across reload, backup and undo',async()=>{
+ const legacy=storage(),selected={...A,suitId:'S05'},blazer={blazerId:'B06',pantId:'PT005',shirtId:A.shirtId,state:A.state,shoeId:A.shoeId,watchId:A.watchId};
+ const old=event('old-note',B),oldTie=tieEvent('tie_old-pair',{...B,state:'T021'},'shirt_tie');seed(legacy,[old,oldTie]);const before=bytes(legacy);
+ const db=create(legacy);await db.ready;const jacket=await db.hide(selected,{scope:'topwear_tie',context:'work'}),second=await db.hide(blazer,{scope:'topwear_tie',context:'all'});
+ assert.equal(jacket.schema,T.SCHEMA);assert.equal(await db.hide({...selected,shirtId:'DS010'},{scope:'topwear_tie',context:'work'}).then(e=>e.id),jacket.id);
+ assert.equal(db.allowed({...selected,shirtId:'DS010',shoeId:'shoe-5',watchId:null},{occasion:'work'}),false);
+ assert.equal(db.allowed(selected,{occasion:'dinner'}),true);assert.equal(db.allowed({...selected,suitId:'S06'},{occasion:'work'}),true);
+ assert.equal(db.allowed({...blazer,pantId:'PB001',shirtId:'DS010'},{occasion:'dinner'}),false);
+ assert.equal(db.allowed({...blazer,blazerId:'B07'},{occasion:'work'}),true);
+ const shirtOnly={shirtOnly:true,pantId:'PT005',shirtId:A.shirtId,state:A.state,shoeId:A.shoeId,watchId:null};
+ assert.equal(db.allowed(shirtOnly),true);assert.equal(db.allowed({...selected,state:'NO_TIE'}),true);
+ await assert.rejects(db.hide(shirtOnly,{scope:'topwear_tie'}),/exact suit or blazer/);await assert.rejects(db.hide({...selected,state:'NO_TIE'},{scope:'topwear_tie'}),/actual tie/);
+ const name=db.status().databaseName,index=await raw(name,'readonly',tx=>tx.objectStore('active').get(jacket.id));
+ assert.deepEqual(index,{id:jacket.id,scope:'topwear_tie',occasion:'work',key:'S05|'+A.state});assert.deepEqual(bytes(legacy),before);
+ const backup=await db.exportData();db.close();const reopened=create(legacy,{databaseName:name});await reopened.ready;
+ assert.equal(reopened.allowed({...selected,shirtId:'DS010'},{occasion:'work'}),false);assert.deepEqual(bytes(legacy),before);
+ const restored=create();await restored.ready;await restored.importData(backup);assert.equal(restored.allowed({...selected,shirtId:'DS010'},{occasion:'work'}),false);
+ await restored.restore(jacket.id);assert.equal(restored.allowed(selected,{occasion:'work'}),true);assert.equal(restored.allowed(blazer),false);
+ const importedLegacy=storage();seed(importedLegacy,[tieEvent('tie_jacket-legacy',selected,'topwear_tie')]);const migrated=create(importedLegacy);await migrated.ready;assert.equal(migrated.allowed({...selected,shirtId:'DS010'}),false);
+ assert.equal(importedLegacy.rows.size,1);assert.equal(migrated.snapshot().active[0].scope,'topwear_tie');
+ // Existing readers validate a fixed scope enum and must block on a new scope,
+ // rather than quietly ignoring its record or rewriting earlier history.
+ const oldReader=create(legacy,{databaseName:name,tieFeedback:{...T,isScope:scope=>scope==='tie'||scope==='shirt_tie'}});
+ await assert.rejects(oldReader.ready,/scope/);assert.throws(()=>oldReader.allowed(selected),/scope/);assert.equal(await raw(name,'readonly',tx=>tx.objectStore('events').count()),4);assert.deepEqual(bytes(legacy),before);
+ oldReader.close();migrated.close();restored.close();reopened.close();
+});
+
+test('indexed database bridge applies contextual temporary skips without persisting them',async()=>{
+ const db=create();await db.ready;const selected={...A,suitId:'S05'},connection={validateSelection:F.normal,ownerFeedback:{set(){}}},app={ownerFeedback:db,connection};
+ const root={Image:class Image{},crypto:require('node:crypto').webcrypto,HEWRSOutfitFeedback:F,HEWRSTieFeedback:T};
+ new Function('globalThis',require('node:fs').readFileSync(require('node:path').join(__dirname,'../src/outfit-rejection-core.js'),'utf8'))(root);
+ const gate=root.HEWRSRejectionPreviewCore.attach(app),skip=gate.skip(selected,{scope:'topwear_tie',context:'work'});
+ assert.equal(gate.allowed({...selected,shirtId:'DS010'},{occasion:'work'}),false);assert.equal(gate.allowed(selected,{occasion:'dinner'}),true);
+ assert.equal(gate.allowed({shirtOnly:true,pantId:'PT005',shirtId:A.shirtId,state:A.state,shoeId:A.shoeId}),true);
+ assert.equal(gate.allowed({...selected,state:'NO_TIE'}),true);assert.equal((await gate.exportData()).tie_feedback.events.length,0);
+ await gate.restore(skip.id);assert.equal(gate.allowed(selected),true);gate.skip(selected,{scope:'topwear_tie'});gate.clearTemporary();assert.equal(gate.allowed(selected),true);db.close();
+});
+
 test('malformed legacy data fails closed and exact-byte repair can recover on the same facade',async()=>{
  const legacy=storage(),good=event('original');seed(legacy,[good]);legacy.setItem(F.PREFIX+'bad','{broken');const before=bytes(legacy),db=create(legacy);await assert.rejects(db.ready,/Unreadable legacy/);assert.throws(()=>db.allowed(A),/Unreadable legacy/);assert.deepEqual(bytes(legacy),before);
  legacy.removeItem(F.PREFIX+'bad');await db.retry();assert.equal(db.allowed(A),false);assert.equal(legacy.getItem(F.PREFIX+'original'),JSON.stringify(good));db.close();

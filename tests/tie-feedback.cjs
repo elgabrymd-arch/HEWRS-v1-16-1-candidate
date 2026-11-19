@@ -60,6 +60,49 @@ test('shirt–tie pair applies across outfits without banning either garment sep
   assert.equal(gate.allowed(outfit(), {occasion:'work'}), true);
 });
 
+test('suit/blazer–tie rejection follows the exact jacket and tie, not its other garments', () => {
+  const {gate} = harness(), selected = outfit({suitId:'S05'});
+  const event = gate.hide(selected, {scope:'topwear_tie', context:'work', reason:'other'});
+  assert.equal(event.schema, T.SCHEMA);
+  assert.equal(T.key(event.selection, event.scope), 'S05|T022');
+  for (const changes of [{}, {shirtId:'DS011'}, {shoeId:'shoe-19',watchId:'watch-other'}]) {
+    assert.equal(gate.allowed({...selected,...changes}, {occasion:'work'}), false);
+    assert.equal(gate.allowed({...selected,...changes}, {occasion:'dinner'}), true);
+  }
+  assert.equal(gate.hide({...selected,shirtId:'DS012'}, {scope:'topwear_tie',context:'work'}).id, event.id);
+  assert.equal(gate.allowed({...selected,suitId:'S06'}, {occasion:'work'}), true);
+  assert.equal(gate.allowed({...selected,state:'T023'}, {occasion:'work'}), true);
+  assert.equal(gate.allowed({...selected,state:'NO_TIE'}, {occasion:'work'}), true);
+  const shirtOnly={shirtOnly:true,pantId:'PT005',shirtId:'DS010',state:'T022',shoeId:'shoe-3',watchId:null};
+  assert.equal(gate.allowed(shirtOnly, {occasion:'work'}), true);
+  assert.throws(() => gate.hide(shirtOnly, {scope:'topwear_tie'}), /exact suit or blazer/);
+  assert.throws(() => gate.skip(shirtOnly, {scope:'topwear_tie'}), /exact suit or blazer/);
+  const blazer={blazerId:'B06',pantId:'PT005',shirtId:'DS010',state:'T022',shoeId:'shoe-3',watchId:null};
+  gate.hide(blazer, {scope:'topwear_tie',context:'all'});
+  assert.equal(gate.allowed({...blazer,pantId:'PB001',shirtId:'DS011'}, {occasion:'weekend'}), false);
+  assert.equal(gate.allowed({...blazer,blazerId:'B07'}, {occasion:'weekend'}), true);
+  assert.equal(gate.restore(event.id), true);
+  assert.equal(gate.allowed(selected, {occasion:'work'}), true);
+  assert.equal(gate.allowed(blazer, {occasion:'work'}), false);
+});
+
+test('contextual jacket–tie skips, backup, reload and undo preserve independent scopes', () => {
+  const source=harness(),selected=outfit({suitId:'S05'});
+  const permanent=source.gate.hide(selected,{scope:'topwear_tie',context:'all'});
+  const temporary=source.gate.skip({...selected,state:'T023'},{scope:'topwear_tie',context:'work'});
+  assert.equal(source.gate.allowed({...selected,shirtId:'DS011',state:'T023'},{occasion:'work'}),false);
+  assert.equal(source.gate.allowed({shirtOnly:true,pantId:'PT005',shirtId:'DS010',state:'T023',shoeId:'shoe-3'},{occasion:'work'}),true);
+  const backup=source.gate.exportData(),target=harness();target.gate.importData(backup);
+  assert.equal(backup.tie_feedback.events.length,1);
+  assert.equal(target.gate.allowed({...selected,shirtId:'DS012'},{occasion:'weekend'}),false);
+  assert.equal(target.gate.allowed({...selected,state:'T023'},{occasion:'work'}),true);
+  assert.equal(harness(source.backend).gate.allowed({...selected,shirtId:'DS011'},{occasion:'work'}),false);
+  source.gate.restore(temporary.id);assert.equal(source.gate.allowed({...selected,state:'T023'},{occasion:'work'}),true);
+  source.gate.skip({...selected,state:'T024'},{scope:'topwear_tie',context:'all'});source.gate.clearTemporary();
+  assert.equal(source.gate.allowed({...selected,state:'T024'},{occasion:'work'}),true);
+  target.gate.restore(permanent.id);assert.equal(target.gate.allowed(selected,{occasion:'work'}),true);
+});
+
 test('legacy outfit/clothing rejections, notes and event bytes retain their original meaning', () => {
   const backend = storage(), {gate, base} = harness(backend);
   const old = base.hide(outfit(), {scope:'clothing', context:'all', reason:'other'});
@@ -68,6 +111,8 @@ test('legacy outfit/clothing rejections, notes and event bytes retain their orig
   const before = rows(backend);
   const tie = gate.hide(outfit({state:'T023'}), {scope:'tie', context:'all'});
   gate.restore(tie.id);
+  const jacketTie = gate.hide(outfit({suitId:'S05',state:'T024'}), {scope:'topwear_tie', context:'all'});
+  gate.restore(jacketTie.id);
   assert.deepEqual(rows(backend).filter(([key]) => key.startsWith(F.PREFIX)), before);
   assert.equal(gate.allowed(outfit({suitId:'S04'}), {occasion:'work'}), true, 'Old tie/shirt diagnosis does not become pair rejection');
   assert.equal(gate.allowed(outfit({shoeId:'shoe-19'}), {occasion:'work'}), false, 'Old clothing scope still spans shoes');
@@ -108,7 +153,7 @@ test('temporary tie/pair rejection resets independently and No Tie cannot become
   gate.clearTemporary();
   assert.equal(gate.allowed(outfit(), {occasion:'work'}), true);
   assert.equal(gate.allowed(outfit({state:'T023'}), {occasion:'work'}), false);
-  for (const scope of ['tie','shirt_tie']) {
+  for (const scope of ['tie','shirt_tie','topwear_tie']) {
     assert.throws(() => gate.hide(outfit({state:'NO_TIE'}), {scope}), /actual tie/);
     assert.throws(() => gate.skip(outfit({state:'NO_TIE'}), {scope}), /actual tie/);
   }
