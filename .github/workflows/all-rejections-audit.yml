@@ -44,6 +44,7 @@ jobs:
       - name: Verify build and preserve wardrobe, avatar and original scoring assets
         run: |
           git fetch --depth=1 origin 3238e36445cdc3597af43c873a5425e0018cb97f
+          git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
           git diff --exit-code 3238e36445cdc3597af43c873a5425e0018cb97f -- assets assemblies data vendor ui ui-assets STANDARD_RELEASE.json outfit-feedback.js tools/build.py
           python tools/build_tie_candidate.py --check
           node --check runtime/outfit-refill-preview.js

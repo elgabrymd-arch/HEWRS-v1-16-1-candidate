@@ -135,6 +135,12 @@ def main():
     def rows(p):
         return p.evaluate('()=>HEWRSApp.state().report.options.map(o=>({selection:o._hewrsConnected.canonical_selection,value:HEWRSOutfitFeedback.stable(o)}))')
 
+    def event_records(p):
+        # IDB getAll uses key order after reopening; an in-memory write cache
+        # can retain insertion order. Compare every original record by ID,
+        # independently of this nonsemantic traversal order.
+        return sorted(p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events'), key=lambda event: event['id'])
+
     def generate(p, label, initial=False):
         p.locator('[data-page="home"]').first.click()
         if initial:
@@ -368,14 +374,14 @@ def main():
             imported_context.close()
             page = p
             # A temporary skip must never enter a durable backup.
-            before_events = p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events')
+            before_events = event_records(p)
             temporary_selected = tied(p)
             open_reject(p)
             p.select_option('#rejection-scope', scope)
             p.select_option('#rejection-occasion', 'all')
             commit(p, permanent=False)
             skipped = p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().temporary[0]')
-            check(scope + ': Reject once stores only a temporary rule', skipped['scope'] == scope and p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events') == before_events)
+            check(scope + ': Reject once stores only a temporary rule', skipped['scope'] == scope and event_records(p) == before_events)
             probe(p, temporary_selected, scope, skipped['id'])
             exported = p.evaluate('async()=>await HEWRSApp.ownerFeedback.exportData()')
             check(scope + ': temporary rules never appear in backups', skipped['id'] not in json.dumps(exported))
@@ -387,7 +393,7 @@ def main():
             commit(p, permanent=False)
             p.reload(wait_until='domcontentloaded')
             ready(p)
-            check(scope + ': reload expires temporary rules without deleting permanent history', p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().temporary.length===0&&HEWRSApp.ownerFeedback.snapshot().active.length===0') and p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events') == before_events)
+            check(scope + ': reload expires temporary rules without deleting permanent history', p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().temporary.length===0&&HEWRSApp.ownerFeedback.snapshot().active.length===0') and event_records(p) == before_events)
             check(scope + ': wear, Favorites and Home preferences unchanged', protected(p) == unchanged)
             context.close()
 
