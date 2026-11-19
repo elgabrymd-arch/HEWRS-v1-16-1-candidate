@@ -46,6 +46,7 @@ jobs:
           python-version: '3.11'
       - name: Fetch verified candidate and original build bases
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git fetch --depth=1 origin b9e33124d15c0f7127f2b2eb61dd710ec9edd05f
           git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
       - name: Verify preserved wardrobe, avatar, scoring and Standard application
