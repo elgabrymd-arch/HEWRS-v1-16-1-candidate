@@ -23,6 +23,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: rejection-storage-integration-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   native-browser-integration:
     runs-on: ubuntu-24.04
@@ -48,11 +51,15 @@ jobs:
           node --check runtime/outfit-refill-preview.js
           node --check src/rejection-database.js
           node --check src/reviewed-rejection-integration.js
-      - name: Install isolated test dependencies
-        run: |
-          npm install --prefix /tmp/hewrs-test-deps --ignore-scripts --no-audit --no-fund fake-indexeddb@6.2.8
-          python -m pip install --disable-pip-version-check playwright==1.56.0
-          python -m playwright install --with-deps chromium webkit
+      - name: Install isolated database test dependency
+        timeout-minutes: 5
+        run: npm install --prefix /tmp/hewrs-test-deps --ignore-scripts --no-audit --no-fund fake-indexeddb@6.2.8
+      - name: Install browser test driver
+        timeout-minutes: 5
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - name: Install Chromium and WebKit with native dependencies
+        timeout-minutes: 10
+        run: python -m playwright install --with-deps chromium webkit
       - name: Verify database, migration, transactions and original rejection semantics
         env:
           NODE_PATH: /tmp/hewrs-test-deps/node_modules
