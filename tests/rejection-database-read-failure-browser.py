@@ -286,11 +286,25 @@ def main():
             # the already-loaded panel is awaiting asynchronous preflight.
             # No renderer is replaced: the cancelled request must never reach
             # native rendering or publish a new reviewed preview.
-            reviewed_cancel = page.evaluate('''async()=>{
+            page.evaluate('''async()=>{
                 const panel=HEWRSReviewedIntegration;
                 await panel.load();
                 document.getElementById('rd-view').value='all_reviews';
                 await panel.open();
+            }''')
+            # The existing image-assessment open wrapper installs its bundled
+            # reviews after opening. Installation starts another async update
+            # without awaiting it, so open() alone does not mean cards settled.
+            # Wait for the actual list; never invent a candidate or retry render.
+            page.wait_for_function('''()=>{
+                const panel=HEWRSReviewedIntegration;
+                return panel.state().ready && !panel.state().busy && !panel.state().error &&
+                    document.getElementById('rd-dialog').open &&
+                    document.getElementById('rd-view').value==='all_reviews' &&
+                    !!document.querySelector('#rd-results .rd-result');
+            }''')
+            reviewed_cancel = page.evaluate('''async()=>{
+                const panel=HEWRSReviewedIntegration;
                 const card=document.querySelector('#rd-results .rd-result');
                 if(!card)throw Error('Reviewed cancellation requires a real eligible candidate.');
                 const id=card.dataset.reviewId,before={rendered:panel.state().rendered,
