@@ -66,6 +66,7 @@ jobs:
         run: |
           node tests/all-rejections-engine.cjs | tee evidence/all_rejections/native/engine.log
           node tests/all-rejections-entrypoints.cjs | tee evidence/all_rejections/native/entrypoints.log
+          node tests/all-rejections-export-context.cjs | tee evidence/all_rejections/native/export-context.log
           node tests/tie-only-replacement.cjs | tee evidence/all_rejections/native/tie-replacement.log
           node tests/tie-engine-integration.cjs | tee evidence/all_rejections/native/tie-engine.log
       - name: Preserve native audit evidence

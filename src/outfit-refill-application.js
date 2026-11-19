@@ -309,8 +309,8 @@ function setCardLayout(v){need(v==='cards'||v==='standard','Unknown presentation
 async function exportOptionCards(){if(!current||busy)return;
  try{await checkRejectionFeedbackAsync();}catch{return;}
  if(!current||busy)return;
- const models=options.length?options.map((o,i)=>cardModel(connection.selectionFromOption(o,lastRequest).selection,o,i+1,options.length)):[cardModel(current,null,null,null)],one=copy(cardPresentation),exportContext=copy(lastRequest?.context||currentContext());
- function assertExportAllowed(kind){const gate=rejectionGate(),rows=kind==='png'?[one]:models;need(rows.every(model=>model?.selection&&(model.selection.state==='REFERENCE'||gate.allowed(model.selection,exportContext))),'An outfit in this export was rejected. Close the export and review the current allowed options.');}
+ const models=options.length?options.map((o,i)=>cardModel(connection.selectionFromOption(o,lastRequest).selection,o,i+1,options.length)):[cardModel(current,null,null,null)],one=copy(cardPresentation),currentExportContext=copy(currentContext()),listExportContext=copy(options.length?(lastRequest?.context||currentExportContext):currentExportContext);
+ function assertExportAllowed(kind){const gate=rejectionGate(),rows=kind==='png'?[one]:models,context=kind==='png'?currentExportContext:listExportContext;need(rows.every(model=>model?.selection&&(model.selection.state==='REFERENCE'||gate.allowed(model.selection,context))),'An outfit in this export was rejected. Close the export and review the current allowed options.');}
  const source=document.createElement('canvas');source.width=996;source.height=2748;source.getContext('2d').drawImage($('avatar'),0,0);
  let stopped=false,working=false,urls=[];
  const {body,actions,token}=openSheet('Export option cards',{list:true,cancel:()=>{stopped=true;source.width=source.height=1;for(const u of urls)URL.revokeObjectURL(u);urls=[];}});
