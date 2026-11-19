@@ -165,7 +165,7 @@
       for (const event of temporary.values()) {
         if (event.occasion !== 'all' && event.occasion !== occasion) continue;
         const tied = T.isScope(event.scope);
-        if (tied && selection.state === 'NO_TIE') continue;
+        if (tied && !T.canMatch(selection,event.scope)) continue;
         const getKey = tied ? T.key : F.key;
         if (getKey(event.selection,event.scope) === getKey(selection,event.scope))
           reasons.push({id:event.id,type:'temporary_skip',scope:event.scope,occasion:event.occasion,reason:event.reason});
@@ -176,7 +176,7 @@
       snapshot();
       const selection = F.normal(app.connection.validateSelection(value));
       const scope = options.scope || 'outfit';
-      need(['outfit','clothing','tie','shirt_tie'].includes(scope),'Choose a listed rejection scope.');
+      need(['outfit','clothing'].includes(scope)||T.isScope(scope),'Choose a listed rejection scope.');
       if (T.isScope(scope)) T.key(selection,scope);
       const occasion = F.occasion(typeof options.context === 'object' ? options.context.occasion : options.context || 'all');
       const reason = options.reason || null, note = String(options.note || '').trim();
@@ -230,7 +230,7 @@
     }
     const scopeKey = (selection, scope) => T.isScope(scope) ? T.key(selection, scope) : F.key(selection, scope);
     const matches = (event, selection, occasion) => (event.occasion === 'all' || event.occasion === occasion) &&
-      (!T.isScope(event.scope) || /^T\d{3}$/.test(selection.state || selection.tie)) && scopeKey(event.selection, event.scope) === scopeKey(selection, event.scope);
+      (!T.isScope(event.scope) || T.canMatch(selection,event.scope)) && scopeKey(event.selection, event.scope) === scopeKey(selection, event.scope);
     function snapshot() {
       try {
         const s = base.refresh(), t = ties.refresh();
@@ -256,7 +256,7 @@
     }
     function choices(options = {}) {
       const scope = options.scope || 'outfit';
-      need(['outfit', 'clothing', 'tie', 'shirt_tie'].includes(scope), 'Choose a listed rejection scope.');
+      need(['outfit', 'clothing'].includes(scope) || T.isScope(scope), 'Choose a listed rejection scope.');
       const occasion = F.occasion(typeof options.context === 'object' ? options.context.occasion : options.context || 'all');
       const reason = options.reason || null;
       need([null, 'colors', 'patterns', 'formality', 'footwear', 'other'].includes(reason), 'Choose a listed reason.');

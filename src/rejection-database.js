@@ -275,7 +275,7 @@ function create({indexedDB=root.indexedDB,keyRange=root.IDBKeyRange,legacyStorag
   });
  }
  function choices(options={}){
-  const scope=options.scope||'outfit';need(['outfit','clothing','tie','shirt_tie'].includes(scope),'Choose a listed rejection scope.');
+  const scope=options.scope||'outfit';need(['outfit','clothing'].includes(scope)||T.isScope(scope),'Choose a listed rejection scope.');
   const occasion=F.occasion(typeof options.context==='object'?options.context.occasion:options.context||'all'),reason=options.reason||null,note=String(options.note||'').trim();
   need([null,'colors','patterns','formality','footwear','other'].includes(reason),'Choose a listed reason.');need(note.length<=500,'Keep the reason within 500 characters.');return{scope,occasion,reason,note};
  }
@@ -312,8 +312,8 @@ function create({indexedDB=root.indexedDB,keyRange=root.IDBKeyRange,legacyStorag
  function match(selection,context={}){
   read();stats.matchCalls++;const selected=F.normal(selection),occasion=F.occasion(typeof context==='string'?context:context.occasion),why=F.ownerRuleCheck(selected,{context}).reasons;
   if(selected.suitId==='S01'&&selected.shirtId==='DS029'&&selected.state==='T024')why.push({type:'owner_core',id:'S01_DS029_T024',reason:null,scope:'clothing',occasion:'all'});
-  for(const scope of ['outfit','clothing','tie','shirt_tie']){
-   if(T.isScope(scope)&&selected.state==='NO_TIE')continue;const key=scopeKey(selected,scope);
+  for(const scope of ['outfit','clothing','tie','shirt_tie','topwear_tie']){
+   if(T.isScope(scope)&&!T.canMatch(selected,scope))continue;const key=scopeKey(selected,scope);
    for(const occ of occasion==='all'?['all']:['all',occasion])for(const target of model.index.get(lookup(scope,occ,key))||[]){const event=model.active.get(target);why.push({type:'hide',id:event.id,reason:event.reason,scope:event.scope,occasion:event.occasion});}
   }
   for(const record of model.neither.get(lookup('historical_exact',occasion,F.key(selected,'historical_exact')))?.values()||[])why.push({type:'historical_neither',id:record.id,reason:null,scope:'historical_exact',occasion,partition:record.partition});

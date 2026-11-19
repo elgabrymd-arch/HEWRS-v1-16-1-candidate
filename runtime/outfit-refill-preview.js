@@ -3772,9 +3772,9 @@ function create(inputs,options={}){
  function ownerStaticReasons(s,q){return root.HEWRSOutfitFeedback?.ownerRuleCheck?.(s,{context:q.context})?.reasons||[];}
  function compileOwnerFeedback(q){
   const occ=root.HEWRSOutfitFeedback?.occasion?.(q.context.occasion)||q.context.occasion,snap=ownerFeedback?ownerFeedback.refresh():null;
-  const outfit=new Map(),clothing=new Map(),tie=new Map(),shirt_tie=new Map(),historical=new Map(),scopes={outfit,clothing,tie,shirt_tie};
+  const outfit=new Map(),clothing=new Map(),tie=new Map(),shirt_tie=new Map(),topwear_tie=new Map(),historical=new Map(),scopes={outfit,clothing,tie,shirt_tie,topwear_tie};
   const add=(map,k,v)=>{if(!map.has(k))map.set(k,[]);map.get(k).push(v);};
-  const fastKeys=s=>{const a=[s.suitId||s.blazerId||'SHIRT_ONLY',s.pantId||'SUIT_TROUSERS',s.shirtId,s.state],c=a.join('|'),o=c+'|'+s.shoeId,h=o+'|'+(s.watchId||'NO_WATCH');return {clothing:c,outfit:o,historical:h,tie:s.state,shirt_tie:s.shirtId+'|'+s.state};};
+  const fastKeys=s=>{const top=s.suitId||s.blazerId||s.topwearId||'SHIRT_ONLY',a=[top,s.pantId||'SUIT_TROUSERS',s.shirtId,s.state],c=a.join('|'),o=c+'|'+s.shoeId,h=o+'|'+(s.watchId||'NO_WATCH');return {clothing:c,outfit:o,historical:h,tie:s.state,shirt_tie:s.shirtId+'|'+s.state,topwear_tie:top+'|'+s.state};};
   for(const e of [...(snap?.active||[]),...(snap?.temporary||[])]){if(e.occasion!=='all'&&e.occasion!==occ)continue;const k=fastKeys(e.selection);need(scopes[e.scope],'Unsupported rejection scope');add(scopes[e.scope],k[e.scope],{type:e.type==='temporary_skip'?'temporary_skip':'hide',id:e.id,reason:e.reason,scope:e.scope,occasion:e.occasion});}
   for(const row of snap?.historical||[]){if(row.vote!=='neither'||root.HEWRSOutfitFeedback.occasion(row.context.occasion)!==occ)continue;for(const x of [row.a,row.b])add(historical,fastKeys(x).historical,{type:'historical_neither',id:row.id,reason:null,scope:'historical_exact',occasion:occ,partition:row.partition});}
   function preWatch(s){
@@ -3784,13 +3784,14 @@ function create(inputs,options={}){
    for(const x of clothing.get(k.clothing)||[])reasons.push(x);
    for(const x of tie.get(k.tie)||[])reasons.push(x);
    for(const x of shirt_tie.get(k.shirt_tie)||[])reasons.push(x);
+   for(const x of topwear_tie.get(k.topwear_tie)||[])reasons.push(x);
    return {allowed:reasons.length===0,reasons};
   }
-  function tieAllowed(s){return !tie.has(s.state)&&!shirt_tie.has(s.shirtId+'|'+s.state);}
+  function tieAllowed(s){return !tie.has(s.state)&&!shirt_tie.has(s.shirtId+'|'+s.state)&&!topwear_tie.has((s.suitId||s.blazerId||s.topwearId||'SHIRT_ONLY')+'|'+s.state);}
   // Broad exclusions apply before coverage representatives are chosen. Exact
   // shoe and watch exclusions remain at their original complete-outfit scope.
-  const hasBroadExclusions=clothing.size||tie.size||shirt_tie.size;
-  function clothingAllowed(e){if(!hasBroadExclusions)return true;const shirt=e.row[0],state=e.row[1];return !tie.has(state)&&!shirt_tie.has(shirt+'|'+state)&&!clothing.has([e.group.topwearId,e.pantId||'SUIT_TROUSERS',shirt,state].join('|'));}
+  const hasBroadExclusions=clothing.size||tie.size||shirt_tie.size||topwear_tie.size;
+  function clothingAllowed(e){if(!hasBroadExclusions)return true;const shirt=e.row[0],state=e.row[1];return !tie.has(state)&&!shirt_tie.has(shirt+'|'+state)&&!topwear_tie.has(e.group.topwearId+'|'+state)&&!clothing.has([e.group.topwearId,e.pantId||'SUIT_TROUSERS',shirt,state].join('|'));}
   function watchSpecific(s){const rows=historical.get(fastKeys(s).historical)||[];return {allowed:rows.length===0,reasons:rows};}
   function match(s){const a=preWatch(s);if(!a.allowed)return a;const b=watchSpecific(s);return b.allowed?a:{allowed:false,reasons:b.reasons};}
   return {token:snap?.token||null,preWatch,watchSpecific,match,tieAllowed,clothingAllowed};
@@ -3835,6 +3836,15 @@ function create(inputs,options={}){
  function weatherItems(e,shoe,watch){return {topwear:enrich(tops.get(e.group.topwearId),e.group.topwearId),shirt:enrich(shirts.get('shirt-'+e.row[0]),e.row[0]),tie:e.row[1]==='NO_TIE'?null:enrich(ties.get(e.row[1]),e.row[1]),pants:e.pantId?pants.get(e.pantId):null,shoes:shoe,watch};}
  function detail(e,q,shoe,watch){const a=evidence(shoe,watch),r=base.engine.evaluate(requestFor(e,q,a));need(r.score===e.row[2]&&r.display_score===e.row[3]&&r.candidate_eligible,'Clothing cache does not match unchanged source engine');return r;}
  function outfitID(s){return [s.suitId||s.blazerId||'SHIRT_ONLY',s.pantId||'SUIT_TROUSERS',s.shirtId,s.state,s.shoeId,s.watchId||'NO_WATCH'].join('|');}
+ function sameExceptTie(a,b){return ['suitId','blazerId','pantId','shirtId','shoeId','watchId'].every(k=>(a[k]??null)===(b[k]??null));}
+ function shoeCandidates(q,work){
+  const rows=work.replaceTieFor?[shoes.get(work.replaceTieFor.shoeId)]:q.prefs.shoes.mode==='item'?[shoes.get(q.prefs.shoes.id)]:[...shoes.values()];
+  return rows.filter(item=>item&&matchesPref(q.prefs.shoes,item.id));
+ }
+ function watchCandidates(q,work){
+  const rows=work.replaceTieFor?[work.replaceTieFor.watchId?watches.get(work.replaceTieFor.watchId):null]:q.prefs.watch.mode==='none'?[null]:q.prefs.watch.mode==='item'?[watches.get(q.prefs.watch.id)]:[...watches.values()];
+  return rows.filter(item=>item!==undefined&&matchesPref(q.prefs.watch,item?.id??null));
+ }
  const styleFeasibility=new Map();
  function canMatchStyle(e,q,r,work){if(q.executiveStyle==='AUTO')return true;
   const key=[e.group.topwearId,e.row[0],e.row[1]==='NO_TIE',q.executiveStyle,q.dressMode,q.context.requiredFormality,q.sneakerStance,q.prefs.shoes.mode==='item'?q.prefs.shoes.id:'ALL_REGISTERED'].join('|');
@@ -3849,14 +3859,14 @@ function create(inputs,options={}){
   for(const p of cached.profiles)work?.styleProfiles?.set(JSON.stringify(p),p);
   return cached.matches;
  }
- function resolveCandidate(e,q,history,worn,capacity=null,reject=null,work={watches:new Map()}){if(!work.ownerFeedback.tieAllowed({shirtId:e.row[0],state:e.row[1]})){reject?.('OWNER_FEEDBACK');return null;}const r=sourceResult(e,q);if(!r.candidate_eligible||r.context.status!=='eligible'){reject?.('SOURCE_OR_FORMALITY_HOLD');return null;}need(r.score===e.row[2]&&r.display_score===e.row[3],'Source-index score mismatch');if(!canMatchStyle(e,q,r,work)){reject?.('STYLE_LOCK');return null;}
+ function resolveCandidate(e,q,history,worn,capacity=null,reject=null,work={watches:new Map()}){if(!work.ownerFeedback.tieAllowed({topwearId:e.group.topwearId,shirtId:e.row[0],state:e.row[1]})){reject?.('OWNER_FEEDBACK');return null;}const r=sourceResult(e,q);if(!r.candidate_eligible||r.context.status!=='eligible'){reject?.('SOURCE_OR_FORMALITY_HOLD');return null;}need(r.score===e.row[2]&&r.display_score===e.row[3],'Source-index score mismatch');if(!canMatchStyle(e,q,r,work)){reject?.('STYLE_LOCK');return null;}
   const top=weatherItems(e,null,null),policy=root.HEWRSLegacyAccessories;
   const pref=e.preference||(e.preference=personal.clothing(e.group.topwearId,e.row[0],e.row[1],e.pantId,e.row[2],q));
   const tieOrder=(a,b)=>cmp(worn.get(a.item.id)||'',worn.get(b.item.id)||'')||cmp(a.item.id,b.item.id);
   // Do not retain 35 accessory records on every inspected clothing candidate.
   // Only the final curation working set needs them across capacity rounds.
   let choices=e.shoeChoices;
-  if(!choices){choices=(q.prefs.shoes.mode==='item'?[shoes.get(q.prefs.shoes.id)]:[...shoes.values()]).map(item=>{const sp=personal.shoe(item,pref,q);return {item,assessment:policy.shoe(item,top,q,r),personal:sp,preferenceOrder:personal.accessoryOrderScore?personal.accessoryOrderScore(pref,sp):sp.score};});if(capacity&&!e.expandedSource)e.shoeChoices=choices;}
+  if(!choices){choices=shoeCandidates(q,work).map(item=>{const sp=personal.shoe(item,pref,q);return {item,assessment:policy.shoe(item,top,q,r),personal:sp,preferenceOrder:personal.accessoryOrderScore?personal.accessoryOrderScore(pref,sp):sp.score};});if(capacity&&!e.expandedSource)e.shoeChoices=choices;}
   let pool=choices.filter(x=>!x.assessment.rejected&&(!capacity||capacity.canUse(x.item.id))).sort((a,b)=>(b.preferenceOrder-a.preferenceOrder)||tieOrder(a,b));
   if(!pool.length)reject?.('SHOE_LOCK_OR_SUITABILITY');
   const rejectedWeather=new Set();let hadWeatherPass=false,hadStylePass=false;
@@ -3871,7 +3881,7 @@ function create(inputs,options={}){
    // legacy policy; no capacity/history decision is cached.
    const wk=[e.group.topwearId,e.row[1],sh.item.id,pref.components.pattern_hierarchy<8.5,/warm/.test(pref.profiles.topwear.primary.temperature)].join('|');
    let choices=work.watches.get(wk);
-   if(!choices){choices=q.prefs.watch.mode==='none'?[{item:null,assessment:null,personal:personal.watch(null,pref,q)}]:(q.prefs.watch.mode==='item'?[watches.get(q.prefs.watch.id)]:[...watches.values()]).map(item=>({item,assessment:policy.watch(item,wi,q),personal:personal.watch(item,pref,q)}));
+   if(!choices){choices=watchCandidates(q,work).map(item=>({item,assessment:item?policy.watch(item,wi,q):null,personal:personal.watch(item,pref,q)}));
     if(work.watches.size>=4096)work.watches.delete(work.watches.keys().next().value);work.watches.set(wk,choices);}
    const wpool=choices.filter(x=>(!x.assessment||!x.assessment.rejected)&&(!capacity||!x.item||capacity.canUse(x.item.id))).sort((a,b)=>b.personal.score-a.personal.score||tieOrder(a,b));
    for(const w of wpool){
@@ -3884,25 +3894,35 @@ function create(inputs,options={}){
  }
  function resolveApprovedCandidate(e,q,approval,worn,work){
   const r=sourceResult(e,q);if(!r.candidate_eligible||r.context.status!=='eligible'||!canMatchStyle(e,q,r,work))return null;
-  const shoe=shoes.get(approval?.outfit?.shoe);if(!shoe||!matchesPref(q.prefs.shoes,shoe.id))return null;
+  const shoe=shoes.get(approval?.outfit?.shoe);if(!shoe||!matchesPref(q.prefs.shoes,shoe.id)||work.replaceTieFor&&shoe.id!==work.replaceTieFor.shoeId)return null;
   const top=weatherItems(e,null,null),pref=e.preference||(e.preference=personal.clothing(e.group.topwearId,e.row[0],e.row[1],e.pantId,e.row[2],q)),policy=root.HEWRSLegacyAccessories;
   const sh={item:shoe,assessment:policy.shoe(shoe,top,q,r),personal:personal.shoe(shoe,pref,q)};if(sh.assessment.rejected)return null;
   const sty=root.HEWRSEnsembleCompletion.classifyStyle(features.get(e.group.topwearId),features.get(e.row[0]),e.row[1]==='NO_TIE'?null:features.get(e.row[1]),r,evidence(shoe,null));
   if(sty.authorityGate!=='pass'||q.executiveStyle!=='AUTO'&&q.executiveStyle!==sty.classification)return null;
   const wi={...top,shoes:shoe},env=root.HEWRSWeather.assess(wi,q.environment,q.context);if(!env.eligible)return null;
   if(!work.ownerFeedback.preWatch(selection(e,shoe,null)).allowed)return null;
-  const choices=q.prefs.watch.mode==='none'?[{item:null,assessment:null,personal:personal.watch(null,pref,q)}]:(q.prefs.watch.mode==='item'?[watches.get(q.prefs.watch.id)]:[...watches.values()]).filter(Boolean).map(item=>({item,assessment:policy.watch(item,wi,q),personal:personal.watch(item,pref,q)}));
+  const choices=watchCandidates(q,work).map(item=>({item,assessment:item?policy.watch(item,wi,q):null,personal:personal.watch(item,pref,q)}));
   const tieOrder=(a,b)=>cmp(worn.get(a.item?.id)||'',worn.get(b.item?.id)||'')||cmp(a.item?.id||'',b.item?.id||'');
   const w=choices.filter(x=>!x.assessment||!x.assessment.rejected).sort((a,b)=>b.personal.score-a.personal.score||tieOrder(a,b))[0];if(!w)return null;
   const sel=selection(e,shoe,w.item);base.validateSelection(sel);if(!work.ownerFeedback.watchSpecific(sel).allowed)return null;
   return {id:outfitID(sel),selection:sel,items:fullItems(e,shoe,w.item),result:{candidate_eligible:true,display_score:r.display_score,score:r.score,ids:r.ids,context:r.context,style:sty},entry:e,environment:env,preference:personal.complete(pref,sh.personal,w.personal),accessory:{shoe:sh.assessment,watch:w.assessment,personal_shoe:sh.personal,personal_watch:w.personal},owner_approval:copy(approval)};
  }
- function* steps(q,catalogue,history,retainedOptions=null){requireIndex();const work={watches:new Map(),styleProfiles:new Map(),ownerFeedback:compileOwnerFeedback(q)};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');const ownerFeedbackToken=work.ownerFeedback.token;
+ function* steps(q,catalogue,history,retainedOptions=null,replaceTieFor=null){requireIndex();const work={watches:new Map(),styleProfiles:new Map(),ownerFeedback:compileOwnerFeedback(q)};valid(q);need(stable(catalogue)===stable(cat),'Catalogue does not match current source');need(Array.isArray(history),'Confirmed history must be supplied');const ownerFeedbackToken=work.ownerFeedback.token;
   const exposure=exposureStore?.refresh()||{ok:false,error:'Suggestion history is unavailable.'},exposureCounts=exposure.ok?(exposure.counts[q.context.occasion]||{}):{};
   const wearCheck=root.HEWRSLocalState.create(base,root.HEWRS_INPUT_SHA256,null);wearCheck.validate({schema:root.HEWRSLocalState.SCHEMA,source_lock:root.HEWRS_INPUT_SHA256,revision:0,session:null,events:history});
   const refilling=retainedOptions!==null;
   need(!refilling||Array.isArray(retainedOptions),'Retained options must be a list');
   const retainedRows=retainedOptions||[],retained=[],capacity=root.HEWRSOptionSetPolicy.create(q);
+  const replacing=replaceTieFor!==null;
+  if(replacing){
+   need(refilling,'Tie replacement requires the existing accepted option list.');
+   work.replaceTieFor=copy(base.validateSelection(replaceTieFor));
+   need(/^T\d{3}$/.test(work.replaceTieFor.state)&&!!(work.replaceTieFor.suitId||work.replaceTieFor.blazerId),'Tie replacement requires an actual tie on a supported suit or blazer outfit.');
+  }
+  // This is a one-off replacement constraint, not a new persistent preference.
+  // It restricts only appended rows; retained records keep their original request.
+  const refillLimit=replacing?Math.min(q.limit,retainedRows.length+1):q.limit;
+  const replacementReason=added=>added?'Changed only the tie. Suit/blazer, trousers, shirt, shoes and watch were retained.':q.prefs.tie.mode==='item'?'No different tie can be selected while the original tie is an exact selection. The remaining outfits were retained.':'No compatible different tie is available with the accepted suit/blazer, trousers, shirt, shoes and watch under the current selections and list limits. The remaining outfits were retained.';
   need(retainedRows.length<=q.limit,'Too many retained options');
   for(const option of retainedRows){
    need(verify(option,q,catalogue),'A retained option no longer matches this request');
@@ -3917,6 +3937,7 @@ function create(inputs,options={}){
   const tieAudit=Object.fromEntries([...ties.keys(),'NO_TIE'].map(id=>[id,{id,matching_rows:0,source_eligible_clothing:0,source_holds:{},complete_evaluated:0,eligible_complete:0,rejection_reasons:{},best_complete:null,retained_candidates:0,selected_count:0}]));
   const diagnostics={tie_coverage:tieAudit,enumerated:0,examined:0,score_statuses:{},weather_style_or_accessory_holds:0,unbound_trouser_ids:[],numeric_candidates:0,domain_evaluated:0,rejection_reasons:{},preference_revision:personal.revision,
    tie_exposure:{available:exposure.ok,occasion:q.context.occasion,prior_counts:copy(exposureCounts),event_count:exposure.eventCount||0,started_at:exposure.startedAt||null,quality_band:EXPOSURE_BAND,reranked_choices:0,error:exposure.ok?null:exposure.error,meaning:'Suggestions in successfully displayed lists for this occasion, not actual wear. Only near-equal tied alternatives can change list curation; recommendation and owner-approved priority are unchanged.'}};
+  if(replacing)diagnostics.tie_replacement={original:copy(work.replaceTieFor),maximum_additions:1,preserved_roles:['suitId','blazerId','pantId','shirtId','shoeId','watchId'],outside_replacement_scope:0};
   // Count EVERY indexed source match and retain exact identities. Limit
   // expensive preference evaluations to a stable garment-diverse shortlist.
   // Owner approvals are recovered separately from the complete source.
@@ -3926,6 +3947,7 @@ function create(inputs,options={}){
   for(const group of index.groups){let ps=[null];if(group.pantProfileId)ps=base.trouserProfiles.boundIds.filter(id=>base.trouserProfiles.binding(id).profileId===group.pantProfileId&&(q.prefs.bottoms.mode!=='item'||id===q.prefs.bottoms.id));
    for(const row of group.rows){if(!clothingFits(group,row,q))continue;for(const pid of ps){diagnostics.enumerated++;diagnostics.score_statuses[row[5]]=(diagnostics.score_statuses[row[5]]||0)+1;const ta=tieAudit[row[1]];if(ta)ta.matching_rows++;if(!row[4]){if(ta)ta.source_holds[row[5]]=(ta.source_holds[row[5]]||0)+1;continue;}if(ta)ta.source_eligible_clothing++;
     const e={group,row,pantId:pid,key:[tops.get(group.topwearId).id,'shirt-'+row[0],row[1],pid?pants.get(pid).id:'SUIT_TROUSERS'].join('|')};
+    if(replacing){const s=work.replaceTieFor;if(group.topwearId!==(s.suitId||s.blazerId)||(pid||null)!==(s.pantId||null)||row[0]!==s.shirtId||row[1]===s.state||!/^T\d{3}$/.test(row[1])){diagnostics.tie_replacement.outside_replacement_scope++;continue;}}
     diagnostics.source_eligible_before_feedback++;
     if(!work.ownerFeedback.clothingAllowed(e)){diagnostics.feedback_excluded_clothing++;if(ta)ta.feedback_excluded_clothing=(ta.feedback_excluded_clothing||0)+1;continue;}
     rawCandidates.push(e);
@@ -3947,7 +3969,7 @@ function create(inputs,options={}){
   diagnostics.bounded_source_review={source_eligible:diagnostics.source_eligible_before_feedback,after_broad_feedback:rawCandidates.length,feedback_excluded_clothing:diagnostics.feedback_excluded_clothing,initial_scored:candidates.length,scored:candidates.length,method:'Broad saved clothing/tie/pair exclusions precede deterministic exact-ID sampling and garment coverage. If the shortlist cannot fill the list, previously unreviewed source rows are assessed in cancellable batches.',exact_owner_approvals_searched_against_full_source:true,global_optimum_claimed:false};
   const distinct=fn=>new Set(rawCandidates.map(fn).filter(x=>x!==null)).size;
   const sourceCapacity={topwear:q.prefs.topwear.mode==='item'?q.limit:2*distinct(e=>e.group.topwearId),shirt:q.prefs.shirt.mode==='item'?q.limit:2*distinct(e=>e.row[0]),tie:q.prefs.tie.mode==='item'||q.prefs.tie.mode==='none'?q.limit:distinct(e=>e.row[1]==='NO_TIE'?null:e.row[1])+(rawCandidates.some(e=>e.row[1]==='NO_TIE')?(root.HEWRSStyleOccasions.noTieCap(q)??q.limit):0),pants:q.prefs.bottoms.mode==='item'||rawCandidates.some(e=>!e.pantId)?q.limit:2*distinct(e=>e.pantId)};
-  diagnostics.source_capacity_bounds={...sourceCapacity,upper_bound:Math.min(q.limit,...Object.values(sourceCapacity)),distinct_scored_trouser_ids:distinct(e=>e.pantId),explanation:'These counts bound the full source-eligible clothing pool after broad saved exclusions, before weather, accessory and combined item restrictions.'};
+  diagnostics.source_capacity_bounds={...sourceCapacity,upper_bound:replacing?refillLimit:Math.min(q.limit,...Object.values(sourceCapacity)),distinct_scored_trouser_ids:distinct(e=>e.pantId),explanation:replacing?'The replacement pool preserves the accepted non-tie pieces. Its item counts bound new rows only; the total bound includes retained rows and at most one replacement. All original list limits remain enforced.':'These counts bound the full source-eligible clothing pool after broad saved exclusions, before weather, accessory and combined item restrictions.'};
   candidates.sort((a,b)=>b.preferenceUpper-a.preferenceUpper||cmp(a.key,b.key));
   const allCandidates=candidates,keep=new Set(candidates.slice(0,512)),covered=new Set();
   for(const e of candidates){const tags=[e.group.topwearId+'|shirt|'+e.row[0]+'|'+(e.row[1]==='NO_TIE'),e.group.topwearId+'|tie|'+e.row[1],e.group.topwearId+'|pants|'+(e.pantId||'SUIT_TROUSERS')];for(const tag of tags)if(!covered.has(tag)){covered.add(tag);keep.add(e);}}
@@ -3959,7 +3981,7 @@ function create(inputs,options={}){
   const band=inputs.logicData.rotationPolicy.nearEquivalentBand;
   const remainingSource=rawCandidates.filter(e=>!scoredKeys.has(e.key));let sourceCursor=0,sourceSkippedForCapacity=0;
   diagnostics.source_expansion_batches=0;diagnostics.source_expansion_scored=0;
-  const sourceUpperBound=Math.min(q.limit,...Object.values(sourceCapacity));
+  const sourceUpperBound=replacing?refillLimit:Math.min(q.limit,...Object.values(sourceCapacity));
   function* expandSource(canConsider=null){
    const batch=[];let visited=0;
    // No fixed extra-review ceiling: stop at the requested list size, a proven
@@ -4053,9 +4075,10 @@ function create(inputs,options={}){
    finishSearch('remaining_source_exhausted',retainedRows.length);
    if(ownerFeedback)ownerFeedback.assertCurrent(ownerFeedbackToken);
    finishTieAudit(retainedRows,capacity);
-   if(retainedRows.length)return {status:'compatibility_options_rotation_confirmation_required',options:retainedRows,diagnostics,requested_options:q.limit,returned_options:retainedRows.length,option_policy:capacity.snapshot(),refill:{retained:retainedRows.length,added:0},reason:'Kept '+retainedRows.length+' accepted outfits. No additional eligible option was found within the current selections and list limits.'};
+   if(retainedRows.length)return {status:'compatibility_options_rotation_confirmation_required',options:retainedRows,diagnostics,requested_options:q.limit,returned_options:retainedRows.length,option_policy:capacity.snapshot(),refill:{retained:retainedRows.length,added:0},reason:replacing?replacementReason(0):'Kept '+retainedRows.length+' accepted outfits. No additional eligible option was found within the current selections and list limits.'};
    const no_match=root.HEWRSGenerationDiagnostics.describe(base,q,diagnostics,[...work.styleProfiles.values()]);
    if(!rawCandidates.length&&diagnostics.feedback_excluded_clothing){Object.assign(no_match,{code:'MATCHING_CLOTHING_REJECTED',title:'Matching combinations are rejected',message:'All source-eligible clothing combinations matching these selections are excluded by saved rejections.',detail:'The saved exclusions remain active. No rejected combination was reused.'});}
+   if(replacing)Object.assign(no_match,{code:'TIE_REPLACEMENT_UNAVAILABLE',title:'No compatible different tie',message:replacementReason(0),detail:''});
    return {status:'no_qualified_candidate',options:[],diagnostics,no_match,reason:no_match.message+(no_match.detail?' '+no_match.detail:'')};
   }
   // Stage 10 precedence: an eligible exact owner-approved outfit is a higher
@@ -4076,11 +4099,11 @@ function create(inputs,options={}){
   if(seed&&!capacity.issue(seed)){seed.curation={decision:seed.owner_approval?'owner_approved_exact_outfit_with_confirmed_history_rotation':'best_preference_with_confirmed_history_rotation',redundancy:0};capacity.add(seed);selected.push(seed);keys.add(root.HEWRSOptionSetPolicy.clothingKey(seed));}
   for(const approved of approvedEligible.slice().sort((a,b)=>b.preference.score-a.preference.score||cmp(a.entry.key,b.entry.key))){
    if(selected.includes(approved)||capacity.issue(approved)||keys.has(root.HEWRSOptionSetPolicy.clothingKey(approved)))continue;
-   approved.curation={decision:'owner_approved_exact_outfit_priority',redundancy:0};capacity.add(approved);selected.push(approved);keys.add(root.HEWRSOptionSetPolicy.clothingKey(approved));if(selected.length>=q.limit)break;
+   approved.curation={decision:'owner_approved_exact_outfit_priority',redundancy:0};capacity.add(approved);selected.push(approved);keys.add(root.HEWRSOptionSetPolicy.clothingKey(approved));if(selected.length>=refillLimit)break;
   }
   diagnostics.list_evaluated=0;diagnostics.option_cap_skips=0;let searchStop='target_reached';
   function canConsider(e){const ti=tops.get(e.group.topwearId),si=shirts.get('shirt-'+e.row[0]),tt=e.row[1]==='NO_TIE'?null:ties.get(e.row[1]),pi=e.pantId?pants.get(e.pantId):null;return !keys.has(root.HEWRSOptionSetPolicy.clothingKey({items:{topwear:ti,shirt:si,tie:tt,pants:pi}}))&&[ti,si,tt,pi].every(x=>capacity.canUse(x?.id))&&(!!tt||capacity.canAddNoTie());}
-  while(selected.length<q.limit){
+  while(selected.length<refillLimit){
    if(selected.length>=sourceUpperBound){searchStop='physical_item_upper_bound';break;}
    let strongest=-Infinity,pool=[];
    for(let i=0;i<candidates.length;i++){const e=candidates[i];
@@ -4124,10 +4147,11 @@ function create(inputs,options={}){
   const options=selected.map((e,i)=>{if(e.retainedOption)return e.retainedOption;const score=detail(e.entry,q,e.items.shoes,e.items.watch);return {items:copy(e.items),formal:!!e.items.topwear.formal,dressMode:q.dressMode,context:q.context.occasion,styleEngine:q.executiveStyle,controlledRepetition:!winner&&rot.rotation?.status==='rotation_exception_requires_owner_confirmation',_hewrsConnected:{revision:REV,mode:'candidate',id:e.id,compatibility:score,preference:copy(e.preference),curation:copy(e.curation),owner_approval:e.owner_approval?copy(e.owner_approval):null,is_recommendation:!!winner&&winner.id===e.id,rank:i+1,list_position:i+1,rank_scope:e.owner_approval?'eligible exact owner-approved outfit tier, then unchanged wear-history rotation and bounded list curation':'personalized complete-outfit preference, then bounded visual curation; not a proven optimal set',production_enabled:false,source_spec_approved:false,accessory_method:'Contextual personal preference; inherited exclusions retained, no brand/price bonus',accessory_assessment:copy(e.accessory),environment:copy(e.environment),validation:{request:stable(q)},canonical_selection:copy(e.selection)}};});
   need(new Set(options.map(x=>x._hewrsConnected.id)).size===options.length,'Duplicate outfits in result');
   const option_policy=root.HEWRSOptionSetPolicy.inspect(options,q);finishTieAudit(options,capacity);if(ownerFeedback)ownerFeedback.assertCurrent(ownerFeedbackToken);
-  return {status:options.some(o=>o._hewrsConnected.is_recommendation)?'candidate_recommendation':'compatibility_options_rotation_confirmation_required',options,diagnostics,rotation:rot,...(refilling?{refill:{retained:retainedRows.length,added:options.length-retainedRows.length}}:{}),requested_options:q.limit,returned_options:options.length,option_policy,reason:options.length<q.limit?'Found '+options.length+' distinct outfits within source eligibility, locks, weather, one-use tie and two-use other-item limits. '+(sourceCapacity.pants<q.limit?'The '+diagnostics.source_capacity_bounds.distinct_scored_trouser_ids+' source-eligible physical trousers allow at most '+sourceCapacity.pants+' options at two uses each. ':'')+(sourceCapacity.tie<q.limit?'The available tie IDs and No Tie allowance cap this request at '+sourceCapacity.tie+' options. ':'')+'No duplicated clothing or relaxed constraint was used.':null,environment:copy(q.environment),coverage:{source_index_rows:index.counts.rows,preference_revision:personal.revision,unresolved_scores_excluded:true,all_retained_physical_ids_independent:true,compatibility_unchanged:true,preference_is_personal_heuristic:true,global_optimum_claimed:false}};
+  if(replacing)need(options.length-retainedRows.length<=1&&options.slice(retainedRows.length).every(o=>sameExceptTie(o._hewrsConnected.canonical_selection,work.replaceTieFor)&&o._hewrsConnected.canonical_selection.state!==work.replaceTieFor.state&&/^T\d{3}$/.test(o._hewrsConnected.canonical_selection.state)),'Tie replacement changed an accepted garment or accessory.');
+  return {status:options.some(o=>o._hewrsConnected.is_recommendation)?'candidate_recommendation':'compatibility_options_rotation_confirmation_required',options,diagnostics,rotation:rot,...(refilling?{refill:{retained:retainedRows.length,added:options.length-retainedRows.length}}:{}),requested_options:q.limit,returned_options:options.length,option_policy,reason:replacing?replacementReason(options.length-retainedRows.length):options.length<q.limit?'Found '+options.length+' distinct outfits within source eligibility, locks, weather, one-use tie and two-use other-item limits. '+(sourceCapacity.pants<q.limit?'The '+diagnostics.source_capacity_bounds.distinct_scored_trouser_ids+' source-eligible physical trousers allow at most '+sourceCapacity.pants+' options at two uses each. ':'')+(sourceCapacity.tie<q.limit?'The available tie IDs and No Tie allowance cap this request at '+sourceCapacity.tie+' options. ':'')+'No duplicated clothing or relaxed constraint was used.':null,environment:copy(q.environment),coverage:{source_index_rows:index.counts.rows,preference_revision:personal.revision,unresolved_scores_excluded:true,all_retained_physical_ids_independent:true,compatibility_unchanged:true,preference_is_personal_heuristic:true,global_optimum_claimed:false}};
  }
  function generate(q,cat,h){const it=steps(q,cat,h);for(;;){const x=it.next();if(x.done)return x.value;}}
- function generateAsync(q,cat,h,opts={}){const v=copy({q,h,retainedOptions:opts.retainedOptions??null}),it=steps(v.q,cat,v.h,v.retainedOptions);return new Promise((resolve,reject)=>{function step(){try{if(opts.isCancelled?.()){it.return();return resolve({status:'cancelled',options:[]});}const v=it.next();if(v.done)return resolve(v.value);opts.onProgress?.(v.value);setTimeout(step,0);}catch(e){reject(e);}}setTimeout(step,0);});}
+ function generateAsync(q,cat,h,opts={}){const v=copy({q,h,retainedOptions:opts.retainedOptions??null,replaceTieFor:opts.replaceTieFor??null}),it=steps(v.q,cat,v.h,v.retainedOptions,v.replaceTieFor);return new Promise((resolve,reject)=>{function step(){try{if(opts.isCancelled?.()){it.return();return resolve({status:'cancelled',options:[]});}const v=it.next();if(v.done)return resolve(v.value);opts.onProgress?.(v.value);setTimeout(step,0);}catch(e){reject(e);}}setTimeout(step,0);});}
  function verify(o,q,catalogue){try{requireIndex();valid(q);need(stable(catalogue)===stable(cat),'Different catalogue');const a=o?._hewrsConnected;need(a?.revision===REV&&a.validation?.request===stable(q),'Changed request');const s=base.validateSelection(a.canonical_selection);need(a.id===outfitID(s),'Different option ID');const group=index.groups.find(x=>x.topwearId===(s.suitId||s.blazerId)&&x.pantProfileId===(s.pantId?base.trouserProfiles.binding(s.pantId)?.profileId:null));need(group,'No indexed source group');const row=group.rows.find(x=>x[0]===s.shirtId&&x[1]===s.state),e={group,row,pantId:s.pantId||null};need(row&&row[4]&&clothingFits(group,row,q),'Changed clothing lock');if(s.pantId&&q.prefs.bottoms.mode==='item')need(s.pantId===q.prefs.bottoms.id,'Changed trousers');need(matchesPref(q.prefs.shoes,s.shoeId)&&matchesPref(q.prefs.watch,s.watchId),'Changed accessories');const sh=shoes.get(s.shoeId),w=s.watchId?watches.get(s.watchId):null;need(stable(o.items)===stable(fullItems(e,sh,w)),'Changed item records');const r=detail(e,q,sh,w),env=root.HEWRSWeather.assess(weatherItems(e,sh,w),q.environment,q.context);need(env.eligible&&stable(env)===stable(a.environment),'Changed weather eligibility');need(r.style.authorityGate==='pass'&&(q.executiveStyle==='AUTO'||r.style.classification===q.executiveStyle),'Changed style');const pref=personal.clothing(e.group.topwearId,row[0],row[1],e.pantId,row[2],q);const expected=personal.complete(pref,personal.shoe(sh,pref,q),personal.watch(w,pref,q));need(stable(expected)===stable(a.preference),'Changed personalized preference');return stable(r)===stable(a.compatibility);}catch{return false;}}
  const controller=Object.freeze({...base.controller,generate:(q,cat,h)=>q?.automatic?generate(q,cat,h):root.HEWRSOptionSetPolicy.limitLegacy(base.controller.generate(q,cat,h),q),generateAsync:(q,cat,h,o)=>q?.automatic?generateAsync(q,cat,h,o):base.controller.generateAsync(q,cat,h,o).then(r=>root.HEWRSOptionSetPolicy.limitLegacy(r,q)),verifyCachedOption:(o,q,cat)=>q?.automatic?verify(o,q,cat):base.controller.verifyCachedOption(o,q,cat),verifyOptionSet:(options,q)=>{try{root.HEWRSOptionSetPolicy.inspect(options,q);return options.every(o=>q?.automatic?verify(o,q,cat):base.controller.verifyCachedOption(o,q,cat));}catch{return false;}}});
  function selectionFromOption(o,q){if(!q?.automatic)return base.selectionFromOption(o,q);need(verify(o,q,cat),'Stale, changed or incompatible automatic option');const s=base.validateSelection(o._hewrsConnected.canonical_selection);return {selection:s,display:{shirt:base.records[s.shirtId].label},representation:{selected_shoe_rendered:true,selected_watch_rendered:false}};}
@@ -5598,7 +5622,7 @@ function rejectionChanged(){
   throw error;
  }
 }
-async function refillRejected(){
+async function refillRejected({replaceTieFor=null}={}){
  const token=++generation;
  await checkRejectionFeedbackAsync();
  const target=root.HEWRSOptionSetPolicy.target,stable=root.HEWRSOutfitFeedback.stable;
@@ -5614,7 +5638,7 @@ async function refillRejected(){
  }
  const retained=options.slice(),retainedValues=retained.map(stable),kept=retained.length,exposureId=tieExposure.newId();
  renderer.cancel();autoWeather.cancel();setBusy(true);
- let feedbackToken,historyToken,preferenceToken;
+ let feedbackToken,historyToken,preferenceToken,replacement=null;
  function assertCurrent(){
   need(token===generation,'Replacement was cancelled; remaining choices are retained.');
   need(stable(lastRequest)===stable(q)&&stable(producing)===stable(produced),'The generating request changed. Generate for the current selections.');
@@ -5628,16 +5652,21 @@ async function refillRejected(){
   need(retained.every(o=>gate.allowed(connection.selectionFromOption(o,q).selection,q.context)),'A retained option was rejected during replacement.');
  }
  try{
+  if(replaceTieFor!==null){
+   replacement=copy(connection.validateSelection(replaceTieFor));
+   need(/^T\d{3}$/.test(replacement.state),'Tie replacement requires an actual rejected tie.');
+   need(!gate.allowed(replacement,q.context),'The selected outfit has no active rejection to replace.');
+  }
   need(optionHistoryToken&&optionPreferenceToken,'The list no longer has current history and preference checks. Generate for the current selections.');
   store.assertCurrent(optionHistoryToken);learning.assertCurrent(optionPreferenceToken);
   const history=store.readForGeneration();historyToken=history.token;preferenceToken=optionPreferenceToken;feedbackToken=gate.refresh().token;
   assertCurrent();
   let generated={...(report||{}),options:retained};
   if(kept<target){
-   status('Keeping '+kept+' choices and finding '+(target-kept)+' replacement'+(target-kept===1?'':'s')+'…');
+   status(replacement?'Keeping the accepted pieces and finding a different tie…':'Keeping '+kept+' choices and finding '+(target-kept)+' replacement'+(target-kept===1?'':'s')+'…');
    generated=await connection.controller.generateAsync(q,connection.catalogue,history.events,{
-    retainedOptions:retained,isCancelled:()=>token!==generation,
-    onProgress:()=>{if(token===generation)status('Finding replacements · '+kept+' accepted choices retained…');}
+    retainedOptions:retained,replaceTieFor:replacement,isCancelled:()=>token!==generation,
+    onProgress:()=>{if(token===generation)status(replacement?'Finding a different tie · suit/blazer, shirt and accessories retained…':'Finding replacements · '+kept+' accepted choices retained…');}
    });
    if(token!==generation||generated?.status==='cancelled')return {added:0,retained:kept,count:options.length,target,cancelled:true};
   }
@@ -5647,6 +5676,13 @@ async function refillRejected(){
   need(retainedValues.every((value,i)=>stable(next[i])===value),'Replacement changed an accepted choice; the existing list was retained.');
   need(connection.controller.verifyOptionSet(next,q),'Replacement violates current wardrobe bindings or item limits.');
   need(next.every(o=>gate.allowed(connection.selectionFromOption(o,q).selection,q.context)),'Replacement contains a rejected combination.');
+  if(replacement){
+   need(next.length-kept<=1,'Tie replacement returned more than one changed outfit.');
+   for(const option of next.slice(kept)){
+    const selected=connection.selectionFromOption(option,q).selection;
+    need(/^T\d{3}$/.test(selected.state)&&selected.state!==replacement.state&&['suitId','blazerId','pantId','shirtId','shoeId','watchId'].every(k=>(selected[k]??null)===(replacement[k]??null)),'Tie replacement changed an accepted garment or accessory. The remaining choices were retained.');
+   }
+  }
   const identities=next.map(o=>root.HEWRSOutfitFeedback.key(connection.selectionFromOption(o,q).selection));
   need(new Set(identities).size===identities.length,'Replacement repeats an outfit with a watch change.');
   const added=next.length-kept;
@@ -5662,7 +5698,7 @@ async function refillRejected(){
    if(token!==generation||frame?.cancelled)return {added:0,retained:kept,count:options.length,target,cancelled:true};
    assertCurrent();
   }
-  const reason=next.length<target?'Only '+next.length+' eligible, distinct options were found under the current selections and list limits.':'The list is back to '+target+' distinct options.';
+  const reason=replacement?(generated.reason||(added?'Changed only the tie; the accepted pieces were retained.':'No compatible different tie was found with the accepted pieces. The remaining outfits were retained.')):next.length<target?'Only '+next.length+' eligible, distinct options were found under the current selections and list limits.':'The list is back to '+target+' distinct options.';
   const publish=()=>{assertCurrent();
   options=next;optionIndex=index;currentOption=index>=0?options[index]:null;
   report={...generated,options,returned_options:options.length,requested_options:target,option_policy:root.HEWRSOptionSetPolicy.inspect(options,q),
