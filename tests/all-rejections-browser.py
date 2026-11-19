@@ -94,6 +94,94 @@ def main():
                   started_at=datetime.now(timezone.utc).isoformat(), checks=checks, cases=cases,
                   page_errors=errors, external_requests=external, failed_requests=failed, http_errors=http_errors)
     browser = page = None
+    page_phases = {}
+    image_checks, navigation_events = [], []
+    result['card_image_readiness'] = image_checks
+    result['navigation_events'] = navigation_events
+
+    def now():
+        return datetime.now(timezone.utc).isoformat()
+
+    def phase(p, name):
+        page_phases[p].update(phase=name, phase_started_at=now())
+
+    # Inspect the real card model and mounted DOM. No image fetches, transport
+    # retries, application mutations or exemptions from the network-error gate.
+    card_state = r"""()=>{
+      const app=globalThis.HEWRSApp,box=document.getElementById('option-card-items');
+      if(!app||!box)return {ready:false,reason:'Application/card container unavailable'};
+      const state=app.state(),model=app.cardSnapshot(),rows=[...box.querySelectorAll('.lb-item')],images=[...box.querySelectorAll('img.lb-swatch')];
+      const expected=(model?.items||[]).map(item=>({role:item.role,id:item.id||'',image:item.image?{
+        url:new URL(globalThis.HEWRS_EMBEDDED_UI_IMAGES?.[item.image.sha256]||item.image.src,document.baseURI).href,
+        sha256:item.image.sha256,source_key:String(item.image.source_key)}:null}));
+      const expectedImages=expected.filter(item=>item.image),actual=images.map(img=>({
+        role:img.closest('.lb-item')?.dataset.role,id:img.closest('.lb-item')?.dataset.itemId,
+        url:img.currentSrc||img.src,source_key:img.dataset.sourceKey,complete:img.complete,
+        width:img.naturalWidth,height:img.naturalHeight,hidden:img.hidden,connected:img.isConnected,
+        fallback:!!img.closest('.lb-image-unavailable')}));
+      const selectionMatches=model?JSON.stringify(model.selection)===JSON.stringify(state.selection)
+        &&box.dataset.selection===JSON.stringify(model.selection):state.selection===null&&rows.length===0&&images.length===0;
+      const rowIdentityMatches=rows.length===expected.length&&rows.every((row,i)=>row.dataset.role===expected[i].role&&row.dataset.itemId===expected[i].id);
+      const sourcesMatch=actual.length===expectedImages.length&&actual.every((img,i)=>img.role===expectedImages[i].role&&img.id===expectedImages[i].id
+        &&img.url===expectedImages[i].image.url&&img.source_key===expectedImages[i].image.source_key);
+      const decoded=actual.every(img=>img.complete&&img.width>0&&img.height>0&&!img.hidden&&img.connected&&!img.fallback);
+      const fallback=!!box.querySelector('.lb-image-unavailable');
+      return {ready:!state.busy&&selectionMatches&&rowIdentityMatches&&sourcesMatch&&decoded&&!fallback,
+        busy:state.busy,selection:state.selection,fingerprint:JSON.stringify({selection:model?.selection||null,items:expected}),
+        selection_matches:selectionMatches,row_identity_matches:rowIdentityMatches,sources_match:sourcesMatch,
+        expected_count:expectedImages.length,actual_count:actual.length,expected,actual,fallback};
+    }"""
+
+    def card_images_ready(p, boundary):
+        phase(p, 'card_readiness: ' + boundary)
+        observation = dict(case=page_phases[p]['case'], boundary=boundary,
+                           started_at=now(), status='pending')
+        image_checks.append(observation)
+        try:
+            # Wait only for observable load readiness. A current error fallback
+            # terminates immediately. No failed image is reset or retried.
+            handle = p.wait_for_function('()=>{const inspect=' + card_state +
+                                         ';const state=inspect();return state.ready||state.fallback?state:false;}',
+                                         timeout=30000)
+            observed = handle.json_value()
+            handle.dispose()
+            observation['state'] = observed
+            if not observed['ready']:
+                raise AssertionError('A current registered thumbnail entered its error fallback')
+            observation['state'] = p.evaluate('''async expected=>{
+              const inspect=''' + card_state + ''';
+              const box=document.getElementById('option-card-items'),images=[...box.querySelectorAll('img.lb-swatch')],before=inspect();
+              if(!before.ready||before.fingerprint!==expected.fingerprint)throw Error('Current card changed before decode verification');
+              let timer;
+              try{await Promise.race([Promise.all(images.map(img=>img.decode())),new Promise((_,reject)=>{
+                timer=setTimeout(()=>reject(Error('Current thumbnail decode did not settle')),10000);})]);}
+              finally{clearTimeout(timer);}
+              const after=inspect(),mounted=[...box.querySelectorAll('img.lb-swatch')];
+              if(!after.ready||after.fingerprint!==expected.fingerprint||mounted.length!==images.length
+                 ||mounted.some((img,i)=>img!==images[i]))throw Error('Current card changed or failed during decode verification');
+              return {...after,decode_verified:true};
+            }''', observed)
+            observation['status'] = 'passed'
+            phase(p, 'card_ready: ' + boundary)
+        except Exception as error:
+            observation.update(status='failed', error=str(error))
+            try:
+                observation['failure_state'] = p.evaluate(card_state)
+            except Exception as state_error:
+                observation['failure_state_error'] = str(state_error)
+            raise AssertionError('Current card images were not ready before ' + boundary + ': ' + str(error)) from error
+        finally:
+            observation['finished_at'] = now()
+
+    def reload_page(p):
+        card_images_ready(p, 'scripted reload')
+        phase(p, 'scripted_reload')
+        return p.reload(wait_until='domcontentloaded')
+
+    def close_context(context, p):
+        card_images_ready(p, 'synthetic context teardown')
+        phase(p, 'context_teardown')
+        context.close()
 
     def check(name, condition):
         checks.append(dict(name=name, passed=bool(condition)))
@@ -120,13 +208,38 @@ def main():
         page = context.new_page()
         page.set_default_timeout(90000)
         page.on('pageerror', lambda error: errors.append(str(error)))
-        page.on('requestfailed', lambda request: failed.append(dict(url=request.url, error=request.failure)))
-        page.on('response', lambda response: http_errors.append(dict(url=response.url, status=response.status))
-                if response.status >= 400 and urllib.parse.urlsplit(response.url).path != '/favicon.ico' else None)
+        created_page = page
+        page_phases[created_page] = dict(case=label, phase='initial_navigation', phase_started_at=now())
+        in_flight = {}
+
+        def request_started(request):
+            in_flight[request] = dict(request_started_at=now(),
+                                      request_start_phase=page_phases[created_page]['phase'])
+
+        def request_failed(request):
+            failed.append(dict(url=request.url, error=request.failure,
+                               resource_type=request.resource_type, failed_at=now(),
+                               **page_phases[created_page], **in_flight.pop(request, {})))
+
+        def response_received(response):
+            if response.status >= 400 and urllib.parse.urlsplit(response.url).path != '/favicon.ico':
+                http_errors.append(dict(url=response.url, status=response.status,
+                                        observed_at=now(), **page_phases[created_page]))
+
+        page.on('request', request_started)
+        page.on('requestfinished', lambda request: in_flight.pop(request, None))
+        page.on('requestfailed', request_failed)
+        page.on('response', response_received)
+        page.on('framenavigated', lambda frame: navigation_events.append(
+            dict(event='main_frame_navigation', url=frame.url, observed_at=now(), **page_phases[created_page]))
+            if frame == created_page.main_frame else None)
+        page.on('close', lambda: navigation_events.append(
+            dict(event='page_closed', observed_at=now(), **page_phases[created_page])))
         response = page.goto(base, wait_until='domcontentloaded', timeout=120000)
         check(label + ': HTML loads', response is not None and response.status == 200)
         ready(page)
         check(label + ': isolated rejection history starts empty', page.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().active.length===0'))
+        phase(page, 'application_ready')
         return context, page, hashlib.sha256(response.body()).hexdigest()
 
     def protected(p):
@@ -142,11 +255,14 @@ def main():
         return sorted(p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events'), key=lambda event: event['id'])
 
     def generate(p, label, initial=False):
+        card_images_ready(p, label + ': new generation')
+        phase(p, 'generation_setup: ' + label)
         p.locator('[data-page="home"]').first.click()
         if initial:
             p.click('#pref-topwear')
             p.locator('#picker-list [data-item-id="S05"]').click()
             p.click('#picker-apply')
+        phase(p, 'generate_click: ' + label)
         p.click('#generate-options')
         p.wait_for_function('''()=>{const s=HEWRSApp.state();return !s.busy&&s.page==='outfits'
           && Array.isArray(s.report?.options)&&s.optionCount>0&&document.getElementById('avatar').dataset.status==='ready';}''', timeout=360000)
@@ -156,26 +272,34 @@ def main():
           && s.report.options.every(o=>o._hewrsConnected.canonical_selection.suitId==='S05'
              && a.ownerFeedback.allowed(o._hewrsConnected.canonical_selection,s.request.context));}'''))
         check(label + ': eligible S05 fixture supplies 20 options', len(r) == 20)
+        card_images_ready(p, label + ': generation complete')
         return r
 
     def tied(p):
-        for _ in range(20):
+        for index in range(20):
+            card_images_ready(p, 'tied selection ' + str(index))
             selected = p.evaluate('()=>HEWRSApp.state().selection')
             if selected['state'].startswith('T'):
                 return selected
             previous = p.evaluate('()=>HEWRSApp.state().optionIndex')
+            phase(p, 'next_option_click')
             p.click('#next-option')
             p.wait_for_function('i=>!HEWRSApp.state().busy&&HEWRSApp.state().optionIndex!==i', arg=previous)
         raise AssertionError('No tied option in native fixture')
 
     def open_reject(p):
+        phase(p, 'open_rejection_dialog')
         p.click('#reject-outfit')
         p.wait_for_selector('#rejection-scope', state='visible')
 
     def commit(p, permanent=True):
+        action = 'permanent rejection' if permanent else 'temporary rejection'
+        card_images_ready(p, 'before ' + action)
+        phase(p, action + '_click')
         p.click('#rejection-permanent' if permanent else '#rejection-once')
         p.wait_for_function('''()=>{const d=document.getElementById('outfit-rejection-dialog');
           return !d.open&&!HEWRSApp.state().busy&&!document.getElementById('undo-outfit-rejection').disabled;}''', timeout=360000)
+        card_images_ready(p, 'after ' + action)
 
     def probe(p, selected, scope, identifier, occasion='all'):
         variants = [dict(selected), {**selected, 'watchId': None},
@@ -250,7 +374,7 @@ def main():
                 print('BASELINE OBSERVATION: ' + json.dumps(case), flush=True)
             else:
                 p.screenshot(path=str(evidence / (reason + '-immediate.png')), full_page=True)
-                p.reload(wait_until='domcontentloaded')
+                reload_page(p)
                 ready(p)
                 check(reason + ': exact saved event survives reload', p.evaluate('id=>HEWRSApp.ownerFeedback.snapshot().events.find(e=>e.id===id)', event['id']) == event)
                 after_reload = generate(p, reason + ' after reload')
@@ -258,13 +382,15 @@ def main():
                 p.click('#manage-outfit-rejections')
                 p.wait_for_selector('#undo-' + event['id'], state='visible')
                 check(reason + ': manager exposes saved scope', p.locator('[data-event-id="' + event['id'] + '"]').get_attribute('data-scope') == scope)
+                card_images_ready(p, 'before manager Undo')
+                phase(p, 'manager_undo_click')
                 p.click('#undo-' + event['id'])
                 p.wait_for_function('id=>!HEWRSApp.ownerFeedback.snapshot().active.some(e=>e.id===id)', arg=event['id'])
                 p.wait_for_function('()=>!document.getElementById("rejections-close").disabled')
                 check(reason + ': manager Undo removes precisely the rejection', p.evaluate('([s,id])=>!HEWRSApp.ownerFeedback.match(s,{occasion:"work"}).reasons.some(r=>r.id===id)', [selected, event['id']]))
                 p.click('#rejections-close')
             check(reason + ': wear, Favorites and Home preferences unchanged', protected(p) == unchanged)
-            context.close()
+            close_context(context, p)
 
     def reason_edges():
         context, p, _ = context_page('reason combinations')
@@ -293,7 +419,7 @@ def main():
         check('Resolved multi-reason action saves exactly the reviewed scope', event['scope'] == 'shirt_tie' and event['reason'] == 'other')
         probe(p, selected, 'shirt_tie', event['id'])
         check('Resolved multi-reason action preserves personal stores/preferences', protected(p) == original)
-        context.close()
+        close_context(context, p)
 
         configurations = (
             ('suit without tie', dict(suitId='S05', shirtId='DS029', state='NO_TIE', shoeId='shoe-1', watchId=None),
@@ -315,7 +441,7 @@ def main():
             check(label + ': actual shirt remains independently rejectable', 'shirt' in scope_values)
             p.click('#rejection-cancel')
             check(label + ': Cancel leaves all rejection history empty', p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events.length===0&&HEWRSApp.ownerFeedback.snapshot().temporary.length===0'))
-            context.close()
+            close_context(context, p)
 
         context, p, _ = context_page('blazer triple')
         selected = dict(blazerId='B03', pantId='PG002', shirtId='DS023', state='T017', shoeId='shoe-8', watchId=None)
@@ -329,7 +455,7 @@ def main():
         alternate = {**selected, 'pantId': 'PG003'}
         check('Changing trousers cannot evade the rejected blazer/shirt/tie combination', p.evaluate('([s,id])=>HEWRSApp.ownerFeedback.match(s,{occasion:"work"}).reasons.some(r=>r.id===id)', [alternate, event['id']]))
         probe(p, selected, 'topwear_shirt_tie', event['id'])
-        context.close()
+        close_context(context, p)
 
     def lifecycle_cases():
         nonlocal page
@@ -360,8 +486,11 @@ def main():
             exported = backup['outfit_feedback']['events'] + backup['tie_feedback']['events']
             check(scope + ': UI backup retains exact immutable record', event in exported)
             p.click('#rejections-close')
+            card_images_ready(p, 'before Undo last')
+            phase(p, 'undo_last_click')
             p.click('#undo-outfit-rejection')
             p.wait_for_function('()=>HEWRSApp.ownerFeedback.snapshot().active.length===0&&!document.getElementById("generate-options").disabled')
+            card_images_ready(p, 'after Undo last')
             check(scope + ': Undo last removes the saved veto', p.evaluate('([s,id])=>!HEWRSApp.ownerFeedback.match(s,{occasion:"work"}).reasons.some(r=>r.id===id)', [selected, event['id']]))
             # Import into a distinct, initially empty synthetic browser profile.
             imported_context, imported, _ = context_page(scope + ' import')
@@ -371,7 +500,7 @@ def main():
             imported.wait_for_function('()=>HEWRSApp.ownerFeedback.snapshot().active.length===1&&!document.getElementById("rejections-close").disabled')
             check(scope + ': UI import restores the exact scope and event bytes', imported.evaluate('id=>HEWRSApp.ownerFeedback.snapshot().active.find(e=>e.id===id)', event['id']) == event)
             probe(imported, selected, scope, event['id'], 'work')
-            imported_context.close()
+            close_context(imported_context, imported)
             page = p
             # A temporary skip must never enter a durable backup.
             before_events = event_records(p)
@@ -391,11 +520,11 @@ def main():
             open_reject(p)
             p.select_option('#rejection-scope', scope)
             commit(p, permanent=False)
-            p.reload(wait_until='domcontentloaded')
+            reload_page(p)
             ready(p)
             check(scope + ': reload expires temporary rules without deleting permanent history', p.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().temporary.length===0&&HEWRSApp.ownerFeedback.snapshot().active.length===0') and event_records(p) == before_events)
             check(scope + ': wear, Favorites and Home preferences unchanged', protected(p) == unchanged)
-            context.close()
+            close_context(context, p)
 
     def reviewed_cases():
         for scope, occasion in (('outfit', 'all'), ('clothing', 'current')):
@@ -430,7 +559,7 @@ def main():
             check(label + ': reviewed Undo removes its veto from the shared store', p.evaluate('([s,id])=>!HEWRSApp.ownerFeedback.match(s,{occasion:"work"}).reasons.some(r=>r.id===id)', [selected, event['id']]))
             check(label + ': wearer history, Favorites and Home preferences unchanged', protected(p) == unchanged)
             p.click('#rd-close')
-            context.close()
+            close_context(context, p)
 
     try:
         with sync_playwright() as playwright:
@@ -457,7 +586,9 @@ def main():
         raise
     finally:
         result.update(finished_at=datetime.now(timezone.utc).isoformat(),
-                      passed=sum(c['passed'] for c in checks), failed=sum(not c['passed'] for c in checks))
+                      passed=sum(c['passed'] for c in checks), failed=sum(not c['passed'] for c in checks),
+                      card_image_readiness_passed=sum(c['status'] == 'passed' for c in image_checks),
+                      card_image_readiness_failed=sum(c['status'] != 'passed' for c in image_checks))
         (evidence / 'RESULT.json').write_text(json.dumps(result, indent=2) + '\n')
         if server:
             server.shutdown()
