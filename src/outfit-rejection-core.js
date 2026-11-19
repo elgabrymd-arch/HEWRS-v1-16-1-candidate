@@ -33,10 +33,10 @@
     const state = app?.state();
     return state ? {...state.context, requiredFormality:state.context.formality} : {occasion:'work'};
   }
-  function assertVisible(selection, canvas) {
+  function assertVisible(selection, canvas, context = viewContext(canvas)) {
     need(gate, 'The shared outfit feedback record is not ready.');
     const snapshot = gate.refresh();
-    need(selection.state === 'REFERENCE' || gate.match(selection, viewContext(canvas)).allowed, 'This outfit was rejected. Undo its rejection or choose another combination.');
+    need(selection.state === 'REFERENCE' || gate.match(selection, context).allowed, 'This outfit was rejected. Undo its rejection or choose another combination.');
     return snapshot.token;
   }
   function wrapRenderer(namespace) {
@@ -48,11 +48,17 @@
       visible.width = off.width; visible.height = off.height;
       let epoch = 0, last = null;
       return Object.freeze({...original,
-        async render(selection) {
+        async render(selection, {context} = {}) {
           const turn = ++epoch;
+          // An apply may target another occasion before app.state() changes.
+          // Capture it before awaiting storage or pixels; caller edits cannot
+          // change which context the final visible-image check authorizes.
+          const requestedContext = context === undefined ? viewContext(visible) : context;
+          const renderContext = typeof requestedContext === 'string' ? {occasion:api().occasion(requestedContext)} :
+            {...clone(requestedContext),occasion:api().occasion(requestedContext?.occasion)};
           if (gate?.sync) await gate.sync();
           if (turn !== epoch) return {cancelled:true};
-          const token = assertVisible(selection, visible);
+          const token = assertVisible(selection, visible, renderContext);
           visible.dataset.loading = 'true';
           try {
             const result = await original.render(selection);
@@ -60,7 +66,7 @@
             const publish = () => {
               if (turn !== epoch) return {cancelled:true};
               gate.assertCurrent(token);
-              assertVisible(selection, visible);
+              assertVisible(selection, visible, renderContext);
               const pixels = off.getContext('2d', {willReadFrequently:true}).getImageData(0, 0, off.width, off.height);
               visible.getContext('2d', {willReadFrequently:true}).putImageData(pixels, 0, 0);
               for (const key of Object.keys(visible.dataset)) delete visible.dataset[key];
@@ -163,9 +169,10 @@
       const occasion = F.occasion(typeof context === 'string' ? context : context?.occasion);
       const reasons = [...result.reasons];
       for (const event of temporary.values()) {
-        if (event.occasion !== 'all' && event.occasion !== occasion) continue;
+        const eventOccasion = F.occasion(event.occasion);
+        if (eventOccasion !== 'all' && eventOccasion !== occasion) continue;
         const tied = T.isScope(event.scope);
-        if (tied && !T.canMatch(selection,event.scope)) continue;
+        if (!(tied?T:F).canMatch(selection,event.scope)) continue;
         const getKey = tied ? T.key : F.key;
         if (getKey(event.selection,event.scope) === getKey(selection,event.scope))
           reasons.push({id:event.id,type:'temporary_skip',scope:event.scope,occasion:event.occasion,reason:event.reason});
@@ -174,10 +181,10 @@
     }
     function skip(value, options={}) {
       snapshot();
-      const selection = F.normal(app.connection.validateSelection(value));
+      const selection = F.normal(value);app.connection.validateSelection(selection);
       const scope = options.scope || 'outfit';
-      need(['outfit','clothing'].includes(scope)||T.isScope(scope),'Choose a listed rejection scope.');
-      if (T.isScope(scope)) T.key(selection,scope);
+      need(F.isScope(scope)||T.isScope(scope),'Choose a listed rejection scope.');
+      (T.isScope(scope)?T:F).key(selection,scope);
       const occasion = F.occasion(typeof options.context === 'object' ? options.context.occasion : options.context || 'all');
       const reason = options.reason || null, note = String(options.note || '').trim();
       need([null,'colors','patterns','formality','footwear','other'].includes(reason) && note.length<=500,'Invalid rejection details.');
@@ -229,8 +236,8 @@
       need(!tieEvents.some(event => ids.has(event.id)), 'Outfit and tie feedback have conflicting event IDs. Existing records were retained.');
     }
     const scopeKey = (selection, scope) => T.isScope(scope) ? T.key(selection, scope) : F.key(selection, scope);
-    const matches = (event, selection, occasion) => (event.occasion === 'all' || event.occasion === occasion) &&
-      (!T.isScope(event.scope) || T.canMatch(selection,event.scope)) && scopeKey(event.selection, event.scope) === scopeKey(selection, event.scope);
+    const matches = (event, selection, occasion) => (F.occasion(event.occasion) === 'all' || F.occasion(event.occasion) === occasion) &&
+      (T.isScope(event.scope)?T:F).canMatch(selection,event.scope) && scopeKey(event.selection, event.scope) === scopeKey(selection, event.scope);
     function snapshot() {
       try {
         const s = base.refresh(), t = ties.refresh();
@@ -246,6 +253,9 @@
       }
     }
     function match(s, context) {
+      // The original localStorage store caches reads. Recheck both immutable
+      // ledgers so another tab's save/Undo or unreadable data cannot be missed.
+      snapshot();
       s = F.normal(s);
       const result = base.match(s, context), occasion = F.occasion(typeof context === 'string' ? context : context?.occasion);
       const reasons = [...result.reasons, ...ties.match(s, context).reasons];
@@ -256,7 +266,7 @@
     }
     function choices(options = {}) {
       const scope = options.scope || 'outfit';
-      need(['outfit', 'clothing'].includes(scope) || T.isScope(scope), 'Choose a listed rejection scope.');
+      need(F.isScope(scope) || T.isScope(scope), 'Choose a listed rejection scope.');
       const occasion = F.occasion(typeof options.context === 'object' ? options.context.occasion : options.context || 'all');
       const reason = options.reason || null;
       need([null, 'colors', 'patterns', 'formality', 'footwear', 'other'].includes(reason), 'Choose a listed reason.');
@@ -267,9 +277,9 @@
     function hide(s, options = {}) {
       snapshot();
       need(app.ownerFeedbackPersistent === true, 'Permanent saving is unavailable. No permanent rejection was recorded.');
-      const value = choices(options), selection = F.normal(app.connection.validateSelection(s));
+      const value = choices(options), selection = F.normal(s);app.connection.validateSelection(selection);
       if (T.isScope(value.scope)) return ties.hide(selection, {...value, context:value.occasion});
-      const old = base.refresh().active.find(e => e.scope === value.scope && e.occasion === value.occasion && F.key(e.selection, e.scope) === F.key(selection, value.scope));
+      const old = base.refresh().active.find(e => e.scope === value.scope && F.occasion(e.occasion) === value.occasion && F.key(e.selection, e.scope) === F.key(selection, value.scope));
       if (old) return clone(old);
       if (!value.note) return base.hide(selection, {scope:value.scope, context:value.occasion, reason:value.reason});
       const event = {schema:F.SCHEMA, id:uid(), at:new Date().toISOString(), type:'hide', actor:'owner', selection,
@@ -277,8 +287,9 @@
       base.importData({schema:F.EXPORT, events:[event]}); return clone(event);
     }
     function skip(s, options = {}) {
-      const value = choices(options), selection = F.normal(app.connection.validateSelection(s));
-      if (T.isScope(value.scope)) T.key(selection, value.scope);
+      snapshot();
+      const value = choices(options), selection = F.normal(s);app.connection.validateSelection(selection);
+      (T.isScope(value.scope)?T:F).key(selection, value.scope);
       const event = {id:'skip_' + uid(), type:'temporary_skip', selection, ...value};
       temporary.set(event.id, event); revision++; notify(); return clone(event);
     }

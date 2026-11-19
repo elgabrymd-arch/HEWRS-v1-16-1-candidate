@@ -1,0 +1,136 @@
+name: Audit every rejection path
+
+on:
+  push:
+    branches: [audit/all-rejections-20261118]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/outfit*.js'
+      - 'src/*feedback*.js'
+      - 'src/rejection-database.js'
+      - 'src/reviewed-rejection-integration.js'
+      - 'src/preference-panel.js'
+      - 'runtime/outfit-refill-preview.js'
+      - 'index.html'
+      - 'app.html'
+      - 'tests/all-rejections*'
+      - '.github/workflows/all-rejections-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: all-rejections-audit-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  core-and-engine:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify build and preserve wardrobe, avatar and original scoring assets
+        run: |
+          git fetch --depth=1 origin 3238e36445cdc3597af43c873a5425e0018cb97f
+          git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
+          git diff --exit-code 3238e36445cdc3597af43c873a5425e0018cb97f -- assets assemblies data vendor ui ui-assets STANDARD_RELEASE.json outfit-feedback.js tools/build.py
+          python tools/build_tie_candidate.py --check
+          node --check runtime/outfit-refill-preview.js
+      - name: Install isolated database test dependency
+        run: npm install --prefix /tmp/hewrs-rejection-audit-deps --ignore-scripts --no-audit --no-fund fake-indexeddb@6.2.8
+      - name: Audit every scope, reason, lifecycle and failed transaction
+        env:
+          NODE_PATH: /tmp/hewrs-rejection-audit-deps/node_modules
+        run: |
+          mkdir -p evidence/all_rejections/native
+          node tests/all-rejections-core.cjs | tee evidence/all_rejections/native/core.log
+          node tests/all-rejections-ui.cjs | tee evidence/all_rejections/native/ui.log
+          node tests/rejection-database.cjs | tee evidence/all_rejections/native/database.log
+          node tests/tie-feedback.cjs | tee evidence/all_rejections/native/tie-feedback.log
+          node tests/rejection-read-failure.cjs | tee evidence/all_rejections/native/read-failure.log
+          node tests/rejection-cumulative-refill.cjs | tee evidence/all_rejections/native/cumulative.log
+          node tests/rejection-same-generation-guard.cjs | tee evidence/all_rejections/native/same-generation.log
+      - name: Audit native generation and render/export entry points
+        run: |
+          node tests/all-rejections-engine.cjs | tee evidence/all_rejections/native/engine.log
+          node tests/all-rejections-entrypoints.cjs | tee evidence/all_rejections/native/entrypoints.log
+          node tests/all-rejections-export-context.cjs | tee evidence/all_rejections/native/export-context.log
+          node tests/tie-only-replacement.cjs | tee evidence/all_rejections/native/tie-replacement.log
+          node tests/tie-engine-integration.cjs | tee evidence/all_rejections/native/tie-engine.log
+      - name: Preserve native audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ALL_REJECTIONS_NATIVE
+          path: evidence/all_rejections/
+          if-no-files-found: warn
+          retention-days: 30
+
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        section: [reasons, lifecycle]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - name: Audit actual reason and scope controls with isolated profiles
+        run: python tests/all-rejections-browser.py --browser '${{ matrix.browser }}' --section '${{ matrix.section }}'
+      - name: Preserve browser audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ALL_REJECTIONS_${{ matrix.browser }}_${{ matrix.section }}
+          path: evidence/all_rejections/
+          if-no-files-found: error
+          retention-days: 30
+
+  baseline-and-storage-failure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: 3238e36445cdc3597af43c873a5425e0018cb97f
+          path: baseline
+      - name: Install matching browser driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - name: Reproduce the original shirt and footwear reason behavior
+        run: |
+          cp tests/all-rejections-browser.py baseline/tests/all-rejections-browser.py
+          python baseline/tests/all-rejections-browser.py --section reasons --baseline
+      - name: Verify real failed IndexedDB reads and recovery
+        run: python tests/rejection-database-read-failure-browser.py
+      - name: Preserve baseline and recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ALL_REJECTIONS_BASELINE_AND_RECOVERY
+          path: |
+            baseline/evidence/all_rejections/
+            evidence/rejection_storage/
+          if-no-files-found: warn
+          retention-days: 30
