@@ -358,7 +358,7 @@ def main():
             check('View current cannot resurrect a rejected shirt/tie pairing', page.locator('#outfit-output').is_hidden() and page.locator('#record-wear').is_disabled())
             check('Blocked navigation explains the rejection', 'rejected' in page.locator('#outfit-empty').inner_text().lower())
             page.screenshot(path=str(output / 'rejected-view-current.png'))
-            page.evaluate('async id=>{await HEWRSApp.ownerFeedback.undo(id);HEWRSApp.rejectionChanged();}', await_result['id'])
+            page.evaluate('async id=>{await HEWRSApp.ownerFeedback.restore(id);HEWRSApp.rejectionChanged();}', await_result['id'])
             check('Undo restores the allowed complete frame', page.locator('#outfit-output').is_visible())
             after = protected(page)
             check('Photo and collar audit creates no wear or Favorites writes', before['wear'] == after['wear'] and before['favorites'] == after['favorites'])
