@@ -1,0 +1,577 @@
+{
+  "schema": "hewrs.live-publication.v1",
+  "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/",
+  "expected_commit": "f745df827dfc79aea52f816219fbcf68cbc510ae",
+  "started_at": "2026-11-19T02:20:43.170576+00:00",
+  "fresh_isolated_profile": true,
+  "owner_data_accessed": false,
+  "application_response_source": "live_https_only",
+  "checks": [
+    {
+      "name": "Live root, app entrypoint, startup scripts/styles and lazy outfit index match the checkout",
+      "passed": true
+    },
+    {
+      "name": "The browser receives the exact published HTML",
+      "passed": true
+    },
+    {
+      "name": "Published app starts with empty, validated IndexedDB feedback",
+      "passed": true
+    },
+    {
+      "name": "Live generation returns 20 valid outfits with a ready avatar",
+      "passed": true
+    },
+    {
+      "name": "Displayed garment thumbnails load with real image dimensions",
+      "passed": true
+    },
+    {
+      "name": "Live refill 1: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 2: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 3: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 4: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 5: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 6: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 7: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 8: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 9: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 10: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 11: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 12: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 13: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 14: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 15: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 16: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 17: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 18: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 19: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Live refill 20: 20 valid choices, accepted rows unchanged, all prior rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Twenty permanent rejections are retained as twenty active records",
+      "passed": true
+    },
+    {
+      "name": "Live rejection testing leaves wear and Favorites unchanged",
+      "passed": true
+    },
+    {
+      "name": "All twenty permanent exclusions survive an actual live-page reload",
+      "passed": true
+    },
+    {
+      "name": "Live rejection manager displays all twenty stored records",
+      "passed": true
+    },
+    {
+      "name": "No external or paid-provider request was made",
+      "passed": true
+    },
+    {
+      "name": "No application request failed or returned an HTTP error",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser exception occurred",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "failed_requests": [],
+  "http_errors": [],
+  "optional_browser_requests": [],
+  "observations": {
+    "publication_poll_attempts": 5,
+    "twenty_ui_refills_seconds": 90.6641,
+    "generation_button_clicks": 1,
+    "rejected_selections": [
+      {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-11",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B03",
+        "pantId": "PG003",
+        "shirtId": "DS046",
+        "state": "NO_TIE",
+        "shoeId": "shoe-42",
+        "watchId": "watch-AP09"
+      },
+      {
+        "suitId": "S11",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "suitId": "S11",
+        "shirtId": "DS038",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "suitId": "S10",
+        "shirtId": "DS038",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "suitId": "S04",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "suitId": "S04",
+        "shirtId": "DS038",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B10",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B10",
+        "pantId": "PB002",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B10",
+        "pantId": "PB003",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B10",
+        "pantId": "PB004",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B15",
+        "pantId": "PB001",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B15",
+        "pantId": "PB002",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B15",
+        "pantId": "PB003",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B15",
+        "pantId": "PB004",
+        "shirtId": "DS019",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "suitId": "S07",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "suitId": "S05",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B10",
+        "pantId": "PB001",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B10",
+        "pantId": "PB002",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      },
+      {
+        "blazerId": "B10",
+        "pantId": "PB003",
+        "shirtId": "DS036",
+        "state": "NO_TIE",
+        "shoeId": "shoe-13",
+        "watchId": "watch-AP09"
+      }
+    ],
+    "final_feedback_status": {
+      "ready": true,
+      "blocked": null,
+      "stale": false,
+      "loading": false,
+      "persistent": true,
+      "active": 20,
+      "historical": 0,
+      "events": 20,
+      "backend": "indexeddb",
+      "databaseName": "hewrs-rejections-v2",
+      "revision": 21,
+      "migratedLegacyCount": 0,
+      "legacyEventCount": 0,
+      "migrationRevision": 1,
+      "lastWriteError": null
+    }
+  },
+  "verification_url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/?hewrs-publication=f745df827dfc",
+  "live_file_identity": [
+    {
+      "path": "/",
+      "status": 200,
+      "sha256": "0aae9a298156706290a41cfb25838ea542d9d72c913f303e00764b276c4e7ba0",
+      "expected_sha256": "0aae9a298156706290a41cfb25838ea542d9d72c913f303e00764b276c4e7ba0",
+      "bytes": 17942,
+      "matches": true
+    },
+    {
+      "path": "app.html",
+      "status": 200,
+      "sha256": "0aae9a298156706290a41cfb25838ea542d9d72c913f303e00764b276c4e7ba0",
+      "expected_sha256": "0aae9a298156706290a41cfb25838ea542d9d72c913f303e00764b276c4e7ba0",
+      "bytes": 17942,
+      "matches": true
+    },
+    {
+      "path": "src/application.css?v=f45ceea1448218fb",
+      "status": 200,
+      "sha256": "f45ceea1448218fbc0feac7b92b05f18ac247045193d316f879af181103ecf34",
+      "expected_sha256": "f45ceea1448218fbc0feac7b92b05f18ac247045193d316f879af181103ecf34",
+      "bytes": 27379,
+      "matches": true
+    },
+    {
+      "path": "feedback-candidate/feedback.css",
+      "status": 200,
+      "sha256": "fdc4db1521184cd79866e64b50e224f9655bd5823692d803a9171bbcd29ed1f5",
+      "expected_sha256": "fdc4db1521184cd79866e64b50e224f9655bd5823692d803a9171bbcd29ed1f5",
+      "bytes": 908,
+      "matches": true
+    },
+    {
+      "path": "feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67",
+      "status": 200,
+      "sha256": "a50f347fbe67254dfa39216700034f07a05bf700ad4fae0dbd7f9b8ea953f6ee",
+      "expected_sha256": "a50f347fbe67254dfa39216700034f07a05bf700ad4fae0dbd7f9b8ea953f6ee",
+      "bytes": 3806,
+      "matches": true
+    },
+    {
+      "path": "src/blazer-picker-preview.css",
+      "status": 200,
+      "sha256": "217444efd93f4bf08d7f70f4a3d3414fca10d032d4b4ebf8d5a7ff4a747e6e31",
+      "expected_sha256": "217444efd93f4bf08d7f70f4a3d3414fca10d032d4b4ebf8d5a7ff4a747e6e31",
+      "bytes": 2376,
+      "matches": true
+    },
+    {
+      "path": "src/shirt-picker-preview.css",
+      "status": 200,
+      "sha256": "84ab53241aeb5e60873a57465efeab7d95fe2f37caeb0708bc00cdf7a6c2f62e",
+      "expected_sha256": "84ab53241aeb5e60873a57465efeab7d95fe2f37caeb0708bc00cdf7a6c2f62e",
+      "bytes": 2238,
+      "matches": true
+    },
+    {
+      "path": "src/tie-picker-preview.css",
+      "status": 200,
+      "sha256": "930c4967b877a782f37042829ba503f56be9acf21c2d0a04ba7f012695262235",
+      "expected_sha256": "930c4967b877a782f37042829ba503f56be9acf21c2d0a04ba7f012695262235",
+      "bytes": 2538,
+      "matches": true
+    },
+    {
+      "path": "src/outfit-rejection.css",
+      "status": 200,
+      "sha256": "c239153e8ac8403204f663ca87bee23507cab6117dcf48e60d4f7f18b40a13e5",
+      "expected_sha256": "c239153e8ac8403204f663ca87bee23507cab6117dcf48e60d4f7f18b40a13e5",
+      "bytes": 2851,
+      "matches": true
+    },
+    {
+      "path": "src/runtime-loader.js?v=0df2348364570098",
+      "status": 200,
+      "sha256": "0df23483645700982dfc34a8bfda70cf6a44d09b058779adad7a2df240ed7f1a",
+      "expected_sha256": "0df23483645700982dfc34a8bfda70cf6a44d09b058779adad7a2df240ed7f1a",
+      "bytes": 3280,
+      "matches": true
+    },
+    {
+      "path": "data/option-index.js?v=97a019847fcbe086",
+      "status": 200,
+      "sha256": "97a019847fcbe0868563bdc7a9b63f2d6fe1ddd5dc1f9091e0dcab524176fae4",
+      "expected_sha256": "97a019847fcbe0868563bdc7a9b63f2d6fe1ddd5dc1f9091e0dcab524176fae4",
+      "bytes": 6072082,
+      "matches": true
+    },
+    {
+      "path": "data/inputs.js?v=d4060df8ec8f400f",
+      "status": 200,
+      "sha256": "d4060df8ec8f400f62e2a160b6798ca5f15b940d030c9b63e901b58e0344c3fb",
+      "expected_sha256": "d4060df8ec8f400f62e2a160b6798ca5f15b940d030c9b63e901b58e0344c3fb",
+      "bytes": 4465381,
+      "matches": true
+    },
+    {
+      "path": "src/tie-exposure.js",
+      "status": 200,
+      "sha256": "599c66045044eda5f4dc4623cf6af7daf5fd8c9c9df779272dcd26b673a3cfeb",
+      "expected_sha256": "599c66045044eda5f4dc4623cf6af7daf5fd8c9c9df779272dcd26b673a3cfeb",
+      "bytes": 8242,
+      "matches": true
+    },
+    {
+      "path": "src/tie-feedback.js",
+      "status": 200,
+      "sha256": "f54a73b040880274321a995e50038d970fde2bac6b330cbdf0d91503cfc1e3f2",
+      "expected_sha256": "f54a73b040880274321a995e50038d970fde2bac6b330cbdf0d91503cfc1e3f2",
+      "bytes": 9647,
+      "matches": true
+    },
+    {
+      "path": "src/rejection-database.js",
+      "status": 200,
+      "sha256": "f8c32ff397a7c5895d4f1f22d0efd3449983ae4ff007007e6a3e86b1175e294a",
+      "expected_sha256": "f8c32ff397a7c5895d4f1f22d0efd3449983ae4ff007007e6a3e86b1175e294a",
+      "bytes": 31603,
+      "matches": true
+    },
+    {
+      "path": "src/outfit-rejection-core.js?v=331a655ef8644651",
+      "status": 200,
+      "sha256": "331a655ef86446517b87189a13214f1553560d2b8440b93877fa272d43fe0c42",
+      "expected_sha256": "331a655ef86446517b87189a13214f1553560d2b8440b93877fa272d43fe0c42",
+      "bytes": 22459,
+      "matches": true
+    },
+    {
+      "path": "runtime/outfit-refill-preview.js?v=bc29e962604013f4",
+      "status": 200,
+      "sha256": "bc29e962604013f47c130135b6094c8eb0907b0b5d2edc9fa5b666e67bca4a25",
+      "expected_sha256": "bc29e962604013f47c130135b6094c8eb0907b0b5d2edc9fa5b666e67bca4a25",
+      "bytes": 1795893,
+      "matches": true
+    },
+    {
+      "path": "src/outfit-rejection-ui.js?v=fc3afc5b51484a2a",
+      "status": 200,
+      "sha256": "fc3afc5b51484a2a16389a7f17b3b75cd82676e7e4132b0f08796a9386186840",
+      "expected_sha256": "fc3afc5b51484a2a16389a7f17b3b75cd82676e7e4132b0f08796a9386186840",
+      "bytes": 27390,
+      "matches": true
+    },
+    {
+      "path": "data/option-card-thumbnails.js",
+      "status": 200,
+      "sha256": "d5d77a62c04c8b8e5aa7e890e0b055a7034245a4c58792981897375a2b1a26c4",
+      "expected_sha256": "d5d77a62c04c8b8e5aa7e890e0b055a7034245a4c58792981897375a2b1a26c4",
+      "bytes": 56292,
+      "matches": true
+    },
+    {
+      "path": "data/blazer-picker-images.js",
+      "status": 200,
+      "sha256": "c0178b39872881e606dfe0c91c8baea39b03d3e636cb81cd7a03a0b3404c8c91",
+      "expected_sha256": "c0178b39872881e606dfe0c91c8baea39b03d3e636cb81cd7a03a0b3404c8c91",
+      "bytes": 5820,
+      "matches": true
+    },
+    {
+      "path": "data/suit-picker-images.js",
+      "status": 200,
+      "sha256": "a469033d18a101e1d5443a93cdf2b14f7a227e8699d6b1da6693b96895f3f06c",
+      "expected_sha256": "a469033d18a101e1d5443a93cdf2b14f7a227e8699d6b1da6693b96895f3f06c",
+      "bytes": 7585,
+      "matches": true
+    },
+    {
+      "path": "src/blazer-picker-preview.js",
+      "status": 200,
+      "sha256": "fc2cf20e9beb9e5a5c97cb5e63e653150737b285e0494573b644405cf216e8d7",
+      "expected_sha256": "fc2cf20e9beb9e5a5c97cb5e63e653150737b285e0494573b644405cf216e8d7",
+      "bytes": 7431,
+      "matches": true
+    },
+    {
+      "path": "src/photo-picker-integration.js",
+      "status": 200,
+      "sha256": "5dbdcd7d27e612019301bc3f18dd1d656b3715bfeb0e326a51d6dd814d910429",
+      "expected_sha256": "5dbdcd7d27e612019301bc3f18dd1d656b3715bfeb0e326a51d6dd814d910429",
+      "bytes": 2940,
+      "matches": true
+    },
+    {
+      "path": "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf2",
+      "status": 200,
+      "sha256": "b2ce0aa56cf277a45ac6e16bc95aacbdbefd3a5916e21a71940e1838e4db7ad8",
+      "expected_sha256": "b2ce0aa56cf277a45ac6e16bc95aacbdbefd3a5916e21a71940e1838e4db7ad8",
+      "bytes": 15352,
+      "matches": true
+    },
+    {
+      "path": "hewrs-pipeline-08c53932a2495e05.js",
+      "status": 200,
+      "sha256": "08c53932a2495e05f8ccc32fa03fcf4e02a8bd7ce6daa08db1ffbb9926a6d66d",
+      "expected_sha256": "08c53932a2495e05f8ccc32fa03fcf4e02a8bd7ce6daa08db1ffbb9926a6d66d",
+      "bytes": 7348,
+      "matches": true
+    },
+    {
+      "path": "src/reviewed-rejection-integration.js",
+      "status": 200,
+      "sha256": "ace500868a9ad19633ad59c8d9a0295a416aa65aa2d9d573221b2c6440528597",
+      "expected_sha256": "ace500868a9ad19633ad59c8d9a0295a416aa65aa2d9d573221b2c6440528597",
+      "bytes": 34686,
+      "matches": true
+    },
+    {
+      "path": "feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b",
+      "status": 200,
+      "sha256": "0c5d2b6ca68b7726b2b6404808d7702c8d19b05a69774be3f086f017f7ca67a2",
+      "expected_sha256": "0c5d2b6ca68b7726b2b6404808d7702c8d19b05a69774be3f086f017f7ca67a2",
+      "bytes": 15312,
+      "matches": true
+    },
+    {
+      "path": "feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3",
+      "status": 200,
+      "sha256": "28cd3b7caba3b5d3e5c70efbc34ad20125aac203ef6c5e8102252423ebfcce23",
+      "expected_sha256": "28cd3b7caba3b5d3e5c70efbc34ad20125aac203ef6c5e8102252423ebfcce23",
+      "bytes": 2588,
+      "matches": true
+    },
+    {
+      "path": "hewrs-batch10-image-panel-f200023e7632fa28.js",
+      "status": 200,
+      "sha256": "f200023e7632fa28ea1ef3cacc4b4974d751ae8efecf9146eeabb9ec14c7885c",
+      "expected_sha256": "f200023e7632fa28ea1ef3cacc4b4974d751ae8efecf9146eeabb9ec14c7885c",
+      "bytes": 11425,
+      "matches": true
+    },
+    {
+      "path": "feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7a",
+      "status": 200,
+      "sha256": "1b12eb5a5c7aef7cec1b14dd057ec98318eebb20798079659ec77fef6093a7aa",
+      "expected_sha256": "1b12eb5a5c7aef7cec1b14dd057ec98318eebb20798079659ec77fef6093a7aa",
+      "bytes": 6452,
+      "matches": true
+    },
+    {
+      "path": "feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9",
+      "status": 200,
+      "sha256": "43dc758765b9a69d73a9e2405d4c07d14f1d4085cc17e8824a41a9ca9c76b796",
+      "expected_sha256": "43dc758765b9a69d73a9e2405d4c07d14f1d4085cc17e8824a41a9ca9c76b796",
+      "bytes": 5816,
+      "matches": true
+    }
+  ],
+  "browser": "chromium",
+  "browser_version": "141.0.7390.37",
+  "status": "passed",
+  "finished_at": "2026-11-19T02:23:12.049744+00:00",
+  "passed": 32,
+  "failed": 0
+}
