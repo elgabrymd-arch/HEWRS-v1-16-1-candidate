@@ -1,0 +1,360 @@
+{
+  "schema": "hewrs.rejection-storage-search-validation.v1",
+  "status": "passed",
+  "verified_at_utc": "2026-11-19T01:54:49.443387+00:00",
+  "repository": "elgabrymd-arch/HEWRS-v1-16-1-candidate",
+  "branch": "integration/rejection-storage-search-20261118",
+  "baseline_commit": "b9e33124d15c0f7127f2b2eb61dd710ec9edd05f",
+  "first_implementation_commit": "92f2eb5f02bc4f00b8395260a4a3983882eb667f",
+  "tested_commit": "0b3a2eb092c689b086d1e5e9913c6cff4ac50046",
+  "tested_tree": "e626076d5ff96cd283b03d1768a547fbb487dc22",
+  "candidate_runtime_sha256": "bc29e962604013f47c130135b6094c8eb0907b0b5d2edc9fa5b666e67bca4a25",
+  "workflow": {
+    "run_id": 44439244877,
+    "run_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44439244877",
+    "name": "Rejection database and search integration",
+    "conclusion": "success",
+    "run_attempt": 1,
+    "started_at": "2026-11-19T01:45:04Z",
+    "updated_at": "2026-11-19T01:53:09Z",
+    "job_id": 135275679229,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Initialize containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Fetch verified candidate and original build bases",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Verify preserved wardrobe, avatar, scoring and Standard application",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Install isolated database test dependency",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Install browser test driver",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Verify database, migration, transactions and original rejection semantics",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Verify actual engine search expansion and retained options",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Build validated synthetic 30,000-record browser fixture",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Verify async database integration retains failure and recovery protections",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Verify healthy generation, tie rejection, refill, Undo and backup integration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Verify 30,000 active bans, migration, backup, concurrency and 20 native UI refills in Chromium",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Verify the same storage and refill integration in WebKit",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Save test evidence without deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33
+      },
+      {
+        "name": "Stop containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35
+      }
+    ]
+  },
+  "runner": {
+    "host": "ubuntu-24.04",
+    "container": "mcr.microsoft.com/playwright/python:v1.56.0-noble",
+    "playwright": "1.56.0",
+    "node_major": 22,
+    "python_major_minor": "3.11",
+    "synthetic_profiles": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "artifact": {
+    "id": 14491171483,
+    "name": "HEWRS_REJECTION_STORAGE_INTEGRATION_EVIDENCE",
+    "bytes": 756506,
+    "sha256": "0640642c622e762243496d1d868f7745d6bf9061e1e07a42c4a533577146cc58",
+    "downloaded_digest_verified": true
+  },
+  "job_log_sha256": "529e05b5ccbb15a719f7053ed0a131ef6af394d8f3caba06beb7e7e0533bf942",
+  "unit_suites": [
+    {
+      "file": "tests/rejection-database.cjs",
+      "passed": 15
+    },
+    {
+      "file": "tests/rejection-read-failure.cjs",
+      "passed": 15
+    },
+    {
+      "file": "tests/tie-feedback.cjs",
+      "passed": 9
+    },
+    {
+      "file": "tests/tie-exposure.cjs",
+      "passed": 10
+    }
+  ],
+  "legacy_regression_fixtures": [
+    {
+      "file": "tests/rejection-cumulative-refill.cjs",
+      "status": "passed"
+    },
+    {
+      "file": "tests/rejection-same-generation-guard.cjs",
+      "status": "passed"
+    }
+  ],
+  "engine_search_assertions_passed": 12,
+  "browser_suites": [
+    {
+      "file": "evidence/rejection_storage/chromium/RESULT.json",
+      "assertions_passed": 44,
+      "assertions_failed": 0,
+      "browser": "chromium",
+      "browser_version": "141.0.7390.37",
+      "uncaught_page_errors": 0,
+      "external_requests": 0,
+      "browser_version_basis": "Recorded by this suite"
+    },
+    {
+      "file": "evidence/rejection_storage/healthy/chromium/RESULT.json",
+      "assertions_passed": 40,
+      "assertions_failed": 0,
+      "browser": "chromium",
+      "browser_version": null,
+      "uncaught_page_errors": 0,
+      "external_requests": 0,
+      "browser_version_basis": "Not separately recorded by this suite; same pinned runner and Chromium launch configuration"
+    },
+    {
+      "file": "evidence/rejection_storage/read_failure/chromium/RESULT.json",
+      "assertions_passed": 32,
+      "assertions_failed": 0,
+      "browser": "chromium",
+      "browser_version": "141.0.7390.37",
+      "uncaught_page_errors": 0,
+      "external_requests": 0,
+      "browser_version_basis": "Recorded by this suite"
+    },
+    {
+      "file": "evidence/rejection_storage/webkit/RESULT.json",
+      "assertions_passed": 44,
+      "assertions_failed": 0,
+      "browser": "webkit",
+      "browser_version": "26.0",
+      "uncaught_page_errors": 0,
+      "external_requests": 0,
+      "browser_version_basis": "Recorded by this suite"
+    }
+  ],
+  "browser_assertions_passed": 160,
+  "preserved_paths_gate": "passed: assets, assemblies, data, vendor, ui, ui-assets, Standard manifest/build/runtime, original feedback and reviewed panel; original source files outside explicit candidate changes",
+  "screenshots_reviewed": [
+    "evidence/rejection_storage/chromium/native-after-30000-390x844.png",
+    "evidence/rejection_storage/webkit/manager-30000-390x844.png",
+    "evidence/rejection_storage/webkit/native-after-30000-390x844.png",
+    "evidence/rejection_storage/read_failure/chromium/blocked-home-390x844.png",
+    "evidence/rejection_storage/healthy/chromium/tie-rejection-dialog.png"
+  ],
+  "actual_owner_data_accessed": false,
+  "physical_iphone_tested": false,
+  "deployment_performed": false,
+  "evidence_files": [
+    {
+      "path": "evidence/rejection_storage/chromium/RESULT.json",
+      "bytes": 11201,
+      "sha256": "83f471431d260032d3d16bbcd157ca489dee92eb986ef5249239c479fbed61cf"
+    },
+    {
+      "path": "evidence/rejection_storage/chromium/manager-30000-390x844.png",
+      "bytes": 65890,
+      "sha256": "6d981ae9ad0a7eaff3fa3a175efa95b4d1b5673c4dacccd9737203a165cbcef9"
+    },
+    {
+      "path": "evidence/rejection_storage/chromium/native-after-30000-390x844.png",
+      "bytes": 125099,
+      "sha256": "582f92348abfd78b6a30b1131af4cc35b5e4d725cf6b6fab6832af2d0c56cbd0"
+    },
+    {
+      "path": "evidence/rejection_storage/healthy/chromium/RESULT.json",
+      "bytes": 4912,
+      "sha256": "475b71721e15b789ce4eb7d1956376405423f313ec3711f228d3f8ab9b46990f"
+    },
+    {
+      "path": "evidence/rejection_storage/healthy/chromium/candidate-mobile-390x844.png",
+      "bytes": 70313,
+      "sha256": "31e710f4bb1bd458f4e06e2554a2d181ea35e66c9effb12dac616184175515c4"
+    },
+    {
+      "path": "evidence/rejection_storage/healthy/chromium/shirt_tie-rejection-dialog.png",
+      "bytes": 54555,
+      "sha256": "b0fa95e5a781d9a1760a9186fce358db8ba09608fd68f89a96aefd6023665a07"
+    },
+    {
+      "path": "evidence/rejection_storage/healthy/chromium/synthetic-feedback-backup.json",
+      "bytes": 1536,
+      "sha256": "faed8582ae02a17e4bff2b27d3117690ec41f263cbe8e2d052ab94a8525efa41"
+    },
+    {
+      "path": "evidence/rejection_storage/healthy/chromium/tie-rejection-dialog.png",
+      "bytes": 54242,
+      "sha256": "8bc04c6bbfc2b2a6ea60eb9df5c1212e62a63c40e694540c5f1a97997bb28a31"
+    },
+    {
+      "path": "evidence/rejection_storage/read_failure/chromium/RESULT.json",
+      "bytes": 15410,
+      "sha256": "89ce13c4cab505db5941b8b8ce605e65327f852f2b4b168dcd3b4a61028e0aa6"
+    },
+    {
+      "path": "evidence/rejection_storage/read_failure/chromium/blocked-home-390x844.png",
+      "bytes": 70903,
+      "sha256": "c0e80b1047ab455e9c6c6fc51e1d84c856677a78f1a2967c1c5359808c0a7fd3"
+    },
+    {
+      "path": "evidence/rejection_storage/read_failure/chromium/recovered-outfit-390x844.png",
+      "bytes": 125099,
+      "sha256": "582f92348abfd78b6a30b1131af4cc35b5e4d725cf6b6fab6832af2d0c56cbd0"
+    },
+    {
+      "path": "evidence/rejection_storage/search-expansion.json",
+      "bytes": 17296,
+      "sha256": "a1c8ecb50e484c9ab3465d79fcefe0fbaa6aa0f488023eba092f4e98e1df4847"
+    },
+    {
+      "path": "evidence/rejection_storage/webkit/RESULT.json",
+      "bytes": 11186,
+      "sha256": "1fa7b9b9947b0b7a7e8f944f44e2e2cf1f419879f8c92b7fb0f6cf2825b4fc5a"
+    },
+    {
+      "path": "evidence/rejection_storage/webkit/manager-30000-390x844.png",
+      "bytes": 70482,
+      "sha256": "1aa74946af213b1b96bbabc3ee4fb81b92acbd42b98b8aa1c6882150f95ba43d"
+    },
+    {
+      "path": "evidence/rejection_storage/webkit/native-after-30000-390x844.png",
+      "bytes": 133115,
+      "sha256": "593ae77f2f793eb0341e71e2f0832add04b4049b32220b1235cc920bf394526c"
+    }
+  ],
+  "setup_attempts": [
+    {
+      "run_id": 44435188662,
+      "conclusion": "failure",
+      "note": "Slow Ubuntu package downloads, then a test setup race: cancellation fixture queried before the reviewed list update triggered by bundled image assessments completed. Corrected only the readiness wait in 0b3a2eb."
+    },
+    {
+      "run_id": 44436656093,
+      "conclusion": "cancelled",
+      "note": "Superseded by the official pinned container; logs confirm slow Ubuntu package downloads before cancellation."
+    },
+    {
+      "run_id": 44437077366,
+      "conclusion": "failure",
+      "note": "Container started; Git rejected checkout ownership. Fixed by trusting only the exact GITHUB_WORKSPACE path."
+    },
+    {
+      "run_id": 44437409788,
+      "conclusion": "success",
+      "tested_commit": "6aace0208fd1a5bb5b38d246b8ca31d98ce3bf31",
+      "note": "The same production code passed the complete suite before the final test-readiness correction. Final acceptance uses run44439244877."
+    }
+  ],
+  "application_code_matches_first_implementation": true
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "hewrs.rejection-read-failure-validation.v1",
+  "repository": "elgabrymd-arch/HEWRS-v1-16-1-candidate",
+  "branch": "fix/rejection-read-failure-20261118",
+  "base_commit": "ec4280a500174cef9b87f1a05f23878da186569d",
+  "tested_commit": "be75a0c2091f668624f8d2a9ad877aaf98beedfe",
+  "tested_tree": "14a8067ba092810767866e7881b0eb155d70ee34",
+  "workflow_run": {
+    "id": 44378646012,
+    "url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44378646012",
+    "conclusion": "success",
+    "completed_at_utc": "2026-11-18T19:18:31Z",
+    "job_id": 135064501978
+  },
+  "artifact": {
+    "id": 14461833592,
+    "name": "HEWRS_REJECTION_READ_FAILURE_EVIDENCE",
+    "bytes": 365800,
+    "sha256": "a3c8f40ed6493a58de902b3f866fb31832e481fd645d4d1af0a74ecb96ee4f8f"
+  },
+  "unit_tests": {
+    "rejection_read_failure": 15,
+    "tie_feedback": 9,
+    "tie_exposure": 10,
+    "cumulative_rejection_fixture": "passed",
+    "same_generation_guard_fixture": "passed"
+  },
+  "browser_tests": {
+    "rejection_read_failure": 31,
+    "healthy_tie_feedback_rotation": 40,
+    "failed": 0,
+    "uncaught_page_errors": 0,
+    "external_requests": 0
+  },
+  "candidate_bundle_sha256": "750a74e768d1368a2c8ab682e2056e5c5359dea068b42032659f0b502e37230e",
+  "synthetic_profiles_only": true,
+  "owner_usage_accessed": false,
+  "deployment_performed": false,
+  "visual_review": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "files": [
+      "rejection_read_failure/blocked-home-390x844.png",
+      "rejection_read_failure/recovered-outfit-390x844.png"
+    ],
+    "result": "Blocked Home and recovered outfit screenshots reviewed; existing mobile layout and avatar retained."
+  },
+  "evidence_files": [
+    {
+      "path": "evidence/rejection_read_failure/RESULT.json",
+      "bytes": 14325,
+      "sha256": "390bc1cd83093221532f81995007eb82969990731eaafdeaa9256433ae4a07ef"
+    },
+    {
+      "path": "evidence/rejection_read_failure/blocked-home-390x844.png",
+      "bytes": 70302,
+      "sha256": "87e746eba975fd8422a528263ba4da094661129e4259db66c4e3fb0763d20c02"
+    },
+    {
+      "path": "evidence/rejection_read_failure/recovered-outfit-390x844.png",
+      "bytes": 125096,
+      "sha256": "24b1eb75580cbc5d49cdc3e5f8c12b56683b9752682e8ab3251096f032363a79"
+    },
+    {
+      "path": "evidence/tie_feedback_rotation/RESULT.json",
+      "bytes": 4869,
+      "sha256": "a53fc3a6f4727ed94bc899a0bda92c98bcbb546885a1ee286d3c10e54fd98d4e"
+    },
+    {
+      "path": "evidence/tie_feedback_rotation/candidate-mobile-390x844.png",
+      "bytes": 70313,
+      "sha256": "31e710f4bb1bd458f4e06e2554a2d181ea35e66c9effb12dac616184175515c4"
+    },
+    {
+      "path": "evidence/tie_feedback_rotation/shirt_tie-rejection-dialog.png",
+      "bytes": 54555,
+      "sha256": "b0fa95e5a781d9a1760a9186fce358db8ba09608fd68f89a96aefd6023665a07"
+    },
+    {
+      "path": "evidence/tie_feedback_rotation/synthetic-feedback-backup.json",
+      "bytes": 1536,
+      "sha256": "82685cb8fae35c22bf1f5cdee8f94b195bd5c145de5716836e0805dcfbb4b863"
+    },
+    {
+      "path": "evidence/tie_feedback_rotation/tie-rejection-dialog.png",
+      "bytes": 54242,
+      "sha256": "8bc04c6bbfc2b2a6ea60eb9df5c1212e62a63c40e694540c5f1a97997bb28a31"
+    }
+  ]
+}

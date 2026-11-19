@@ -1,0 +1,366 @@
+{
+  "schema": "hewrs.rejection-storage-browser.v1",
+  "browser": "chromium",
+  "synthetic_profiles_only": true,
+  "owner_data_accessed": false,
+  "checks": [
+    {
+      "name": "Both legacy namespaces migrate with exact IDs, notes, scope, occasion and Undo preserved",
+      "passed": true
+    },
+    {
+      "name": "Reload verifies the migration without duplicating events or changing old bytes",
+      "passed": true
+    },
+    {
+      "name": "Undo targets one original hide and does not reactivate a separately restored duplicate",
+      "passed": true
+    },
+    {
+      "name": "Malformed legacy data blocks migration and generation without clearing either record",
+      "passed": true
+    },
+    {
+      "name": "Retry completes the same migration only after valid bytes are restored",
+      "passed": true
+    },
+    {
+      "name": "The actual UI imports a backup above 5 MiB with 30,000 distinct active exclusions",
+      "passed": true
+    },
+    {
+      "name": "Manager renders 50 records per page instead of 30,000 DOM records",
+      "passed": true
+    },
+    {
+      "name": "Manager pagination reaches distinct records without changing exclusions",
+      "passed": true
+    },
+    {
+      "name": "Full UI export contains every original event and exceeds the previous import limit",
+      "passed": true
+    },
+    {
+      "name": "Reimporting the complete 30,000-record export is idempotent",
+      "passed": true
+    },
+    {
+      "name": "20,000 exclusion matches retain oldest/middle/newest bans with a compact revision token",
+      "passed": true
+    },
+    {
+      "name": "Cached matches perform no additional database or legacy storage reads",
+      "passed": true
+    },
+    {
+      "name": "All 30,000 active bans survive an actual browser reload",
+      "passed": true
+    },
+    {
+      "name": "An aborted native transaction reports failure and retains exactly the prior committed history",
+      "passed": true
+    },
+    {
+      "name": "A failed save can recover without replacing the original database",
+      "passed": true
+    },
+    {
+      "name": "A further rejection succeeds after 30,000 without evicting an old record",
+      "passed": true
+    },
+    {
+      "name": "Undo appends history beyond 30,000 while preserving original event identity",
+      "passed": true
+    },
+    {
+      "name": "Concurrent tabs retain both independent writes and every earlier ban",
+      "passed": true
+    },
+    {
+      "name": "A durable cross-tab revision change prevents stale result publication",
+      "passed": true
+    },
+    {
+      "name": "Actual generation still returns 20 valid native outfits with more than 30,000 active bans",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 1: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 2: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 3: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 4: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 5: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 6: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 7: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 8: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 9: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 10: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 11: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 12: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 13: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 14: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 15: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 16: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 17: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 18: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 19: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "30k ledger refill 20: 20 valid choices, accepted rows unchanged, all previous rejections excluded",
+      "passed": true
+    },
+    {
+      "name": "Migration, imports, save failures, Undo and 20 refills leave wear and Favorites unchanged",
+      "passed": true
+    },
+    {
+      "name": "New database writes do not backfill 30,000 localStorage records",
+      "passed": true
+    },
+    {
+      "name": "No external or paid-provider requests",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser exceptions",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "migration": {
+      "status": {
+        "ready": true,
+        "blocked": null,
+        "stale": false,
+        "loading": false,
+        "persistent": true,
+        "active": 2,
+        "historical": 0,
+        "events": 4,
+        "backend": "indexeddb",
+        "databaseName": "hewrs-rejections-v2",
+        "revision": 1,
+        "migratedLegacyCount": 4,
+        "legacyEventCount": 4,
+        "migrationRevision": 1,
+        "lastWriteError": null
+      },
+      "events": [
+        {
+          "schema": "hewrs.tie-feedback.event.v1",
+          "id": "tie_legacy_original",
+          "at": "2026-11-18T12:00:00.000Z",
+          "type": "hide",
+          "actor": "owner",
+          "selection": {
+            "suitId": "S18",
+            "shirtId": "DS001",
+            "state": "T020",
+            "shoeId": "shoe-3",
+            "watchId": "watch-AP09"
+          },
+          "scope": "shirt_tie",
+          "occasion": "all",
+          "reason": null,
+          "note": "Pair only."
+        },
+        {
+          "schema": "hewrs.outfit-feedback.event.v1",
+          "id": "legacy_restore",
+          "at": "2026-11-18T12:00:00.000Z",
+          "type": "restore",
+          "target": "legacy_duplicate"
+        },
+        {
+          "schema": "hewrs.outfit-feedback.event.v1",
+          "id": "legacy_original",
+          "at": "2026-11-18T12:00:00.000Z",
+          "type": "hide",
+          "actor": "owner",
+          "selection": {
+            "suitId": "S18",
+            "shirtId": "DS001",
+            "state": "T019",
+            "shoeId": "shoe-3",
+            "watchId": "watch-AP09"
+          },
+          "scope": "outfit",
+          "occasion": "work",
+          "reason": "colors",
+          "note": "Preserve this exact original note."
+        },
+        {
+          "schema": "hewrs.outfit-feedback.event.v1",
+          "id": "legacy_duplicate",
+          "at": "2026-11-18T12:00:00.000Z",
+          "type": "hide",
+          "actor": "owner",
+          "selection": {
+            "suitId": "S18",
+            "shirtId": "DS001",
+            "state": "T019",
+            "shoeId": "shoe-3",
+            "watchId": "watch-AP09"
+          },
+          "scope": "outfit",
+          "occasion": "work",
+          "reason": "colors",
+          "note": "Preserve this exact original note."
+        }
+      ],
+      "active": [
+        "tie_legacy_original",
+        "legacy_original"
+      ],
+      "firstWork": false,
+      "firstDinner": true,
+      "pair": false
+    },
+    "import_30000_seconds": 14.9892,
+    "backup": {
+      "bytes": 13260382,
+      "sha256": "204edc8bf78b620dde0bd06070edb7ff9586ae39c223699e2851507bc2456d2e"
+    },
+    "cached_matching": {
+      "checks": 20000,
+      "rejected": 20000,
+      "milliseconds": 52.09999999997672,
+      "before": {
+        "metaReads": 25,
+        "eventRowsRead": 0,
+        "legacyScans": 2,
+        "legacyKeyReads": 0,
+        "matchCalls": 0,
+        "committedTransactions": 2,
+        "abortedTransactions": 0,
+        "databaseName": "hewrs-rejections-v2",
+        "ready": true,
+        "blocked": null,
+        "stale": false,
+        "loading": false,
+        "persistent": true,
+        "active": 30000,
+        "historical": 0,
+        "events": 30000,
+        "backend": "indexeddb",
+        "revision": 2,
+        "migratedLegacyCount": 0,
+        "legacyEventCount": 0,
+        "migrationRevision": 1,
+        "lastWriteError": null
+      },
+      "after": {
+        "metaReads": 25,
+        "eventRowsRead": 0,
+        "legacyScans": 2,
+        "legacyKeyReads": 0,
+        "matchCalls": 20000,
+        "committedTransactions": 2,
+        "abortedTransactions": 0,
+        "databaseName": "hewrs-rejections-v2",
+        "ready": true,
+        "blocked": null,
+        "stale": false,
+        "loading": false,
+        "persistent": true,
+        "active": 30000,
+        "historical": 0,
+        "events": 30000,
+        "backend": "indexeddb",
+        "revision": 2,
+        "migratedLegacyCount": 0,
+        "legacyEventCount": 0,
+        "migrationRevision": 1,
+        "lastWriteError": null
+      },
+      "tokenLength": 107
+    },
+    "aborted_transaction": {
+      "fired": true,
+      "error": "Rejection save/import did not complete: Failed to execute 'put' on 'IDBObjectStore': The transaction has finished. Existing records were retained.",
+      "before": 30000,
+      "after": 30000,
+      "has": false
+    },
+    "twenty_ui_refills_seconds": 85.3823,
+    "final_status": {
+      "ready": true,
+      "blocked": null,
+      "stale": false,
+      "loading": false,
+      "persistent": true,
+      "active": 30023,
+      "historical": 0,
+      "events": 30025,
+      "backend": "indexeddb",
+      "databaseName": "hewrs-rejections-v2",
+      "revision": 27,
+      "migratedLegacyCount": 0,
+      "legacyEventCount": 0,
+      "migrationRevision": 1,
+      "lastWriteError": null
+    }
+  },
+  "external_requests": [],
+  "page_errors": [],
+  "deployment_performed": false,
+  "browser_version": "141.0.7390.37",
+  "status": "passed",
+  "passed": 44,
+  "failed": 0
+}

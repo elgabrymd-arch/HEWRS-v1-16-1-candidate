@@ -1,5 +1,5 @@
-/* Main-card rejection, optional reason, undo and existing-ledger management.
- * No provider calls, new feedback namespace, item bans or automatic learning.
+/* Main-card rejection with explicit outfit, tie or shirt–tie scope.
+ * Reasons never silently broaden scope. Original feedback remains unchanged.
  */
 (function (root) {
   'use strict';
@@ -8,50 +8,130 @@
   const F = root.HEWRSOutfitFeedback, fb = core.attach(original);
   const $ = id => document.getElementById(id);
   const element = (tag, text, className) => {const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(className)n.className=className; return n;};
-  const button = (text, id, action) => {const b=element('button',text); b.type='button'; b.id=id; b.addEventListener('click',action); return b;};
+  const button = (text, id, action) => {const b=element('button',text); b.type='button'; b.id=id; b.addEventListener('click',event=>{Promise.resolve().then(()=>action(event)).catch(error=>say(error.message,true));}); return b;};
   const reasons = [['','No reason supplied'],['colors','Color combination'],['patterns','Pattern combination'],['formality','Too formal / too casual'],['footwear','Shoes with this outfit'],['other','Other']];
   let pending = false, lastId = null, feedbackError = null, dialog = null, urls = [];
+  let booting=true, checking=false, validationTask=null, validationRequested=false, reconcileRequested=false, retryRequested=false,managerRefresh=null;
+  let deferredFeedback=false,handledFeedbackToken=null;
+  const PAGE_SIZE=50, MAX_BACKUP_BYTES=64*1024*1024;
   const bar = element('section', undefined, 'hewrs-rejection-bar'); bar.id='rejection-bar';
   const notice = element('p','', 'fx-caption'); notice.id='rejection-status'; notice.setAttribute('role','status');
   const undoButton = button('Undo last rejection','undo-outfit-rejection',undoLast);
-  const manageButton = button('Rejected outfits','manage-outfit-rejections',openManager);
-  bar.append(notice,undoButton,manageButton); $('outfit-output').after(bar);
+  const manageButton = button('Rejections · outfits and ties','manage-outfit-rejections',openManager);
+  const retryButton = button('Retry rejection check','retry-rejection-check-outfits',()=>invalidateFeedback(true));
+  retryButton.hidden=true;bar.append(notice,retryButton,undoButton,manageButton); $('outfit-output').after(bar);
   const rejectButton = button('Reject outfit + reason','reject-outfit',openReject);
   $('regenerate').before(rejectButton);
-  const homeManage = button('Rejected outfits · undo / backup','home-outfit-rejections',openManager);
+  const homeManage = button('Rejections · outfits and ties · undo / backup','home-outfit-rejections',openManager);
   homeManage.className='fx-wide-card'; $('page-home').append(homeManage);
+  const homeFailure=element('section',undefined,'hewrs-rejection-bar');homeFailure.id='rejection-home-error';homeFailure.hidden=true;
+  const homeNotice=element('p','','fx-warning');homeNotice.id='rejection-home-status';homeNotice.setAttribute('role','alert');
+  const homeRetry=button('Retry rejection check','retry-rejection-check',()=>invalidateFeedback(true));
+  homeFailure.append(homeNotice,homeRetry);homeManage.before(homeFailure);
+  const migrationNotice=element('p','','fx-caption');migrationNotice.id='rejection-migration-notice';migrationNotice.hidden=true;homeManage.before(migrationNotice);
   function say(text, error=false) {notice.textContent=text; notice.dataset.error=String(error);}
+  function readFailure(error){feedbackError=error==null?null:String(error.message||error);original.setFeedbackReadError(feedbackError);}
+  function failureMessage(){return 'Saved rejections could not be checked. Generation and outfit display are paused. '+feedbackError+' Existing records were retained.';}
   function currentAllowed(state) {
     if (feedbackError) return false;
     if (!state.selection || state.selection.state === 'REFERENCE') return true;
     return fb.allowed(state.selection, {...state.context, requiredFormality:state.context.formality});
   }
   function refreshControls() {
+    feedbackError=original.feedbackReadError||null;
+    const readiness=fb.status?.(),loading=readiness?.loading===true||(booting&&readiness?.ready===false&&!readiness?.blocked);
     const state=original.state(); let allowed=false;
-    try {allowed=currentAllowed(state);} catch(error) {feedbackError=error.message;say(error.message,true);}
+    try {if(!loading)allowed=currentAllowed(state);} catch(error) {readFailure(error);}
     const output=$('outfit-output');
     if (!allowed) output.setAttribute('data-rejection-hidden','true');
     else output.removeAttribute('data-rejection-hidden');
-    rejectButton.disabled=pending||state.busy||!state.selection||state.selection.state==='REFERENCE'||output.hidden||!allowed;
-    undoButton.disabled=pending||!lastId;
-    bar.hidden=!(state.selection||lastId||feedbackError);
-    if (original.ownerFeedbackPersistent !== true && !notice.textContent) say('Permanent feedback storage is unavailable. Temporary rejection still works; no existing records were cleared.',true);
-  }
-  function invalidateFeedback() {
-    try {
-      fb.refresh();feedbackError=null;
-      refreshControls();
-      original.rejectionChanged();
-    } catch(error) {
-      feedbackError=error.message;
-      say('Feedback could not be checked: '+feedbackError+' Existing choices and records were retained.',true);
+    rejectButton.disabled=pending||checking||loading||state.busy||!state.selection||state.selection.state==='REFERENCE'||output.hidden||!allowed;
+    undoButton.disabled=pending||checking||loading||!lastId||!!feedbackError;
+    manageButton.disabled=homeManage.disabled=pending||checking||loading;
+    bar.hidden=!(state.selection||lastId||feedbackError||loading);
+    homeFailure.hidden=!(feedbackError||loading);homeNotice.textContent=loading?'Loading saved rejections…':feedbackError?failureMessage():'';
+    retryButton.hidden=!feedbackError||loading;homeRetry.hidden=loading;retryButton.disabled=homeRetry.disabled=pending||checking||state.busy;
+    if(feedbackError||loading||pending||checking){
+      if(loading)say('Loading saved rejections…');else if(feedbackError)say(failureMessage(),true);
+      for(const id of ['generate-options','regenerate','generate-current-selections','open-results','prev-option','next-option'])if($(id))$(id).disabled=true;
     }
+  }
+  async function synchronize(options) {
+    if(fb.sync)await fb.sync(options);
+    const snapshot=fb.refresh();readFailure(null);return snapshot;
+  }
+  function feedbackChanged(){
+    const readiness=fb.status?.();
+    if(readiness&&(!readiness.ready||readiness.blocked||readiness.stale||readiness.loading)){
+      // The database owns refresh after invalidation. A loading/error notice
+      // must only guard the UI: starting another sync here retries corruption
+      // forever through the loading -> error -> loading notification cycle.
+      if(pending)deferredFeedback=true;
+      if(!booting||!readiness.loading)readFailure(readiness.blocked||'Saved rejections changed or are still loading. Retry the rejection check.');
+      refreshControls();return;
+    }
+    if(pending){deferredFeedback=true;return;}
+    try{
+      const token=fb.token();
+      if(token===handledFeedbackToken&&!original.feedbackReadError)return;
+      if(validationTask){reconcileRequested=reconcileRequested||!booting;return;}
+      // Successful notifications already describe a validated cached revision.
+      // Reconcile it synchronously so no late subscriber cancels a mutation's
+      // replacement work, and never enqueue a second database refresh.
+      readFailure(null);
+      if(!booting)original.rejectionChanged();
+      handledFeedbackToken=token;
+      managerRefresh?.();
+    }catch(error){readFailure(error);}
     refreshControls();
   }
-  fb.subscribe(invalidateFeedback);
-  root.addEventListener('storage', event=>{if(event.key===null||event.key?.startsWith(fb.prefix))invalidateFeedback();});
+  async function prepareMutation(){if(validationTask)await validationTask;await synchronize();}
+  async function reconcileMutation(){
+    await synchronize();
+    await original.rejectionChanged();
+    handledFeedbackToken=fb.token();deferredFeedback=false;
+  }
+  function finishMutation(){
+    pending=false;if(!original.feedbackReadError)readFailure(null);refreshControls();
+    if(deferredFeedback){deferredFeedback=false;feedbackChanged();}
+  }
+  function invalidateFeedback(retrying=false,reconcile=true) {
+    if(pending){deferredFeedback=true;return Promise.resolve(false);}
+    validationRequested=true;reconcileRequested=reconcileRequested||reconcile;retryRequested=retryRequested||retrying;
+    if(validationTask)return validationTask;
+    validationTask=Promise.resolve().then(async()=>{
+      const previousError=feedbackError||original.feedbackReadError;let failure=null;
+      checking=true;refreshControls();
+      try {
+        // Store notifications can arrive during a durable read. Coalesce them
+        // into this task; successful reads do not recursively start new tasks.
+        do{
+          validationRequested=false;
+          try{await synchronize(retryRequested?{forceLegacy:true}:undefined);}catch(error){failure=error;readFailure(error);}
+          const reconcileNow=reconcileRequested;reconcileRequested=false;
+          if(reconcileNow||failure){try{await original.rejectionChanged();}catch(error){failure=failure||error;readFailure(failure);}}
+          if(!failure)handledFeedbackToken=fb.token();
+        }while(validationRequested&&!failure);
+        if(!failure&&(retryRequested||previousError))say('Saved rejections were checked. Existing rules remain active. Generate when ready.');
+        return !failure;
+      }finally{
+        checking=false;validationRequested=false;reconcileRequested=false;retryRequested=false;validationTask=null;
+        if(!failure){
+          readFailure(null);
+          if(fb.status?.().migratedLegacyCount>0){migrationNotice.textContent='Your saved rejections were transferred. Reopen any older HEWRS tabs before using them so they can enforce new rejections too.';migrationNotice.hidden=false;}
+        }
+        if(!pending)managerRefresh?.();
+        refreshControls();
+      }
+    });
+    return validationTask;
+  }
+  fb.subscribe(feedbackChanged);
+  root.addEventListener('hewrs:feedback-read-state',refreshControls);
+  root.addEventListener('storage', event=>{if(event.key===null||(fb.prefixes||[fb.prefix]).some(prefix=>event.key?.startsWith(prefix)))feedbackChanged();});
   function closeDialog() {if(dialog?.open)dialog.close();}
   function newDialog(title) {
+    managerRefresh=null;
     closeDialog(); if(dialog)dialog.remove(); for(const url of urls)URL.revokeObjectURL(url); urls=[];
     dialog=element('dialog',undefined,'hewrs-ui hewrs-rejection-dialog'); dialog.id='outfit-rejection-dialog';
     const heading=element('h2',title); heading.id='rejection-heading'; dialog.setAttribute('aria-labelledby',heading.id);
@@ -67,12 +147,34 @@
     label.append(input); return {label,input};
   }
   function describe(s) {return [s.suitId||s.blazerId||'SHIRT ONLY',s.pantId,s.shirtId,s.state==='NO_TIE'?'No Tie':s.state,s.shoeId].filter(Boolean).join(' · ');}
-  function openReject() {
-    const state=original.state(); if(pending||state.busy||!state.selection||state.selection.state==='REFERENCE'||!currentAllowed(state))return;
+  function describeScope(event) {
+    if(event.scope==='tie')return 'Tie '+event.selection.state+' with any shirt or outfit';
+    if(event.scope==='shirt_tie')return 'Shirt '+event.selection.shirtId+' + tie '+event.selection.state+' with any suit/blazer, trousers, shoes or watch';
+    return event.scope==='clothing'?'Clothing combination, any shoes/watch':'Clothes and shoes, any watch';
+  }
+  async function openReject() {
+    if(pending||checking)return;
+    try{await synchronize();}catch(error){readFailure(error);refreshControls();return;}
+    const state=original.state(); if(pending||state.busy||!state.selection||state.selection.state==='REFERENCE')return;
+    try{if(!currentAllowed(state))return;}catch(error){readFailure(error);refreshControls();return;}
     const selected=structuredClone(state.selection), key=F.key(selected,'historical_exact');
     const {body,actions,error}=newDialog('Reject this outfit');
-    body.append(element('p',describe(selected),'fx-caption'),element('p','Choose one or more reasons. Only outfit combinations are hidden; individual garments stay available.','fx-caption'));
-    // These are explanatory diagnoses, never global item bans.
+    body.append(element('p',describe(selected),'fx-caption'),element('p','Choose exactly what to hide. Reasons add detail; they do not change an explicitly selected scope.','fx-caption'));
+    const scopeRows=[['clothing','Entire clothing combination — any shoes or watch (default)'],['outfit','Only this exact clothing + shoe combination — any watch']];
+    if(/^T\d{3}$/.test(selected.state))scopeRows.push(['shirt_tie','This shirt–tie pair: '+selected.shirtId+' + '+selected.state+' — with any outfit'],['tie','This tie itself: '+selected.state+' — with any shirt or outfit']);
+    const scope=select('rejection-scope','What should be hidden?',scopeRows);
+    const occasion=select('rejection-occasion','Where should it apply?',[['all','Every occasion'],['current','This occasion only ('+state.context.occasion+')']]);
+    const scopeDescription=element('p','', 'fx-caption');scopeDescription.id='rejection-scope-description';
+    body.append(scope.label,occasion.label,scopeDescription);
+    let scopeChosen=false;
+    function updateScopeDescription(){
+      const target=describeScope({scope:scope.input.value,selection:selected});
+      scopeDescription.textContent='Hide: '+target+'. Applies to '+(occasion.input.value==='all'?'every occasion':state.context.occasion)+'.';
+    }
+    scope.input.addEventListener('change',()=>{scopeChosen=true;updateScopeDescription();forever.disabled=!fb.persistentForScope(scope.input.value);});
+    occasion.input.addEventListener('change',updateScopeDescription);updateScopeDescription();
+    // These are explanatory diagnoses. Only the separate scope choice can
+    // create an explicit tie or shirt–tie exclusion.
     // Keep stored v1 reason codes compatible with existing exports/validators.
     const issueChoices=[
       ['', 'Entire clothing combination is wrong', null, 'clothing'],
@@ -101,10 +203,6 @@
     const chosenIssues=()=>issueChoices.filter(([value])=>issueInputs.get(value).checked);
     const noteLabel=element('label','More detail (optional)'),note=element('textarea');note.id='rejection-note';note.rows=3;note.maxLength=500;
     note.placeholder='For example: this tie does not work with this shirt.';noteLabel.append(note);body.append(noteLabel);
-    const advanced=element('details');advanced.append(element('summary','Rejection scope'));
-    const scope=select('rejection-scope','What should be hidden?',[['clothing','Entire clothing combination — any shoes or watch (default)'],['outfit','Only this exact clothing + shoe combination — any watch']]);
-    const occasion=select('rejection-occasion','Where should it apply?',[['all','Every occasion'],['current','This occasion only ('+state.context.occasion+')']]);
-    advanced.append(scope.label,occasion.label);body.append(advanced);
     // Footwear-only dissatisfaction must NOT silently ban the clothing with all shoes.
     // The exact outfit scope preserves the suit, shirt and tie as reusable.
     for(const [value,input] of issueInputs){
@@ -118,14 +216,15 @@
         }
         if(!chosenIssues().length)issueInputs.get('').checked=true;
         // When shoes are among the issues, default to the narrower outfit scope.
-        scope.input.value=chosenIssues().some(([id])=>id==='footwear')?'outfit':'clothing';
+        if(!scopeChosen)scope.input.value=chosenIssues().some(([id])=>id==='footwear')?'outfit':'clothing';
+        updateScopeDescription();
       });
     }
-    body.append(element('p','Multiple reasons are saved together on one rejection. Other outfits stay available and replacements refill up to 20. Reject once resets on the next Generate or page reload; Never show again stays saved until Undo. By default clothing issues hide this clothing combination with any shoes or watch. Selecting a shoe issue, even with other reasons, defaults to the narrower exact clothing-and-shoe combination with any watch. You can change the scope above. Individual garments are never banned.','fx-caption'));
+    body.append(element('p','Reject once lasts until the next Generate or page reload. Never show again stays saved until Undo. A shirt–tie rejection keeps each item available with other partners. A tie rejection hides only the selected tie, within the occasion scope above. Remaining outfits are retained and replacements refill up to 20 when eligible choices exist.','fx-caption'));
     const cancel=button('Cancel','rejection-cancel',closeDialog);
     const once=button('Reject once','rejection-once',()=>commit(false));
     const forever=button('Never show again','rejection-permanent',()=>commit(true));forever.className='hewrs-rejection-primary';
-    forever.disabled=original.ownerFeedbackPersistent!==true;actions.append(cancel,once,forever);
+    forever.disabled=!fb.persistentForScope(scope.input.value);actions.append(cancel,once,forever);
     async function commit(permanent) {
       if(pending)return;
       const now=original.state();
@@ -139,10 +238,15 @@
       }
       // Schema v1 stores multiple reasons as one readable note, using "other".
       const reason=chosen.length===1?(chosen[0][2]||null):'other';
-      pending=true;cancel.disabled=once.disabled=forever.disabled=true;error.textContent='';
+      pending=true;cancel.disabled=once.disabled=forever.disabled=true;error.textContent='';refreshControls();
       try {
         const settings={scope:scope.input.value,context:occasion.input.value==='all'?'all':state.context.occasion,reason,note:savedNote};
-        const event=permanent?fb.hide(selected,settings):fb.skip(selected,settings);lastId=event.id;
+        await prepareMutation();
+        const latest=original.state();if(latest.busy||!latest.selection||F.key(latest.selection,'historical_exact')!==key)throw Error('The displayed outfit changed. Review the current outfit before rejecting it.');
+        const event=await (permanent?fb.hide(selected,settings):fb.skip(selected,settings));lastId=event.id;
+        // This action owns reconciliation and refill. Its store notification is
+        // deferred so a late subscriber cannot cancel the refill it just began.
+        await reconcileMutation();
         closeDialog();
         const prefix=permanent?'Rejection saved. ':'Rejected for this session. ';
         say(prefix+'Keeping the other outfits and finding replacements…');
@@ -156,45 +260,93 @@
         }
       } catch(problem) {
         error.textContent=problem.message;say(problem.message,true);
-      } finally {pending=false;cancel.disabled=once.disabled=false;forever.disabled=original.ownerFeedbackPersistent!==true;refreshControls();}
+      } finally {cancel.disabled=once.disabled=false;forever.disabled=!fb.persistentForScope(scope.input.value);finishMutation();}
     }
-    dialog.showModal();issueInputs.get('').focus();
+    dialog.showModal();scope.input.focus();
   }
-  function undoLast() {
+  async function undoLast() {
     if(pending||!lastId)return;
-    try {const id=lastId;fb.restore(id);lastId=null;say('Rejection undone. Your current list is retained. The combination is eligible again on your next Generate; other rejection rules still apply.');refreshControls();}
+    pending=true;refreshControls();
+    try {const id=lastId;await prepareMutation();await fb.restore(id);await reconcileMutation();lastId=null;say('Rejection undone. Your current list is retained. This outfit, pair or tie can appear on your next Generate; other rejection rules still apply.');}
     catch(error){say(error.message,true);}
+    finally{finishMutation();}
   }
-  function openManager() {
-    if(pending)return;
-    const {body,actions,error}=newDialog('Rejected outfits');
-    body.append(element('p','The same rejection record is used by this preview’s normal generator and reviewed/API-candidate panel. No individual garment is banned. Backups include permanent feedback and reasons, not temporary skips.','fx-caption'));
-    const list=element('div');list.id='rejection-records';body.append(list);
+  async function openManager() {
+    if(pending||checking)return;
+    try{await synchronize();}catch(problem){readFailure(problem);refreshControls();return;}
+    const {body,actions,error}=newDialog('Rejected outfits and ties'),manager=dialog;
+    let page=0;
+    body.append(element('p','Each saved rejection shows its exact scope and occasion. Backups include permanent outfit, shirt–tie and tie feedback with reasons. Temporary skips are not backed up. Older outfit backups keep their original meaning when imported.','fx-caption'));
+    const total=element('p','','fx-caption');total.id='rejection-record-count';
+    const pageStatus=element('p','','fx-caption');pageStatus.id='rejection-page-status';pageStatus.setAttribute('role','status');
+    const previous=button('Previous page','rejection-prev-page',()=>{if(!pending&&page>0){page--;redraw();}});
+    const next=button('Next page','rejection-next-page',()=>{if(!pending){page++;redraw();}});
+    const pages=element('nav');pages.setAttribute('aria-label','Rejection pages');pages.append(previous,pageStatus,next);
+    const list=element('div');list.id='rejection-records';body.append(total,pages,list);
     function redraw() {
       list.replaceChildren();
       try {
-        const snap=fb.refresh(),events=[...(snap.temporary||[]),...snap.active.slice().reverse()];
-        if(!events.length)list.append(element('p','No active outfit rejections.'));
-        for(const event of events){
+        const snap=fb.refresh(),temporary=snap.temporary||[],active=snap.active;
+        const count=temporary.length+active.length,pageCount=Math.max(1,Math.ceil(count/PAGE_SIZE));
+        page=Math.min(Math.max(0,page),pageCount-1);
+        const start=page*PAGE_SIZE,end=Math.min(start+PAGE_SIZE,count);
+        total.textContent=active.length.toLocaleString()+' active saved rejections · '+temporary.length.toLocaleString()+' temporary · '+snap.events.length.toLocaleString()+' saved history events';
+        pageStatus.textContent='Page '+(page+1)+' of '+pageCount+(count?' · '+(start+1)+'–'+end+' of '+count.toLocaleString():'');
+        previous.disabled=pending||page===0;next.disabled=pending||page+1>=pageCount;
+        list.dataset.pageSize=String(PAGE_SIZE);list.dataset.total=String(count);
+        if(!count)list.append(element('p','No active rejections.'));
+        // Index directly into the immutable cache. Rendering one page must not
+        // build thousands of DOM rows or clone/sort the full event history.
+        for(let i=start;i<end;i++){
+          const event=i<temporary.length?temporary[i]:active[active.length-1-(i-temporary.length)];
           const row=element('article',undefined,'hewrs-rejection-record');row.dataset.eventId=event.id;
-          row.append(element('strong',describe(event.selection)),element('p',(event.type==='temporary_skip'?'Temporary · ':'Saved · ')+(event.occasion==='all'?'Every occasion':event.occasion)+' · '+(event.scope==='clothing'?'Clothing combination, any shoes/watch':'Clothes and shoes, any watch'),'fx-caption'));
+          row.dataset.scope=event.scope;
+          row.append(element('strong',event.scope==='tie'?'Tie '+event.selection.state:event.scope==='shirt_tie'?'Shirt '+event.selection.shirtId+' + tie '+event.selection.state:describe(event.selection)),element('p',(event.type==='temporary_skip'?'Temporary · ':'Saved · ')+(event.occasion==='all'?'Every occasion':event.occasion)+' · '+describeScope(event),'fx-caption'));
           if(event.reason)row.append(element('p',reasons.find(r=>r[0]===event.reason)?.[1]||event.reason));
           if(event.note)row.append(element('p',String(event.note),'hewrs-rejection-note'));
-          row.append(button('Undo this rejection','undo-'+event.id,()=>{try{fb.restore(event.id);if(lastId===event.id)lastId=null;redraw();refreshControls();}catch(e){error.textContent=e.message;}}));
+          row.append(button('Undo this rejection','undo-'+event.id,()=>run(async()=>{
+            await prepareMutation();await fb.restore(event.id);await reconcileMutation();
+            if(lastId===event.id)lastId=null;
+            say('Rejection undone. Other saved exclusions remain active.');
+          })));
           list.append(row);
         }
-      }catch(e){error.textContent=e.message;}
+      }catch(problem){error.textContent=problem.message;}
     }
-    const exportButton=button('Export rejection backup','export-rejections',()=>{
-      try{const data=fb.exportData(),url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));urls.push(url);const a=element('a','Save rejection backup');a.href=url;a.download='HEWRS_OUTFIT_FEEDBACK.json';a.className='hewrs-rejection-download';body.append(a);}
-      catch(e){error.textContent=e.message;}
-    });
+    function controls(value){
+      for(const item of manager.querySelectorAll('button,input'))item.disabled=value;
+      if(!value)redraw();
+    }
+    async function run(action){
+      if(pending)return;
+      pending=true;error.textContent='';controls(true);refreshControls();
+      try{await action();}
+      catch(problem){error.textContent=problem.message;}
+      finally{
+        finishMutation();
+        if(dialog===manager&&manager.open)controls(false);
+        refreshControls();
+      }
+    }
+    const exportButton=button('Export rejection backup','export-rejections',()=>run(async()=>{
+      const data=await fb.exportData();
+      if(dialog!==manager||!manager.open)return;
+      for(const url of urls)URL.revokeObjectURL(url);urls=[];
+      for(const link of body.querySelectorAll('.hewrs-rejection-download'))link.remove();
+      const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));urls.push(url);
+      const link=element('a','Save rejection backup');link.id='save-rejection-backup';link.href=url;link.download='HEWRS_OUTFIT_AND_TIE_FEEDBACK.json';link.className='hewrs-rejection-download';body.append(link);
+    }));
     const uploadLabel=element('label','Restore an existing rejection backup'),file=element('input');file.type='file';file.accept='.json,application/json';file.id='rejection-import-file';uploadLabel.append(file);
-    const importButton=button('Import selected backup','import-rejections',async()=>{
-      try{if(original.ownerFeedbackPersistent!==true)throw Error('Permanent storage is unavailable. Import was not attempted.');const picked=file.files[0];if(!picked)throw Error('Select a feedback JSON backup.');if(picked.size>5*1024*1024)throw Error('The feedback backup is too large.');const data=JSON.parse(await picked.text());fb.importData(data);redraw();error.textContent='';say('Feedback backup imported. Existing records were retained; conflicts are never silently overwritten.');}
-      catch(e){error.textContent=e.message;}
-    });
-    body.append(exportButton,uploadLabel,importButton);actions.append(button('Close','rejections-close',closeDialog));redraw();dialog.showModal();
+    const importButton=button('Import selected backup','import-rejections',()=>run(async()=>{
+      const picked=file.files[0];if(!picked)throw Error('Select a feedback JSON backup.');
+      if(picked.size>MAX_BACKUP_BYTES)throw Error('This backup exceeds the 64 MiB import limit. Existing records were retained.');
+      const data=JSON.parse(await picked.text());
+      await prepareMutation();
+      if(original.ownerFeedbackPersistent!==true)throw Error('Permanent storage is unavailable. Import was not attempted.');
+      await fb.importData(data);await reconcileMutation();page=0;
+      say('Feedback backup imported. Existing records were retained; conflicts are never silently overwritten.');
+    }));
+    body.append(exportButton,uploadLabel,importButton);actions.append(button('Close','rejections-close',()=>{if(!pending)closeDialog();}));managerRefresh=()=>{if(dialog===manager&&manager.open)redraw();};redraw();manager.showModal();
   }
   // Clear only ephemeral skips on an explicit new generation. Do not notify
   // synchronously here: native Regenerate must retain its producing request.
@@ -207,8 +359,13 @@
   observer.observe($('page-outfits'),{attributes:true,attributeFilter:['hidden']});
   observer.observe($('option-count'),{childList:true,subtree:true});
   // Compatibility aliases are installed before the reviewed panel captures app.
-  // Both names point to exactly the same gate and persistent owner-feedback log.
+  // Both names point to exactly the same gate across the two feedback logs.
+  const ready=Promise.resolve(fb.ready).then(()=>invalidateFeedback(false,false),error=>{readFailure(error);refreshControls();return false;}).finally(()=>{booting=false;refreshControls();});
   root.HEWRSApp=Object.freeze({...original,ownerFeedback:fb,outfitFeedback:fb,hiddenOutfitsSheet:openManager,
-    rejection:Object.freeze({open:openReject,manage:openManager,undo:undoLast,revision:'rejection-autofill-1'})});
+    get ownerFeedbackPersistent(){return original.ownerFeedbackPersistent;},
+    get feedbackReadError(){return original.feedbackReadError;},
+    rejection:Object.freeze({open:openReject,manage:openManager,undo:undoLast,retry:()=>invalidateFeedback(true),ready,pageSize:PAGE_SIZE,maxBackupBytes:MAX_BACKUP_BYTES,revision:'rejection-storage-integration-1'})});
+  // A healthy first read must not cancel the automatic weather request that
+  // application startup just began. Failed reads still cancel/reconcile.
   refreshControls();
 })(globalThis);

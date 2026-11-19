@@ -1,0 +1,172 @@
+{
+  "scope": "Real IndexedDB candidate checks with empty synthetic browser storage.\n\nExercises packaged scripts, native generation, native avatar, feedback controls,\nrefill, persistence and exposure commits. No owner browser, production write or\nprovider access; all requests outside the local test server are blocked.\n",
+  "browser_name": "chromium",
+  "checks": [
+    {
+      "name": "New exposure history starts empty without inferred past use",
+      "passed": true
+    },
+    {
+      "name": "Generated list has 20 validated outfits and a ready native avatar",
+      "passed": true
+    },
+    {
+      "name": "First displayed list counts each tied option once",
+      "passed": true
+    },
+    {
+      "name": "One successful generation creates one immutable exposure event",
+      "passed": true
+    },
+    {
+      "name": "Navigating an existing list adds no exposure",
+      "passed": true
+    },
+    {
+      "name": "A diagnostic checkbox preserves the explicitly selected rejection scope",
+      "passed": true
+    },
+    {
+      "name": "An explanatory reason cannot override the explicitly chosen rejection scope",
+      "passed": true
+    },
+    {
+      "name": "Rejection refill retains 20 verified choices",
+      "passed": true
+    },
+    {
+      "name": "Tie rejection removes that tie across all clothing combinations",
+      "passed": true
+    },
+    {
+      "name": "Tie refill retains every accepted option byte-for-byte and in order",
+      "passed": true
+    },
+    {
+      "name": "Refill counts only new choices, without recounting retained options",
+      "passed": true
+    },
+    {
+      "name": "A real database revision notification hides the rejected tie in the second tab",
+      "passed": true
+    },
+    {
+      "name": "Reload preserves exposure history without adding a view",
+      "passed": true
+    },
+    {
+      "name": "Saved tie ban survives reload",
+      "passed": true
+    },
+    {
+      "name": "Generated list has 20 validated outfits and a ready native avatar",
+      "passed": true
+    },
+    {
+      "name": "A fresh native generation also excludes the rejected tie",
+      "passed": true
+    },
+    {
+      "name": "A new displayed generation records its own list once",
+      "passed": true
+    },
+    {
+      "name": "A diagnostic checkbox preserves the explicitly selected rejection scope",
+      "passed": true
+    },
+    {
+      "name": "An explanatory reason cannot override the explicitly chosen rejection scope",
+      "passed": true
+    },
+    {
+      "name": "Rejection refill retains 20 verified choices",
+      "passed": true
+    },
+    {
+      "name": "Shirt\u2013tie rejection removes the exact pair from the Work list",
+      "passed": true
+    },
+    {
+      "name": "Pair refill leaves the other outfits byte-for-byte unchanged",
+      "passed": true
+    },
+    {
+      "name": "Pair refill counts only its new tied options",
+      "passed": true
+    },
+    {
+      "name": "Explicit pair scope does not become a global tie or all-occasion ban",
+      "passed": true
+    },
+    {
+      "name": "Manager labels the tie and shirt\u2013tie scopes",
+      "passed": true
+    },
+    {
+      "name": "UI backup preserves separate old and new feedback schemas",
+      "passed": true
+    },
+    {
+      "name": "Undo restores the pair while retaining the separate tie ban",
+      "passed": true
+    },
+    {
+      "name": "Generated list has 20 validated outfits and a ready native avatar",
+      "passed": true
+    },
+    {
+      "name": "Exact No Tie preference remains respected",
+      "passed": true
+    },
+    {
+      "name": "A No Tie list adds no tie-exposure event",
+      "passed": true
+    },
+    {
+      "name": "No Tie outfits cannot be rejected as a tie or shirt\u2013tie pair",
+      "passed": true
+    },
+    {
+      "name": "Generation, navigation and feedback never create wear events",
+      "passed": true
+    },
+    {
+      "name": "Favorites remain unchanged",
+      "passed": true
+    },
+    {
+      "name": "Cancellation before list display reports cancellation and adds no exposure",
+      "passed": true
+    },
+    {
+      "name": "A real avatar resource failure rejects generation without recording suggestions",
+      "passed": true
+    },
+    {
+      "name": "Generated list has 20 validated outfits and a ready native avatar",
+      "passed": true
+    },
+    {
+      "name": "Corrupt exposure preserves a valid generated list and reports tracking unavailable",
+      "passed": true
+    },
+    {
+      "name": "Corrupt exposure is retained without new records or fabricated wear",
+      "passed": true
+    },
+    {
+      "name": "No external or paid-provider requests",
+      "passed": true
+    },
+    {
+      "name": "No uncaught page errors",
+      "passed": true
+    }
+  ],
+  "passed": 40,
+  "failed": 0,
+  "errors": [],
+  "external_requests": [],
+  "owner_data_accessed": false,
+  "deployment_performed": false
+}
