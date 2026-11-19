@@ -1,0 +1,325 @@
+{
+  "schema": "hewrs.five-round-ui-audit.v1",
+  "round": 1,
+  "reviewer": "s05_reproduction",
+  "reviewed_at": "2026-11-19T06:30:35.899472+00:00",
+  "base_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "status": "completed_local_source_and_focused_tests",
+  "published": false,
+  "scope": "Rejection intent and UI controls; shirt photo/label presentation; active reviewed and preference UI boundaries. No claim of reviewing every repository file.",
+  "full_file_reviews": [
+    {
+      "path": "src/outfit-rejection-ui.js",
+      "lines": 428,
+      "sha256": "d3194747c465b3c22aca7fbf5fe2222fe44539a1734ef5b6e790a69cd832dc5b"
+    },
+    {
+      "path": "src/facelift-state.js",
+      "lines": 68,
+      "sha256": "4a665b702c40b3546387ff88f538d3055588da933539a971358396d9a13ed456"
+    },
+    {
+      "path": "src/source-aware-pickers.js",
+      "lines": 63,
+      "sha256": "acb64bd2b91b80fcb0c182eb08de805fda452ea2e699c9bfa07db0dfda6e6cd7"
+    },
+    {
+      "path": "src/photo-picker-integration.js",
+      "lines": 43,
+      "sha256": "179f29d38c8a7dbbd6b23bba7b8fc3ae8bad49affce6a3232b5ef35d3835e363"
+    },
+    {
+      "path": "src/option-cards.js",
+      "lines": 82,
+      "sha256": "7aa09d12acf9c8533e744535ce471067fa9fa5aa6eca694a524510551f9b4f83"
+    },
+    {
+      "path": "src/sheet-layout.js",
+      "lines": 47,
+      "sha256": "ad8b20e5546ff388f5475dc6a13f018b178df6b3e19ae5abc19fcea5b1666179"
+    },
+    {
+      "path": "src/blazer-picker-preview.js",
+      "lines": 163,
+      "sha256": "fc2cf20e9beb9e5a5c97cb5e63e653150737b285e0494573b644405cf216e8d7"
+    },
+    {
+      "path": "src/shirt-picker-preview.css",
+      "lines": 21,
+      "sha256": "84ab53241aeb5e60873a57465efeab7d95fe2f37caeb0708bc00cdf7a6c2f62e"
+    },
+    {
+      "path": "src/tie-picker-preview.css",
+      "lines": 23,
+      "sha256": "930c4967b877a782f37042829ba503f56be9acf21c2d0a04ba7f012695262235"
+    },
+    {
+      "path": "src/blazer-picker-preview.css",
+      "lines": 111,
+      "sha256": "217444efd93f4bf08d7f70f4a3d3414fca10d032d4b4ebf8d5a7ff4a747e6e31"
+    },
+    {
+      "path": "src/preference-panel.js",
+      "lines": 89,
+      "sha256": "6c07d3d94333dc94dfe8ec31b5dca4b48b3d491f882b1699da43ca13fbd7d253"
+    },
+    {
+      "path": "src/generation-diagnostics.js",
+      "lines": 52,
+      "sha256": "5557728d92d3e74c45a96551248839777e463fc6dc7e3d3c3f378ff0a1a6add8"
+    }
+  ],
+  "partial_file_reviews": [
+    {
+      "path": "src/outfit-refill-application.js",
+      "sections": [
+        "Home labels and picker open/apply/cancel",
+        "itemsFor shirt labels",
+        "rejection reconciliation and per-removed-row refill",
+        "Wardrobe category/item presentation",
+        "comparison image context forwarding"
+      ],
+      "ownership": "root; no edits by this reviewer"
+    },
+    {
+      "path": "src/reviewed-rejection-integration.js",
+      "sections": [
+        "search/update publication gates",
+        "request and ownerContext",
+        "render publication and rejection checks",
+        "hide/undo click-time settings",
+        "scope/reason/No Tie controls",
+        "active reviewed/diagnostic/exploration view distinctions"
+      ]
+    },
+    {
+      "path": "src/outfit-rejection-core.js",
+      "sections": [
+        "viewContext",
+        "atomic visible renderer wrapper",
+        "temporary skip validation/matching"
+      ]
+    },
+    {
+      "path": "src/owner-feedback.js",
+      "sections": [
+        "normal/occasion",
+        "original namespace import validation"
+      ]
+    },
+    {
+      "path": "src/tie-feedback.js",
+      "sections": [
+        "canonical-only tie namespace import validation"
+      ]
+    },
+    {
+      "path": "index.html",
+      "sections": [
+        "active script and stylesheet bindings"
+      ]
+    },
+    {
+      "path": "tools/build.py",
+      "sections": [
+        "dependency order extracted only"
+      ]
+    },
+    {
+      "path": "tools/build_tie_candidate.py",
+      "sections": [
+        "source substitution and dependency order; no build edits"
+      ]
+    }
+  ],
+  "confirmed_defects": [
+    {
+      "id": "UI-01",
+      "summary": "Exact blazer/shirt-only shirt picker showed the suit thumbnail instead of the approved non-suit detail",
+      "evidence": "Actual photo-picker handler with actual connection: DS026 selected with B03 showed 503c4ab9f5d3e9b13fe81797d7f75b3d2b652cedb15db8a89a7017763b622645 while option card correctly used c1b5cc99a6f91e642ef560de355421dd80945a0020d9018906a214bbd7d84833. DS030 mismatch reproduced independently.",
+      "repair": "Use registered no_tie override only for exact blazer/shirt-only topwear; validate ID/state/batch suffix, reconstruction kind and SHA-addressed path; retain original suit/Any detail.",
+      "files": [
+        "src/photo-picker-integration.js"
+      ],
+      "preserved": "All approved image bytes; deliberate DS026 large-check suit and small-check non-suit distinction; exact IDs and preferences."
+    },
+    {
+      "id": "UI-02",
+      "summary": "DS002/DS004 exposed historical repair-process placeholders as garment descriptions",
+      "evidence": {
+        "DS002": {
+          "before": "DS002 - source-repaired collar/body pilot",
+          "authoritative_description": "Cream/white; Check/grid"
+        },
+        "DS004": {
+          "before": "DS004 - source-repaired collar/body pilot",
+          "authoritative_description": "White; Fine horizontal stripe"
+        }
+      },
+      "repair": "Presentation helper HEWRSFaceliftModel.shirtLabel(connection,id) replaces only exact repair-stage placeholder with existing pinned feature description; used by Home/picker/Wardrobe rows and option cards. Root owns central itemsFor consumer.",
+      "files": [
+        "src/facelift-state.js",
+        "src/option-cards.js"
+      ],
+      "preserved": "Records, manifest labels, canonical catalogue, feature/DNA records and source metadata are not rewritten."
+    },
+    {
+      "id": "UI-03",
+      "summary": "Manager displayed accepted legacy wire selections with missing IDs and raw alias-only occasion",
+      "evidence": "Actual validated original namespace topwear_shirt/clinic event {topwear:S05,shirt:DS029,tie:T029,...} displayed Blazer undefined + shirt undefined; outfit scope displayed SHIRT ONLY.",
+      "repair": "Derive display copy with F.normal and F.occasion; show effective work plus Saved occasion: clinic; leave event/backup bytes unchanged.",
+      "files": [
+        "src/outfit-rejection-ui.js"
+      ],
+      "scope_note": "Original outfit namespace accepts wire selections/occasion aliases; newer tie namespace correctly requires canonical records."
+    },
+    {
+      "id": "UI-04",
+      "summary": "Queued comparison vote could write after Close or a newly saved rejection",
+      "evidence": "Controlled learning.exclusive queue running the actual showPair handler: both rejected and closed scenarios wrote one vote before repair; now both write zero.",
+      "repair": "Capture click-time reason, disable vote controls, recheck pair-context rejection token and modal liveness inside acquired lock and again after awaited feedback check before learning.add.",
+      "files": [
+        "src/preference-panel.js"
+      ],
+      "preserved": "Authoritative comparison occasion, original votes/model schema, successful unchanged vote semantics."
+    },
+    {
+      "id": "UI-05",
+      "summary": "Current-option comparison selector displayed undefined for shirt-only and omitted exact trousers",
+      "evidence": "Actual chooseCurrent handler given two valid shirt-only selections generated Option 1 \u00b7 undefined ...",
+      "repair": "Label Shirt only explicitly and include selected pantId for outfits with separate trousers.",
+      "files": [
+        "src/preference-panel.js"
+      ],
+      "classification": "defensive public-handler formatting; not an ordinary generated-list reproduction",
+      "reachability_correction": "Active src/automatic-preferences.js refuses shirt-only Engine requests and manual apply clears the option list. The synthetic handler accepted shirt-only inputs, but ordinary chooseCurrent cannot receive those from native generation."
+    }
+  ],
+  "rejection_intent_findings": {
+    "main_card_reason_count": 11,
+    "main_card_scope_count": 8,
+    "reason_targets": {
+      "entire": "clothing",
+      "shirt_tie_suit": "topwear_shirt_tie",
+      "tie_shirt": "shirt_tie",
+      "shirt_suit": "topwear_shirt",
+      "shirt_appearance": "shirt",
+      "tie_suit": "topwear_tie",
+      "footwear": "outfit",
+      "colors": "clothing",
+      "patterns": "clothing",
+      "formality": "clothing",
+      "other": "clothing"
+    },
+    "generic_qualifiers": [
+      "colors",
+      "patterns",
+      "formality",
+      "other"
+    ],
+    "all_reason_combinations_checked": 1024,
+    "manual_scopes_checked": 8,
+    "conflicts": "More than one distinct specific target blocks saving until explicit scope. One saved scope; additional diagnoses are retained as notes.",
+    "click_time": "Scope, occasion, diagnosis and note captured before first durable sync; stale current selection/occasion before or during sync blocks write.",
+    "no_tie_controls": "Tie-related reasons/scopes absent without actual Txxx. Topwear pairing reasons/scopes absent for shirt-only. Shirt scope remains available.",
+    "multi_row": "Current removed outfit is replacement source first; other removed rows follow distinctly. Retained prefix/order is checked. No replacement may alter accepted fields outside the selected parts. Current-target exhaustion is explained even if other rows can be replaced.",
+    "refill_limits": "Targeted automatic refill only for local automatic research/heuristic generation. Manual/curated/live visual paths explicitly retain remaining options and report no automatic refill; no provider is called."
+  },
+  "active_vs_archived": {
+    "main_entrypoints": [
+      "index.html",
+      "app.html"
+    ],
+    "active_application": "src/outfit-refill-application.js assembled into runtime/outfit-refill-preview.js",
+    "active_reviewed_panel": "src/reviewed-rejection-integration.js",
+    "active_reviewed_hide_scopes": [
+      "outfit",
+      "clothing"
+    ],
+    "archived_not_substituted": [
+      "src/application.js",
+      "feedback-candidate/reviewed/native-reviewed-panel.js",
+      "stage10-integration.html and frozen Standard runtime"
+    ],
+    "collar_controls": "Home No Tie is explicit mode none, not Engine Choice. Exact shirt source availability limits tie choices. Required formality open_collar_allowed permits rather than forces No Tie. Reviewed NO TIE anchor conflicts explicitly with tie_required. Preference Collar detail toggles existing generated full/detail images, not garment sources.",
+    "approval_wording": "No false demand for approval of the five reconstructed shirt batches was found in audited active UI modules. Historical REVIEW CANDIDATE comments/data remain unchanged. Active reviewed outfit approval wording concerns whole-outfit judgments, not garment-image approval."
+  },
+  "tests": {
+    "new_top_level_checks": 17,
+    "existing_ui_checks": 12,
+    "existing_entrypoint_checks": 17,
+    "total_top_level_checks_run": 46,
+    "failures": 0,
+    "evidence": "evidence/five_round_20261119/ui-round1-functional.json",
+    "files": [
+      "tests/five-round-ui.cjs",
+      "tests/five-round-ui-rejection.cjs",
+      "tests/five-round-ui-preferences.cjs"
+    ],
+    "initial_reproductions": {
+      "photo_label_fixture": {
+        "passed": 3,
+        "failed": 3
+      },
+      "legacy_manager_fixture": {
+        "failed": 1
+      },
+      "queued_vote_and_shirt_only_fixture": {
+        "passed": 1,
+        "failed": 3
+      }
+    }
+  },
+  "corrected_report_claims": [
+    "Eleven reasons/eight scopes describes the applicable main-card rejection dialog; the reviewed panel exposes two whole-combination scopes.",
+    "Component-only replacement preserves accepted pieces for eligible replacements; it does not guarantee 20 options under exact anchors, list caps or exhaustion.",
+    "Manual, curated and live-visual lists do not run automatic local refill; the UI explains the limitation.",
+    "Matching accepted legacy records was correct after the prior core fix, but manager display still needed the derived normalization repaired here.",
+    "Prior 164-native/1042-live/27-Home results describe the prior published snapshot, not this audit repair. This round does not rerun or independently recount those full CI suites.",
+    "UI-05 is defensive handler formatting, not an ordinary generated-list defect; four Round1 findings were reproduced on otherwise reachable production paths."
+  ],
+  "coverage_limits": [
+    "Node VM actual-handler tests use controlled DOM and scheduling; real browser layout, image decoding, 288 native collar/frame comparisons and publication/SRI are separate root-owned verification.",
+    "No owner browser storage was accessed; all histories, imports and preference votes in tests are synthetic.",
+    "This reviewer did not review all engine scoring, full storage implementation, every archive, network service or source-photo PDF in Round1.",
+    "No broad browser CI, remote writes, deployment or artifact rebuilding was performed by this reviewer."
+  ],
+  "source_changes": [
+    {
+      "path": "src/photo-picker-integration.js",
+      "base_sha256": "5dbdcd7d27e612019301bc3f18dd1d656b3715bfeb0e326a51d6dd814d910429",
+      "current_sha256": "179f29d38c8a7dbbd6b23bba7b8fc3ae8bad49affce6a3232b5ef35d3835e363",
+      "changed": true
+    },
+    {
+      "path": "src/facelift-state.js",
+      "base_sha256": "42112ff261d3762a5fdc9e8f7a75f09e5c7c68e1dfb8b5deda912db035d9ff4e",
+      "current_sha256": "4a665b702c40b3546387ff88f538d3055588da933539a971358396d9a13ed456",
+      "changed": true
+    },
+    {
+      "path": "src/option-cards.js",
+      "base_sha256": "35bdd498f053fdf35e300e5fcd31a12957751ad4ff6240515d1eb684f30b18af",
+      "current_sha256": "7aa09d12acf9c8533e744535ce471067fa9fa5aa6eca694a524510551f9b4f83",
+      "changed": true
+    },
+    {
+      "path": "src/outfit-rejection-ui.js",
+      "base_sha256": "9c1fccab9514e19d501c78a7b2153f4db5ea52ba74cf88272bbc77254229533f",
+      "current_sha256": "d3194747c465b3c22aca7fbf5fe2222fe44539a1734ef5b6e790a69cd832dc5b",
+      "changed": true
+    },
+    {
+      "path": "src/preference-panel.js",
+      "base_sha256": "88839a9f84c280e844c1210ebdf6a3b41dbf5885008e9c2b5e092cc14b10d3c6",
+      "current_sha256": "6c07d3d94333dc94dfe8ec31b5dca4b48b3d491f882b1699da43ca13fbd7d253",
+      "changed": true
+    }
+  ],
+  "pending_integration": [
+    "Root central itemsFor use of shirtLabel",
+    "Root build/SRI regeneration and native/browser verification",
+    "Independent Round2 cross-review of store fixes and render-image-loader lifetime"
+  ],
+  "classification_corrected_at": "2026-11-19T06:36:59.515398+00:00"
+}

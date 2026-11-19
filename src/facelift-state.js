@@ -4,12 +4,18 @@
 const copy=x=>structuredClone(x),assert=(x,s)=>{if(!x)throw Error(s);};
 const CATEGORIES=Object.freeze(['topwear','shirt','tie','shoes','bottoms','watch']);
 const FAMILIES=Object.freeze({shirt:['white','cream','beige','taupe','blue','navy','pink','lavender','brown','grey','black','burgundy'],tie:['navy','burgundy','grey','blue','pink','brown','gold','purple','lavender','rust','green','sage','black','cream','beige']});
+function shirtLabel(connection,id){
+ const label=connection.records[id]?.label||id;
+ // The repair-stage manifest names are provenance, not garment descriptions.
+ // Resolve only that exact placeholder; retain every wardrobe/source record.
+ return label===id+' - source-repaired collar/body pilot'?connection.features.get(id)?.description||label:label;
+}
 function create(connection){
  const rows={topwear:[],shirt:[],tie:[],shoes:[],bottoms:[],watch:[]};
  for(const id of connection.suitSources.ids){const item=connection.catalogue.suits.find(x=>x.id===connection.aliases.get(id));assert(item,'Missing exact suit alias');rows.topwear.push({id:item.id,sourceId:id,kind:'suit',label:connection.features.get(id)?.description||item.name,brand:item.brand||'',color:item.color||'',available:connection.assemblies.supported(id)});}
  for(const id of connection.blazerConnection.ids){const b=connection.blazerConnection.knownBlazer(id),item=connection.catalogue.blazers.find(x=>x.id===b.historyId);rows.topwear.push({id:b.historyId,sourceId:id,kind:'blazer',label:b.label,brand:item?.brand||'',color:item?.color||'',available:b.availability==='CONNECTED'});}
  rows.topwear.push({id:'ui:shirt-only',sourceId:null,kind:'shirt-only',label:'Shirt + separate trousers',brand:'',color:'',available:connection.shirtOnlyConnection.ids.length>0});
- for(const id of connection.manifest.shirt_order){const r=connection.records[id],item=connection.catalogue.shirts.find(x=>x.id===r.history_id);rows.shirt.push({id,sourceId:id,kind:'shirt',label:r.label,brand:item?.brand||'',color:connection.features.get(id)?.primary_text||'',available:true});}
+ for(const id of connection.manifest.shirt_order){const r=connection.records[id],item=connection.catalogue.shirts.find(x=>x.id===r.history_id);rows.shirt.push({id,sourceId:id,kind:'shirt',label:shirtLabel(connection,id),brand:item?.brand||'',color:connection.features.get(id)?.primary_text||'',available:true});}
  for(const [id]of Object.entries(connection.manifest.ties)){const r=connection.features.get(id),item=connection.catalogue.ties.find(x=>x.id===id);rows.tie.push({id,sourceId:id,kind:'tie',label:r?.description||item?.name||id,brand:item?.brand||'',color:r?.primary_text||'',available:true});}
  for(const id of Object.keys(connection.shoeLayers)){const item=connection.catalogue.shoes.find(x=>x.id===id);assert(item,'Missing shoe source identity');rows.shoes.push({id,sourceId:id,kind:item.subcategory||'shoe',label:item.name,brand:item.brand||'',color:item.color||'',available:!item.disabled});}
  for(const id of connection.blazerConnection.pantIds){const r=connection.blazerConnection.knownPant(id);rows.bottoms.push({id,sourceId:id,kind:'pants',label:r.label,brand:r.record.brand||'',color:r.record.shade||'',available:true});}
@@ -58,5 +64,5 @@ function create(connection){
  function lockCount(){return CATEGORIES.filter(k=>!(k==='bottoms'&&included())&&prefs[k].mode!=='any').length;}
  return Object.freeze({rows,categories:CATEGORIES,families:FAMILIES,set,snapshot,replace,fromSelection,selectedTop,included,label,begin,choose,commit,cancel,reset,filter,operation,lockCount,draft:()=>copy(draft)});
 }
-root.HEWRSFaceliftModel=Object.freeze({create,CATEGORIES});
+root.HEWRSFaceliftModel=Object.freeze({create,CATEGORIES,shirtLabel});
 })(globalThis);

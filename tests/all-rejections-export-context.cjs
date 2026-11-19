@@ -29,7 +29,7 @@ async function main(){
   options:[],optionIndex:-1,lastRequest:null,lastAttemptRequest:null,report:null,producing:null,optionHistoryToken:null,optionPreferenceToken:null,modal:null,cardPresentation:null,
   cardModel:selection=>cards.model(selection,{date:'2026-11-18'}),$,el:element,document:{createElement:element},
   checkRejectionFeedbackAsync:async()=>gate.refresh(),rejectionGate:()=>gate,autoWeather:{cancel:noop},renderer:{cancel:noop,async render(){return {ready:true};}},
-  syncLearningFor:()=>({token:'learning'}),store:{assertCurrent:noop,readForGeneration:()=>({token:'history',events:[]}),saveSession:noop},learning:{assertCurrent:noop},tieExposure:{newId:()=> 'synthetic'},
+  syncLearningFor:()=>({token:'learning'}),store:{exclusive:async fn=>fn(),assertCurrent:noop,readForGeneration:()=>({token:'history',events:[]}),saveSession:noop},learning:{assertCurrent:noop},tieExposure:{newId:()=> 'synthetic'},
   status:noop,updateHome:noop,refreshHistory:noop,presentEmpty:noop,presentFrame:noop,showPage:noop,recordTieSuggestions:noop,showGenerationFailure:error=>{throw error;},errorText:error=>error.message,
   renderForStylist:noop,setMode:noop,resolveUrl:noop,dismissSheet:noop,sessionValue:noop,weatherSummary:()=>'',
   styleLabels:{AUTO:'Automatic',CLASSIC:'Classic',HYBRID:'Hybrid',MODERN:'Modern'},selectionKey:selection=>JSON.stringify(c.historyIds(selection))

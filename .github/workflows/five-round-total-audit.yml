@@ -1,0 +1,118 @@
+name: Five-round total product audit
+
+on:
+  push:
+    branches: [audit/five-round-total-20261119]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'vendor/active50-renderer.js'
+      - 'runtime/outfit-refill-preview.js'
+      - 'index.html'
+      - 'app.html'
+      - 'tests/five-round-*'
+      - 'tools/audit_*'
+      - 'tools/build_tie_candidate.py'
+      - '.github/workflows/five-round-total-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: five-round-total-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  source-rules-state:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify current build, source protection and delivery bindings
+        run: |
+          git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
+          git fetch --depth=1 origin 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
+          git diff --exit-code 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03 -- assets assemblies data ui ui-assets STANDARD_RELEASE.json outfit-feedback.js tools/build.py vendor ':(exclude)vendor/active50-renderer.js'
+          python tools/build_tie_candidate.py --check --verify-base
+          python tools/audit_active_delivery.py
+          node --check runtime/outfit-refill-preview.js
+      - name: Install isolated audit dependencies
+        run: |
+          npm install --prefix /tmp/hewrs-total-audit-deps --ignore-scripts --no-audit --no-fund fake-indexeddb@6.2.8
+          python -m pip install --disable-pip-version-check Pillow
+      - name: Recheck complete inventory and registered assets
+        run: |
+          python tools/audit_product_inventory.py
+          node tools/audit_current_catalogue.cjs
+          python tools/audit_product_integrity.py --output evidence/five_round_20261119/INTEGRITY-ci.json
+      - name: Run independent five-round regressions
+        env:
+          NODE_PATH: /tmp/hewrs-total-audit-deps/node_modules
+        run: |
+          mkdir -p evidence/five_round_20261119/native
+          node --test tests/five-round-*.cjs | tee evidence/five_round_20261119/native/five-round.log
+      - name: Verify all rejection, replacement and failed-read contracts
+        env:
+          NODE_PATH: /tmp/hewrs-total-audit-deps/node_modules
+        run: |
+          node tests/all-rejections-core.cjs | tee evidence/five_round_20261119/native/rejection-core.log
+          node tests/all-rejections-ui.cjs | tee evidence/five_round_20261119/native/rejection-ui.log
+          node tests/rejection-database.cjs | tee evidence/five_round_20261119/native/rejection-database.log
+          node tests/tie-feedback.cjs | tee evidence/five_round_20261119/native/tie-feedback.log
+          node tests/rejection-read-failure.cjs | tee evidence/five_round_20261119/native/read-failure.log
+          node tests/all-rejections-engine.cjs | tee evidence/five_round_20261119/native/rejection-engine.log
+          node tests/all-rejections-entrypoints.cjs | tee evidence/five_round_20261119/native/rejection-entrypoints.log
+          node tests/all-rejections-export-context.cjs | tee evidence/five_round_20261119/native/export-context.log
+          node tests/tie-only-replacement.cjs | tee evidence/five_round_20261119/native/tie-replacement.log
+          node tests/tie-engine-integration.cjs | tee evidence/five_round_20261119/native/tie-engine.log
+          node tests/rejection-cumulative-refill.cjs | tee evidence/five_round_20261119/native/cumulative.log
+          node tests/rejection-same-generation-guard.cjs | tee evidence/five_round_20261119/native/same-generation.log
+      - name: Preserve source, rule and state evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_TOTAL_NATIVE
+          path: evidence/five_round_20261119/
+          if-no-files-found: error
+          retention-days: 30
+
+  photos-and-collars:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
+          path: baseline
+      - name: Install browser audit driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow
+      - name: Render every shirt and collar state against original pixels
+        run: python tests/five-round-photos-browser.py --browser '${{ matrix.browser }}' --baseline-root baseline
+      - name: Preserve actual browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_TOTAL_PHOTOS_${{ matrix.browser }}
+          path: evidence/five_round_20261119/browser/
+          if-no-files-found: error
+          retention-days: 30

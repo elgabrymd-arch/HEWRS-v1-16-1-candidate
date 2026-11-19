@@ -1,0 +1,226 @@
+{
+  "schema": "hewrs.five-round-render-cancellation.v1",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "S05/DS029: immediate retry starts fresh requests",
+      "passed": true
+    },
+    {
+      "name": "S05/DS029: cancelled attempt settles without visible pixels",
+      "passed": true
+    },
+    {
+      "name": "S05/DS029: stalled cancelled promise settles",
+      "passed": true
+    },
+    {
+      "name": "S05/DS029: exact retry selection publishes once",
+      "passed": true
+    },
+    {
+      "name": "S05/DS029: late cancelled callbacks do not publish",
+      "passed": true
+    },
+    {
+      "name": "S05/DS029: completed cache survives cancellation",
+      "passed": true
+    },
+    {
+      "name": "S05/DS029: concurrent generations publish only newest exact selection",
+      "passed": true
+    },
+    {
+      "name": "S11/DS035: immediate retry starts fresh requests",
+      "passed": true
+    },
+    {
+      "name": "S11/DS035: cancelled attempt settles without visible pixels",
+      "passed": true
+    },
+    {
+      "name": "S11/DS035: stalled cancelled promise settles",
+      "passed": true
+    },
+    {
+      "name": "S11/DS035: exact retry selection publishes once",
+      "passed": true
+    },
+    {
+      "name": "S11/DS035: late cancelled callbacks do not publish",
+      "passed": true
+    },
+    {
+      "name": "S11/DS035: completed cache survives cancellation",
+      "passed": true
+    },
+    {
+      "name": "S11/DS035: concurrent generations publish only newest exact selection",
+      "passed": true
+    },
+    {
+      "name": "B03/DS023: immediate retry starts fresh requests",
+      "passed": true
+    },
+    {
+      "name": "B03/DS023: cancelled attempt settles without visible pixels",
+      "passed": true
+    },
+    {
+      "name": "B03/DS023: stalled cancelled promise settles",
+      "passed": true
+    },
+    {
+      "name": "B03/DS023: exact retry selection publishes once",
+      "passed": true
+    },
+    {
+      "name": "B03/DS023: late cancelled callbacks do not publish",
+      "passed": true
+    },
+    {
+      "name": "B03/DS023: completed cache survives cancellation",
+      "passed": true
+    },
+    {
+      "name": "B03/DS023: concurrent generations publish only newest exact selection",
+      "passed": true
+    },
+    {
+      "name": "B03/DS001: immediate retry starts fresh requests",
+      "passed": true
+    },
+    {
+      "name": "B03/DS001: cancelled attempt settles without visible pixels",
+      "passed": true
+    },
+    {
+      "name": "B03/DS001: stalled cancelled promise settles",
+      "passed": true
+    },
+    {
+      "name": "B03/DS001: exact retry selection publishes once",
+      "passed": true
+    },
+    {
+      "name": "B03/DS001: late cancelled callbacks do not publish",
+      "passed": true
+    },
+    {
+      "name": "B03/DS001: completed cache survives cancellation",
+      "passed": true
+    },
+    {
+      "name": "B03/DS001: concurrent generations publish only newest exact selection",
+      "passed": true
+    },
+    {
+      "name": "B01/DS001: immediate retry starts fresh requests",
+      "passed": true
+    },
+    {
+      "name": "B01/DS001: cancelled attempt settles without visible pixels",
+      "passed": true
+    },
+    {
+      "name": "B01/DS001: stalled cancelled promise settles",
+      "passed": true
+    },
+    {
+      "name": "B01/DS001: exact retry selection publishes once",
+      "passed": true
+    },
+    {
+      "name": "B01/DS001: late cancelled callbacks do not publish",
+      "passed": true
+    },
+    {
+      "name": "B01/DS001: completed cache survives cancellation",
+      "passed": true
+    },
+    {
+      "name": "B01/DS001: concurrent generations publish only newest exact selection",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS017: immediate retry starts fresh requests",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS017: cancelled attempt settles without visible pixels",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS017: stalled cancelled promise settles",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS017: exact retry selection publishes once",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS017: late cancelled callbacks do not publish",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS017: completed cache survives cancellation",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS017: concurrent generations publish only newest exact selection",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS001: immediate retry starts fresh requests",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS001: cancelled attempt settles without visible pixels",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS001: stalled cancelled promise settles",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS001: exact retry selection publishes once",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS001: late cancelled callbacks do not publish",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS001: completed cache survives cancellation",
+      "passed": true
+    },
+    {
+      "name": "SHIRT_ONLY/DS001: concurrent generations publish only newest exact selection",
+      "passed": true
+    },
+    {
+      "name": "Cancellation is instance-local",
+      "passed": true
+    },
+    {
+      "name": "Same URL with distinct source hash has distinct cache entry",
+      "passed": true
+    },
+    {
+      "name": "Dimension failure evicts the failed cache entry",
+      "passed": true
+    },
+    {
+      "name": "Dimension failure permits exact retry",
+      "passed": true
+    },
+    {
+      "name": "Canvas decode exceptions settle and evict",
+      "passed": true
+    }
+  ],
+  "passed": 54,
+  "failed": 0,
+  "scope": "Native renderer control flow with controlled image events and virtual canvases; pixel correctness is a separate browser gate",
+  "no_timeout_added": true
+}

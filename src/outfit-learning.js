@@ -7,6 +7,7 @@ const FEATURES=['tie_visual_prominence','competing_focal_elements','palette_satu
 const REASONS=['no_reason','tie_dominant','palette_disconnected','patterns_compete','shoe_choice','layers_not_distinct','other'];
 function need(v,s){if(!v)throw Error(s);}
 function exact(v,ks){return v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===ks.length&&ks.every(k=>Object.hasOwn(v,k));}
+function stable(v){if(Array.isArray(v))return '['+v.map(stable).join(',')+']';if(v&&typeof v==='object')return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}';return JSON.stringify(v);}
 function key(s){return JSON.stringify([s.suitId||s.blazerId||'SHIRT_ONLY',s.pantId||null,s.shirtId,s.state,s.shoeId,s.watchId]);}
 function pairKey(a,b){return [key(a),key(b)].sort().join('::');}
 function top(s){return s.suitId||s.blazerId||'SHIRT_ONLY';}
@@ -98,7 +99,7 @@ function validateModel(m){need(m&&m.revision===REV&&m.source_revision===root.HEW
  if(m.acceptability.active)need(m.enabled&&acceptEligible(m.acceptability.counts),'Insufficient Both/Neither evidence');return copy(m);
 }
 
-function create(connection,sourceLock,backend){let raw=null,blocked=null,state={schema:SCHEMA,source_lock:sourceLock,revision:0,enabled:true,comparisons:[]};
+function create(connection,sourceLock,backend){let raw=null,blocked=null,state={schema:SCHEMA,source_lock:sourceLock,revision:0,enabled:true,comparisons:[]};const previews=new WeakMap();let writeQueue=Promise.resolve();
  function validate(v){need(exact(v,['schema','source_lock','revision','enabled','comparisons'])&&v.schema===SCHEMA&&v.source_lock===sourceLock,'This is not a matching outfit-preference backup');need(Number.isSafeInteger(v.revision)&&v.revision>=0&&typeof v.enabled==='boolean'&&Array.isArray(v.comparisons)&&v.comparisons.length<=MAX,'Invalid preference state');
   const ids=new Set(),pairs=new Set();for(const r of v.comparisons){need(exact(r,['id','created_at','a','b','vote','reason','partition','pilot_id','context','source_revision']),'Unexpected comparison fields');need(/^pref_[A-Za-z0-9_-]{1,100}$/.test(r.id)&&!ids.has(r.id),'Invalid or duplicate preference ID');ids.add(r.id);
    need(typeof r.created_at==='string'&&/^\d{4}-\d{2}-\d{2}T.*Z$/.test(r.created_at)&&Number.isFinite(Date.parse(r.created_at)),'Invalid preference time');
@@ -118,12 +119,16 @@ function create(connection,sourceLock,backend){let raw=null,blocked=null,state={
  function undo(id,token){need(state.comparisons.at(-1)?.id===id,'Last comparison changed; review before undo');return commit({...state,revision:state.revision+1,comparisons:state.comparisons.slice(0,-1)},token);}
  function setEnabled(enabled,token){return commit({...state,revision:state.revision+1,enabled:!!enabled},token);}
  function previewImport(text){need(typeof text==='string'&&text.length<=MAX_BYTES,'Preference file too large');const incoming=validate(JSON.parse(text)),now=read(),merged=copy(now.state.comparisons);let added=0,same=0;
-  for(const r of incoming.comparisons){const found=merged.find(x=>x.id===r.id||contextPairKey(x.a,x.b,x.context)===contextPairKey(r.a,r.b,r.context));if(found){need(JSON.stringify(found)===JSON.stringify(r),'Conflicting preference ID or pair; no records were replaced');same++;}else{merged.push(r);added++;}}
-  const data=validate({...now.state,revision:now.state.revision+1,comparisons:merged});return {data,token:now.token,added,already_saved:same};}
- function merge(p){need(p&&p.data&&p.token,'Import preview required');return commit(p.data,p.token);}
+  for(const r of incoming.comparisons){const found=merged.find(x=>x.id===r.id||contextPairKey(x.a,x.b,x.context)===contextPairKey(r.a,r.b,r.context));if(found){need(stable(found)===stable(r),'Conflicting preference ID or pair; no records were replaced');same++;}else{merged.push(r);added++;}}
+  const data=validate({...now.state,revision:now.state.revision+1,comparisons:merged}),preview={data,token:now.token,added,already_saved:same};previews.set(preview,{token:copy(now.token),payload:stable(preview)});return preview;}
+ function merge(p){const reviewed=previews.get(p);need(reviewed&&reviewed.payload===stable(p),'Preference backup changed after preview; select the file again');const result=commit(p.data,reviewed.token);previews.delete(p);return result;}
  try{read();}catch{}
- const exclusive=fn=>root.navigator?.locks?.request?root.navigator.locks.request(KEY,{mode:'exclusive'},fn):Promise.resolve().then(fn);
- return Object.freeze({key:KEY,exclusive,read,assertCurrent:current,model,add,undo,setEnabled,validate,snapshot:()=>copy(state),status:()=>({blocked,persistent:!!backend,namespace:KEY}),exportText:()=>{const r=read();return JSON.stringify(r.state,null,2);},previewImport,merge,pairKey,contextPairKey,selectionKey:key});
+ async function exclusive(callback){
+  need(typeof callback==='function','A preference save operation is required');const token={raw,revision:state.revision},run=()=>{current(token);return callback();};
+  if(backend){need(root.navigator?.locks?.request,'Cross-tab preference saving is unavailable in this browser. Open HEWRS over HTTPS in a browser with Web Locks support. Read and export remain available; nothing was saved.');return root.navigator.locks.request(KEY,{mode:'exclusive'},run);}
+  const work=writeQueue.then(run);writeQueue=work.catch(()=>{});return work;
+ }
+ return Object.freeze({key:KEY,exclusive,read,assertCurrent:current,model,add,undo,setEnabled,validate,snapshot:()=>copy(state),status:()=>({blocked,persistent:!!backend,writeLockAvailable:!backend||typeof root.navigator?.locks?.request==='function',namespace:KEY}),exportText:()=>{const r=read();return JSON.stringify(r.state,null,2);},previewImport,merge,pairKey,contextPairKey,selectionKey:key});
 }
 root.HEWRSOutfitLearning=Object.freeze({KEY,SCHEMA,REV,FEATURES,REASONS,ACCEPT_LIMITS,empty,vector,delta,signals,predict,acceptPrediction,importance,upperBound,fit,validateModel,create,pairKey,contextPairKey,selectionKey:key});
 })(globalThis);

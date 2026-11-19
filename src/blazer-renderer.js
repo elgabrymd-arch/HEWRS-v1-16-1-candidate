@@ -3,11 +3,15 @@
  * Original upper-body RGBA is copied, not re-composited from an unregistered avatar. */
 (function(root){'use strict';const W=996,H=2748;
 function create(canvas,connection,resolveUrl){
- canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d',{willReadFrequently:true});let epoch=0;const cache=new Map();
+ canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d',{willReadFrequently:true});let epoch=0;
+ const loads=root.HEWRSRenderImageLoader.create({limit:18,resolveUrl,width:W,height:H,missing:'Blazer source failed to load',decode:im=>{
+  const c=document.createElement('canvas');c.width=W;c.height=H;
+  try{const cc=c.getContext('2d',{willReadFrequently:true});cc.drawImage(im,0,0);return {im,data:cc.getImageData(0,0,W,H).data};}finally{c.width=c.height=1;}
+ }});
  const d=connection.blazerConnection.data,a=d.assembly;
- function load(desc){if(cache.has(desc.sha256))return cache.get(desc.sha256);const p=new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{if(im.naturalWidth!==W||im.naturalHeight!==H){reject(Error('Wrong source dimensions'));return;}const c=document.createElement('canvas');c.width=W;c.height=H;const cc=c.getContext('2d',{willReadFrequently:true});cc.drawImage(im,0,0);const data=cc.getImageData(0,0,W,H).data;c.width=c.height=1;resolve({im,data});};im.onerror=()=>reject(Error('Blazer source failed to load'));im.src=resolveUrl(desc);});cache.set(desc.sha256,p);p.catch(()=>cache.delete(desc.sha256));while(cache.size>18)cache.delete(cache.keys().next().value);return p;}
+ function load(desc){return loads.load(desc);}
  function plan(s){connection.validateSelection(s);if(!connection.blazerConnection.isBlazer(s))throw Error('Blazer selection required');const registered=connection.blazerConnection.knownBlazer(s.blazerId).assembly||a;return {operation:'EXISTING_APPROVED_CONTROL_WITH_REGISTERED_REPLACEMENTS',blazerId:s.blazerId,pantId:s.pantId,shirtId:s.shirtId,state:s.state,base:registered.base,avatar:connection.manifest.static.avatar,jacket:registered.jacket,tie:connection.tieFidelity?connection.tieFidelity.replace(a.ties[s.state]):a.ties[s.state],fidelityOwnership:connection.tieFidelity?.legacyOwnership||null,tieMask:a.tie_mask,shirtProtection:a.ties.T001,hands:a.hands,cuffs:a.cuffs,oldTrousers:a.old_trousers,oldShoes:a.old_shoes,pants:connection.blazerConnection.knownPant(s.pantId).layer,shoes:connection.shoeLayers[s.shoeId]};}
- async function render(s){const token=++epoch,p=plan(s),list=[p.base,p.avatar,p.jacket,p.tie,p.tieMask,p.shirtProtection,...p.hands,...p.cuffs,p.oldTrousers,p.oldShoes,p.pants,p.shoes,...(p.fidelityOwnership?[p.fidelityOwnership]:[])];const ims=await Promise.all(list.map(load));if(token!==epoch)return {cancelled:true};const image=desc=>ims[list.findIndex(x=>x.sha256===desc.sha256)],data=desc=>image(desc).data;
+ async function render(s){const token=++epoch;loads.cancel();const p=plan(s),list=[p.base,p.avatar,p.jacket,p.tie,p.tieMask,p.shirtProtection,...p.hands,...p.cuffs,p.oldTrousers,p.oldShoes,p.pants,p.shoes,...(p.fidelityOwnership?[p.fidelityOwnership]:[])];const ims=await Promise.all(list.map(load)).catch(error=>{if(token!==epoch)return null;throw error;});if(token!==epoch||!ims)return {cancelled:true};const image=desc=>ims[list.findIndex(x=>x.sha256===desc.sha256)],data=desc=>image(desc).data;
   const fixed=data(p.base),j=data(p.jacket),shirt=data(p.shirtProtection),hands=p.hands.map(data),cuffs=p.cuffs.map(data);
   // The checkpoint's old avatar and temporary shoes are never copied into the
   // current outfit. Start with the unchanged current visible-body source and
@@ -27,6 +31,6 @@ function create(canvas,connection,resolveUrl){
   const tie=data(p.tie),mask=data(p.tieMask),fm=p.fidelityOwnership?data(p.fidelityOwnership):null;if(s.state!=='T001'||fm)for(let i=0;i<out.length;i+=4)if(mask[i]>0&&(!fm||fm[i]>0)){out[i]=tie[i];out[i+1]=tie[i+1];out[i+2]=tie[i+2];}
   if(token!==epoch)return {cancelled:true};ctx.putImageData(new ImageData(out,W,H),0,0);return {status:'ready',selection:structuredClone(s),source_assembly:s.blazerId==='B03'?'B03_CHECKPOINT44_CP49_CP54':'CP46_CP47_CP49_CP54'};
  }
- return Object.freeze({render,plan,cancel(){epoch++;},stats:()=>({imageCache:cache.size})});
+ return Object.freeze({render,plan,cancel(){epoch++;loads.cancel();},stats:()=>({imageCache:loads.size})});
 }
 root.HEWRSBlazerRenderer=Object.freeze({create});})(globalThis);

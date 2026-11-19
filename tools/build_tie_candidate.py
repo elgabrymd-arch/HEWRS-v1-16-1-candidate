@@ -2,8 +2,8 @@
 """Reproduce the isolated tie-feedback/rotation candidate delivery.
 
 The owner-accepted Standard builder, sources, release manifest and runtime are
-not rewritten. --write only updates the existing preview runtime and its SRI in
-the two candidate entrypoints. This tool never publishes or accesses user data.
+not rewritten. --write updates the current runtime and pins each loaded script
+and stylesheet in both candidate entrypoints. This tool never publishes or accesses user data.
 """
 import argparse
 import ast
@@ -23,6 +23,9 @@ SUBSTITUTIONS = {
     'src/application.js': 'src/outfit-refill-application.js',
 }
 EXCLUDED = {'src/runtime-loader.js', 'data/inputs.js', 'data/option-index.js'}
+# Current transport lifetime repair. The frozen Standard dependency list and
+# historical base reproduction remain unchanged.
+BEFORE = {'vendor/active50-renderer.js': ['src/render-image-loader.js']}
 DEPENDENCIES = [
     'src/tie-exposure.js',
     'src/tie-feedback.js',
@@ -31,6 +34,7 @@ DEPENDENCIES = [
     RUNTIME,
     'src/outfit-rejection-ui.js',
     'src/reviewed-rejection-integration.js',
+    'src/image-assessment-panel.js',
 ]
 
 
@@ -49,6 +53,12 @@ def assemble(ref=None):
     for original in scripts:
         if original in EXCLUDED:
             continue
+        for dependency in BEFORE.get(original, []):
+            exists = ref is None or subprocess.run(
+                ['git', 'cat-file', '-e', ref + ':' + dependency], cwd=ROOT,
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+            if exists:
+                code += '\n/* SOURCE: ' + dependency + ' */\n' + read(dependency, ref) + '\n;\n'
         path = SUBSTITUTIONS.get(original, original)
         marker = 'PREVIEW SOURCE' if original in SUBSTITUTIONS else 'SOURCE'
         code += '\n/* ' + marker + ': ' + path + ' */\n' + read(path, ref) + '\n;\n'
@@ -64,12 +74,39 @@ def entrypoint(path, digest):
     positions = [scripts.index(src) for src in DEPENDENCIES]
     # The two independent data stores may load in either order, but both must
     # exist before the rejection bridge and before candidate application boot.
-    if not (max(positions[:2]) < positions[2] < positions[3] < positions[4] < positions[5] < positions[6]):
+    if not (max(positions[:2]) < positions[2] < positions[3] < positions[4] < positions[5] < positions[6] < positions[7]):
         raise ValueError(path + ': tie preview dependencies have the wrong load order.')
     pattern = r'(<script\b[^>]*\bsrc="' + re.escape(RUNTIME) + r'(?:\?[^\"]*)?"[^>]*\bintegrity=")[^"]+("[^>]*>)'
     updated, count = re.subn(pattern, lambda m: m[1] + digest + m[2], html)
     if count != 1:
         raise ValueError(path + ': expected one preview runtime script with SRI.')
+    # Every separately loaded script/style is part of the same delivery. Pin
+    # both integrity and URL so an updated picker or store cannot be paired with
+    # a browser-cached older version after an otherwise valid runtime update.
+    def pin(match):
+        tag = match[0]
+        attribute = 'src' if tag.startswith('<script') else 'href'
+        resource = re.search(r'\b' + attribute + r'="([^"]+)"', tag)
+        if not resource:
+            return tag
+        local = resource[1].split('?', 1)[0]
+        if re.match(r'^(?:[a-z]+:|//|#)', local):
+            return tag
+        content_digest = base64.b64decode(digest.removeprefix('sha256-')) if local == RUNTIME else hashlib.sha256((ROOT / local).read_bytes()).digest()
+        sri = 'sha256-' + base64.b64encode(content_digest).decode()
+        tag = tag[:resource.start(1)] + local + '?v=' + content_digest.hex()[:16] + tag[resource.end(1):]
+        if re.search(r'(?<=\s)integrity="[^"]*"', tag):
+            tag = re.sub(r'(?<=\s)integrity="[^"]*"', 'integrity="' + sri + '"', tag)
+        else:
+            tag = tag[:-1] + ' integrity="' + sri + '">'
+        lazy = re.search(r'\bdata-engine-index="([^"]+)"', tag)
+        if lazy:
+            index = lazy[1].split('?', 1)[0]
+            index_digest = hashlib.sha256((ROOT / index).read_bytes()).digest()
+            tag = tag[:lazy.start(1)] + index + '?v=' + index_digest.hex()[:16] + tag[lazy.end(1):]
+            tag = re.sub(r'\bdata-engine-integrity="[^"]*"', 'data-engine-integrity="sha256-' + base64.b64encode(index_digest).decode() + '"', tag)
+        return tag
+    updated = re.sub(r'<script\b[^>]*\bsrc="[^"]+"[^>]*>|<link\b(?=[^>]*\brel="stylesheet")[^>]*\bhref="[^"]+"[^>]*>', pin, updated)
     return html, updated
 
 
@@ -94,7 +131,7 @@ def main():
         (ROOT / RUNTIME).write_text(code)
         for path, (_, updated) in pages.items():
             (ROOT / path).write_text(updated)
-        print('WROTE: preview runtime and candidate runtime SRI only; nothing published.')
+        print('WROTE: current runtime and both candidate resource/SRI bindings; nothing published.')
     else:
         if read(RUNTIME) != code:
             raise ValueError('Candidate runtime is stale. Run tools/build_tie_candidate.py --write.')

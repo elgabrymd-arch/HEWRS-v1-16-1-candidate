@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HEWRS · Stage 10 integration candidate · V1.25.0-R1</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://api.open-meteo.com https://geocoding-api.open-meteo.com https://hewrs-ai-service.onrender.com; object-src 'none'; base-uri 'self'; form-action 'none'">
-<link rel="stylesheet" href="src/application.css?v=f45ceea1448218fb"><link rel="stylesheet" href="feedback-candidate/feedback.css">
-<link rel="stylesheet" href="feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67">
+<link rel="stylesheet" href="src/application.css?v=f45ceea1448218fb" integrity="sha256-9FzuoUSCGPvA/qx7krBfGKwkcEUZPTFvh5rxgRA+zzQ="><link rel="stylesheet" href="feedback-candidate/feedback.css?v=fdc4db1521184cd7" integrity="sha256-/cTbFSEYTNeYZuZLUOIk+WVb1YI2ktgDqRcbvNKe0fU=">
+<link rel="stylesheet" href="feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67254d" integrity="sha256-pQ80f75nJU36OSFnAANPB6Bb9wCtT64NvX+bjqlT9u4=">
 <style id="hewrs-pipeline-layout">
 #rd-pipeline-ranked,#rd-pipeline-queue{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0;margin:8px 0 16px}#rd-pipeline-ranked>h3,#rd-pipeline-ranked>p,#rd-pipeline-ranked>details,#rd-pipeline-queue>h3,#rd-pipeline-queue>p,#rd-pipeline-queue>details{grid-column:1/-1;min-width:0}#rd-results details .rd-result{width:100%;margin:8px 0}#rd-results summary{cursor:pointer;padding:10px 0;overflow-wrap:anywhere}@media(max-width:600px){#rd-pipeline-ranked,#rd-pipeline-queue{grid-template-columns:minmax(0,1fr)}}
-</style><link rel="stylesheet" href="src/blazer-picker-preview.css">
-<link rel="stylesheet" href="src/shirt-picker-preview.css">
-<link rel="stylesheet" href="src/tie-picker-preview.css">
-<link rel="stylesheet" href="src/outfit-rejection.css">
+</style><link rel="stylesheet" href="src/blazer-picker-preview.css?v=217444efd93f4bf0" integrity="sha256-IXRE79k/S/CNf3D0o9NBT8oQ0DLUtOv41af/SnR+bjE=">
+<link rel="stylesheet" href="src/shirt-picker-preview.css?v=84ab53241aeb5e60" integrity="sha256-hKtTJBrrXmCHOldGXv6rfZX+LzfK6wcIvADN96bC9i4=">
+<link rel="stylesheet" href="src/tie-picker-preview.css?v=930c4967b877a782" integrity="sha256-kwxJZ7h3p4LzcEKCm6UD9WvprPIcLQoEun8BJpUmIjU=">
+<link rel="stylesheet" href="src/outfit-rejection.css?v=c239153e8ac84032" integrity="sha256-wjkVPorIQDIE9mPKh77iNQfKthF9z0jmDU9/GLQKE+U=">
 </head>
 <body><svg class="fx-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="fx-icon-suits" viewBox="0 0 24 24"><path d="m8 3-5 3-1 13 4 1 1-11v12h10V9l1 11 4-1-1-13-5-3-4 7zM8 3l4 7 4-7M12 10v11M8 3l-1 5 3 3M16 3l1 5-3 3"></path></symbol><symbol id="fx-icon-blazers" viewBox="0 0 24 24"><path d="m8 3-5 3-1 13 4 1 1-11v12h10V9l1 11 4-1-1-13-5-3-4 7zM8 3l4 7 4-7M12 10v11M8 3l-1 5 3 3M16 3l1 5-3 3"></path></symbol><symbol id="fx-icon-shirts" viewBox="0 0 24 24"><path d="m8 3-5 3-1 14h4l1-11v12h10V9l1 11h4L21 6l-5-3zM8 3l4 5 4-5M12 8v13"></path></symbol><symbol id="fx-icon-ties" viewBox="0 0 24 24"><path d="M8 3h8l-2 5 3 11-5 3-5-3 3-11zM10 8h4"></path></symbol><symbol id="fx-icon-shoes" viewBox="0 0 24 24"><path d="M3 12c4 0 7-2 9-6l4 4 4 1c2 1 2 3 1 6H3zM3 17v3h18v-3M11 9l2 2m-5 0 2 2"></path></symbol><symbol id="fx-icon-pants" viewBox="0 0 24 24"><path d="M6 3h12l2 18h-6L12 8l-2 13H4zM6 6h12M12 3v5"></path></symbol><symbol id="fx-icon-jeans" viewBox="0 0 24 24"><path d="M6 3h12l2 18h-6L12 9l-2 12H4zM6 6h12M12 3v6M6 6c0 3 2 3 3 3M18 6c0 3-2 3-3 3"></path></symbol><symbol id="fx-icon-tshirts" viewBox="0 0 24 24"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4M8 3a4 4 0 0 0 8 0"></path></symbol><symbol id="fx-icon-watches" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle><path d="M8 6V2h8v4M8 18v4h8v-4M12 8v4l3 2"></path></symbol><symbol id="fx-icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></symbol><symbol id="fx-icon-outfits" viewBox="0 0 24 24"><path d="M9 6a3 3 0 0 1 6 0c0 2-3 2-3 4v1L3 17v3h18v-3l-9-6"></path></symbol><symbol id="fx-icon-wardrobe" viewBox="0 0 24 24"><rect height="18" rx="1" width="16" x="4" y="3"></rect><path d="M12 3v18M9 11v3m6-3v3"></path></symbol><symbol id="fx-icon-rotation" viewBox="0 0 24 24"><path d="M4 8a8 8 0 0 1 13-3l3 3M20 3v5h-5M20 16a8 8 0 0 1-13 3l-3-3M4 21v-5h5"></path></symbol><symbol id="fx-icon-back" viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"></path></symbol><symbol id="fx-icon-next" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></symbol></svg>
 <div id="app" class="hewrs-ui" data-facelift="v1_11" data-outfit-layout="cards" data-page-view="home">
@@ -44,22 +44,22 @@
 <dialog id="fx-sheet" class="hewrs-ui fx-sheet" aria-labelledby="fx-sheet-title"><div class="fx-handle" aria-hidden="true"></div><div class="fx-sheet-head"><h2 id="fx-sheet-title"></h2><button id="fx-sheet-close" class="fx-icon-button" type="button" aria-label="Close panel">×</button></div><div id="fx-sheet-body" class="fx-sheet-body"></div><p id="fx-sheet-error" class="fx-warning" role="alert"></p><div id="fx-sheet-actions" class="fx-sheet-actions"></div></dialog>
 <script defer src="src/runtime-loader.js?v=0df2348364570098" integrity="sha256-DfI0g2RXAJgt/DSov9pwz2pE0JsFh3mtrXot8kDtfxo=" data-boot="true" data-engine-index="data/option-index.js?v=97a019847fcbe086" data-engine-integrity="sha256-l6AZhH/L4IaFY73HqbY/LW/h3dXcH5CR4NyrUkF2+uQ="></script>
 <script defer src="data/inputs.js?v=d4060df8ec8f400f" integrity="sha256-1AYN+OyPQA9i4qFgtnmMpfFblA0DDJtj6QG1jgNEw/s="></script>
-<script defer src="src/tie-exposure.js"></script>
-<script defer src="src/tie-feedback.js?v=cc5717989411da76"></script>
-<script defer src="src/rejection-database.js?v=8befbd68827f7b72"></script>
-<script defer src="src/outfit-rejection-core.js?v=859edc166dd95e1d"></script>
-<script defer src="runtime/outfit-refill-preview.js?v=ee671104141f6c74" integrity="sha256-7mcRBBQfbHRDg3pUyZusAwECaJ7/fgxPMYuFcrHIVF4="></script>
-<script defer src="src/outfit-rejection-ui.js?v=9c1fccab9514e19d"></script>
-<script defer src="data/option-card-thumbnails.js"></script>
-<script defer src="data/blazer-picker-images.js"></script>
-<script defer src="data/suit-picker-images.js"></script>
-<script defer src="src/blazer-picker-preview.js"></script>
-<script defer src="src/photo-picker-integration.js"></script>
-<script defer src="feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf2" integrity="sha256-ss4KpWzyd6RaxuFryVqsvb79OlkW4hpxlA4YOOTbetg="></script><script defer src="hewrs-pipeline-08c53932a2495e05.js" integrity="sha256-CMU5MqJJXgX4zMMvoD/PTgKovXzm2qCNsf+7mSam1m0="></script><script defer src="src/reviewed-rejection-integration.js?v=642e51e2a5a37166"></script>
-<script defer src="feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b"></script>
-<script defer src="feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3"></script>
-<script defer src="hewrs-batch10-image-panel-f200023e7632fa28.js"></script>
+<script defer src="src/tie-exposure.js?v=599c66045044eda5" integrity="sha256-WZxmBFBE7aX03EYjz2r32vX9jJyd93knLc0mtnOjz+s="></script>
+<script defer src="src/tie-feedback.js?v=cc5717989411da76" integrity="sha256-zFcXmJQR2nbwa5D33YqtBszsj3Yrm3VsDQ/3WbKyc4Y="></script>
+<script defer src="src/rejection-database.js?v=8befbd68827f7b72" integrity="sha256-i++9aIJ/e3JUt1UYhD2XlCuk/+rLEiD2KPUXMYjxZ2o="></script>
+<script defer src="src/outfit-rejection-core.js?v=859edc166dd95e1d" integrity="sha256-hZ7cFm3ZXh1C3h4KPGLmiDNGHMSqD19ENNy/lkYqMt0="></script>
+<script defer src="runtime/outfit-refill-preview.js?v=feb681baf66fbdf5" integrity="sha256-/raBuvZvvfXJyEqNU9v+71+SRL8Nmx6cyb+cuJDnv5Q="></script>
+<script defer src="src/outfit-rejection-ui.js?v=d3194747c465b3c2" integrity="sha256-0xlHR8Rls8Iqyn+/X+IiL+RFOaFzTvW255CmnNgy3Fs="></script>
+<script defer src="data/option-card-thumbnails.js?v=d5d77a62c04c8b8e" integrity="sha256-1dd6YsBMi45ap+iQ4LBVpwNCRaTFh5KYGJc3WisaJsQ="></script>
+<script defer src="data/blazer-picker-images.js?v=c0178b39872881e6" integrity="sha256-wBeLOYcogeYG3+DJHIuuo5sD0+Y2y4HNegOgs0BMjJE="></script>
+<script defer src="data/suit-picker-images.js?v=a469033d18a101e1" integrity="sha256-pGkDPRihAeHVRDqTzfKxT3oifoaZ1rHaZpO5aJXz8Gw="></script>
+<script defer src="src/blazer-picker-preview.js?v=fc2cf20e9beb9e5a" integrity="sha256-/CzyDpvrnlpcl8teY+ZTFQc3soXgSUVztkRAXPIW6Nc="></script>
+<script defer src="src/photo-picker-integration.js?v=179f29d38c8a7dbb" integrity="sha256-F58p04yKfbvWsju6e4/DroutSa/85qMjK17zXTg142M="></script>
+<script defer src="feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf277a4" integrity="sha256-ss4KpWzyd6RaxuFryVqsvb79OlkW4hpxlA4YOOTbetg="></script><script defer src="hewrs-pipeline-08c53932a2495e05.js?v=08c53932a2495e05" integrity="sha256-CMU5MqJJXgX4zMMvoD/PTgKovXzm2qCNsf+7mSam1m0="></script><script defer src="src/reviewed-rejection-integration.js?v=642e51e2a5a37166" integrity="sha256-ZC5R4qWjcWYrLAqOw57ivX3e+yTyGI0MpbvX9mf1xD0="></script>
+<script defer src="feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b7726" integrity="sha256-DF0rbKaLdyaytkBICNdwLI0ZsFppd0vj8IbwF/fKZ6I="></script>
+<script defer src="feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3b5d3" integrity="sha256-KM07fKujtdPlxw77w0rSASWqwgPvbF6BAiUkI+v8ziM="></script>
+<script defer src="src/image-assessment-panel.js?v=28c2fad539016448" integrity="sha256-KML61TkBZEgPOtPdkBSQIIqfiD0vyBZs2K8N5XffnB4="></script>
 
-<script defer src="feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7a"></script>
-<script defer src="feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9"></script>
+<script defer src="feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7aef7c" integrity="sha256-GxLrWlx673zsGxTdBX7JgxjuuyB5gHllnsd/72CTp6o="></script>
+<script defer src="feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9a69d" integrity="sha256-Q9x1h2W5pp1zqeJAXUwH0U8dQIXMF+iCSkGpypx2t5Y="></script>
 </body></html>

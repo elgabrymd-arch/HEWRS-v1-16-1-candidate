@@ -10,7 +10,7 @@ function load({storage=memoryStorage(),baseline=false}={}){
  // The Chromium test exercises the browser's native structuredClone separately.
  vm.runInContext('globalThis.structuredClone=value=>value===undefined?undefined:JSON.parse(JSON.stringify(value));',context);
  const paths=JSON.parse(fs.readFileSync(path.join(root,'tools/build.py'),'utf8').match(/SCRIPTS=(\[[^\n]+\])/)[1].replaceAll("'",'"'));
- for(const name of ['src/tie-exposure.js','src/tie-feedback.js',...paths.filter(p=>p!=='src/application.js')]){
+ for(const name of ['src/tie-exposure.js','src/tie-feedback.js','src/render-image-loader.js',...paths.filter(p=>p!=='src/application.js')]){
   const candidate=name==='src/automatic-engine.js'?'src/outfit-refill-engine.js':name;
   const source=baseline&&name==='src/automatic-engine.js'?cp.execFileSync('git',['show','febe4148fc0b27ee2018d84408714ee1fe712015:src/outfit-refill-engine.js'],{cwd:root,encoding:'utf8',maxBuffer:4*1024*1024}):fs.readFileSync(path.join(root,candidate),'utf8');
   vm.runInContext(source,context,{filename:candidate});

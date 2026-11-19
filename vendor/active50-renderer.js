@@ -11,7 +11,7 @@ function create(canvas,manifest,resolveUrl){
  canvas.width=W;canvas.height=H;
  const ctx=canvas.getContext('2d',{willReadFrequently:true});
  if(!ctx)throw Error('2D canvas unavailable');
- const cache=new Map();let generation=0;const legacyCache=new Map();
+ const loads=root.HEWRSRenderImageLoader.create({limit:24,resolveUrl,width:W,height:H,missing:d=>'Missing component '+d.url+'; no fallback',dimensions:'Wrong component dimensions; no fallback'});let generation=0;const legacyCache=new Map();
  function asset(d){
   if(!d||typeof d.url!=='string'||!/^assets\/[A-Za-z0-9_./-]+\.png$/.test(d.url)||d.url.includes('..')||!/^[a-f0-9]{64}$/.test(d.sha256)||d.rect?.join(',')!=='0,0,996,2748')throw Error('Invalid layer descriptor');
   return d;
@@ -32,18 +32,10 @@ function create(canvas,manifest,resolveUrl){
   return out.concat([c.left,c.right,b.jacket,c.left_cuff,c.right_cuff,b.left_hand,b.right_hand]).map(asset);
  }
  function load(d){
-  asset(d);if(cache.has(d.url)){const p=cache.get(d.url);cache.delete(d.url);cache.set(d.url,p);return p;}
-  const p=new Promise((resolve,reject)=>{const im=new Image();
-   im.onload=()=>im.naturalWidth===W&&im.naturalHeight===H?resolve(im):reject(Error('Wrong component dimensions; no fallback'));
-   im.onerror=()=>reject(Error('Missing component '+d.url+'; no fallback'));
-   try{im.src=resolveUrl?resolveUrl(d):d.url;}catch(e){reject(e);}
-  });
-  cache.set(d.url,p);p.catch(()=>{if(cache.get(d.url)===p)cache.delete(d.url);});
-  while(cache.size>24)cache.delete(cache.keys().next().value);
-  return p;
+  asset(d);return loads.load(d);
  }
  function clear(status){ctx.clearRect(0,0,W,H);canvas.dataset.status=status;delete canvas.dataset.shirtId;delete canvas.dataset.state;}
- function cancel(){generation++;clear('cancelled');}
+ function cancel(){generation++;loads.cancel();clear('cancelled');}
  function makeCanvas(){const c=document.createElement('canvas');c.width=W;c.height=H;return c;}
  function bitmap(d,images){
   const im=images.get(d.url);
@@ -94,7 +86,7 @@ function create(canvas,manifest,resolveUrl){
   fc.putImageData(new ImageData(out,W,H),0,0);return frame;
  }
  async function render(req){
-  const token=++generation;clear('loading');
+  const token=++generation;loads.cancel();clear('loading');
   try{
    const order=plan(req),list=[...order,...order.filter(d=>d.display_alpha_mask).map(d=>asset(d.display_alpha_mask))];
    const loaded=await Promise.all(list.map(load));if(token!==generation)return {cancelled:true};
@@ -108,9 +100,9 @@ function create(canvas,manifest,resolveUrl){
    ctx.drawImage(frame,0,0);frame.width=frame.height=1;
    canvas.dataset.status='ready';canvas.dataset.shirtId=req.shirtId;canvas.dataset.state=req.state;
    return {status:'ready',shirtId:req.shirtId,suitId:'S05',state:req.state,components:order.length,review:'ACTIVE50_STAGING_EXISTING_COMPONENTS'};
-  }catch(e){if(token===generation)clear('error');throw e;}
+  }catch(e){if(token!==generation)return {cancelled:true};clear('error');throw e;}
  }
- return Object.freeze({plan,render,cancel,stats:()=>({imageCacheSize:cache.size,cacheLimit:24,legacyProfilesCached:legacyCache.size})});
+ return Object.freeze({plan,render,cancel,stats:()=>({imageCacheSize:loads.size,cacheLimit:24,legacyProfilesCached:legacyCache.size})});
 }
 root.HEWRSActive50=Object.freeze({create});
 })(globalThis);

@@ -1,0 +1,188 @@
+{
+  "schema": "hewrs.five-round-ui-review.v1",
+  "round": 2,
+  "reviewer": "/root/s05_reproduction",
+  "base_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "recorded_at": "2026-11-19T06:42:11.420224+00:00",
+  "scope": "Independent storage/import and render-image lifetime cross-review, plus the remaining asynchronous preference UI entrypoints.",
+  "reviewed_files": {
+    "src/local-state.js": {
+      "coverage": "complete file read",
+      "paths": [
+        "fresh durable export including invalid readable byte recovery",
+        "private restore preview ticket and revision binding",
+        "native Web Lock entry guard and memory queue",
+        "session/wear validation and synchronous compatibility APIs"
+      ],
+      "sha256": "b26454671f4b728a872de38df5a8fac7baee9016dcd6dc5e9c0b2fcd5a8c1176"
+    },
+    "src/favorites-state.js": {
+      "coverage": "complete file read",
+      "paths": [
+        "refresh/export failure and recovery",
+        "private merge preview identity and payload",
+        "duplicate add/no-op merge backing checks",
+        "native Web Lock entry guard and memory queue"
+      ],
+      "sha256": "4d7ae8d9d33d4d98602b2524be4a6f7f9a43ca1ae31890e87fb83e75d4bd070d"
+    },
+    "src/outfit-learning.js": {
+      "coverage": "create/store/import section, not full fitting algorithm",
+      "paths": [
+        "validate/read/current/commit/add",
+        "duplicate identity independent of JSON key order",
+        "previewImport private token and payload; merge consumption",
+        "unchanged exclusive interface"
+      ],
+      "sha256": "aefa43caffcdf3210251fd038ac10255569e6df6655c12f52fda059f2de9084f"
+    },
+    "src/render-image-loader.js": {
+      "coverage": "complete file read",
+      "paths": [
+        "per-instance pending/cache lifetime",
+        "evicted pending request settlement",
+        "late callback and same-key replacement identity",
+        "source hash plus resolved URL key",
+        "completed cache preservation and source-resolution failure"
+      ],
+      "sha256": "d6107f3ef06e81f44597a7f49e092ca2ccabbc17da7c76c50bbeac71da3ce465"
+    },
+    "src/preference-panel.js": {
+      "coverage": "complete file read",
+      "paths": [
+        "comparison preflight modal ownership",
+        "queued vote cancellation and saved pair context",
+        "delayed preference file reads and latest selected file",
+        "comparison rendering and collar-detail toggle",
+        "review/import/export/undo/toggle controls"
+      ],
+      "sha256": "2293d4f869567c297bb5b782240767992f2ffc388e1d8010add3f331f65c043a"
+    },
+    "src/outfit-refill-application.js": {
+      "coverage": "named functions only",
+      "paths": [
+        "renderForStylist",
+        "renderForPreference",
+        "setStylistMode",
+        "preferencePanel integration"
+      ],
+      "sha256": "cfe9dd5ddb7f583026595d21c873664b25778d2071a06d314414358a30443727"
+    },
+    "src/option-cards.js": {
+      "coverage": "book and adjacent thumbnailData/image lifecycle only; no edits by this reviewer this round",
+      "paths": [
+        "private renderer cancellation interval",
+        "timer and canvas release through finally",
+        "cancel gate before returned export",
+        "unchanged image rows and preview dimensions"
+      ],
+      "sha256": "4133b10ddc630490fcd926347489a059363d6f1ddd31cd9f28b69c6699b05d4b"
+    },
+    "src/automatic-preferences.js": {
+      "coverage": "shirt-only eligibility and request route only",
+      "paths": [
+        "ordinary generated-list reachability qualification for Round1 UI-05"
+      ],
+      "sha256": "27afdb55510ee47e10e0041886ea5dac4a4ab1cda7a80861a2a9e01c1862f749"
+    },
+    ".github/workflows/five-round-total-audit.yml": {
+      "coverage": "native test command only",
+      "paths": [
+        "five-round-*.cjs collection includes all new UI/cross-review files"
+      ],
+      "sha256": "59cd902fad90d5028c9715f57536be47b2d8aaaede88aa7baf0bc01976781b3b"
+    }
+  },
+  "confirmed_findings": [
+    {
+      "id": "UI-06",
+      "status": "fixed in owned UI module",
+      "file": "src/preference-panel.js",
+      "function": "showPair",
+      "defect": "Initial rejection synchronization preceded creation of a comparison modal lifetime. Closing the initiating panel or opening a different panel during the await allowed the stale comparison to reopen and overwrite the current panel.",
+      "evidence": "Actual production handler with held checkFeedback promise; two scenarios reproduced before repair and pass after repair.",
+      "repair": "Create the cancellable loading sheet before the first await and check its captured liveness before building or replacing content.",
+      "tests": [
+        "Delayed comparison preflight cannot reopen after close",
+        "Delayed comparison preflight cannot reopen after other_panel"
+      ]
+    },
+    {
+      "id": "UI-07",
+      "status": "fixed in owned UI module",
+      "file": "src/preference-panel.js",
+      "function": "review import-file onchange",
+      "defect": "A delayed file.text() completion reopened the import preview after closing the originating panel, replaced a newer panel, or let an older file overwrite a newer preview.",
+      "before": {
+        "failing_cases": 3,
+        "modal_counts_after_close": {
+          "actual": 2,
+          "expected": 1
+        },
+        "modal_counts_after_other_panel": {
+          "actual": 3,
+          "expected": 2
+        },
+        "preview_order": [
+          "newer-backup",
+          "older-backup"
+        ],
+        "durable_writes": 0
+      },
+      "repair": "Capture the originating panel token and an incrementing local file-selection ticket; check both before validating/opening a preview and before surfacing read errors.",
+      "tests": [
+        "Delayed preference file reading cannot reopen after close",
+        "Delayed preference file reading cannot reopen after other_panel",
+        "Only the latest preference file selection can publish its reviewed preview"
+      ]
+    },
+    {
+      "id": "STORAGE-CROSS-01",
+      "status": "confirmed independently; repaired by storage owner; independently rechecked",
+      "file": "src/outfit-learning.js",
+      "function": "previewImport/merge",
+      "defect": "A caller could mutate an already validated preview to disable learning and remove existing comparisons, then merge it without changing the public token. Ordinary current UI does not mutate its closed-over preview; this was a public store API boundary defect.",
+      "repair": "Storage owner added an instance-local WeakMap binding the original preview object, copied token and stable full payload, consuming the ticket after success.",
+      "independent_after_checks": [
+        "Edited enabled flag, comparisons and public counts cannot commit",
+        "Ticket from another store instance and cloned ticket cannot commit",
+        "Successful ticket replay cannot commit",
+        "Peer revision change cannot be overwritten"
+      ],
+      "namespace_and_model": "No schema, persisted record, model weights, acceptance thresholds or fitting policy changed by this repair."
+    }
+  ],
+  "independent_no_defect_found": [
+    "An evicted pending image failure cannot delete a newer same-key retry; cancel settles all pending entries including cache-evicted entries.",
+    "Captured late onload/onerror callbacks do not publish or alter fresh requests; completed cache entries survive cancel.",
+    "Wear/Favorites preview identities cannot cross store instances or accept edited payloads; queued native write callbacks reject intervening backing changes before entering the callback.",
+    "Private preference, Stylist and card-book renderers clear cancellation intervals and release their native canvas on cancellation, source failure and successful rendering.",
+    "Private render healthy paths retain the existing full/collar/style preview crop coordinates."
+  ],
+  "source_edits_by_reviewer_this_round": [
+    "src/preference-panel.js"
+  ],
+  "tests_added_or_extended": [
+    "tests/five-round-ui-preferences.cjs",
+    "tests/five-round-ui-cross-review.cjs"
+  ],
+  "functional_evidence": "evidence/five_round_20261119/ui-round2-functional.json",
+  "coverage_corrections": [
+    "Round1 UI-05 is defensive public-handler label formatting. Normal automatic generation rejects shirt-only configurations, so the supplied shirt-only comparison selector fixture is not an ordinary generated-list reproduction.",
+    "Historical publication CI counts are not evidence for these uncommitted audit changes."
+  ],
+  "preservation": [
+    "No image bytes, approved source identity, wardrobe ID, original score history or owner data changed in this pass.",
+    "Other owners repaired learning tickets and private renderer cancellation; this reviewer did not edit their source files.",
+    "Original synchronous store methods remain compatibility APIs; active application write paths are being wrapped by root and are outside the complete-file coverage of this pass."
+  ],
+  "limits": [
+    "Controlled callbacks do not establish browser pixel equality.",
+    "No owner browser storage or remote data was touched.",
+    "Cross-review storage tests use deterministic synthetic canonical records, not a copy of owner preferences.",
+    "The learning fitting/scoring algorithm was not re-audited in this pass.",
+    "The changed candidate runtime and browser matrix are root-owned gates and were not represented as completed here.",
+    "Archived entrypoints and unchanged model fitting were not fully reviewed in this round."
+  ],
+  "state": "round_2_review_complete_pending_parent_cross-review_and_integration"
+}

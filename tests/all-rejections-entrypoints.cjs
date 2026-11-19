@@ -13,7 +13,7 @@ async function applyContext(allowDestination=false){
  const dom=nodes(),calls={render:0,session:0},gate={allowed:(_s,context)=>allowDestination?context.occasion==='dinner':context.occasion!=='dinner',assertCurrent:noop};
  const context=vm.createContext({need,copy:structuredClone,current:null,currentOption:null,score:null,generation:0,busy:false,pendingInitialOutfit:null,origin:'manual',ctx:{occasion:'work',formality:'any',localDate:'2026-11-18'},root:{HEWRSStyleOccasions:{occasion:x=>x}},$:dom.$,
   checkRejectionFeedbackAsync:async()=>({token:'same'}),rejectionGate:()=>gate,autoWeather:{cancel:noop},connection:{validateSelection:s=>s,scoreSelection:()=>({})},renderer:{cancel:noop,async render(s,options){calls.render++;need(options.context.occasion==='dinner','Destination context was not forwarded');need(gate.allowed(s,options.context),'Outfit rejected in the render context');return {ready:true};}},
-  store:{assertCurrent:noop,saveSession(){calls.session++;},readForGeneration:()=>({token:'history'})},learning:{assertCurrent:noop},currentContext:()=>({occasion:'work',requiredFormality:'any'}),ui:{fromSelection:noop},setMode:noop,setBusy:noop,status:noop,presentFrame:noop,displayCurrent:noop,updateHome:noop,refreshHistory:noop,sessionValue:noop,selection,context:{occasion:'dinner',requiredFormality:'any'}});
+  store:{exclusive:async fn=>fn(),assertCurrent:noop,saveSession(){calls.session++;},readForGeneration:()=>({token:'history'})},learning:{assertCurrent:noop},currentContext:()=>({occasion:'work',requiredFormality:'any'}),ui:{fromSelection:noop},setMode:noop,setBusy:noop,status:noop,presentFrame:noop,displayCurrent:noop,updateHome:noop,refreshHistory:noop,sessionValue:noop,selection,context:{occasion:'dinner',requiredFormality:'any'}});
  vm.runInContext(extract(application,'async function apply(s,opts={})','async function selectOption('),context);
  if(allowDestination){await vm.runInContext('apply(selection,{context})',context);check('Apply forwards an allowed destination occasion to the renderer',()=>{assert.equal(calls.render,1);assert.equal(calls.session,1);assert.deepEqual(context.current,selection);});}
  else{await assert.rejects(vm.runInContext('apply(selection,{context})',context),/rejected/);check('Apply checks the destination occasion before rendering or saving',()=>{assert.equal(calls.render,0);assert.equal(calls.session,0);assert.equal(context.current,null);});}
@@ -63,7 +63,7 @@ async function largerView(){
 async function preferenceRender(){
  const dom=nodes();let revision=0,rendered=0,changeDuringRender=false;
  const gate={allowed:(_s,c)=>c.occasion==='dinner',assertCurrent(token){need(token===revision,'Feedback changed');}};
- const context=vm.createContext({need,selection,checkRejectionFeedbackAsync:async()=>({token:revision}),rejectionGate:()=>gate,currentContext:()=>({occasion:'work'}),connection:{},resolveUrl:noop,
+ const context=vm.createContext({setInterval,clearInterval,need,selection,checkRejectionFeedbackAsync:async()=>({token:revision}),rejectionGate:()=>gate,currentContext:()=>({occasion:'work'}),connection:{},resolveUrl:noop,
   document:{createElement(){const n=dom.node('canvas');n.toDataURL=()=> 'data:image/jpeg,synthetic';n.getContext=()=>({drawImage:noop,fillRect:noop});return n;}},
   root:{HEWRSAtomicRenderer:{create(){return {cancel:noop,async render(){rendered++;if(changeDuringRender)revision++;return {cancelled:false};}};}}}});
  vm.runInContext(extract(application,'async function checkPreferenceFeedback(','function syncLearningFor('),context);
@@ -104,7 +104,7 @@ async function refillBatch(scenario){
   root:{HEWRSOutfitFeedback:{stable,key:s=>stable({...s,watchId:null})},HEWRSOptionSetPolicy:{target:20,inspect:()=>({})}},
   rejectionGate:()=>gate,checkRejectionFeedbackAsync:async()=>({token:'same'}),renderer:{cancel:noop},visualStylist:{cancel:noop},autoWeather:{cancel:noop},ui:{snapshot:()=>({})},
   connection:{validateSelection:s=>s,selectionFromOption:o=>({selection:o._hewrsConnected.canonical_selection}),controller:{verifyOptionSet:()=>true}},
-  tieExposure:{newId:()=> 'synthetic-exposure'},store:{assertCurrent:noop,readForGeneration:()=>({token:'history',events:[]}),saveSession(){sessions++;}},learning:{assertCurrent:noop},weather:{},
+  tieExposure:{newId:()=> 'synthetic-exposure'},store:{exclusive:async fn=>fn(),assertCurrent:noop,readForGeneration:()=>({token:'history',events:[]}),saveSession(){sessions++;}},learning:{assertCurrent:noop},weather:{},
   setBusy(value){context.busy=value;},status:noop,rejectionSummary:()=>({}),updateHome:noop,refreshHistory:noop,showPage:noop,currentContext:()=>q.context,sessionValue:noop,recordTieSuggestions(_q,rows){exposed+=rows.length;},
   async apply(s){frames++;context.current=structuredClone(s);return {ready:true};}
  });
