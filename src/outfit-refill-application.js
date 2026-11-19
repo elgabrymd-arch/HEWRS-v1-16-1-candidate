@@ -447,7 +447,7 @@ async function generate(c,extra={}){
  finally{if(token===generation){setBusy(false);displayCurrent();}}
 }
 async function submit(){if(busy)return;const token=++generation;lastAttemptRequest=null;try{await checkRejectionFeedbackAsync();if(token!==generation)return {cancelled:true};await refreshAutomaticWeather('generate');if(token!==generation)return {cancelled:true};need(root.HEWRSLocalState.date(ctx.localDate),'Enter a valid local date');syncLearningFor(currentContext());const tentative=ui.operation(mode,{...ctx,environment:{source:'not_assessed',date:ctx.localDate}});const op=tentative.kind==='manual'?tentative:ui.operation(mode,{...ctx,environment:weather.request(ctx.localDate)});if(op.kind==='manual'){options=[];optionIndex=-1;lastRequest=null;report=null;producing={kind:'manual',selection:copy(op.selection),prefs:copy(op.prefs),mode,context:copy(ctx)};$('outfit-summary').textContent='Exact manual selection; existing score-source holds do not block supported rendering.';const r=await apply(op.selection,{token,origin:'manual',keepPreferences:true,context:currentContext(),localDate:ctx.localDate});if(!r.cancelled)showPage('outfits');}else await generate(op.config,{prefs:op.prefs});}catch(e){if(token===generation)showGenerationFailure(e);}}
-function cancel(){visualStylist.cancel();autoWeather.cancel();generation++;renderer.cancel();setBusy(false);status('Pending work cancelled. Previous complete outfit retained.');if(current){try{if(current.state!=='REFERENCE'&&!rejectionGate().allowed(current,lastRequest?.context||currentContext()))rejectionSummary('Replacement cancelled. The remaining choices are retained.');else{presentFrame();displayCurrent();}}catch{$('outfit-output').hidden=true;}}}
+function cancel(){visualStylist.cancel();autoWeather.cancel();generation++;renderer.cancel();setBusy(false);status('Pending work cancelled. Previous complete outfit retained.');if(current){try{if(current.state!=='REFERENCE'&&!rejectionGate().allowed(current,currentContext()))rejectionSummary('Replacement cancelled. The remaining choices are retained.');else{presentFrame();displayCurrent();}}catch{$('outfit-output').hidden=true;}}}
 /* Preview-only rejection reconciliation. The accepted application source remains
  * untouched. Retained options stay byte-for-byte stable; only new verified rows
  * are appended, using the same generating request and capacity constraints. */
@@ -486,7 +486,7 @@ function rejectionSummary(reason=''){
  const target=root.HEWRSOptionSetPolicy.target,count=options.length;
  const message=count+' of '+target+' options available.'+(reason?' '+reason:'');
  $('outfit-summary').textContent=message;
- if(!current||current.state!=='REFERENCE'&&!rejectionGate().allowed(current,lastRequest?.context||currentContext())){
+ if(!current||current.state!=='REFERENCE'&&!rejectionGate().allowed(current,currentContext())){
   $('outfit-output').hidden=true;
   const box=$('outfit-empty');box.replaceChildren(el('p',message));box.hidden=false;
   $('outfit-empty-actions').hidden=true;
@@ -512,7 +512,12 @@ function rejectionChanged(){
   options=previous.filter(o=>gate.allowed(connection.selectionFromOption(o,lastRequest).selection,lastRequest.context));
   const removed=previous.length-options.length;
   if(removed){rejectionPosition=Math.max(0,priorIndex);const kept=new Set(options);rejectionRemoved={request:root.HEWRSOutfitFeedback.stable(lastRequest),token:gate.refresh().token,selections:previous.filter(o=>!kept.has(o)).map(o=>copy(connection.selectionFromOption(o,lastRequest).selection))};}
-  optionIndex=current?options.findIndex(o=>selectionKey(connection.selectionFromOption(o,lastRequest).selection)===selectionKey(current)):-1;
+  const selectedContext=currentContext(),listContext=root.HEWRSStyleOccasions.context(lastRequest.context);
+  const sameContext=selectedContext.occasion===listContext.occasion&&selectedContext.requiredFormality===listContext.requiredFormality;
+  // Reconciliation may retain an older generated list beside a manually
+  // restored outfit. Matching physical IDs does not transfer its ranking or
+  // occasion metadata onto that separate current selection.
+  optionIndex=origin==='engine'&&current&&currentOption&&sameContext?options.findIndex(o=>o===currentOption&&selectionKey(connection.selectionFromOption(o,lastRequest).selection)===selectionKey(current)):-1;
   if(optionIndex<0)currentOption=null;
   else currentOption=options[optionIndex];
   const reason=removed?'Rejected combinations removed; the remaining choices are retained.':'Existing choices retained. Rejection rules are current.';
@@ -844,7 +849,7 @@ $('cancel-work').onclick=cancel;$('reset-preferences').onclick=resetPreferences;
 $('view-current').onclick=viewCurrentOutfit;$('prev-option').onclick=()=>stepOption(-1).catch(e=>status(e.message,true));$('next-option').onclick=()=>stepOption(1).catch(e=>status(e.message,true));$('open-results').onclick=resultSheet;installSwipeNavigation();
 $('full-view').onclick=()=>{$('stage').classList.remove('detail');$('full-view').setAttribute('aria-pressed','true');$('detail-view').setAttribute('aria-pressed','false');};$('detail-view').onclick=()=>{$('stage').classList.add('detail');$('full-view').setAttribute('aria-pressed','false');$('detail-view').setAttribute('aria-pressed','true');};
 $('details-button').onclick=details;$('score-button').onclick=scoreDetails;$('record-wear').onclick=startLog;$('quick-log').onclick=startLog;
-$('regenerate').onclick=async()=>{if(busy||!producing)return;const p=copy(producing);ui.replace(p.prefs);ctx=copy(p.context);setMode(p.mode);updateHome();try{if(p.kind==='engine'){await refreshAutomaticWeather('regenerate');syncLearningFor(currentContext());const op=ui.operation(p.mode,{...ctx,environment:weather.request(ctx.localDate)});await generate(op.config,{prefs:op.prefs});}else{await apply(p.selection,{origin:'manual',keepPreferences:true});showPage('outfits');}}catch(e){showGenerationFailure(e);}};
+$('regenerate').onclick=async()=>{if(busy||!producing)return;const token=++generation,p=copy(producing);ui.replace(p.prefs);ctx=copy(p.context);setMode(p.mode);updateHome();try{if(p.kind==='engine'){const refreshed=await refreshAutomaticWeather('regenerate');if(token!==generation||refreshed?.status==='cancelled')return {cancelled:true};syncLearningFor(currentContext());const op=ui.operation(p.mode,{...ctx,environment:weather.request(ctx.localDate)});return await generate(op.config,{prefs:op.prefs});}else{const frame=await apply(p.selection,{token,origin:'manual',keepPreferences:true});if(token!==generation||frame?.cancelled)return {cancelled:true};showPage('outfits');return frame;}}catch(e){if(token===generation)showGenerationFailure(e);}};
 $('data-button').onclick=backup;$('open-log').onclick=logSheet;$('clear-log').onclick=confirmClear;$('favorites-button').onclick=()=>showFavorites();$('insights-button').onclick=showInsights;
 window.addEventListener('storage',e=>{if(e.key===store.key||e.key===null){generation++;renderer.cancel();setBusy(false);invalidateRecommendations('Wear data changed in another tab. Generate again to use the current history.');try{store.readForGeneration();}catch(err){status(err.message,true);}refreshHistory();}});
 window.addEventListener('storage',e=>{if(e.key===favorites.key||e.key===null){let notice='Favorites updated from another tab.';try{favorites.refresh();}catch(error){notice=error.message;}refreshFavoriteCount();if(modal?.kind==='favorites')showFavorites(notice);}});

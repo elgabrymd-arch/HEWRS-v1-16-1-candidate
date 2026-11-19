@@ -67,6 +67,44 @@ FRAME = r'''async selection => {
   shirt:model.items.find(x=>x.role==='Shirt'),tie:model.items.find(x=>x.role==='Tie')};
 }'''
 
+REVIEWED_B01_FRAME = r'''async selection => {
+ const app=HEWRSApp,panel=HEWRSReviewedIntegration,before=app.state().selection;
+ await panel.load({initialUpdate:false});
+ const settings={
+  'rd-view':'explore','rd-style':'AUTO','rd-occasion':'dinner',
+  'rd-mode':'blazer','rd-formality':'open_collar_allowed',
+  'rd-b01-context':'summer_weekend_dinner','rd-topwear':'B01',
+  'rd-pants':'PT006','rd-shirt':'DS026','rd-tie':'__NONE__',
+  'rd-shoe':'shoe-8','rd-watch-choice':'__NONE__'
+ };
+ for(const [id,value]of Object.entries(settings)){
+  const control=document.getElementById(id);control.value=value;
+  if(control.value!==value)throw Error('Missing exact reviewed choice: '+id+'='+value);
+ }
+ // A change to the real watch control also updates the panel's captured watch.
+ // Other filters are already exact, so this cannot start a broad search.
+ document.getElementById('rd-watch-choice').dispatchEvent(new Event('change',{bubbles:true}));
+ const dialog=document.getElementById('rd-dialog');if(!dialog.open)dialog.showModal();
+ const context=panel.ownerContext(),policy=HEWRSOutfitFeedback.ownerRuleCheck(selection,{context});
+ if(!policy.allowed||!app.ownerFeedback.allowed(selection,context))throw Error('B01 fixture violates its explicit owner context');
+ const search=await panel.update();
+ if(!search||search.all_possibilities.length!==1||search.counts.clothing_considered!==1||search.counts.footwear_expansions!==1)throw Error('Exact B01 search did not return exactly one supported possibility');
+ const entry=search.all_possibilities[0],rendered=await panel.render(entry.id);
+ if(rendered?.status!=='ready'||!rendered.unreviewed||entry.owner_approved!==false)throw Error('B01 preview was not an unreviewed exact native render');
+ const canvas=document.getElementById('rd-canvas'),cx=canvas.getContext('2d',{willReadFrequently:true});
+ const digest=await crypto.subtle.digest('SHA-256',cx.getImageData(0,0,canvas.width,canvas.height).data);
+ const hash=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+ const images=Array.from(document.querySelectorAll('#rd-component-cards img'));
+ await Promise.all(images.map(image=>image.decode()));
+ if(!images.length||images.some(image=>image.hidden||!image.naturalWidth||!image.naturalHeight))throw Error('B01 native component photographs did not decode');
+ const selected=panel.discovery().nativeSelection(panel.currentEntry().outfit,panel.watch());
+ return {route:'reviewed-explicit-b01-use-case',selection:selected,rendered_selection:rendered.selection,
+  context,policy,request:panel.request(),search_counts:search.counts,entry_kind:entry.kind,
+  owner_approved:entry.owner_approved,main_selection_unchanged:JSON.stringify(before)===JSON.stringify(app.state().selection),
+  status:canvas.dataset.status,width:canvas.width,height:canvas.height,rgba_sha256:hash,
+  preview_visible:!document.getElementById('rd-preview').hidden};
+}'''
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -148,6 +186,44 @@ def main():
         frames.append(dict(label=label, **frame))
         return frame
 
+    def blocked_owner_fixture(page, selection, expected_reasons, label):
+        blocked = page.evaluate('''async selection=>{
+          const before=HEWRSApp.state().selection,context={occasion:'work',requiredFormality:'any'};
+          const policy=HEWRSOutfitFeedback.ownerRuleCheck(selection,{context});
+          try{await HEWRSApp.apply(selection,{save:false,context});return {blocked:false,policy};}
+          catch(error){return {blocked:true,message:error.message,policy,
+            unchanged:JSON.stringify(before)===JSON.stringify(HEWRSApp.state().selection)};}
+        }''', selection)
+        actual_reasons = [row['id'] for row in blocked['policy']['reasons']]
+        check(label + ': invalid common fixture is blocked without changing the current outfit',
+              blocked.get('blocked') and blocked.get('unchanged') and not blocked['policy']['allowed']
+              and actual_reasons == expected_reasons, blocked)
+
+    def render_b01(page, baseline_page):
+        selected = outfit('blazer', 'DS026', 'NO_TIE', top='B01', pants='PT006')
+        frame = page.evaluate(REVIEWED_B01_FRAME, selected)
+        check('topwear/B01: exact supported preview uses the explicit summer weekend dinner context',
+              frame['selection'] == selected and frame['rendered_selection'] == selected
+              and frame['context']['occasion'] == 'dinner'
+              and frame['context']['owner_use_case'] == 'summer_weekend_dinner'
+              and frame['policy']['allowed'], frame)
+        check('topwear/B01: exact unreviewed possibility does not claim owner approval or replace the Home outfit',
+              frame['entry_kind'] == 'unreviewed_possibility' and frame['owner_approved'] is False
+              and frame['main_selection_unchanged'])
+        check('topwear/B01: complete native frame is ready in the supported reviewed route',
+              frame['preview_visible'] and frame['status'] == 'ready'
+              and (frame['width'], frame['height']) == (996, 2748))
+        if baseline_page is not None:
+            baseline = baseline_page.evaluate(REVIEWED_B01_FRAME, selected)
+            frame['baseline_rgba_sha256'] = baseline['rgba_sha256']
+            check('topwear/B01: approved native pixels equal the published baseline',
+                  baseline['selection'] == selected and baseline['rendered_selection'] == selected
+                  and baseline['rgba_sha256'] == frame['rgba_sha256'])
+            baseline_page.evaluate('HEWRSReviewedIntegration.close()')
+        page.screenshot(path=str(output / 'B01-explicit-summer-weekend-dinner.png'))
+        page.evaluate('HEWRSReviewedIntegration.close()')
+        frames.append(dict(label='topwear/B01', **frame))
+
     browser = page = baseline_context = None
     try:
         with sync_playwright() as pw:
@@ -189,7 +265,21 @@ def main():
             for top in live_roster['suits']:
                 render(page, outfit('suit', 'DS029', 'T029', top=top), 'topwear/' + top, baseline_page)
             for top in live_roster['blazers']:
-                render(page, outfit('blazer', 'DS026', 'T029', top=top), 'topwear/' + top, baseline_page)
+                if top in ('B01', 'B11'):
+                    reasons = ['OWNER-' + top + '-NO-TIE']
+                    if top == 'B01':
+                        reasons += ['OWNER-B01-NOT-WORK', 'OWNER-B01-SUMMER-CONTEXT', 'OWNER-B01-TROUSERS']
+                    blocked_owner_fixture(page, outfit('blazer', 'DS026', 'T029', top=top), reasons, 'topwear/' + top)
+                if top == 'B01':
+                    # Home has no B01 use-case selector. The existing reviewed
+                    # route exposes it and preserves the owner's exact rule.
+                    render_b01(page, baseline_page)
+                else:
+                    state = 'NO_TIE' if top == 'B11' else 'T029'
+                    render(page, outfit('blazer', 'DS026', state, top=top), 'topwear/' + top, baseline_page)
+            check('All 15 active blazer identities rendered through policy-supported routes',
+                  sorted(row['selection']['blazerId'] for row in frames if row['label'].startswith('topwear/B'))
+                  == sorted(live_roster['blazers']) and len(live_roster['blazers']) == 15)
             wider = page.evaluate('HEWRSApp.connection.assemblies.widerDS035SuitIds')
             check('Wider DS035 source coverage includes all 14 registered suits', len(wider) == 14)
             for top in wider:
@@ -257,31 +347,40 @@ def main():
                 pass
     finally:
         # Native collar crops are only presentation evidence. They never replace app assets.
-        font = ImageFont.truetype('DejaVuSans.ttf', 13)
-        headings = [(mode, state) for mode in MODES for state in ('NO_TIE', 'T029')]
-        for offset in range(0, len(shirts), 5):
-            sheet = Image.new('RGB', (1116, 60 + 240 * min(5, len(shirts) - offset)), '#e8e5df')
-            draw = ImageDraw.Draw(sheet)
-            for column, (mode, state) in enumerate(headings):
-                draw.text((12 + column * 184, 10), mode + ' / ' + state, font=font, fill='#20242a')
-            for row, shirt in enumerate(shirts[offset:offset + 5]):
-                y = 40 + row * 240
-                draw.text((12, y), shirt['id'], font=font, fill='#20242a')
+        try:
+            try:
+                font = ImageFont.truetype('DejaVuSans.ttf', 13)
+            except OSError:
+                font = ImageFont.load_default()
+            headings = [(mode, state) for mode in MODES for state in ('NO_TIE', 'T029')]
+            for offset in range(0, len(shirts), 5):
+                sheet = Image.new('RGB', (1116, 60 + 240 * min(5, len(shirts) - offset)), '#e8e5df')
+                draw = ImageDraw.Draw(sheet)
                 for column, (mode, state) in enumerate(headings):
-                    pic = pictures.get((shirt['id'], mode, state))
-                    if pic is None:
-                        draw.text((12 + column * 184, y + 100), 'NO TIE ONLY' if not shirt['thumbnails'].get('tied') and state != 'NO_TIE' else 'NOT RENDERED', font=font, fill='#20242a')
-                    else:
-                        pic = pic.copy()
-                        pic.thumbnail((176, 206), Image.Resampling.LANCZOS)
-                        sheet.paste(pic, (12 + column * 184, y + 20), pic)
-            sheet.save(output / ('native-collars-%02d.png' % (offset // 5 + 1)))
-        result['completed_at'] = datetime.now(timezone.utc).isoformat()
-        save()
-        if server:
-            server.shutdown()
-        if baseline_server:
-            baseline_server.shutdown()
+                    draw.text((12 + column * 184, 10), mode + ' / ' + state, font=font, fill='#20242a')
+                for row, shirt in enumerate(shirts[offset:offset + 5]):
+                    y = 40 + row * 240
+                    draw.text((12, y), shirt['id'], font=font, fill='#20242a')
+                    for column, (mode, state) in enumerate(headings):
+                        pic = pictures.get((shirt['id'], mode, state))
+                        if pic is None:
+                            draw.text((12 + column * 184, y + 100), 'NO TIE ONLY' if not shirt['thumbnails'].get('tied') and state != 'NO_TIE' else 'NOT RENDERED', font=font, fill='#20242a')
+                        else:
+                            pic = pic.copy()
+                            pic.thumbnail((176, 206), Image.Resampling.LANCZOS)
+                            sheet.paste(pic, (12 + column * 184, y + 20), pic)
+                sheet.save(output / ('native-collars-%02d.png' % (offset // 5 + 1)))
+        except Exception:
+            result['atlas_error'] = traceback.format_exc()
+            checks.append(dict(name='Native collar atlas generation', passed=False, detail=result['atlas_error']))
+            print(result['atlas_error'], flush=True)
+        finally:
+            result['completed_at'] = datetime.now(timezone.utc).isoformat()
+            save()
+            if server:
+                server.shutdown()
+            if baseline_server:
+                baseline_server.shutdown()
     if any(not row['passed'] for row in checks):
         raise SystemExit(1)
 

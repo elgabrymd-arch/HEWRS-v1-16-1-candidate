@@ -116,6 +116,8 @@ async function refillBatch(scenario){
   const changed=scenario==='wrong_part'?{...opts.replaceFor,state:'T047'}:{...opts.replaceFor,shirtId:'DS028'};
   return {options:[...opts.retainedOptions,row(changed)],reason:'Changed only the shirt.'};
  };
+ vm.runInContext(fs.readFileSync('src/style-occasion-policy.js','utf8'),context);
+ context.root.HEWRSStyleOccasions=context.HEWRSStyleOccasions;
  vm.runInContext(extract(application,'function rejectionChanged()','async function refillRejected(')+extract(application,'async function refillRejected(','\nfunction invalidateRecommendations('),context);
  vm.runInContext('rejectionChanged()',context);
  const operation=vm.runInContext('refillRejected({replaceFor:current,replaceParts:["shirt"]})',context);

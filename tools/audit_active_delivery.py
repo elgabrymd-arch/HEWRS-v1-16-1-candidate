@@ -3,6 +3,7 @@
 import base64
 import hashlib
 import json
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
@@ -25,7 +26,7 @@ class Resources(HTMLParser):
 
 def main():
     checks = []
-    for entrypoint in ('index.html', 'app.html'):
+    for entrypoint in ('index.html', 'app.html', 'suit-photo-review.html'):
         parser = Resources()
         parser.feed((ROOT / entrypoint).read_text())
         seen = set()
@@ -49,6 +50,15 @@ def main():
                 assert attrs.get('data-engine-integrity') == 'sha256-' + base64.b64encode(expected_digest).decode()
                 assert parse_qs(index.query).get('v') == [expected_digest.hex()[:16]]
                 checks.append({'entrypoint': entrypoint, 'resource': index.path, 'sha256': expected_digest.hex(), 'passed': True})
+    loader = 'src/reviewed-rejection-integration.js'
+    source = (ROOT / loader).read_text()
+    bindings = json.loads(re.search(r'const MODULE_DELIVERY=Object.freeze\((\{.*?\})\);', source, re.S)[1])
+    assert set(bindings) == {'feedback-candidate/reviewed/rebuild-core.js', 'feedback-candidate/reviewed/reviewed-selector.js', 'feedback-candidate/reviewed/native-reviewed-bridge.js', 'hewrs-stage93-ranking-v2.js', 'hewrs-batch10-discovery-16eeb4d0b24f21a9.js'}, 'Unexpected lazy module set'
+    for resource, binding in bindings.items():
+        digest = hashlib.sha256((ROOT / resource).read_bytes()).digest()
+        assert binding['src'] == resource + '?v=' + digest.hex()[:16], (loader, resource, 'cache key')
+        assert binding['integrity'] == 'sha256-' + base64.b64encode(digest).decode(), (loader, resource, 'integrity')
+        checks.append({'entrypoint': loader, 'resource': resource, 'sha256': digest.hex(), 'passed': True})
     assert (ROOT / 'index.html').read_bytes() == (ROOT / 'app.html').read_bytes(), 'Entrypoints differ'
     destination = ROOT / 'evidence/five_round_20261119/DELIVERY.json'
     destination.parent.mkdir(parents=True, exist_ok=True)

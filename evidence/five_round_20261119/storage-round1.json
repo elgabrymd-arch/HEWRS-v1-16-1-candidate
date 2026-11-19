@@ -1,0 +1,516 @@
+{
+  "schema": "hewrs.five-round-audit.storage.v1",
+  "round": 1,
+  "recorded_at_utc": "2026-11-19T06:44:20.468762+00:00",
+  "base_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "worktree_branch": "audit/five-round-total-20261119",
+  "owner": "tie_rejection_audit",
+  "scope": "Persistence, rejection matching and storage-dependent publication boundaries. This is one input to the whole application audit, not a claim that every application or archived rule path is independently verified.",
+  "reviewed_files": [
+    {
+      "file": "src/owner-feedback.js",
+      "classification": "active bundled source",
+      "review_depth": "full",
+      "coverage": "All event validation/derive/write/matching, static owner rules, canonical and wire aliases, historical votes, import/export/Undo.",
+      "sha256_at_report": "03668782cb16631a90e8c3d5f7e64f05ff1695af4071ae1e3da3c9428b8c7b82"
+    },
+    {
+      "file": "src/tie-feedback.js",
+      "classification": "active direct source",
+      "review_depth": "full",
+      "coverage": "Tie scope validation, key identity, immutable legacy events, combined backup, temporary/persistent relationship.",
+      "sha256_at_report": "cc5717989411da76f06b90f7dd8aad06ccec8f762b9b756c0d0ff759b2b27386"
+    },
+    {
+      "file": "src/rejection-database.js",
+      "classification": "active direct source",
+      "review_depth": "full",
+      "coverage": "IndexedDB schema, migration/index canonicalization, transaction commits, stale token publication, cross-tab sync, import/export/failure/recovery.",
+      "sha256_at_report": "8befbd68827f7b7254b75518843d97942ba4ffeacb1220f628f5173188f1676a"
+    },
+    {
+      "file": "src/outfit-rejection-core.js",
+      "classification": "active direct source",
+      "review_depth": "full",
+      "coverage": "Combined facade, temporary scopes, storage failure handling, renderer context/publication, legacy and indexed paths.",
+      "sha256_at_report": "859edc166dd95e1d42de1e0a3c62e68833461cc4aa0f5f4434dcbf96462a32dd"
+    },
+    {
+      "file": "src/local-state.js",
+      "classification": "active bundled source",
+      "review_depth": "full",
+      "coverage": "Source-locked wear/session state, validate/load/restore/export, stale tokens, confirmed wear identity, failures and concurrent writes.",
+      "sha256_at_report": "b26454671f4b728a872de38df5a8fac7baee9016dcd6dc5e9c0b2fcd5a8c1176"
+    },
+    {
+      "file": "src/favorites-state.js",
+      "classification": "active bundled source",
+      "review_depth": "full",
+      "coverage": "Exact outfit identity, validation, refresh/add/remove/import/export, revision and backing-byte guards, write failures and locks.",
+      "sha256_at_report": "4d7ae8d9d33d4d98602b2524be4a6f7f9a43ca1ae31890e87fb83e75d4bd070d"
+    },
+    {
+      "file": "src/outfit-learning.js",
+      "classification": "active bundled source",
+      "review_depth": "full",
+      "coverage": "Comparison validation, import merge, models and stored contexts, enable/Undo, source locks, reserved groups, preview binding, concurrency. Numeric policy unchanged.",
+      "sha256_at_report": "aefa43caffcdf3210251fd038ac10255569e6df6655c12f52fda059f2de9084f"
+    },
+    {
+      "file": "src/tie-exposure.js",
+      "classification": "active direct source",
+      "review_depth": "full",
+      "coverage": "Immutable per-generation keys, occasion counts, capacity/failure behavior, overlapping appends; no saved wear inferred.",
+      "sha256_at_report": "599c66045044eda5f4dc4623cf6af7daf5fd8c9c9df779272dcd26b673a3cfeb"
+    },
+    {
+      "file": "src/owner-feedback-integration.js",
+      "classification": "active bundled source",
+      "review_depth": "full",
+      "coverage": "Read/feedback initialization and matching integration.",
+      "sha256_at_report": "ba32d6d31754eb29e717a6c47b9d1acd43441e47f2bcfe0d5d5bbd1d665594ab"
+    },
+    {
+      "file": "src/preference-panel.js",
+      "classification": "active bundled source",
+      "review_depth": "full at initial Round1 review; later UI edits require Round2",
+      "coverage": "Learning review/import/Undo/queued vote call boundaries, context display and source eligibility.",
+      "sha256_at_report": "2293d4f869567c297bb5b782240767992f2ffc388e1d8010add3f331f65c043a"
+    },
+    {
+      "file": "feedback-candidate/reviewed/image-assessment-store.js",
+      "classification": "active direct source",
+      "review_depth": "full",
+      "coverage": "IndexedDB list, transactional insert and conflict check, exact-batch withdrawal and abort. Five new append tests include this source.",
+      "sha256_at_report": "28cd3b7caba3b5d3e5c70efbc34ad20125aac203ef6c5e8102252423ebfcce23"
+    },
+    {
+      "file": "hewrs-batch10-image-panel-f200023e7632fa28.js",
+      "classification": "retained frozen Standard integration; active candidate replaced during audit",
+      "review_depth": "full",
+      "coverage": "Board/source integrity, verification/import/archive, request construction and final-await export race. Original bytes unchanged.",
+      "sha256_at_report": "f200023e7632fa28ea1ef3cacc4b4974d751ae8efecf9146eeabb9ec14c7885c"
+    },
+    {
+      "file": "src/image-assessment-panel.js",
+      "classification": "new active candidate-only source",
+      "review_depth": "full",
+      "coverage": "Copied frozen source with narrow publication/context/token/download guard and busy recovery; public no-argument packet API preserved.",
+      "sha256_at_report": "28c2fad5390164480f3ad3dd901490208a9f883d2fc8166cd8af0de577df9c1e"
+    },
+    {
+      "file": "feedback-candidate/reviewed/image-assessment-panel.js",
+      "classification": "archived panel variant",
+      "review_depth": "full",
+      "coverage": "Comparison with frozen active predecessor; identified only initial ownerMatch difference. Unchanged.",
+      "sha256_at_report": "b221e9b3ea571ab667584520957dcaa58bd71996e93ca8148968c5bfec5efa27"
+    },
+    {
+      "file": "feedback-candidate/reviewed/image-assessment.js",
+      "classification": "active direct source",
+      "review_depth": "request/verification boundary only",
+      "coverage": "Awaited hashing in request; source/image/catalogue/owner-rule verification; not an independent full visual assessment audit.",
+      "sha256_at_report": "0c5d2b6ca68b7726b2b6404808d7702c8d19b05a69774be3f086f017f7ca67a2"
+    },
+    {
+      "file": "feedback-candidate/reviewed/automatic-image-client.js",
+      "classification": "active direct source",
+      "review_depth": "full",
+      "coverage": "Consent/token capture, await cancellation and feedback checks, verification/save boundary, retry packet identity; unchanged.",
+      "sha256_at_report": "1b12eb5a5c7aef7cec1b14dd057ec98318eebb20798079659ec77fef6093a7aa"
+    },
+    {
+      "file": "feedback-candidate/reviewed/automatic-image-panel.js",
+      "classification": "active direct source",
+      "review_depth": "prepare API caller and context capture boundary",
+      "coverage": "Confirmed no-argument prepareCurrent caller stays compatible; not a full independent UI review.",
+      "sha256_at_report": "43dc758765b9a69d73a9e2405d4c07d14f1d4085cc17e8824a41a9ca9c76b796"
+    },
+    {
+      "file": "src/weather-context.js",
+      "classification": "active bundled source",
+      "review_depth": "storage and transport lifecycle",
+      "coverage": "Validate/create/apply/request/freshness and transport inspected; numerical weather suitability policy not independently audited here.",
+      "sha256_at_report": "a208e5f949ba303aece442a3f361a706e0c3ef995ace3846366fa18979ffb2a9"
+    },
+    {
+      "file": "src/automatic-weather.js",
+      "classification": "active bundled source",
+      "review_depth": "full coordinator",
+      "coverage": "Storage/cancellation and coordinator lifecycle; unchanged.",
+      "sha256_at_report": "b74837e7dfb7aeec83c5dfa523cbd69e77c857c78a6bbb2dcf3457f297a5fcba"
+    },
+    {
+      "file": "src/researched-preference.js",
+      "classification": "active bundled source",
+      "review_depth": "persistence/model boundary only",
+      "coverage": "Learning model input, describeSelection and completion boundary; no complete numerical policy audit claimed.",
+      "sha256_at_report": "17c1f0be010b3e6d3d616e95066960ae8ce9a8c75fe946809bdcb3f2cffaef4d"
+    },
+    {
+      "file": "src/outfit-preference.js",
+      "classification": "active bundled source",
+      "review_depth": "boundary only",
+      "coverage": "Confirmed non-storage selection/profile boundary. No complete rule review claimed.",
+      "sha256_at_report": "673ad09c88fee05f5c202cee972dfeb64b42989bf9695760020ab25ba6a2c9cd"
+    },
+    {
+      "file": "src/outfit-refill-application.js",
+      "classification": "active candidate application; root owned",
+      "review_depth": "storage/export/import/Favorites/learning/exposure/listener callsites only",
+      "coverage": "Reviewed store API caller contracts and fresh backup/token requirements; central application full audit is separate.",
+      "sha256_at_report": "cfe9dd5ddb7f583026595d21c873664b25778d2071a06d314414358a30443727"
+    },
+    {
+      "file": "src/outfit-rejection-ui.js",
+      "classification": "active direct source; UI reviewer owned",
+      "review_depth": "backup and temporary clear boundary only",
+      "coverage": "Backup import/export and temporary clear subscription; full UI review is separate.",
+      "sha256_at_report": "d3194747c465b3c22aca7fbf5fe2222fe44539a1734ef5b6e790a69cd832dc5b"
+    },
+    {
+      "file": "src/reviewed-rejection-integration.js",
+      "classification": "active direct source",
+      "review_depth": "load/publish/context/image-install boundaries",
+      "coverage": "Owner/request context captures and currentEntry identity used by image panel; other UI paths reviewed separately.",
+      "sha256_at_report": "642e51e2a5a371662b2c0a8ec39ee2bd7ddefb24f2188d0ca5bbd7f667f5c43d"
+    },
+    {
+      "file": "feedback-candidate/reviewed/outfit-feedback.js",
+      "classification": "archived original",
+      "review_depth": "full",
+      "coverage": "Original enum readers fail closed on additive new scopes; no rewrite to old semantics.",
+      "sha256_at_report": "5439f7c68f9a3c0766463ff62ec93b91a5499f3a27c464f4cb3389838d2c150d"
+    },
+    {
+      "file": "outfit-feedback.js",
+      "classification": "archived duplicate",
+      "review_depth": "hash-verified exact duplicate",
+      "coverage": "Same bytes as reviewed archived source.",
+      "sha256_at_report": "5439f7c68f9a3c0766463ff62ec93b91a5499f3a27c464f4cb3389838d2c150d"
+    },
+    {
+      "file": "feedback-candidate/reviewed/personalized-reviewed-ranking.js",
+      "classification": "archived source variant",
+      "review_depth": "full",
+      "coverage": "Read-only archived preference/matching path; not claimed to be active current ranking source.",
+      "sha256_at_report": "729420e50ba2b99420720ecf2401c2b804c3575d2f81526682e1830266d87dea"
+    },
+    {
+      "file": "personalized-reviewed-ranking.js",
+      "classification": "archived duplicate",
+      "review_depth": "hash-verified exact duplicate",
+      "coverage": "Same bytes as reviewed archived source.",
+      "sha256_at_report": "729420e50ba2b99420720ecf2401c2b804c3575d2f81526682e1830266d87dea"
+    },
+    {
+      "file": "image-assessment-store.js",
+      "classification": "archived duplicate",
+      "review_depth": "hash-verified exact duplicate",
+      "coverage": "Same bytes as active reviewed image store.",
+      "sha256_at_report": "28cd3b7caba3b5d3e5c70efbc34ad20125aac203ef6c5e8102252423ebfcce23"
+    },
+    {
+      "file": "image-assessment-panel.js",
+      "classification": "archived duplicate",
+      "review_depth": "hash-verified exact duplicate",
+      "coverage": "Same bytes as reviewed archived image panel.",
+      "sha256_at_report": "b221e9b3ea571ab667584520957dcaa58bd71996e93ca8148968c5bfec5efa27"
+    },
+    {
+      "file": "index.html",
+      "classification": "active entrypoint; root owned",
+      "review_depth": "route inventory only",
+      "coverage": "Active candidate image panel route; integrity/build tests are root owned.",
+      "sha256_at_report": "7cb6088c324c1e41cc9468c552ef5403bbd13f956cfd83290d8aaa981de0d665"
+    },
+    {
+      "file": "stage10-integration.html",
+      "classification": "retained Standard integration",
+      "review_depth": "route inventory only",
+      "coverage": "Frozen image panel continues loading unchanged.",
+      "sha256_at_report": "e5a4e23588ffef53c8668de5afd181e87f90cb1efcbec5442a341a1cd35cceb8"
+    }
+  ],
+  "findings": [
+    {
+      "id": "STORAGE-R1-01",
+      "status": "fixed",
+      "issue": "Wear and Favorites export used cached records, omitted another tab saves, and could claim a clean backup while current storage was corrupt or unreadable.",
+      "files": [
+        "src/local-state.js",
+        "src/favorites-state.js"
+      ],
+      "repair": "Fresh validated read on export. Readable invalid bytes are returned exactly for recovery; failed reads refuse stale backup. Favorites exposes refresh() for active UI/storage events.",
+      "evidence": [
+        "storage-backups-baseline.txt",
+        "tests/five-round-storage-backups.cjs"
+      ]
+    },
+    {
+      "id": "STORAGE-R1-02",
+      "status": "fixed",
+      "issue": "A reviewed wear restore could erase unseen new events after the cached revision refreshed. Mutable/forged restore and Favorites previews were not bound to their original review.",
+      "files": [
+        "src/local-state.js",
+        "src/favorites-state.js"
+      ],
+      "repair": "Private preview identity, immutable payload binding and original raw/revision token checks. Wear consumes successful restore ticket; Favorites also validates no-op merges against backing bytes.",
+      "evidence": [
+        "storage-backups-baseline.txt",
+        "tests/five-round-storage-backups.cjs"
+      ]
+    },
+    {
+      "id": "STORAGE-R1-03",
+      "status": "fixed",
+      "issue": "Favorites duplicate save could report already saved after a peer removed it; no-op imports could accept stale durable state.",
+      "files": [
+        "src/favorites-state.js"
+      ],
+      "repair": "Recheck exact backing bytes on duplicate add and no-op merge; refuse stale confirmation.",
+      "evidence": [
+        "tests/five-round-storage-backups.cjs"
+      ]
+    },
+    {
+      "id": "STORAGE-R1-04",
+      "status": "fixed",
+      "issue": "A verified successful save after a quota failure still reported memory-only status.",
+      "files": [
+        "src/local-state.js",
+        "src/favorites-state.js"
+      ],
+      "repair": "Restore persistent status after successful setItem and read-back verification.",
+      "evidence": [
+        "storage-write-recovery-baseline.txt",
+        "tests/five-round-storage-backups.cjs"
+      ]
+    },
+    {
+      "id": "STORAGE-R1-05",
+      "status": "fixed",
+      "issue": "Preference import rejected identical records solely because their JSON object property order differed.",
+      "files": [
+        "src/outfit-learning.js"
+      ],
+      "repair": "Canonical duplicate comparison without replacing the saved record, changing its vote, or weakening true conflict checks.",
+      "evidence": [
+        "storage-learning-baseline.txt",
+        "tests/five-round-storage-learning.cjs"
+      ]
+    },
+    {
+      "id": "STORAGE-R1-06",
+      "status": "fixed",
+      "issue": "A caller could edit a learning import preview after validation to change enabled state or erase/replace existing votes. Ordinary dialog held the object privately, but public store API accepted the mutated payload.",
+      "files": [
+        "src/outfit-learning.js"
+      ],
+      "repair": "Private original-instance ticket binds copied current token and stable full preview payload; reject changes/clones/cross-instance use and consume after successful merge.",
+      "evidence": [
+        "tests/five-round-storage-learning.cjs",
+        "tests/five-round-ui-cross-review.cjs"
+      ]
+    },
+    {
+      "id": "STORAGE-R1-07",
+      "status": "fixed for active exclusive API; legacy synchronous compatibility limit remains documented",
+      "issue": "Whole-document localStorage compare/write is not atomic: two tabs could both report success while one saved Favorite/wear/learning record was lost.",
+      "files": [
+        "src/local-state.js",
+        "src/favorites-state.js",
+        "src/outfit-learning.js"
+      ],
+      "repair": "Schema-preserving exclusive(callback) with namespace-specific native Web Locks and captured raw/revision check after queue wait. Persistent lockless saves refuse explicitly; memory-only operations queue locally. Root wraps active application writes.",
+      "evidence": [
+        "storage-overlapping-writes-reproduction.json",
+        "storage-learning-overlapping-writes.json",
+        "tests/five-round-storage-locks.cjs"
+      ]
+    },
+    {
+      "id": "STORAGE-R1-08",
+      "status": "fixed in candidate-only panel",
+      "issue": "Image-review export checked feedback before final awaited packet hashing; a newly rejected or changed outfit could then be published/downloaded. Initial feedback read failure also left busy latched.",
+      "files": [
+        "src/image-assessment-panel.js"
+      ],
+      "repair": "Capture copied outfit/request/owner context/watch. Recheck after final async request, publish and actual download inside current-token guard, and always clear busy on read failure. Preserve frozen Standard panel and all image/source/import operations.",
+      "evidence": [
+        "storage-image-export-race.json",
+        "tests/five-round-storage-image-export.cjs"
+      ]
+    }
+  ],
+  "validation": {
+    "final_focused_suite": {
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/five-round-storage-backups.cjs",
+        "tests/five-round-storage-learning.cjs",
+        "tests/five-round-storage-locks.cjs",
+        "tests/five-round-storage-image-export.cjs",
+        "tests/five-round-storage-append.cjs",
+        "tests/all-rejections-core.cjs",
+        "tests/tie-exposure.cjs"
+      ],
+      "NODE_PATH": "/workspace/scratch/da9ed6c0b152/hewrs-test-deps/node_modules",
+      "exit_code": 0,
+      "counts": {
+        "tests": 94,
+        "pass": 94,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "tests": [
+        "independent all-scope oracle covers each garment role, outfit mode and occasion",
+        "legacy occasion labels and wire selections are matched without rewriting migrated bytes",
+        "accepted wire selections are normalized only for strict catalogue checks, never in the immutable record",
+        "shirt, jacket\u2013shirt and exact triple scopes require only their named garment relationship",
+        "readers without new scope support fail closed and leave both storage ledgers untouched",
+        "production apply and visible renderer use the destination occasion in both directions",
+        "visible renderer captures supplied context before awaiting and rejects feedback changes before pixels commit",
+        "all-occasion and single-occasion records remain independent under Undo and duplicate import",
+        "Undo of one overlapping scope cannot undo any other active scope",
+        "temporary exclusions use identical scopes but do not survive export, reload or clear",
+        "mixed-scope backup round-trips preserve rejection IDs, exact notes, original schemas and Undo",
+        "concurrent IndexedDB writers preserve every scope, deduplicate aliases and reject stale publication",
+        "legacy readers observe other writers and Undo immediately for every scope and temporary checks fail closed",
+        "invalid combined imports and every scoped transaction abort leave prior durable state intact",
+        "unreadable legacy namespaces and failed IndexedDB reads block checks without clearing records",
+        "historical Neither is an exact outfit/context veto; other votes and training rank cannot undo it",
+        "historical Neither recorded for all occasions remains exact, including watch, through migration and backup",
+        "static owner prohibitions and explicit approved outfits cannot bypass saved rejections",
+        "overlapping tie exposure appends preserve both successful immutable events",
+        "concurrent image assessment transactions retain both distinct successful batches",
+        "concurrent conflicting image assessments refuse the second transaction without replacing the first",
+        "concurrent identical image batches are idempotent and withdrawal is limited to the named batch",
+        "aborted image assessment append reports failure and retains all previously committed records",
+        "wear export reads the current durable record, including another tab additions",
+        "wear export preserves newly corrupt current bytes instead of claiming a clean cached backup",
+        "wear export refuses stale cached bytes when the durable read fails and recovers without writes",
+        "wear session-memory export still works and caller edits cannot change stored state",
+        "wear stale-tab writes and failed persistence never overwrite prior records or report success",
+        "wear verified write recovery reports persistent saving after a prior quota failure",
+        "favorites export reads the current durable record, including another tab additions",
+        "favorites export preserves newly corrupt current bytes instead of claiming a clean cached backup",
+        "favorites export refuses stale cached bytes when the durable read fails and recovers without writes",
+        "favorites session-memory export still works and caller edits cannot change stored state",
+        "favorites stale-tab writes and failed persistence never overwrite prior records or report success",
+        "favorites verified write recovery reports persistent saving after a prior quota failure",
+        "Favorites refresh exposes peer additions/removals and retains corrupt bytes during failed reads",
+        "Favorites duplicate-save path cannot claim an item another tab already removed is still saved",
+        "Favorites import no-op still validates that its reviewed storage snapshot is current",
+        "Favorites import stays bound to its preview after a refresh or export updates the cache",
+        "Wear restore cannot erase changes that arrived after the displayed backup preview",
+        "Wear restore rejects a stale preview after a same-tab write",
+        "Wear restore keeps the exact validated backup identity and supports explicit clearing",
+        "Import confirmations reject a payload modified after its preview",
+        "legacy image preparation retains its existing packet API for an allowed outfit",
+        "legacy real export handler downloads exactly once after its final rejection check",
+        "legacy rejection during final packet hashing refuses both publication and actual export",
+        "indexed image preparation retains its existing packet API for an allowed outfit",
+        "indexed real export handler downloads exactly once after its final rejection check",
+        "indexed rejection during final packet hashing refuses both publication and actual export",
+        "temporary skip while the final packet is being prepared blocks export without persisting it",
+        "image export captures same-ID outfit and refuses changes during final packet preparation",
+        "image export captures occasion and refuses changes during final packet preparation",
+        "image export captures anchor and refuses changes during final packet preparation",
+        "image export captures watch and refuses changes during final packet preparation",
+        "image export captures owner-use context and refuses changes during final packet preparation",
+        "image export captures entry status and refuses changes during final packet preparation",
+        "a changed rejection during board loading prevents the final exchange request entirely",
+        "a peer rejection at the queued publication boundary prevents the actual download",
+        "failed initial durable feedback read releases busy and permits a repaired-storage retry",
+        "a previously saved Work-only rejection blocks Work but permits the same allowed Dinner request",
+        "candidate panel preserves the frozen Standard resource and every image/source/import operation",
+        "Preference backup duplicate identity is independent of JSON property order and preserves original records",
+        "True preference ID/pair conflicts remain rejected without overwriting original votes",
+        "Preference import retains existing learning switch and rejects stale confirmation tokens",
+        "Preference read/export failures retain bytes and recover only after a valid read",
+        "Source locks, reserved validation groups and vote metadata remain guarded",
+        "Preference confirmation rejects mutated or forged previews without changing existing enable state or votes",
+        "Preference merge accepts the original reviewed backup once and consumes its approval ticket",
+        "wear queued tabs cannot both claim a stale write; fresh retry retains both records",
+        "wear refresh during lock wait cannot authorize the originally stale action",
+        "wear persistent writes fail explicitly without a browser lock, but reads and export work",
+        "wear memory-only mode uses a local queue without requiring browser locks",
+        "wear callback failure releases the lock without installing a phantom save",
+        "favorites queued tabs cannot both claim a stale write; fresh retry retains both records",
+        "favorites refresh during lock wait cannot authorize the originally stale action",
+        "favorites persistent writes fail explicitly without a browser lock, but reads and export work",
+        "favorites memory-only mode uses a local queue without requiring browser locks",
+        "favorites callback failure releases the lock without installing a phantom save",
+        "learning queued tabs cannot both claim a stale write; fresh retry retains both records",
+        "learning refresh during lock wait cannot authorize the originally stale action",
+        "learning persistent writes fail explicitly without a browser lock, but reads and export work",
+        "learning memory-only mode uses a local queue without requiring browser locks",
+        "learning callback failure releases the lock without installing a phantom save",
+        "Wear, Favorites and learning acquire different lock namespaces without schema changes",
+        "fresh exposure starts empty and never interprets wear or rejection records",
+        "generation replay is idempotent after reload; new lists count each displayed row",
+        "refill records only caller-supplied new rows without re-counting retained options",
+        "occasions remain independent and open-collar rows do not consume capacity",
+        "independent tabs add immutable events without overwriting each other",
+        "corrupt or unknown records fail closed for tracking and remain untouched",
+        "unavailable storage is reported without a fabricated ephemeral history",
+        "quota failure and capacity limit preserve earlier exposure",
+        "invalid selections, conflicting fields, oversize batches and mutated records are rejected",
+        "constructor accepts browser Storage directly and exposes unique injectable IDs"
+      ],
+      "evidence": "storage-round1-tests.txt"
+    },
+    "real_current_catalogue_regression": {
+      "passed": 10,
+      "failed": 0,
+      "evidence": "storage-catalogue-regression.json"
+    },
+    "independent_cross_review_and_ui_run": {
+      "passed": 44,
+      "failed": 0,
+      "note": "Contains overlapping learning/lock tests plus another agent's actual UI preference and cross-review cases; do not add to final suite as a distinct-test count."
+    },
+    "baseline_challenges": [
+      {
+        "file": "storage-backups-baseline.txt",
+        "passed": 6,
+        "failed": 12
+      },
+      {
+        "file": "storage-write-recovery-baseline.txt",
+        "passed": 0,
+        "failed": 2
+      },
+      {
+        "file": "storage-learning-baseline.txt",
+        "passed": 4,
+        "failed": 1
+      }
+    ]
+  },
+  "confirmed_no_new_defect": [
+    "Independent rejection oracle and legacy/indexed tests cover canonical/wire selections, all eight scopes, occasion aliases/all historical Neither, static owner rules, overlapping Undo, temporary exclusions, mixed imports, concurrency and failed reads without altering original event payloads.",
+    "Overlapping tie-exposure append calls with distinct generation IDs preserve both successful immutable records; different namespaces are not read or rewritten.",
+    "Image-assessment store uses serialized IndexedDB readwrite transactions. Distinct batch inserts both persist; duplicate identical imports are idempotent; same-outfit conflict aborts without replacement; transaction abort preserves earlier batches and retry succeeds.",
+    "No approval/candidate metadata predicate in the audited persistence modules contradicts the approved five shirt appearance batches. No pixels, catalogue IDs, original source scoring tables or source-provenance metadata were modified by this agent."
+  ],
+  "boundaries_and_limits": [
+    "Native Web Locks behavior is exercised here with a queue model; browser-level two-tab active UI verification is root-owned. Legacy synchronous mutation APIs and frozen old pages remain available for compatibility and do not acquire the new locks.",
+    "Rejection IndexedDB tests use fake-indexeddb; storage quota/native browser failure gates are verified separately by the parent. Same-revision out-of-band DB tampering is not claimed to be detected on every cached match.",
+    "Corrupt bytes are retained; invalid/unreadable stores block unsafe writes. This does not imply arbitrary corrupted ledgers are automatically repaired by an import.",
+    "Learning is intentionally occasion-scoped. Required-formality values remain recorded, but they do not create independent learned models. Root explicitly retained that numeric policy; characterization is in storage-learning-formality-characterization.json.",
+    "Image board rendering, underlying image content and live service behavior were not independently visually retested in this storage harness. The tested production guard/handler runs with stub image/network/DOM work and real rejection-store logic.",
+    "The canonical source catalogue regression passed; full shirt/collar provenance/visual inspection and protected-asset inventory are root-owned.",
+    "Archived variants listed here are distinguished from active entrypoint resources. No claim that all rollback snapshots or every archived module received a full independent review."
+  ],
+  "pending": {
+    "owned_source_fixes": [],
+    "round2_cross_review": [],
+    "other_owner_integration": "Root owns active app locking callsites, script routing/SRI/build outputs and browser CI."
+  },
+  "round2_followup": "evidence/five_round_20261119/storage-round2.json"
+}

@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: Queued preference vote handles rejection before the actual write
+ok 1 - Queued preference vote handles rejection before the actual write
+  ---
+  duration_ms: 15.568366
+  type: 'test'
+  ...
+# Subtest: Queued preference vote handles close before the actual write
+ok 2 - Queued preference vote handles close before the actual write
+  ---
+  duration_ms: 5.335702
+  type: 'test'
+  ...
+# Subtest: Queued preference vote handles unchanged before the actual write
+ok 3 - Queued preference vote handles unchanged before the actual write
+  ---
+  duration_ms: 3.268094
+  type: 'test'
+  ...
+# Subtest: Closing during the feedback check after acquiring the lock prevents a vote
+ok 4 - Closing during the feedback check after acquiring the lock prevents a vote
+  ---
+  duration_ms: 3.835175
+  type: 'test'
+  ...
+# Subtest: Current shirt-only comparison choices name the configuration and exact trousers
+ok 5 - Current shirt-only comparison choices name the configuration and exact trousers
+  ---
+  duration_ms: 4.81327
+  type: 'test'
+  ...
+# Subtest: Delayed comparison preflight cannot reopen after close
+ok 6 - Delayed comparison preflight cannot reopen after close
+  ---
+  duration_ms: 6.626546
+  type: 'test'
+  ...
+# Subtest: Delayed comparison preflight cannot reopen after other_panel
+ok 7 - Delayed comparison preflight cannot reopen after other_panel
+  ---
+  duration_ms: 5.993337
+  type: 'test'
+  ...
+# Subtest: Delayed preference file reading cannot reopen after close
+ok 8 - Delayed preference file reading cannot reopen after close
+  ---
+  duration_ms: 3.016417
+  type: 'test'
+  ...
+# Subtest: Delayed preference file reading cannot reopen after other_panel
+ok 9 - Delayed preference file reading cannot reopen after other_panel
+  ---
+  duration_ms: 2.038107
+  type: 'test'
+  ...
+# Subtest: Only the latest preference file selection can publish its reviewed preview
+ok 10 - Only the latest preference file selection can publish its reviewed preview
+  ---
+  duration_ms: 3.389231
+  type: 'test'
+  ...
+# Subtest: All 1024 combinations of specific reasons and generic qualifiers infer one target or require an explicit scope
+ok 11 - All 1024 combinations of specific reasons and generic qualifiers infer one target or require an explicit scope
+  ---
+  duration_ms: 4397.378234
+  type: 'test'
+  ...
+# Subtest: An explicit scope controls all ten combined reasons without losing any reason or exceeding storage limits
+ok 12 - An explicit scope controls all ten combined reasons without losing any reason or exceeding storage limits
+  ---
+  duration_ms: 47.85634
+  type: 'test'
+  ...
+# Subtest: Whole-combination checkbox clears diagnoses without overriding an earlier explicit scope
+ok 13 - Whole-combination checkbox clears diagnoses without overriding an earlier explicit scope
+  ---
+  duration_ms: 4.751617
+  type: 'test'
+  ...
+# Subtest: Click-time intent stays fixed while the first durable synchronization is pending
+ok 14 - Click-time intent stays fixed while the first durable synchronization is pending
+  ---
+  duration_ms: 8.370672
+  type: 'test'
+  ...
+# Subtest: Changing the displayed outfit or occasion during pre-save synchronization prevents the write
+ok 15 - Changing the displayed outfit or occasion during pre-save synchronization prevents the write
+  ---
+  duration_ms: 8.735253
+  type: 'test'
+  ...
+# Subtest: The manager shows accepted historical wire and canonical tie records without rewriting stored records
+ok 16 - The manager shows accepted historical wire and canonical tie records without rewriting stored records
+  ---
+  duration_ms: 89.272235
+  type: 'test'
+  ...
+# Subtest: Exact blazer and shirt-only pickers use the same approved DS026 detail as their option card
+ok 17 - Exact blazer and shirt-only pickers use the same approved DS026 detail as their option card
+  ---
+  duration_ms: 13.059567
+  type: 'test'
+  ...
+# Subtest: Every registered non-suit no-tie override is displayed under an exact blazer anchor
+ok 18 - Every registered non-suit no-tie override is displayed under an exact blazer anchor
+  ---
+  duration_ms: 25.317307
+  type: 'test'
+  ...
+# Subtest: Suit and unanchored pickers preserve the original suit detail and exact tie thumbnails
+ok 19 - Suit and unanchored pickers preserve the original suit detail and exact tie thumbnails
+  ---
+  duration_ms: 2.25846
+  type: 'test'
+  ...
+# Subtest: Photo decoration does not change a draft, exact item, choice ordering or duplicate an image
+ok 20 - Photo decoration does not change a draft, exact item, choice ordering or duplicate an image
+  ---
+  duration_ms: 2.345511
+  type: 'test'
+  ...
+# Subtest: DS002 and DS004 show their existing pinned garment descriptions in picker and option cards
+ok 21 - DS002 and DS004 show their existing pinned garment descriptions in picker and option cards
+  ---
+  duration_ms: 1.080142
+  type: 'test'
+  ...
+# Subtest: Presentation inspection preserves all garment records, source metadata and approved thumbnail descriptors
+ok 22 - Presentation inspection preserves all garment records, source metadata and approved thumbnail descriptors
+  ---
+  duration_ms: 4.776857
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11974.711228

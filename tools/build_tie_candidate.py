@@ -9,6 +9,7 @@ import argparse
 import ast
 import base64
 import hashlib
+import json
 import re
 import subprocess
 from pathlib import Path
@@ -36,6 +37,15 @@ DEPENDENCIES = [
     'src/reviewed-rejection-integration.js',
     'src/image-assessment-panel.js',
 ]
+REVIEWED_LOADER = 'src/reviewed-rejection-integration.js'
+REVIEWED_MODULES = [
+    'feedback-candidate/reviewed/rebuild-core.js',
+    'feedback-candidate/reviewed/reviewed-selector.js',
+    'feedback-candidate/reviewed/native-reviewed-bridge.js',
+    'hewrs-stage93-ranking-v2.js',
+    'hewrs-batch10-discovery-16eeb4d0b24f21a9.js',
+]
+UTILITIES = ['suit-photo-review.html']
 
 
 def read(path, ref=None):
@@ -65,6 +75,20 @@ def assemble(ref=None):
     return code
 
 
+def reviewed_delivery():
+    bindings = {}
+    for path in REVIEWED_MODULES:
+        digest = hashlib.sha256((ROOT / path).read_bytes()).digest()
+        bindings[path] = {'src': path + '?v=' + digest.hex()[:16],
+                          'integrity': 'sha256-' + base64.b64encode(digest).decode()}
+    current = read(REVIEWED_LOADER)
+    replacement = '/* BEGIN GENERATED REVIEWED MODULE DELIVERY */\nconst MODULE_DELIVERY=Object.freeze(' + json.dumps(bindings, indent=2) + ');\n/* END GENERATED REVIEWED MODULE DELIVERY */'
+    updated, count = re.subn(r'/\* BEGIN GENERATED REVIEWED MODULE DELIVERY \*/.*?/\* END GENERATED REVIEWED MODULE DELIVERY \*/', replacement, current, flags=re.S)
+    if count != 1:
+        raise ValueError('Expected one reviewed module delivery manifest.')
+    return current, updated
+
+
 def entrypoint(path, digest):
     html = read(path)
     scripts = re.findall(r'<script\b[^>]*\bsrc="([^"]+)"[^>]*>', html)
@@ -80,6 +104,10 @@ def entrypoint(path, digest):
     updated, count = re.subn(pattern, lambda m: m[1] + digest + m[2], html)
     if count != 1:
         raise ValueError(path + ': expected one preview runtime script with SRI.')
+    return html, pin_resources(updated, digest)
+
+
+def pin_resources(html, digest):
     # Every separately loaded script/style is part of the same delivery. Pin
     # both integrity and URL so an updated picker or store cannot be paired with
     # a browser-cached older version after an otherwise valid runtime update.
@@ -106,8 +134,7 @@ def entrypoint(path, digest):
             tag = tag[:lazy.start(1)] + index + '?v=' + index_digest.hex()[:16] + tag[lazy.end(1):]
             tag = re.sub(r'\bdata-engine-integrity="[^"]*"', 'data-engine-integrity="sha256-' + base64.b64encode(index_digest).decode() + '"', tag)
         return tag
-    updated = re.sub(r'<script\b[^>]*\bsrc="[^"]+"[^>]*>|<link\b(?=[^>]*\brel="stylesheet")[^>]*\bhref="[^"]+"[^>]*>', pin, updated)
-    return html, updated
+    return re.sub(r'<script\b[^>]*\bsrc="[^"]+"[^>]*>|<link\b(?=[^>]*\brel="stylesheet")[^>]*\bhref="[^"]+"[^>]*>', pin, html)
 
 
 def main():
@@ -122,16 +149,22 @@ def main():
         if hashlib.sha256(base).hexdigest() != BASE_SHA256 or base != read(RUNTIME, BASE).encode():
             raise ValueError('Pinned base candidate does not reproduce exactly.')
         print('PASS: pinned rejection candidate reproduces byte-for-byte.')
+    delivery, pinned_delivery = reviewed_delivery()
+    if args.write:
+        (ROOT / REVIEWED_LOADER).write_text(pinned_delivery)
+    elif delivery != pinned_delivery:
+        raise ValueError('Reviewed lazy module delivery is stale. Run tools/build_tie_candidate.py --write.')
     code = assemble()
     digest = 'sha256-' + base64.b64encode(hashlib.sha256(code.encode()).digest()).decode()
     pages = {path: entrypoint(path, digest) for path in ('index.html', 'app.html')}
     if pages['index.html'][0] != pages['app.html'][0]:
         raise ValueError('Candidate index.html and app.html differ.')
+    pages.update({path: (read(path), pin_resources(read(path), digest)) for path in UTILITIES})
     if args.write:
         (ROOT / RUNTIME).write_text(code)
         for path, (_, updated) in pages.items():
             (ROOT / path).write_text(updated)
-        print('WROTE: current runtime and both candidate resource/SRI bindings; nothing published.')
+        print('WROTE: current runtime, candidate and utility resource/SRI bindings, and lazy reviewed delivery; nothing published.')
     else:
         if read(RUNTIME) != code:
             raise ValueError('Candidate runtime is stale. Run tools/build_tie_candidate.py --write.')

@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: Preference backup duplicate identity is independent of JSON property order and preserves original records
+not ok 1 - Preference backup duplicate identity is independent of JSON property order and preserves original records
+  ---
+  duration_ms: 5.016576
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-learning.cjs:12:1'
+  failureType: 'testCodeFailure'
+  error: 'Conflicting preference ID or pair; no records were replaced'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    need (src/outfit-learning.js:8:32)
+    Object.previewImport (src/outfit-learning.js:121:161)
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-learning.cjs:14:25)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: True preference ID/pair conflicts remain rejected without overwriting original votes
+ok 2 - True preference ID/pair conflicts remain rejected without overwriting original votes
+  ---
+  duration_ms: 7.966154
+  type: 'test'
+  ...
+# Subtest: Preference import retains existing learning switch and rejects stale confirmation tokens
+ok 3 - Preference import retains existing learning switch and rejects stale confirmation tokens
+  ---
+  duration_ms: 1.253609
+  type: 'test'
+  ...
+# Subtest: Preference read/export failures retain bytes and recover only after a valid read
+ok 4 - Preference read/export failures retain bytes and recover only after a valid read
+  ---
+  duration_ms: 4.219275
+  type: 'test'
+  ...
+# Subtest: Source locks, reserved validation groups and vote metadata remain guarded
+ok 5 - Source locks, reserved validation groups and vote metadata remain guarded
+  ---
+  duration_ms: 1.458376
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 290.722994

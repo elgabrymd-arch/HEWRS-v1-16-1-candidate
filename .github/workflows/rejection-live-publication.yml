@@ -81,3 +81,35 @@ jobs:
           path: evidence/all_rejections/
           if-no-files-found: error
           retention-days: 30
+
+  audit-live-photos-and-state:
+    needs: verify-live
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
+          path: baseline
+      - name: Install matching browser and image audit drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow
+      - name: Verify published shirt photos and collars against the original baseline
+        run: python tests/five-round-photos-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --baseline-root baseline --browser '${{ matrix.browser }}'
+      - name: Verify published concurrent saves and cancellation
+        run: python tests/five-round-state-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}'
+      - name: Preserve live photo and state evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_LIVE_TOTAL_${{ matrix.browser }}
+          path: evidence/five_round_20261119/browser/
+          if-no-files-found: error
+          retention-days: 30

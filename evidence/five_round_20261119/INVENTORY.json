@@ -1,88 +1,98 @@
 {
   "schema": "hewrs.product-code-inventory.v1",
-  "commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
-  "tracked_file_count": 3853,
-  "code_file_count": 717,
+  "commit": "998f4bc42b6b7064d60730e7526d034e3a17e8d4",
+  "tracked_file_count": 3926,
+  "code_file_count": 750,
   "role_counts": {
-    "automation_workflow": 13,
+    "automation_workflow": 14,
     "historical_snapshot_or_evidence": 230,
-    "indirect_dependency_or_inactive_source_to_review": 63,
+    "retained_superseded_candidate_module": 13,
     "active_entrypoint": 2,
-    "alternate_or_historical_entrypoint_to_review": 7,
-    "build_or_release_tool": 88,
-    "active_application_source_or_data": 134,
+    "retained_build_template": 1,
+    "build_or_release_tool": 94,
+    "retained_duplicate_of_current_module": 9,
+    "active_application_source_or_data": 141,
+    "retained_alternate_application_entrypoint": 3,
+    "retained_original_feedback_baseline": 2,
+    "retained_alternate_entrypoint_module": 4,
+    "retained_historical_runtime": 16,
     "active_runtime_bundle": 1,
-    "test_or_test_helper": 179
+    "frozen_standard_build_source": 2,
+    "retained_baseline_integration_entrypoint": 1,
+    "retained_standalone_baseline_entrypoint": 1,
+    "active_utility_entrypoint": 1,
+    "test_or_test_helper": 203,
+    "retained_vendor_reference_or_baseline": 12
   },
   "entrypoints": {
     "index.html": {
-      "sha256": "7a335ca4859afe5a49aa54880a523f3ea9395c11b8245bb22018761de24f19e1",
+      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
       "scripts": [
         "src/runtime-loader.js?v=0df2348364570098",
         "data/inputs.js?v=d4060df8ec8f400f",
-        "src/tie-exposure.js",
+        "src/tie-exposure.js?v=599c66045044eda5",
         "src/tie-feedback.js?v=cc5717989411da76",
         "src/rejection-database.js?v=8befbd68827f7b72",
         "src/outfit-rejection-core.js?v=859edc166dd95e1d",
-        "runtime/outfit-refill-preview.js?v=ee671104141f6c74",
-        "src/outfit-rejection-ui.js?v=9c1fccab9514e19d",
-        "data/option-card-thumbnails.js",
-        "data/blazer-picker-images.js",
-        "data/suit-picker-images.js",
-        "src/blazer-picker-preview.js",
-        "src/photo-picker-integration.js",
-        "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf2",
-        "hewrs-pipeline-08c53932a2495e05.js",
-        "src/reviewed-rejection-integration.js?v=642e51e2a5a37166",
-        "feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b",
-        "feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3",
-        "hewrs-batch10-image-panel-f200023e7632fa28.js",
-        "feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7a",
-        "feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9"
+        "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541",
+        "src/outfit-rejection-ui.js?v=d3194747c465b3c2",
+        "data/option-card-thumbnails.js?v=d5d77a62c04c8b8e",
+        "data/blazer-picker-images.js?v=c0178b39872881e6",
+        "data/suit-picker-images.js?v=a469033d18a101e1",
+        "src/blazer-picker-preview.js?v=fc2cf20e9beb9e5a",
+        "src/photo-picker-integration.js?v=179f29d38c8a7dbb",
+        "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf277a4",
+        "hewrs-pipeline-08c53932a2495e05.js?v=08c53932a2495e05",
+        "src/reviewed-rejection-integration.js?v=e598414dca714ddf",
+        "feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b7726",
+        "feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3b5d3",
+        "src/image-assessment-panel.js?v=28c2fad539016448",
+        "feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7aef7c",
+        "feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9a69d"
       ],
       "styles": [
         "src/application.css?v=f45ceea1448218fb",
-        "feedback-candidate/feedback.css",
-        "feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67",
-        "src/blazer-picker-preview.css",
-        "src/shirt-picker-preview.css",
-        "src/tie-picker-preview.css",
-        "src/outfit-rejection.css"
+        "feedback-candidate/feedback.css?v=fdc4db1521184cd7",
+        "feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67254d",
+        "src/blazer-picker-preview.css?v=217444efd93f4bf0",
+        "src/shirt-picker-preview.css?v=84ab53241aeb5e60",
+        "src/tie-picker-preview.css?v=930c4967b877a782",
+        "src/outfit-rejection.css?v=c239153e8ac84032"
       ]
     },
     "app.html": {
-      "sha256": "7a335ca4859afe5a49aa54880a523f3ea9395c11b8245bb22018761de24f19e1",
+      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
       "scripts": [
         "src/runtime-loader.js?v=0df2348364570098",
         "data/inputs.js?v=d4060df8ec8f400f",
-        "src/tie-exposure.js",
+        "src/tie-exposure.js?v=599c66045044eda5",
         "src/tie-feedback.js?v=cc5717989411da76",
         "src/rejection-database.js?v=8befbd68827f7b72",
         "src/outfit-rejection-core.js?v=859edc166dd95e1d",
-        "runtime/outfit-refill-preview.js?v=ee671104141f6c74",
-        "src/outfit-rejection-ui.js?v=9c1fccab9514e19d",
-        "data/option-card-thumbnails.js",
-        "data/blazer-picker-images.js",
-        "data/suit-picker-images.js",
-        "src/blazer-picker-preview.js",
-        "src/photo-picker-integration.js",
-        "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf2",
-        "hewrs-pipeline-08c53932a2495e05.js",
-        "src/reviewed-rejection-integration.js?v=642e51e2a5a37166",
-        "feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b",
-        "feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3",
-        "hewrs-batch10-image-panel-f200023e7632fa28.js",
-        "feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7a",
-        "feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9"
+        "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541",
+        "src/outfit-rejection-ui.js?v=d3194747c465b3c2",
+        "data/option-card-thumbnails.js?v=d5d77a62c04c8b8e",
+        "data/blazer-picker-images.js?v=c0178b39872881e6",
+        "data/suit-picker-images.js?v=a469033d18a101e1",
+        "src/blazer-picker-preview.js?v=fc2cf20e9beb9e5a",
+        "src/photo-picker-integration.js?v=179f29d38c8a7dbb",
+        "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf277a4",
+        "hewrs-pipeline-08c53932a2495e05.js?v=08c53932a2495e05",
+        "src/reviewed-rejection-integration.js?v=e598414dca714ddf",
+        "feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b7726",
+        "feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3b5d3",
+        "src/image-assessment-panel.js?v=28c2fad539016448",
+        "feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7aef7c",
+        "feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9a69d"
       ],
       "styles": [
         "src/application.css?v=f45ceea1448218fb",
-        "feedback-candidate/feedback.css",
-        "feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67",
-        "src/blazer-picker-preview.css",
-        "src/shirt-picker-preview.css",
-        "src/tie-picker-preview.css",
-        "src/outfit-rejection.css"
+        "feedback-candidate/feedback.css?v=fdc4db1521184cd7",
+        "feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67254d",
+        "src/blazer-picker-preview.css?v=217444efd93f4bf0",
+        "src/shirt-picker-preview.css?v=84ab53241aeb5e60",
+        "src/tie-picker-preview.css?v=930c4967b877a782",
+        "src/outfit-rejection.css?v=c239153e8ac84032"
       ]
     }
   },
@@ -119,6 +129,7 @@
     "src/controller.js",
     "vendor/watch-classification.js",
     "src/canonical-bindings-browser.js",
+    "src/render-image-loader.js",
     "vendor/active50-renderer.js",
     "data/approved-suits.js",
     "src/suit-resolver97-browser.js",
@@ -195,14 +206,984 @@
     "src/preference-panel.js",
     "src/outfit-refill-application.js"
   ],
+  "reachable_utilities": {
+    "suit-photo-review.html": {
+      "sha256": "59b17a07dccdd8d8fd92c1ee002f0aea4cbd4e6c7afb0a4820fcba898658b056",
+      "scripts": [
+        "data/suit-picker-images.js?v=a469033d18a101e1",
+        "src/suit-photo-review.js?v=808fcc367bcd6599"
+      ],
+      "styles": [
+        "src/suit-photo-review.css?v=5f06a9da5c75275c"
+      ],
+      "linked_from": "src/blazer-picker-preview.js"
+    }
+  },
+  "reachability_edges": [
+    {
+      "from": "index.html",
+      "to": "src/runtime-loader.js",
+      "kind": "script",
+      "url": "src/runtime-loader.js?v=0df2348364570098"
+    },
+    {
+      "from": "index.html",
+      "to": "data/inputs.js",
+      "kind": "script",
+      "url": "data/inputs.js?v=d4060df8ec8f400f"
+    },
+    {
+      "from": "index.html",
+      "to": "src/tie-exposure.js",
+      "kind": "script",
+      "url": "src/tie-exposure.js?v=599c66045044eda5"
+    },
+    {
+      "from": "index.html",
+      "to": "src/tie-feedback.js",
+      "kind": "script",
+      "url": "src/tie-feedback.js?v=cc5717989411da76"
+    },
+    {
+      "from": "index.html",
+      "to": "src/rejection-database.js",
+      "kind": "script",
+      "url": "src/rejection-database.js?v=8befbd68827f7b72"
+    },
+    {
+      "from": "index.html",
+      "to": "src/outfit-rejection-core.js",
+      "kind": "script",
+      "url": "src/outfit-rejection-core.js?v=859edc166dd95e1d"
+    },
+    {
+      "from": "index.html",
+      "to": "runtime/outfit-refill-preview.js",
+      "kind": "script",
+      "url": "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541"
+    },
+    {
+      "from": "index.html",
+      "to": "src/outfit-rejection-ui.js",
+      "kind": "script",
+      "url": "src/outfit-rejection-ui.js?v=d3194747c465b3c2"
+    },
+    {
+      "from": "index.html",
+      "to": "data/option-card-thumbnails.js",
+      "kind": "script",
+      "url": "data/option-card-thumbnails.js?v=d5d77a62c04c8b8e"
+    },
+    {
+      "from": "index.html",
+      "to": "data/blazer-picker-images.js",
+      "kind": "script",
+      "url": "data/blazer-picker-images.js?v=c0178b39872881e6"
+    },
+    {
+      "from": "index.html",
+      "to": "data/suit-picker-images.js",
+      "kind": "script",
+      "url": "data/suit-picker-images.js?v=a469033d18a101e1"
+    },
+    {
+      "from": "index.html",
+      "to": "src/blazer-picker-preview.js",
+      "kind": "script",
+      "url": "src/blazer-picker-preview.js?v=fc2cf20e9beb9e5a"
+    },
+    {
+      "from": "index.html",
+      "to": "src/photo-picker-integration.js",
+      "kind": "script",
+      "url": "src/photo-picker-integration.js?v=179f29d38c8a7dbb"
+    },
+    {
+      "from": "index.html",
+      "to": "feedback-candidate/reviewed/rebuild-core.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf277a4"
+    },
+    {
+      "from": "index.html",
+      "to": "hewrs-pipeline-08c53932a2495e05.js",
+      "kind": "script",
+      "url": "hewrs-pipeline-08c53932a2495e05.js?v=08c53932a2495e05"
+    },
+    {
+      "from": "index.html",
+      "to": "src/reviewed-rejection-integration.js",
+      "kind": "script",
+      "url": "src/reviewed-rejection-integration.js?v=e598414dca714ddf"
+    },
+    {
+      "from": "index.html",
+      "to": "feedback-candidate/reviewed/image-assessment.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b7726"
+    },
+    {
+      "from": "index.html",
+      "to": "feedback-candidate/reviewed/image-assessment-store.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3b5d3"
+    },
+    {
+      "from": "index.html",
+      "to": "src/image-assessment-panel.js",
+      "kind": "script",
+      "url": "src/image-assessment-panel.js?v=28c2fad539016448"
+    },
+    {
+      "from": "index.html",
+      "to": "feedback-candidate/reviewed/automatic-image-client.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7aef7c"
+    },
+    {
+      "from": "index.html",
+      "to": "feedback-candidate/reviewed/automatic-image-panel.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9a69d"
+    },
+    {
+      "from": "index.html",
+      "to": "src/application.css",
+      "kind": "stylesheet",
+      "url": "src/application.css?v=f45ceea1448218fb"
+    },
+    {
+      "from": "index.html",
+      "to": "feedback-candidate/feedback.css",
+      "kind": "stylesheet",
+      "url": "feedback-candidate/feedback.css?v=fdc4db1521184cd7"
+    },
+    {
+      "from": "index.html",
+      "to": "feedback-candidate/reviewed/native-reviewed-panel.css",
+      "kind": "stylesheet",
+      "url": "feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67254d"
+    },
+    {
+      "from": "index.html",
+      "to": "src/blazer-picker-preview.css",
+      "kind": "stylesheet",
+      "url": "src/blazer-picker-preview.css?v=217444efd93f4bf0"
+    },
+    {
+      "from": "index.html",
+      "to": "src/shirt-picker-preview.css",
+      "kind": "stylesheet",
+      "url": "src/shirt-picker-preview.css?v=84ab53241aeb5e60"
+    },
+    {
+      "from": "index.html",
+      "to": "src/tie-picker-preview.css",
+      "kind": "stylesheet",
+      "url": "src/tie-picker-preview.css?v=930c4967b877a782"
+    },
+    {
+      "from": "index.html",
+      "to": "src/outfit-rejection.css",
+      "kind": "stylesheet",
+      "url": "src/outfit-rejection.css?v=c239153e8ac84032"
+    },
+    {
+      "from": "app.html",
+      "to": "src/runtime-loader.js",
+      "kind": "script",
+      "url": "src/runtime-loader.js?v=0df2348364570098"
+    },
+    {
+      "from": "app.html",
+      "to": "data/inputs.js",
+      "kind": "script",
+      "url": "data/inputs.js?v=d4060df8ec8f400f"
+    },
+    {
+      "from": "app.html",
+      "to": "src/tie-exposure.js",
+      "kind": "script",
+      "url": "src/tie-exposure.js?v=599c66045044eda5"
+    },
+    {
+      "from": "app.html",
+      "to": "src/tie-feedback.js",
+      "kind": "script",
+      "url": "src/tie-feedback.js?v=cc5717989411da76"
+    },
+    {
+      "from": "app.html",
+      "to": "src/rejection-database.js",
+      "kind": "script",
+      "url": "src/rejection-database.js?v=8befbd68827f7b72"
+    },
+    {
+      "from": "app.html",
+      "to": "src/outfit-rejection-core.js",
+      "kind": "script",
+      "url": "src/outfit-rejection-core.js?v=859edc166dd95e1d"
+    },
+    {
+      "from": "app.html",
+      "to": "runtime/outfit-refill-preview.js",
+      "kind": "script",
+      "url": "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541"
+    },
+    {
+      "from": "app.html",
+      "to": "src/outfit-rejection-ui.js",
+      "kind": "script",
+      "url": "src/outfit-rejection-ui.js?v=d3194747c465b3c2"
+    },
+    {
+      "from": "app.html",
+      "to": "data/option-card-thumbnails.js",
+      "kind": "script",
+      "url": "data/option-card-thumbnails.js?v=d5d77a62c04c8b8e"
+    },
+    {
+      "from": "app.html",
+      "to": "data/blazer-picker-images.js",
+      "kind": "script",
+      "url": "data/blazer-picker-images.js?v=c0178b39872881e6"
+    },
+    {
+      "from": "app.html",
+      "to": "data/suit-picker-images.js",
+      "kind": "script",
+      "url": "data/suit-picker-images.js?v=a469033d18a101e1"
+    },
+    {
+      "from": "app.html",
+      "to": "src/blazer-picker-preview.js",
+      "kind": "script",
+      "url": "src/blazer-picker-preview.js?v=fc2cf20e9beb9e5a"
+    },
+    {
+      "from": "app.html",
+      "to": "src/photo-picker-integration.js",
+      "kind": "script",
+      "url": "src/photo-picker-integration.js?v=179f29d38c8a7dbb"
+    },
+    {
+      "from": "app.html",
+      "to": "feedback-candidate/reviewed/rebuild-core.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/rebuild-core.js?v=b2ce0aa56cf277a4"
+    },
+    {
+      "from": "app.html",
+      "to": "hewrs-pipeline-08c53932a2495e05.js",
+      "kind": "script",
+      "url": "hewrs-pipeline-08c53932a2495e05.js?v=08c53932a2495e05"
+    },
+    {
+      "from": "app.html",
+      "to": "src/reviewed-rejection-integration.js",
+      "kind": "script",
+      "url": "src/reviewed-rejection-integration.js?v=e598414dca714ddf"
+    },
+    {
+      "from": "app.html",
+      "to": "feedback-candidate/reviewed/image-assessment.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/image-assessment.js?v=0c5d2b6ca68b7726"
+    },
+    {
+      "from": "app.html",
+      "to": "feedback-candidate/reviewed/image-assessment-store.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/image-assessment-store.js?v=28cd3b7caba3b5d3"
+    },
+    {
+      "from": "app.html",
+      "to": "src/image-assessment-panel.js",
+      "kind": "script",
+      "url": "src/image-assessment-panel.js?v=28c2fad539016448"
+    },
+    {
+      "from": "app.html",
+      "to": "feedback-candidate/reviewed/automatic-image-client.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/automatic-image-client.js?v=1b12eb5a5c7aef7c"
+    },
+    {
+      "from": "app.html",
+      "to": "feedback-candidate/reviewed/automatic-image-panel.js",
+      "kind": "script",
+      "url": "feedback-candidate/reviewed/automatic-image-panel.js?v=43dc758765b9a69d"
+    },
+    {
+      "from": "app.html",
+      "to": "src/application.css",
+      "kind": "stylesheet",
+      "url": "src/application.css?v=f45ceea1448218fb"
+    },
+    {
+      "from": "app.html",
+      "to": "feedback-candidate/feedback.css",
+      "kind": "stylesheet",
+      "url": "feedback-candidate/feedback.css?v=fdc4db1521184cd7"
+    },
+    {
+      "from": "app.html",
+      "to": "feedback-candidate/reviewed/native-reviewed-panel.css",
+      "kind": "stylesheet",
+      "url": "feedback-candidate/reviewed/native-reviewed-panel.css?v=a50f347fbe67254d"
+    },
+    {
+      "from": "app.html",
+      "to": "src/blazer-picker-preview.css",
+      "kind": "stylesheet",
+      "url": "src/blazer-picker-preview.css?v=217444efd93f4bf0"
+    },
+    {
+      "from": "app.html",
+      "to": "src/shirt-picker-preview.css",
+      "kind": "stylesheet",
+      "url": "src/shirt-picker-preview.css?v=84ab53241aeb5e60"
+    },
+    {
+      "from": "app.html",
+      "to": "src/tie-picker-preview.css",
+      "kind": "stylesheet",
+      "url": "src/tie-picker-preview.css?v=930c4967b877a782"
+    },
+    {
+      "from": "app.html",
+      "to": "src/outfit-rejection.css",
+      "kind": "stylesheet",
+      "url": "src/outfit-rejection.css?v=c239153e8ac84032"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/owner-feedback.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/style-occasion-policy.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/owner-source-corrections.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/source-corrections.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-photo-corrections.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-photo-corrections.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch1.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch1.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch2.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch2.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch3.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch3.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch4.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch4.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch5.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch5.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch6.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch6.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch7.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch7.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shoe-reference-batch8.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shoe-reference-batch8.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/final-shoe-bindings.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/final-shoe-bindings.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "vendor/hewrs-logic.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "vendor/approved-scores.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "vendor/ensemble-completion.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "vendor/release-guards.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "vendor/request-contract.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/controller.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "vendor/watch-classification.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/canonical-bindings-browser.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/render-image-loader.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "vendor/active50-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/approved-suits.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/suit-resolver97-browser.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/approved-suit-sources.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/suit-assembly.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/ds035-coverage.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/ds035-edge.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/suit-assemblies.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/additional-blazers.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/additional-blazers.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shirt-source-recovery.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-source-recovery.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shirt-reconstruction-batch1.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-reconstruction-batch1.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shirt-reconstruction-batch2.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-reconstruction-batch2.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shirt-reconstruction-batch3.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-reconstruction-batch3.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shirt-reconstruction-batch4.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-reconstruction-batch4.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shirt-reconstruction-batch5.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-reconstruction-batch5.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/connection.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/blazer-connection.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/trouser-profiles.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/trouser-profiles.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/batch10.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/batch10-contract.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/blazer-connection.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/shirt-only.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-only-connection.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/non-suit-sources.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/non-suit-sources.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/ds023-cleanup.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/ds023-cleanup-connection.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/ds023-edges.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/ds023-edges-connection.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/ds035-coverage-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/ds035-edge-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/atomic-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/blazer-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/b01-b02-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/shirt-only-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/batch10-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/mixed-renderer.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/local-state.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/favorites-state.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/rotation-insights.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/legacy-accessories.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/weather-context.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/automatic-weather.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/option-set-policy.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/outfit-preference.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/generation-diagnostics.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/outfit-refill-engine.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/stylist-library.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/outfit-learning.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/preference-pilot.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/preference-followup.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/researched-preference.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/hybrid-stylist.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/owner-feedback-integration.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/stylist-service-config.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/visual-stylist-client.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/facelift-state.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/source-aware-pickers.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/automatic-preferences.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/sheet-layout.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/tie-fidelity.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/tie-fidelity.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "data/option-card-thumbnails.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/final-shoe-thumbnails.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/option-cards.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/preference-panel.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "runtime/outfit-refill-preview.js",
+      "to": "src/outfit-refill-application.js",
+      "kind": "bundled_source"
+    },
+    {
+      "from": "src/runtime-loader.js",
+      "to": "data/option-index.js",
+      "kind": "lazy_script",
+      "binding": "index.html/app.html data-engine-index and data-engine-integrity"
+    },
+    {
+      "from": "src/reviewed-rejection-integration.js",
+      "to": "feedback-candidate/reviewed/rebuild-core.js",
+      "kind": "lazy_script",
+      "function": "load"
+    },
+    {
+      "from": "src/reviewed-rejection-integration.js",
+      "to": "feedback-candidate/reviewed/reviewed-selector.js",
+      "kind": "lazy_script",
+      "function": "load"
+    },
+    {
+      "from": "src/reviewed-rejection-integration.js",
+      "to": "feedback-candidate/reviewed/native-reviewed-bridge.js",
+      "kind": "lazy_script",
+      "function": "load"
+    },
+    {
+      "from": "src/reviewed-rejection-integration.js",
+      "to": "hewrs-stage93-ranking-v2.js",
+      "kind": "lazy_script",
+      "function": "load"
+    },
+    {
+      "from": "src/reviewed-rejection-integration.js",
+      "to": "hewrs-batch10-discovery-16eeb4d0b24f21a9.js",
+      "kind": "lazy_script",
+      "function": "ensureDiscovery"
+    },
+    {
+      "from": "src/blazer-picker-preview.js",
+      "to": "suit-photo-review.html",
+      "kind": "utility_navigation",
+      "condition": "Suit picker with registered S02/S13 corrected-avatar previews"
+    },
+    {
+      "from": "suit-photo-review.html",
+      "to": "data/suit-picker-images.js",
+      "kind": "script",
+      "url": "data/suit-picker-images.js?v=a469033d18a101e1"
+    },
+    {
+      "from": "suit-photo-review.html",
+      "to": "src/suit-photo-review.js",
+      "kind": "script",
+      "url": "src/suit-photo-review.js?v=808fcc367bcd6599"
+    },
+    {
+      "from": "suit-photo-review.html",
+      "to": "src/suit-photo-review.css",
+      "kind": "stylesheet",
+      "url": "src/suit-photo-review.css?v=5f06a9da5c75275c"
+    },
+    {
+      "from": "suit-photo-review.html",
+      "to": "index.html",
+      "kind": "return_navigation"
+    }
+  ],
+  "lineage_review": {
+    "path": "evidence/five_round_20261119/ui-round4-reachability.json",
+    "sha256": "dc1294e665dec48e6738b09a0623eebbb5239b2092c7593c2b9c5effd00f89b4",
+    "resolved_retained_files": 64,
+    "scope": "Current browser reachability; retained direct URLs and CommonJS tools remain possible."
+  },
   "missing_active_files": [],
   "files": [
     {
       "path": ".github/workflows/all-rejections-audit.yml",
       "role": "automation_workflow",
-      "bytes": 5672,
+      "bytes": 5712,
       "lines": 136,
-      "sha256": "727421bd93433ed743d347a21fb7f1765d6bbfce611cb598ba31733c7b0b9a77",
+      "sha256": "8d9d6aa079f1ba4f5e69a6130a9b29d790ffeabe32cf74adcd192fd26953fee0",
+      "python_syntax_error": null
+    },
+    {
+      "path": ".github/workflows/five-round-total-audit.yml",
+      "role": "automation_workflow",
+      "bytes": 6112,
+      "lines": 143,
+      "sha256": "8dca16c61727027f86699b7cd5b8da73464e3f9e84316934e45b5f06f021c7fd",
       "python_syntax_error": null
     },
     {
@@ -224,9 +1205,9 @@
     {
       "path": ".github/workflows/rejection-live-publication.yml",
       "role": "automation_workflow",
-      "bytes": 3156,
-      "lines": 83,
-      "sha256": "b4ee1a268e31da8cae60c9318558307de80b9372738a33d0c64f1eab47b6212d",
+      "bytes": 4568,
+      "lines": 115,
+      "sha256": "eb4ba4607d58d8558c44a205e3112a386710ca030fb2fe743667b842ed98d56c",
       "python_syntax_error": null
     },
     {
@@ -487,7 +1468,7 @@
     },
     {
       "path": "app-d631599a6467e57cb0dc.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 1755698,
       "lines": 5458,
       "sha256": "d631599a6467e57cb0dcd5a7f3d576d252e0d4c6eea017779dbf28cfca1e9c55",
@@ -496,14 +1477,14 @@
     {
       "path": "app.html",
       "role": "active_entrypoint",
-      "bytes": 17999,
+      "bytes": 19726,
       "lines": 65,
-      "sha256": "7a335ca4859afe5a49aa54880a523f3ea9395c11b8245bb22018761de24f19e1",
+      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
       "python_syntax_error": null
     },
     {
       "path": "app.template.html",
-      "role": "alternate_or_historical_entrypoint_to_review",
+      "role": "retained_build_template",
       "bytes": 16510,
       "lines": 49,
       "sha256": "429473b8d8e1163e9681546a0576725ed06d8e800bf3b04bdaf7d60011ee037c",
@@ -519,7 +1500,7 @@
     },
     {
       "path": "automatic-image-client.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 6452,
       "lines": 48,
       "sha256": "1b12eb5a5c7aef7cec1b14dd057ec98318eebb20798079659ec77fef6093a7aa",
@@ -527,7 +1508,7 @@
     },
     {
       "path": "automatic-image-panel.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 5816,
       "lines": 19,
       "sha256": "43dc758765b9a69d73a9e2405d4c07d14f1d4085cc17e8824a41a9ca9c76b796",
@@ -895,7 +1876,7 @@
     },
     {
       "path": "feedback-candidate-stage93.html",
-      "role": "alternate_or_historical_entrypoint_to_review",
+      "role": "retained_alternate_application_entrypoint",
       "bytes": 17182,
       "lines": 51,
       "sha256": "39cd65f1ef2a97d35c79016b003619ba6df9ddd7fc45a120d237cd1c3d35b6a0",
@@ -903,7 +1884,7 @@
     },
     {
       "path": "feedback-candidate.html",
-      "role": "alternate_or_historical_entrypoint_to_review",
+      "role": "retained_alternate_application_entrypoint",
       "bytes": 17182,
       "lines": 51,
       "sha256": "39cd65f1ef2a97d35c79016b003619ba6df9ddd7fc45a120d237cd1c3d35b6a0",
@@ -911,7 +1892,7 @@
     },
     {
       "path": "feedback-candidate/app-d631599a6467e57cb0dc.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 1755698,
       "lines": 5458,
       "sha256": "d631599a6467e57cb0dcd5a7f3d576d252e0d4c6eea017779dbf28cfca1e9c55",
@@ -943,7 +1924,7 @@
     },
     {
       "path": "feedback-candidate/reviewed/image-assessment-panel.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 11189,
       "lines": 30,
       "sha256": "b221e9b3ea571ab667584520957dcaa58bd71996e93ca8148968c5bfec5efa27",
@@ -967,7 +1948,7 @@
     },
     {
       "path": "feedback-candidate/reviewed/native-reviewed-bridge.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "active_application_source_or_data",
       "bytes": 2563,
       "lines": 26,
       "sha256": "59cb1663805bf9c20e43b5989480bb8ebeb0af58d8912b5f332c60db90de738f",
@@ -983,7 +1964,7 @@
     },
     {
       "path": "feedback-candidate/reviewed/native-reviewed-panel.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 24992,
       "lines": 67,
       "sha256": "da6adeae501f3f53ededfe9a770837005a8e0eaff72ee3272abeee95abdde7c7",
@@ -991,7 +1972,7 @@
     },
     {
       "path": "feedback-candidate/reviewed/outfit-feedback.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_original_feedback_baseline",
       "bytes": 12637,
       "lines": 73,
       "sha256": "5439f7c68f9a3c0766463ff62ec93b91a5499f3a27c464f4cb3389838d2c150d",
@@ -999,7 +1980,7 @@
     },
     {
       "path": "feedback-candidate/reviewed/personalized-reviewed-ranking.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 5643,
       "lines": 62,
       "sha256": "729420e50ba2b99420720ecf2401c2b804c3575d2f81526682e1830266d87dea",
@@ -1015,7 +1996,7 @@
     },
     {
       "path": "feedback-candidate/reviewed/reviewed-selector.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "active_application_source_or_data",
       "bytes": 4233,
       "lines": 52,
       "sha256": "824bd5028806769a94681aeb935028c996c0695ec4dcf6a2667a0e22da2e21f8",
@@ -1023,7 +2004,7 @@
     },
     {
       "path": "feedback-candidate/reviewed/wardrobe-discovery.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 14065,
       "lines": 99,
       "sha256": "e66da6c5deabf07213eed3ff11d1a605af9218aeaca17bca94a7464e59476042",
@@ -1031,7 +2012,7 @@
     },
     {
       "path": "feedback.css",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 908,
       "lines": 2,
       "sha256": "fdc4db1521184cd79866e64b50e224f9655bd5823692d803a9171bbcd29ed1f5",
@@ -1039,7 +2020,7 @@
     },
     {
       "path": "hewrs-batch10-app-4e08da441ea0878b.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_alternate_entrypoint_module",
       "bytes": 1764105,
       "lines": 5488,
       "sha256": "4e08da441ea0878be7931280a15eb6c8e665965d4f361a43fafd4e9e0e3c75b7",
@@ -1047,7 +2028,7 @@
     },
     {
       "path": "hewrs-batch10-discovery-16eeb4d0b24f21a9.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "active_application_source_or_data",
       "bytes": 15016,
       "lines": 101,
       "sha256": "16eeb4d0b24f21a9ad98340861ec5bef0101a5442fcd527665607a18a931a104",
@@ -1055,7 +2036,7 @@
     },
     {
       "path": "hewrs-batch10-image-panel-f200023e7632fa28.js",
-      "role": "active_application_source_or_data",
+      "role": "retained_alternate_entrypoint_module",
       "bytes": 11425,
       "lines": 30,
       "sha256": "f200023e7632fa28ea1ef3cacc4b4974d751ae8efecf9146eeabb9ec14c7885c",
@@ -1063,7 +2044,7 @@
     },
     {
       "path": "hewrs-batch10-panel-81002aa8da138699.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 26168,
       "lines": 68,
       "sha256": "81002aa8da138699cc4a680d0d8dc2a789b79ce3ab529e9ab1ed7efe23fb87ed",
@@ -1071,7 +2052,7 @@
     },
     {
       "path": "hewrs-batch10-ranking-97be8b6dc3e669c0.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 6011,
       "lines": 63,
       "sha256": "97be8b6dc3e669c0586d59b741976707574fd7dcc3706abaad637ecca7bbc771",
@@ -1087,7 +2068,7 @@
     },
     {
       "path": "hewrs-pipeline-panel-e647a852c2f88920.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 31361,
       "lines": 99,
       "sha256": "e647a852c2f88920a5143dc14f4906ffdba39f55f31a8c8e21eacb982a1422eb",
@@ -1095,7 +2076,7 @@
     },
     {
       "path": "hewrs-stage10-integration-panel.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_alternate_entrypoint_module",
       "bytes": 31945,
       "lines": 103,
       "sha256": "8ec9755263949218f69e2095b36c3fbeab56ac10c7c24c6449a882501c6175a4",
@@ -1103,7 +2084,7 @@
     },
     {
       "path": "hewrs-stage93-panel-v2.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_alternate_entrypoint_module",
       "bytes": 31920,
       "lines": 103,
       "sha256": "857805fc1eeecb7e15c827d35ea589154a0c0635cdbf721e18992c1731ecc7ed",
@@ -1111,7 +2092,7 @@
     },
     {
       "path": "hewrs-stage93-ranking-v2.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "active_application_source_or_data",
       "bytes": 7048,
       "lines": 68,
       "sha256": "bb83e38d6cf72518c6e94fa18b29ac09e281186b2ed3626f2db37af8dd820dfd",
@@ -1119,7 +2100,7 @@
     },
     {
       "path": "image-assessment-panel.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 11189,
       "lines": 30,
       "sha256": "b221e9b3ea571ab667584520957dcaa58bd71996e93ca8148968c5bfec5efa27",
@@ -1127,7 +2108,7 @@
     },
     {
       "path": "image-assessment-store.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 2588,
       "lines": 9,
       "sha256": "28cd3b7caba3b5d3e5c70efbc34ad20125aac203ef6c5e8102252423ebfcce23",
@@ -1135,7 +2116,7 @@
     },
     {
       "path": "image-assessment.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 15312,
       "lines": 47,
       "sha256": "0c5d2b6ca68b7726b2b6404808d7702c8d19b05a69774be3f086f017f7ca67a2",
@@ -1144,14 +2125,14 @@
     {
       "path": "index.html",
       "role": "active_entrypoint",
-      "bytes": 17999,
+      "bytes": 19726,
       "lines": 65,
-      "sha256": "7a335ca4859afe5a49aa54880a523f3ea9395c11b8245bb22018761de24f19e1",
+      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
       "python_syntax_error": null
     },
     {
       "path": "native-reviewed-bridge.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 2563,
       "lines": 26,
       "sha256": "59cb1663805bf9c20e43b5989480bb8ebeb0af58d8912b5f332c60db90de738f",
@@ -1159,7 +2140,7 @@
     },
     {
       "path": "native-reviewed-panel.css",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 3806,
       "lines": 22,
       "sha256": "a50f347fbe67254dfa39216700034f07a05bf700ad4fae0dbd7f9b8ea953f6ee",
@@ -1167,7 +2148,7 @@
     },
     {
       "path": "native-reviewed-panel.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 24992,
       "lines": 67,
       "sha256": "da6adeae501f3f53ededfe9a770837005a8e0eaff72ee3272abeee95abdde7c7",
@@ -1175,7 +2156,7 @@
     },
     {
       "path": "outfit-feedback.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_original_feedback_baseline",
       "bytes": 12637,
       "lines": 73,
       "sha256": "5439f7c68f9a3c0766463ff62ec93b91a5499f3a27c464f4cb3389838d2c150d",
@@ -1183,7 +2164,7 @@
     },
     {
       "path": "personalized-reviewed-ranking.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 5643,
       "lines": 62,
       "sha256": "729420e50ba2b99420720ecf2401c2b804c3575d2f81526682e1830266d87dea",
@@ -1351,7 +2332,7 @@
     },
     {
       "path": "rebuild-core.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 15352,
       "lines": 173,
       "sha256": "b2ce0aa56cf277a45ac6e16bc95aacbdbefd3a5916e21a71940e1838e4db7ad8",
@@ -1359,7 +2340,7 @@
     },
     {
       "path": "reviewed-selector.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_duplicate_of_current_module",
       "bytes": 4233,
       "lines": 52,
       "sha256": "824bd5028806769a94681aeb935028c996c0695ec4dcf6a2667a0e22da2e21f8",
@@ -2815,7 +3796,7 @@
     },
     {
       "path": "runtime/hewrs-1972a4fd322f4573dda4.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1356120,
       "lines": 4439,
       "sha256": "1972a4fd322f4573dda4b65969a97c9eae27cddc323117aaf42daeb301ff1ead",
@@ -2823,7 +3804,7 @@
     },
     {
       "path": "runtime/hewrs-29d5d5ceb9c54cf40fbc.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1766403,
       "lines": 5565,
       "sha256": "29d5d5ceb9c54cf40fbc8005d40e7f3cae353179fec676e75f41569f4c910487",
@@ -2831,7 +3812,7 @@
     },
     {
       "path": "runtime/hewrs-446cee571dc462ef6c6a.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1407270,
       "lines": 4739,
       "sha256": "446cee571dc462ef6c6af1ac511a1df07fe1505234f8fa00048545ea096d6a62",
@@ -2839,7 +3820,7 @@
     },
     {
       "path": "runtime/hewrs-46bcc3157215e63c11c2.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1389063,
       "lines": 4619,
       "sha256": "46bcc3157215e63c11c26f89fd97485a2f47ebbd0ce4b81d44c433013ccc98d1",
@@ -2847,7 +3828,7 @@
     },
     {
       "path": "runtime/hewrs-62119b697b1c87bdd765.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1764563,
       "lines": 5538,
       "sha256": "62119b697b1c87bdd7656bc78cec064c82e7ad2e123d70e120c3838e8ec2f411",
@@ -2855,7 +3836,7 @@
     },
     {
       "path": "runtime/hewrs-63ce93e59b996a299c49.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1763757,
       "lines": 5534,
       "sha256": "63ce93e59b996a299c4965723228d3b014bdbed6126fe0012abd9a023fab4f76",
@@ -2863,7 +3844,7 @@
     },
     {
       "path": "runtime/hewrs-6c7ff9a139c849b73cb5.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1381751,
       "lines": 4569,
       "sha256": "6c7ff9a139c849b73cb55752f579200949e8ff3fd8232835b3cc8b8f0729066a",
@@ -2871,7 +3852,7 @@
     },
     {
       "path": "runtime/hewrs-816d90530ab4c4b11a31.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1380158,
       "lines": 4556,
       "sha256": "816d90530ab4c4b11a3123126a8de20d06d55a53883dfdfe025af4a2961a5f68",
@@ -2879,7 +3860,7 @@
     },
     {
       "path": "runtime/hewrs-872cabe19c598d00eb20.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1380290,
       "lines": 4557,
       "sha256": "872cabe19c598d00eb2020c6fc054f434b667142ebc93ef4f6ad862611def686",
@@ -2887,7 +3868,7 @@
     },
     {
       "path": "runtime/hewrs-8abd202af102771cadac.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1410901,
       "lines": 4761,
       "sha256": "8abd202af102771cadac58be96db937810a3fa452c833de0094637fb8226a02f",
@@ -2895,7 +3876,7 @@
     },
     {
       "path": "runtime/hewrs-bbbcec41d08f91585f4a.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1767069,
       "lines": 5571,
       "sha256": "bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150",
@@ -2903,7 +3884,7 @@
     },
     {
       "path": "runtime/hewrs-cd7066c3627d8e59e451.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1398305,
       "lines": 4675,
       "sha256": "cd7066c3627d8e59e4511027cc17d9477de3fe133beb0a2a70fcf79baaae9afd",
@@ -2911,7 +3892,7 @@
     },
     {
       "path": "runtime/hewrs-d09e22fae92638c3339b.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1378775,
       "lines": 4541,
       "sha256": "d09e22fae92638c3339b10a658cc43255ab7047089220a1c9d2c75e4c04efb0b",
@@ -2919,7 +3900,7 @@
     },
     {
       "path": "runtime/hewrs-ded97344f960d901e290.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1373095,
       "lines": 4504,
       "sha256": "ded97344f960d901e290b427a81e86a08d16983c632448bfde5369f5ad778a62",
@@ -2927,7 +3908,7 @@
     },
     {
       "path": "runtime/hewrs-e2c225733ba4b677fc07.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1399214,
       "lines": 4676,
       "sha256": "e2c225733ba4b677fc07169bbbacd3dc08474b6aa24652e2223d0a48dd065664",
@@ -2935,7 +3916,7 @@
     },
     {
       "path": "runtime/hewrs-e4a15a43288d24227f9a.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_historical_runtime",
       "bytes": 1730529,
       "lines": 5315,
       "sha256": "e4a15a43288d24227f9addb7a331fb224a2de1d842186d205dfbb0764cdc693b",
@@ -2944,9 +3925,9 @@
     {
       "path": "runtime/outfit-refill-preview.js",
       "role": "active_runtime_bundle",
-      "bytes": 1811283,
-      "lines": 6014,
-      "sha256": "ee671104141f6c7443837a54c99bac030102689eff7e0c4f318b8572b1c8545e",
+      "bytes": 1824683,
+      "lines": 6159,
+      "sha256": "6ada2e88b4ac65410dba6c2daa5daa0d4b1f610cc08b35ebc1eb2c8c581aa4f5",
       "python_syntax_error": null
     },
     {
@@ -2967,7 +3948,7 @@
     },
     {
       "path": "src/application.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "frozen_standard_build_source",
       "bytes": 100285,
       "lines": 573,
       "sha256": "16758bf257fdf91eb339e5cfae4e265b687704cd36b503968416265e90a3ad58",
@@ -2991,7 +3972,7 @@
     },
     {
       "path": "src/automatic-engine.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "frozen_standard_build_source",
       "bytes": 40156,
       "lines": 270,
       "sha256": "4d14bc7418cd6439e3af05ccd41097c15756ed283ac6ed151791963b5bb41cca",
@@ -3016,9 +3997,9 @@
     {
       "path": "src/b01-b02-renderer.js",
       "role": "active_application_source_or_data",
-      "bytes": 5316,
-      "lines": 51,
-      "sha256": "5702a9507f07f9347c688d85d1af30fd9d9e87dbeec387dbb08e84139e388c7b",
+      "bytes": 5008,
+      "lines": 49,
+      "sha256": "1f09662071cc5ed68d586ce7ce43c96f6b514f62c8b5edc6822e416d37adfa66",
       "python_syntax_error": null
     },
     {
@@ -3032,9 +4013,9 @@
     {
       "path": "src/batch10-renderer.js",
       "role": "active_application_source_or_data",
-      "bytes": 6313,
-      "lines": 47,
-      "sha256": "6c3536832ae4c846688ccde200256ec49dec62018f70b4423a6be9c7f168b5ee",
+      "bytes": 6025,
+      "lines": 46,
+      "sha256": "bb8d318ac74285f3b74d5a705afd9b49982eac9e2cc4420e9e82303637e6a55e",
       "python_syntax_error": null
     },
     {
@@ -3064,9 +4045,9 @@
     {
       "path": "src/blazer-renderer.js",
       "role": "active_application_source_or_data",
-      "bytes": 4239,
-      "lines": 32,
-      "sha256": "ed003567394f5680463a4665bcc73e5ad5845701fa105c833a56d2260fd03bc2",
+      "bytes": 4043,
+      "lines": 36,
+      "sha256": "48b2597fb9a0ea62c3af9277e847e61d049e6749ccd6195abc906df5a9fd714a",
       "python_syntax_error": null
     },
     {
@@ -3112,33 +4093,33 @@
     {
       "path": "src/ds035-coverage-renderer.js",
       "role": "active_application_source_or_data",
-      "bytes": 3445,
-      "lines": 47,
-      "sha256": "95503884bb70c6ad8e25805be14b7ed030d68142948ec6c264d57f27b88d84c4",
+      "bytes": 3282,
+      "lines": 46,
+      "sha256": "e85833de3462b606c76c974f998b62c59149ed48319c8368486dea5c5d0dbe0a",
       "python_syntax_error": null
     },
     {
       "path": "src/ds035-edge-renderer.js",
       "role": "active_application_source_or_data",
-      "bytes": 4484,
-      "lines": 47,
-      "sha256": "a4ce52c1e501b44601340f368a39800d3970779947e11825d317ac7083e96b0b",
+      "bytes": 4291,
+      "lines": 46,
+      "sha256": "eac4753f378e54853d0def2df0690cdfc22c844352e24d4c75e53e688c5c1163",
       "python_syntax_error": null
     },
     {
       "path": "src/facelift-state.js",
       "role": "active_application_source_or_data",
-      "bytes": 9285,
-      "lines": 62,
-      "sha256": "42112ff261d3762a5fdc9e8f7a75f09e5c7c68e1dfb8b5deda912db035d9ff4e",
+      "bytes": 9669,
+      "lines": 68,
+      "sha256": "4a665b702c40b3546387ff88f538d3055588da933539a971358396d9a13ed456",
       "python_syntax_error": null
     },
     {
       "path": "src/favorites-state.js",
       "role": "active_application_source_or_data",
-      "bytes": 5709,
-      "lines": 73,
-      "sha256": "84c7790ba9d4ac373dc880fbfaa390cb031bd84a3cf0314dfd18bc8186465bad",
+      "bytes": 7356,
+      "lines": 90,
+      "sha256": "4d7ae8d9d33d4d98602b2524be4a6f7f9a43ca1ae31890e87fb83e75d4bd070d",
       "python_syntax_error": null
     },
     {
@@ -3174,6 +4155,14 @@
       "python_syntax_error": null
     },
     {
+      "path": "src/image-assessment-panel.js",
+      "role": "active_application_source_or_data",
+      "bytes": 12560,
+      "lines": 56,
+      "sha256": "28c2fad5390164480f3ad3dd901490208a9f883d2fc8166cd8af0de577df9c1e",
+      "python_syntax_error": null
+    },
+    {
       "path": "src/legacy-accessories.js",
       "role": "active_application_source_or_data",
       "bytes": 9764,
@@ -3184,9 +4173,9 @@
     {
       "path": "src/local-state.js",
       "role": "active_application_source_or_data",
-      "bytes": 7175,
-      "lines": 64,
-      "sha256": "c8049c577c25cf01ae8d60ea8b336d56b6ef0247dcfe7e3501ebbc725994a7d3",
+      "bytes": 8825,
+      "lines": 87,
+      "sha256": "b26454671f4b728a872de38df5a8fac7baee9016dcd6dc5e9c0b2fcd5a8c1176",
       "python_syntax_error": null
     },
     {
@@ -3208,9 +4197,9 @@
     {
       "path": "src/option-cards.js",
       "role": "active_application_source_or_data",
-      "bytes": 14307,
-      "lines": 82,
-      "sha256": "35bdd498f053fdf35e300e5fcd31a12957751ad4ff6240515d1eb684f30b18af",
+      "bytes": 14432,
+      "lines": 83,
+      "sha256": "4133b10ddc630490fcd926347489a059363d6f1ddd31cd9f28b69c6699b05d4b",
       "python_syntax_error": null
     },
     {
@@ -3224,9 +4213,9 @@
     {
       "path": "src/outfit-learning.js",
       "role": "active_application_source_or_data",
-      "bytes": 18879,
-      "lines": 129,
-      "sha256": "52797b51b4ccfa3ff5f97be9107291e69824668b60ae294dbab941fa9934fc0b",
+      "bytes": 19886,
+      "lines": 134,
+      "sha256": "aefa43caffcdf3210251fd038ac10255569e6df6655c12f52fda059f2de9084f",
       "python_syntax_error": null
     },
     {
@@ -3240,9 +4229,9 @@
     {
       "path": "src/outfit-refill-application.js",
       "role": "active_application_source_or_data",
-      "bytes": 123772,
-      "lines": 832,
-      "sha256": "82c1534005cbe223b111bccd8a691cbb556ca4f3d72c18ae6f153ac7b0610688",
+      "bytes": 129847,
+      "lines": 874,
+      "sha256": "78099bdc35a7f4189000a0eb53a4dfee1cea5cf91e9ecbb48683d674c9c66c57",
       "python_syntax_error": null
     },
     {
@@ -3264,9 +4253,9 @@
     {
       "path": "src/outfit-rejection-ui.js",
       "role": "active_application_source_or_data",
-      "bytes": 32424,
-      "lines": 424,
-      "sha256": "9c1fccab9514e19d501c78a7b2153f4db5ea52ba74cf88272bbc77254229533f",
+      "bytes": 32780,
+      "lines": 428,
+      "sha256": "d3194747c465b3c22aca7fbf5fe2222fe44539a1734ef5b6e790a69cd832dc5b",
       "python_syntax_error": null
     },
     {
@@ -3296,17 +4285,17 @@
     {
       "path": "src/photo-picker-integration.js",
       "role": "active_application_source_or_data",
-      "bytes": 2940,
-      "lines": 39,
-      "sha256": "5dbdcd7d27e612019301bc3f18dd1d656b3715bfeb0e326a51d6dd814d910429",
+      "bytes": 3504,
+      "lines": 43,
+      "sha256": "179f29d38c8a7dbbd6b23bba7b8fc3ae8bad49affce6a3232b5ef35d3835e363",
       "python_syntax_error": null
     },
     {
       "path": "src/preference-panel.js",
       "role": "active_application_source_or_data",
-      "bytes": 15183,
-      "lines": 76,
-      "sha256": "88839a9f84c280e844c1210ebdf6a3b41dbf5885008e9c2b5e092cc14b10d3c6",
+      "bytes": 16187,
+      "lines": 93,
+      "sha256": "603221b90fc72323d63216e70ebaf6c00344c82acf4dfe0c60bb22fb826887c9",
       "python_syntax_error": null
     },
     {
@@ -3315,6 +4304,14 @@
       "bytes": 31907,
       "lines": 352,
       "sha256": "8befbd68827f7b7254b75518843d97942ba4ffeacb1220f628f5173188f1676a",
+      "python_syntax_error": null
+    },
+    {
+      "path": "src/render-image-loader.js",
+      "role": "active_application_source_or_data",
+      "bytes": 2545,
+      "lines": 39,
+      "sha256": "d6107f3ef06e81f44597a7f49e092ca2ccabbc17da7c76c50bbeac71da3ce465",
       "python_syntax_error": null
     },
     {
@@ -3328,9 +4325,9 @@
     {
       "path": "src/reviewed-rejection-integration.js",
       "role": "active_application_source_or_data",
-      "bytes": 34761,
-      "lines": 137,
-      "sha256": "642e51e2a5a371662b2c0a8ec39ee2bd7ddefb24f2188d0ca5bbd7f667f5c43d",
+      "bytes": 36125,
+      "lines": 161,
+      "sha256": "e598414dca714ddf9c06149c4f8af2a40583cbdf6c277ab131f384fdb041f6ff",
       "python_syntax_error": null
     },
     {
@@ -3368,9 +4365,9 @@
     {
       "path": "src/shirt-only-renderer.js",
       "role": "active_application_source_or_data",
-      "bytes": 2489,
-      "lines": 25,
-      "sha256": "b51085be6872a275739cbcb79f4d56c64367df66daab2da495e557a9f0d4eddd",
+      "bytes": 2188,
+      "lines": 23,
+      "sha256": "af7fc8a5610efa87e21a28dc8ef6a6c4b5d4d5aacf972282cceb2e8605fb9214",
       "python_syntax_error": null
     },
     {
@@ -3535,7 +4532,7 @@
     },
     {
       "path": "src/suit-photo-review.css",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "active_application_source_or_data",
       "bytes": 3884,
       "lines": 3,
       "sha256": "5f06a9da5c75275cd4e3e50f8f83c2feb7bfcde05c82db969b1cd4e29257f6e0",
@@ -3543,10 +4540,10 @@
     },
     {
       "path": "src/suit-photo-review.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
-      "bytes": 3014,
+      "role": "active_application_source_or_data",
+      "bytes": 3018,
       "lines": 25,
-      "sha256": "59b1510f7a9775123c33facb689bdfe1ba6a7949eb513dd36b3b5db4ab7f3d42",
+      "sha256": "808fcc367bcd65998e067a6c1d9b47f9e97d7a269749c1f60b3007638dd9f44c",
       "python_syntax_error": null
     },
     {
@@ -3600,22 +4597,22 @@
     {
       "path": "src/visual-stylist-client.js",
       "role": "active_application_source_or_data",
-      "bytes": 4133,
-      "lines": 29,
-      "sha256": "5c0f5c8a1d5478fdd6056374455a06b443d6bc2c2ff0898c9b8a33823f4b7870",
+      "bytes": 4692,
+      "lines": 31,
+      "sha256": "5b2db27f75eabd14bcaa683fcb328cc5a8d9053cc5841c43e8bb095730253d83",
       "python_syntax_error": null
     },
     {
       "path": "src/weather-context.js",
       "role": "active_application_source_or_data",
-      "bytes": 18485,
+      "bytes": 18640,
       "lines": 117,
-      "sha256": "56477f56aef18081687ee3ab56ed6ec19731c7e47796519f2325bff4742720eb",
+      "sha256": "a208e5f949ba303aece442a3f361a706e0c3ef995ace3846366fa18979ffb2a9",
       "python_syntax_error": null
     },
     {
       "path": "stage10-integration.html",
-      "role": "alternate_or_historical_entrypoint_to_review",
+      "role": "retained_baseline_integration_entrypoint",
       "bytes": 17100,
       "lines": 51,
       "sha256": "e5a4e23588ffef53c8668de5afd181e87f90cb1efcbec5442a341a1cd35cceb8",
@@ -3623,7 +4620,7 @@
     },
     {
       "path": "stage10-preview.html",
-      "role": "alternate_or_historical_entrypoint_to_review",
+      "role": "retained_alternate_application_entrypoint",
       "bytes": 15445,
       "lines": 39,
       "sha256": "58041460e193214393911b5ce1a28d1b848089e10ab579afc2daf075bd8340d6",
@@ -3631,7 +4628,7 @@
     },
     {
       "path": "stage10-standalone-preview.html",
-      "role": "alternate_or_historical_entrypoint_to_review",
+      "role": "retained_standalone_baseline_entrypoint",
       "bytes": 1778850,
       "lines": 5573,
       "sha256": "426f77bf44f96a4add250bd5e2b494bef9dee1d0178c3e221ff1da173b6adecb",
@@ -3639,10 +4636,10 @@
     },
     {
       "path": "suit-photo-review.html",
-      "role": "alternate_or_historical_entrypoint_to_review",
-      "bytes": 2683,
+      "role": "active_utility_entrypoint",
+      "bytes": 2873,
       "lines": 32,
-      "sha256": "ad0317cea53f14d8a7b949921afc54ae0c0ff82b2169546b7c0976e446afc3c8",
+      "sha256": "59b17a07dccdd8d8fd92c1ee002f0aea4cbd4e6c7afb0a4820fcba898658b056",
       "python_syntax_error": null
     },
     {
@@ -3712,9 +4709,9 @@
     {
       "path": "tests/all-rejections-core.cjs",
       "role": "test_or_test_helper",
-      "bytes": 32734,
+      "bytes": 32759,
       "lines": 315,
-      "sha256": "5e25d382f8956f873aab56b13a021fa80d0efcc8b4a4f56984cbe54865f2995f",
+      "sha256": "5ed2a006854468b4d3171a79ed9e82974b2b8bef8ec80d595d084c5676d2bc7a",
       "python_syntax_error": null
     },
     {
@@ -3728,17 +4725,17 @@
     {
       "path": "tests/all-rejections-entrypoints.cjs",
       "role": "test_or_test_helper",
-      "bytes": 16708,
-      "lines": 131,
-      "sha256": "c1e3ff9369ffb69a2ad4cce1654faf4e2a665ea7d23b9d4b101f277fa50b7728",
+      "bytes": 16929,
+      "lines": 133,
+      "sha256": "b530aa4d34083755df1a168f9c1693de21a428f1c69e5b22434c5852654431ec",
       "python_syntax_error": null
     },
     {
       "path": "tests/all-rejections-export-context.cjs",
       "role": "test_or_test_helper",
-      "bytes": 7844,
+      "bytes": 7869,
       "lines": 89,
-      "sha256": "40c24990133c52b79ac91a0dbd905bb74b1900c7e516dcb0ee2c515ce5449697",
+      "sha256": "959cb20be02085bbaf1c9bdc216327a8becb39a822c8fa79dfc597bb35d0638b",
       "python_syntax_error": null
     },
     {
@@ -4091,6 +5088,198 @@
       "bytes": 7780,
       "lines": 26,
       "sha256": "3c625511c9e980a69ac291639ed076df1abace30b2388ab89337751898c7fe9b",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-app-actions.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 4026,
+      "lines": 37,
+      "sha256": "9ebbea0cc369463bc31160466828f06ffdabe63368ecba44472967ca6f19063a",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-app-cancellation.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 10809,
+      "lines": 116,
+      "sha256": "2016040aeceb20e87127de93808583292b1f071f6196d0cd9495b653d68101c3",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-app-context.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 1607,
+      "lines": 15,
+      "sha256": "b1a4e56367bae8f0a9ebf576908159c650f86673b85060e89d8eda1467d99491",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-app-regenerate.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 6990,
+      "lines": 78,
+      "sha256": "33f8bee5d4c0262be5544b023716cc7a254e72317544613d9598dd3440b0d1ca",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-app-visibility.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 3304,
+      "lines": 37,
+      "sha256": "e379311b103c7eac999a68b2a74b965716dd54bf6030bc6acc5a37328518d054",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-delivery.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 1906,
+      "lines": 23,
+      "sha256": "74aed6434411ffce7e7fa5a63c36723685103d7ce1900ccea5267f76410c904e",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-engine-cancellation.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 5938,
+      "lines": 63,
+      "sha256": "a5aa60b6b879388e27697655a999e8e977b49fa145b37253c082e5f36816bd0a",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-engine-routes.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 8336,
+      "lines": 77,
+      "sha256": "636dd75308f592d10f314f18312822cce2d267be80e9783d16cba9a1b476603d",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-photos-browser.py",
+      "role": "test_or_test_helper",
+      "bytes": 25735,
+      "lines": 389,
+      "sha256": "b833b57a829163ea9d5efc4b77e53505ff36d34a1dd415fa789348bb37b2c5b3",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-state-browser.py",
+      "role": "test_or_test_helper",
+      "bytes": 31325,
+      "lines": 517,
+      "sha256": "e49304de2a47f2209e60e225c444bcc8d789ccc08c346e82891ea51d91e8de10",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-append.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 4324,
+      "lines": 40,
+      "sha256": "4185ee147fc5852c20b6c616d323de0d936b4e9da9f0e82bf72f2fc54f762c13",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-backups.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 10292,
+      "lines": 132,
+      "sha256": "c1c6203574e87d7ef21b5867dc982ad2e290f05c2a121392cf4fc7203536b76d",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-image-export.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 9658,
+      "lines": 79,
+      "sha256": "c41f52d636565464da5c5ff30da36d8ca16f08cfb832156194f9de89fd947e4b",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-learning.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 6990,
+      "lines": 58,
+      "sha256": "c3b6aacfa13821ce11438e2d118933f0fb4c3dfaef6f537c66a7d5c7342a4b87",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-locks.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 6209,
+      "lines": 56,
+      "sha256": "8ad9ca0fab9141b6fc794a5f653e09118ee2ad5dc8fed22cd8e84952f49a227a",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-service-epoch.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 4281,
+      "lines": 47,
+      "sha256": "36c1c6ba96ce88f836603ba34cb61e282e9de90c8107e3413d7d9f87ef803597",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-ui-queue.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 5215,
+      "lines": 43,
+      "sha256": "3deaae8b66d528c830cc8576d81b5e43ad78bbfb498af712107e7a474b5ed106",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-ui-context.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 7288,
+      "lines": 57,
+      "sha256": "79542cc487dca94bcd0090945b9892b81e5d7ff7103b4029458009d93e534039",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-ui-cross-review.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 8300,
+      "lines": 78,
+      "sha256": "4db15fe13f825399cdc3ddabdb2a63a0ce877dad86deaf14bbff58c39806ba9e",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-ui-lineage.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 3634,
+      "lines": 27,
+      "sha256": "714847fe3f29e6d8e32992fdf852dbbac1abd6de3b127ce0986223565a73ff0e",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-ui-preferences.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 7664,
+      "lines": 57,
+      "sha256": "566f955adaef363d76736c15b3bf59df444ad52c6d961ed6a55b6c1000a9ec0c",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-ui-rejection.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 7456,
+      "lines": 76,
+      "sha256": "75105df442f35cb97d185e8ee8c2c239c4febda725ed3bfc308d276c6a07eebc",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-ui.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 6304,
+      "lines": 69,
+      "sha256": "63aed60438849a4bce5969c1deb473cab8cad8adc1e3d6e4ec75b4a69536e949",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-weather-service.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 3095,
+      "lines": 31,
+      "sha256": "9c6ece9d54fce74172e58734cde7fb42a328e4cc099174d151a16280ad9e0f34",
       "python_syntax_error": null
     },
     {
@@ -4880,9 +6069,9 @@
     {
       "path": "tests/tie-engine-loader.cjs",
       "role": "test_or_test_helper",
-      "bytes": 2957,
+      "bytes": 2986,
       "lines": 26,
-      "sha256": "4fd190f1f96c5e0c343e66824288b173dcb983d353d35499f3916d1540756689",
+      "sha256": "9b6879e1f7f4c17c05aa9ca1f7c1dcb707583356201c8a3f4d289e7bb45d51a4",
       "python_syntax_error": null
     },
     {
@@ -5078,6 +6267,54 @@
       "python_syntax_error": null
     },
     {
+      "path": "tools/audit_active_delivery.py",
+      "role": "build_or_release_tool",
+      "bytes": 3801,
+      "lines": 70,
+      "sha256": "69c78e544ddc07a3db67f5a207380251920566f73520334e28705b2953ca264c",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tools/audit_current_catalogue.cjs",
+      "role": "build_or_release_tool",
+      "bytes": 2220,
+      "lines": 28,
+      "sha256": "8060bdaaf59dafa5d328af2739b007da8b1487487ae318fa1ebb33f35143be3f",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tools/audit_product_integrity.py",
+      "role": "build_or_release_tool",
+      "bytes": 6240,
+      "lines": 118,
+      "sha256": "b357b6d8df55f998a78d92f4756f48288f174d0bf2d83e1f05f18a4021444e80",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tools/audit_product_inventory.py",
+      "role": "build_or_release_tool",
+      "bytes": 8109,
+      "lines": 147,
+      "sha256": "a70ca20b6ce373f7c6949dd031641008e7ccda5fc9816a7610dd3aeeec528515",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tools/audit_shirt_atlas.py",
+      "role": "build_or_release_tool",
+      "bytes": 3325,
+      "lines": 60,
+      "sha256": "4edfba8c5ee6ffc2ea29c0bbff72e906f38358c0f53e326f3410c13cd2e677ff",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tools/audit_shirt_source_atlas.py",
+      "role": "build_or_release_tool",
+      "bytes": 4379,
+      "lines": 90,
+      "sha256": "1241814571dbaa345546feeb21fe11f7bf12009878a83ac13eff67588301c1ba",
+      "python_syntax_error": null
+    },
+    {
       "path": "tools/bind_final_blazers.py",
       "role": "build_or_release_tool",
       "bytes": 5382,
@@ -5176,9 +6413,9 @@
     {
       "path": "tools/build_tie_candidate.py",
       "role": "build_or_release_tool",
-      "bytes": 4987,
-      "lines": 109,
-      "sha256": "1eb67c4d0ee6d60a55e77f161fe0d3c33409e4c8066c438b3036a99c034f4565",
+      "bytes": 9037,
+      "lines": 179,
+      "sha256": "96f8fd1f0a219a4ca7459d9f74f41e38ce76d18a439776e0a655ff3634ad4584",
       "python_syntax_error": null
     },
     {
@@ -5776,9 +7013,9 @@
     {
       "path": "vendor/active50-renderer.js",
       "role": "active_application_source_or_data",
-      "bytes": 7109,
-      "lines": 116,
-      "sha256": "b214d3a24f1d7c8b326a69987a8e79cc2307b733cccc015b74c2e2b963f0536f",
+      "bytes": 6762,
+      "lines": 108,
+      "sha256": "bca5d371312fd20117f83d60f3936f2bcc1784449a96a9d3cf662c20ba913768",
       "python_syntax_error": null
     },
     {
@@ -5791,7 +7028,7 @@
     },
     {
       "path": "vendor/blazers-v1_9/blazer-connection_code_v18.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 9352,
       "lines": 80,
       "sha256": "3af190ed5ab30d400e60ae1752ec4f1c8f766bccd1344da484979bd8480f3c0e",
@@ -5799,7 +7036,7 @@
     },
     {
       "path": "vendor/blazers-v1_9/blazer-connection_v18.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 49639,
       "lines": 1,
       "sha256": "377ba81921ee314d58c54be3aa649bbbeb198b6e533aec2e08f6cf67971080a9",
@@ -5807,7 +7044,7 @@
     },
     {
       "path": "vendor/blazers-v1_9/blazer-renderer_v18.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 3835,
       "lines": 32,
       "sha256": "137cab086038b450a0c18ade5352ce438f28c47f9cc902270d6b98eba7161336",
@@ -5815,7 +7052,7 @@
     },
     {
       "path": "vendor/blazers-v1_9/connection_v18.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 10334,
       "lines": 119,
       "sha256": "645532fa3fdeee19f66ebaa52c7e6897126a364c52f3d15f53c77e17e89dba6c",
@@ -5823,7 +7060,7 @@
     },
     {
       "path": "vendor/canonical-bindings-original.mjs",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 5854,
       "lines": 72,
       "sha256": "f213acbba0ffb4bc1064556bfa61fed5e39627a4665a8d191b2d7e7d72658fdb",
@@ -5831,7 +7068,7 @@
     },
     {
       "path": "vendor/cp98/static-viewer97.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 5139,
       "lines": 41,
       "sha256": "8f520f8856ee45cc14c5d65ab909560f4d3fca714ebf5e04d1d052cfd5e83fab",
@@ -5839,7 +7076,7 @@
     },
     {
       "path": "vendor/cp98/suit_resolver97.mjs",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 3236,
       "lines": 44,
       "sha256": "50a040bdf9787808e104af099f656a2f0654be33435c78f05be51a792ea0d7bf",
@@ -5863,7 +7100,7 @@
     },
     {
       "path": "vendor/profiles-v1_8/blazer_connection_v17.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 9340,
       "lines": 77,
       "sha256": "c8cd527aceb154a87ce3b60e1a7410da24fd3639acca8372c76e8b705fcd2de4",
@@ -5871,7 +7108,7 @@
     },
     {
       "path": "vendor/profiles-v1_8/connection_v17.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 10289,
       "lines": 119,
       "sha256": "74814c30fd0ff647afe5da1dafd8dd4ad815e8f00f83ed0e9fabc1a5a6fcc64a",
@@ -5879,7 +7116,7 @@
     },
     {
       "path": "vendor/profiles-v1_8/controller_v17.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 14022,
       "lines": 165,
       "sha256": "853a85c24cbcec0db05d7a17c51857f86f42cc046c4d65eebdeaebd48d9929f8",
@@ -5887,7 +7124,7 @@
     },
     {
       "path": "vendor/recommendation-path-original.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 13865,
       "lines": 164,
       "sha256": "fb713f16732504ebdc87f2fd4ecb1aa200e29f27c710511f8b983235f5573724",
@@ -5911,7 +7148,7 @@
     },
     {
       "path": "vendor/shirt-only-v1_10/mixed-renderer_v19.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_vendor_reference_or_baseline",
       "bytes": 2364,
       "lines": 18,
       "sha256": "93b16c713efce8b52b59f2a71499160ceaa38abd5717e1f4517c3988d1c723da",
@@ -5927,7 +7164,7 @@
     },
     {
       "path": "wardrobe-discovery.js",
-      "role": "indirect_dependency_or_inactive_source_to_review",
+      "role": "retained_superseded_candidate_module",
       "bytes": 14065,
       "lines": 99,
       "sha256": "e66da6c5deabf07213eed3ff11d1a605af9218aeaca17bca94a7464e59476042",

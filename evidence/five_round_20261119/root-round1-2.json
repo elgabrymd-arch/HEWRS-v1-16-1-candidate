@@ -1,0 +1,184 @@
+{
+  "schema": "hewrs.five-round-root-review.v1",
+  "rounds": [
+    1,
+    2
+  ],
+  "recorded_at_utc": "2026-11-19T06:54:51.364374+00:00",
+  "baseline_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "scope": "Root integration, source-photo inspection and delivery review. Agent reports contain engine/rule, UI and storage detail. This report is not a claim that every retained historical file was behaviorally executed.",
+  "reviewed_files": [
+    {
+      "file": "src/outfit-refill-application.js",
+      "review_boundary": "Application boot; selection publication and destination context; generation/cancellation; rejection refill; private renderers; modal lifetimes; session/wear/Favorites mutations; backups; storage events and manual visibility.",
+      "sha256_at_report": "cfe9dd5ddb7f583026595d21c873664b25778d2071a06d314414358a30443727"
+    },
+    {
+      "file": "src/option-cards.js",
+      "review_boundary": "Same-ID card source bindings; native private book renderer cancellation; final export context; detached copies of source metadata.",
+      "sha256_at_report": "4133b10ddc630490fcd926347489a059363d6f1ddd31cd9f28b69c6699b05d4b"
+    },
+    {
+      "file": "src/weather-context.js",
+      "review_boundary": "Known-code validation, transport bounds, context conversion and previous-selection preservation. Valid classification policy unchanged.",
+      "sha256_at_report": "a208e5f949ba303aece442a3f361a706e0c3ef995ace3846366fa18979ffb2a9"
+    },
+    {
+      "file": "src/automatic-weather.js",
+      "review_boundary": "Permission and transport coordination, supersession epochs, fresh automatic weather before submit and callback cancellation boundaries.",
+      "sha256_at_report": "b74837e7dfb7aeec83c5dfa523cbd69e77c857c78a6bbb2dcf3457f297a5fcba"
+    },
+    {
+      "file": "src/visual-stylist-client.js",
+      "review_boundary": "Outgoing allowlist, endpoint constraints, response parse/size limits, ephemeral session and late cancellation; no real service call.",
+      "sha256_at_report": "79b9e3f2281115e9267f52c4bfd4a8c07af998ad114c6bc6b83b5d3654564b3b"
+    },
+    {
+      "file": "src/reviewed-rejection-integration.js",
+      "review_boundary": "Separate reviewed-panel context, rejection publication boundary, reviewed module loading and runtime delivery hashes; independent UI/state review tracked separately.",
+      "sha256_at_report": "e598414dca714ddf9c06149c4f8af2a40583cbdf6c277ab131f384fdb041f6ff"
+    },
+    {
+      "file": "src/runtime-loader.js",
+      "review_boundary": "Exact source/version contract, lazy index integrity, retry/error reporting; no data writes.",
+      "sha256_at_report": "0df23483645700982dfc34a8bfda70cf6a44d09b058779adad7a2df240ed7f1a"
+    },
+    {
+      "file": "src/image-assessment-panel.js",
+      "review_boundary": "Captured request/outfit identity and final rejection veto around exported assessment packets; independently tested by storage reviewer.",
+      "sha256_at_report": "28c2fad5390164480f3ad3dd901490208a9f883d2fc8166cd8af0de577df9c1e"
+    },
+    {
+      "file": "index.html",
+      "review_boundary": "Current dependency order and direct resource integrity/cache pins; same bytes as app.html.",
+      "sha256_at_report": "f8437d4e02536667cab5f69d9959aec1d84058bf3cb5f386370913db4dfb7cc4"
+    },
+    {
+      "file": "app.html",
+      "review_boundary": "Alias must match index.html bytes and dependencies.",
+      "sha256_at_report": "f8437d4e02536667cab5f69d9959aec1d84058bf3cb5f386370913db4dfb7cc4"
+    },
+    {
+      "file": "suit-photo-review.html",
+      "review_boundary": "Reachable current utility; exact return navigation and resource delivery.",
+      "sha256_at_report": "59b17a07dccdd8d8fd92c1ee002f0aea4cbd4e6c7afb0a4820fcba898658b056"
+    },
+    {
+      "file": "tools/build_tie_candidate.py",
+      "review_boundary": "Candidate-only substitutions; deterministic bundle, current-resource integrity and lazy module manifests; frozen historical base reproduction.",
+      "sha256_at_report": "96f8fd1f0a219a4ca7459d9f74f41e38ce76d18a439776e0a655ff3634ad4584"
+    },
+    {
+      "file": "tools/audit_active_delivery.py",
+      "review_boundary": "Independent verification of each actual current direct, lazy and utility resource against file bytes.",
+      "sha256_at_report": "69c78e544ddc07a3db67f5a207380251920566f73520334e28705b2953ca264c"
+    },
+    {
+      "file": ".github/workflows/five-round-total-audit.yml",
+      "review_boundary": "Native, pixel baseline and real two-tab browser jobs; synthetic profiles, source preservation, failure evidence.",
+      "sha256_at_report": "8dca16c61727027f86699b7cd5b8da73464e3f9e84316934e45b5f06f021c7fd"
+    }
+  ],
+  "source_photo_review": {
+    "registered_shirts": 50,
+    "active_ids": "DS001\u2013DS048, DS050, DS051; DS049 remains retired",
+    "source_documents": [
+      "HEWRS_SHIRT_DNA_ACTIVE50_VISUAL_AUDIT_V6(1).pdf",
+      "HEWRS Shirt Catalogue DS001-DS049 FINAL.pdf",
+      "HEWRS_Shirt_Record.pdf"
+    ],
+    "inspection": "All ten same-ID source/PDF-to-context sheets and ten current thumbnail sheets were visually inspected. Registered full/native frames are separately tested in actual browsers.",
+    "authoritative_decisions": [
+      "All five reconstructed-shirt batches have owner approval; stale candidate wording in older metadata is not a missing permission.",
+      "DS026 deliberately keeps the older larger-check suit insert and approved small pink/light-blue gingham outside suits.",
+      "DS040, DS041, DS042, DS043 are No Tie only.",
+      "DS027 approved No Tie source has a closed-looking top button: No Tie does not promise a physically open top button.",
+      "Shared approved source photographs under distinct shirt identities are not automatically identity bugs.",
+      "DS035 isolated thumbnail masking must be judged on full native frames before any visual defect claim."
+    ],
+    "integrity_evidence": "INTEGRITY-confirmed.json",
+    "registered_assets_hash_and_decode_passed": 1146,
+    "same_id_shirt_component_and_thumbnail_checks_passed": 695,
+    "private_source_documents_committed": false,
+    "approved_image_pixels_changed": false,
+    "limits": [
+      "Source sheets establish identity/provenance and visible approved appearance; they do not prove a physical garment color under every light.",
+      "Native alpha composition and browser image controls are Round3 acceptance gates, not inferred from isolated thumbnails."
+    ]
+  },
+  "root_repairs": [
+    {
+      "issue": "View current could reveal a retained rejected manual outfit.",
+      "repair": "Synchronize and recheck destination rejection context before reveal; unreadable/rejected state stays hidden.",
+      "test": "tests/five-round-app-visibility.cjs"
+    },
+    {
+      "issue": "Private comparison, stylist and export renderers could wait forever after UI cancellation.",
+      "repair": "Forward cancellation to actual pending image work and settle/free private canvases.",
+      "test": "tests/five-round-app-cancellation.cjs"
+    },
+    {
+      "issue": "Changing method or context could leave previous generation work eligible to publish.",
+      "repair": "Advance generation and cancel work on invalidation; preserve the initiating pre-submit automatic-weather refresh.",
+      "tests": [
+        "tests/five-round-app-context.cjs",
+        "tests/five-round-ui-context.cjs"
+      ]
+    },
+    {
+      "issue": "App mutations could overwrite another tab or finish after a modal closed.",
+      "repair": "Use actual-store exclusive locks and revalidate captured modal/context/selection before writes; preserve synchronous rejection publication callbacks.",
+      "tests": [
+        "tests/five-round-app-actions.cjs",
+        "tests/five-round-state-browser.py"
+      ]
+    },
+    {
+      "issue": "Wardrobe exact-item choices were not retained as Home preferences and could leave stale recommendations.",
+      "repair": "Persist the explicit choice and invalidate the previous recommendations.",
+      "test": "tests/five-round-app-actions.cjs"
+    },
+    {
+      "issue": "Older file reads could replace newer backup import previews or reopen a closed panel.",
+      "repair": "Latest-read and modal token guards before preview/error publication.",
+      "test": "tests/five-round-app-actions.cjs"
+    },
+    {
+      "issue": "Unknown weather codes with measurable precipitation were accepted as light rain.",
+      "repair": "Validate the weather code against the existing code set before classification.",
+      "test": "tests/five-round-weather-service.cjs"
+    },
+    {
+      "issue": "A late service response could sign back in after Disconnect.",
+      "repair": "Discard aborted or superseded replies after body read; request privacy allowlist unchanged.",
+      "test": "tests/five-round-weather-service.cjs"
+    },
+    {
+      "issue": "Separately delivered current modules could be paired with cached older modules.",
+      "repair": "Derive content URL and SRI from actual current files for both app entrypoints, reviewed lazy loads and suit-photo utility.",
+      "test": "tests/five-round-delivery.cjs"
+    }
+  ],
+  "independent_reports": [
+    "engine-round1.json",
+    "engine-round2.json",
+    "ui-round1.json",
+    "ui-round2.json",
+    "ui-round3-lineage.json",
+    "storage-round1.json",
+    "storage-round2.json"
+  ],
+  "checkpoint_validation": {
+    "commit": "998f4bc42b6b7064d60730e7526d034e3a17e8d4",
+    "run": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44474716591",
+    "native_job": "success",
+    "photos_jobs": "incomplete: both browsers passed 288 shirt/collar/context frames and all18 suit frames; invalid B01 fixture hit an intentional owner rule, then missing test font interrupted evidence finalization. Harness repairs and complete rerun required.",
+    "later_source_changes": "This report and subsequent UI/loader fixes are not included in that checkpoint; acceptance must use the final commit."
+  },
+  "pending_rounds": [
+    "Round3 complete actual browser coverage and visual sheet inspection",
+    "Round4 adversarial state/concurrency/cancellation plus independent code review",
+    "Round5 current-head regressions, publication and live verification"
+  ],
+  "claims_boundary": "Finite evidence supports the specified contracts. It does not prove universal bug freedom, pixel equality on every physical device, or execution of every historical snapshot."
+}
