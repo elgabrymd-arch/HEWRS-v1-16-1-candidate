@@ -23,7 +23,7 @@ function create({config=root.HEWRS_VISUAL_SERVICE_CONFIG,fetcher=root.fetch?.bin
  }
  return Object.freeze({configured:()=>!!endpoint,ready,endpoint:()=>endpoint,disconnect,cancel,publicRequest,
   async login(password){if(typeof password!=='string'||password.length<16)throw error('SERVICE_PASSWORD','Use the private service password (at least 16 characters), not an OpenAI API key.');if(/^sk-/.test(password))throw error('PROVIDER_KEY_REJECTED','Do not enter a provider API key in this browser. Configure it only on the server.');const epoch=++sessionEpoch,d=await call('/v1/session',{password},{auth:false});if(epoch!==sessionEpoch)throw error('CANCELLED','The service connection changed before sign-in completed.');if(typeof d.token!=='string'||!Number.isFinite(d.expires_at))throw error('SERVICE_SESSION','Invalid login reply');token=d.token;expires=d.expires_at*1000;providerReady=d.live_ready===true;return {live_ready:d.live_ready,expires_at:d.expires_at};},
-  async logout(){const epoch=++sessionEpoch;try{if(signedIn())await call('/v1/logout',{});}finally{if(epoch===sessionEpoch)disconnect();}},
+  async logout(){if(!signedIn()){disconnect();return;}sessionEpoch++;const pending=call('/v1/logout',{});token=null;expires=0;providerReady=false;await pending;},
   propose:(q,opts={})=>call('/v1/propose',{request:publicRequest(q)},{opts}),
   evaluate:(q,candidates,jobId,opts={})=>call('/v1/evaluate',{request:publicRequest(q),candidates,job_id:jobId},{opts})});
 }

@@ -1,8 +1,8 @@
 {
   "schema": "hewrs.product-code-inventory.v1",
-  "commit": "998f4bc42b6b7064d60730e7526d034e3a17e8d4",
-  "tracked_file_count": 3926,
-  "code_file_count": 750,
+  "commit": "02723aa9d6342e456cd92e5d7b8fc756dd7fff8b",
+  "tracked_file_count": 3946,
+  "code_file_count": 754,
   "role_counts": {
     "automation_workflow": 14,
     "historical_snapshot_or_evidence": 230,
@@ -21,12 +21,12 @@
     "retained_baseline_integration_entrypoint": 1,
     "retained_standalone_baseline_entrypoint": 1,
     "active_utility_entrypoint": 1,
-    "test_or_test_helper": 203,
+    "test_or_test_helper": 207,
     "retained_vendor_reference_or_baseline": 12
   },
   "entrypoints": {
     "index.html": {
-      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
+      "sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
       "scripts": [
         "src/runtime-loader.js?v=0df2348364570098",
         "data/inputs.js?v=d4060df8ec8f400f",
@@ -34,7 +34,7 @@
         "src/tie-feedback.js?v=cc5717989411da76",
         "src/rejection-database.js?v=8befbd68827f7b72",
         "src/outfit-rejection-core.js?v=859edc166dd95e1d",
-        "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541",
+        "runtime/outfit-refill-preview.js?v=d4231feabdc5bcad",
         "src/outfit-rejection-ui.js?v=d3194747c465b3c2",
         "data/option-card-thumbnails.js?v=d5d77a62c04c8b8e",
         "data/blazer-picker-images.js?v=c0178b39872881e6",
@@ -61,7 +61,7 @@
       ]
     },
     "app.html": {
-      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
+      "sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
       "scripts": [
         "src/runtime-loader.js?v=0df2348364570098",
         "data/inputs.js?v=d4060df8ec8f400f",
@@ -69,7 +69,7 @@
         "src/tie-feedback.js?v=cc5717989411da76",
         "src/rejection-database.js?v=8befbd68827f7b72",
         "src/outfit-rejection-core.js?v=859edc166dd95e1d",
-        "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541",
+        "runtime/outfit-refill-preview.js?v=d4231feabdc5bcad",
         "src/outfit-rejection-ui.js?v=d3194747c465b3c2",
         "data/option-card-thumbnails.js?v=d5d77a62c04c8b8e",
         "data/blazer-picker-images.js?v=c0178b39872881e6",
@@ -260,7 +260,7 @@
       "from": "index.html",
       "to": "runtime/outfit-refill-preview.js",
       "kind": "script",
-      "url": "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541"
+      "url": "runtime/outfit-refill-preview.js?v=d4231feabdc5bcad"
     },
     {
       "from": "index.html",
@@ -428,7 +428,7 @@
       "from": "app.html",
       "to": "runtime/outfit-refill-preview.js",
       "kind": "script",
-      "url": "runtime/outfit-refill-preview.js?v=6ada2e88b4ac6541"
+      "url": "runtime/outfit-refill-preview.js?v=d4231feabdc5bcad"
     },
     {
       "from": "app.html",
@@ -1479,7 +1479,7 @@
       "role": "active_entrypoint",
       "bytes": 19726,
       "lines": 65,
-      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
+      "sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
       "python_syntax_error": null
     },
     {
@@ -2127,7 +2127,7 @@
       "role": "active_entrypoint",
       "bytes": 19726,
       "lines": 65,
-      "sha256": "5021b9c21ceea8948014d117f952c30b087dfec33987c8452aafb6d5ab6a280d",
+      "sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
       "python_syntax_error": null
     },
     {
@@ -3925,9 +3925,9 @@
     {
       "path": "runtime/outfit-refill-preview.js",
       "role": "active_runtime_bundle",
-      "bytes": 1824683,
-      "lines": 6159,
-      "sha256": "6ada2e88b4ac65410dba6c2daa5daa0d4b1f610cc08b35ebc1eb2c8c581aa4f5",
+      "bytes": 1828992,
+      "lines": 6170,
+      "sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
       "python_syntax_error": null
     },
     {
@@ -4149,9 +4149,9 @@
     {
       "path": "src/hybrid-stylist.js",
       "role": "active_application_source_or_data",
-      "bytes": 16558,
-      "lines": 90,
-      "sha256": "4a8cf486a3c21d83f51b726d2de58c645e9ccf15931630b4e59eb7118d1ccf34",
+      "bytes": 19194,
+      "lines": 99,
+      "sha256": "16cb7f18d33e79b100c5dd6d10ad74deec7476d317dd4083a4d9aad3c4fc7a57",
       "python_syntax_error": null
     },
     {
@@ -4229,9 +4229,9 @@
     {
       "path": "src/outfit-refill-application.js",
       "role": "active_application_source_or_data",
-      "bytes": 129847,
-      "lines": 874,
-      "sha256": "78099bdc35a7f4189000a0eb53a4dfee1cea5cf91e9ecbb48683d674c9c66c57",
+      "bytes": 131497,
+      "lines": 876,
+      "sha256": "7861703eebe4638696e0a508d95cf5e433d2c3c0e9b4fe01ca319d0ce6cee859",
       "python_syntax_error": null
     },
     {
@@ -4597,9 +4597,9 @@
     {
       "path": "src/visual-stylist-client.js",
       "role": "active_application_source_or_data",
-      "bytes": 4692,
+      "bytes": 4715,
       "lines": 31,
-      "sha256": "5b2db27f75eabd14bcaa683fcb328cc5a8d9053cc5841c43e8bb095730253d83",
+      "sha256": "6c9a483abc2d584e90afaa49b65a3f68e4507d8bc7c65fed5016f3dcf69c98b0",
       "python_syntax_error": null
     },
     {
@@ -4725,17 +4725,17 @@
     {
       "path": "tests/all-rejections-entrypoints.cjs",
       "role": "test_or_test_helper",
-      "bytes": 16929,
+      "bytes": 17019,
       "lines": 133,
-      "sha256": "b530aa4d34083755df1a168f9c1693de21a428f1c69e5b22434c5852654431ec",
+      "sha256": "a3d9808878c493c1d7f77605ec4b2d858f291934e1efb5d0ce7dd5144d9bd321",
       "python_syntax_error": null
     },
     {
       "path": "tests/all-rejections-export-context.cjs",
       "role": "test_or_test_helper",
-      "bytes": 7869,
+      "bytes": 7901,
       "lines": 89,
-      "sha256": "959cb20be02085bbaf1c9bdc216327a8becb39a822c8fa79dfc597bb35d0638b",
+      "sha256": "e41c42b8562077c8984888f8d5d1a1e3dff0b055f6a93921ea6cc5801f27e956",
       "python_syntax_error": null
     },
     {
@@ -5115,6 +5115,14 @@
       "python_syntax_error": null
     },
     {
+      "path": "tests/five-round-app-modal-lifetime.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 7846,
+      "lines": 69,
+      "sha256": "f593fb7d33bbaa3bb6b4228a4fde8af8d8f23900975a0b452ce107803a4f25c5",
+      "python_syntax_error": null
+    },
+    {
       "path": "tests/five-round-app-regenerate.cjs",
       "role": "test_or_test_helper",
       "bytes": 6990,
@@ -5147,6 +5155,14 @@
       "python_syntax_error": null
     },
     {
+      "path": "tests/five-round-engine-hybrid-rejections.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 12498,
+      "lines": 124,
+      "sha256": "0af2efa1879552e0e0ba4ac754b4b9b8bef6ba38c4dd144824369d96da0087da",
+      "python_syntax_error": null
+    },
+    {
       "path": "tests/five-round-engine-routes.cjs",
       "role": "test_or_test_helper",
       "bytes": 8336,
@@ -5157,17 +5173,17 @@
     {
       "path": "tests/five-round-photos-browser.py",
       "role": "test_or_test_helper",
-      "bytes": 25735,
-      "lines": 389,
-      "sha256": "b833b57a829163ea9d5efc4b77e53505ff36d34a1dd415fa789348bb37b2c5b3",
+      "bytes": 30740,
+      "lines": 451,
+      "sha256": "d7546334b29faab937aa935e27dcfe79c4bf6e57ddacd293d71e12fd6aa7e532",
       "python_syntax_error": null
     },
     {
       "path": "tests/five-round-state-browser.py",
       "role": "test_or_test_helper",
-      "bytes": 31325,
-      "lines": 517,
-      "sha256": "e49304de2a47f2209e60e225c444bcc8d789ccc08c346e82891ea51d91e8de10",
+      "bytes": 32245,
+      "lines": 536,
+      "sha256": "7e7bf2df13e6b181f7ef1602b334e7afc70b9e8e0b2fc771927fba2fec0eddef",
       "python_syntax_error": null
     },
     {
@@ -5184,6 +5200,14 @@
       "bytes": 10292,
       "lines": 132,
       "sha256": "c1c6203574e87d7ef21b5867dc982ad2e290f05c2a121392cf4fc7203536b76d",
+      "python_syntax_error": null
+    },
+    {
+      "path": "tests/five-round-storage-current-context.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 9764,
+      "lines": 102,
+      "sha256": "d1d3f98c595333b9fbdb85748f3f01cd8b944f57a773956550ee9cf87c3ffdbb",
       "python_syntax_error": null
     },
     {
@@ -5211,11 +5235,19 @@
       "python_syntax_error": null
     },
     {
+      "path": "tests/five-round-storage-postcommit.cjs",
+      "role": "test_or_test_helper",
+      "bytes": 7600,
+      "lines": 127,
+      "sha256": "80949ba3a382cd65d111595d9181d30aeae264621a382f7acd88c4f6c2dcea50",
+      "python_syntax_error": null
+    },
+    {
       "path": "tests/five-round-storage-service-epoch.cjs",
       "role": "test_or_test_helper",
-      "bytes": 4281,
-      "lines": 47,
-      "sha256": "36c1c6ba96ce88f836603ba34cb61e282e9de90c8107e3413d7d9f87ef803597",
+      "bytes": 4852,
+      "lines": 53,
+      "sha256": "7469d9505fe90802216928f63878902314ad7d8aa81688ead6b18dcf6099c3e8",
       "python_syntax_error": null
     },
     {
@@ -5229,9 +5261,9 @@
     {
       "path": "tests/five-round-ui-context.cjs",
       "role": "test_or_test_helper",
-      "bytes": 7288,
-      "lines": 57,
-      "sha256": "79542cc487dca94bcd0090945b9892b81e5d7ff7103b4029458009d93e534039",
+      "bytes": 8501,
+      "lines": 69,
+      "sha256": "2d7f93e5ded48d3f7a2029d58b92b827196a8ce2b3291860574a3fae4af41a42",
       "python_syntax_error": null
     },
     {

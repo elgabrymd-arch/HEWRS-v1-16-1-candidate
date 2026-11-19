@@ -1,0 +1,159 @@
+{
+  "schema": "hewrs.five-round-storage-final-review.v1",
+  "round": 5,
+  "auditor": "/root/recover_checkpoint",
+  "recorded_at_utc": "2026-11-19T10:46:56.217059+00:00",
+  "branch": "audit/five-round-total-20261119",
+  "base_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "remote_checkpoint_at_review_start": "02723aa9d6342e456cd92e5d7b8fc756dd7fff8b",
+  "scope": "Bounded independent final review of the newer recovered local working tree: durable wear/Favorites/preferences, backup and modal lifetimes, delayed rejection exposure and final caller repairs. This does not replace final browser or live-publication gates.",
+  "status": "complete_for_scoped_review_with_one_confirmed_defect_repaired_and_independently_verified",
+  "reviewed_files": [
+    {
+      "path": "src/local-state.js",
+      "review": "Complete store source: validation, durable read/export, revision and raw-token guards, Web Locks queue, import preview identity and restore.",
+      "sha256": "b26454671f4b728a872de38df5a8fac7baee9016dcd6dc5e9c0b2fcd5a8c1176"
+    },
+    {
+      "path": "src/favorites-state.js",
+      "review": "Complete store source: validated exact identity, duplicate-save behavior, merge preview binding, cross-tab refresh, failed persistence and recoverable raw export.",
+      "sha256": "4d7ae8d9d33d4d98602b2524be4a6f7f9a43ca1ae31890e87fb83e75d4bd070d"
+    },
+    {
+      "path": "src/outfit-learning.js",
+      "review": "Persistent-store region and current call contract: comparisons/context validation, durable tokens, private preview tickets, merge/Undo/toggle, exclusive writes and export; numerical fitting policy unchanged.",
+      "sha256": "aefa43caffcdf3210251fd038ac10255569e6df6655c12f52fda059f2de9084f"
+    },
+    {
+      "path": "src/preference-panel.js",
+      "review": "Complete source: captured pair context, latest-file preview, modal lifecycle before/after queue acquisition, feedback checks around rendering/voting, and current export.",
+      "sha256": "603221b90fc72323d63216e70ebaf6c00344c82acf4dfe0c60bb22fb826887c9"
+    },
+    {
+      "path": "src/outfit-refill-application.js",
+      "review": "All active wear/Favorites mutation callers, backup import/export, preference host boundary, storage listeners and the repaired postcommit continuations; full application review is assigned to app_final_review.",
+      "sha256": "7861703eebe4638696e0a508d95cf5e433d2c3c0e9b4fe01ca319d0ce6cee859"
+    },
+    {
+      "path": "src/image-assessment-panel.js",
+      "review": "Captured exact selection/context and final rejection gate for exchange packet/download, backed by existing real-handler regressions.",
+      "sha256": "28c2fad5390164480f3ad3dd901490208a9f883d2fc8166cd8af0de577df9c1e"
+    }
+  ],
+  "confirmed_findings": [
+    {
+      "id": "STORAGE-R5-POSTCOMMIT-MODAL",
+      "status": "fixed_and_independently_verified",
+      "functions": [
+        "startLog confirmation",
+        "confirmClear confirmation",
+        "backup restore confirmation"
+      ],
+      "before": "Each real handler checked the initiating modal inside the write lock, but unconditionally dismissed the current modal after awaiting lock-promise settlement. A newer dialog opened after the successful write could therefore be closed; an old restored session could also be applied over newer work.",
+      "before_probe": {
+        "kind": "Actual production function extraction with a controlled exclusive-store callback/settlement boundary",
+        "results": [
+          {
+            "function": "startLog",
+            "committed_mutations": 1,
+            "closed_tokens": [
+              2
+            ],
+            "newer_dialog_retained": false
+          },
+          {
+            "function": "confirmClear",
+            "committed_mutations": 1,
+            "closed_tokens": [
+              2
+            ],
+            "newer_dialog_retained": false
+          },
+          {
+            "function": "backup",
+            "committed_mutations": 1,
+            "closed_tokens": [
+              2
+            ],
+            "newer_dialog_retained": false
+          }
+        ]
+      },
+      "repair_owner": "/root/app_final_review",
+      "repair": "Retain the real committed write and invalidate/refresh affected data. Dismiss or publish the originating action message only while that modal still owns the action. Keep newer log transactions and backup previews. Apply a restored session only while the original confirmation remains current, with subsequent render generation/modal-epoch guards.",
+      "independent_regression": {
+        "file": "tests/five-round-storage-postcommit.cjs",
+        "passed": 9,
+        "failed": 0,
+        "scope": "Three actual application handlers, each with same-panel, newer-panel/current-outfit, and closed-panel continuations. Uses the actual local-state store with an in-memory backing record and a controlled Web Locks implementation that defers only promise settlement after the real commit. Checks exact once-only durable write/revision/record outcome, normal success, preserved newer UI/selection, and required history/recommendation refresh."
+      }
+    }
+  ],
+  "validation": [
+    {
+      "command": "NODE_PATH=<existing-hewrs-test-deps>/node_modules node --test tests/five-round-storage-backups.cjs tests/five-round-storage-locks.cjs tests/five-round-storage-ui-queue.cjs tests/five-round-ui-preferences.cjs tests/five-round-storage-image-export.cjs tests/five-round-storage-current-context.cjs tests/five-round-storage-service-epoch.cjs tests/five-round-app-actions.cjs",
+      "exit_code": 0,
+      "node_runner_tests": 83,
+      "passed": 83,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "counting_note": "The app-actions and current-context files are each counted by the Node runner as one script test. Their internal 4 and 9 checks are not added again to 83.",
+      "coverage": [
+        "Current/corrupt/unreadable wear and Favorites backup behavior; stale and mutated preview rejection; successful quota recovery.",
+        "Actual store queue semantics for wear/Favorites/learning, absent-lock refusal, memory queue and failure release.",
+        "Preference Pause/import/Undo cancellation and healthy writes; current comparison/vote/file-read lifetime.",
+        "Final image packet/export selection, context, token, temporary skip, peer rejection and failed-read recovery gates.",
+        "Allowed Dinner current-card preservation alongside rejected Work requests; actual generated row identity retention.",
+        "Authentication epoch/401/logout/cancel boundaries.",
+        "Latest-selected-file import previews and exact-item preference persistence."
+      ]
+    },
+    {
+      "command": "node --test tests/five-round-storage-postcommit.cjs",
+      "exit_code": 0,
+      "node_runner_tests": 9,
+      "passed": 9,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "source_sha256": "7861703eebe4638696e0a508d95cf5e433d2c3c0e9b4fe01ca319d0ce6cee859",
+      "test_sha256": "80949ba3a382cd65d111595d9181d30aeae264621a382f7acd88c4f6c2dcea50"
+    }
+  ],
+  "active_caller_review": [
+    "All active wear/session mutations found in the current application call store.exclusive before saveSession/addEvent/restore. Callbacks recheck generation, source history or modal ownership as applicable.",
+    "All active Favorites add/remove/import mutations use favorites.exclusive with captured modal and original selection or preview.",
+    "Preference mutation callers use learning.exclusive and captured modal/pair context; votes recheck saved rejection state after acquiring their lock and after asynchronous feedback synchronization.",
+    "Backing-store comparison and private preview identity remain separate protections: refreshing/exporting cannot bless an older reviewed import payload.",
+    "Readable corrupt wear/Favorites bytes remain recoverable via export; unreadable backing storage does not produce a claimed empty backup.",
+    "Storage listeners include actual key removal and key===null clear events; store refresh remains read-only.",
+    "Favorites and wear history remain historical data when an outfit later becomes rejected; current display/selection/export has separate rejection gates. No historical record is silently rewritten."
+  ],
+  "chromium_photo_artifact_recovery": {
+    "run_id": 44476431101,
+    "artifact_id": 14506627934,
+    "name": "HEWRS_TOTAL_PHOTOS_chromium",
+    "zip_sha256": "269b16aab380c6cd10148e5d5dc5c35165e83badae72fe5eac1b6d9c1c828795",
+    "download_digest_verified": true,
+    "extracted_result": "verification/five_round_20261119/ci_44476431101/photos_chromium/chromium/photos/RESULT.json",
+    "passed": 2094,
+    "failed": 1,
+    "frames": 396,
+    "failure": "Photo harness used diagnosis ID tie_shirt as a stored reason; store correctly rejected it. Current local harness already uses valid reason other. Both photo jobs require a complete rerun.",
+    "visual_inspection_owner": "/root/visual_final_review",
+    "visual_certification_by_this_reviewer": false
+  },
+  "production_edits_by_this_reviewer": [],
+  "files_added_by_this_reviewer": [
+    "tests/five-round-storage-postcommit.cjs",
+    "evidence/five_round_20261119/storage-round5.json"
+  ],
+  "unresolved_confirmed_defects": [],
+  "limits": [
+    "The final local test uses a controlled lock-resolution schedule and the actual store/application functions; native browser timing is a separate integration gate.",
+    "No owner browser data or credentials are accessed or modified. Approved source images, original scores and persistent schemas remain unchanged. No external paid-service request is made.",
+    "Compatibility synchronous store APIs still exist for historical callers. This review covers the ordinary current application callers and does not redesign retained historical entrypoints.",
+    "The full set of current-head browser/rejection/asset gates and live publication remains root-owned. This report alone is not five-pass release completion."
+  ]
+}

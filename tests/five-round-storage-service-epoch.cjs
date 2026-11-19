@@ -33,6 +33,12 @@ test('an obsolete logout finally cannot disconnect a newer successful login',asy
 test('a current successful logout still disconnects the active service session',async()=>{
  const h=fixture();await h.login();const pending=h.client.logout();h.reply(1,200,{});await pending;assert.equal(h.client.ready(),false);
 });
+test('Sign out clears its local credentials even if closing settings cancels the logout transport',async()=>{
+ const h=fixture();await h.login();const pending=h.client.logout().catch(error=>error);
+ assert.equal(h.requests[1].options.headers.Authorization,'Bearer first','The logout request retains the original authorization');
+ assert.equal(h.client.ready(),false,'Local sign-out takes effect before the transport settles');
+ h.client.cancel();h.reply(1,200,{});const result=await pending;assert.equal(result.code,'CANCELLED');assert.equal(h.client.ready(),false);
+});
 test('Disconnect between call completion and login publication cannot restore credentials',async()=>{
  const h=fixture(),pending=h.client.login(password),outcome=pending.then(value=>({value}),error=>({error}));
  // Queue Disconnect after call() has checked/parses its completed response,

@@ -455,9 +455,28 @@ if(text&&text!==auditLastMessage)window.__auditMessages.push(text);auditLastMess
             check('Real Cancel settles the blocked native render before transport release', outcome['state'] == 'settled' and outcome['value'].get('cancelled'), outcome)
             check('Cancelled native work preserves exact prior selection and pixels', p.evaluate('()=>HEWRSApp.state().selection') == C and p.evaluate('()=>HEWRSApp.renderer.last()') == C and pixels(p) == before_pixels)
             unstall(p, resource, pending, callback)
-            with p.expect_request(lambda request: request.url == resource, timeout=15000):
+            # WebKit may satisfy the new Image from its own decoded/network
+            # cache. Observe transport without requiring another request; the
+            # exact completed selection and changed native pixels prove retry.
+            retry_requests = []
+
+            def observe_retry(request):
+                if request.url == resource:
+                    retry_requests.append(request.url)
+
+            p.on('request', observe_retry)
+            try:
                 current(p, target)
-            check('Exact retry loads again and produces the requested new frame', p.evaluate('()=>HEWRSApp.state().selection') == target and pixels(p) != before_pixels)
+            finally:
+                p.remove_listener('request', observe_retry)
+            retry = dict(selection=p.evaluate('()=>HEWRSApp.state().selection'),
+                         renderer_selection=p.evaluate('()=>HEWRSApp.renderer.last()'),
+                         pixel_sha256=pixels(p), prior_pixel_sha256=before_pixels,
+                         observed_network_requests=len(retry_requests), resource=resource)
+            result['native_retry'] = retry
+            check('Exact retry produces the requested selection and a new native frame',
+                  retry['selection'] == target and retry['renderer_selection'] == target and
+                  retry['pixel_sha256'] != before_pixels, retry)
 
             phase['name'] = 'stalled-comparison-render'
             compare_selection = dict(C, state='T030')

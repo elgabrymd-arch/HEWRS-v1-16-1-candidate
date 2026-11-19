@@ -1,0 +1,31 @@
+{
+  "schema": "hewrs.five-round-root-prepublication.v1",
+  "recorded_at": "2026-11-19T10:50:37.814002+00:00",
+  "baseline_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "previous_remote_checkpoint": "02723aa9d6342e456cd92e5d7b8fc756dd7fff8b",
+  "source_review": "Root independently reviewed the complete application continuation diff against the exact previous remote source; separate application, storage, and visual final reviewers provided focused evidence.",
+  "local_focused_suite": {
+    "command": "node --test tests/five-round-*.cjs",
+    "runner_tests_passed": 183,
+    "failed": 0,
+    "skipped": 0,
+    "log": "native/round5-final-focused.log",
+    "qualification": "Script-internal assertions and route-plan combinations are not added to the runner test count."
+  },
+  "delivery": {
+    "resource_bindings_passed": 66,
+    "entrypoints_identical": true,
+    "runtime_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+    "application_sha256": "7861703eebe4638696e0a508d95cf5e433d2c3c0e9b4fe01ca319d0ce6cee859"
+  },
+  "protected_baseline_changed_files": [],
+  "permitted_vendor_change": "vendor/active50-renderer.js image transport lifetime; complete native pixel comparisons remain mandatory.",
+  "owner_browser_data_accessed": false,
+  "external_provider_calls": 0,
+  "pending": [
+    "Final exact-commit Chromium/WebKit photo and state runs",
+    "Complete rejection and release checks",
+    "Publication identity and hosted browser verification",
+    "Full native neckline evidence from expanded photo harness"
+  ]
+}

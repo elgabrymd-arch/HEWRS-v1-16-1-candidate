@@ -11,7 +11,7 @@ function fixture(method='research'){
  const weather={snapshot:()=>structuredClone(weatherValue),status:()=>({}),fetchAt:()=>{throw Error('Unexpected saved-place lookup');},locate:()=>new Promise(resolve=>{resolveWeather=resolve;}),apply:value=>{weatherValue=structuredClone(value);},request:date=>({source:'not_assessed',date})};
  const ctx={occasion:'work',formality:'any',localDate:'2026-11-18',style:'AUTO'},prefs={shirt:{mode:'item',id:'DS029'}};
  const c=vm.createContext({structuredClone,Date,AbortController,setTimeout,clearTimeout,console,
-  generation:0,busy:false,current:null,lastRequest:null,lastAttemptRequest:null,options:[],report:null,optionIndex:-1,currentOption:null,producing:null,optionHistoryToken:null,optionPreferenceToken:null,origin:'manual',rejectionRemoved:null,mode:'engine',ctx,backend:null,modal:null,pageName:'home',stylistPreferenceWarning:null,STYLIST_KEY:'unused',weather,
+  generation:0,busy:false,current:null,lastRequest:null,lastAttemptRequest:null,options:[],report:null,optionIndex:-1,currentOption:null,producing:null,optionHistoryToken:null,optionPreferenceToken:null,origin:'manual',rejectionRemoved:null,mode:'engine',ctx,backend:null,modal:null,modalEpoch:0,pageName:'home',stylistPreferenceWarning:null,STYLIST_KEY:'unused',weather,
   HEWRS_READY:true,HEWRSWeather:{fresh:()=>false},navigator:{permissions:{query:async()=>({state:'granted'})}},localToday:()=> '2026-11-19',HEWRSRuntimeLoader:{ensureIndex:async()=>{}},HEWRSStyleOccasions:{noTieCap:()=>2},HEWRSLocalState:{date:value=>/^\d{4}-\d{2}-\d{2}$/.test(value)},
   need:(v,m)=>{if(!v)throw Error(m);},copy:structuredClone,
   $:id=>{if(!nodes.has(id))nodes.set(id,{textContent:''});return nodes.get(id);},
@@ -54,4 +54,16 @@ test('Changing styling method during the actual automatic-weather wait cannot re
  const h=fixture(),pending=h.c.submit();await idle();assert.equal(typeof h.releaseWeather,'function');h.c.setStylistMode('curated');
  h.releaseWeather({source:'forecast',date:'2026-11-19',place:{label:'Test place'}});const result=await pending;
  assert.equal(result.cancelled,true);assert.equal(h.method,'curated');assert.equal(h.weatherValue,null);assert.equal(h.calls.applied.length,0);assert.equal(h.calls.source.length,0);assert.equal(h.calls.pages.length,0);
+});
+
+test('Cancelling only automatic weather stops submit before selection or generation even when its action token remains current',async()=>{
+ const h=fixture(),pending=h.c.submit();await idle();assert.equal(typeof h.releaseWeather,'function');const before=h.c.generation;
+ vm.runInContext('autoWeather.cancel()',h.c);h.releaseWeather({source:'forecast',date:'2026-11-19',place:{label:'Test place'}});const result=await pending;
+ assert.equal(h.c.generation,before);assert.equal(result.cancelled,true);assert.equal(h.weatherValue,null);assert.equal(h.calls.applied.length,0);assert.equal(h.calls.source.length,0);assert.equal(h.calls.pages.length,0);
+});
+
+test('Opening a newer settings panel during submit rejection preflight cannot start generation behind it',async()=>{
+ const h=fixture();let release;h.c.checkRejectionFeedbackAsync=()=>new Promise(resolve=>{release=resolve;});
+ const pending=h.c.submit();h.c.modal={token:++h.c.modalEpoch};release({token:'feedback'});const result=await pending;
+ assert.equal(result.cancelled,true);assert.equal(h.calls.applied.length,0);assert.equal(h.calls.source.length,0);assert.equal(h.calls.pages.length,0);assert.equal(h.c.modal.token,h.c.modalEpoch);
 });

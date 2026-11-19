@@ -23,7 +23,7 @@ async function exportCase(when){
  const pngStarted=new Promise(resolve=>{started=resolve;});
  const model={selection:structuredClone(selection),date:'2026-11-18'},gate={allowed:()=>!rejected,assertCurrent(token){need(token===revision,'Feedback changed');}};
  const pngWait=when==='during'?new Promise(resolve=>{release=resolve;}):Promise.resolve();
- const context=vm.createContext({need,copy:structuredClone,current:selection,busy:false,options:[],lastRequest:null,cardPresentation:model,cardModel:()=>structuredClone(model),currentContext:()=>({occasion:'work'}),$:dom.$,el:dom.node,modal:null,
+ const context=vm.createContext({need,copy:structuredClone,current:selection,busy:false,generation:0,modalEpoch:0,pageName:'outfits',options:[],lastRequest:null,cardPresentation:model,cardModel:()=>structuredClone(model),currentContext:()=>({occasion:'work'}),$:dom.$,el:dom.node,modal:null,
   document:{createElement:dom.node},URL:{createObjectURL(){links++;return 'blob:synthetic';},revokeObjectURL:noop},resolveUrl:noop,
   checkRejectionFeedbackAsync:async()=>({token:revision}),rejectionGate:()=>gate,
   optionCards:{async png(){pngCalls++;started();await pngWait;return {};},async book(){await pngWait;return {};}},dismissSheet:noop,
@@ -53,7 +53,7 @@ async function reviewedSave(){
 async function largerView(){
  const dom=nodes();let opened=0,copied=0;
  const gate={allowed:()=>false,assertCurrent:noop};
- const context=vm.createContext({need,copy:structuredClone,current:selection,busy:false,lastRequest:null,modal:null,$:dom.$,ids:()=>'',currentContext:()=>({occasion:'work'}),rejectionGate:()=>gate,checkRejectionFeedbackAsync:async()=>({token:'changed'}),dismissSheet:noop,
+ const context=vm.createContext({need,copy:structuredClone,current:selection,busy:false,generation:0,modalEpoch:0,pageName:'outfits',lastRequest:null,modal:null,$:dom.$,ids:()=>'',currentContext:()=>({occasion:'work'}),rejectionGate:()=>gate,checkRejectionFeedbackAsync:async()=>({token:'changed'}),dismissSheet:noop,
   el(tag,text){const n=dom.node(tag,text);if(tag==='canvas')n.getContext=()=>({drawImage(){copied++;}});return n;},button:dom.node});
  context.openSheet=()=>{opened++;context.modal={};return {body:dom.node('div'),actions:dom.node('div')};};
  vm.runInContext(extract(application,'async function largerOutfit()','\nfunction contextSheet('),context);

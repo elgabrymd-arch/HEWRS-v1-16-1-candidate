@@ -22,6 +22,8 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 MODES = ('suit', 'blazer', 'shirt-only')
+NATIVE_COLLAR_BBOX = (170, 330, 656, 826)  # Full-canvas x, y, width, height.
+COLLAR_DETAIL_BBOX = (320, 330, 360, 260)  # Entire registered collar, at 1:1 pixels.
 
 
 class Quiet(SimpleHTTPRequestHandler):
@@ -48,7 +50,8 @@ def outfit(mode, shirt, state='NO_TIE', top=None, pants='PG002'):
     return result
 
 
-FRAME = r'''async selection => {
+FRAME = r'''async input => {
+ const selection=input.selection||input,captureNativeCollar=input.captureNativeCollar===true;
  const app=HEWRSApp;
  const result=await app.apply(selection,{origin:'manual',save:false,keepPreferences:true});
  if(result?.cancelled)throw Error('Unexpected audit render cancellation');
@@ -58,12 +61,22 @@ FRAME = r'''async selection => {
  const hash=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
  const detail=document.createElement('canvas');detail.width=262;detail.height=306;
  detail.getContext('2d').drawImage(canvas,170,390,656,766,0,0,262,306);
+ let nativeCollar=null;
+ if(captureNativeCollar){
+  const crop=document.createElement('canvas');crop.width=656;crop.height=826;
+  const cropContext=crop.getContext('2d',{willReadFrequently:true});
+  cropContext.putImageData(cx.getImageData(170,330,656,826),0,0);
+  const cropDigest=await crypto.subtle.digest('SHA-256',cropContext.getImageData(0,0,656,826).data);
+  nativeCollar={png:crop.toDataURL('image/png'),source_bbox:[170,330,656,826],
+   source_canvas_dimensions:[canvas.width,canvas.height],native_dimensions:[656,826],
+   rgba_sha256:Array.from(new Uint8Array(cropDigest),b=>b.toString(16).padStart(2,'0')).join('')};
+ }
  const model=app.cardSnapshot();
  const thumbnails=Array.from(document.querySelectorAll('#option-card-items img'));
  await Promise.all(thumbnails.map(image=>image.decode()));
  if(thumbnails.some(image=>image.hidden||!image.naturalWidth||!image.naturalHeight))throw Error('An actual card photograph did not decode');
  return {selection:app.state().selection,last:app.renderer.last(),status:canvas.dataset.status,
-  width:canvas.width,height:canvas.height,rgba_sha256:hash,detail:detail.toDataURL('image/png'),
+  width:canvas.width,height:canvas.height,rgba_sha256:hash,detail:detail.toDataURL('image/png'),native_collar:nativeCollar,
   shirt:model.items.find(x=>x.role==='Shirt'),tie:model.items.find(x=>x.role==='Tie')};
 }'''
 
@@ -129,8 +142,15 @@ def main():
                   baseline_compared=bool(baseline_base), owner_data_accessed=False,
                   started_at=datetime.now(timezone.utc).isoformat(), checks=checks, frames=frames,
                   page_errors=errors, failed_requests=failed_requests, http_errors=http_errors,
-                  external_requests=external_requests)
-    pictures = {}
+                  external_requests=external_requests,
+                  collar_evidence=dict(source_canvas_dimensions=[996, 2748],
+                      native_crop_bbox=list(NATIVE_COLLAR_BBOX), native_crop_dimensions=[656, 826],
+                      bbox_units='full-canvas x, y, width, height',
+                      original_sheet_crop_bbox=[170, 390, 656, 766],
+                      detail_sheet_bbox=list(COLLAR_DETAIL_BBOX), detail_sheet_scale=1,
+                      detail_sheet_description='Unscaled native RGBA crop on neutral background. Entire registered collar is included; wider native PNGs preserve neck/chest context.',
+                      native_png_directory='native-collars', expected_native_png_count=288))
+    pictures, native_pictures = {}, {}
 
     def save():
         result['passed'] = sum(row['passed'] for row in checks)
@@ -173,8 +193,9 @@ def main():
         return page.evaluate('()=>({wear:HEWRSApp.store.snapshot(),favorites:HEWRSApp.favorites.snapshot(),rejections:HEWRSApp.ownerFeedback.snapshot().events})')
 
     def render(page, selection, label, baseline_page=None, capture_key=None):
-        frame = page.evaluate(FRAME, selection)
+        frame = page.evaluate(FRAME, dict(selection=selection, captureNativeCollar=bool(capture_key)))
         image = frame.pop('detail')
+        native_collar = frame.pop('native_collar')
         check(label + ': exact selection and committed renderer agree', frame['selection'] == selection and frame['last'] == selection, frame['selection'])
         check(label + ': complete native frame is ready', frame['status'] == 'ready' and (frame['width'], frame['height']) == (996, 2748))
         if baseline_page is not None:
@@ -183,6 +204,20 @@ def main():
             check(label + ': approved native pixels equal the published baseline', baseline['rgba_sha256'] == frame['rgba_sha256'])
         if capture_key:
             pictures[capture_key] = Image.open(io.BytesIO(base64.b64decode(image.split(',', 1)[1]))).convert('RGBA')
+            native_bytes = base64.b64decode(native_collar.pop('png').split(',', 1)[1])
+            native_pic = Image.open(io.BytesIO(native_bytes)).convert('RGBA')
+            check(label + ': complete native-resolution collar evidence decodes exactly',
+                  native_pic.size == (656, 826)
+                  and native_collar['source_bbox'] == list(NATIVE_COLLAR_BBOX)
+                  and native_collar['source_canvas_dimensions'] == [996, 2748]
+                  and hashlib.sha256(native_pic.tobytes()).hexdigest() == native_collar['rgba_sha256'])
+            native_path = output / 'native-collars' / ('-'.join(capture_key) + '.png')
+            native_path.parent.mkdir(parents=True, exist_ok=True)
+            native_path.write_bytes(native_bytes)
+            native_collar.update(path=str(native_path.relative_to(output)),
+                                 png_sha256=hashlib.sha256(native_bytes).hexdigest())
+            frame['native_collar_capture'] = native_collar
+            native_pictures[capture_key] = native_pic
         frames.append(dict(label=label, **frame))
         return frame
 
@@ -251,6 +286,7 @@ def main():
                         check(label + ': tie state is explicit', frame['tie']['id'] == (None if state == 'NO_TIE' else state))
                 save()
             check('All 288 supported shirt/context/collar frames were exercised', len(frames) == 288)
+            check('All 288 complete native-resolution collar crops were saved', len(native_pictures) == 288)
             for shirt in shirts:
                 if shirt['thumbnails'].get('tied'):
                     for mode in MODES:
@@ -314,7 +350,7 @@ def main():
                     page.keyboard.press('Escape')
             # Manual rejection leaves the selection retained for Undo. Home must not reveal it.
             selected = outfit('suit', 'DS029', 'T029')
-            await_result = page.evaluate('''async s=>{await HEWRSApp.apply(s,{save:false});const event=await HEWRSApp.ownerFeedback.hide(s,{scope:'shirt_tie',context:'work',reason:'tie_shirt'});HEWRSApp.rejectionChanged();return event;}''', selected)
+            await_result = page.evaluate('''async s=>{await HEWRSApp.apply(s,{save:false});const event=await HEWRSApp.ownerFeedback.hide(s,{scope:'shirt_tie',context:'work',reason:'other'});HEWRSApp.rejectionChanged();return event;}''', selected)
             check('Manual rejection hides the rendered outfit', page.locator('#outfit-output').is_hidden())
             page.evaluate('HEWRSApp.showPage("home")')
             page.locator('#view-current').click()
@@ -370,6 +406,32 @@ def main():
                             pic.thumbnail((176, 206), Image.Resampling.LANCZOS)
                             sheet.paste(pic, (12 + column * 184, y + 20), pic)
                 sheet.save(output / ('native-collars-%02d.png' % (offset // 5 + 1)))
+                # Keep a second sheet at native pixel scale, with the complete collar.
+                # The separate 656x826 PNGs retain the wider, uncropped neck/chest context.
+                detail_x, detail_y, detail_w, detail_h = COLLAR_DETAIL_BBOX
+                local_box = (detail_x - NATIVE_COLLAR_BBOX[0], detail_y - NATIVE_COLLAR_BBOX[1],
+                             detail_x - NATIVE_COLLAR_BBOX[0] + detail_w,
+                             detail_y - NATIVE_COLLAR_BBOX[1] + detail_h)
+                column_width, row_height = detail_w + 12, detail_h + 32
+                detail_sheet = Image.new('RGB', (12 + len(headings) * column_width,
+                                               52 + row_height * min(5, len(shirts) - offset)), '#e8e5df')
+                detail_draw = ImageDraw.Draw(detail_sheet)
+                detail_draw.text((12, 8), 'Native 1:1 collar detail; canvas bbox x320 y330 w360 h260', font=font, fill='#20242a')
+                for column, (mode, state) in enumerate(headings):
+                    detail_draw.text((12 + column * column_width, 28), mode + ' / ' + state, font=font, fill='#20242a')
+                for row, shirt in enumerate(shirts[offset:offset + 5]):
+                    y = 52 + row * row_height
+                    detail_draw.text((12, y), shirt['id'], font=font, fill='#20242a')
+                    for column, (mode, state) in enumerate(headings):
+                        native_pic = native_pictures.get((shirt['id'], mode, state))
+                        x = 12 + column * column_width
+                        if native_pic is None:
+                            detail_draw.text((x, y + 100), 'NO TIE ONLY' if not shirt['thumbnails'].get('tied') and state != 'NO_TIE' else 'NOT RENDERED', font=font, fill='#20242a')
+                        else:
+                            collar = native_pic.crop(local_box)
+                            detail_sheet.paste(collar, (x, y + 20), collar)
+                detail_sheet.save(output / ('complete-collar-details-%02d.png' % (offset // 5 + 1)))
+            result['collar_evidence']['saved_native_png_count'] = len(native_pictures)
         except Exception:
             result['atlas_error'] = traceback.format_exc()
             checks.append(dict(name='Native collar atlas generation', passed=False, detail=result['atlas_error']))

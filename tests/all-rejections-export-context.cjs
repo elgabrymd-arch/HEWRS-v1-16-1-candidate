@@ -24,7 +24,7 @@ async function main(){
  Object.assign(g,{
   root:g,need:(value,message)=>{if(!value)throw Error(message);},copy:g.structuredClone,connection:c,ui,mode:'engine',
   ctx:g.structuredClone({occasion:'work',formality:'any',style:'AUTO',localDate:'2026-11-18'}),
-  current:null,currentOption:null,score:null,origin:'manual',generation:0,busy:false,
+  current:null,currentOption:null,score:null,origin:'manual',generation:0,busy:false,modalEpoch:0,pageName:'outfits',
   pendingInitialOutfit:g.structuredClone({selection:saved,context:{occasion:'dinner',requiredFormality:'any'},localDate:'2026-11-18'}),initialOutfitPromise:null,
   options:[],optionIndex:-1,lastRequest:null,lastAttemptRequest:null,report:null,producing:null,optionHistoryToken:null,optionPreferenceToken:null,modal:null,cardPresentation:null,
   cardModel:selection=>cards.model(selection,{date:'2026-11-18'}),$,el:element,document:{createElement:element},
