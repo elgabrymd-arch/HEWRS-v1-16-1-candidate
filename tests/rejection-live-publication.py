@@ -75,6 +75,13 @@ def main():
         checks.append({'name': name, 'passed': bool(condition)})
         print(('PASS: ' if condition else 'FAIL: ') + name, flush=True)
         if not condition:
+            # Capture while Playwright is still alive. The outer exception
+            # handler runs after its context manager has closed the browser.
+            if page is not None:
+                try:
+                    page.screenshot(path=str(evidence / 'failure.png'), full_page=True, timeout=10000)
+                except Exception as error:
+                    result['failure_screenshot_error'] = str(error)
             raise AssertionError(name)
 
     startup = StartupFiles()
@@ -196,7 +203,32 @@ def main():
             original_request = page.evaluate('()=>HEWRSOutfitFeedback.stable(HEWRSApp.state().request)')
             check('Live generation returns 20 valid outfits with a ready avatar', len(current) == 20 and page.evaluate('()=>{const a=HEWRSApp,s=a.state();return a.connection.controller.verifyOptionSet(s.report.options,s.request) && s.report.options.every(o=>a.ownerFeedback.allowed(o._hewrsConnected.canonical_selection,s.request.context));}'))
             page.wait_for_load_state('networkidle', timeout=90000)
-            check('Displayed garment thumbnails load with real image dimensions', page.evaluate('()=>{const images=[...document.querySelectorAll("#option-card-items img")];return images.length>0 && images.every(i=>i.complete && i.naturalWidth>0);}'))
+            # Avatar readiness belongs to the composited canvas. Sidebar image
+            # nodes are mounted separately with decoding='async'; a previously
+            # reached networkidle state does not certify their decode readiness.
+            thumbnail_wait_error = None
+            try:
+                page.wait_for_function('''()=>{const images=[...document.querySelectorAll("#option-card-items img")];
+                    return images.length>0 && images.every(image=>image.complete);}''', timeout=60000)
+            except Exception as error:
+                thumbnail_wait_error = str(error)
+            thumbnails = page.evaluate('''()=>({
+                expected_count:HEWRSApp.cardSnapshot().items.filter(item=>!!item.image).length,
+                images:[...document.querySelectorAll("#option-card-items img")].map(image=>({
+                    src:image.src.startsWith('data:')?'[embedded image]':image.src,
+                    current_src:image.currentSrc.startsWith('data:')?'[embedded image]':image.currentSrc,
+                    source_key:image.dataset.sourceKey,complete:image.complete,
+                    natural_width:image.naturalWidth,natural_height:image.naturalHeight,
+                    hidden:image.hidden,fallback:!!image.closest('.lb-image-unavailable')
+                }))})''')
+            result['observations']['displayed_thumbnails'] = thumbnails
+            if thumbnail_wait_error:
+                result['observations']['thumbnail_wait_error'] = thumbnail_wait_error
+            check('Displayed garment thumbnails load with real image dimensions',
+                  thumbnail_wait_error is None and thumbnails['expected_count'] > 0
+                  and len(thumbnails['images']) == thumbnails['expected_count']
+                  and all(image['complete'] and image['natural_width'] > 0 and image['natural_height'] > 0
+                          and not image['hidden'] and not image['fallback'] for image in thumbnails['images']))
             page.screenshot(path=str(evidence / 'live-first-outfit-390x844.png'), full_page=True)
             removed = []
             refill_started = time.perf_counter()
