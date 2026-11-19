@@ -53,7 +53,7 @@ def main():
     parts = urllib.parse.urlsplit(base)
     if parts.scheme != 'https' or parts.netloc != 'elgabrymd-arch.github.io' or parts.path != '/HEWRS-v1-16-1-candidate/':
         raise ValueError('The publication check is restricted to the established HEWRS Pages URL.')
-    checks, errors, external, failed_requests, bad_responses = [], [], [], [], []
+    checks, errors, external, failed_requests, bad_responses, optional_browser_requests = [], [], [], [], [], []
     result = {
         'schema': 'hewrs.live-publication.v1',
         'url': base,
@@ -67,6 +67,7 @@ def main():
         'external_requests': external,
         'failed_requests': failed_requests,
         'http_errors': bad_responses,
+        'optional_browser_requests': optional_browser_requests,
         'observations': {},
     }
 
@@ -157,18 +158,30 @@ def main():
             context = browser.new_context(viewport={'width': 390, 'height': 844}, accept_downloads=False)
 
             def route(request):
-                if request.request.url.startswith(base):
+                requested = urllib.parse.urlsplit(request.request.url)
+                if requested.scheme == parts.scheme and requested.netloc == parts.netloc:
                     request.continue_()
                 else:
                     external.append(request.request.url)
                     request.abort()
+
+            def response_finished(response):
+                if response.status < 400:
+                    return
+                record = {'url': response.url, 'status': response.status}
+                # The app does not declare a favicon. Some browser versions
+                # independently probe the host root; record that separately.
+                if urllib.parse.urlsplit(response.url).path == '/favicon.ico':
+                    optional_browser_requests.append(record)
+                else:
+                    bad_responses.append(record)
 
             context.route('**/*', route)
             page = context.new_page()
             page.set_default_timeout(90000)
             page.on('pageerror', lambda error: errors.append(str(error)))
             page.on('requestfailed', lambda request: failed_requests.append({'url': request.url, 'failure': request.failure}))
-            page.on('response', lambda response: bad_responses.append({'url': response.url, 'status': response.status}) if response.status >= 400 else None)
+            page.on('response', response_finished)
             response = page.goto(page_url, wait_until='domcontentloaded', timeout=120000)
             check('The browser receives the exact published HTML', response is not None and response.status == 200 and digest(response.body()) == expected[''])
             ready(page)
