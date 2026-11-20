@@ -1,0 +1,683 @@
+{
+  "schema": "hewrs.collar-source-diagnostic.v1",
+  "baseline_commit": "f114d7dbedab3430761a29d77328ae80ac0882e4",
+  "status": "OPEN_UNCORRECTED",
+  "scope": "eight priority shirt identities, two states each",
+  "render_type": "registered layers plus existing S05 visible-body avatar; local diagnostic, not exact suit/blazer compositing",
+  "source_images_modified": false,
+  "app_files_modified": false,
+  "collar_preview_sha256": "3249dd49d2c1a5d87966cba17e3bce4dcba0b44b8e802930caf3233cd27d5314",
+  "priority_defects": {
+    "DS001, DS014": "tied non-suit: flat neckband/skin opening",
+    "DS017, DS034, DS035, DS036, DS051": "open collar: hard or missing collar-placket fabric join",
+    "DS023": "open collar: cutout jaggies"
+  },
+  "items": [
+    {
+      "id": "DS001",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+            "body": "da5bb883ad62277c394a8f7196514c1315467193b5170c017cb1fd0914fc5476",
+            "left": "fcfc66292f61b65ce5b9669d2acc254d847d809be0f90efcf89bd317f7c38a9e",
+            "right": "7dc82da051699dd24fe7ffc5971185f324167dce06ae8202782f05e470eaac9f"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": null,
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              376,
+              405,
+              484,
+              525
+            ],
+            "right": [
+              528,
+              415,
+              607,
+              525
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+            "body": "6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902",
+            "left": "8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2",
+            "right": "1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": null,
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              373,
+              405,
+              496,
+              525
+            ],
+            "right": [
+              518,
+              412,
+              609,
+              525
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    },
+    {
+      "id": "DS014",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+            "body": "da5bb883ad62277c394a8f7196514c1315467193b5170c017cb1fd0914fc5476",
+            "left": "fcfc66292f61b65ce5b9669d2acc254d847d809be0f90efcf89bd317f7c38a9e",
+            "right": "7dc82da051699dd24fe7ffc5971185f324167dce06ae8202782f05e470eaac9f"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": null,
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              376,
+              405,
+              484,
+              525
+            ],
+            "right": [
+              528,
+              415,
+              607,
+              525
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+            "body": "6b284ba100099d06f26a9f870c5427d982372ed072c47b129fb861e48f3ae902",
+            "left": "8348675d9a5b3ce9c4607788be28516172b3ce6531c96bcffe8e6c8a216db6c2",
+            "right": "1ccae7203f3d0c197e05d945dd4cd327657ee873a9c8024b981e427cc36589ca"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": null,
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              373,
+              405,
+              496,
+              525
+            ],
+            "right": [
+              518,
+              412,
+              609,
+              525
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    },
+    {
+      "id": "DS017",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "9e221b7e27bdaa4b22e78f605a4c6e8ff34f1da91fd71507225ff229f30552db",
+            "body": "829cf53caef4c16ebb556aa9ca1d6493d70cc012b49532c5d065c385f9493645",
+            "left": "090f324614e8fedbda2d1a05f0419a86e747983f8746a93bd318322eb9cf24a0",
+            "right": "b4038e56e4c39b16d1612efc6bde396a8f6a47f91ee9ad36568b127719cfb2e5"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              378,
+              375,
+              617,
+              435
+            ],
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              378,
+              375,
+              483,
+              529
+            ],
+            "right": [
+              524,
+              375,
+              616,
+              528
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "9e221b7e27bdaa4b22e78f605a4c6e8ff34f1da91fd71507225ff229f30552db",
+            "body": "06690a9374f32f594ea4c4b739ac287d951aaf89e32414485cabd4ed5bffffd6",
+            "left": "80c6284711f42b7bb5e4f593be85ff9f2263a863485b8dfce321b6d9de80f76d",
+            "right": "bdc84331cf8517af90958cd2a0b4aaf961d92827852f756b584f4ada6203e63a"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              378,
+              375,
+              617,
+              435
+            ],
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              378,
+              375,
+              494,
+              533
+            ],
+            "right": [
+              512,
+              375,
+              616,
+              534
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    },
+    {
+      "id": "DS023",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+            "body": "cf6b30562e607ca5ea57591bcb40e22e352009a4c10b90b6016d8eb995b2653c",
+            "left": "fd8708b6991a7cda7dd6b6a8b40f39941855152f46b669e6aed9d907d9844fc1",
+            "right": "6bb3dbdbfe010bcfdee68c2e0444fd11abaef9584ed4fad06c648f365d5742e2"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": null,
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              382,
+              399,
+              478,
+              526
+            ],
+            "right": [
+              526,
+              400,
+              616,
+              525
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+            "body": "f7997a0fadd5897e6384da13e42d89c9225c2f56d5871f8bba1c8c493fbdad3e",
+            "left": "d28b536a3083fb993e9d03ac59e298005d058873e748302126972b8fb36943be",
+            "right": "a8c7d28c32b2a91c526286d38c81fd602e400cb37c4da9cf8aed6e9d0bdea0e8"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": null,
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              381,
+              398,
+              490,
+              527
+            ],
+            "right": [
+              513,
+              399,
+              617,
+              525
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    },
+    {
+      "id": "DS034",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "389b46a4cfd111f1bf16b6735f4eeb61ccc9f8a51934f9f80aac6990418f8e90",
+            "body": "bc56f55c4c5ec4119eeb8c7cfdbce90bda7c258fd680540126291a6a9df4ea84",
+            "left": "56415e8c37628baaafd999bf173f78c166da0a85d1ea45508f0473013d4a72f3",
+            "right": "8ee1edbdad7ed65794a710870d3dfd481f3f66bd69581728f7cf1b85816692b3"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              373,
+              375,
+              620,
+              432
+            ],
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              379,
+              384,
+              488,
+              527
+            ],
+            "right": [
+              523,
+              376,
+              614,
+              525
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "389b46a4cfd111f1bf16b6735f4eeb61ccc9f8a51934f9f80aac6990418f8e90",
+            "body": "2b98fdd6f72ee71b0a73b4a36ddaf29be832f575b62f3dd5fc132554ea5da36e",
+            "left": "59a1b2239477fc4a928d6bf8532e0d52f108d7382d01c5a6d13e116764555061",
+            "right": "24829ebc067dde496ebe44f3dccd90e499c003ea0704f06db4653336b3f49918"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              373,
+              375,
+              620,
+              432
+            ],
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              378,
+              382,
+              499,
+              531
+            ],
+            "right": [
+              509,
+              376,
+              617,
+              531
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    },
+    {
+      "id": "DS035",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "f8580cdca4073f1e09bad276ad5d09f80602b4f2159a6a7f4cc50398cc4421a3",
+            "body": "319f49ee5dcf64a492c42ad705332ec0f9f2980804f9736f646977dff28f7407",
+            "left": "733414fa9d8d65171f3d8d235fea76de2da88dacc3b4df68bcdecd428c4351a5",
+            "right": "c21b07a9dc31e11f2f5b211400a65d81ca24408af375398599520cfd3dec6da1"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              382,
+              369,
+              617,
+              436
+            ],
+            "body": [
+              396,
+              373,
+              614,
+              791
+            ],
+            "left": [
+              381,
+              369,
+              489,
+              508
+            ],
+            "right": [
+              519,
+              373,
+              618,
+              505
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "d5ea70b559aa5aacde9a6d2c01359e2623cf47a58b3297ac18b69ea154d56058",
+            "body": "134a1574d80c342819289ef2d4e07b1d8293cc25bf5c25b02ba4c9c505156212",
+            "left": "c432067c66236c3eb7de5b5cfdbcdce4ab6d2cbda6625e622cf260ed53d6f096",
+            "right": "63dc1c4431fd24c1422d6b53c401c118d1e18bf3187bc1a2f9ef1147461feb90"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              380,
+              375,
+              617,
+              436
+            ],
+            "body": [
+              398,
+              377,
+              610,
+              791
+            ],
+            "left": [
+              380,
+              375,
+              492,
+              514
+            ],
+            "right": [
+              514,
+              379,
+              617,
+              515
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    },
+    {
+      "id": "DS036",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "9d52a41d60fa629de8a3bbf664be1a1f57581101c5facb5fff5e19f93c38e2bb",
+            "body": "75d5aae64d712f5b4dbbb02f77d09de61bce222288fe46012f6aa682b026f1f2",
+            "left": "8e87a232805729222a34c4de0dc204c4bcd46f3b397f7c7563c3ad2c84aef99b",
+            "right": "558df269b179eb12099cee9326ff5a900ccc7333d1ffdf04920d8de2ec298843"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              379,
+              375,
+              617,
+              435
+            ],
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              369,
+              377,
+              484,
+              526
+            ],
+            "right": [
+              524,
+              375,
+              610,
+              524
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "9d52a41d60fa629de8a3bbf664be1a1f57581101c5facb5fff5e19f93c38e2bb",
+            "body": "a4329c1fdb73bbb526645c732d4cc56e3b49e65689666def59e5763db88a779c",
+            "left": "1ebd62790f5646f4ecdbb17402a14e00dc152f411926618b48b09b42bdaddcb6",
+            "right": "538534e481c5a576204549ae726abb85c37af0218d8208a188e13be7166fe067"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              379,
+              375,
+              617,
+              435
+            ],
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              366,
+              376,
+              495,
+              531
+            ],
+            "right": [
+              511,
+              375,
+              609,
+              530
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    },
+    {
+      "id": "DS051",
+      "modes": {
+        "no_tie": {
+          "component_sha256": {
+            "rear": "4cb4813879969f81f4dc33034a72cd350c4f07c8c099c0744cfacaeee77e019b",
+            "body": "3c3b5845b5acdbd1d6e67141a9712f9139d46c453f75e647c815678dc2356ff9",
+            "left": "3b09546dff177a2fa8d03a3bcfefcb44f906bdd5afc661fa1028c16565621246",
+            "right": "7e624cec3e6438b61df3aa65a833c816423a76b4616b77127ad8222325d05bed"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              379,
+              379,
+              617,
+              435
+            ],
+            "body": [
+              350,
+              423,
+              650,
+              837
+            ],
+            "left": [
+              370,
+              383,
+              482,
+              528
+            ],
+            "right": [
+              527,
+              395,
+              607,
+              524
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        },
+        "tied": {
+          "component_sha256": {
+            "rear": "4cb4813879969f81f4dc33034a72cd350c4f07c8c099c0744cfacaeee77e019b",
+            "body": "a7b0dbee9602683fa3613c039dd2c5e703b6f2def82e1e23412c467e5fc5f327",
+            "left": "51a1c432bfda15cc18baf5aa1f1d39261bcfa505aebe376678137a7300c6e05f",
+            "right": "7a2565fee694fd01c93f19d94aee33735ac2a295147c5e235fec4231b01b369d"
+          },
+          "component_alpha_bounds_xyxy": {
+            "rear": [
+              379,
+              379,
+              617,
+              435
+            ],
+            "body": [
+              350,
+              416,
+              650,
+              837
+            ],
+            "left": [
+              368,
+              382,
+              492,
+              531
+            ],
+            "right": [
+              512,
+              393,
+              608,
+              530
+            ]
+          },
+          "crop_bbox_xyxy": [
+            320,
+            350,
+            680,
+            590
+          ],
+          "review": "REQUIRES_PHOTOGRAPHIC_REPAIR_AND_OWNER_VISUAL_CHECK"
+        }
+      }
+    }
+  ]
+}
