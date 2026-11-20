@@ -1,0 +1,43 @@
+name: Isolated collar browser verification
+
+on:
+  push:
+    branches: [fix/collar-visual-candidate-20261120]
+    paths:
+      - 'tests/collar-candidate-browser.py'
+      - '.github/workflows/collar-candidate-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actual-runtime-baselines:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install isolated browser inspection dependencies
+        run: |
+          python -m pip install --disable-pip-version-check Pillow numpy playwright==1.56.0
+          python -m playwright install --with-deps '${{ matrix.browser }}'
+      - name: Capture actual published entrypoint and protected control outfits
+        run: python tests/collar-candidate-browser.py --browser '${{ matrix.browser }}' --output evidence/collar_runtime_baseline --extra-controls
+      - name: Preserve full native frames, exact collar crops and verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_COLLAR_RUNTIME_BASELINE_${{ matrix.browser }}
+          path: evidence/collar_runtime_baseline/${{ matrix.browser }}/
+          retention-days: 30
+          if-no-files-found: error
+          compression-level: 1
