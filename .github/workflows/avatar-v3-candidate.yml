@@ -10,6 +10,7 @@ on:
       - 'tools/build_avatar_v3.py'
       - 'tools/build_avatar_v3_candidate.py'
       - 'src/avatar-v3.js'
+      - 'src/avatar-v3-pose.js'
       - 'tests/avatar-v3*'
   workflow_dispatch:
 
@@ -63,6 +64,8 @@ jobs:
           git status --short
       - name: Build and verify separate AVATAR_V3 preview app
         run: |
+          node --check src/avatar-v3-pose.js
+          node --check src/avatar-v3.js
           python tools/build_avatar_v3_candidate.py --write
           python tools/build_avatar_v3_candidate.py
           python - <<'PY'
