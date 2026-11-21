@@ -1,0 +1,318 @@
+{
+  "schema": "hewrs.collar-candidate-release.v1",
+  "status": "CANDIDATE_REQUIRES_RENDER_VERIFICATION",
+  "entrypoint": "collar-candidate.html",
+  "entrypoint_sha256": "e706e164f40ec5ef0825ed9411659078c3b09ed29a71aeb843174cccb86b523d",
+  "runtime": "runtime/collar-candidate-5e84aa9c745925a1ecd2.js",
+  "runtime_sha256": "5e84aa9c745925a1ecd273ad68d4828a52a53ddf9ac1757a748a64a05e94a22d",
+  "source_input_sha256": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "baseline_runtime": "runtime/outfit-refill-preview.js",
+  "baseline_runtime_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+  "baseline_entrypoint_sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
+  "baseline_preservation": {
+    "validator": "tools/build_tie_candidate.py:assemble,entrypoint,reviewed_delivery",
+    "exact_rebuild": true,
+    "preserved_delivery": {
+      "index.html": {
+        "bytes": 19726,
+        "sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c"
+      },
+      "app.html": {
+        "bytes": 19726,
+        "sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c"
+      },
+      "STARTUP_RESOURCES.json": {
+        "bytes": 10163,
+        "sha256": "2c81c3161b23dac56d78b2d75109ab6d83692ff7981b0a25e32a3dbedc58cbcd"
+      },
+      "STANDARD_RELEASE.json": {
+        "bytes": 13207,
+        "sha256": "1ae6444d8bf1a9903534630f386cf1b0dba9424ab52d427ffd66e2cdbde3d1ac"
+      },
+      "runtime/hewrs-bbbcec41d08f91585f4a.js": {
+        "bytes": 1767069,
+        "sha256": "bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150"
+      },
+      "runtime/outfit-refill-preview.js": {
+        "bytes": 1828992,
+        "sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8"
+      }
+    },
+    "preserved_resource_count": 29,
+    "historical_standard": {
+      "manifest_sha256": "1ae6444d8bf1a9903534630f386cf1b0dba9424ab52d427ffd66e2cdbde3d1ac",
+      "accepted_commit": "5e071d9be76cbcba0f8a1d1c60720bb9a57feab1",
+      "runtime": "runtime/hewrs-bbbcec41d08f91585f4a.js",
+      "runtime_sha256": "bbbcec41d08f91585f4ab40cd4b15b2cddfb08df35e04a6122747066ba637150",
+      "archived_runtime_hash_matches": true,
+      "current_source_build_gate": "NOT_APPLICABLE_TO_LATER_ACCEPTED_ACTIVE_RELEASE"
+    }
+  },
+  "candidate_sources": {
+    "data/collar-repairs.js": {
+      "bytes": 18601,
+      "sha256": "18ba3563b23cd787c5408736faa30cf79cfbe872eb8cf392d25af6c70c45565b"
+    },
+    "src/collar-repairs.js": {
+      "bytes": 20144,
+      "sha256": "856d5c7ff354d5e27b5514b2c7fc066587894341ba37dc90f6521702c62cce2d"
+    }
+  },
+  "bundle_sources": [
+    "src/owner-feedback.js",
+    "src/style-occasion-policy.js",
+    "data/owner-source-corrections.js",
+    "src/source-corrections.js",
+    "data/shoe-photo-corrections.js",
+    "src/shoe-photo-corrections.js",
+    "data/shoe-reference-batch1.js",
+    "src/shoe-reference-batch1.js",
+    "data/shoe-reference-batch2.js",
+    "src/shoe-reference-batch2.js",
+    "data/shoe-reference-batch3.js",
+    "src/shoe-reference-batch3.js",
+    "data/shoe-reference-batch4.js",
+    "src/shoe-reference-batch4.js",
+    "data/shoe-reference-batch5.js",
+    "src/shoe-reference-batch5.js",
+    "data/shoe-reference-batch6.js",
+    "src/shoe-reference-batch6.js",
+    "data/shoe-reference-batch7.js",
+    "src/shoe-reference-batch7.js",
+    "data/shoe-reference-batch8.js",
+    "src/shoe-reference-batch8.js",
+    "data/final-shoe-bindings.js",
+    "src/final-shoe-bindings.js",
+    "vendor/hewrs-logic.js",
+    "vendor/approved-scores.js",
+    "vendor/ensemble-completion.js",
+    "vendor/release-guards.js",
+    "vendor/request-contract.js",
+    "src/controller.js",
+    "vendor/watch-classification.js",
+    "src/canonical-bindings-browser.js",
+    "src/render-image-loader.js",
+    "vendor/active50-renderer.js",
+    "data/approved-suits.js",
+    "src/suit-resolver97-browser.js",
+    "src/approved-suit-sources.js",
+    "data/suit-assembly.js",
+    "data/ds035-coverage.js",
+    "data/ds035-edge.js",
+    "src/suit-assemblies.js",
+    "data/additional-blazers.js",
+    "src/additional-blazers.js",
+    "data/shirt-source-recovery.js",
+    "src/shirt-source-recovery.js",
+    "data/shirt-reconstruction-batch1.js",
+    "src/shirt-reconstruction-batch1.js",
+    "data/shirt-reconstruction-batch2.js",
+    "src/shirt-reconstruction-batch2.js",
+    "data/shirt-reconstruction-batch3.js",
+    "src/shirt-reconstruction-batch3.js",
+    "data/shirt-reconstruction-batch4.js",
+    "src/shirt-reconstruction-batch4.js",
+    "data/shirt-reconstruction-batch5.js",
+    "src/shirt-reconstruction-batch5.js",
+    "src/connection.js",
+    "data/blazer-connection.js",
+    "data/trouser-profiles.js",
+    "src/trouser-profiles.js",
+    "data/batch10.js",
+    "src/batch10-contract.js",
+    "src/blazer-connection.js",
+    "data/shirt-only.js",
+    "src/shirt-only-connection.js",
+    "data/non-suit-sources.js",
+    "src/non-suit-sources.js",
+    "data/ds023-cleanup.js",
+    "src/ds023-cleanup-connection.js",
+    "data/ds023-edges.js",
+    "src/ds023-edges-connection.js",
+    "src/ds035-coverage-renderer.js",
+    "src/ds035-edge-renderer.js",
+    "src/atomic-renderer.js",
+    "src/blazer-renderer.js",
+    "src/b01-b02-renderer.js",
+    "src/shirt-only-renderer.js",
+    "src/batch10-renderer.js",
+    "data/collar-repairs.js",
+    "src/collar-repairs.js",
+    "src/mixed-renderer.js",
+    "src/local-state.js",
+    "src/favorites-state.js",
+    "src/rotation-insights.js",
+    "src/legacy-accessories.js",
+    "src/weather-context.js",
+    "src/automatic-weather.js",
+    "src/option-set-policy.js",
+    "src/outfit-preference.js",
+    "src/generation-diagnostics.js",
+    "src/outfit-refill-engine.js",
+    "data/stylist-library.js",
+    "src/outfit-learning.js",
+    "data/preference-pilot.js",
+    "data/preference-followup.js",
+    "src/researched-preference.js",
+    "src/hybrid-stylist.js",
+    "src/owner-feedback-integration.js",
+    "data/stylist-service-config.js",
+    "src/visual-stylist-client.js",
+    "src/facelift-state.js",
+    "src/source-aware-pickers.js",
+    "src/automatic-preferences.js",
+    "src/sheet-layout.js",
+    "data/tie-fidelity.js",
+    "src/tie-fidelity.js",
+    "data/option-card-thumbnails.js",
+    "src/final-shoe-thumbnails.js",
+    "src/option-cards.js",
+    "src/preference-panel.js",
+    "src/outfit-refill-application.js"
+  ],
+  "startup_scripts": [
+    "src/runtime-loader.js",
+    "data/inputs.js",
+    "src/tie-exposure.js",
+    "src/tie-feedback.js",
+    "src/rejection-database.js",
+    "src/outfit-rejection-core.js",
+    "runtime/collar-candidate-5e84aa9c745925a1ecd2.js",
+    "src/outfit-rejection-ui.js",
+    "data/option-card-thumbnails.js",
+    "data/blazer-picker-images.js",
+    "data/suit-picker-images.js",
+    "src/blazer-picker-preview.js",
+    "src/photo-picker-integration.js",
+    "feedback-candidate/reviewed/rebuild-core.js",
+    "hewrs-pipeline-08c53932a2495e05.js",
+    "src/reviewed-rejection-integration.js",
+    "feedback-candidate/reviewed/image-assessment.js",
+    "feedback-candidate/reviewed/image-assessment-store.js",
+    "src/image-assessment-panel.js",
+    "feedback-candidate/reviewed/automatic-image-client.js",
+    "feedback-candidate/reviewed/automatic-image-panel.js"
+  ],
+  "deferred_index": "data/option-index.js",
+  "resource_integrity": {
+    "src/application.css": {
+      "bytes": 27379,
+      "sha256": "f45ceea1448218fbc0feac7b92b05f18ac247045193d316f879af181103ecf34"
+    },
+    "feedback-candidate/feedback.css": {
+      "bytes": 908,
+      "sha256": "fdc4db1521184cd79866e64b50e224f9655bd5823692d803a9171bbcd29ed1f5"
+    },
+    "feedback-candidate/reviewed/native-reviewed-panel.css": {
+      "bytes": 3806,
+      "sha256": "a50f347fbe67254dfa39216700034f07a05bf700ad4fae0dbd7f9b8ea953f6ee"
+    },
+    "src/blazer-picker-preview.css": {
+      "bytes": 2376,
+      "sha256": "217444efd93f4bf08d7f70f4a3d3414fca10d032d4b4ebf8d5a7ff4a747e6e31"
+    },
+    "src/shirt-picker-preview.css": {
+      "bytes": 2238,
+      "sha256": "84ab53241aeb5e60873a57465efeab7d95fe2f37caeb0708bc00cdf7a6c2f62e"
+    },
+    "src/tie-picker-preview.css": {
+      "bytes": 2538,
+      "sha256": "930c4967b877a782f37042829ba503f56be9acf21c2d0a04ba7f012695262235"
+    },
+    "src/outfit-rejection.css": {
+      "bytes": 2851,
+      "sha256": "c239153e8ac8403204f663ca87bee23507cab6117dcf48e60d4f7f18b40a13e5"
+    },
+    "src/runtime-loader.js": {
+      "bytes": 3280,
+      "sha256": "0df23483645700982dfc34a8bfda70cf6a44d09b058779adad7a2df240ed7f1a"
+    },
+    "data/option-index.js": {
+      "bytes": 6072082,
+      "sha256": "97a019847fcbe0868563bdc7a9b63f2d6fe1ddd5dc1f9091e0dcab524176fae4"
+    },
+    "data/inputs.js": {
+      "bytes": 4465381,
+      "sha256": "d4060df8ec8f400f62e2a160b6798ca5f15b940d030c9b63e901b58e0344c3fb"
+    },
+    "src/tie-exposure.js": {
+      "bytes": 8242,
+      "sha256": "599c66045044eda5f4dc4623cf6af7daf5fd8c9c9df779272dcd26b673a3cfeb"
+    },
+    "src/tie-feedback.js": {
+      "bytes": 10506,
+      "sha256": "cc5717989411da76f06b90f7dd8aad06ccec8f762b9b756c0d0ff759b2b27386"
+    },
+    "src/rejection-database.js": {
+      "bytes": 31907,
+      "sha256": "8befbd68827f7b7254b75518843d97942ba4ffeacb1220f628f5173188f1676a"
+    },
+    "src/outfit-rejection-core.js": {
+      "bytes": 23320,
+      "sha256": "859edc166dd95e1d42de1e0a3c62e68833461cc4aa0f5f4434dcbf96462a32dd"
+    },
+    "src/outfit-rejection-ui.js": {
+      "bytes": 32780,
+      "sha256": "d3194747c465b3c22aca7fbf5fe2222fe44539a1734ef5b6e790a69cd832dc5b"
+    },
+    "data/option-card-thumbnails.js": {
+      "bytes": 56292,
+      "sha256": "d5d77a62c04c8b8e5aa7e890e0b055a7034245a4c58792981897375a2b1a26c4"
+    },
+    "data/blazer-picker-images.js": {
+      "bytes": 5820,
+      "sha256": "c0178b39872881e606dfe0c91c8baea39b03d3e636cb81cd7a03a0b3404c8c91"
+    },
+    "data/suit-picker-images.js": {
+      "bytes": 7585,
+      "sha256": "a469033d18a101e1d5443a93cdf2b14f7a227e8699d6b1da6693b96895f3f06c"
+    },
+    "src/blazer-picker-preview.js": {
+      "bytes": 7431,
+      "sha256": "fc2cf20e9beb9e5a5c97cb5e63e653150737b285e0494573b644405cf216e8d7"
+    },
+    "src/photo-picker-integration.js": {
+      "bytes": 3504,
+      "sha256": "179f29d38c8a7dbbd6b23bba7b8fc3ae8bad49affce6a3232b5ef35d3835e363"
+    },
+    "feedback-candidate/reviewed/rebuild-core.js": {
+      "bytes": 15352,
+      "sha256": "b2ce0aa56cf277a45ac6e16bc95aacbdbefd3a5916e21a71940e1838e4db7ad8"
+    },
+    "hewrs-pipeline-08c53932a2495e05.js": {
+      "bytes": 7348,
+      "sha256": "08c53932a2495e05f8ccc32fa03fcf4e02a8bd7ce6daa08db1ffbb9926a6d66d"
+    },
+    "src/reviewed-rejection-integration.js": {
+      "bytes": 36125,
+      "sha256": "e598414dca714ddf9c06149c4f8af2a40583cbdf6c277ab131f384fdb041f6ff"
+    },
+    "feedback-candidate/reviewed/image-assessment.js": {
+      "bytes": 15312,
+      "sha256": "0c5d2b6ca68b7726b2b6404808d7702c8d19b05a69774be3f086f017f7ca67a2"
+    },
+    "feedback-candidate/reviewed/image-assessment-store.js": {
+      "bytes": 2588,
+      "sha256": "28cd3b7caba3b5d3e5c70efbc34ad20125aac203ef6c5e8102252423ebfcce23"
+    },
+    "src/image-assessment-panel.js": {
+      "bytes": 12560,
+      "sha256": "28c2fad5390164480f3ad3dd901490208a9f883d2fc8166cd8af0de577df9c1e"
+    },
+    "feedback-candidate/reviewed/automatic-image-client.js": {
+      "bytes": 6452,
+      "sha256": "1b12eb5a5c7aef7cec1b14dd057ec98318eebb20798079659ec77fef6093a7aa"
+    },
+    "feedback-candidate/reviewed/automatic-image-panel.js": {
+      "bytes": 5816,
+      "sha256": "43dc758765b9a69d73a9e2405d4c07d14f1d4085cc17e8824a41a9ca9c76b796"
+    },
+    "runtime/collar-candidate-5e84aa9c745925a1ecd2.js": {
+      "bytes": 1867818,
+      "sha256": "5e84aa9c745925a1ecd273ad68d4828a52a53ddf9ac1757a748a64a05e94a22d"
+    }
+  },
+  "browser_storage_migration": false,
+  "source_asset_writes": false,
+  "network_publication": false
+}

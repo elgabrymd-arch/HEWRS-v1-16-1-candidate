@@ -6,13 +6,19 @@ on:
     paths:
       - 'tests/collar-candidate-browser.py'
       - '.github/workflows/collar-candidate-browser.yml'
+      - 'data/collar-repairs.*'
+      - 'src/collar-repairs.js'
+      - 'tools/build_collar_candidate.py'
+      - 'collar-candidate.html'
+      - 'COLLAR_CANDIDATE_RELEASE.json'
+      - 'runtime/collar-candidate-*.js'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  actual-runtime-baselines:
+  actual-runtime-comparison:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     strategy:
@@ -32,12 +38,26 @@ jobs:
           python -m playwright install --with-deps '${{ matrix.browser }}'
       - name: Capture actual published entrypoint and protected control outfits
         run: python tests/collar-candidate-browser.py --browser '${{ matrix.browser }}' --output evidence/collar_runtime_baseline --extra-controls
-      - name: Preserve full native frames, exact collar crops and verification report
+      - name: Check candidate delivery bindings and compare every native outfit
+        if: hashFiles('collar-candidate.html') != ''
+        run: |
+          python tools/build_collar_candidate.py --check
+          python tests/collar-candidate-browser.py --browser '${{ matrix.browser }}' --entrypoint collar-candidate.html --output evidence/collar_runtime_candidate --baseline-output evidence/collar_runtime_baseline --extra-controls --rejection-smoke
+      - name: Preserve full baseline frames, exact collar crops and verification report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: HEWRS_COLLAR_RUNTIME_BASELINE_${{ matrix.browser }}
           path: evidence/collar_runtime_baseline/${{ matrix.browser }}/
+          retention-days: 30
+          if-no-files-found: error
+          compression-level: 1
+      - name: Preserve candidate frames, changes and rejection regression evidence
+        if: always() && hashFiles('collar-candidate.html') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_COLLAR_RUNTIME_CANDIDATE_${{ matrix.browser }}
+          path: evidence/collar_runtime_candidate/${{ matrix.browser }}/
           retention-days: 30
           if-no-files-found: error
           compression-level: 1

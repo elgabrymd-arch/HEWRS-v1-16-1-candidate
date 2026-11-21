@@ -13,6 +13,7 @@ import io
 import json
 import shutil
 import threading
+import time
 import traceback
 from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -115,6 +116,7 @@ def fixtures(args):
     rows = []
     def add(mode, shirt, state, top=None, pants='PG002', unchanged=False):
         value = selection(mode, shirt, state, top, pants)
+        unchanged = unchanged or (shirt in ('DS001', 'DS014') and state == 'NO_TIE')
         if any(row['selection'] == value for row in rows):
             return
         rows.append(dict(selection=value, mode=value.get('suitId') or value.get('blazerId') or mode,
@@ -150,6 +152,154 @@ def protected(page):
 
 def rgba_hash(image):
     return hashlib.sha256(image.tobytes()).hexdigest()
+
+
+def run_rejection_smoke(browser, url, check, report):
+    """Use real UI actions with a separate, empty synthetic feedback database."""
+    report.update(fresh_browser_context=True, owner_data_accessed=False,
+        generation_button_clicks=0, permanent_clothing_rejections=[],
+        page_errors=[], failed_requests=[], http_errors=[], blocked_external_requests=[])
+    context = browser.new_context(viewport=dict(width=390, height=844), timezone_id='America/New_York', accept_downloads=False)
+    expected_origin = urlsplit(url)[:2]
+    def route(request):
+        if urlsplit(request.request.url)[:2] == expected_origin:
+            request.continue_()
+        else:
+            report['blocked_external_requests'].append(request.request.url)
+            request.abort()
+    context.route('**/*', route)
+    page = context.new_page()
+    page.set_default_timeout(90000)
+    page.on('pageerror', lambda e: report['page_errors'].append(str(e)))
+    page.on('requestfailed', lambda r: report['failed_requests'].append(dict(url=r.url, error=r.failure)))
+    page.on('response', lambda r: report['http_errors'].append(dict(url=r.url, status=r.status))
+        if r.status >= 400 and not r.url.endswith('/favicon.ico') else None)
+    def test(name, condition, detail=None):
+        check('Rejection smoke: ' + name, condition, detail)
+    def ready():
+        page.wait_for_function('()=>globalThis.HEWRS_READY && HEWRSApp.rejection && HEWRSApp.tieExposure', timeout=120000)
+        page.evaluate('async()=>{await HEWRSApp.rejection.ready;await HEWRSApp.ownerFeedback.sync();}')
+        page.wait_for_function('()=>HEWRSApp.ownerFeedback.status().ready && !HEWRSApp.feedbackReadError && !document.getElementById("generate-options").disabled')
+    def cards_ready():
+        page.evaluate('async()=>{const images=Array.from(document.querySelectorAll("#option-card-items img"));await Promise.all(images.map(image=>image.decode()));if(!images.length||images.some(image=>image.hidden||!image.naturalWidth))throw Error("Incomplete current card photograph");}')
+    def rows():
+        return page.evaluate('()=>HEWRSApp.state().report.options.map(o=>({selection:o._hewrsConnected.canonical_selection,value:HEWRSOutfitFeedback.stable(o)}))')
+    def clothing_identity(value):
+        # Independent oracle: clothing rejection ignores shoes and watch.
+        return tuple(value.get(key) for key in ('suitId','blazerId','shirtOnly','pantId','shirtId','state'))
+    def protected_records():
+        return page.evaluate('()=>({wear:HEWRSApp.store.snapshot().events,favorites:HEWRSApp.favorites.snapshot()})')
+    def valid_generation():
+        return page.evaluate('()=>{const a=HEWRSApp,s=a.state();return s.optionCount===20&&a.connection.controller.verifyOptionSet(s.report.options,s.request)&&s.report.options.every(o=>o._hewrsConnected.canonical_selection.suitId==="S05"&&a.ownerFeedback.allowed(o._hewrsConnected.canonical_selection,s.request.context))&&document.getElementById("avatar").dataset.status==="ready";}')
+    def wait_for_refill(count):
+        page.wait_for_function('''count=>{const a=HEWRSApp,s=a.state();return a.ownerFeedback.status().ready
+          && a.ownerFeedback.snapshot().active.length>count && !s.busy
+          && !document.getElementById('outfit-rejection-dialog').open
+          && !document.getElementById('reject-outfit').disabled && s.optionCount===20;}''', arg=count, timeout=180000)
+        cards_ready()
+    try:
+        response = page.goto(url, wait_until='domcontentloaded', timeout=120000)
+        test('candidate entrypoint loads', response is not None and response.status == 200)
+        ready()
+        test('fresh synthetic feedback starts empty', page.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events.length===0&&HEWRSApp.ownerFeedback.snapshot().active.length===0'))
+        before_records = protected_records()
+        page.click('#pref-topwear')
+        page.locator('#picker-list [data-item-id="S05"]').click()
+        page.click('#picker-apply')
+        page.click('#generate-options')
+        report['generation_button_clicks'] += 1
+        page.wait_for_function('''()=>{const s=HEWRSApp.state();return !s.busy&&s.page==='outfits'
+          &&Array.isArray(s.report?.options)&&s.optionCount>0&&document.getElementById('avatar').dataset.status==='ready';}''', timeout=360000)
+        cards_ready()
+        current = rows()
+        request = page.evaluate('()=>HEWRSOutfitFeedback.stable(HEWRSApp.state().request)')
+        test('one real Generate supplies 20 valid S05 outfits', len(current) == 20 and valid_generation())
+        removed = []
+        started = time.monotonic()
+        for number in range(20):
+            selected = page.evaluate('()=>HEWRSApp.state().selection')
+            identity = clothing_identity(selected)
+            test('selected clothing has not been rejected previously', identity not in {clothing_identity(value) for value in removed})
+            kept = [row for row in current if clothing_identity(row['selection']) != identity]
+            count = page.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().active.length')
+            page.click('#reject-outfit')
+            page.select_option('#rejection-scope', 'clothing')
+            page.click('#rejection-permanent')
+            wait_for_refill(count)
+            removed.append(selected)
+            current = rows()
+            removed_identities = {clothing_identity(value) for value in removed}
+            test('refill %d retains 20 valid outfits and every accepted row in order' % (number + 1),
+                len(current) == 20 and current[:len(kept)] == kept and valid_generation())
+            test('refill %d excludes every earlier rejection within the same generation' % (number + 1),
+                all(clothing_identity(row['selection']) not in removed_identities for row in current)
+                and page.evaluate('()=>HEWRSOutfitFeedback.stable(HEWRSApp.state().request)') == request)
+            report['permanent_clothing_rejections'].append(dict(number=number+1, selection=selected,
+                retained_rows=len(kept), replacement_count=20-len(kept)))
+            print('REJECTION REFILL %d/20' % (number + 1), flush=True)
+        report['twenty_refills_seconds'] = round(time.monotonic() - started, 3)
+        clothing_events = page.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().active')
+        test('twenty separate permanent clothing bans remain stored', len(clothing_events) == 20
+            and all(event['scope'] == 'clothing' for event in clothing_events)
+            and page.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().events.length') == 20)
+        # Select an actual generated tied outfit through ordinary navigation.
+        for _ in range(20):
+            selected = page.evaluate('()=>HEWRSApp.state().selection')
+            if selected['state'].startswith('T'):
+                break
+            index = page.evaluate('()=>HEWRSApp.state().optionIndex')
+            page.click('#next-option')
+            page.wait_for_function('index=>!HEWRSApp.state().busy&&HEWRSApp.state().optionIndex!==index', arg=index)
+            cards_ready()
+        test('generated list contains a tied option for the tie-only check', selected['state'].startswith('T'))
+        kept = [row for row in current if row['selection']['state'] != selected['state']]
+        page.click('#reject-outfit')
+        page.select_option('#rejection-scope', 'tie')
+        page.check('#rejection-issue-patterns')
+        test('an explanatory reason preserves explicit This tie itself scope', page.input_value('#rejection-scope') == 'tie')
+        page.click('#rejection-permanent')
+        wait_for_refill(20)
+        tie_event = page.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().active.find(event=>event.scope==="tie")')
+        current = rows()
+        displayed = page.evaluate('()=>HEWRSApp.state().selection')
+        report['tie_only'] = dict(selection=selected, event=tie_event, displayed_replacement=displayed)
+        test('tie-only rejection stores the exact tie with all-occasion scope', tie_event
+            and tie_event['selection']['state'] == selected['state'] and tie_event['occasion'] == 'all')
+        test('tie-only refill excludes that tie everywhere and retains accepted rows', len(current) == 20
+            and current[:len(kept)] == kept and all(row['selection']['state'] != selected['state'] for row in current)
+            and valid_generation())
+        test('tie-only displayed replacement preserves accepted garments and substitutes a real different tie',
+            all(displayed.get(key) == selected.get(key) for key in ('suitId','blazerId','shirtOnly','pantId','shirtId','shoeId','watchId'))
+            and displayed['state'].startswith('T') and displayed['state'] != selected['state'])
+        variants = [selected, {**selected,'shirtId':'DS001' if selected['shirtId'] != 'DS001' else 'DS002'},
+            {**selected,'state':'T017' if selected['state'] != 'T017' else 'T019'}]
+        matches = page.evaluate('''([variants,id])=>variants.map(selection=>HEWRSApp.ownerFeedback.match(selection,
+          {occasion:'work',requiredFormality:'any'}).reasons.some(reason=>reason.id===id))''', [variants, tie_event['id']])
+        test('tie-only ban follows the tie across shirts without banning other ties', matches == [True,True,False])
+        page.click('#undo-outfit-rejection')
+        page.wait_for_function('id=>HEWRSApp.ownerFeedback.status().ready&&!HEWRSApp.ownerFeedback.snapshot().active.some(event=>event.id===id)&&!HEWRSApp.state().busy&&!document.getElementById("generate-options").disabled', arg=tie_event['id'])
+        after_undo = page.evaluate('()=>HEWRSApp.ownerFeedback.snapshot().active')
+        test('Undo restores the rejected tie and preserves all twenty clothing bans',
+            sorted(after_undo, key=lambda event:event['id']) == sorted(clothing_events, key=lambda event:event['id'])
+            and page.evaluate('selected=>HEWRSApp.ownerFeedback.allowed(selected,{occasion:"work",requiredFormality:"any"})', selected))
+        page.reload(wait_until='domcontentloaded')
+        ready()
+        test('twenty bans and tie Undo survive an actual reload', page.evaluate('''([removed,tie,id])=>{
+          const f=HEWRSApp.ownerFeedback,s=f.snapshot();return s.active.length===20&&s.events.length===22
+            &&removed.every(value=>!f.allowed(value,{occasion:'work',requiredFormality:'any'}))
+            &&f.allowed(tie,{occasion:'work',requiredFormality:'any'})&&!s.active.some(event=>event.id===id);
+        }''', [removed,selected,tie_event['id']]))
+        test('smoke leaves wear history and Favorites unchanged', protected_records() == before_records)
+        page.wait_for_load_state('networkidle', timeout=90000)
+        test('smoke has no browser or resource errors or external calls',
+            not any(report[key] for key in ['page_errors','failed_requests','http_errors','blocked_external_requests']), report)
+        report['status'] = 'passed'
+    except Exception:
+        report['status'] = 'failed'
+        report['error'] = traceback.format_exc()
+        raise
+    finally:
+        context.close()
 
 
 def sheets(output, frames, baseline=None):
@@ -191,12 +341,14 @@ def main():
     parser.add_argument('--modes', default='shirt-only,blazer')
     parser.add_argument('--extra-controls', action='store_true', help='Add legacy B01/B02 and tie-fidelity routes, protected S05/S11 suits and unaffected shirts.')
     parser.add_argument('--baseline-output', type=Path)
+    parser.add_argument('--rejection-smoke', action='store_true', help='After pixel checks, run 20 UI rejections, tie-only rejection and Undo in a separate fresh context.')
     parser.add_argument('--allowed-bbox', default='320,350,680,590', help='Permitted changed-pixel rectangle x0,y0,x1,y1; outside must match exactly.')
     args = parser.parse_args()
     output = args.output.resolve() / args.browser
     output.mkdir(parents=True, exist_ok=True)
     (output / 'native').mkdir(exist_ok=True)
     (output / 'collars').mkdir(exist_ok=True)
+    (output / 'differences').mkdir(exist_ok=True)
     baseline = args.baseline_output.resolve() / args.browser if args.baseline_output else None
     baseline_frames = {row['native_path']:row for row in json.loads((baseline / 'RESULT.json').read_text())['frames']} if baseline else {}
     allowed = tuple(map(int, args.allowed_bbox.split(',')))
@@ -282,9 +434,23 @@ def main():
                     result['comparison'] = dict(baseline_rgba_sha256=rgba_hash(previous), changed_pixels=int(changed.sum()),
                         changed_bbox_xyxy=[int(xs.min()),int(ys.min()),int(xs.max()+1),int(ys.max()+1)] if len(xs) else None,
                         outside_allowed_changed_pixels=int(outside.sum()))
+                    difference = np.zeros_like(a)
+                    difference[changed] = [255,35,35,255]
+                    difference_path = f'differences/{label}.png'
+                    Image.fromarray(difference).save(output / difference_path)
+                    result['comparison']['native_changed_pixel_mask'] = difference_path
                     check(label + ': all pixels outside allowed collar region remain identical', not outside.any(), result['comparison'])
                     if fixture['expected_unchanged']:
                         check(label + ': protected control remains fully pixel-identical', not changed.any(), result['comparison'])
+                    if selected.get('blazerId') == 'B03' and shirt in ('DS001', 'DS014') and state != 'NO_TIE':
+                        plan = result['plan']
+                        owned = np.zeros(changed.shape, dtype=bool)
+                        for desc in [plan['jacket'], *plan.get('hands', []), *plan.get('cuffs', [])]:
+                            source = np.array(Image.open(args.root / desc['url']).convert('RGBA'))
+                            owned |= source[:, :, 3] > 0
+                        changed_owned = int(np.count_nonzero(changed & owned))
+                        result['comparison']['changed_checkpoint_owned_pixels'] = changed_owned
+                        check(label + ': original B03 jacket, hand and cuff pixels remain identical', changed_owned == 0, changed_owned)
                     prior = baseline_frames[native_path]
                     check(label + ': original contextual photographs remain unchanged', all(result.get(key) == prior.get(key) for key in ['card_shirt','card_tie']))
                 frames.append(result)
@@ -297,6 +463,9 @@ def main():
             check('No external services contacted', not external, external)
             sheets(output, frames, baseline)
             context.close()
+            if args.rejection_smoke:
+                report['rejection_smoke'] = {}
+                run_rejection_smoke(browser, base + args.entrypoint, check, report['rejection_smoke'])
             browser.close()
     except Exception:
         report['error'] = traceback.format_exc()
