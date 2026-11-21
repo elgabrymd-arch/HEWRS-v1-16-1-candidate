@@ -10,6 +10,7 @@ import functools
 import hashlib
 import io
 import json
+import sys
 import threading
 import traceback
 import urllib.parse
@@ -17,10 +18,12 @@ from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFont
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+from verify_active_delivery import AVATAR_SHA256, INPUT_SHA256, TARGET_IDS, describe
 MODES = ('suit', 'blazer', 'shirt-only')
 NATIVE_COLLAR_BBOX = (170, 330, 656, 826)  # Full-canvas x, y, width, height.
 COLLAR_DETAIL_BBOX = (320, 330, 360, 260)  # Entire registered collar, at 1:1 pixels.
@@ -59,6 +62,8 @@ FRAME = r'''async input => {
  const rgba=cx.getImageData(0,0,canvas.width,canvas.height).data;
  const digest=await crypto.subtle.digest('SHA-256',rgba);
  const hash=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+ const headDigest=await crypto.subtle.digest('SHA-256',cx.getImageData(0,0,996,350).data);
+ const headHash=Array.from(new Uint8Array(headDigest),b=>b.toString(16).padStart(2,'0')).join('');
  const detail=document.createElement('canvas');detail.width=262;detail.height=306;
  detail.getContext('2d').drawImage(canvas,170,390,656,766,0,0,262,306);
  let nativeCollar=null;
@@ -77,7 +82,33 @@ FRAME = r'''async input => {
  if(thumbnails.some(image=>image.hidden||!image.naturalWidth||!image.naturalHeight))throw Error('An actual card photograph did not decode');
  return {selection:app.state().selection,last:app.renderer.last(),status:canvas.dataset.status,
   width:canvas.width,height:canvas.height,rgba_sha256:hash,detail:detail.toDataURL('image/png'),native_collar:nativeCollar,
+  comparison_png:input.captureComparison===true?canvas.toDataURL('image/png'):null,
+  head_rgba_sha256:headHash,
+  actual_render:{operation:result?.source_result?.operation||null,
+   shirt_id:result?.source_result?.shirt_id||null,
+   avatar_source_sha256:result?.source_result?.avatar_source_sha256||null,
+   legacy_shirt_layers_used:result?.source_result?.legacy_shirt_layers_used??null},
   shirt:model.items.find(x=>x.role==='Shirt'),tie:model.items.find(x=>x.role==='Tie')};
+}'''
+
+CANONICAL_HEAD = r'''async () => {
+ const app=HEWRSApp,descriptor=app.connection.manifest.static.avatar,url=app.resolveUrl(descriptor);
+ const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
+ const response=await fetch(url);if(!response.ok)throw Error('Frozen avatar source did not load');
+ const sourceHash=await digest(await response.arrayBuffer());
+ if(sourceHash!==descriptor.sha256)throw Error('Frozen avatar image bytes differ from source pin');
+ const image=new Image();image.src=url;await image.decode();
+ if(image.naturalWidth!==996||image.naturalHeight!==2748)throw Error('Frozen avatar native dimensions differ');
+ // Match the application's full native CPU-backed render and atomic commit.
+ // A 350-high/default-context canvas is a different WebKit decode/read path.
+ const source=document.createElement('canvas');source.width=996;source.height=2748;
+ const src=source.getContext('2d',{willReadFrequently:true});src.drawImage(image,0,0);
+ const committed=document.createElement('canvas');committed.width=996;committed.height=2748;
+ const dst=committed.getContext('2d',{willReadFrequently:true});
+ dst.putImageData(src.getImageData(0,0,996,2748),0,0);
+ return {source_sha256:sourceHash,canvas_dimensions:[996,2748],head_bbox_xywh:[0,0,996,350],
+  construction:'full-native-willReadFrequently-source-and-ImageData-commit',
+  head_rgba_sha256:await digest(dst.getImageData(0,0,996,350).data)};
 }'''
 
 REVIEWED_B01_FRAME = r'''async selection => {
@@ -119,14 +150,42 @@ REVIEWED_B01_FRAME = r'''async selection => {
 }'''
 
 
+def intentional_difference(current_png, baseline_png, current_hash, baseline_hash):
+    images = [Image.open(io.BytesIO(base64.b64decode(value.split(',', 1)[1]))).convert('RGBA')
+              for value in (current_png, baseline_png)]
+    if any(image.size != (996, 2748) for image in images):
+        raise AssertionError('Comparison is not a complete native frame')
+    if [hashlib.sha256(image.tobytes()).hexdigest() for image in images] != [current_hash, baseline_hash]:
+        raise AssertionError('Decoded comparison pixels do not match actual rendered pixels')
+    channels = ImageChops.difference(*images).split()
+    changed = channels[0]
+    for channel in channels[1:]:
+        changed = ImageChops.lighter(changed, channel)
+    head_changed = changed.crop((0, 0, 996, 350))
+    return dict(changed_pixels=sum(changed.histogram()[1:]), changed_bbox_xyxy=changed.getbbox(),
+                head_changed_pixels=sum(head_changed.histogram()[1:]),
+                head_changed_bbox_xyxy=head_changed.getbbox(), native_dimensions=[996, 2748])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', choices=('chromium', 'webkit'), default='chromium')
     parser.add_argument('--baseline-root', type=Path)
     parser.add_argument('--url')
     args = parser.parse_args()
+    active_delivery = describe()
+    continuous = active_delivery['kind'] == 'continuous'
     catalogue = json.loads((ROOT / 'evidence/five_round_20261119/CATALOGUE.json').read_text())
     shirts = sorted(catalogue['shirts'], key=lambda row: row['id'])
+    # The catalogue retains the original photographic baseline. Only these
+    # exact corrected card mappings are read from the current source manifest.
+    if continuous:
+        current_cards = json.loads((ROOT / 'data/option-card-thumbnails.json').read_text())
+        for shirt in shirts:
+            if shirt['id'] in TARGET_IDS:
+                if shirt.get('nonSuitThumbnails'):
+                    raise AssertionError('An unexpected non-suit override hides a corrected shirt card')
+                shirt['thumbnails'] = current_cards['shirts'][shirt['id']]
     server = baseline_server = None
     if args.url:
         base = args.url
@@ -139,6 +198,12 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     checks, frames, errors, failed_requests, http_errors, external_requests = [], [], [], [], [], []
     result = dict(schema='hewrs.five-round-shirt-browser.v1', browser=args.browser, url=base,
+                  active_delivery=active_delivery,
+                  baseline_policy=dict(exact_native_pixels_for='all non-target shirts and original topwear routes',
+                      intentional_correction_ids=list(TARGET_IDS) if continuous else [],
+                      frozen_head_bbox_xywh=[0, 0, 996, 350],
+                      frozen_head_reference=('exact canonical native commit of the pinned avatar; old baseline head differences are recorded' if continuous else None),
+                      detailed_corrected_geometry_gate='tests/continuous-shirts-browser.py' if continuous else None),
                   baseline_compared=bool(baseline_base), owner_data_accessed=False,
                   started_at=datetime.now(timezone.utc).isoformat(), checks=checks, frames=frames,
                   page_errors=errors, failed_requests=failed_requests, http_errors=http_errors,
@@ -151,6 +216,7 @@ def main():
                       detail_sheet_description='Unscaled native RGBA crop on neutral background. Entire registered collar is included; wider native PNGs preserve neck/chest context.',
                       native_png_directory='native-collars', expected_native_png_count=288))
     pictures, native_pictures = {}, {}
+    canonical_head = None
 
     def save():
         result['passed'] = sum(row['passed'] for row in checks)
@@ -193,15 +259,42 @@ def main():
         return page.evaluate('()=>({wear:HEWRSApp.store.snapshot(),favorites:HEWRSApp.favorites.snapshot(),rejections:HEWRSApp.ownerFeedback.snapshot().events})')
 
     def render(page, selection, label, baseline_page=None, capture_key=None):
-        frame = page.evaluate(FRAME, dict(selection=selection, captureNativeCollar=bool(capture_key)))
+        corrected = continuous and selection['shirtId'] in TARGET_IDS
+        compare_corrected = corrected and baseline_page is not None
+        frame = page.evaluate(FRAME, dict(selection=selection, captureNativeCollar=bool(capture_key), captureComparison=compare_corrected))
         image = frame.pop('detail')
         native_collar = frame.pop('native_collar')
+        comparison_png = frame.pop('comparison_png')
         check(label + ': exact selection and committed renderer agree', frame['selection'] == selection and frame['last'] == selection, frame['selection'])
         check(label + ': complete native frame is ready', frame['status'] == 'ready' and (frame['width'], frame['height']) == (996, 2748))
+        if corrected:
+            actual = frame['actual_render']
+            check(label + ': actual completed render uses the exact continuous shirt and frozen avatar',
+                  actual['operation'] == 'CONTINUOUS_SOURCE_SHIRT'
+                  and actual['shirt_id'] == selection['shirtId']
+                  and actual['legacy_shirt_layers_used'] is False
+                  and actual['avatar_source_sha256'] == AVATAR_SHA256, actual)
+            check(label + ': committed head pixels exactly match the frozen avatar source',
+                  frame['head_rgba_sha256'] == canonical_head['head_rgba_sha256'])
+        else:
+            check(label + ': original shirt does not enter the continuous correction', frame['actual_render']['operation'] != 'CONTINUOUS_SOURCE_SHIRT')
         if baseline_page is not None:
-            baseline = baseline_page.evaluate(FRAME, selection)
+            baseline = baseline_page.evaluate(FRAME, dict(selection=selection, captureComparison=compare_corrected))
             frame['baseline_rgba_sha256'] = baseline['rgba_sha256']
-            check(label + ': approved native pixels equal the published baseline', baseline['rgba_sha256'] == frame['rgba_sha256'])
+            if corrected:
+                difference = intentional_difference(comparison_png, baseline['comparison_png'], frame['rgba_sha256'], baseline['rgba_sha256'])
+                check(label + ': authorized garment correction changes native pixels', difference['changed_pixels'] > 0, difference)
+                # The old DS051/S05 PARENT_DS051_STORED_RGB profile changes RGB
+                # at partial-alpha head edges. Preserve that measured difference
+                # while the canonical-source gate above still checks every pixel.
+                frame['baseline_comparison'] = dict(policy='intentional_eight_shirt_correction',
+                    canonical_frozen_head_equal=True,
+                    canonical_head_rgba_sha256=canonical_head['head_rgba_sha256'],
+                    baseline_head_equal=frame['head_rgba_sha256'] == baseline['head_rgba_sha256'],
+                    baseline_head_rgba_sha256=baseline['head_rgba_sha256'], **difference)
+            else:
+                check(label + ': approved native pixels equal the published baseline', baseline['rgba_sha256'] == frame['rgba_sha256'])
+                frame['baseline_comparison'] = dict(policy='exact_original_pixels', changed_pixels=0)
         if capture_key:
             pictures[capture_key] = Image.open(io.BytesIO(base64.b64decode(image.split(',', 1)[1]))).convert('RGBA')
             native_bytes = base64.b64decode(native_collar.pop('png').split(',', 1)[1])
@@ -264,6 +357,17 @@ def main():
         with sync_playwright() as pw:
             browser = getattr(pw, args.browser).launch(headless=True)
             context, page = new_page(browser, base, 'current')
+            loaded = page.evaluate('()=>({scripts:Array.from(document.scripts,s=>s.getAttribute("src")).filter(Boolean),ids:globalThis.HEWRSContinuousShirts?.allowedIds||null,source:HEWRSApp.connection.continuousShirts?.source_input_sha256||null,avatar:HEWRSApp.connection.manifest.static.avatar.sha256})')
+            expected_runtime = active_delivery['runtime'] + '?v=' + active_delivery['runtime_sha256'][:16]
+            check('Actual browser loads the exact audited runtime', loaded['scripts'].count(expected_runtime) == 1, loaded['scripts'])
+            if continuous:
+                check('Only the eight authorized shirts activate the continuous baseline exception', loaded['ids'] == list(TARGET_IDS) and loaded['source'] == INPUT_SHA256 and loaded['avatar'] == AVATAR_SHA256, loaded)
+                canonical_head = page.evaluate(CANONICAL_HEAD)
+                check('Canonical head reference verifies the immutable avatar bytes and native commit',
+                      canonical_head['source_sha256'] == AVATAR_SHA256
+                      and canonical_head['canvas_dimensions'] == [996, 2748]
+                      and canonical_head['head_bbox_xywh'] == [0, 0, 996, 350])
+                result['canonical_head_reference'] = canonical_head
             baseline_page = None
             if baseline_base:
                 baseline_context, baseline_page = new_page(browser, baseline_base, 'baseline')
@@ -287,6 +391,11 @@ def main():
                 save()
             check('All 288 supported shirt/context/collar frames were exercised', len(frames) == 288)
             check('All 288 complete native-resolution collar crops were saved', len(native_pictures) == 288)
+            if continuous and baseline_page is not None:
+                original_ids = sorted({row['selection']['shirtId'] for row in frames if row['baseline_comparison']['policy'] == 'exact_original_pixels'})
+                check('All 42 unaffected shirts retain every supported original native frame', len(original_ids) == 42 and original_ids == sorted(set(live_roster['shirts']) - set(TARGET_IDS)))
+                corrected_frames = [row for row in frames if row['baseline_comparison']['policy'] == 'intentional_eight_shirt_correction']
+                check('All 48 corrected shirt/context/collar frames ran the source-locked renderer and preserved the head', len(corrected_frames) == 48)
             for shirt in shirts:
                 if shirt['thumbnails'].get('tied'):
                     for mode in MODES:

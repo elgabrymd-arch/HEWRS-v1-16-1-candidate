@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hewrs.continuous-shirts.v1",
+  "title": "Isolated continuous photographic shirt registration",
+  "type": "object",
+  "required": [
+    "schema",
+    "source_input_sha256",
+    "canvas",
+    "ids",
+    "shirts",
+    "assetPaths"
+  ],
+  "properties": {
+    "schema": {
+      "const": "hewrs.continuous-shirts.v1"
+    },
+    "revision": {
+      "type": "string"
+    },
+    "source_input_sha256": {
+      "$ref": "#/$defs/hash"
+    },
+    "canvas": {
+      "const": [
+        996,
+        2748
+      ]
+    },
+    "ids": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "DS001",
+          "DS014",
+          "DS017",
+          "DS023",
+          "DS034",
+          "DS035",
+          "DS036",
+          "DS051"
+        ]
+      }
+    },
+    "shirts": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/shirt"
+      }
+    },
+    "assetPaths": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/hash"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "jacket_masks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "source_sha256"
+        ],
+        "properties": {
+          "source_sha256": {
+            "$ref": "#/$defs/hash"
+          },
+          "keep_contours": {
+            "$ref": "#/$defs/contours"
+          },
+          "erase_contours": {
+            "$ref": "#/$defs/contours"
+          },
+          "shirt_keep_contours": {
+            "$ref": "#/$defs/contours"
+          },
+          "cuff_keep_contours": {
+            "$ref": "#/$defs/contours"
+          },
+          "hand_source_sha256": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "point": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "contours": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "minItems": 3,
+        "items": {
+          "$ref": "#/$defs/point"
+        }
+      }
+    },
+    "rectangle": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "number"
+      }
+    },
+    "descriptor": {
+      "type": "object",
+      "required": [
+        "sha256",
+        "url",
+        "rect"
+      ],
+      "properties": {
+        "sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "url": {
+          "type": "string"
+        },
+        "rect": {
+          "$ref": "#/$defs/rectangle"
+        },
+        "role": {
+          "type": "string"
+        },
+        "display_alpha_mask": {
+          "$ref": "#/$defs/descriptor"
+        }
+      },
+      "description": "rect is [0,0,naturalWidth,naturalHeight]. Mesh photo dimensions may differ from 996x2748. Existing asset URLs resolve through their unchanged hash binding."
+    },
+    "patch": {
+      "type": "object",
+      "required": [
+        "source",
+        "source_rect",
+        "destination_rect"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/descriptor"
+        },
+        "source_rect": {
+          "$ref": "#/$defs/rectangle"
+        },
+        "destination_rect": {
+          "$ref": "#/$defs/rectangle"
+        },
+        "feather": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "boundary_blend": {
+          "const": true,
+          "description": "Match the generated repair to the exact original rectangle border using a harmonic RGB correction. Original alpha is retained; no original interior RGB is retained. Cannot be combined with feather or ink_mask."
+        },
+        "ink_mask": {
+          "type": "object",
+          "required": [
+            "threshold",
+            "softness"
+          ],
+          "properties": {
+            "threshold": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 255
+            },
+            "softness": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 255
+            },
+            "dilate": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8
+            },
+            "color_match_radius": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 32
+            },
+            "local_background_radius": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 32
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "required": ["boundary_blend"] },
+          "then": { "not": { "anyOf": [ { "required": ["ink_mask"] }, { "required": ["feather"] } ] } }
+        }
+      ],
+      "description": "Project an exact source-image edit into the original photo before the mesh warp. Optional feather is a smoothstep distance from the destination rectangle border in photo pixels. Optional ink_mask limits replacement to dark original annotation. boundary_blend replaces the complete rectangle with a border-matched generated repair. Pixels outside the rectangle remain the original photograph."
+    },
+    "surface": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "layer"
+          ],
+          "properties": {
+            "type": {
+              "const": "native"
+            },
+            "layer": {
+              "$ref": "#/$defs/descriptor"
+            },
+            "contours": {
+              "$ref": "#/$defs/contours"
+            },
+            "clip_rect": {
+              "$ref": "#/$defs/rectangle"
+            },
+            "fill_rule": {
+              "enum": [
+                "evenodd",
+                "nonzero"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "source",
+            "vertices",
+            "triangles",
+            "contours"
+          ],
+          "properties": {
+            "type": {
+              "const": "mesh"
+            },
+            "source": {
+              "$ref": "#/$defs/descriptor"
+            },
+            "vertices": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "array",
+                "minItems": 4,
+                "maxItems": 4,
+                "items": {
+                  "type": "number"
+                }
+              },
+              "description": "Each vertex is [sourceX,sourceY,destinationX,destinationY]. Adjacent triangles share the same vertex indices."
+            },
+            "triangles": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "contours": {
+              "$ref": "#/$defs/contours"
+            },
+            "clip_rect": {
+              "$ref": "#/$defs/rectangle"
+            },
+            "fill_rule": {
+              "enum": [
+                "evenodd",
+                "nonzero"
+              ]
+            },
+            "source_patches": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/patch"
+              }
+            }
+          }
+        }
+      ],
+      "description": "A complete source surface, clipped in native destination coordinates. evenodd contours support neck holes and disconnected source-derived cuff or collar pieces."
+    },
+    "mode": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/surface"
+        },
+        "rear": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/surface"
+            }
+          ]
+        },
+        "front_collar": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/surface"
+            }
+          ]
+        },
+        "cuffs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/surface"
+          }
+        }
+      },
+      "description": "No legacy shirt component is retained. NoTie normally uses one body. Tied requires a front_collar surface above the exact selected existing tie. New source-derived cuffs render below the selected jacket and above trousers; original hands remain last."
+    },
+    "shirt": {
+      "type": "object",
+      "required": [
+        "id",
+        "history_id",
+        "modes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "history_id": {
+          "type": "string"
+        },
+        "jacket_rear": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "B03": {
+              "type": "object",
+              "required": ["no_tie", "tied"],
+              "properties": {
+                "no_tie": { "$ref": "#/$defs/surface" },
+                "tied": { "$ref": "#/$defs/surface" }
+              }
+            }
+          },
+          "description": "Selected B03 rear collar support, projected from the same mode body photograph and source patches. Rendered before the immutable avatar; other topwear routes retain the original continuous garment."
+        },
+        "modes": {
+          "type": "object",
+          "required": [
+            "no_tie",
+            "tied"
+          ],
+          "properties": {
+            "no_tie": {
+              "$ref": "#/$defs/mode"
+            },
+            "tied": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/mode"
+                },
+                {
+                  "required": [
+                    "front_collar"
+                  ],
+                  "properties": {
+                    "front_collar": {
+                      "$ref": "#/$defs/surface"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

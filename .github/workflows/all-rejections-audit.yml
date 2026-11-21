@@ -6,12 +6,22 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - 'src/continuous-shirts.js'
       - 'src/outfit*.js'
       - 'src/*feedback*.js'
       - 'src/rejection-database.js'
       - 'src/reviewed-rejection-integration.js'
       - 'src/preference-panel.js'
       - 'runtime/outfit-refill-preview.js'
+      - 'runtime/continuous-shirts-*.js'
+      - 'CONTINUOUS_CANDIDATE.json'
+      - 'data/continuous-shirts*'
+      - 'data/option-card-thumbnails.*'
+      - 'ui/option-cards/**'
+      - 'tools/verify_active_delivery.py'
+      - 'tools/audit_continuous_source_lock.py'
+      - 'tools/build_continuous_candidate.py'
+      - 'tests/active-delivery-audit.py'
       - 'index.html'
       - 'app.html'
       - 'tests/all-rejections*'
@@ -45,9 +55,11 @@ jobs:
         run: |
           git fetch --depth=1 origin 3238e36445cdc3597af43c873a5425e0018cb97f
           git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
-          git diff --exit-code 3238e36445cdc3597af43c873a5425e0018cb97f -- assets assemblies data vendor ui ui-assets STANDARD_RELEASE.json outfit-feedback.js tools/build.py ':(exclude)vendor/active50-renderer.js'
-          python tools/build_tie_candidate.py --check
-          node --check runtime/outfit-refill-preview.js
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          python tools/audit_continuous_source_lock.py --base 3238e36445cdc3597af43c873a5425e0018cb97f
+          python tools/verify_active_delivery.py --check --syntax
+      - name: Verify narrow delivery and source-lock audit regressions
+        run: python tests/active-delivery-audit.py
       - name: Install isolated database test dependency
         run: npm install --prefix /tmp/hewrs-rejection-audit-deps --ignore-scripts --no-audit --no-fund fake-indexeddb@6.2.8
       - name: Audit every scope, reason, lifecycle and failed transaction

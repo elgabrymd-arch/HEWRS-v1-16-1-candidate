@@ -10,6 +10,7 @@ import copy
 import functools
 import hashlib
 import json
+import sys
 import threading
 import time
 import traceback
@@ -21,6 +22,8 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+from verify_active_delivery import describe
 A = dict(suitId='S05', shirtId='DS029', state='T029', shoeId='shoe-8', watchId=None)
 B = dict(suitId='S05', shirtId='DS007', state='T009', shoeId='shoe-8', watchId=None)
 C = dict(suitId='S05', shirtId='DS036', state='T017', shoeId='shoe-8', watchId=None)
@@ -43,6 +46,7 @@ def main():
     parser.add_argument('--browser', choices=('chromium', 'webkit'), default='chromium')
     parser.add_argument('--url')
     args = parser.parse_args()
+    active_delivery = describe()
     server, url = (None, args.url) if args.url else serve()
     output = ROOT / 'evidence/five_round_20261119/browser' / args.browser / ('live-state' if args.url else 'state')
     output.mkdir(parents=True, exist_ok=True)
@@ -300,7 +304,14 @@ if(text&&text!==auditLastMessage)window.__auditMessages.push(text);auditLastMess
             a, b = new_page(context, 'tab-A'), new_page(context, 'tab-B')
             keys = a.evaluate('()=>({wear:HEWRSApp.store.key,favorites:HEWRSApp.favorites.key,source:HEWRSApp.state().sourceLock})')
             result['identity'] = keys
-            result['source_sha256'] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in ['index.html', 'runtime/outfit-refill-preview.js', 'src/local-state.js', 'src/favorites-state.js']}
+            result['active_delivery'] = active_delivery
+            result['source_sha256'] = {**active_delivery['source_sha256'], **{
+                name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+                for name in ['src/local-state.js', 'src/favorites-state.js', 'src/outfit-refill-application.js']}}
+            for label, tab in [('tab-A', a), ('tab-B', b)]:
+                scripts = tab.evaluate('()=>Array.from(document.scripts,s=>s.getAttribute("src")).filter(Boolean)')
+                expected = active_delivery['runtime'] + '?v=' + active_delivery['runtime_sha256'][:16]
+                check(label + ': audited source hashes match the actual loaded runtime', scripts.count(expected) == 1)
             check('Both tabs share one fresh origin and no owner records', a.evaluate('()=>HEWRSApp.store.snapshot().events.length===0 && HEWRSApp.favorites.snapshot().items.length===0') and b.evaluate('()=>HEWRSApp.store.snapshot().events.length===0 && HEWRSApp.favorites.snapshot().items.length===0'))
             current(a, A)
             current(b, B)
