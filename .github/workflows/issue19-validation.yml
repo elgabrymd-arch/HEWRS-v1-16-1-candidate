@@ -1,0 +1,239 @@
+name: Issue 19 complete V3 replacement validation
+
+on:
+  push:
+    branches: [fix/v3-all-shirt-fit-issue19]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/avatar-v3*.js'
+      - 'src/avatar-v3*.css'
+      - 'runtime/avatar-v3-candidate-*.js'
+      - 'AVATAR_V3*.json'
+      - 'avatar-v3-*.html'
+      - 'index.html'
+      - 'app.html'
+      - 'tools/*avatar_v3*'
+      - 'tools/verify_active_delivery.py'
+      - 'tests/issue19-*'
+      - 'tests/avatar-v3-*'
+      - '.github/workflows/issue19-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: issue19-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  native-source-and-application:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch exact historical source checkpoints
+        run: |
+          git fetch --depth=1 origin ee6bdb7c0986597e569056499ff9eedca1ec3c98
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
+      - name: Install isolated native verification dependencies
+        run: |
+          npm install --prefix /tmp/hewrs-issue19-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
+          python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Verify exact sources, protected behavior and deterministic integration
+        run: |
+          python tools/verify_active_delivery.py --check --syntax
+          python tests/issue19-source.py
+          python tests/active-delivery-audit.py
+          python -m py_compile tests/issue19-browser.py tests/issue19-source.py
+          node --check tests/avatar-v3-fit-runtime.cjs
+          git diff --exit-code
+      - name: Verify native tie, wrist and preserved B15 registration
+        env:
+          NODE_PATH: /tmp/hewrs-issue19-deps/node_modules
+        run: |
+          mkdir -p evidence/issue19/native
+          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs tests/avatar-v3-shirt-collar-fit.cjs | tee evidence/issue19/native/fit-contracts.log
+          node --expose-gc tests/continuous-shirts-bundle.cjs | tee evidence/issue19/native/compiled-runtime.log
+      - name: Run complete existing five-round application regressions
+        env:
+          NODE_PATH: /tmp/hewrs-issue19-deps/node_modules
+        run: |
+          node --test --test-concurrency=2 tests/five-round-*.cjs | tee evidence/issue19/native/application.log
+      - name: Verify all rejection scopes, replacements, failed reads and persistence
+        env:
+          NODE_PATH: /tmp/hewrs-issue19-deps/node_modules
+        run: |
+          node --test --test-concurrency=2 tests/rejection-status-ui.cjs tests/all-rejections-core.cjs tests/all-rejections-ui.cjs tests/all-rejections-engine.cjs tests/all-rejections-entrypoints.cjs tests/all-rejections-export-context.cjs tests/rejection-database.cjs tests/rejection-read-failure.cjs tests/rejection-cumulative-refill.cjs tests/rejection-same-generation-guard.cjs tests/tie-feedback.cjs tests/tie-only-replacement.cjs tests/tie-engine-integration.cjs | tee evidence/issue19/native/rejections.log
+      - name: Preserve source and functional evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_SOURCE_AND_FUNCTIONAL
+          path: evidence/issue19/
+          if-no-files-found: error
+          retention-days: 30
+
+  mobile-preflight:
+    name: Pinned B01 mobile presentation — ${{ matrix.browser }}
+    needs: native-source-and-application
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Capture settled reviewed outfit at all four viewport widths
+        run: python tests/issue19-browser.py --browser '${{ matrix.browser }}' --suite shirts --shard 2 --shards 4 --only-mode B01 --limit 1 --output evidence/issue19/mobile-preflight
+      - name: Exercise native mobile selects with trusted keyboard events
+        run: python tests/issue19-native-controls-browser.py --browser '${{ matrix.browser }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE19_MOBILE_PREFLIGHT_${{ matrix.browser }}
+          path: evidence/issue19/mobile-preflight/${{ matrix.browser }}/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve native control focus, popup and restoration evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE19_NATIVE_CONTROLS_${{ matrix.browser }}
+          path: evidence/issue19/native-controls/${{ matrix.browser }}/
+          if-no-files-found: error
+          retention-days: 30
+
+  exhaustive-fit:
+    name: All garment routes — ${{ matrix.browser }} — ${{ matrix.suite }} — ${{ matrix.shard }}
+    needs: native-source-and-application
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        suite: [shirts, ties]
+        shard: [0, 1, 2, 3]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching native browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Render complete Cartesian shirt matrix and all exact tie sources
+        run: python tests/issue19-browser.py --browser '${{ matrix.browser }}' --suite '${{ matrix.suite }}' --shard '${{ matrix.shard }}' --shards 4
+      - name: Preserve machine reports and actual phone evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_REPORTS
+          path: |
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/RESULT.json
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/VISUAL_REVIEW_INDEX.json
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/phone/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve every paired garment detail and indexed contact sheet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_DETAILS
+          path: |
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/collar/
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/cuffs/
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/tie/
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/sheets/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve selected full native PNGs separately from review reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_NATIVE
+          path: evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/native/
+          if-no-files-found: error
+          retention-days: 30
+
+  browser-functional:
+    name: Protected app behavior — ${{ matrix.browser }} — ${{ matrix.section }}
+    needs: native-source-and-application
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        section: [state, tie, reasons, lifecycle]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser verification driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Verify the real current application with isolated saved records
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/issue19-app-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          target_url=http://127.0.0.1:8765/index.html
+          case '${{ matrix.section }}' in
+            state) python tests/five-round-state-browser.py --url "$target_url" --browser '${{ matrix.browser }}' ;;
+            tie) python tests/tie-reason-scope-browser.py --url "$target_url" --browser '${{ matrix.browser }}' ;;
+            reasons|lifecycle) python tests/all-rejections-browser.py --url "$target_url" --browser '${{ matrix.browser }}' --section '${{ matrix.section }}' ;;
+          esac
+      - name: Preserve protected-state browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_STATE_${{ matrix.browser }}_${{ matrix.section }}
+          path: |
+            evidence/five_round_20261119/browser/
+            evidence/tie_reason_scope/
+            evidence/all_rejections/
+          if-no-files-found: error
+          retention-days: 30
+
+  home-and-storage-recovery:
+    needs: native-source-and-application
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - name: Verify current Home preferences, Favorites and wear-state separation
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Verify failed reads, two-tab recovery and protected rejection state
+        run: python tests/rejection-database-read-failure-browser.py
+      - name: Preserve storage recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_STORAGE_RECOVERY
+          path: evidence/rejection_storage/
+          if-no-files-found: error
+          retention-days: 30

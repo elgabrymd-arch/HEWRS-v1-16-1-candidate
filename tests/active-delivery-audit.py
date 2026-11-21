@@ -186,19 +186,40 @@ class ActiveRuntime(unittest.TestCase):
                 'candidate_layers': {name: {'sha256': sha, 'url': 'assets/' + sha + '.png', 'rect': [0, 0, 996, 2748]}
                                      for name, sha in candidates.items()}}
         self.write('data/avatar-v3-candidate.json', json.dumps(spec))
-        modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-pose.js')
+        modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-tie-fit.js',
+                   'src/avatar-v3-shirt-collar-fit.js', 'src/avatar-v3-cuff-fit.js', 'src/avatar-v3-pose.js')
         for name in modules:
             self.write(name, name)
+        fit_modules = {name: delivery.digest((self.root / name).read_bytes()) for name in modules[2:5]}
+        mobile_style = 'src/avatar-v3-review-layout.css'
+        self.write(mobile_style, '.rd-label select { overflow: hidden; }')
+        mobile_style_sha = delivery.digest((self.root / mobile_style).read_bytes())
+        mobile_style_pin = {'path': mobile_style, 'sha256': mobile_style_sha}
+        compatibility = {
+            'vendor/active50-renderer.js': 'release_only_masked_temporary_canvas_never_borrowed_loader_canvas',
+            'src/render-image-loader.js': 'cache_includes_source_bound_tie_display_registration',
+            'src/continuous-shirts.js': 'capture_exact_registered_body_before_tie_and_avatar_composition'}
+        # Keep the real retained V3 page byte-pinned. The runtime and asset
+        # fixture remain synthetic, while the new published-reference gate
+        # exercises its actual immutable baseline rather than a test waiver.
+        issue19_baseline = {
+            'commit': 'ee6bdb7c0986597e569056499ff9eedca1ec3c98',
+            'entrypoint': 'avatar-v3-issue19-baseline.html',
+            'entrypoint_sha256': '4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b'}
+        self.write(issue19_baseline['entrypoint'], (ROOT / issue19_baseline['entrypoint']).read_bytes())
         runtime_sha = delivery.digest(b'promoted runtime')
         runtime = 'runtime/avatar-v3-candidate-' + runtime_sha[:20] + '.js'
         self.write(runtime, b'promoted runtime')
         sri = base64.b64encode(bytes.fromhex(runtime_sha)).decode()
-        html = '<html data-avatar-profile="AVATAR_V3"><script src="' + runtime + '?v=' + runtime_sha[:16] + '" integrity="sha256-' + sri + '"></script></html>'
+        style_sri = base64.b64encode(bytes.fromhex(mobile_style_sha)).decode()
+        html = '<html data-avatar-profile="AVATAR_V3"><link rel="stylesheet" href="' + mobile_style + '?v=' + mobile_style_sha[:16] + '" integrity="sha256-' + style_sri + '"><script src="' + runtime + '?v=' + runtime_sha[:16] + '" integrity="sha256-' + sri + '"></script></html>'
         preview = {'runtime': runtime, 'runtime_sha256': runtime_sha, 'base_entrypoint': 'avatar-v2-reference.html',
                    'base_index_sha256': delivery.digest(reference), 'base_runtime': self.runtime,
                    'base_runtime_sha256': self.runtime_sha, 'layer_hashes': candidates,
                    'collar_fit_source_sha256': delivery.digest((self.root / 'src/avatar-v3-collar-fit.js').read_bytes()),
-                   'collar_fit_revision': 'AVATAR_V3_B15_COLLAR_FIT_1'}
+                   'collar_fit_revision': 'AVATAR_V3_B15_COLLAR_FIT_1',
+                   'issue19_fit_modules': fit_modules, 'issue19_runtime_compatibility': compatibility,
+                   'issue19_mobile_stylesheet': mobile_style_pin}
         self.write('AVATAR_V3_REVIEW_BUILD.json', json.dumps(preview))
         self.write('avatar-v3-review.html', html)
         release = {'schema': 'hewrs.avatar-v3-release.v1', 'profile': 'AVATAR_V3',
@@ -210,6 +231,9 @@ class ActiveRuntime(unittest.TestCase):
             'source_specification_sha256': delivery.digest((self.root / 'data/avatar-v3-candidate.json').read_bytes()),
             'layer_hashes': candidates, 'immutable_v2_hashes': originals,
             'collar_fit_revision': 'AVATAR_V3_B15_COLLAR_FIT_1',
+            'issue19_fit_modules': fit_modules, 'issue19_runtime_compatibility': compatibility,
+            'issue19_mobile_stylesheet': mobile_style_pin,
+            'issue19_baseline': issue19_baseline,
             'source_modules': {name: delivery.digest((self.root / name).read_bytes()) for name in modules}}
 
         def primary(text):
@@ -221,6 +245,23 @@ class ActiveRuntime(unittest.TestCase):
         with patch.object(delivery, 'V3_LAYERS', candidates):
             primary(html)
             self.assertEqual(delivery.describe(self.root)['kind'], 'avatar-v3')
+            style_changes = [
+                (html.replace('<link rel="stylesheet"', '<link rel="alternate"', 1), 'one V3 reviewed mobile stylesheet required'),
+                (html.replace('href="src/', 'href="https:src/', 1), 'mobile stylesheet must be local'),
+                (html.replace('sha256-' + style_sri, 'sha256-incorrect', 1), 'mobile stylesheet SRI mismatch'),
+                (html.replace('?v=' + mobile_style_sha[:16], '?v=stale', 1), 'mobile stylesheet cache pin mismatch'),
+            ]
+            for changed, expected in style_changes:
+                with self.subTest(mobile_stylesheet=expected):
+                    primary(changed)
+                    with self.assertRaisesRegex(ValueError, expected):
+                        delivery.describe(self.root)
+            primary(html)
+            original_style = (self.root / mobile_style).read_bytes()
+            self.write(mobile_style, original_style + b'/* stale source */')
+            with self.assertRaisesRegex(ValueError, 'mobile stylesheet source pin differs'):
+                delivery.describe(self.root)
+            self.write(mobile_style, original_style)
             for changed in (html.replace('src="runtime/', 'src="https:runtime/'),
                             html.replace('?v=' + runtime_sha[:16], '?v=' + runtime_sha[:16] + '#unexpected')):
                 with self.subTest(url=changed):

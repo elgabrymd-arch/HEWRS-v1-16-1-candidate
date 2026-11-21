@@ -7,16 +7,38 @@
   "baseline_manifest_sha256": "c2ebff6341b4c1b23eb08f3524f57d3640ad80e732c540b26f0ea0d189de6de8",
   "continuous_runtime": "runtime/continuous-shirts-4fae538c1847c9f7d1e9.js",
   "continuous_runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
-  "runtime": "runtime/avatar-v3-candidate-491cd6018b9acaf098cd.js",
-  "runtime_sha256": "491cd6018b9acaf098cd1086497e299e37ff3229e4336689f504bcf42311251c",
+  "runtime": "runtime/avatar-v3-candidate-f39eace65c2a874a0b64.js",
+  "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
   "source_specification": "data/avatar-v3-candidate.json",
   "source_specification_sha256": "9f0a135ab18ea14b467c44930068ff274cc70a573a83c9dac4a22b1a96b70c3e",
   "source_modules": {
     "src/avatar-v3.js": "7d88f0fd4f1e35e80bc2797f29386e681b5bdd570fb781e5991088d9f7adcbdb",
     "src/avatar-v3-collar-fit.js": "8bbdba2135f27f49a12da029332130b4b1f29d84c9344e41134498c1f7d63431",
+    "src/avatar-v3-tie-fit.js": "b2fc34f245e852591f9d120de6d99270633d6f57f5a53f790f6be22411ca9f93",
+    "src/avatar-v3-shirt-collar-fit.js": "192d8b02fc18b83aa2d09a9fa49a1806bf4156ae8474655535a820e9126aa1ac",
+    "src/avatar-v3-cuff-fit.js": "b0702dcf242f60250fa0b0f4942c20f18d30139fa4934e503fb876dfe7704806",
     "src/avatar-v3-pose.js": "2de18380a4ac99677d2fb38bb88ea32336fe64e4ccd597a81b57d25af095dbf4"
   },
   "collar_fit_revision": "AVATAR_V3_B15_COLLAR_FIT_1",
+  "issue19_fit_modules": {
+    "src/avatar-v3-tie-fit.js": "b2fc34f245e852591f9d120de6d99270633d6f57f5a53f790f6be22411ca9f93",
+    "src/avatar-v3-shirt-collar-fit.js": "192d8b02fc18b83aa2d09a9fa49a1806bf4156ae8474655535a820e9126aa1ac",
+    "src/avatar-v3-cuff-fit.js": "b0702dcf242f60250fa0b0f4942c20f18d30139fa4934e503fb876dfe7704806"
+  },
+  "issue19_mobile_stylesheet": {
+    "path": "src/avatar-v3-review-layout.css",
+    "sha256": "95c2df959c25f67489feeee21c0fc22bc03b268968d23a30cc128d86aa400063"
+  },
+  "issue19_runtime_compatibility": {
+    "vendor/active50-renderer.js": "release_only_masked_temporary_canvas_never_borrowed_loader_canvas",
+    "src/render-image-loader.js": "cache_includes_source_bound_tie_display_registration",
+    "src/continuous-shirts.js": "capture_exact_registered_body_before_tie_and_avatar_composition"
+  },
+  "issue19_baseline": {
+    "commit": "ee6bdb7c0986597e569056499ff9eedca1ec3c98",
+    "entrypoint": "avatar-v3-issue19-baseline.html",
+    "entrypoint_sha256": "4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b"
+  },
   "layer_hashes": {
     "avatar": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
     "left_hand": "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
@@ -28,11 +50,11 @@
     "right_hand": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9"
   },
   "entrypoints": {
-    "index.html": "4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b",
-    "app.html": "4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b"
+    "index.html": "0eb81367fd39d0fb213c652c21bb8c16251f6d8e3ea78ec3cf25ff6ff7a26119",
+    "app.html": "0eb81367fd39d0fb213c652c21bb8c16251f6d8e3ea78ec3cf25ff6ff7a26119"
   },
   "rollback_entrypoint": "avatar-v2-reference.html",
-  "garments_and_scoring": "original_sources_preserved_b15_collar_registration_refit",
+  "garments_and_scoring": "original_sources_preserved_v3_all_shirt_collar_cuff_and_tie_display_registration",
   "browser_storage_migration": "none",
   "authority": "owner_requested_source_avatar_update_and_continuation_through_integration",
   "visual_acceptance": "not_inferred_from_automated_tests"

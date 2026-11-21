@@ -46,12 +46,15 @@ class Scripts(HTMLParser):
     def __init__(self, text):
         super().__init__()
         self.scripts = []
+        self.styles = []
         self.feed(text)
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
         if tag == 'script' and values.get('src'):
             self.scripts.append(values)
+        if tag == 'link' and values.get('rel') == 'stylesheet' and values.get('href'):
+            self.styles.append(values)
 
 
 def runtime_binding(root, name):
@@ -96,8 +99,28 @@ def describe_avatar_v3(root):
         require(digest((root / row['url']).read_bytes()) == sha, 'V3 source bytes differ: ' + name)
         original = spec['source_layer_hashes'][name]
         require(digest((root / ('assets/' + original + '.png')).read_bytes()) == original, 'Immutable V2 layer changed: ' + name)
-    modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-pose.js')
+    modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-tie-fit.js',
+               'src/avatar-v3-shirt-collar-fit.js', 'src/avatar-v3-cuff-fit.js', 'src/avatar-v3-pose.js')
     require(release['source_modules'] == {name: digest((root / name).read_bytes()) for name in modules}, 'V3 source module pins are stale')
+    fit_modules = modules[2:5]
+    require(release.get('issue19_fit_modules') == preview.get('issue19_fit_modules') ==
+            {name:digest((root / name).read_bytes()) for name in fit_modules}, 'Issue 19 fit source bindings differ')
+    mobile_style = 'src/avatar-v3-review-layout.css'
+    mobile_style_sha = digest((root / mobile_style).read_bytes())
+    require(release.get('issue19_mobile_stylesheet') == preview.get('issue19_mobile_stylesheet') ==
+            {'path':mobile_style,'sha256':mobile_style_sha}, 'Issue 19 mobile stylesheet source pin differs')
+    require(release.get('issue19_runtime_compatibility') == preview.get('issue19_runtime_compatibility') ==
+            {'vendor/active50-renderer.js':'release_only_masked_temporary_canvas_never_borrowed_loader_canvas',
+             'src/render-image-loader.js':'cache_includes_source_bound_tie_display_registration',
+             'src/continuous-shirts.js':'capture_exact_registered_body_before_tie_and_avatar_composition'},
+            'V3 borrowed canvas ownership contract differs')
+    require(release.get('issue19_baseline') == {
+        'commit':'ee6bdb7c0986597e569056499ff9eedca1ec3c98',
+        'entrypoint':'avatar-v3-issue19-baseline.html',
+        'entrypoint_sha256':'4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b'},
+        'Issue 19 original published V3 reference differs')
+    require(digest((root / 'avatar-v3-issue19-baseline.html').read_bytes()) == release['issue19_baseline']['entrypoint_sha256'],
+            'Issue 19 published V3 comparison page changed')
     require(preview.get('collar_fit_source_sha256') == release['source_modules']['src/avatar-v3-collar-fit.js'] and
             preview.get('collar_fit_revision') == release.get('collar_fit_revision') == 'AVATAR_V3_B15_COLLAR_FIT_1',
             'V3 collar registration source or revision differs')
@@ -111,7 +134,15 @@ def describe_avatar_v3(root):
         require(not url.scheme and not url.netloc and not url.fragment, name + ': V3 runtime must be local')
         require(binding.get('integrity') == 'sha256-' + base64.b64encode(bytes.fromhex(runtime_sha)).decode(), name + ': V3 SRI mismatch')
         require(parse_qs(url.query).get('v') == [runtime_sha[:16]], name + ': V3 cache pin mismatch')
-    files = ['index.html', 'app.html', runtime, release_name, 'AVATAR_V3_REVIEW_BUILD.json', 'avatar-v3-review.html', spec_name, *modules]
+        styles = [row for row in Scripts(text).styles if urlsplit(row['href']).path == mobile_style]
+        require(len(styles) == 1, name + ': one V3 reviewed mobile stylesheet required')
+        style_url = urlsplit(styles[0]['href'])
+        require(not style_url.scheme and not style_url.netloc and not style_url.fragment,
+                name + ': V3 mobile stylesheet must be local')
+        require(styles[0].get('integrity') == 'sha256-' + base64.b64encode(bytes.fromhex(mobile_style_sha)).decode(),
+                name + ': V3 mobile stylesheet SRI mismatch')
+        require(parse_qs(style_url.query).get('v') == [mobile_style_sha[:16]], name + ': V3 mobile stylesheet cache pin mismatch')
+    files = ['index.html', 'app.html', runtime, release_name, 'AVATAR_V3_REVIEW_BUILD.json', 'avatar-v3-review.html', spec_name, mobile_style, *modules]
     return {**base, 'kind': 'avatar-v3', 'manifest': release_name,
             'runtime': runtime, 'runtime_sha256': runtime_sha,
             'continuous_runtime': base['runtime'], 'continuous_runtime_sha256': base['runtime_sha256'],
