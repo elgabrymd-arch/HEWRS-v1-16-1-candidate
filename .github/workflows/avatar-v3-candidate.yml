@@ -34,6 +34,17 @@ jobs:
         run: python tools/analyze_avatar_v3.py
       - name: Build source-locked V3 head and wrist candidate (not installed)
         run: python tools/build_avatar_v3.py --write
+      - name: Publish a small side-by-side preview for visual inspection
+        run: |
+          python - <<'PY'
+          import base64, io
+          from PIL import Image
+          image = Image.open('evidence/avatar_v3/avatar-v2-v3-geometry-compare.png')
+          image.thumbnail((620,800))
+          buf = io.BytesIO()
+          image.save(buf, format='PNG', optimize=True)
+          print('AVATAR_V3_PREVIEW_B64='+base64.b64encode(buf.getvalue()).decode())
+          PY
       - name: Assert no modification to V2, wardrobe, app or stored-state logic
         run: |
           git diff --exit-code HEAD -- assets/ assemblies/ data/inputs.json data/inputs.js src/ runtime/ index.html app.html
