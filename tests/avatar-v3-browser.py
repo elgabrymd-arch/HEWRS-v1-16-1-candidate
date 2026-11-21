@@ -82,7 +82,8 @@ def preview_sheet(results):
     out.save(OUT/'avatar-v2-v3-outfit-comparison.png',optimize=True)
     return out
 
-def run(browser_name):
+def run(browser):
+    browser_name=browser
     OUT.mkdir(parents=True,exist_ok=True)
     serv,url=server()
     expected=json.loads((ROOT/'data/avatar-v3-candidate.json').read_text())
