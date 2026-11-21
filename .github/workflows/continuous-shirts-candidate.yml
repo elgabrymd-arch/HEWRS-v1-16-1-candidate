@@ -10,11 +10,29 @@ on:
       - 'data/continuous-shirts*'
       - 'provenance/continuous-shirt-sources/**'
       - 'runtime/continuous-shirts-*'
+      - 'runtime/avatar-v3-candidate-*'
       - 'CONTINUOUS_CANDIDATE.json'
+      - 'AVATAR_V3_RELEASE.json'
+      - 'AVATAR_V3_REVIEW_BUILD.json'
+      - 'data/avatar-v3-candidate.json'
+      - 'src/avatar-v3*.js'
+      - 'src/outfit-rejection-ui.js'
+      - 'assets/**'
+      - 'assemblies/**'
+      - 'vendor/**'
       - 'index.html'
       - 'app.html'
+      - 'avatar-v2-reference.html'
+      - 'avatar-v3-review.html'
       - 'tools/build_continuous*'
+      - 'tools/build_avatar_v3_candidate.py'
+      - 'tools/integrate_avatar_v3.py'
+      - 'tools/verify_active_delivery.py'
+      - 'tools/audit_continuous_source_lock.py'
       - 'tests/continuous-shirts*'
+      - 'tests/active-delivery-audit.py'
+      - 'tests/rejection-status-ui.cjs'
+      - 'tests/all-rejections-ui.cjs'
       - '.github/workflows/continuous-shirts-candidate.yml'
   workflow_dispatch:
 
@@ -47,8 +65,10 @@ jobs:
           git diff --exit-code -- data/continuous-shirts.json data/continuous-shirts.js provenance/continuous-shirt-sources/registration.json
       - name: Verify immutable original sources and complete candidate delivery
         run: |
-          git diff --exit-code f114d7dbedab3430761a29d77328ae80ac0882e4 -- assets assemblies data/inputs.json data/batch10.json data/shirt-reconstruction-batch1.json src/local-state.js src/favorites-state.js src/outfit-rejection-core.js src/outfit-rejection-ui.js vendor
-          python tools/build_continuous_candidate.py
+          git diff --exit-code f114d7dbedab3430761a29d77328ae80ac0882e4 -- assemblies data/inputs.json data/batch10.json data/shirt-reconstruction-batch1.json src/local-state.js src/favorites-state.js src/outfit-rejection-core.js vendor
+          python tools/audit_continuous_source_lock.py --base f114d7dbedab3430761a29d77328ae80ac0882e4 --output evidence/continuous_shirts/native/source-lock.json
+          python tools/verify_active_delivery.py --check --syntax
+          python tests/active-delivery-audit.py
           node --check src/continuous-shirts.js
           python -m py_compile tests/continuous-shirts-browser.py
           python - <<'PY'
@@ -62,6 +82,8 @@ jobs:
               assert hashlib.sha256((root/name).read_bytes()).hexdigest()==expected, name
           print('All eight IDs and every new photographic source hash verified')
           PY
+      - name: Verify rejection readiness and preserved action messages
+        run: node --test tests/rejection-status-ui.cjs tests/all-rejections-ui.cjs tests/five-round-ui-rejection.cjs
       - name: Install isolated native canvas test dependency
         run: npm install --prefix /tmp/hewrs-continuous-deps --no-audit --no-fund @napi-rs/canvas@0.1.100
       - name: Verify projection, annotations, exact ties, clean modes and cancellation

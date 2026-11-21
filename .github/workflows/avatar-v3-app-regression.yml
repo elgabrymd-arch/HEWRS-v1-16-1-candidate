@@ -59,6 +59,8 @@ jobs:
       options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
+      - name: Trust the checked-out workspace inside the browser container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Install existing native regression driver
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
       - name: Verify exact application entrypoint and source integrity
