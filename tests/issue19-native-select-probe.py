@@ -13,6 +13,7 @@ import importlib.util
 import json
 import subprocess
 import threading
+import time
 import traceback
 from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -69,6 +70,17 @@ def digest(value):
 
 def state_hash(value):
     return digest(json.dumps(value, sort_keys=True, separators=(',', ':')).encode())
+
+
+def wait_until(page, predicate, description, timeout_ms=120000):
+    """Poll explicit functions from the host without page-side dynamic eval."""
+    deadline = time.monotonic() + timeout_ms / 1000
+    while True:
+        if page.evaluate(predicate):
+            return
+        if time.monotonic() >= deadline:
+            raise TimeoutError(f'Timed out waiting for {description}')
+        page.wait_for_timeout(50)
 
 
 def main():
@@ -136,7 +148,8 @@ def main():
             for path, expected in PINS.items():
                 received = page.request.get(origin + path)
                 check('Served pinned bytes: ' + path, received.status == 200 and digest(received.body()) == expected)
-            page.wait_for_function('globalThis.HEWRS_READY&&HEWRSApp.rejection')
+            wait_until(page, '()=>Boolean(globalThis.HEWRS_READY&&HEWRSApp.rejection)',
+                       'the pinned application readiness')
             page.evaluate('async()=>{await HEWRSApp.rejection.ready;await HEWRSApp.ownerFeedback.sync();}')
             protected = page.evaluate(matrix.FIT.PROTECTED)
             main_selection = page.evaluate('()=>HEWRSApp.state().selection')
@@ -146,7 +159,8 @@ def main():
                 frame = page.evaluate(matrix.FIT_FRAME, {'selected': selected, 'ignoredHashes': []})
                 check('Exact B01 reviewed preview is ready', frame['status'] == 'ready' and frame['last'] == selected
                       and frame['state_unchanged'] and frame['photos_decoded'])
-                page.wait_for_function('!HEWRSReviewedIntegration.state().busy')
+                wait_until(page, '()=>!HEWRSReviewedIntegration.state().busy',
+                           'the exact B01 reviewed render to settle')
                 page.evaluate(SETTLE)
                 return frame['full_sha256']
 
@@ -208,7 +222,8 @@ def main():
                 # Only dismiss an observably still-open native select popup.
                 if page.evaluate(GEOMETRY)['popupOpen'] is True:
                     page.keyboard.press('Escape')
-                page.wait_for_function("document.getElementById('rd-topwear').value==='B02'&&!HEWRSReviewedIntegration.state().busy")
+                wait_until(page, "()=>document.getElementById('rd-topwear').value==='B02'&&!HEWRSReviewedIntegration.state().busy",
+                           f'{width}px native B02 selection and settled processing')
                 changed_controls = page.evaluate(CONTROLS)
                 expected_controls = json.loads(json.dumps(original_controls))
                 next(x for x in expected_controls if x['id'] == 'rd-topwear')['value'] = 'B02'
@@ -225,7 +240,8 @@ def main():
                 page.keyboard.press('Enter')
                 if page.evaluate(GEOMETRY)['popupOpen'] is True:
                     page.keyboard.press('Escape')
-                page.wait_for_function("document.getElementById('rd-topwear').value==='B01'&&!HEWRSReviewedIntegration.state().busy")
+                wait_until(page, "()=>document.getElementById('rd-topwear').value==='B01'&&!HEWRSReviewedIntegration.state().busy",
+                           f'{width}px native B01 restoration and settled processing')
                 restored = page.evaluate(CONTROLS)
                 row['restored_controls_sha256'] = state_hash(restored)
                 row['all_change_events'] = page.evaluate('start=>__issue19ControlEvents.slice(start)', start_events)
