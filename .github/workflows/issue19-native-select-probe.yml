@@ -1,0 +1,39 @@
+name: Issue 19 isolated pinned native select probe
+
+on:
+  push:
+    branches: [diagnostic/issue19-native-select-3072]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-select:
+    name: Exact 3072 native select — ${{ matrix.browser }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Allow checked-out workspace ownership
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Fetch exact application checkpoint
+        run: git fetch --depth=1 origin 3072f2250ecab527b18f9c3ee6087161b4aa9eb3
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Verify pinned application and native keyboard selection
+        run: python tests/issue19-native-select-probe.py --browser '${{ matrix.browser }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE19_NATIVE_SELECT_${{ matrix.browser }}
+          path: evidence/issue19-native-select-probe/${{ matrix.browser }}/
+          if-no-files-found: error
+          retention-days: 30
