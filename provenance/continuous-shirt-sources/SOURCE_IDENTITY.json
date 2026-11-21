@@ -1,0 +1,245 @@
+{
+  "schema": "hewrs.continuous-shirt-source-identity.v1",
+  "status": "RECOVERED_SOURCE_EVIDENCE_NOT_NEW_DERIVATIVE_APPROVAL",
+  "source_bundle": {
+    "name": "HEWRS_ASSETS_2026-08-27(2).zip",
+    "library_file_id": "libfile_157c329cfd9c81918261ad55e0f0c17c",
+    "file_id": "file_00000000cd0481f5b2eb544549543d12",
+    "sha256": "bc692f6143cd4d4f71f8d83212e00682714d1374d408478f441b4f03348273c5"
+  },
+  "source_recovery_method": "Exact extraction from Library bundle; each copied asset SHA256 matches its exact MANIFEST.sha256 member. Full original replica files are used instead of downsampled and cropped PDF embeddings.",
+  "catalogue_provenance": {
+    "original_master_pdf": {
+      "library_file_id": "libfile_27078866872c819197645ab1a903df32",
+      "file_id": "file_00000000760081f59285bc5cba123a88",
+      "sha256": "32a10a2b4c701eb79863baafeb2d5da44e8c3dc2e2cdb56d03ef5e57ec5c044c",
+      "name": "HEWRS Shirt Catalogue DS001-DS049 FINAL(2).pdf"
+    },
+    "visual_audit_V4": {
+      "library_file_id": "libfile_3d17bcba9e908191a405103d686d9f56",
+      "file_id": "file_0000000011b481f58913f10548607e63",
+      "sha256": "9f4c2dd4b6563d0b7b8c55469354d92b89f5001e7ca28719cdbc641545f43c8c"
+    },
+    "evidence_terms": "The original master catalogue calls its worn images replica photographs. V4 labels them owner-approved catalogue visuals. Do not relabel these as proven raw camera photographs."
+  },
+  "IDs": {
+    "DS001": {
+      "id": "DS001",
+      "brand_from_registered_catalogue": "Brunello Cucinelli",
+      "colour_from_registered_catalogue": "white",
+      "pattern_from_registered_catalogue": "solid",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS001_catalogue_sh-002-000.jpg",
+        "width": 799,
+        "height": 1200,
+        "sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/catalogue_photos/sh-002-000.jpg",
+      "reference_role": "owner-approved catalogue replica visual",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": true,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": [],
+      "shared_photo_with": "DS014",
+      "identity_distinction": "Separate registered brand/garment identities, with explicitly shared byte-identical catalogue visual. No distinct physical-garment appearance for these two IDs can be inferred from this shared visual."
+    },
+    "DS014": {
+      "id": "DS014",
+      "brand_from_registered_catalogue": "Paul Fredrick",
+      "colour_from_registered_catalogue": "white",
+      "pattern_from_registered_catalogue": "solid",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS014_catalogue_sh-015-011.jpg",
+        "width": 799,
+        "height": 1200,
+        "sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/catalogue_photos/sh-015-011.jpg",
+      "reference_role": "owner-approved catalogue replica visual",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": true,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": [],
+      "shared_photo_with": "DS001",
+      "identity_distinction": "Separate registered brand/garment identities, with explicitly shared byte-identical catalogue visual. No distinct physical-garment appearance for these two IDs can be inferred from this shared visual."
+    },
+    "DS017": {
+      "id": "DS017",
+      "brand_from_registered_catalogue": "Brioni",
+      "colour_from_registered_catalogue": "cream/stone",
+      "pattern_from_registered_catalogue": "solid",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS017_replica_A16-01.png",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "9fefcde29fc2c4fae7c357ab889958fa3e2b260c4e0371f58f96e6cb59c3a74a",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/archive16_photos/A16-01.png",
+      "reference_role": "owner-approved catalogue replica visual",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": true,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": []
+    },
+    "DS023": {
+      "id": "DS023",
+      "brand_from_registered_catalogue": "Charles Tyrwhitt",
+      "colour_from_registered_catalogue": "deep burgundy/oxblood",
+      "pattern_from_registered_catalogue": "solid colour with micro-texture",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS023_catalogue_sh-024-019.jpg",
+        "width": 799,
+        "height": 1200,
+        "sha256": "453edf54819baed90ff8d9c5ce372828b908df75d9d84006aa1d8ebe9864fdff",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/catalogue_photos/sh-024-019.jpg",
+      "reference_role": "owner-approved catalogue replica visual",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": true,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": [
+        "Full original retains micro-texture and complete cuffs. Later 600x264 generated cutout is a derived component and is not shape authority."
+      ]
+    },
+    "DS034": {
+      "id": "DS034",
+      "brand_from_registered_catalogue": "Zegna",
+      "colour_from_registered_catalogue": "black",
+      "pattern_from_registered_catalogue": "solid",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS051_replica_A15-06.png",
+        "width": 1023,
+        "height": 1537,
+        "sha256": "c040ab0df6ab38fcc23a03d5edaac663cf8a32909da460ee842052f1ddf17957",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/archive15_photos/A15-06.png",
+      "reference_role": "DS051 shape source for previously authorized DS034 black reconstruction",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": false,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": [
+        "DS034 has no recovered full worn reference. Registered owner ruling authorizes DS051 fit/shape with black reconstruction.",
+        "DS034_owner_IMG_0728.jpg is motion-blurred, mostly floor/garment; unsuitable for neck, collar or shoulder geometry.",
+        "DS034_catalogue_reference_V4.jpeg shows folded black fabric and a partial collar area; useful only within that evidence boundary.",
+        "DS051 charcoal RGB is not DS034 black colour authority."
+      ],
+      "shape_parent_id": "DS051",
+      "physical_references": [
+        {
+          "width": 2000,
+          "height": 1500,
+          "sha256": "dc81ee6f1542f106c2fb65f682c05129c94c7afa5873f33ebc11377bfa5df028",
+          "unmodified_original": true,
+          "source_name": "DS034_owner_IMG_0728.jpg",
+          "distribution": "Source evidence retained in original owner bundle; not a candidate runtime file."
+        },
+        {
+          "width": 453,
+          "height": 633,
+          "sha256": "aa1fa458ccfec99b7221e4f3d4bc6678e039b75be6d2e85f01c8dc567f3f745f",
+          "unmodified_original": true,
+          "source_name": "DS034_catalogue_reference_V4.jpeg",
+          "distribution": "Source evidence retained in original owner bundle; not a candidate runtime file."
+        }
+      ]
+    },
+    "DS035": {
+      "id": "DS035",
+      "brand_from_registered_catalogue": "Zegna",
+      "colour_from_registered_catalogue": "ivory/off-white",
+      "pattern_from_registered_catalogue": "solid",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS035_replica_A15-08.png",
+        "width": 1023,
+        "height": 1537,
+        "sha256": "14d24515f502c5570323f047eb7f529231f0b05bb4e8ecec81d424a7f9aa29c3",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/archive15_photos/A15-08.png",
+      "reference_role": "owner-approved catalogue replica visual",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": true,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": [],
+      "physical_reference": {
+        "width": 2000,
+        "height": 1500,
+        "sha256": "28af724da85498bc907217e28b7c10d3a6cfbb394eb44437e8eed41713b5f12c",
+        "unmodified_original": true,
+        "source_name": "DS035_owner_IMG_0726.jpg",
+        "distribution": "Source evidence retained in original owner bundle; not a candidate runtime file."
+      },
+      "owner_photo_vs_replica": {
+        "established_visual_observations": [
+          "The registered owner photograph shows a rotated hanging off-white shirt close-up, with a long point collar, visible edge stitching, placket, buttons and sleeve/cuff fabric.",
+          "The replica shows a worn shirt with complete collar, neck opening, shoulders, torso, sleeves, cuffs and waist.",
+          "Black brand text is present in both sources, with different apparent orientation and placement caused by pose and reconstruction."
+        ],
+        "appearance_discrepancy": [
+          "The physical photograph reads warmer ivory under its scene lighting; the replica reads brighter neutral white, with stronger glossy highlights.",
+          "The replica fabric has a smoother and more strongly highlighted appearance. The physical photograph gives clearer collar edge stitching but does not supply the same worn fold geometry."
+        ],
+        "uncertainty": [
+          "Uncontrolled lighting and different camera/pose mean the observed colour difference does not establish a calibrated RGB correction.",
+          "General long-point collar identity agrees; exact point length, stand height and open-neck shape cannot be compared as equal-pose measurements."
+        ],
+        "annotation_scope": "Existing reconstruction contract explicitly removes DS035 annotation. Keep original sources immutable; record any removal as a scoped derivative, not a correction of original evidence."
+      }
+    },
+    "DS036": {
+      "id": "DS036",
+      "brand_from_registered_catalogue": "Zegna",
+      "colour_from_registered_catalogue": "chocolate brown",
+      "pattern_from_registered_catalogue": "solid",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS036_replica_A15-11.png",
+        "width": 1023,
+        "height": 1537,
+        "sha256": "5506f97ff64fdfc3fa5c6b030814740881d97f16a8f56484efba45a5f6438e8f",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/archive15_photos/A15-11.png",
+      "reference_role": "owner-approved catalogue replica visual",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": true,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": [
+        "Older original master catalogue DS036 photograph was subsequently reassigned to DS019. The A15-11 reference is the registered DS036 shape/appearance source."
+      ]
+    },
+    "DS051": {
+      "id": "DS051",
+      "brand_from_registered_catalogue": "Zegna",
+      "colour_from_registered_catalogue": "charcoal grey",
+      "pattern_from_registered_catalogue": "solid",
+      "shape_reference": {
+        "path": "provenance/continuous-shirt-sources/DS051_replica_A15-06.png",
+        "width": 1023,
+        "height": 1537,
+        "sha256": "c040ab0df6ab38fcc23a03d5edaac663cf8a32909da460ee842052f1ddf17957",
+        "unmodified_original": true
+      },
+      "original_bundle_member": "HEWRS_ASSETS_2026-08-27/archive15_photos/A15-06.png",
+      "reference_role": "owner-approved catalogue replica visual",
+      "manifest_sha256_verified": true,
+      "full_garment_geometry_visible": true,
+      "original_ID_and_photo_mapping_modified": false,
+      "limitations": []
+    }
+  },
+  "preservation": {
+    "avatar_edited": false,
+    "original_source_bytes_edited": false,
+    "original_photo_ID_mapping_edited": false,
+    "source_copy_only": true
+  },
+  "coordinate_drafts": {
+    "DS035": "provenance/continuous-shirt-sources/DS035_COORDINATES.json",
+    "DS023": "provenance/continuous-shirt-sources/DS023_COORDINATES.json"
+  }
+}

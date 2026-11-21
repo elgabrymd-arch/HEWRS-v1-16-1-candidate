@@ -8,6 +8,7 @@ import re
 import subprocess
 from collections import Counter
 from pathlib import Path
+from verify_active_delivery import describe
 
 ROOT = Path(__file__).resolve().parents[1]
 CODE_SUFFIXES = {'.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.py', '.html', '.css', '.yml', '.yaml', '.sh'}
@@ -51,10 +52,11 @@ def main():
         entrypoints[name] = {'sha256': hashlib.sha256(html.encode()).hexdigest(), 'scripts': scripts, 'styles': styles}
         edges.extend({'from': name, 'to': value.split('?', 1)[0], 'kind': kind, 'url': value}
                      for kind, values in [('script', scripts), ('stylesheet', styles)] for value in values)
-    bundle = ROOT / 'runtime/outfit-refill-preview.js'
-    bundle_sources = re.findall(r'/\* (?:PREVIEW )?SOURCE: ([^*]+) \*/', bundle.read_text())
+    active_delivery = describe()
+    bundle = ROOT / active_delivery['runtime']
+    bundle_sources = re.findall(r'/\* (?:(?:PREVIEW|CONTINUOUS SHIRT) )?SOURCE: ([^*]+) \*/', bundle.read_text())
     bundle_sources = [name.strip() for name in bundle_sources]
-    edges.extend({'from': 'runtime/outfit-refill-preview.js', 'to': name, 'kind': 'bundled_source'}
+    edges.extend({'from': active_delivery['runtime'], 'to': name, 'kind': 'bundled_source'}
                  for name in bundle_sources)
     active_sources = set(bundle_sources) | directly_loaded
     active_sources.add('data/option-index.js')
@@ -127,7 +129,7 @@ def main():
               'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
               'tracked_file_count': len(tracked), 'code_file_count': len(files),
               'role_counts': dict(Counter(row['role'] for row in files)),
-              'entrypoints': entrypoints, 'bundle_sources': bundle_sources,
+              'entrypoints': entrypoints, 'active_delivery': active_delivery, 'bundle_sources': bundle_sources,
               'reachable_utilities': utilities, 'reachability_edges': edges,
               'lineage_review': {'path': LINEAGE_REVIEW,
                                  'sha256': hashlib.sha256((ROOT / LINEAGE_REVIEW).read_bytes()).hexdigest(),

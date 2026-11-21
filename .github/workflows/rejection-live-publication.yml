@@ -7,6 +7,14 @@ on:
       - 'index.html'
       - 'app.html'
       - 'runtime/outfit-refill-preview.js'
+      - 'runtime/continuous-shirts-*.js'
+      - 'CONTINUOUS_CANDIDATE.json'
+      - 'src/continuous-shirts.js'
+      - 'data/continuous-shirts*'
+      - 'data/option-card-thumbnails.*'
+      - 'tools/verify_active_delivery.py'
+      - 'tests/five-round-photos-browser.py'
+      - 'tests/five-round-state-browser.py'
       - 'src/outfit-refill-*.js'
       - 'src/outfit-rejection*.js'
       - 'src/rejection-database.js'
@@ -101,7 +109,7 @@ jobs:
           path: baseline
       - name: Install matching browser and image audit drivers
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow
-      - name: Verify published shirt photos and collars against the original baseline
+      - name: Verify published shirts against the protected baseline and exact correction scope
         run: python tests/five-round-photos-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --baseline-root baseline --browser '${{ matrix.browser }}'
       - name: Verify published concurrent saves and cancellation
         run: python tests/five-round-state-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}'

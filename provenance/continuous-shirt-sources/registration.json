@@ -1,0 +1,3081 @@
+{
+  "schema": "hewrs.continuous-shirt-registration.v1",
+  "build_dependencies": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "shirts": {
+    "DS001": {
+      "source_sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+      "geometry_basis": "DS001",
+      "coordinate_sha256": "fddd7e6624bf4046e0d34052fd3c705c5e33f95c5770d42286283b6a181b2993",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                347,
+                174
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                451,
+                171
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                329,
+                232
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                472,
+                228
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                402,
+                272
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                265,
+                235
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                539,
+                238
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                282,
+                351
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                521,
+                352
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                201,
+                637
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                259,
+                642
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                531,
+                630
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                581,
+                639
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                291,
+                511
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                400,
+                532
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                500,
+                511
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                397,
+                406
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 265,
+          "triangles": 470,
+          "folded_triangles": 0,
+          "min_area_ratio": 1.6625859796333133,
+          "max_area_ratio": 7.963689602321807,
+          "coordinate_sha256": "fddd7e6624bf4046e0d34052fd3c705c5e33f95c5770d42286283b6a181b2993"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                350,
+                172
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                449,
+                168
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                367,
+                242
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                439,
+                241
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                402,
+                213
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                265,
+                235
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                539,
+                238
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                282,
+                351
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                521,
+                352
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                201,
+                637
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                259,
+                642
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                531,
+                630
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                581,
+                639
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                291,
+                511
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                400,
+                532
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                500,
+                511
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                397,
+                406
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                402,
+                220
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 258,
+          "triangles": 456,
+          "folded_triangles": 0,
+          "min_area_ratio": 1.6360402113766246,
+          "max_area_ratio": 7.997794308099825,
+          "coordinate_sha256": "e3ccbff54c01c8f2b6c2325aa8c304555f385f4ba13839fee46e04a75592ac16"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS001",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    },
+    "DS014": {
+      "source_sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+      "geometry_basis": "DS001",
+      "coordinate_sha256": "fddd7e6624bf4046e0d34052fd3c705c5e33f95c5770d42286283b6a181b2993",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                347,
+                174
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                451,
+                171
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                329,
+                232
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                472,
+                228
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                402,
+                272
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                265,
+                235
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                539,
+                238
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                282,
+                351
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                521,
+                352
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                201,
+                637
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                259,
+                642
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                531,
+                630
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                581,
+                639
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                291,
+                511
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                400,
+                532
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                500,
+                511
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                397,
+                406
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 265,
+          "triangles": 470,
+          "folded_triangles": 0,
+          "min_area_ratio": 1.6625859796333133,
+          "max_area_ratio": 7.963689602321807,
+          "coordinate_sha256": "fddd7e6624bf4046e0d34052fd3c705c5e33f95c5770d42286283b6a181b2993"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                350,
+                172
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                449,
+                168
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                367,
+                242
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                439,
+                241
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                402,
+                213
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                265,
+                235
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                539,
+                238
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                282,
+                351
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                521,
+                352
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                201,
+                637
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                259,
+                642
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                531,
+                630
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                581,
+                639
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                291,
+                511
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                400,
+                532
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                500,
+                511
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                397,
+                406
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                402,
+                220
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 258,
+          "triangles": 456,
+          "folded_triangles": 0,
+          "min_area_ratio": 1.6360402113766246,
+          "max_area_ratio": 7.997794308099825,
+          "coordinate_sha256": "e3ccbff54c01c8f2b6c2325aa8c304555f385f4ba13839fee46e04a75592ac16"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS001",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    },
+    "DS017": {
+      "source_sha256": "9fefcde29fc2c4fae7c357ab889958fa3e2b260c4e0371f58f96e6cb59c3a74a",
+      "geometry_basis": "DS017",
+      "coordinate_sha256": "e676e93dbf78ca64d29535a35b9e3bd3ec62ce345c536395809a6e49cc29ad85",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                460,
+                307
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                629,
+                284
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                408,
+                413
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                661,
+                409
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                519,
+                514
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                299,
+                416
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                810,
+                404
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                343,
+                634
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                741,
+                597
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                188,
+                1146
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                270,
+                1141
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                739,
+                1136
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                828,
+                1164
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                336,
+                903
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                491,
+                939
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                730,
+                899
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                499,
+                734
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 646,
+          "triangles": 1194,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.058316914125384506,
+          "max_area_ratio": 3.2123427083335354,
+          "coordinate_sha256": "e676e93dbf78ca64d29535a35b9e3bd3ec62ce345c536395809a6e49cc29ad85"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                461,
+                305
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                624,
+                289
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                483,
+                429
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                591,
+                429
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                541,
+                377
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                299,
+                416
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                810,
+                404
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                343,
+                634
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                741,
+                597
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                188,
+                1146
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                270,
+                1141
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                739,
+                1136
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                828,
+                1164
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                336,
+                903
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                491,
+                939
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                730,
+                899
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                499,
+                734
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                535,
+                388
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 616,
+          "triangles": 1136,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.4786687498243719,
+          "max_area_ratio": 3.1494713803249166,
+          "coordinate_sha256": "66aa0e11833706a5e0277a0eee097b67644cf7d23ecdbb8abdad4829010effd5"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS017",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    },
+    "DS023": {
+      "source_sha256": "453edf54819baed90ff8d9c5ce372828b908df75d9d84006aa1d8ebe9864fdff",
+      "geometry_basis": "DS023",
+      "coordinate_sha256": "92da1fbbcc9dd269d9d41df04985329ca39df2cf4811f04f92bc5679cd6a969e",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                350.801,
+                183.617
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                454.211,
+                179.579
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                330,
+                232
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                474,
+                232
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                400.5,
+                281.0
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                254.833,
+                242.555
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                556.467,
+                242.155
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                282,
+                374
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                517,
+                373
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                207.149,
+                626.514
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                244.356,
+                622.484
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                545.309,
+                620.677
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                577.079,
+                629.131
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                293.715,
+                508.605
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                395.821,
+                520.081
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                495.077,
+                506.108
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                394,
+                373
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 265,
+          "triangles": 470,
+          "folded_triangles": 0,
+          "min_area_ratio": 1.8250104902877522,
+          "max_area_ratio": 9.101691647774656,
+          "coordinate_sha256": "92da1fbbcc9dd269d9d41df04985329ca39df2cf4811f04f92bc5679cd6a969e"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                355.024,
+                172.656
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                449.438,
+                166.406
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                362.242,
+                241.992
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                439.684,
+                241.602
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                400.28,
+                216.016
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                254.833,
+                242.555
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                556.467,
+                242.155
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                282,
+                374
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                517,
+                373
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                207.149,
+                626.514
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                244.356,
+                622.484
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                545.309,
+                620.677
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                577.079,
+                629.131
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                293.715,
+                508.605
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                395.821,
+                520.081
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                495.077,
+                506.108
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                394,
+                373
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                400.865,
+                224.609
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 258,
+          "triangles": 456,
+          "folded_triangles": 0,
+          "min_area_ratio": 2.0173943421982234,
+          "max_area_ratio": 8.729987784805518,
+          "coordinate_sha256": "edf59b2c4e6316e2bf2e28a99e1944bc804c6f4555eff97486accaa50381abba"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS023",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    },
+    "DS034": {
+      "source_sha256": "82889f9d84c4efc3554eb9e8c60299b47f15c54be5a0780b1e02664b04e855fb",
+      "geometry_basis": "DS051",
+      "coordinate_sha256": "6f87b66a5718689a0b308253b432fae8cd78c3fc9fa23399598f93165cd8f603",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                437,
+                303
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                597,
+                296
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                393,
+                412
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                634,
+                409
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                514,
+                496
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                270,
+                424
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                773,
+                415
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                320,
+                611
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                718,
+                601
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                186,
+                1113
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                265,
+                1101
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                739,
+                1090
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                819,
+                1107
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                329,
+                884
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                497,
+                920
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                694,
+                881
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                505,
+                711
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 575,
+          "triangles": 1058,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.6183738209269829,
+          "max_area_ratio": 2.8288551776362554,
+          "coordinate_sha256": "6f87b66a5718689a0b308253b432fae8cd78c3fc9fa23399598f93165cd8f603"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                438.25,
+                301.25
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                594.5,
+                297.0
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                461.0,
+                419.0
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                571.25,
+                419.5
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                516.0,
+                366.75
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                270,
+                424
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                773,
+                415
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                320,
+                611
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                718,
+                601
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                186,
+                1113
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                265,
+                1101
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                739,
+                1090
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                819,
+                1107
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                329,
+                884
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                497,
+                920
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                694,
+                881
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                505,
+                711
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                515.75,
+                380.5
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 568,
+          "triangles": 1044,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.6220298336179974,
+          "max_area_ratio": 2.8589003874967833,
+          "coordinate_sha256": "5e5929355d0f3066dbe7c6dd81a5a54343b408a7d5064c6e200a411f4c4bd4f1"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS034",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    },
+    "DS035": {
+      "source_sha256": "14d24515f502c5570323f047eb7f529231f0b05bb4e8ecec81d424a7f9aa29c3",
+      "geometry_basis": "DS035",
+      "coordinate_sha256": "23af2824253c92ff8566c8286651d549243920896807a3f1301df59519dc983a",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                429.6,
+                314.8
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                593.81,
+                296.46
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                369,
+                443
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                632,
+                443
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                494.0,
+                520.5
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                248.59,
+                448.5
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                784.92,
+                423.3
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                315,
+                627
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                728,
+                638
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                161.0,
+                1152.5
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                243.5,
+                1141.0
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                730.5,
+                1131.0
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                817.37,
+                1153.8
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                299.2,
+                912.14
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                491.65,
+                953.41
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                712.25,
+                912.25
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                482,
+                687
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 623,
+          "triangles": 1150,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.45548739125834337,
+          "max_area_ratio": 3.242081785261155,
+          "coordinate_sha256": "23af2824253c92ff8566c8286651d549243920896807a3f1301df59519dc983a"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                431.0,
+                313.796
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                591.5,
+                298.806
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                439.0,
+                439.714
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                565.0,
+                440.713
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                503.5,
+                388.247
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                248.59,
+                448.5
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                784.92,
+                423.3
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                315,
+                627
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                728,
+                638
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                161.0,
+                1152.5
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                243.5,
+                1141.0
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                730.5,
+                1131.0
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                817.37,
+                1153.8
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                299.2,
+                912.14
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                491.65,
+                953.41
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                712.25,
+                912.25
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                482,
+                687
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                503.75,
+                402.988
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 616,
+          "triangles": 1136,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.6065907340466875,
+          "max_area_ratio": 2.7283982549635595,
+          "coordinate_sha256": "d257217610243bcc346d995629e7863971df478ff8e973fab007ef776a5f0019"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS035",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    },
+    "DS036": {
+      "source_sha256": "5506f97ff64fdfc3fa5c6b030814740881d97f16a8f56484efba45a5f6438e8f",
+      "geometry_basis": "DS036",
+      "coordinate_sha256": "8a501d4e030ee04eebddc0674dc84e2a269edb90e81eb25d3a19561b25f20e1b",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                437,
+                310
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                599,
+                307
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                388,
+                418
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                646,
+                418
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                513,
+                509
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                270,
+                425
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                774,
+                425
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                315,
+                616
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                718,
+                606
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                181,
+                1115
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                263,
+                1104
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                738,
+                1093
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                819,
+                1110
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                328,
+                886
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                502,
+                921
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                695,
+                882
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                506,
+                716
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 575,
+          "triangles": 1058,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.6359357396114211,
+          "max_area_ratio": 2.881464939079848,
+          "coordinate_sha256": "8a501d4e030ee04eebddc0674dc84e2a269edb90e81eb25d3a19561b25f20e1b"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                437,
+                310
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                599,
+                307
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                458,
+                430
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                565,
+                429
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                514,
+                384
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                270,
+                425
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                774,
+                425
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                315,
+                616
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                718,
+                606
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                181,
+                1115
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                263,
+                1104
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                738,
+                1093
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                819,
+                1110
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                328,
+                886
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                502,
+                921
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                695,
+                882
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                506,
+                716
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                515,
+                394
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 568,
+          "triangles": 1044,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.616203854128779,
+          "max_area_ratio": 3.021446448673045,
+          "coordinate_sha256": "1eed241903d32ddec601b2bf7b0488738898a0f7320d045b45c3ef3512426cc6"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS036",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    },
+    "DS051": {
+      "source_sha256": "c040ab0df6ab38fcc23a03d5edaac663cf8a32909da460ee842052f1ddf17957",
+      "geometry_basis": "DS051",
+      "coordinate_sha256": "6f87b66a5718689a0b308253b432fae8cd78c3fc9fa23399598f93165cd8f603",
+      "modes": {
+        "no_tie": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                437,
+                303
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                597,
+                296
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                393,
+                412
+              ],
+              "destination": [
+                373,
+                540
+              ]
+            },
+            "tip_right": {
+              "source": [
+                634,
+                409
+              ],
+              "destination": [
+                623,
+                540
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                514,
+                496
+              ],
+              "destination": [
+                499,
+                615
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                270,
+                424
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                773,
+                415
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                320,
+                611
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                718,
+                601
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                186,
+                1113
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                265,
+                1101
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                739,
+                1090
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                819,
+                1107
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                329,
+                884
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                497,
+                920
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                694,
+                881
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                505,
+                711
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            }
+          },
+          "vertices": 575,
+          "triangles": 1058,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.6183738209269829,
+          "max_area_ratio": 2.8288551776362554,
+          "coordinate_sha256": "6f87b66a5718689a0b308253b432fae8cd78c3fc9fa23399598f93165cd8f603"
+        },
+        "tied": {
+          "controls": {
+            "neck_left": {
+              "source": [
+                438.25,
+                301.25
+              ],
+              "destination": [
+                386,
+                412
+              ]
+            },
+            "neck_right": {
+              "source": [
+                595.75,
+                296.75
+              ],
+              "destination": [
+                614,
+                412
+              ]
+            },
+            "tip_left": {
+              "source": [
+                462.5,
+                422.0
+              ],
+              "destination": [
+                407,
+                551
+              ]
+            },
+            "tip_right": {
+              "source": [
+                572.25,
+                422.0
+              ],
+              "destination": [
+                589,
+                551
+              ]
+            },
+            "v_bottom": {
+              "source": [
+                516.5,
+                371.25
+              ],
+              "destination": [
+                499,
+                465
+              ]
+            },
+            "shoulder_left": {
+              "source": [
+                270,
+                424
+              ],
+              "destination": [
+                158,
+                515
+              ]
+            },
+            "shoulder_right": {
+              "source": [
+                773,
+                415
+              ],
+              "destination": [
+                838,
+                515
+              ]
+            },
+            "armpit_left": {
+              "source": [
+                320,
+                611
+              ],
+              "destination": [
+                218,
+                810
+              ]
+            },
+            "armpit_right": {
+              "source": [
+                718,
+                601
+              ],
+              "destination": [
+                778,
+                810
+              ]
+            },
+            "cuff_left_outer": {
+              "source": [
+                186,
+                1113
+              ],
+              "destination": [
+                104,
+                1390
+              ]
+            },
+            "cuff_left_inner": {
+              "source": [
+                265,
+                1101
+              ],
+              "destination": [
+                210,
+                1373
+              ]
+            },
+            "cuff_right_inner": {
+              "source": [
+                739,
+                1090
+              ],
+              "destination": [
+                781,
+                1370
+              ]
+            },
+            "cuff_right_outer": {
+              "source": [
+                819,
+                1107
+              ],
+              "destination": [
+                876,
+                1390
+              ]
+            },
+            "waist_left": {
+              "source": [
+                329,
+                884
+              ],
+              "destination": [
+                209,
+                1230
+              ]
+            },
+            "waist_center": {
+              "source": [
+                497,
+                920
+              ],
+              "destination": [
+                498,
+                1240
+              ]
+            },
+            "waist_right": {
+              "source": [
+                694,
+                881
+              ],
+              "destination": [
+                787,
+                1230
+              ]
+            },
+            "placket_center": {
+              "source": [
+                505,
+                711
+              ],
+              "destination": [
+                498,
+                925
+              ]
+            },
+            "top_button": {
+              "source": [
+                516.75,
+                385.5
+              ],
+              "destination": [
+                499,
+                480
+              ]
+            }
+          },
+          "vertices": 568,
+          "triangles": 1044,
+          "folded_triangles": 0,
+          "min_area_ratio": 0.6194119851640439,
+          "max_area_ratio": 2.8560727153113756,
+          "coordinate_sha256": "10d8bd89d0b4462b924eaadad871cf75e9b5901fa3d33750a41dcea8e2c0a977"
+        }
+      },
+      "jacket_rear": {
+        "topwear": "B03",
+        "source_jacket_sha256": "52984a67033b4c1d348eabfb71e1f5954d1a22457d8d1cc51498bb29118cfe99",
+        "coordinate_sha256": "d652e27fed0957fa6dd15a63f7c92e5edf50dda5848e2f499fb31bb7e1fa51dd",
+        "geometry_record": "DS051",
+        "role": "Own photographic collar cloth behind immutable avatar and selected coat; front/body geometry unchanged."
+      }
+    }
+  }
+}

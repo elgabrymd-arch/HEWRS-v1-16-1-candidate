@@ -1,0 +1,1279 @@
+{
+  "schema": "hewrs.independent-final-native-visual-gate.v1",
+  "reviewed_utc": "2026-11-21T03:53:09.371537+00:00",
+  "reviewer": "Independent visual_gate agent",
+  "native_visual_gate": "PASS",
+  "blocking_findings": [],
+  "owner_approval": false,
+  "browser_validation": "PENDING_SEPARATE_GATE",
+  "scope": "44 actual application-renderer combinations: the 32-frame v8 core matrix and 12-frame v8 extended matrix, with DS001/DS014 B03 NoTie replaced by their final v9 renders.",
+  "coverage": {
+    "shirts": [
+      "DS001",
+      "DS014",
+      "DS017",
+      "DS023",
+      "DS034",
+      "DS035",
+      "DS036",
+      "DS051"
+    ],
+    "core_modes": [
+      "shirt-only",
+      "B03"
+    ],
+    "core_states": [
+      "NO_TIE",
+      "T001"
+    ],
+    "core_frames": 32,
+    "extended_modes": [
+      "B02",
+      "S05",
+      "S11"
+    ],
+    "extended_states": [
+      "NO_TIE",
+      "T017",
+      "T028",
+      "T029"
+    ],
+    "extended_frames": 12,
+    "views": [
+      "Full-width upper body",
+      "Phone-scale full outfit",
+      "Native white/gray/dark collar mattes",
+      "Native source and wrist boundary diagnostics"
+    ]
+  },
+  "current_evidence_binding": {
+    "proof_file": "current-plan-proof.json",
+    "pass": true,
+    "current_plan_matches": 44,
+    "current_renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+    "current_data_js_sha256": "748c61e2c552ba91eb71da1b58ebbf75be0869724c131eba5f7d755008e20f80",
+    "current_data_json_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+    "source_input_sha256": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+    "resolved_asset_mismatches": 0,
+    "method": "All 44 saved compact plans match the current per-selection plans, including source and complete mesh hashes. Actual rendering code matches the render runs. The only other changed module is a UI thumbnail JSON manifest, which does not supply native outfit pixels."
+  },
+  "visual_findings": [
+    {
+      "finding": "Continuous photographic garment",
+      "result": "PASS",
+      "detail": "Source-specific shirt silhouette, shoulder, collar, placket and cuffs form one coherent outfit. DS001 torso and DS023 shoulder/background bands are absent."
+    },
+    {
+      "finding": "Open and closed collars",
+      "result": "PASS",
+      "detail": "No Tie openings contact the approved neck; closed stands and leaves meet T001/T017/T028/T029 knots. No gray rear source wedge or rectangular collar patch is visible."
+    },
+    {
+      "finding": "B03 neck-root support and aperture",
+      "result": "PASS",
+      "detail": "Own-shirt rear collar cloth closes the right-neck backdrop slit. Final DS001/DS014 NoTie overlap joins the front body without a gap on white, gray or dark. Shirt/tie remains continuous around and below the actual B03 button."
+    },
+    {
+      "finding": "DS035 annotation removal",
+      "result": "PASS",
+      "detail": "No circle, vertical letter shapes, pale letter ghosts or visible patch rectangle remain in the actual No Tie chest."
+    },
+    {
+      "finding": "B02 source-bound clipping",
+      "result": "PASS",
+      "detail": "Foreign gray ribbing and its dark top cap are absent. Textured navy lapel and selected jacket identity remain intact."
+    },
+    {
+      "finding": "Sleeve/cuff/hand continuity",
+      "result": "PASS",
+      "detail": "S05/S11 upper-sleeve fins are absent. Diagonal cuff fabric remains below the actual sleeve hem and connects to the unchanged hand caps. B02/B03 cuff ownership remains coherent."
+    },
+    {
+      "finding": "S11 root fragment",
+      "result": "PASS",
+      "detail": "The disconnected white/dark collar-root fleck is absent; the remaining collar stand edge is connected to the garment."
+    },
+    {
+      "finding": "Avatar and lower outfit",
+      "result": "PASS",
+      "detail": "All 44 frames preserve tested opaque approved head pixels through y410 and every opaque hand pixel. Lower body is unchanged from the matching previously rendered outfit. The original avatar and hand source bytes remain unchanged."
+    }
+  ],
+  "source_identity_notes": [
+    "DS001 and DS014 intentionally share the exact original catalogue photo while retaining separate wardrobe IDs.",
+    "DS034 uses its explicitly authorized black reconstruction; it does not sample DS051 charcoal pixels.",
+    "B03 rear support uses safe quads wholly inside each own-shirt collar. The full bilinear footprints were checked against source cloth contours."
+  ],
+  "nonblocking_limits": [
+    "The selected B03 source has thin pale arm-gap edge pixels visible on a dark diagnostic matte. At the intended gray full-outfit scale they do not form detached scraps or cutout bands; no new shirt leaks underneath those outer edges.",
+    "The unchanged avatar side-neck silhouette has a small stepped boundary at extreme roots. It has not been regenerated.",
+    "Opaque-head invariance is checked through y410. The existing DS023 NoTie collar transition changes five pixels at y411,x606..610 relative to the bare avatar; this is the collar contact boundary, not facial replacement.",
+    "All 47 ties and every possible wardrobe combination have not been visually exhausted. This pass covers the explicit 44 combinations only.",
+    "This is a native actual-engine visual gate. Browser behavior, deployment and owner approval are separate."
+  ],
+  "final_overlap_checks": [
+    {
+      "key": "DS001-B03-NO_TIE",
+      "changed_pixels_from_v8": 441,
+      "change_bbox": [
+        612,
+        399,
+        628,
+        465
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v8": true,
+      "previous_gap_pixels": 44,
+      "final_gap_alpha_min": 255,
+      "final_gap_alpha_max": 255
+    },
+    {
+      "key": "DS014-B03-NO_TIE",
+      "changed_pixels_from_v8": 441,
+      "change_bbox": [
+        612,
+        399,
+        628,
+        465
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v8": true,
+      "previous_gap_pixels": 44,
+      "final_gap_alpha_min": 255,
+      "final_gap_alpha_max": 255
+    }
+  ],
+  "immutable_checks": [
+    {
+      "key": "DS001-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS001-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS014-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS014-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS017-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS017-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS023-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS023-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS034-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS034-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS035-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS035-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS036-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS036-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS051-shirt-only-NO_TIE",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS051-shirt-only-T001",
+      "identical_to_v6": true,
+      "changed_pixels": 0,
+      "change_bbox": null,
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS001-B03-NO_TIE",
+      "changed_pixels_from_v8": 441,
+      "change_bbox": [
+        612,
+        399,
+        628,
+        465
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v8": true,
+      "previous_gap_pixels": 44,
+      "final_gap_alpha_min": 255,
+      "final_gap_alpha_max": 255
+    },
+    {
+      "key": "DS001-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1375,
+      "change_bbox": [
+        74,
+        397,
+        923,
+        1369
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS014-B03-NO_TIE",
+      "changed_pixels_from_v8": 441,
+      "change_bbox": [
+        612,
+        399,
+        628,
+        465
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v8": true,
+      "previous_gap_pixels": 44,
+      "final_gap_alpha_min": 255,
+      "final_gap_alpha_max": 255
+    },
+    {
+      "key": "DS014-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1375,
+      "change_bbox": [
+        74,
+        397,
+        923,
+        1369
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS017-B03-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1471,
+      "change_bbox": [
+        45,
+        397,
+        919,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS017-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1427,
+      "change_bbox": [
+        56,
+        397,
+        914,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS023-B03-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1402,
+      "change_bbox": [
+        74,
+        397,
+        912,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS023-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1532,
+      "change_bbox": [
+        74,
+        397,
+        906,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS034-B03-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1436,
+      "change_bbox": [
+        64,
+        397,
+        919,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS034-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1277,
+      "change_bbox": [
+        74,
+        397,
+        916,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS035-B03-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1365,
+      "change_bbox": [
+        66,
+        397,
+        919,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS035-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1429,
+      "change_bbox": [
+        74,
+        397,
+        914,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS036-B03-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1553,
+      "change_bbox": [
+        62,
+        397,
+        923,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS036-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1324,
+      "change_bbox": [
+        66,
+        397,
+        916,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS051-B03-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1434,
+      "change_bbox": [
+        64,
+        397,
+        919,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS051-B03-T001",
+      "identical_to_v6": false,
+      "changed_pixels": 1393,
+      "change_bbox": [
+        71,
+        397,
+        916,
+        1371
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS001-B02-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 2746,
+      "change_bbox": [
+        67,
+        380,
+        928,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS001-B02-T017",
+      "identical_to_v6": false,
+      "changed_pixels": 2590,
+      "change_bbox": [
+        70,
+        380,
+        925,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS023-B02-T028",
+      "identical_to_v6": false,
+      "changed_pixels": 2253,
+      "change_bbox": [
+        69,
+        380,
+        911,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS035-B02-T029",
+      "identical_to_v6": false,
+      "changed_pixels": 2307,
+      "change_bbox": [
+        68,
+        380,
+        918,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS034-S05-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1674,
+      "change_bbox": [
+        62,
+        412,
+        922,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS034-S05-T017",
+      "identical_to_v6": false,
+      "changed_pixels": 1475,
+      "change_bbox": [
+        66,
+        412,
+        918,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS036-S05-T028",
+      "identical_to_v6": false,
+      "changed_pixels": 1604,
+      "change_bbox": [
+        64,
+        416,
+        920,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS051-S11-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 1171,
+      "change_bbox": [
+        62,
+        412,
+        922,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS051-S11-T029",
+      "identical_to_v6": false,
+      "changed_pixels": 973,
+      "change_bbox": [
+        66,
+        412,
+        918,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS017-S11-T017",
+      "identical_to_v6": false,
+      "changed_pixels": 1539,
+      "change_bbox": [
+        51,
+        412,
+        918,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS035-S11-NO_TIE",
+      "identical_to_v6": false,
+      "changed_pixels": 940,
+      "change_bbox": [
+        64,
+        410,
+        922,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    },
+    {
+      "key": "DS014-S05-T029",
+      "identical_to_v6": false,
+      "changed_pixels": 1712,
+      "change_bbox": [
+        70,
+        1320,
+        925,
+        1389
+      ],
+      "protected_opaque_head_changes_y_le_410": 0,
+      "opaque_hand_changes": [
+        0,
+        0
+      ],
+      "lower_body_y_ge_1600_identical_to_v6": true
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "selected-outfits.png",
+      "sha256": "9b8e5b3e26b661ea55280850e768692de446d4a8f8dae3f7a4f1aaf5eae61fa0",
+      "dimensions": [
+        1040,
+        1510
+      ],
+      "frame_keys": [
+        "DS001-B03-NO_TIE",
+        "DS014-shirt-only-T001",
+        "DS017-S11-T017",
+        "DS023-shirt-only-NO_TIE",
+        "DS034-S05-NO_TIE",
+        "DS035-B02-T029",
+        "DS036-B03-T001",
+        "DS051-S11-T029"
+      ],
+      "display_transform": "Actual native RGBA composited on #eee and downsampled to 249x687 for full-outfit comparison; no wardrobe raster edits."
+    },
+    {
+      "file": "collar-mattes.png",
+      "sha256": "a39638414cb7f08d9975c0c76ad76c336dfd675e26c779d432267082e7681aec",
+      "dimensions": [
+        1200,
+        2268
+      ],
+      "frame_keys": [
+        "DS001-B03-NO_TIE",
+        "DS023-B03-T001",
+        "DS035-shirt-only-NO_TIE",
+        "DS035-B02-T029",
+        "DS051-S11-T029",
+        "DS034-S05-NO_TIE"
+      ],
+      "display_transform": "Actual native 400x350 collar crop on white, gray and dark mattes at 1:1 scale."
+    },
+    {
+      "file": "wrist-ownership.png",
+      "sha256": "32b135c4872eab79992deb7850fde3880272976d794b8597157c7755b27aa3f0",
+      "dimensions": [
+        1000,
+        1560
+      ],
+      "frame_keys": [
+        "DS051-S11-T029",
+        "DS034-S05-NO_TIE",
+        "DS035-B02-T029",
+        "DS001-B03-NO_TIE"
+      ],
+      "display_transform": "Actual native wrist crops composited on #eee and enlarged 2x for sleeve/cuff/hand boundary review."
+    }
+  ],
+  "frames": [
+    {
+      "key": "DS001-shirt-only-NO_TIE",
+      "native_png_sha256": "fb595dc7cff99c0268e8e09ccfcf1e2f5a914c1ec224229ee3f74ba49308d815",
+      "rgba_sha256": "ed00dbe8467f12031fb2cb2edfa80ed698892186bff4c4bc3f070602d73f51a0",
+      "current_plan_sha256": "1b857df186ca1758d37614ee706a11016068e26ac66dca51d42098e37949087b",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS001-shirt-only-T001",
+      "native_png_sha256": "31fda4aae45949d60a5b504e40450bb3a427ecbb269c56e5fdff5d442c68ebaa",
+      "rgba_sha256": "f3447ee79340539233561d3c61c7212507ef45a1d393d95e4ab4873447b27a31",
+      "current_plan_sha256": "37d8309eaa262090f47b4d7e457c31908a78bd220deac9c0019a0e2864187961",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS014-shirt-only-NO_TIE",
+      "native_png_sha256": "fb595dc7cff99c0268e8e09ccfcf1e2f5a914c1ec224229ee3f74ba49308d815",
+      "rgba_sha256": "ed00dbe8467f12031fb2cb2edfa80ed698892186bff4c4bc3f070602d73f51a0",
+      "current_plan_sha256": "666da71d0268409e1eac0230100b484904cd1e8b98b22055747e579d8232a46f",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS014-shirt-only-T001",
+      "native_png_sha256": "31fda4aae45949d60a5b504e40450bb3a427ecbb269c56e5fdff5d442c68ebaa",
+      "rgba_sha256": "f3447ee79340539233561d3c61c7212507ef45a1d393d95e4ab4873447b27a31",
+      "current_plan_sha256": "1a2f82b37e6892de9003b232943b04e1e1bd15ced898604a0b4e7197fb3e718a",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS017-shirt-only-NO_TIE",
+      "native_png_sha256": "e4d65cca60d4ce72379f7727aec5fb48634e2e57235ac03ecd002389a226edf2",
+      "rgba_sha256": "56af004aa99e6e8bf1ac1aec4e4bd269fa65a0bc0b5a27ccc3b094aa1209d721",
+      "current_plan_sha256": "cda431b6f0c64abb85c2d107c9b6e4651244e455b7664c35ebaa704a53cda817",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS017-shirt-only-T001",
+      "native_png_sha256": "82060aa23ef77c87e09ea217f596213ecdcadaa48ffd26c7e0c11ea5e55868a8",
+      "rgba_sha256": "fd386496bb7ab0b245771cf071fdde65a67aef51111fa1c02ba015e0b774f18d",
+      "current_plan_sha256": "cebf97984f15daed9833bdfa2cea509d4e6c99ed1c90f530efe98ded214aea40",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS023-shirt-only-NO_TIE",
+      "native_png_sha256": "58fae41da327a3fbc40c41b30c72f4eb72a08d472f9e5235c0c96051456bcf8f",
+      "rgba_sha256": "4924931334e693ba754b2a9f6daef6694eacead7e6b5f0e06ca8fec3dfecc3e2",
+      "current_plan_sha256": "d0908ee16b8541166ae4bb25c9f528362e9c0fac6d03da6f7f2f364c077b4b03",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS023-shirt-only-T001",
+      "native_png_sha256": "cf02109c31ce1cf85c00f75462f8c63535457bea6c7dbe6c39bdcfe1176f7e4d",
+      "rgba_sha256": "97e14ed14476c5f21d827d2bee69fa6911a286cf1cd0c74988379dd4a06044d5",
+      "current_plan_sha256": "fc323b08af22b78d36c642fc203b709df6bce7d12d75366a1032afecc8e3ed82",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS034-shirt-only-NO_TIE",
+      "native_png_sha256": "a9eb0c5501f5ea384cacae7e77429939554d419c78c64ea63fd7a3a9db087cf8",
+      "rgba_sha256": "cf8134541ef2fed6b20b20f8510030758a612f76e929fb4eb0c1172b5e20564b",
+      "current_plan_sha256": "7a5ff2614709520ba6381ab84c444b843b4a7963c45f9a8bf66a8e06d218f6f2",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS034-shirt-only-T001",
+      "native_png_sha256": "de99181dcdab8fef5d4ebda5e31a65d166cc6d879f2194e81645e3cd2ca45265",
+      "rgba_sha256": "7eac85348a2c5b1cb2a6b5a8e01ee367390cfadaafeeea0bdffdf0f730ca7ce9",
+      "current_plan_sha256": "d64a774bea79c7e2df44c69505bf0f25955f18b4c05c8306997b08c652cef6f0",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS035-shirt-only-NO_TIE",
+      "native_png_sha256": "9185abf9779eb6c2b7cd26e96c86de3157ef746ce131db347765b5de44e5b79a",
+      "rgba_sha256": "9d354fdb34cc92275d65b52c01b14fe825b6584631dc26632c4ad760e08ab1a8",
+      "current_plan_sha256": "3a8a1821a337489f7481ca4c04cecd2e189dc1eef1e7cb5c95e4f04303aa15cc",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS035-shirt-only-T001",
+      "native_png_sha256": "db86557bfadcf576893602bf6096e68c932f74304f9e527156f91c1e47849e42",
+      "rgba_sha256": "d7f2aeeff54e8da3e1a6bc655a34ef80ea85968c0f7d63bca02109b05304c0cb",
+      "current_plan_sha256": "18b82aefa6271a0b7646749c371479df90c234483fafc05ebae1c06546c8628b",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS036-shirt-only-NO_TIE",
+      "native_png_sha256": "918b8f62a3c218352cb91db33c33d85624e2710823425060a68cf7ea3b288be2",
+      "rgba_sha256": "a74e5fa01b5934bcfd90c80c30f9c168e8a7fad55e0b7bec88e730bb23e78628",
+      "current_plan_sha256": "fdcb35905b0031d287eec585a21185d5786a354b7d8d2ff98b7cc736c281218f",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS036-shirt-only-T001",
+      "native_png_sha256": "2f912400522b2c000b0a7074dfca6c3b9025d643b30dddd3df5c2049b3fb9669",
+      "rgba_sha256": "12f513f248eaf8cb051addcc7bc4416478c2d0d3b4a3b5e944df51ce882db1fd",
+      "current_plan_sha256": "bca9b0521f03ac96bea7870a2bcbf2a00aae66ede5a3579d0017e065f4ecc3ab",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS051-shirt-only-NO_TIE",
+      "native_png_sha256": "d0184bb51415a6e20d160aba13046e9d6dd42a74bbc15bda4e48eb5e5c381af2",
+      "rgba_sha256": "b16905ee24958a634dedae3979d22cccae2121ea9fc07df7065301406bb8877e",
+      "current_plan_sha256": "618529cb5b7290b4cbce264ff8d79ef62d4da8f182553a0e956bd87c97da59f5",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS051-shirt-only-T001",
+      "native_png_sha256": "889ff99a539995661f6815d38146c8cb970fc84868fecf86e96b71db22fb83d2",
+      "rgba_sha256": "e48afcc5c8a5e43d76d6790def6d5fdac663329dde16d859bf6951cf62bc2cef",
+      "current_plan_sha256": "2671bfd3563403df379aae9a110f3b44c063ecb4e1749d2ada29a9e7397640d8",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS001-B03-NO_TIE",
+      "native_png_sha256": "2f2f3c4a50139dba5541f56f89125a9ea46fd1a296024f66f5f9b9da544bc66c",
+      "rgba_sha256": "402b21971fcf3d7b96e0a29a30715fed2a44b2c463665ae7b3faa35b8342c8a0",
+      "current_plan_sha256": "f0067ecc27e6717580647a0e6caa468207a093381544cbf36ab2054447b6f67a",
+      "render_run": "continuous-prototype-v9-overlap",
+      "supersedes": "continuous-prototype-v8",
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS001-B03-T001",
+      "native_png_sha256": "1b7aaf756ee718b898f4b840d82c218a3f4cb1c4a1d0722277b016604978213c",
+      "rgba_sha256": "17bf50e33a55d947d4aa19ad6c217f02570faf3c558052fa3091cc4849bba642",
+      "current_plan_sha256": "d2e68b90b2ea5569c52b9c45172448f10d1711702318b0fb70d14d49d5c37312",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS014-B03-NO_TIE",
+      "native_png_sha256": "2f2f3c4a50139dba5541f56f89125a9ea46fd1a296024f66f5f9b9da544bc66c",
+      "rgba_sha256": "402b21971fcf3d7b96e0a29a30715fed2a44b2c463665ae7b3faa35b8342c8a0",
+      "current_plan_sha256": "7a3e35eaacd4364bdf69ecd33cc9fff34af465cb6d0bfbb3bac0c81d4ee116cd",
+      "render_run": "continuous-prototype-v9-overlap",
+      "supersedes": "continuous-prototype-v8",
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS014-B03-T001",
+      "native_png_sha256": "1b7aaf756ee718b898f4b840d82c218a3f4cb1c4a1d0722277b016604978213c",
+      "rgba_sha256": "17bf50e33a55d947d4aa19ad6c217f02570faf3c558052fa3091cc4849bba642",
+      "current_plan_sha256": "98f1821139c7999a6fa83b93778a61592e13d6ce45dd18c3856daa1bddc247f4",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS017-B03-NO_TIE",
+      "native_png_sha256": "aadf12f01d224708a9c61f4bb25e493a83fbad890c123d9432012377c557bee4",
+      "rgba_sha256": "5c5d3c014b4134d1413e57dc086a5f0df355a1a54d5dc28ecc7c705b2e0fa2ca",
+      "current_plan_sha256": "f4099b7d4d53c51ad3a2bb3c07d5e0d9e9f640f8f0b5f82008cf3083e19f0d5f",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS017-B03-T001",
+      "native_png_sha256": "7fa55413c6f29c06099ecd1bab9864956e8d20495c9aa60ccfdfb67af70d6d7d",
+      "rgba_sha256": "304b794d1ffd3bd3edfe210ee8d25ef9ab5144f07431f285a6a04724281fb271",
+      "current_plan_sha256": "5fe556f90b5de9261b9322b897083b6a6de01465b93b213fcbaf52fa40ed23d1",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS023-B03-NO_TIE",
+      "native_png_sha256": "a22d11e3ca807fff33da0cddda0d27b672ae45c5326f33165b94b420eb98ec6c",
+      "rgba_sha256": "5e4e17a1161d0c469a69d384b3886dce89770b9b8b44f296a055dc1cc0e18b3e",
+      "current_plan_sha256": "7dfe0f9410a4c8532cdc2e33ece566e04b215bd880f43042c9bc808fb3bd1cb4",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS023-B03-T001",
+      "native_png_sha256": "743cd3fa5a7fbb9ab3155f20e460143831216f4abc9eb101024bb29eea6aeabb",
+      "rgba_sha256": "90f965eef749f5d5e6114b922f1ab525ec0b5f999ea230b74e6e3afc0c61cfdb",
+      "current_plan_sha256": "458ba948f23d703c8d2c53d428eaabc3b8263fc95cb0c357ae45987e277bdd67",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS034-B03-NO_TIE",
+      "native_png_sha256": "952c91ef547b54e6805f4c70a7af7bc01979a10218d729e2ad34157506824eb4",
+      "rgba_sha256": "a3de1deb7a7972306095da3cca131589cd3765cee11026d9eb6c4c258dabc938",
+      "current_plan_sha256": "6b3761e292a0fa5f546316bcadd3cd9acf27377bb38a2163c034b8bbf87aa3f2",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS034-B03-T001",
+      "native_png_sha256": "1ba34438483ab158f4800ff9f9a87af296dd9bbc4389f3993494ead00428f994",
+      "rgba_sha256": "ec33e90f24afd50c0557d6f7ebffa65b49d3fd52268b989e0ff0906eceecdc3a",
+      "current_plan_sha256": "6b11ce9d90417b414f36a0c5d5833404c6c5efaba556b30b1f1708b0de198303",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS035-B03-NO_TIE",
+      "native_png_sha256": "1bde5e3226b04b4baafc1548ac10d0a29a2c6d2d0376b11193e27542f7d00012",
+      "rgba_sha256": "c9b46397b6a920efd384015b7fd5d7fab9fcf0fa33b2f00aa61ac4734c1e77a3",
+      "current_plan_sha256": "36b6720450dff618d48e788657afcfffb2c1efa6ff12bc9b720ab04633cf3498",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS035-B03-T001",
+      "native_png_sha256": "032f9cca54613958b708ed986fdd5838f20d2c9f35bb8b4646f9f9865a7309c3",
+      "rgba_sha256": "c416a40f4e17fbd7a14683a4c36a1b10370008fe3682b860baddf57d87b5841f",
+      "current_plan_sha256": "5b0a3e5df23429b494cd64a9c1e81487f4d90f7edb46302c1869b8b6edf1d3e0",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS036-B03-NO_TIE",
+      "native_png_sha256": "da67b18ad2bf0e2cc19670a53613fe1ac49479cc7bb55335c75cfa70ab906daf",
+      "rgba_sha256": "509069b179d390aae79bf69b6c69026950d60082b64413e4acd6f023ebba9ae5",
+      "current_plan_sha256": "5e360261fabb0a91b36812b61ea413560d16c8f22a674b59b84bcc1f40cbf6d0",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS036-B03-T001",
+      "native_png_sha256": "224be675c4e0b9a579db411c592310138f4b3f6e7dfa52a1bce4be074501d29c",
+      "rgba_sha256": "740549f39757058f6567bacb4e0b6898dede41149c37373eb0584ef4f025b8d8",
+      "current_plan_sha256": "1c72d3ff758c99df2fc446585e59de283d093b2947774c99667c11aa4e38af13",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS051-B03-NO_TIE",
+      "native_png_sha256": "826f2f010369e50fdf98b97e2c0baa598a78afd19f60798ae60daa8e42fa824f",
+      "rgba_sha256": "e2655ee0eba74dc1394287ccf9e48619632df16d1681b12803e5ef3868b0cfd7",
+      "current_plan_sha256": "008ab04c380bf306e95c5c56f50982c4852357351d0af404e8c74d5de26dcfdb",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS051-B03-T001",
+      "native_png_sha256": "737207e4122783872f0da9d0e6dadd8bdf18d30fbddb45a2ddec77179b4a1c5d",
+      "rgba_sha256": "f2ce2eeb00286ae1c8f79cbb7e8f2eff79d351b17ce29e4cea86540d43ea380b",
+      "current_plan_sha256": "1c942eca98601c9302cb3310d9b90fa73d2dc6098d214338678fd658ef123f22",
+      "render_run": "continuous-prototype-v8",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS001-B02-NO_TIE",
+      "native_png_sha256": "e5a8a1b7bdebae2cf44f20a6d138f5458cd85ad6bd145cb27fe09d0b9b9cc36d",
+      "rgba_sha256": "85ac11923890173d6f600d6f356ccb63d38188801816cf96e355431e03e7b664",
+      "current_plan_sha256": "9dff2e9880c399c456bfdaed1670c5f15a41a402b906c65137d7628645034ddb",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS001-B02-T017",
+      "native_png_sha256": "a44af5035e33c4ba4f951526fb8be90fd4c42262f81ee351af665b7194d75359",
+      "rgba_sha256": "a3fabe760c6336f4bca3f0d971812c1ffcfdbbfa67033f6473bbda6b3950c476",
+      "current_plan_sha256": "703866193c79045d2d647678eeade951496ed5efc0c3cae0c6e8b8b398b79062",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS023-B02-T028",
+      "native_png_sha256": "50101d8527b814a66087f439283e211171317c599cdbbe468c528b19c81762d5",
+      "rgba_sha256": "e3f668210e6839678b1da67fd5e6c5239bfd120d6a801152b3478d39f5a08bd0",
+      "current_plan_sha256": "2a53d33bca92db15be80a12e62a3fbd8ee176922e92ee69b962cf34ce8f94ba9",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS035-B02-T029",
+      "native_png_sha256": "9bc5c83dd5edaf9597cc4db2a86684597d32eac44ba9f9ba6e99bee30afabd2f",
+      "rgba_sha256": "34ed49b9261e4fea4f194d0251695183c125001d169a435d52bb81e319030bf1",
+      "current_plan_sha256": "4a018cc378fe871161dde3ca5849129da99bba4fd30888e64cfb003c6a5bfabc",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS034-S05-NO_TIE",
+      "native_png_sha256": "dd994ac91c818db26f572220d9f571eb40148f17c7052dc4cd36937e94e7ff70",
+      "rgba_sha256": "22402d642a2beffc97d892ed4d69dceb18ea0cabef8772f1c80392f24ba571dd",
+      "current_plan_sha256": "fd5cea0c09de8ee8d3ed8519b1fc38d3608b23460b993fe85833693e3910c7d6",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS034-S05-T017",
+      "native_png_sha256": "e86675d6d82489f98cbccf2f1491de75e435cce3359c0f3598548914bde5b895",
+      "rgba_sha256": "d7a8f144cac70388682afec0cb22e792f5a5f06dc2c3647a7e98a12b64f6f852",
+      "current_plan_sha256": "50366c4f0be978a50a70d3294048d93b5687d4485c0711b428198dca079c1513",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS036-S05-T028",
+      "native_png_sha256": "c7e2f626a95aa255fcc91544b92d12374cb87e00e8a1ae70f9365b83cc964c03",
+      "rgba_sha256": "67ed336793c5396df2789e8dcd27f14288e6619f24e72640304ce7290693046b",
+      "current_plan_sha256": "35da3df25e7da083309b4b823afd324a1d620cd8c9697c9c24ee1af089300569",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS051-S11-NO_TIE",
+      "native_png_sha256": "68c8686b8e6a15b1f12b583ccb3f541f10e31c6043daac835b475322e7246473",
+      "rgba_sha256": "7a792b9df3e4799011bc7e41e1fe8774b155832fefbf8e8e130aa0dc42f845c1",
+      "current_plan_sha256": "44effe6a8a5dbda3be3ee27c6412daac10c1e3fa37de45788a40f93ab4234b4c",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS051-S11-T029",
+      "native_png_sha256": "eef504258341a5aa5867bd345fb1cc652a4ccafe945aba06b22f4c15066c8320",
+      "rgba_sha256": "6f48bbb16d5d79dc7082c8d05e69f8107cc4961a90b8b198fe7603a1348f2003",
+      "current_plan_sha256": "908ccb91c37bd67a625ab25660543cdc429d0de153cd40c3e384c0a759f3864d",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS017-S11-T017",
+      "native_png_sha256": "2f55bba88fc152b0a13033e40e6b451f485d9ad95702ebd533adad017c0374d6",
+      "rgba_sha256": "e755c71f83ce0886135485d6fd0f9a04d5992c4767abcabf124751c0ced7a4ca",
+      "current_plan_sha256": "fdfd3228a76f689299e5a897fd82ff52a29ea53ff9577bc380dd55ceb5503517",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS035-S11-NO_TIE",
+      "native_png_sha256": "b2425a360473fe11497a0e2e623c878478b291b19e2b858165d54af670db7b38",
+      "rgba_sha256": "32e5a3f353bb60e509f9ae1ccecc427f38318f17102944cbbf458edb547de344",
+      "current_plan_sha256": "946c57f3c3100d178caa86f3972ef936143e60179e5c96f35385721baff32e4c",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    },
+    {
+      "key": "DS014-S05-T029",
+      "native_png_sha256": "3395b661774034c914b666bcc3b176f09b3bf8a0907a5814f7cd6444ce4c5254",
+      "rgba_sha256": "d86e3d2dc16e8bc62c9c25e23a823b0b1a5488e7a70bd79f00ffa19d806e2a3c",
+      "current_plan_sha256": "66801d7012489323e91cd67968deb4e60137cf72906a6362f3a267caba2bfea4",
+      "render_run": "continuous-prototype-v8-extended",
+      "supersedes": null,
+      "visual_result": "PASS"
+    }
+  ]
+}

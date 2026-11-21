@@ -9,6 +9,15 @@ on:
       - 'src/**'
       - 'vendor/active50-renderer.js'
       - 'runtime/outfit-refill-preview.js'
+      - 'runtime/continuous-shirts-*.js'
+      - 'CONTINUOUS_CANDIDATE.json'
+      - 'data/continuous-shirts*'
+      - 'data/option-card-thumbnails.*'
+      - 'ui/option-cards/**'
+      - 'tools/verify_active_delivery.py'
+      - 'tools/audit_continuous_source_lock.py'
+      - 'tools/build_continuous_candidate.py'
+      - 'tests/active-delivery-audit.py'
       - 'index.html'
       - 'app.html'
       - 'tests/five-round-*'
@@ -44,10 +53,12 @@ jobs:
         run: |
           git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
           git fetch --depth=1 origin 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
-          git diff --exit-code 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03 -- assets assemblies data ui ui-assets STANDARD_RELEASE.json outfit-feedback.js tools/build.py vendor ':(exclude)vendor/active50-renderer.js'
-          python tools/build_tie_candidate.py --check --verify-base
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          python tools/audit_continuous_source_lock.py --base 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
+          python tools/verify_active_delivery.py --check --verify-base --syntax
           python tools/audit_active_delivery.py
-          node --check runtime/outfit-refill-preview.js
+      - name: Verify narrow delivery and source-lock audit regressions
+        run: python tests/active-delivery-audit.py
       - name: Install isolated audit dependencies
         run: |
           npm install --prefix /tmp/hewrs-total-audit-deps --ignore-scripts --no-audit --no-fund fake-indexeddb@6.2.8
