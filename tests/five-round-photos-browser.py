@@ -297,6 +297,10 @@ def main():
         check(label + ': every changed pixel stays inside the independent Issue 19 fit bounds',
               difference['outside_allowed_pixels'] == 0, difference)
         check(label + ': neck cleanup reveals exact original avatar pixels', difference['neck_corner_wrong_source_pixels'] == 0, difference)
+        shoulder_samples = issue19_contract.shoulder_contour_samples(current, selection)
+        if shoulder_samples:
+            check(label + ': independently observed original shoulder BODY coverage remains intact', True, shoulder_samples)
+        difference['shoulder_contour_regressions'] = shoulder_samples
         if selection.get('shirtOnly'):
             check(label + ': original shirt-only sleeves remain exact',
                   all(current.crop(rect).tobytes() == original.crop(rect).tobytes() for rect in issue19_contract.CUFF_RECTS))
@@ -455,7 +459,7 @@ def main():
             if issue19:
                 fit = page.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec,tie:globalThis.HEWRSAvatarV3TieFit?.spec})")
                 check('Published Issue 19 runtime contains all three source-bound fit modules',
-                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_4'
+                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_5'
                       and fit.get('cuff', {}).get('revision') == 'AVATAR_V3_CONCEALED_CUFFS_2'
                       and fit.get('tie', {}).get('revision') == 'AVATAR_V3_TIE_FIT_1', fit)
                 issue19_fidelity = page.evaluate('()=>HEWRSApp.connection.tieFidelity.data')

@@ -10,8 +10,11 @@ const {spawnSync}=require('node:child_process');
 const {load,selection,digest,ROOT,WIDTH:W,HEIGHT:H}=require('./avatar-v3-fit-runtime.cjs');
 const MODULE='src/avatar-v3-shirt-collar-fit.js';
 const SEAMS=JSON.parse(fs.readFileSync(path.join(__dirname,'issue19-collar-seam-fixtures.json'),'utf8'));
+const SHOULDERS=JSON.parse(fs.readFileSync(path.join(__dirname,'issue19-shoulder-contour-fixtures.json'),'utf8'));
+const SHOULDER_POINTS=[...SHOULDERS.fixtures,...(SHOULDERS.antialias_fixtures||[])];
 const STRIPS=[[330,355,92,260],[575,355,91,260]],TOP_CENTER=[422,420,153,47],LOWER_CENTER=[422,530,153,85],CORRIDOR=[422,467,153,63],FACE=[422,0,153,420];
 const NECK_CORNERS=[[422,401,19,19],[560,405,15,15]];
+const BODY_CONTOURS=[[330,420,92,195],[575,420,91,195]];
 const CASES=[
  ['DS034','NO_TIE','S05'],['DS034','T019','S05'],
  ['DS038','NO_TIE','S05'],['DS038','T047','S05'],
@@ -22,6 +25,10 @@ const CASES=[
  ...SEAMS.fixtures.map(row=>[row.shirt,row.state,row.mode]),
  ['DS027','T001','B03'],['DS038','T001','B03']
 ];
+for(const row of SHOULDER_POINTS){
+ const args=[row.shirt,row.state,row.mode];
+ if(!CASES.some(item=>item.every((value,index)=>value===args[index])))CASES.push(args);
+}
 const plain=value=>JSON.parse(JSON.stringify(value));
 const inside=(x,y,r)=>x>=r[0]&&x<r[0]+r[2]&&y>=r[1]&&y<r[1]+r[3];
 const allowed=(x,y,tied)=>[...STRIPS,LOWER_CENTER,...(tied?[TOP_CENTER,...NECK_CORNERS]:[])].some(r=>inside(x,y,r));
@@ -40,12 +47,13 @@ async function single(index){
  assert.equal(after.metadata.kind,'EXACT_SHIPPED_RUNTIME_PREFIX');
  assert.equal(before.metadata.runtime_sha256,after.metadata.runtime_sha256,'same current compiled runtime');
  const spec=plain(after.g.HEWRSAvatarV3ShirtCollarFit.spec);
- assert.equal(spec.revision,'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_4');
+ assert.equal(spec.revision,'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_5');
  assert.deepEqual(spec.modified_strips,STRIPS,'independent maximum collar envelopes');
  assert.deepEqual(spec.top_center_bounds,TOP_CENTER,'neckband cleanup remains below the approved chin and above the knot');
  assert.deepEqual(spec.protected_knot_corridor,CORRIDOR,'complete full tie knot corridor');
  assert.deepEqual(spec.lower_center_backing_bounds,LOWER_CENTER,'only the independently verified lower collar join may receive backing');
  assert.deepEqual(spec.tied_neck_corner_cleanup,NECK_CORNERS,'only the independently observed cloth-fragment slots may reveal original neck pixels');
+ assert.deepEqual(spec.shirt_only_body_contour_bounds,BODY_CONTOURS,'original shoulder coverage stays inside the existing lateral correction strips');
  assert.deepEqual(spec.active_ids,[...after.connection.limits.shirt_ids].sort(),'all 50 active shirt identities');
  assert.equal(spec.active_ids.length,50);assert.equal(spec.active_ids.includes('DS049'),false);
  const input=fs.readFileSync(path.join(ROOT,'data/inputs.json'));
@@ -71,6 +79,21 @@ async function single(index){
   const [x,y]=row.xy,rgba=Array.from(fitted.rgba.subarray((y*W+x)*4,(y*W+x)*4+4));
   assert.ok(rgba[3]>=SEAMS.minimum_alpha,'independently identified collar seam remains closed: '+args.join('/')+' at '+row.xy+' has '+rgba);
   return {xy:row.xy,rgba,minimum_alpha:SEAMS.minimum_alpha};
+ });
+ const shoulderSamples=SHOULDER_POINTS.filter(row=>row.shirt===s.shirtId&&s.shirtOnly&&
+  (row.state==='NO_TIE')===(s.state==='NO_TIE')).map(row=>{
+  const [x,y]=row.xy,i=(y*W+x)*4,rgba=Array.from(fitted.rgba.subarray(i,i+4));
+  assert.equal(original.rgba[i+3],row.expected_alpha,'approved baseline owns opaque original BODY at '+row.xy);
+  assert.equal(rgba[3],row.expected_alpha,'original shoulder BODY coverage is retained at '+s.shirtId+'/'+s.state+'/'+row.xy);
+  if(row.expected_rendered_rgba)assert.deepEqual(rgba,row.expected_rendered_rgba,'DS003 anchors retain exact original BODY color');
+  assert.ok(expectedSources(after,s,fitted.plan).includes(row.body_source_sha256),'shoulder fixture binds the selected original BODY source');
+  let patchPixels=0;
+  if(row.region_3x3){const [rx,ry,rw,rh]=row.region_3x3.xywh;
+   for(let yy=ry;yy<ry+rh;yy++)for(let xx=rx;xx<rx+rw;xx++){
+    assert.equal(fitted.rgba[(yy*W+xx)*4+3],row.region_3x3.expected_alpha,'entire independently observed shoulder patch remains opaque');patchPixels++;
+   }
+  }
+  return {xy:row.xy,rgba,body_source_sha256:row.body_source_sha256,patch_pixels:patchPixels};
  });
  assert.deepEqual(plain(fitted.source_bindings),plain(original.source_bindings),'only collar display changes; every source descriptor stays exact');
  let changed=0,outside=0;
@@ -104,6 +127,8 @@ async function single(index){
  assert.deepEqual(stats.source_hashes,expected,'collar cloth comes only from the selected registered shirt');
  assert.deepEqual(stats.knot_anchor,[498,467]);
  assert.equal(stats.reveal_pixels,s.shirtOnly?null:7);
+ assert.equal(stats.body_contour_source_sha256,expected[0],'body contour uses only the selected registered body');
+ if(!s.shirtOnly)assert.equal(stats.restored_shirt_only_body_contour_pixels,0,'body restoration never affects a jacket route');
  assert.equal(stats.source_capture,after.connection.continuousShirts.ids.includes(s.shirtId)?
   'raw_registered_body_before_avatar_tie_jacket':'isolated_registered_native_body_and_leaves',
   'continuous collars are captured before avatar/tie/jacket contamination');
@@ -126,6 +151,7 @@ async function single(index){
   protected_knot_sha256:cropHash(after,CORRIDOR),protected_face_sha256:faceHash(after),source_hashes:expected,source_capture:stats.source_capture,
   stand_top_rows:stats.stand_top_rows,front_source_top_rows:stats.front_source_top_rows,
   runtime_sha256:after.metadata.runtime_sha256,seam_regressions:seamSamples,
+  shoulder_contour_regressions:shoulderSamples,restored_body_contour_pixels:stats.restored_shirt_only_body_contour_pixels,
   selected_tie_pixels_preserved:tieProtected,lower_center_opaque_pixels_preserved:lowerOpaqueProtected,
   exact_avatar_neck_pixels:neckAvatarPixels,restored_avatar_neck_pixels:neckRestored}));
 }
@@ -141,6 +167,7 @@ async function main(){
  }
  console.log('AVATAR_V3_SHIRT_COLLAR_FIT='+JSON.stringify({status:'PASS_COMPILED_COLLAR_SCOPE_AND_SOURCES_NOT_VISUAL_APPROVAL',
   cases:records.length,seam_regressions:records.reduce((total,row)=>total+row.seam_regressions.length,0),
+  shoulder_contour_regressions:records.reduce((total,row)=>total+row.shoulder_contour_regressions.length,0),
   independent_strips:STRIPS,tied_neckband_bounds:TOP_CENTER,lower_center_backing_bounds:LOWER_CENTER,
   protected_face:FACE,exact_avatar_restoration_slots:NECK_CORNERS,protected_knot_corridor:CORRIDOR,records}));
 }

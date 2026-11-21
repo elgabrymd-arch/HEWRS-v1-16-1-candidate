@@ -372,6 +372,10 @@ def main():
                               difference['opaque_hand_pixels_changed'] == 0, difference)
                         check('Neck cleanup reveals exact original avatar pixels: ' + shirt + '/' + mode,
                               difference['neck_corner_wrong_source_pixels'] == 0, difference)
+                        shoulder_samples = issue19_contract.shoulder_contour_samples(images[1], selected)
+                        if shoulder_samples:
+                            check('Original shoulder BODY coverage remains intact: ' + shirt + '/' + mode, True, shoulder_samples)
+                        difference['shoulder_contour_regressions'] = shoulder_samples
                         check('Final frame uses the exact approved V3 head: ' + shirt + '/' + mode,
                               current['head_sha256'] == original['head_sha256'] == head)
                     elif avatar_profile['version'] == 'v3':

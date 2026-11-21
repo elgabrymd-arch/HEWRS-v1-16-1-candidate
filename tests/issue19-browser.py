@@ -45,6 +45,7 @@ CUFF_RECTS = ((20, 1180, 260, 1426), (736, 1180, 976, 1426))
 DETAILS = {'collar': (248, 300, 748, 800), 'cuffs': (75, 1250, 921, 1625),
            'tie': (350, 430, 646, 1250)}
 SEAMS = json.loads((ROOT / 'tests/issue19-collar-seam-fixtures.json').read_text())
+SHOULDERS = json.loads((ROOT / 'tests/issue19-shoulder-contour-fixtures.json').read_text())
 
 spec = importlib.util.spec_from_file_location('existing_v3_fit', ROOT / 'tests/avatar-v3-fit-browser.py')
 FIT = importlib.util.module_from_spec(spec)
@@ -251,6 +252,32 @@ PLAN_MATRIX = r'''({modes,shirts})=>{
 }'''
 
 
+def shoulder_contour_samples(image, selected):
+    """Check independent original-photo fixtures, including rejected browser controls."""
+    if not selected.get('shirtOnly'):
+        return []
+    samples = []
+    for fixture in SHOULDERS['fixtures'] + SHOULDERS.get('antialias_fixtures', []):
+        if (fixture['shirt'] != selected['shirtId']
+                or (fixture['state'] == 'NO_TIE') != (selected['state'] == 'NO_TIE')):
+            continue
+        rgba = list(image.getpixel(tuple(fixture['xy'])))
+        assert rgba[3] == fixture['expected_alpha'], (selected, fixture['xy'], rgba)
+        if fixture.get('expected_rendered_rgba'):
+            assert rgba == fixture['expected_rendered_rgba'], (selected, fixture['xy'], rgba)
+        patch_pixels = 0
+        if fixture.get('region_3x3'):
+            patch = fixture['region_3x3']
+            x, y, width, height = patch['xywh']
+            for yy in range(y, y + height):
+                for xx in range(x, x + width):
+                    assert image.getpixel((xx, yy))[3] == patch['expected_alpha'], (selected, xx, yy)
+                    patch_pixels += 1
+        samples.append({'xy': fixture['xy'], 'rgba': rgba,
+                        'body_source_sha256': fixture['body_source_sha256'], 'patch_pixels': patch_pixels})
+    return samples
+
+
 def save_details(output, name, old, new, native=False):
     for kind, rectangle in DETAILS.items():
         a, b = old.crop(rectangle), new.crop(rectangle)
@@ -372,7 +399,7 @@ def run(args):
             features = after.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec||null,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec||null,tie:globalThis.HEWRSAvatarV3TieFit?.spec||null})")
             check('All three coordinated fit corrections are installed', all(features.values()), features)
             check('All 50 collars use the bounded V3 registration contract',
-                  features['collar']['revision'] == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_4'
+                  features['collar']['revision'] == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_5'
                   and features['collar']['active_ids'] == SHIRTS
                   and features['collar']['bounds'] == [330, 355, 336, 260]
                   and features['collar']['modified_strips'] == [[330, 355, 92, 260], [575, 355, 91, 260]]
@@ -453,6 +480,9 @@ def run(args):
                 check(name + ': approved head, legs and footwear remain exact', old['head_sha256'] == new['head_sha256'] and old['lower_sha256'] == new['lower_sha256'])
                 check(name + ': approved central face and chin remain exact outside source-restoration slots', old['face_and_chin_sha256'] == new['face_and_chin_sha256'])
                 check(name + ': tied neck cleanup restores exact original avatar pixels', differences['neck_corner_wrong_source_pixels'] == 0, differences)
+                shoulder_samples = shoulder_contour_samples(new_image, selected)
+                if shoulder_samples:
+                    check(name + ': independently observed original shoulder BODY coverage remains intact', True, shoulder_samples)
                 if selected.get('shirtOnly'):
                     check(name + ': shirt-only sleeves stay exact',
                           [digest(new_image.crop(rect).tobytes()) for rect in CUFF_RECTS]
@@ -513,6 +543,7 @@ def run(args):
                                  'candidate_source_binding_sha256': new['source_binding_sha256'],
                                  'tie_registration': new['issue19'],
                                  'collar_seam_regressions': seam_samples, 'collar_join_diagnostics': join_diagnostics,
+                                 'shoulder_contour_regressions': shoulder_samples,
                                  'differences': differences, **details})
                 if index % 12 == 0 or index == len(rows) - 1:
                     write_report(); print(f'ISSUE19_CAPTURED {args.browser} {args.suite} {args.shard} {index + 1}/{len(rows)} {name}', flush=True)
