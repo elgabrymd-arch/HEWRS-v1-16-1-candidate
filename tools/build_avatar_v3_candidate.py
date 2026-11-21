@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT='avatar-v3-review.html'
 REVIEW='AVATAR_V3_REVIEW_BUILD.json'
 FIT_MODULES = ('src/avatar-v3-tie-fit.js', 'src/avatar-v3-shirt-collar-fit.js', 'src/avatar-v3-cuff-fit.js')
+MOBILE_STYLE = 'src/avatar-v3-review-layout.css'
 
 def h(data):
     return hashlib.sha256(data).hexdigest()
@@ -32,6 +33,8 @@ def main(write=False):
     collar_source=(ROOT/'src/avatar-v3-collar-fit.js').read_text()
     pose_source=(ROOT/'src/avatar-v3-pose.js').read_text()
     fit_sources={name:(ROOT/name).read_text() for name in FIT_MODULES}
+    mobile_style=(ROOT/MOBILE_STYLE).read_bytes()
+    mobile_style_sha=h(mobile_style)
     for n, row in data['candidate_layers'].items():
         assert row['sha256'] in source, 'unregistered V3 hash in '+n
     base_entrypoint = 'avatar-v2-reference.html' if (ROOT/'avatar-v2-reference.html').is_file() else 'index.html'
@@ -86,6 +89,10 @@ def main(write=False):
     assert preview!=index and preview.count(new_tag)==1,'Failed to pin preview runtime'
     preview=preview.replace('<title>HEWRS · Stage 10 integration candidate', '<title>HEWRS · AVATAR_V3 isolated review')
     preview=preview.replace('Loading source layers…','Loading AVATAR_V3 isolated preview source layers…')
+    style_sri='sha256-'+base64.b64encode(hashlib.sha256(mobile_style).digest()).decode()
+    style_tag='<link rel="stylesheet" href="'+MOBILE_STYLE+'?v='+mobile_style_sha[:16]+'" integrity="'+style_sri+'">'
+    assert preview.count('</head>')==1 and MOBILE_STYLE not in preview, 'Unique V3 mobile stylesheet insertion required'
+    preview=preview.replace('</head>',style_tag+'\n</head>')
     evidence={
         'schema':'hewrs.avatar-v3-preview.v1',
         'preview_entrypoint':OUT,
@@ -100,6 +107,7 @@ def main(write=False):
         'collar_fit_source_sha256':h(collar_source.encode()),
         'collar_fit_revision':'AVATAR_V3_B15_COLLAR_FIT_1',
         'issue19_fit_modules':{name:h(value.encode()) for name,value in fit_sources.items()},
+        'issue19_mobile_stylesheet':{'path':MOBILE_STYLE,'sha256':mobile_style_sha},
         'issue19_runtime_compatibility':{'vendor/active50-renderer.js':'release_only_masked_temporary_canvas_never_borrowed_loader_canvas',
                                        'src/render-image-loader.js':'cache_includes_source_bound_tie_display_registration',
                                        'src/continuous-shirts.js':'capture_exact_registered_body_before_tie_and_avatar_composition'},

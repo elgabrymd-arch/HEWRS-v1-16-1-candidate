@@ -242,7 +242,7 @@ def main():
                       native_png_directory='native-collars', expected_native_png_count=288))
     pictures, native_pictures = {}, {}
     canonical_head = avatar_profile = baseline_avatar_profile = None
-    issue19_hands = issue19_fidelity = None
+    issue19_hands = issue19_fidelity = issue19_avatar = None
 
     def save():
         result['passed'] = sum(row['passed'] for row in checks)
@@ -287,7 +287,7 @@ def main():
     def issue19_comparison(frame, baseline, current_png, original_png, selection, label):
         current, _ = issue19_contract.decode_frame({'png': current_png, 'full_sha256': frame['rgba_sha256']})
         original, _ = issue19_contract.decode_frame({'png': original_png, 'full_sha256': baseline['rgba_sha256']})
-        difference = issue19_contract.change_check(original, current, selection, issue19_hands)
+        difference = issue19_contract.change_check(original, current, selection, issue19_hands, issue19_avatar)
         check(label + ': original garments and exact same physical tie sources remain registered',
               issue19_contract.source_identity(frame['source_bindings'], selection['state'], issue19_fidelity)
               == issue19_contract.source_identity(baseline['source_bindings'], selection['state'], issue19_fidelity))
@@ -296,6 +296,7 @@ def main():
               and difference['opaque_hand_pixels_changed'] == 0, difference)
         check(label + ': every changed pixel stays inside the independent Issue 19 fit bounds',
               difference['outside_allowed_pixels'] == 0, difference)
+        check(label + ': neck cleanup reveals exact original avatar pixels', difference['neck_corner_wrong_source_pixels'] == 0, difference)
         if selection.get('shirtOnly'):
             check(label + ': original shirt-only sleeves remain exact',
                   all(current.crop(rect).tobytes() == original.crop(rect).tobytes() for rect in issue19_contract.CUFF_RECTS))
@@ -454,7 +455,7 @@ def main():
             if issue19:
                 fit = page.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec,tie:globalThis.HEWRSAvatarV3TieFit?.spec})")
                 check('Published Issue 19 runtime contains all three source-bound fit modules',
-                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_2'
+                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_4'
                       and fit.get('cuff', {}).get('revision') == 'AVATAR_V3_CONCEALED_CUFFS_2'
                       and fit.get('tie', {}).get('revision') == 'AVATAR_V3_TIE_FIT_1', fit)
                 issue19_fidelity = page.evaluate('()=>HEWRSApp.connection.tieFidelity.data')
@@ -463,6 +464,8 @@ def main():
                 mask_png = page.evaluate(issue19_contract.HAND_MASK)
                 mask = Image.open(io.BytesIO(base64.b64decode(mask_png.split(',', 1)[1]))).getchannel('A')
                 issue19_hands = mask.point(lambda value: 255 if value == 255 else 0).filter(ImageFilter.MinFilter(3))
+                avatar_png = page.evaluate(issue19_contract.AVATAR_SOURCE)
+                issue19_avatar = Image.open(io.BytesIO(base64.b64decode(avatar_png.split(',', 1)[1]))).convert('RGBA')
                 result['issue19_fit_contracts'] = fit
             before = protected(page)
             live_roster = page.evaluate('()=>({shirts:HEWRSApp.connection.manifest.shirt_order,suits:HEWRSApp.connection.suitSources.ids,blazers:HEWRSApp.connection.blazerConnection.availableIds})')

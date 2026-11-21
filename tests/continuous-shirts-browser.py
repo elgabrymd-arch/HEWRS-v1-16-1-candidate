@@ -339,6 +339,8 @@ def main():
                     hand_png = page.evaluate(issue19_contract.HAND_MASK)
                     hand_mask = Image.open(io.BytesIO(base64.b64decode(hand_png.split(',', 1)[1]))).getchannel('A').point(
                         lambda alpha: 255 if alpha == 255 else 0).filter(ImageFilter.MinFilter(3))
+                    avatar_png = page.evaluate(issue19_contract.AVATAR_SOURCE)
+                    avatar_source = Image.open(io.BytesIO(base64.b64decode(avatar_png.split(',', 1)[1]))).convert('RGBA')
                     report['baseline_geometry_policy'] = {'policy': 'issue19_bounded_fit',
                         'baseline': release['issue19_baseline'],
                         'collar_strips_xyxy': issue19_contract.COLLAR_RECTS,
@@ -359,7 +361,7 @@ def main():
                             check('Exact decoded native comparison pixels: ' + shirt + '/' + mode,
                                   image.size == (996, 2748) and hashlib.sha256(image.tobytes()).hexdigest() == frame['rgba_sha256'])
                             images.append(image)
-                        difference = issue19_contract.change_check(images[0], images[1], selected, hand_mask)
+                        difference = issue19_contract.change_check(images[0], images[1], selected, hand_mask, avatar_source)
                         difference['policy'] = 'issue19_bounded_fit'
                         check('Original garment sources and exact same-ID tie sources remain registered: ' + shirt + '/' + mode,
                               issue19_contract.source_identity(current['source_bindings'], state, fidelity)
@@ -368,6 +370,8 @@ def main():
                               difference['outside_allowed_pixels'] == 0, difference)
                         check('Approved posed hands remain exact: ' + shirt + '/' + mode,
                               difference['opaque_hand_pixels_changed'] == 0, difference)
+                        check('Neck cleanup reveals exact original avatar pixels: ' + shirt + '/' + mode,
+                              difference['neck_corner_wrong_source_pixels'] == 0, difference)
                         check('Final frame uses the exact approved V3 head: ' + shirt + '/' + mode,
                               current['head_sha256'] == original['head_sha256'] == head)
                     elif avatar_profile['version'] == 'v3':

@@ -53,6 +53,7 @@ def record(html):
         'source_modules': {p: digest(ROOT / p) for p in ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-tie-fit.js', 'src/avatar-v3-shirt-collar-fit.js', 'src/avatar-v3-cuff-fit.js', 'src/avatar-v3-pose.js')},
         'collar_fit_revision': preview['collar_fit_revision'],
         'issue19_fit_modules': preview['issue19_fit_modules'],
+        'issue19_mobile_stylesheet': preview['issue19_mobile_stylesheet'],
         'issue19_runtime_compatibility': preview['issue19_runtime_compatibility'],
         'issue19_baseline': {'commit':'ee6bdb7c0986597e569056499ff9eedca1ec3c98',
                              'entrypoint':'avatar-v3-issue19-baseline.html',

@@ -1,0 +1,22 @@
+{
+  "schema": "hewrs.issue19.collar-seam-regressions.v1",
+  "purpose": "Fixed native pixels inside shirt joins independently identified in audit pass 3. These coordinates are independent of runtime fit statistics and exclude exterior silhouette antialiasing.",
+  "minimum_alpha": 248,
+  "fixtures": [
+    {"mode": "B03", "shirt": "DS012", "state": "NO_TIE", "xy": [623, 425]},
+    {"mode": "S05", "shirt": "DS012", "state": "NO_TIE", "xy": [388, 435]},
+    {"mode": "shirt-only", "shirt": "DS003", "state": "T001", "xy": [361, 440]},
+    {"mode": "B03", "shirt": "DS015", "state": "NO_TIE", "xy": [620, 433]},
+    {"mode": "B03", "shirt": "DS028", "state": "T001", "xy": [615, 424]},
+    {"mode": "B03", "shirt": "DS037", "state": "T001", "xy": [619, 429]},
+    {"mode": "shirt-only", "shirt": "DS032", "state": "T001", "xy": [373, 436]},
+    {"mode": "B03", "shirt": "DS046", "state": "T001", "xy": [621, 430]},
+    {"mode": "S05", "shirt": "DS004", "state": "T001", "xy": [387, 423]},
+    {"mode": "S05", "shirt": "DS015", "state": "NO_TIE", "xy": [389, 424]},
+    {"mode": "S05", "shirt": "DS020", "state": "NO_TIE", "xy": [389, 424]},
+    {"mode": "S05", "shirt": "DS027", "state": "NO_TIE", "xy": [561, 587]},
+    {"mode": "S05", "shirt": "DS027", "state": "T001", "xy": [561, 587]},
+    {"mode": "S05", "shirt": "DS048", "state": "NO_TIE", "xy": [402, 508]},
+    {"mode": "S05", "shirt": "DS048", "state": "T001", "xy": [402, 508]}
+  ]
+}

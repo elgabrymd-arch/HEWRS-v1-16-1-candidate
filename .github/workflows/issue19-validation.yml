@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - 'src/avatar-v3*.js'
+      - 'src/avatar-v3*.css'
       - 'runtime/avatar-v3-candidate-*.js'
       - 'AVATAR_V3*.json'
       - 'avatar-v3-*.html'
@@ -85,6 +86,32 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  mobile-preflight:
+    name: Pinned B01 mobile presentation — ${{ matrix.browser }}
+    needs: native-source-and-application
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Capture settled reviewed outfit at all four viewport widths
+        run: python tests/issue19-browser.py --browser '${{ matrix.browser }}' --suite shirts --shard 2 --shards 4 --only-mode B01 --limit 1 --output evidence/issue19/mobile-preflight
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE19_MOBILE_PREFLIGHT_${{ matrix.browser }}
+          path: evidence/issue19/mobile-preflight/${{ matrix.browser }}/
+          if-no-files-found: error
+          retention-days: 30
+
   exhaustive-fit:
     name: All garment routes — ${{ matrix.browser }} — ${{ matrix.suite }} — ${{ matrix.shard }}
     needs: native-source-and-application
@@ -105,12 +132,35 @@ jobs:
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
       - name: Render complete Cartesian shirt matrix and all exact tie sources
         run: python tests/issue19-browser.py --browser '${{ matrix.browser }}' --suite '${{ matrix.suite }}' --shard '${{ matrix.shard }}' --shards 4
-      - name: Preserve native, phone and indexed visual review evidence
+      - name: Preserve machine reports and actual phone evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}
-          path: evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/
+          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_REPORTS
+          path: |
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/RESULT.json
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/VISUAL_REVIEW_INDEX.json
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/phone/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve every paired garment detail and indexed contact sheet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_DETAILS
+          path: |
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/collar/
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/cuffs/
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/tie/
+            evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/sheets/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve selected full native PNGs separately from review reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_NATIVE
+          path: evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/native/
           if-no-files-found: error
           retention-days: 30
 
