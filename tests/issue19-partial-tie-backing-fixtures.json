@@ -1,13 +1,14 @@
 {
   "schema": "hewrs.issue19.partial-tie-backing-fixed-points.v1",
-  "status": "THREE_FIXED_POINTS_ALL47_S02_PROJECTION_SOURCE_AND_COMPOSITING_VERIFIED_NATIVE_ONLY",
+  "status": "THREE_LITERAL_POINTS_EXACT18_SUIT_SCOPES_ALL13_PERMITTED_BLAZERS_NEGATIVE_NATIVE_ONLY",
   "purpose": "Keep partial-tie backing exceptions limited to independently observed fixed pixels, without changing original830 jacket-gap fixtures.",
   "fixture_count": 3,
   "native_diagnostic_only": true,
   "browser_approval": false,
   "runtime_provenance": {
     "fit5": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
-    "current": "10c1ff79c2d4c5ac245ada33635802aca600c79e4733f3d9b75d27465a816911"
+    "current": "10c1ff79c2d4c5ac245ada33635802aca600c79e4733f3d9b75d27465a816911",
+    "geometry_extension_current": "b5f1f249ebc40c46381f60870cc42f79b7bc7b60879db93b6b8620e94c6498b8"
   },
   "source_plan": {
     "path": "evidence/issue19/audits/pass-1-partial-tie-source-plan.json",
@@ -25,14 +26,69 @@
   },
   "geometry_scope": {
     "suit_ids": [
-      "S02"
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18"
     ],
     "native_dimensions": [
       996,
       2748
     ],
     "projection_target_end": 1211,
-    "extension_policy": "No automatic extension to other suits, blazers, shirt-only or unverified projected tie geometry. Additional scope requires independent source/alpha evidence."
+    "extension_policy": "Only the exact listed per-shirt suit scopes at the original three literal coordinates are permitted. No blazer, shirt-only or new-pixel exception. Further scope requires independent source/projection, topology and source-over evidence.",
+    "per_shirt_suit_ids": {
+      "DS027": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "DS037": [
+        "S02",
+        "S03",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18"
+      ]
+    }
   },
   "all47_projected_verification": {
     "status": "VERIFIED_BY_INDEPENDENT_AUDIT3_NATIVE_ONLY",
@@ -107,7 +163,24 @@
       "shirt": "DS027",
       "mode": "suit",
       "suit_ids": [
-        "S02"
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
       ],
       "state_classes": [
         "tied"
@@ -118,7 +191,6 @@
         699
       ],
       "expected_alpha": 255,
-      "expected_old_composite_alpha": 245,
       "observed_old_rgba": [
         107,
         96,
@@ -355,14 +427,50 @@
             255
           ]
         }
-      }
+      },
+      "historical_observation_suit": "S02",
+      "observed_S02_old_composite_alpha": 245,
+      "observed_T001_original_composite_alpha_by_suit": {
+        "S01": 229,
+        "S02": 245,
+        "S03": 245,
+        "S04": 229,
+        "S05": 229,
+        "S06": 245,
+        "S07": 245,
+        "S08": 245,
+        "S09": 245,
+        "S10": 245,
+        "S11": 245,
+        "S12": 245,
+        "S13": 245,
+        "S14": 245,
+        "S15": 245,
+        "S16": 229,
+        "S17": 245,
+        "S18": 245
+      },
+      "geometry_extension_proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125"
     },
     {
       "id": "DS037-S02-partial-tie-537-689",
       "shirt": "DS037",
       "mode": "suit",
       "suit_ids": [
-        "S02"
+        "S02",
+        "S03",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18"
       ],
       "state_classes": [
         "tied"
@@ -373,7 +481,6 @@
         689
       ],
       "expected_alpha": 255,
-      "expected_old_composite_alpha": 254,
       "observed_old_rgba": [
         124,
         105,
@@ -591,14 +698,46 @@
             255
           ]
         }
-      }
+      },
+      "historical_observation_suit": "S02",
+      "observed_S02_old_composite_alpha": 254,
+      "observed_T001_original_composite_alpha_by_suit": {
+        "S02": 254,
+        "S03": 254,
+        "S06": 254,
+        "S07": 254,
+        "S08": 254,
+        "S09": 254,
+        "S10": 254,
+        "S11": 254,
+        "S12": 254,
+        "S13": 254,
+        "S14": 254,
+        "S15": 254,
+        "S17": 254,
+        "S18": 254
+      },
+      "geometry_extension_proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125"
     },
     {
       "id": "DS037-S02-partial-tie-538-699",
       "shirt": "DS037",
       "mode": "suit",
       "suit_ids": [
-        "S02"
+        "S02",
+        "S03",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18"
       ],
       "state_classes": [
         "tied"
@@ -609,7 +748,6 @@
         699
       ],
       "expected_alpha": 255,
-      "expected_old_composite_alpha": 254,
       "observed_old_rgba": [
         139,
         113,
@@ -827,7 +965,212 @@
             255
           ]
         }
-      }
+      },
+      "historical_observation_suit": "S02",
+      "observed_S02_old_composite_alpha": 254,
+      "observed_T001_original_composite_alpha_by_suit": {
+        "S02": 254,
+        "S03": 254,
+        "S06": 254,
+        "S07": 254,
+        "S08": 254,
+        "S09": 254,
+        "S10": 254,
+        "S11": 254,
+        "S12": 254,
+        "S13": 254,
+        "S14": 254,
+        "S15": 254,
+        "S17": 254,
+        "S18": 254
+      },
+      "geometry_extension_proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125"
     }
-  ]
+  ],
+  "geometry_extension_verification": {
+    "status": "PASS_NATIVE_EXACT18_SUIT_SCOPES_ALL13_PERMITTED_BLAZERS_NEGATIVE",
+    "runtime_sha256": "b5f1f249ebc40c46381f60870cc42f79b7bc7b60879db93b6b8620e94c6498b8",
+    "runtime_comparison": "same compiled b5 runtime, exact collar wrapper omitted only in diagnostic",
+    "source_projection_proof_sha256": "dcea568c966ffbaf3f1a44fd5b232369ef85d8a8dca8624fb91b1da4d98ce1dd",
+    "render_proof_sha256": "1c4772cdd25a573879feb30476151d451a5fe027a8b78e6b052c3aa22661aaf4",
+    "reproduction_script_sha256": "a80fe8868e613e88297ca9ed1e944f4190deac782e35d325306236caf34f268e",
+    "all33_source_plans": 3102,
+    "actual_native_pairs": 62,
+    "suit_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18"
+    ],
+    "permitted_blazer_ids": [
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B12",
+      "B13",
+      "B14",
+      "B15"
+    ],
+    "static_only_owner_excluded_tied_routes": [
+      "B01",
+      "B11"
+    ],
+    "suit_alpha_groups": [
+      {
+        "suit_ids": [
+          "S01",
+          "S04",
+          "S05",
+          "S16"
+        ],
+        "effective_jacket_alpha_sha256": "0e00d28e721fc77ab9c51a12ebd4b044821a1dae22c3fefa3977f0dcbec46a03",
+        "native_fixed_point_alpha_samples": [
+          {
+            "shirt": "DS027",
+            "xy": [
+              458,
+              699
+            ],
+            "original_composite_alpha": 229,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 128,
+            "original_avatar_alpha": 108,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 128,
+            "receives_backing": true
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              537,
+              689
+            ],
+            "original_composite_alpha": 255,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 255,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 156,
+            "original_body_alpha": 253,
+            "receives_backing": false
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              538,
+              699
+            ],
+            "original_composite_alpha": 255,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 255,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 253,
+            "receives_backing": false
+          }
+        ]
+      },
+      {
+        "suit_ids": [
+          "S02",
+          "S03",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S10",
+          "S11",
+          "S12",
+          "S13",
+          "S14",
+          "S15",
+          "S17",
+          "S18"
+        ],
+        "effective_jacket_alpha_sha256": "f4d54dde0669cc88a29ff93762eb46f2e11b2ff5c9a4a6cca76a7f7b8e34ba79",
+        "native_fixed_point_alpha_samples": [
+          {
+            "shirt": "DS027",
+            "xy": [
+              458,
+              699
+            ],
+            "original_composite_alpha": 245,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 208,
+            "original_avatar_alpha": 108,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 128,
+            "receives_backing": true
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              537,
+              689
+            ],
+            "original_composite_alpha": 254,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 0,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 156,
+            "original_body_alpha": 253,
+            "receives_backing": true
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              538,
+              699
+            ],
+            "original_composite_alpha": 254,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 4,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 253,
+            "receives_backing": true
+          }
+        ]
+      }
+    ],
+    "independent_projection_groups": [
+      {
+        "target_end": 1211,
+        "original_ties_independently_projected": 47,
+        "full_projected_alpha_sha256": "da64470ae9ba5962682a2c6cbc2191c4115f960f69cc987886378cb7e76ad616"
+      },
+      {
+        "target_end": 1251,
+        "original_ties_independently_projected": 47,
+        "full_projected_alpha_sha256": "39e060ad7c479d045ebf6d7435a3560061c8d7757eeeb5327ca6d539fdb2d780"
+      }
+    ],
+    "all13_permitted_blazer_controls": "Every selected tie pixel exact; every literal point originally opaque, unchanged, original BODY alpha255, projected tie alpha0. No blazer fixture permission.",
+    "browser_contract": "94 actual S02 selections plus 68 actual T001/T047 selections on other17 suits; source/endpoint plans and all47 projected mask equality support geometry equivalence only",
+    "proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125",
+    "browser_approval": false,
+    "proof_path": "/workspace/scratch/4197e9f551ea/audits/partial-all33/geometry-scope-proof.json",
+    "source_projection_proof_path": "/workspace/scratch/4197e9f551ea/audits/partial-all33/projection-source-proof.json",
+    "render_proof_path": "/workspace/scratch/4197e9f551ea/audits/partial-all33/all31-t001-render-proof.json"
+  }
 }

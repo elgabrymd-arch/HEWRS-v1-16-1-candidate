@@ -90,9 +90,12 @@ fixture identifies 830 actual gap pixels on DS027 and DS048 across the 14 suits
 with this opening geometry, plus transparent exterior and opaque jacket controls.
 An independent all50-shirt S02 sweep additionally identified two partial tie-edge
 points on DS037. A separate three-point fixture, including the known DS027 edge,
-constrains these backing exceptions to the observed locations. All47 actual
-projected tie masks are checked at those points; no general relaxation of tie
-preservation is permitted.
+constrains these backing exceptions to the observed locations. Independent
+source and finished-frame checks establish the DS027 point on all 18 suits and
+the DS037 points only on the 14 wide-opening suits. S01, S04, S05 and S16 already
+cover both DS037 points and remain exact-preservation controls. All 47 actual
+projected tie alpha planes are checked independently; no general relaxation of
+tie preservation is permitted.
 
 Original shirt cloth protruding above a selected jacket's shoulder is concealed
 inside the outer bounds `[0,350,330,250]` and `[666,350,330,250]`. Only pixels
@@ -194,13 +197,16 @@ The [Issue 19 workflow](../../.github/workflows/issue19-validation.yml) runs:
   The latter checks the complete projected tie against the independently found
   shirt-opening gaps. The first tie already covers every eligible shirt in the
   shirt matrix. Together the suites contain 4,782 frames per browser, 9,564 total.
-- A separate 94-selection contract per browser compares DS027 and DS037 with
-  all 47 ties against an explicitly identified diagnostic that omits only the
-  exact compiled collar wrapper. It independently projects the original tie,
-  preserves every opaque tie and knot pixel exactly, and permits source-over
-  backing only at the three independently fixed partial-edge locations. A
-  one-channel-unit rounding allowance applies only to those partial points.
-  Neither the delivered runtime nor an owner's profile is modified by this test.
+- A separate 162-selection contract per browser compares DS027 and DS037 with
+  all 47 ties on S02, plus T001 and T047 on every other suit, against an
+  explicitly identified diagnostic that omits only the exact compiled collar
+  wrapper. It independently projects the original ties, verifies their common
+  alpha geometry, preserves every opaque tie and knot pixel exactly, and permits
+  source-over backing only at the three fixed points in their independently
+  proven suit sets. The four compact suits provide opaque DS037 negative
+  controls. A one-channel-unit rounding allowance applies only to the allowed
+  partial points. Neither the delivered runtime nor an owner's profile is
+  modified by this test.
 - All 70,884 permitted selection plans per browser, with incompatible shirt and
   owner-rule combinations checked separately.
 - Native 996×2748 pixels, original source identities, exact head and opaque hands,
