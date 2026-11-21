@@ -1,0 +1,26 @@
+{
+  "schema": "hewrs.live-thumbnail-verification-correction.v1",
+  "failed_publication_run": 44513018105,
+  "failed_job": 135521790787,
+  "application_merge_commit": "a6874baf58c19f8a0ece853dd0fd5237fd457d5c",
+  "observed_passes": [
+    "All31 live entrypoint/dependency identities match",
+    "Fresh feedback store ready",
+    "20 valid generated outfits and ready native avatar"
+  ],
+  "observed_failure": "Immediate thumbnail completeness/naturalWidth assertion failed after a previously reached networkidle state.",
+  "initial_artifact": {
+    "id": 14523524002,
+    "sha256": "6a6323783bb1b31c8bb1f885bfb489d98a59155ab09556ad730e43d2e93a9d2c",
+    "page_errors": [],
+    "request_failures": [],
+    "http_errors": [],
+    "external_requests": [],
+    "per_image_state_captured": false
+  },
+  "cause_boundary": "Initial evidence cannot distinguish pending asynchronous thumbnail loading from an image error. Source establishes that avatar readiness does not await the separate sidebar img nodes.",
+  "verifier_repair": "Wait up to60seconds for mounted images to complete; retain strict nonzero width/height and visible-no-fallback checks; require the exact current-card expected image count; record per-image URLs, source keys and readiness; capture failure screenshot before Playwright closes.",
+  "product_files_changed": false,
+  "runtime_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+  "next_gate": "Repeat the full live publication,20reject/refill,S05,all-rejection,photo,state workflow against unchanged app bytes."
+}

@@ -1,0 +1,95 @@
+{
+  "counts": {
+    "clothing_considered": 1,
+    "clothing_owner_excluded": 0,
+    "clothing_exhausted_by_exact_hides": 0,
+    "foundations": 1,
+    "clothing_seeds": 1,
+    "footwear_expansions": 1,
+    "feedback_excluded_before_retention": 0,
+    "known_reviews_not_relabelled": 0,
+    "considered_ids": [
+      "B01",
+      "DS026",
+      "PT006",
+      "shoe-8"
+    ],
+    "retained": 1,
+    "elapsed_ms": 5
+  },
+  "selected": [
+    {
+      "id": "explore:B01|PT006|DS026|NO_TIE|shoe-8",
+      "outfit": {
+        "topwear": "B01",
+        "pants": "PT006",
+        "shirt": "DS026",
+        "tie": null,
+        "shoe": "shoe-8"
+      }
+    }
+  ],
+  "inspection": {
+    "selection": {
+      "blazerId": "B01",
+      "pantId": "PT006",
+      "shirtId": "DS026",
+      "state": "NO_TIE",
+      "shoeId": "shoe-8",
+      "watchId": null
+    },
+    "assessment": {
+      "outfit": {
+        "topwear": "B01",
+        "pants": "PT006",
+        "shirt": "DS026",
+        "tie": null,
+        "shoe": "shoe-8"
+      },
+      "key": "B01|PT006|DS026|NO_TIE|shoe-8",
+      "clothing_key": "B01|PT006|DS026|NO_TIE",
+      "hard_constraints": {
+        "status": "pass",
+        "reasons": []
+      },
+      "reviewable": true,
+      "source_conflicts": [],
+      "review": {
+        "status": "awaiting_review",
+        "validation_issues": [
+          "WHOLE_OUTFIT_REVIEW_PENDING"
+        ],
+        "evidence": null,
+        "reason": null
+      },
+      "requested_style": "AUTO",
+      "requested_occasion": "dinner",
+      "style_matches": null,
+      "occasion_matches": null,
+      "rendering": {
+        "status": "registered_bindings",
+        "issues": [],
+        "photos": "complete_by_owner_instruction",
+        "aesthetic_rejection": false,
+        "scope": "Connection registry only; not a new image-decode, compositor or device test."
+      },
+      "recommendable": false,
+      "avatar_ready": false,
+      "selection_score": null,
+      "legacy_score_used_as_veto": false
+    }
+  },
+  "valid": {
+    "blazerId": "B01",
+    "pantId": "PT006",
+    "shirtId": "DS026",
+    "state": "NO_TIE",
+    "shoeId": "shoe-8",
+    "watchId": null
+  },
+  "policy": {
+    "allowed": true,
+    "reasons": []
+  },
+  "scope": "Actual connection, owner rule, reviewed bridge and discovery plan only. Browser native-pixel comparison is required separately."
+}

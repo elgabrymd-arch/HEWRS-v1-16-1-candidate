@@ -1,0 +1,42 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/five-round-ui.cjs",
+    "tests/five-round-ui-rejection.cjs",
+    "tests/five-round-ui-preferences.cjs"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "tests": 22,
+    "pass": 22,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "tests": [
+    "Queued preference vote handles rejection before the actual write",
+    "Queued preference vote handles close before the actual write",
+    "Queued preference vote handles unchanged before the actual write",
+    "Closing during the feedback check after acquiring the lock prevents a vote",
+    "Current shirt-only comparison choices name the configuration and exact trousers",
+    "Delayed comparison preflight cannot reopen after close",
+    "Delayed comparison preflight cannot reopen after other_panel",
+    "Delayed preference file reading cannot reopen after close",
+    "Delayed preference file reading cannot reopen after other_panel",
+    "Only the latest preference file selection can publish its reviewed preview",
+    "All 1024 combinations of specific reasons and generic qualifiers infer one target or require an explicit scope",
+    "An explicit scope controls all ten combined reasons without losing any reason or exceeding storage limits",
+    "Whole-combination checkbox clears diagnoses without overriding an earlier explicit scope",
+    "Click-time intent stays fixed while the first durable synchronization is pending",
+    "Changing the displayed outfit or occasion during pre-save synchronization prevents the write",
+    "The manager shows accepted historical wire and canonical tie records without rewriting stored records",
+    "Exact blazer and shirt-only pickers use the same approved DS026 detail as their option card",
+    "Every registered non-suit no-tie override is displayed under an exact blazer anchor",
+    "Suit and unanchored pickers preserve the original suit detail and exact tie thumbnails",
+    "Photo decoration does not change a draft, exact item, choice ordering or duplicate an image",
+    "DS002 and DS004 show their existing pinned garment descriptions in picker and option cards",
+    "Presentation inspection preserves all garment records, source metadata and approved thumbnail descriptors"
+  ]
+}

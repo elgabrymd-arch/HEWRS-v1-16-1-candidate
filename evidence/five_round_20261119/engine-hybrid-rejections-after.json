@@ -1,0 +1,238 @@
+{
+  "schema": "hewrs.five-round-hybrid-rejection.v1",
+  "checks": [
+    {
+      "name": "The unchanged Work reference library starts with 15 eligible exact outfits",
+      "passed": true
+    },
+    {
+      "name": "A clothing rejection does not consume reference capacity or globally exclude the same permitted tie",
+      "passed": true
+    },
+    {
+      "name": "Direct reference selection filters stale pool rows before history priority and physical-item capacity",
+      "passed": true
+    },
+    {
+      "name": "outfit: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "clothing: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "shirt: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "topwear_shirt: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "topwear_shirt_tie: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "tie: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "shirt_tie: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "topwear_tie: rejection is applied to the reference pool before list selection",
+      "passed": true,
+      "detail": {
+        "returned": 15
+      }
+    },
+    {
+      "name": "Dinner-only rejection does not change the Work reference list or source scores",
+      "passed": true
+    },
+    {
+      "name": "Static B01 and B11 owner garment rules are applied before reference selection",
+      "passed": true
+    },
+    {
+      "name": "A banned reference or provider proposal is never rendered, assessed remotely, or admitted to visual selection",
+      "passed": true
+    },
+    {
+      "name": "Feedback changed during propose prevents the next visual stage or result publication",
+      "passed": true,
+      "detail": {
+        "renders": 0,
+        "evaluations": 0
+      }
+    },
+    {
+      "name": "Feedback changed during render prevents the next visual stage or result publication",
+      "passed": true,
+      "detail": {
+        "renders": 1,
+        "evaluations": 0
+      }
+    },
+    {
+      "name": "Feedback changed during evaluate prevents the next visual stage or result publication",
+      "passed": true,
+      "detail": {
+        "renders": 20,
+        "evaluations": 1
+      }
+    },
+    {
+      "name": "A peer IndexedDB commit during propose is caught without BroadcastChannel before the next visual stage or publication",
+      "passed": true,
+      "detail": {
+        "stage": "propose",
+        "peer_committed": true,
+        "stale_cache_observed": true,
+        "renders": 0,
+        "evaluations": 0
+      }
+    },
+    {
+      "name": "A peer IndexedDB commit during render is caught without BroadcastChannel before the next visual stage or publication",
+      "passed": true,
+      "detail": {
+        "stage": "render",
+        "peer_committed": true,
+        "stale_cache_observed": true,
+        "renders": 1,
+        "evaluations": 0
+      }
+    },
+    {
+      "name": "A peer IndexedDB commit during evaluate is caught without BroadcastChannel before the next visual stage or publication",
+      "passed": true,
+      "detail": {
+        "stage": "evaluate",
+        "peer_committed": true,
+        "stale_cache_observed": true,
+        "renders": 20,
+        "evaluations": 1
+      }
+    },
+    {
+      "name": "Healthy Visual generation still passes real durable feedback boundaries",
+      "passed": true,
+      "detail": {
+        "stage": "healthy",
+        "peer_committed": false,
+        "stale_cache_observed": false,
+        "renders": 20,
+        "evaluations": 1
+      }
+    },
+    {
+      "name": "Unreadable feedback blocks Curated and Visual before provider proposal or rendering",
+      "passed": true
+    },
+    {
+      "name": "Reference data, wardrobe source inputs, and numerical source scores remain unchanged",
+      "passed": true
+    }
+  ],
+  "passed": 23,
+  "failed": 0,
+  "details": {
+    "curated": {
+      "initial_count": 15,
+      "rejected": {
+        "suitId": "S10",
+        "shirtId": "DS022",
+        "state": "T022",
+        "shoeId": "shoe-3",
+        "watchId": "watch-P05"
+      },
+      "after_count": 15,
+      "replacement": {
+        "suitId": "S11",
+        "shirtId": "DS022",
+        "state": "T022",
+        "shoeId": "shoe-2",
+        "watchId": "watch-P05"
+      }
+    },
+    "visual": {
+      "rendered": 20,
+      "evaluated": 20,
+      "returned": 13,
+      "rejected_proposal_diagnostic": [
+        {
+          "id": "AI_PROPOSAL_0",
+          "code": "OWNER_FEEDBACK",
+          "reason": "Excluded by an explicit owner rule or saved rejection.",
+          "reasons": [
+            {
+              "type": "hide",
+              "id": "b87e982a-2dda-4758-bd34-c72cec9c5501",
+              "reason": null,
+              "scope": "clothing",
+              "occasion": "work"
+            }
+          ]
+        }
+      ]
+    },
+    "durable_peer_boundaries": [
+      {
+        "stage": "propose",
+        "peer_committed": true,
+        "stale_cache_observed": true,
+        "renders": 0,
+        "evaluations": 0
+      },
+      {
+        "stage": "render",
+        "peer_committed": true,
+        "stale_cache_observed": true,
+        "renders": 1,
+        "evaluations": 0
+      },
+      {
+        "stage": "evaluate",
+        "peer_committed": true,
+        "stale_cache_observed": true,
+        "renders": 20,
+        "evaluations": 1
+      },
+      {
+        "stage": "healthy",
+        "peer_committed": false,
+        "stale_cache_observed": false,
+        "renders": 20,
+        "evaluations": 1
+      }
+    ]
+  },
+  "external_provider_calls": 0,
+  "limitations": [
+    "Visual responses and images are controlled fixtures; this does not assess model quality or real provider transport."
+  ]
+}

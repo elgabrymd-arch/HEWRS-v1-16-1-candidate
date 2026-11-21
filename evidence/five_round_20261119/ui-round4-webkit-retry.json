@@ -1,0 +1,36 @@
+{
+  "schema": "hewrs.webkit-retry-harness-correction.v1",
+  "recorded_at": "2026-11-19T07:04:31.036621+00:00",
+  "file": "tests/five-round-state-browser.py",
+  "before_sha256": "e49304de2a47f2209e60e225c444bcc8d789ccc08c346e82891ea51d91e8de10",
+  "after_sha256": "7e7bf2df13e6b181f7ef1602b334e7afc70b9e8e0b2fc771927fba2fec0eddef",
+  "trigger": {
+    "run": "44476431101",
+    "checkpoint": "02723aa9",
+    "evidence_source": "Parent-supplied completed job diagnosis; raw artifact not independently downloaded in this repair task",
+    "observed": "WebKit cancellation and preserved prior pixels passed; exact DS036/T031 retry setup passed; only the expect_request wait timed out."
+  },
+  "correction": "Record retry request count as optional telemetry, require exact current selection, exact renderer.last selection and changed native pixel digest; a cache-satisfied retry is valid.",
+  "preserved_helpers": {
+    "stall": true,
+    "unstall": true,
+    "only_stalled_request": true,
+    "current": true,
+    "pixels": true
+  },
+  "preserved_behavioral_assertions": {
+    "Native image route is genuinely held without a response": true,
+    "Real Cancel settles the blocked native render before transport release": true,
+    "Cancelled native work preserves exact prior selection and pixels": true,
+    "Comparison image route is held while the real modal is open": true,
+    "Closing comparison settles its stalled private renderer before release": true,
+    "Closed comparison neither reopens nor changes current pixels or preferences": true,
+    "Only deliberately held-and-cancelled image requests may fail": true
+  },
+  "network_failure_allowlist_unchanged": true,
+  "new_cache_or_route_override": false,
+  "new_app_source_edits": false,
+  "syntax_check_passed": true,
+  "playwright_remove_listener_available": true,
+  "browser_rerun": "Pending parent CI; no result claimed."
+}

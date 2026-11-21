@@ -1,0 +1,131 @@
+{
+  "schema": "hewrs.five-round-release.v1",
+  "status": "PUBLISHED_VERIFIED",
+  "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/",
+  "baseline_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "candidate_commit": "7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6",
+  "application_merge_commit": "a6874baf58c19f8a0ece853dd0fd5237fd457d5c",
+  "merged_tree": "c6a95019f4c4df8f3d34aeb6be872bdbac8d1566",
+  "pull_request": 14,
+  "rollback_branch": "backup/pre-five-round-audit-release-20261119",
+  "runtime_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+  "prepublication": {
+    "five_round_run": 44510840257,
+    "five_round_jobs_passed": 5,
+    "all_rejection_run": 44510840209,
+    "all_rejection_jobs_passed": 6,
+    "cumulative_run": 44510840210,
+    "cumulative_passed": true,
+    "focused_node_tests": 183,
+    "focused_node_failures": 0,
+    "current_browser_reason_lifecycle_checks": 874,
+    "photo_checks_per_browser": 2393,
+    "photo_failures_per_browser": 0,
+    "rendered_frames_per_browser": 396,
+    "baseline_pixel_comparisons_per_browser": 349,
+    "native_collar_crops_per_browser": 288,
+    "complete_collar_sheets_inspected": 20,
+    "active_delivery_bindings": 66,
+    "source_code_files_inventoried": 754,
+    "artifact_reconciliation": "ui-round5-native-collar-acceptance.json"
+  },
+  "publication": {
+    "pages_run": 44516352705,
+    "home_preferences_run": 44516353211,
+    "live_verification_run": 44516353326,
+    "verifier_commit": "7621ce47446b9b62b022c01bbb35e8e962931d7c",
+    "status": "success",
+    "previous_attempts": [
+      {
+        "run": 44513018105,
+        "pages_run": 44513017618,
+        "home_run": 44513018200,
+        "live_status": "failed_before_rejection_cycles",
+        "evidence": "live-thumbnail-verifier-correction.json"
+      },
+      {
+        "run": 44513982945,
+        "pages_run": 44513982433,
+        "home_run": 44513982779,
+        "live_status": "failed_webkit_lifecycle_network_aggregate",
+        "evidence": "live-round5-attempt-393231d.json",
+        "correction": "live-lifecycle-thumbnail-readiness.json"
+      }
+    ],
+    "test_only_verifier_commits": [
+      "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "7621ce47446b9b62b022c01bbb35e8e962931d7c"
+    ],
+    "application_identity": {
+      "compared_from": "7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6",
+      "compared_to": "7621ce47446b9b62b022c01bbb35e8e962931d7c",
+      "changed_paths": [
+        "evidence/five_round_20261119/live-lifecycle-thumbnail-readiness.json",
+        "evidence/five_round_20261119/live-thumbnail-verifier-correction.json",
+        "tests/all-rejections-browser.py",
+        "tests/rejection-live-publication.py"
+      ],
+      "application_or_asset_files_changed": false,
+      "source_sha256": "7861703eebe4638696e0a508d95cf5e433d2c3c0e9b4fe01ca319d0ce6cee859"
+    },
+    "pages_status": "success",
+    "home_preferences_status": "success",
+    "live_workflow_status": "success",
+    "live_jobs_passed": 7,
+    "live_jobs_failed": 0,
+    "live_evidence": "live-round5-final.json",
+    "live_photo_state_evidence": "live-round5-visual-final.json",
+    "observed_results": {
+      "live_resource_hashes_matched": 31,
+      "publication_and_twenty_refill_assertions_passed": 32,
+      "consecutive_live_rejection_cycles": 20,
+      "valid_choices_after_each_cycle": 20,
+      "permanent_records_surviving_reload": 20,
+      "S05_tie_reason_checks_per_browser": 68,
+      "original_rejection_reason_checks_per_browser": 252,
+      "original_rejection_lifecycle_checks_per_browser": 185,
+      "original_rejection_checks_both_browsers": 874,
+      "supplemental_thumbnail_readiness_boundaries": 536,
+      "thumbnail_readiness_failures": 0,
+      "photo_checks_per_browser": 2393,
+      "photo_check_failures": 0,
+      "state_checks_per_browser": 85,
+      "state_check_failures": 0,
+      "unexpected_browser_or_network_errors": 0,
+      "deliberately_stalled_chromium_image_aborts": 2,
+      "home_active_app_checks": 13,
+      "home_retained_stage10_checks": 14,
+      "T026_successful_webkit_lifecycle_decode_observations": 6
+    },
+    "accepted_evidence_hashes": {
+      "live_photo_state_reconciliation_sha256": "64c20c2e6f39cb65150cd9c38baf6ff186e7b3a6f2df85a17b42e124688c5d76",
+      "live_monitor_sha256": "2563e19cfe8238ca9edc04fba0ebe5933d6f539045f1495a1fe94acf5a9b0604"
+    },
+    "documentation_closure": "Final report/evidence edits preserve the verified application bytes and are recorded in a subsequent documentation-only commit."
+  },
+  "preservation": {
+    "avatar_changed": false,
+    "frozen_standard_resources_changed": false,
+    "owner_browser_data_accessed": false,
+    "test_profiles": "fresh disposable synthetic profiles only",
+    "protected_wardrobe_assembly_data_scoring_sources_changed": false,
+    "renderer_transport_changed": true,
+    "renderer_geometry_changed": false
+  },
+  "known_source_artwork_limits": [
+    "Pre-existing flat tied neck bands and some collar/placket joins remain in approved reconstructions.",
+    "DS023 retains jagged neckline alpha edges; DS040 non-suit retains a stretched chest-pattern band.",
+    "Documented suit/non-suit source differences remain for several same-ID shirts; baseline equality proves preservation rather than exact physical-garment fidelity."
+  ],
+  "verification_boundaries": {
+    "physical_iphone_tested": false,
+    "browsers": [
+      "chromium",
+      "webkit"
+    ],
+    "optional_live_ai_provider_calls": 0,
+    "optional_service_paths": "controlled transport/state responses; no model-quality claim"
+  },
+  "superseded_failures": "Earlier fixture failures and automatic push/PR duplicate-run cancellations are retained and are not represented as successful completed runs.",
+  "verified_at_utc": "2026-11-19T11:51:06.947501+00:00"
+}

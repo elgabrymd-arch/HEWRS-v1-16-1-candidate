@@ -1,0 +1,147 @@
+{
+  "source": "src/outfit-refill-application.js",
+  "actualMethods": true,
+  "controlledEndpoints": [
+    "weather.locate",
+    "generate",
+    "apply"
+  ],
+  "results": [
+    {
+      "case": "method",
+      "generation": 5,
+      "method": "curated",
+      "weatherApplied": false,
+      "lateGenerateCalls": 1,
+      "calls": {
+        "generate": [
+          {
+            "config": {
+              "occasion": "work",
+              "formality": "any",
+              "localDate": "2026-11-18",
+              "style": "AUTO",
+              "environment": {
+                "source": "not_assessed",
+                "date": "2026-11-18"
+              },
+              "stylistMode": "curated"
+            },
+            "opts": {
+              "prefs": {
+                "shirt": {
+                  "mode": "item",
+                  "id": "DS029"
+                }
+              }
+            }
+          }
+        ],
+        "apply": [],
+        "pages": [],
+        "failures": [],
+        "nativeCancel": 1,
+        "visualCancel": 1,
+        "replaced": {
+          "shirt": {
+            "mode": "item",
+            "id": "DS029"
+          }
+        }
+      }
+    },
+    {
+      "case": "context",
+      "generation": 5,
+      "method": "research",
+      "weatherApplied": false,
+      "lateGenerateCalls": 1,
+      "calls": {
+        "generate": [
+          {
+            "config": {
+              "occasion": "dinner",
+              "formality": "any",
+              "localDate": "2026-11-18",
+              "style": "AUTO",
+              "environment": {
+                "source": "not_assessed",
+                "date": "2026-11-18"
+              },
+              "stylistMode": "research"
+            },
+            "opts": {
+              "prefs": {
+                "shirt": {
+                  "mode": "item",
+                  "id": "DS029"
+                }
+              }
+            }
+          }
+        ],
+        "apply": [],
+        "pages": [],
+        "failures": [],
+        "nativeCancel": 1,
+        "visualCancel": 1,
+        "replaced": {
+          "shirt": {
+            "mode": "item",
+            "id": "DS029"
+          }
+        }
+      }
+    },
+    {
+      "case": "cancel",
+      "generation": 5,
+      "method": "research",
+      "weatherApplied": false,
+      "lateGenerateCalls": 1,
+      "calls": {
+        "generate": [
+          {
+            "config": {
+              "occasion": "work",
+              "formality": "any",
+              "localDate": "2026-11-18",
+              "style": "AUTO",
+              "environment": {
+                "source": "not_assessed",
+                "date": "2026-11-18"
+              },
+              "stylistMode": "research"
+            },
+            "opts": {
+              "prefs": {
+                "shirt": {
+                  "mode": "item",
+                  "id": "DS029"
+                }
+              }
+            }
+          }
+        ],
+        "apply": [],
+        "pages": [],
+        "failures": [],
+        "nativeCancel": 1,
+        "visualCancel": 1,
+        "replaced": {
+          "shirt": {
+            "mode": "item",
+            "id": "DS029"
+          }
+        }
+      }
+    },
+    {
+      "case": "manual_apply_cancelled",
+      "generation": 5,
+      "pagesAfterCancellation": [
+        "outfits"
+      ]
+    }
+  ]
+}

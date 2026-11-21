@@ -1,0 +1,90 @@
+{
+  "schema": "hewrs.rejection-startup-audit.v1",
+  "source_commit": "69545e85bf4ee0719d29dc81bade011332c4caf8",
+  "synthetic_data_only": true,
+  "production_changes": false,
+  "checks": [
+    {
+      "name": "clothing: valid saved rejection blocks before corruption",
+      "passed": true
+    },
+    {
+      "name": "clothing: original and unreadable records retained byte-for-byte",
+      "passed": true
+    },
+    {
+      "name": "tie: valid saved rejection blocks before corruption",
+      "passed": true
+    },
+    {
+      "name": "tie: original and unreadable records retained byte-for-byte",
+      "passed": true
+    },
+    {
+      "name": "Quota fixture contains 30,000 distinct exact outfit exclusions",
+      "passed": true
+    },
+    {
+      "name": "Quota characterization retained earliest and latest successfully written events",
+      "passed": true
+    },
+    {
+      "name": "Successfully written history survives reload without recycling",
+      "passed": true
+    },
+    {
+      "name": "No external or provider requests",
+      "passed": true
+    },
+    {
+      "name": "No uncaught page exceptions",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "clothing_corrupt_startup": {
+      "persistentFlag": false,
+      "allowed": true,
+      "matchError": null,
+      "activeCount": 0,
+      "readError": null,
+      "originalRecordRetained": true,
+      "corruptRecordRetained": true,
+      "feedbackNotice": "Permanent feedback storage is unavailable. Temporary rejection still works; no existing records were cleared."
+    },
+    "tie_corrupt_startup": {
+      "persistentFlag": true,
+      "allowed": null,
+      "matchError": "Unreadable tie rejection record. Existing records were retained.",
+      "activeCount": null,
+      "readError": "Unreadable tie rejection record. Existing records were retained.",
+      "originalRecordRetained": true,
+      "corruptRecordRetained": true,
+      "feedbackNotice": ""
+    },
+    "local_storage_history_volume": {
+      "targetEvents": 30000,
+      "writtenEvents": 16858,
+      "error": {
+        "name": "QuotaExceededError",
+        "message": "Failed to execute 'setItem' on 'Storage': Setting the value of 'hewrs:outfit-feedback:v1:event:audit_016858' exceeded the quota."
+      },
+      "keyAndValueCharacters": 5242838,
+      "estimatedUtf16Bytes": 10485676,
+      "durationMs": 89.39999999990687,
+      "firstKey": "hewrs:outfit-feedback:v1:event:audit_000000",
+      "lastKey": "hewrs:outfit-feedback:v1:event:audit_016857",
+      "retainedFirst": true,
+      "retainedLast": true,
+      "afterReload": {
+        "first": true,
+        "last": true,
+        "count": 16858
+      }
+    }
+  },
+  "external_requests": [],
+  "page_errors": [],
+  "browser_version": "141.0.7390.37",
+  "status": "completed"
+}

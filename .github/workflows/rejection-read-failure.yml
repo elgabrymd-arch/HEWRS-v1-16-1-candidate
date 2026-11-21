@@ -1,0 +1,75 @@
+name: Rejection read failure recovery candidate
+on:
+  push:
+    branches:
+      - fix/rejection-read-failure-20261118
+    paths:
+      - .github/workflows/rejection-read-failure.yml
+      - src/outfit-refill-application.js
+      - src/outfit-rejection-core.js
+      - src/outfit-rejection-ui.js
+      - runtime/outfit-refill-preview.js
+      - index.html
+      - app.html
+      - tests/rejection-read-failure.cjs
+      - tests/rejection-read-failure-browser.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  candidate-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch pinned diagnostic and build bases
+        run: |
+          git fetch --depth=1 origin ec4280a500174cef9b87f1a05f23878da186569d
+          git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
+      - name: Verify original wardrobe, avatar, scoring and Standard sources
+        run: |
+          git diff --exit-code ec4280a500174cef9b87f1a05f23878da186569d -- \
+            assets assemblies data vendor ui ui-assets tools \
+            STANDARD_RELEASE.json outfit-feedback.js hewrs-stage10-integration-panel.js \
+            feedback-candidate
+          git diff --exit-code ec4280a500174cef9b87f1a05f23878da186569d -- src \
+            ':!src/outfit-refill-application.js' ':!src/outfit-rejection-core.js' ':!src/outfit-rejection-ui.js'
+          git diff --exit-code ec4280a500174cef9b87f1a05f23878da186569d -- runtime ':!runtime/outfit-refill-preview.js'
+      - name: Verify candidate delivery and syntax
+        run: |
+          python tools/build_tie_candidate.py --verify-base --check
+          node --check runtime/outfit-refill-preview.js
+          node --check src/outfit-rejection-core.js
+          node --check src/outfit-rejection-ui.js
+          node --check src/outfit-refill-application.js
+      - name: Verify rejection enforcement, recovery and preserved semantics
+        run: |
+          node tests/rejection-read-failure.cjs
+          node tests/tie-feedback.cjs
+          node tests/tie-exposure.cjs
+          node tests/rejection-cumulative-refill.cjs
+          node tests/rejection-same-generation-guard.cjs
+      - name: Install isolated Chromium tests
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Verify actual read failures, recovery and visible result protection
+        run: python tests/rejection-read-failure-browser.py
+      - name: Verify existing healthy generation, rejection and refill behavior
+        run: python tests/tie-feedback-rotation-browser.py
+      - name: Preserve browser evidence without deployment
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_REJECTION_READ_FAILURE_EVIDENCE
+          path: |
+            evidence/rejection_read_failure/
+            evidence/tie_feedback_rotation/
+          if-no-files-found: warn
+          retention-days: 14

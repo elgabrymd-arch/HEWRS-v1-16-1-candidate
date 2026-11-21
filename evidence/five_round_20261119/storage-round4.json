@@ -1,0 +1,252 @@
+{
+  "schema": "hewrs.five-round-storage-audit.v1",
+  "round": 4,
+  "recorded_at_utc": "2026-11-19T07:12:10.616750+00:00",
+  "owner": "/root/tie_rejection_audit",
+  "base_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "checkpoint_commit": "02723aa9d6342e456cd92e5d7b8fc756dd7fff8b",
+  "worktree_branch": "audit/five-round-total-20261119",
+  "scope": "Independent adversarial review of active rejection semantics, failure recovery, cross-method rendering/publication and provider-session integrity, including cross-review of fixes by other owners.",
+  "status": "closed_with_confirmed_fixes_and_focused_postchecks",
+  "reviewed_files": [
+    {
+      "path": "src/owner-feedback.js",
+      "classification": "Active shared source",
+      "review_depth": "Normalization and exact keys for five outfit scopes; legacy occasion aliases; immutable events, imports, Undo and historical votes; explicit static garment rules.",
+      "sha256": "03668782cb16631a90e8c3d5f7e64f05ff1695af4071ae1e3da3c9428b8c7b82"
+    },
+    {
+      "path": "src/tie-feedback.js",
+      "classification": "Active candidate source",
+      "review_depth": "Three tie scopes, exact canonical records, occasion limits, deduplication, backup/import, independent Undo and fail-closed validation.",
+      "sha256": "cc5717989411da76f06b90f7dd8aad06ccec8f762b9b756c0d0ff759b2b27386"
+    },
+    {
+      "path": "src/rejection-database.js",
+      "classification": "Active candidate source",
+      "review_depth": "Complete persistence boundary: immutable event validation, migration, indexes, atomic writes/imports, cache freshness, recovery, durable publication and cross-tab notification.",
+      "sha256": "8befbd68827f7b7254b75518843d97942ba4ffeacb1220f628f5173188f1676a"
+    },
+    {
+      "path": "src/outfit-rejection-core.js",
+      "classification": "Active candidate source",
+      "review_depth": "Temporary/permanent facade, legacy fallback, captured render context, final pixel publication and generation token gates.",
+      "sha256": "859edc166dd95e1d42de1e0a3c62e68833461cc4aa0f5f4434dcbf96462a32dd"
+    },
+    {
+      "path": "src/owner-feedback-integration.js",
+      "classification": "Active shared source",
+      "review_depth": "Complete final-output veto integration and recommendation-removal behavior.",
+      "sha256": "ba32d6d31754eb29e717a6c47b9d1acd43441e47f2bcfe0d5d5bbd1d665594ab"
+    },
+    {
+      "path": "src/outfit-refill-engine.js",
+      "classification": "Active candidate source",
+      "review_depth": "Targeted review of compileOwnerFeedback, normalized keys, historical exact/all matching and final result checks; this round is not a complete reread of the engine.",
+      "sha256": "999cc4f2b84eaf032eec43a3f9a8bf309cc14f071222d1486c4e2b74da1da7f7"
+    },
+    {
+      "path": "src/hybrid-stylist.js",
+      "classification": "Active shared source",
+      "review_depth": "Complete Curated and Visual routing; new filtering before history/capacity; proposal/render/evaluation boundaries; cached and durable rejection token checks.",
+      "sha256": "16cb7f18d33e79b100c5dd6d10ad74deec7476d317dd4083a4d9aad3c4fc7a57"
+    },
+    {
+      "path": "src/visual-stylist-client.js",
+      "classification": "Active shared source",
+      "review_depth": "Complete transport/session lifecycle including current-controller guards, 401 handling, session epochs, login publication, sign-out and cancellation.",
+      "sha256": "6c9a483abc2d584e90afaa49b65a3f68e4507d8bc7c65fed5016f3dcf69c98b0"
+    },
+    {
+      "path": "src/reviewed-rejection-integration.js",
+      "classification": "Active photo-review source",
+      "review_depth": "Load/search/publication/render/rejection/Undo/close/current-entry context paths and final feedback gates.",
+      "sha256": "e598414dca714ddf9c06149c4f8af2a40583cbdf6c277ab131f384fdb041f6ff"
+    },
+    {
+      "path": "src/outfit-refill-application.js",
+      "classification": "Active candidate source",
+      "review_depth": "Targeted boundaries: current/apply/generate/cancel, rejectionSummary/rejectionChanged, current versus producing context, export, private service rendering and accepted-suggestion exposure. Other application paths are assigned to other auditors.",
+      "sha256": "78099bdc35a7f4189000a0eb53a4dfee1cea5cf91e9ecbb48683d674c9c66c57"
+    },
+    {
+      "path": "src/image-assessment-panel.js",
+      "classification": "Active candidate-only derived source",
+      "review_depth": "Final packet source/selection/context/token checks and atomic download publication; immutable predecessor was not edited.",
+      "sha256": "28c2fad5390164480f3ad3dd901490208a9f883d2fc8166cd8af0de577df9c1e"
+    },
+    {
+      "path": "feedback-candidate/reviewed/automatic-image-client.js",
+      "classification": "Active photo-review dependency",
+      "review_depth": "Targeted recheck of asynchronous cancellation and token boundaries; full module review was recorded in Round1.",
+      "sha256": "1b12eb5a5c7aef7cec1b14dd057ec98318eebb20798079659ec77fef6093a7aa"
+    },
+    {
+      "path": "feedback-candidate/reviewed/image-assessment.js",
+      "classification": "Active photo-review dependency",
+      "review_depth": "Request/source/board validation and signed packet boundaries; no image or source-score changes.",
+      "sha256": "0c5d2b6ca68b7726b2b6404808d7702c8d19b05a69774be3f086f017f7ca67a2"
+    },
+    {
+      "path": "src/tie-exposure.js",
+      "classification": "Active candidate source",
+      "review_depth": "Targeted recheck of immutable append and publication contract against app recordTieSuggestions; full store/transaction review was recorded in Round1.",
+      "sha256": "599c66045044eda5f4dc4623cf6af7daf5fd8c9c9df779272dcd26b673a3cfeb"
+    }
+  ],
+  "confirmed_findings": [
+    {
+      "id": "STORAGE-R4-CURRENT-CONTEXT",
+      "status": "fixed_and_independently_verified",
+      "source_owner": "/root",
+      "paths": [
+        "src/outfit-refill-application.js:cancel",
+        "src/outfit-refill-application.js:rejectionSummary"
+      ],
+      "before": "A saved allowed Dinner outfit restored after an excluded Work request remained linked to lastRequest=Work. An unrelated Work rejection or Cancel evaluated the current card against Work and hid it.",
+      "repair": "Current-frame checks use currentContext(); retained option lists continue using their producing request context.",
+      "evidence": [
+        "storage-round4-current-context-before.json"
+      ],
+      "regression": "tests/five-round-storage-current-context.cjs"
+    },
+    {
+      "id": "STORAGE-R4-CURRENT-OPTION-IDENTITY",
+      "status": "fixed_and_independently_verified",
+      "source_owner": "/root",
+      "paths": [
+        "src/outfit-refill-application.js:rejectionChanged"
+      ],
+      "before": "Cancelling the first Work avatar could retain a Work option list beside a restored manual Dinner outfit. Physical IDs alone could rebind the current card to a Work option and label it generated.",
+      "repair": "Reconciliation retains rank metadata only for the actual owned row object, engine origin, matching occasion/formality and physical selection. The real retained-engine control still keeps its rank.",
+      "regression": "tests/five-round-storage-current-context.cjs"
+    },
+    {
+      "id": "STORAGE-R4-SERVICE-EPOCH",
+      "status": "fixed_and_independently_verified",
+      "source_owner": "/root",
+      "paths": [
+        "src/visual-stylist-client.js:call",
+        "src/visual-stylist-client.js:login",
+        "src/visual-stylist-client.js:logout"
+      ],
+      "before": "An aborted stale 401 could clear a newer session; obsolete logout cleanup could disconnect a new login; Disconnect/Cancel in the promise gap before login publication could allow stale credentials to be published.",
+      "repair": "Current-request guards precede 401 effects and follow response-body reads. Session epochs bind authentication publication. Logout copies Authorization synchronously and immediately removes local credentials before awaiting transport.",
+      "repair_regression_caught": "The first epoch repair skipped logout cleanup when settings Close cancelled the request, leaving the session signed in. The final immediate-local-clear implementation repairs that regression.",
+      "evidence": [
+        "storage-round4-logout-cancel.json"
+      ],
+      "regression": "tests/five-round-storage-service-epoch.cjs"
+    },
+    {
+      "id": "STORAGE-R4-HYBRID-PRESELECTION",
+      "status": "fixed_and_independently_verified",
+      "source_owner": "/root/deployment_audit",
+      "paths": [
+        "src/hybrid-stylist.js:curatedPool",
+        "src/hybrid-stylist.js:select",
+        "src/hybrid-stylist.js:visual"
+      ],
+      "before": "Curated rejection filtering happened after capacity/history selection: 15 initial options became14 despite5 permitted appendable references. The same placement allowed already-rejected Visual candidates to be rendered/evaluated before final-output veto.",
+      "repair": "Static and saved vetoes filter reference rows and provider proposals before history priority, physical-item capacity, rendering and evaluation. Final integration checks remain.",
+      "concrete_postcheck": "Reject S10/DS022/T022 clothing in Work: the list remains15 with permitted S11/DS022/T022 replacing it; no global tie ban is inferred.",
+      "evidence": [
+        "storage-round4-curated-rejection-before.json",
+        "engine-hybrid-rejections-after.json"
+      ],
+      "regression": "tests/five-round-engine-hybrid-rejections.cjs"
+    },
+    {
+      "id": "STORAGE-R4-VISUAL-DURABLE-BOUNDARY",
+      "status": "fixed_and_independently_verified",
+      "source_owner": "/root/deployment_audit",
+      "paths": [
+        "src/hybrid-stylist.js:assertOwnerCurrentAsync",
+        "src/hybrid-stylist.js:visual"
+      ],
+      "before": "During independent cross-review of the first hybrid repair, a real IndexedDB peer committed a rejection while propose awaited and BroadcastChannel delivery was disabled. Cached synchronous checks still allowed20 renders and20 evaluation images, including the rejected outfit. The final durable guard did reject publication.",
+      "repair": "Visual checks the captured token durably before proposing and after each awaited proposal/render/evaluation boundary, including immediately before evaluation. It rechecks dependency identity and cancellation.",
+      "concrete_postcheck": "The identical peer-commit reproduction now stops with0 renders,0 evaluation images and no result. Separate tests cover peer commits during render/evaluate and healthy durable continuation.",
+      "evidence": [
+        "storage-round4-visual-peer-before.json",
+        "storage-round4-visual-peer-after.json",
+        "engine-hybrid-rejections-after.json"
+      ],
+      "regression": "tests/five-round-engine-hybrid-rejections.cjs"
+    }
+  ],
+  "validation": [
+    {
+      "path": "tests/five-round-storage-current-context.cjs",
+      "passed_checks": 9,
+      "failed_checks": 0,
+      "method": "Actual production functions and actual engine/catalogue; controlled DOM/renderer/image-encoding adapters. Two real Work generation flows exercise restore/cancel/reconcile."
+    },
+    {
+      "path": "tests/five-round-storage-service-epoch.cjs",
+      "passed_tests": 8,
+      "failed_tests": 0,
+      "method": "Actual module in the transport-promise realm, deferred synthetic fetch and explicit completion-gap microtasks. No external request."
+    },
+    {
+      "path": "tests/all-rejections-core.cjs",
+      "passed_tests": 18,
+      "failed_tests": 0,
+      "method": "Independent matching oracle plus actual core/app functions and fake-indexeddb;7296 oracle comparisons are within one test and are not counted as7296 tests."
+    },
+    {
+      "path": "tests/rejection-database.cjs",
+      "passed_selected_tests": 6,
+      "failed_selected_tests": 0,
+      "selection": "malformed legacy|cross-namespace|combined import|native transaction abort|database tampering|missing metadata",
+      "method": "Existing targeted corruption/import/recovery controls rerun against current source; large30,000-record test was not repeated this round."
+    },
+    {
+      "path": "tests/five-round-engine-hybrid-rejections.cjs",
+      "passed_checks": 23,
+      "failed_checks": 0,
+      "method": "Independently rerun on final source/reference library with actual rejection stores, actual IndexedDB semantics under fake-indexeddb, controlled service and image fixtures."
+    },
+    {
+      "evidence": "storage-round4-visual-peer-after.json",
+      "passed_independent_probe": true,
+      "method": "Separate two-facade actual-store reproduction with notification delivery disabled; confirms no premature render/evaluate after peer commit."
+    }
+  ],
+  "confirmed_no_new_defect": [
+    "Eight user scopes retain independent named-garment meanings. Historical Neither remains exact including watch; historical all remains all occasions.",
+    "Canonical/wire selection normalization and occasion aliases do not rewrite original stored/exported event payloads.",
+    "Overlapping rejects, duplicate imports and all/current occasion records remain independently undoable. Temporary skips do not become permanent backup records.",
+    "Unknown scopes, invalid namespace/Undo targets, corrupted records, unreadable storage and aborted writes fail closed in the listed current tests without replacing prior data with an empty ledger.",
+    "Explicit approved outfits and learning rank cannot bypass saved bans or static owner rules.",
+    "Native suggestion exposure is written for accepted Research/heuristic lists; private review, Curated/Visual and simple navigation do not masquerade as native20 exposure or actual wear.",
+    "Targeted source sink search found no innerHTML, outerHTML, insertAdjacentHTML, eval or new Function in the reviewed application/rejection/provider paths. The only matching postMessage is a revision-only BroadcastChannel notification; this is a bounded source review, not a general security proof."
+  ],
+  "application_source_edits_by_this_agent": [],
+  "test_files_added_or_extended_by_this_agent": [
+    "tests/five-round-storage-current-context.cjs",
+    "tests/five-round-storage-service-epoch.cjs"
+  ],
+  "protected_data": {
+    "garment_pixels_edited": false,
+    "original_scores_edited": false,
+    "persisted_schema_redesign": false,
+    "real_owner_storage_modified": false,
+    "external_provider_calls": 0
+  },
+  "previous_claims_requiring_qualification": [
+    "A final rejection veto was insufficient to establish that rejected candidates never consumed Curated capacity or reached Visual assessment. This round found and repaired those earlier-stage gaps.",
+    "The initial authentication epoch repair was not accepted as complete: the Sign out then Close control exposed a regression, which was fixed and included in the final8-case pass.",
+    "These results cover the exact reviewed boundaries and tests. They do not mean every historical code path was executed or every possible concurrent schedule was exhausted."
+  ],
+  "unresolved_confirmed_defects": [],
+  "boundaries_and_limits": [
+    "Visual service transport, provider responses and images are controlled fixtures. The live service is unconfigured; no paid request or model-quality claim is made.",
+    "The delayed-notification tests use two actual store facades with fake-indexeddb. Root owns native multi-tab browser timing/lock verification.",
+    "If a rejection is committed while an image is already rendering or an evaluation is already in progress, the next durable boundary blocks continuation/publication; completed work cannot be retroactively undone.",
+    "Stored-data tampering is detected through validation/reload and durable guards. No claim is made that arbitrary out-of-band index corruption is re-read on every synchronous match.",
+    "The preserved synchronous compatibility mutation APIs can bypass newer exclusive wrappers if called directly by historical integrations; active application callers are separately audited and wrapped.",
+    "This storage/cross-method round does not re-audit shirt pixels or collar appearance. Root owns asset provenance, visual coverage and protected-artifact integrity.",
+    "Frozen Standard/Stage10 runtime artifacts and historical modules were not broadly executed in this round. Active versus targeted review depth is stated per file."
+  ]
+}

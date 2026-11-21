@@ -1,0 +1,405 @@
+{
+  "schema": "hewrs.complete-native-collar-visual-review.v1",
+  "reviewer": "/root/visual_final_review",
+  "recorded_at_utc": "2026-11-19T11:05:08.021428+00:00",
+  "run_id": 44509915589,
+  "image_capture_head": "e06d906229f5fd918b44578a1c0d45fa59d773b3",
+  "status": "NATIVE_COLLAR_EVIDENCE_GAP_CLOSED; FINAL_CORRECTED_WORKFLOW_PENDING",
+  "tracked_report_modified": false,
+  "source_or_test_modified_during_this_review": false,
+  "image_assets_changed": false,
+  "approval_boundary": "Existing approved source assets are preserved. This inspection does not create garment approval or infer photorealism from baseline equality. Source authority and50 identity traces remain in the committed ui-round5-visual-review.json.",
+  "artifacts": {
+    "chromium": {
+      "artifact_id": 14524190021,
+      "zip_bytes": 288220116,
+      "zip_sha256": "7217bb6a01eafcdbeabd5dbddff6df646275d47c9f4f4fc7d38bfd31d3425e7c",
+      "digest_verified": true
+    },
+    "webkit": {
+      "artifact_id": 14523260665,
+      "zip_bytes": 230288408,
+      "zip_sha256": "e6e74cba6eaac4fec4589ba93b1775d32aefbc0c96af38b2ac3064b060983e83",
+      "digest_verified": true
+    }
+  },
+  "manual_visual_inspection": {
+    "complete_collar_sheets": 20,
+    "all_50_ids_each_browser": true,
+    "supported_context_state_cells_viewed_each_browser": 288,
+    "unsupported_no_tie_only_cells_each_browser": 12,
+    "source_canvas_dimensions": [
+      996,
+      2748
+    ],
+    "native_png_bbox_xywh": [
+      170,
+      330,
+      656,
+      826
+    ],
+    "native_png_dimensions": [
+      656,
+      826
+    ],
+    "complete_detail_bbox_xywh": [
+      320,
+      330,
+      360,
+      260
+    ],
+    "complete_detail_scale": 1,
+    "registered_nonempty_collar_bounds_prechecked": 210,
+    "registered_collar_bounds_union_xyxy": [
+      337,
+      372,
+      646,
+      538
+    ],
+    "top_crop_gap_closed": true,
+    "sheet_files": [
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-01.png",
+        "sha256": "97e8bf0f426dc4e292d3680d34a60c17c6d8edc18df7655fc2861f3d9b715d1e",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-02.png",
+        "sha256": "963145eb6c1c56fa55fe097f5abbf22503fa4ef440730498b895036c8cf8b30b",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-03.png",
+        "sha256": "86b0a538856e042db15b95e1d4bccb77b92866ca9d885f7209132509a2aa4a40",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-04.png",
+        "sha256": "44c8fcc450b48f709124ca1a42a61a5abed3f65c5862975430178508b7e37571",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-05.png",
+        "sha256": "5e26372612f1dd5e9a58ae458d6017ecfbe95a2fde4c32b71eeb5257b8d75cc3",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-06.png",
+        "sha256": "1de45a68bf510816890c5513073939f526bd0eed91d6cc382d0f6f75a1793f4e",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-07.png",
+        "sha256": "9facc22ad9f05a672553d4f9fa44f93b958c1f689f96c59d424afe03b22e5210",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-08.png",
+        "sha256": "2c3a5aaf61c05d55df0fe44de2ec7d0ee7616903307653637d9acb8b25175015",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-09.png",
+        "sha256": "8cd5886d50d68a5eed3be70f1639a15c346d10cb3b040ab2301f18ed8995f350",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/complete-collar-details-10.png",
+        "sha256": "278e378dd5c110bb95bd78ae69326a6ab5a1a3dfc668582b9d36fc7247f24b38",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-01.png",
+        "sha256": "5a686ff12ca2848fd8759744b09778f8d40322931d32834bb4ac0815f953c6cf",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-02.png",
+        "sha256": "c94bd9ee7b3c80763dca60384219155f058e965b209a3fdbc0895a5d13a0d2d5",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-03.png",
+        "sha256": "1acbc82afdca40cb944b7e14444360e56a3634103abc0327b2c7ce1be9521889",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-04.png",
+        "sha256": "201eb3d1b2d0ea0c71566e41047873131d3e4659b9dde39c2dc1b7098ea36b61",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-05.png",
+        "sha256": "981f6f118c2fbe9fdc3ec7f833c70802c8986dc9c747a8c6c8d6ce3a74c4b796",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-06.png",
+        "sha256": "f093ead48b4845e4c4f41ca10440223490a54d2c9e9101b1b46f375d2054f019",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-07.png",
+        "sha256": "814e16bec485f55edcf9527260594523432d67f0329cd00d03c38d37aece208a",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-08.png",
+        "sha256": "09729159ed9f0ef5a8ed22fcf003ba35ee4ccd82a97f2268465fd889fa2f4668",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-09.png",
+        "sha256": "1aa15618c7235d0034f83cf2489e41fd733b3259aecc57b088af7401831849c6",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/complete-collar-details-10.png",
+        "sha256": "5faa9288a5b10c2d2c5566d202a6edf2503e64c67acc3d5c6e3c204ee8fed78d",
+        "dimensions": [
+          2244,
+          1512
+        ],
+        "visually_inspected": true
+      }
+    ],
+    "additional_individual_native_pngs_viewed": [
+      {
+        "path": "photos_chromium/chromium/photos/native-collars/DS001-shirt-only-T029.png",
+        "sha256": "8175be60dc6c8b9326a04e2ba55e037eed334b753c1d3c90b7d3a9584c15b082",
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_chromium/chromium/photos/native-collars/DS017-shirt-only-NO_TIE.png",
+        "sha256": "337277ca7073ba37414fa6e9ad6dfd2ea4dde2eec74c80b67e684d2a48348081",
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/native-collars/DS040-shirt-only-NO_TIE.png",
+        "sha256": "79110d02d9dca8f9c3d64b2e5e27e945e63cf99553cfe11515ea5b4958853e43",
+        "visually_inspected": true
+      },
+      {
+        "path": "photos_webkit/webkit/photos/native-collars/DS043-shirt-only-NO_TIE.png",
+        "sha256": "f5148646d3b2a4e4d129a795af2c3a70ace149afc14821f349b311b64da3ee31",
+        "visually_inspected": true
+      }
+    ]
+  },
+  "browsers": {
+    "chromium": {
+      "result_sha256": "530a56e92981762d7efc82f9326c49fe3163d4940d4f8a40e98f83d71081c364",
+      "checks_passed": 2386,
+      "checks_failed": 1,
+      "frames": 396,
+      "same_browser_baseline_comparisons": 349,
+      "same_browser_baseline_equal": 349,
+      "native_collar_pngs": 288,
+      "unscaled_sheet_cells_verified": 288,
+      "artifact_integrity_failures": [],
+      "page_errors": [],
+      "failed_requests": [],
+      "http_errors": [],
+      "external_requests": [],
+      "owner_data_accessed": false,
+      "full_frame_matches_prior_run": 396
+    },
+    "webkit": {
+      "result_sha256": "44b0c5644d52f3130b4d38ef9f4fec971434c68e468d25fcd59d7395619107d4",
+      "checks_passed": 2386,
+      "checks_failed": 1,
+      "frames": 396,
+      "same_browser_baseline_comparisons": 349,
+      "same_browser_baseline_equal": 349,
+      "native_collar_pngs": 288,
+      "unscaled_sheet_cells_verified": 288,
+      "artifact_integrity_failures": [],
+      "page_errors": [],
+      "failed_requests": [],
+      "http_errors": [],
+      "external_requests": [],
+      "owner_data_accessed": false,
+      "full_frame_matches_prior_run": 396
+    }
+  },
+  "observed_findings": [
+    {
+      "kind": "EVIDENCE_CAPTURE_REPAIR_CONFIRMED",
+      "observation": "The full collar from rear/top edge to front leaves and collar tips is visible in all20 complete-detail sheets. The old y390 start no longer clips the collar top. No supported cell is blank, no accidental identity swap is visible, and tied versus No Tie appearance follows the registered state."
+    },
+    {
+      "kind": "BASELINE_PRESERVATION",
+      "observation": "All349 same-browser published-baseline comparisons match. Independently, all396 current frame RGBA hashes in each browser equal its corresponding frame in the prior stored run44476431101."
+    },
+    {
+      "kind": "PRE_EXISTING_VISIBLE_CONSTRUCTION",
+      "ids": [
+        "DS001",
+        "DS014"
+      ],
+      "observation": "Tied non-suit collar presents as a flat raised neck band. The wider native DS001 image confirms the preserved collar and shoulder/body joins."
+    },
+    {
+      "kind": "PRE_EXISTING_VISIBLE_CONSTRUCTION",
+      "ids": [
+        "DS017",
+        "DS034",
+        "DS035",
+        "DS036",
+        "DS051"
+      ],
+      "observation": "No Tie non-suit collar/placket joins retain a thin horizontal skin-tone bar or hard edge. DS035 additionally shows a hard stepped grey edge along a collar/body transition. Exact baseline equality establishes that these are retained appearances."
+    },
+    {
+      "kind": "PRE_EXISTING_VISIBLE_ALPHA_EDGES",
+      "ids": [
+        "DS023"
+      ],
+      "observation": "Jagged cutout pixels remain around the No Tie neckline. Other reconstructed shirt shoulder/neck joins also retain visible alpha boundaries. This audit does not certify seamless cutouts."
+    },
+    {
+      "kind": "PRE_EXISTING_BODY_TEXTURE_LIMIT",
+      "ids": [
+        "DS040"
+      ],
+      "observation": "Wider native shirt-only No Tie PNG shows a horizontal mid-chest band of vertically stretched GG pattern. The non-suit collar has flatter cloth/shading than the original retained suit collar. This is visible in a baseline-equal complete frame and is preserved; it is not a new rendering regression.",
+      "native_file": "photos_webkit/webkit/photos/native-collars/DS040-shirt-only-NO_TIE.png"
+    },
+    {
+      "kind": "DOCUMENTED_CONTEXT_SOURCE_DIFFERENCE",
+      "ids": [
+        "DS026",
+        "DS039",
+        "DS040",
+        "DS042",
+        "DS043"
+      ],
+      "observation": "Existing same-ID suit and non-suit pattern/color/cloth differences are visible. Their registered recipes preserve original suit inserts while using the supplied source photographs for non-suit reconstructions. No asset was normalized across contexts."
+    },
+    {
+      "kind": "REGISTERED_COLLAR_POLICY",
+      "ids": [
+        "DS027"
+      ],
+      "observation": "No Tie keeps the closed top button. The same-ID original closed-collar source governs; absence of a tie does not mean an open top button."
+    },
+    {
+      "kind": "NO_TIE_ONLY_POLICY",
+      "ids": [
+        "DS040",
+        "DS041",
+        "DS042",
+        "DS043"
+      ],
+      "observation": "Unsupported tied cells are labeled NO TIE ONLY and remain unrendered. Actual tie-control blocking checks passed in every context."
+    }
+  ],
+  "workflow_failure": {
+    "name": "Photo audit completion",
+    "location": "tests/five-round-photos-browser.py:361 in e06d906",
+    "error": "HEWRSApp.ownerFeedback.undo is not a function",
+    "classification": "TEST_FIXTURE_API_MISMATCH",
+    "preceding_rejection_checks_passed": [
+      "Manual rejection hides the rendered outfit",
+      "View current cannot resurrect a rejected shirt/tie pairing",
+      "Blocked navigation explains the rejection"
+    ],
+    "not_executed_in_this_run": [
+      "Undo restores allowed complete frame",
+      "protected wear/Favorites unchanged",
+      "exact synthetic rejection+restore event count",
+      "final browser/network summary assertions"
+    ],
+    "recorded_error_arrays_are_empty": true,
+    "parent_fix_head": "7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6",
+    "parent_fix": "Test-only ownerFeedback.undo(id) to ownerFeedback.restore(id); application runtime unchanged.",
+    "further_failure_claim": "No additional observed fixture failure. Unexecuted final assertions still require the corrected workflow."
+  },
+  "remaining_acceptance": [
+    "Reconcile clean final Chromium/WebKit RESULT files for the corrected fixture head.",
+    "Confirm unchanged full-frame/native-crop hashes, allowing reuse of this complete visual inspection.",
+    "Parent retains final deployment/live acceptance."
+  ],
+  "claims_boundary": [
+    "All20 complete collar sheets were actually opened and visually inspected. Native PNG/RGBA and sheet-cell checks were independently executed.",
+    "Four wider native PNGs were additionally viewed. The other572 wider individual PNGs were verified by hashes and represented by complete-collar cells, not individually opened as chest photographs.",
+    "This closes the collar-crop evidence gap for the288 ID/context/state matrix per browser. It is not a physical garment-fit or color-calibrated review, an exhaustive outfit cross-product, or a declaration that all preserved reconstruction joins are aesthetically correct.",
+    "The final corrected workflow has not yet been accepted by this report."
+  ]
+}

@@ -4,6 +4,11 @@ on:
     branches:
       - fix/stage10-home-preference-persistence-20261109
       - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/stage10-home-preferences.yml
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,9 +26,23 @@ jobs:
           python-version: '3.11'
       - name: Validate source syntax
         run: node --check src/application.js
-      - name: Rebuild generated runtime from source without publishing
+      - name: Identify the active delivery without rewriting it
+        id: active
+        run: |
+          python - <<'PY_ROUTE'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path('tools').resolve()))
+          from verify_active_delivery import active_runtime
+          continuous = active_runtime().startswith('runtime/continuous-shirts-')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              stream.write('continuous=' + str(continuous).lower() + '\n')
+          PY_ROUTE
+      - name: Rebuild legacy runtime from source without publishing
+        if: github.ref != 'refs/heads/main' && github.event_name != 'pull_request' && steps.active.outputs.continuous != 'true'
         run: python tools/build.py
       - name: Check generated script integrity and source inclusion
+        if: github.ref != 'refs/heads/main' && github.event_name != 'pull_request' && steps.active.outputs.continuous != 'true'
         run: |
           python - <<'PY'
           import hashlib, json
@@ -37,12 +56,36 @@ jobs:
           assert p in (r/'index.html').read_text()
           print('PASS: rebuilt runtime includes source correction with matching integrity')
           PY
+      - name: Verify frozen Standard and active candidate without rebuilding artifacts
+        if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request' || steps.active.outputs.continuous == 'true'
+        run: |
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          python tools/verify_active_delivery.py --check --syntax
+          python - <<'PY'
+          import hashlib, json, sys
+          from pathlib import Path
+          accepted = json.loads(Path('STANDARD_RELEASE.json').read_text())
+          assert hashlib.sha256(Path(accepted['runtime']).read_bytes()).hexdigest() == accepted['runtime_sha256'], 'Frozen Standard runtime changed'
+          for path, expected in accepted['integration_resources'].items():
+              assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == expected, f'Frozen integration resource changed: {path}'
+          sys.path.insert(0, str(Path('tools').resolve()))
+          from verify_active_delivery import describe
+          active = describe()
+          bundle = Path(active['runtime']).read_bytes()
+          source = Path('src/outfit-refill-application.js').read_text()
+          begin = source.index('// Home category choices have their own versioned, source-locked storage.')
+          end = source.index('function resolveUrl(d)', begin)
+          assert source[begin:end].strip().encode() in bundle, 'Active candidate Home preferences source missing'
+          assert b'hewrs:home-preferences:v1:' in bundle
+          print(f"PASS: frozen Standard runtime and {len(accepted['integration_resources'])} integration resource hashes preserved")
+          print('PASS: active candidate runtime has matching SRI and Home preferences source')
+          PY
       - name: Install isolated browser test dependencies
         run: |
           python -m pip install --disable-pip-version-check playwright==1.56.0
           python -m playwright install --with-deps chromium
       - name: Check deployed Stage 10 runtime against corrected source
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request' || steps.active.outputs.continuous == 'true'
         run: |
           python - <<'PY'
           import base64, hashlib, re
@@ -67,10 +110,10 @@ jobs:
           print('PASS: deployed Stage 10 runtime matches corrected source, SRI and preserved modules')
           PY
       - name: Build isolated Stage 10 integration release overlay
-        if: github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/main' && github.event_name != 'pull_request' && steps.active.outputs.continuous != 'true'
         run: python tools/package_stage10_home_preferences.py
       - name: Verify rebuilt Stage 10 runtime syntax
-        if: github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/main' && github.event_name != 'pull_request' && steps.active.outputs.continuous != 'true'
         run: |
           node --check "$(python - <<'PY'
           import json
@@ -82,17 +125,17 @@ jobs:
       - name: Test base Home preference persistence and data separation
         run: python tests/stage10-home-preferences-browser.py
       - name: Test packaged Stage 10 integration and owner feedback
-        if: github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/main' && github.event_name != 'pull_request' && steps.active.outputs.continuous != 'true'
         env:
           HEWRS_TEST_PAGE: stage10-home-preferences-test.html
         run: python tests/stage10-home-preferences-browser.py
       - name: Test deployed Stage 10 integration and owner feedback
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request' || steps.active.outputs.continuous == 'true'
         env:
           HEWRS_TEST_PAGE: stage10-integration.html
         run: python tests/stage10-home-preferences-browser.py
       - name: Upload controlled Stage 10 overlay (no deployment)
-        if: github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/main' && github.event_name != 'pull_request' && steps.active.outputs.continuous != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: HEWRS_STAGE10_HOME_PREFERENCES_CONTROLLED_OVERLAY

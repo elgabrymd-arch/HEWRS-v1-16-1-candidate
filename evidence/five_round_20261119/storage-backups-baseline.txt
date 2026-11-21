@@ -1,0 +1,432 @@
+TAP version 13
+# Subtest: wear export reads the current durable record, including another tab additions
+not ok 1 - wear export reads the current durable record, including another tab additions
+  ---
+  duration_ms: 7.464393
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:49:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:52:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: wear export preserves newly corrupt current bytes instead of claiming a clean cached backup
+not ok 2 - wear export preserves newly corrupt current bytes instead of claiming a clean cached backup
+  ---
+  duration_ms: 2.036359
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:55:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '{\n' +
+    +   '  "schema": "hewrs.connected-app.local.v1",\n' +
+    +   '  "source_lock": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",\n' +
+    +   '  "revision": 1,\n' +
+    +   '  "session": null,\n' +
+    +   '  "events": [\n' +
+    +   '    {\n' +
+    +   '      "id": "saved",\n' +
+    +   '      "localDate": "2026-11-19",\n' +
+    +   '      "date": "2026-11-19",\n' +
+    +   '      "confirmed": true,\n' +
+    +   '      "origin": "manual",\n' +
+    +   '      "controlledRepetition": false,\n' +
+    +   '      "items": {\n' +
+    +   '        "topwear": {\n' +
+    +   '          "id": "suit-S05"\n' +
+    +   '        },\n' +
+    +   '        "shirt": {\n' +
+    +   '          "id": "shirt-DS029"\n' +
+    +   '        },\n' +
+    +   '        "tie": {\n' +
+    +   '          "id": "T029"\n' +
+    +   '        },\n' +
+    +   '        "shoes": {\n' +
+    +   '          "id": "shoe-1"\n' +
+    +   '        },\n' +
+    +   '        "watch": null,\n' +
+    +   '        "pants": null\n' +
+    +   '      },\n' +
+    +   '      "canonical_selection": {\n' +
+    +   '        "suitId": "S05",\n' +
+    +   '        "shirtId": "DS029",\n' +
+    +   '        "state": "T029",\n' +
+    +   '        "shoeId": "shoe-1",\n' +
+    +   '        "watchId": null\n' +
+    +   '      },\n' +
+    +   '      "source_lock": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"\n' +
+    +   '    }\n' +
+    +   '  ]\n' +
+    +   '}'
+    - '{existing corrupt wear bytes'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '{existing corrupt wear bytes'
+  actual: |-
+    {
+      "schema": "hewrs.connected-app.local.v1",
+      "source_lock": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "revision": 1,
+      "session": null,
+      "events": [
+        {
+          "id": "saved",
+          "localDate": "2026-11-19",
+          "date": "2026-11-19",
+          "confirmed": true,
+          "origin": "manual",
+          "controlledRepetition": false,
+          "items": {
+            "topwear": {
+              "id": "suit-S05"
+            },
+            "shirt": {
+              "id": "shirt-DS029"
+            },
+            "tie": {
+              "id": "T029"
+            },
+            "shoes": {
+              "id": "shoe-1"
+            },
+            "watch": null,
+            "pants": null
+          },
+          "canonical_selection": {
+            "suitId": "S05",
+            "shirtId": "DS029",
+            "state": "T029",
+            "shoeId": "shoe-1",
+            "watchId": null
+          },
+          "source_lock": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    }
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:58:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: wear export refuses stale cached bytes when the durable read fails and recovers without writes
+not ok 3 - wear export refuses stale cached bytes when the durable read fails and recovers without writes
+  ---
+  duration_ms: 0.884489
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:62:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:64:31)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: wear session-memory export still works and caller edits cannot change stored state
+ok 4 - wear session-memory export still works and caller edits cannot change stored state
+  ---
+  duration_ms: 0.706486
+  type: 'test'
+  ...
+# Subtest: wear stale-tab writes and failed persistence never overwrite prior records or report success
+ok 5 - wear stale-tab writes and failed persistence never overwrite prior records or report success
+  ---
+  duration_ms: 2.266986
+  type: 'test'
+  ...
+# Subtest: favorites export reads the current durable record, including another tab additions
+not ok 6 - favorites export reads the current durable record, including another tab additions
+  ---
+  duration_ms: 2.942665
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:49:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:52:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: favorites export preserves newly corrupt current bytes instead of claiming a clean cached backup
+not ok 7 - favorites export preserves newly corrupt current bytes instead of claiming a clean cached backup
+  ---
+  duration_ms: 0.509509
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:55:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '{\n' +
+    +   '  "schema": "hewrs.connected-app.favorites.v1",\n' +
+    +   '  "source_lock": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",\n' +
+    +   '  "revision": 1,\n' +
+    +   '  "items": [\n' +
+    +   '    {\n' +
+    +   '      "id": "favorite_saved",\n' +
+    +   '      "created_at": "2026-11-19T01:00:00.000Z",\n' +
+    +   '      "selection": {\n' +
+    +   '        "suitId": "S05",\n' +
+    +   '        "shirtId": "DS029",\n' +
+    +   '        "state": "T029",\n' +
+    +   '        "shoeId": "shoe-1",\n' +
+    +   '        "watchId": null\n' +
+    +   '      }\n' +
+    +   '    }\n' +
+    +   '  ]\n' +
+    +   '}'
+    - '{existing corrupt favorites bytes'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '{existing corrupt favorites bytes'
+  actual: |-
+    {
+      "schema": "hewrs.connected-app.favorites.v1",
+      "source_lock": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "revision": 1,
+      "items": [
+        {
+          "id": "favorite_saved",
+          "created_at": "2026-11-19T01:00:00.000Z",
+          "selection": {
+            "suitId": "S05",
+            "shirtId": "DS029",
+            "state": "T029",
+            "shoeId": "shoe-1",
+            "watchId": null
+          }
+        }
+      ]
+    }
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:58:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: favorites export refuses stale cached bytes when the durable read fails and recovers without writes
+not ok 8 - favorites export refuses stale cached bytes when the durable read fails and recovers without writes
+  ---
+  duration_ms: 0.330111
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:62:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:64:31)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: favorites session-memory export still works and caller edits cannot change stored state
+ok 9 - favorites session-memory export still works and caller edits cannot change stored state
+  ---
+  duration_ms: 1.184911
+  type: 'test'
+  ...
+# Subtest: favorites stale-tab writes and failed persistence never overwrite prior records or report success
+ok 10 - favorites stale-tab writes and failed persistence never overwrite prior records or report success
+  ---
+  duration_ms: 1.181257
+  type: 'test'
+  ...
+# Subtest: Favorites refresh exposes peer additions/removals and retains corrupt bytes during failed reads
+not ok 11 - Favorites refresh exposes peer additions/removals and retains corrupt bytes during failed reads
+  ---
+  duration_ms: 0.559522
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:82:1'
+  failureType: 'testCodeFailure'
+  error: 'first.refresh is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:84:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: Favorites duplicate-save path cannot claim an item another tab already removed is still saved
+not ok 12 - Favorites duplicate-save path cannot claim an item another tab already removed is still saved
+  ---
+  duration_ms: 0.728546
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:88:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:91:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: Favorites import no-op still validates that its reviewed storage snapshot is current
+not ok 13 - Favorites import no-op still validates that its reviewed storage snapshot is current
+  ---
+  duration_ms: 1.146914
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:93:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:96:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: Favorites import stays bound to its preview after a refresh or export updates the cache
+ok 14 - Favorites import stays bound to its preview after a refresh or export updates the cache
+  ---
+  duration_ms: 1.050073
+  type: 'test'
+  ...
+# Subtest: Wear restore cannot erase changes that arrived after the displayed backup preview
+not ok 15 - Wear restore cannot erase changes that arrived after the displayed backup preview
+  ---
+  duration_ms: 1.05831
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:103:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:106:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: Wear restore rejects a stale preview after a same-tab write
+not ok 16 - Wear restore rejects a stale preview after a same-tab write
+  ---
+  duration_ms: 0.576605
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:108:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:110:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: Wear restore keeps the exact validated backup identity and supports explicit clearing
+ok 17 - Wear restore keeps the exact validated backup identity and supports explicit clearing
+  ---
+  duration_ms: 1.316758
+  type: 'test'
+  ...
+# Subtest: Import confirmations reject a payload modified after its preview
+not ok 18 - Import confirmations reject a payload modified after its preview
+  ---
+  duration_ms: 0.745152
+  type: 'test'
+  location: '/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:118:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/6e6ff96d182e/hewrs-total-audit/tests/five-round-storage-backups.cjs:122:48)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 6
+# fail 12
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 284.367179

@@ -1,0 +1,151 @@
+{
+  "schema": "hewrs.final-native-collar-acceptance.v1",
+  "recorded_at_utc": "2026-11-19T11:14:15.525476+00:00",
+  "reviewer": "/root/visual_final_review",
+  "status": "PASS_SUPPORTED_NATIVE_COLLAR_EVIDENCE_AND_COMPLETE_PHOTO_WORKFLOW",
+  "final_tested_head": "7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6",
+  "final_ci_run": 44510840257,
+  "published_baseline_commit": "59d9097f9a74104d6b4a1e6ff964f62c56a1ca03",
+  "browsers": {
+    "chromium": {
+      "reconciliation_file": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/ci_44510840257/photos_chromium/chromium/photos/FINAL_PHOTO_RECONCILIATION.json",
+      "reconciliation_sha256": "f013ce8954f28086fa34a05df84618315f923ca5017399943d56ceed7230ab8e",
+      "artifact_id": 14522244136,
+      "zip_sha256": "1ec0feb253ed7600e8c023346eeb12390ebe61ee9b62126126160145c76280d1",
+      "zip_bytes": 288219879,
+      "result_sha256": "6b02cc27e066be5081705edefbc3ebe11d14fd35acab94fea8f47ac2044f4b2c",
+      "checks_passed": 2393,
+      "checks_failed": 0,
+      "frames": 396,
+      "full_frames_equal_visually_reviewed_run": 396,
+      "published_same_browser_baseline_comparisons": 349,
+      "published_baseline_matches": 349,
+      "native_crop_records_equal_reviewed_run": 288,
+      "native_png_zip_entries": 288,
+      "native_png_file_hashes_verified": 288,
+      "complete_detail_sheets_equal_visually_reviewed_images": 10,
+      "page_errors": [],
+      "failed_requests": [],
+      "http_errors": [],
+      "external_requests": [],
+      "owner_data_accessed": false,
+      "completed_at": "2026-11-19T11:10:31.791342+00:00"
+    },
+    "webkit": {
+      "reconciliation_file": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/ci_44510840257/photos_webkit/webkit/photos/FINAL_PHOTO_RECONCILIATION.json",
+      "reconciliation_sha256": "1ad538467b1d429b15f6bb0fca12009b47e33387fdc2800169a10614e0132901",
+      "artifact_id": 14524302096,
+      "zip_sha256": "461ea81b6e8e46134e67da0cb0df0fecc82bb6eafa3848dbc46d0f866438e499",
+      "zip_bytes": 230287799,
+      "result_sha256": "711a49cda1a2670376a0490a697d8c8f74ca6b318ab4f3c61b84ea0d19f05738",
+      "checks_passed": 2393,
+      "checks_failed": 0,
+      "frames": 396,
+      "full_frames_equal_visually_reviewed_run": 396,
+      "published_same_browser_baseline_comparisons": 349,
+      "published_baseline_matches": 349,
+      "native_crop_records_equal_reviewed_run": 288,
+      "native_png_zip_entries": 288,
+      "native_png_file_hashes_verified": 288,
+      "complete_detail_sheets_equal_visually_reviewed_images": 10,
+      "page_errors": [],
+      "failed_requests": [],
+      "http_errors": [],
+      "external_requests": [],
+      "owner_data_accessed": false,
+      "completed_at": "2026-11-19T11:12:13.355337+00:00"
+    }
+  },
+  "totals": {
+    "photo_checks_passed": 4786,
+    "photo_checks_failed": 0,
+    "complete_native_frames": 792,
+    "same_browser_published_baseline_comparisons": 698,
+    "same_browser_published_baseline_matches": 698,
+    "native_collar_pngs_verified": 576,
+    "complete_collar_sheets_actually_visually_inspected": 20,
+    "complete_collar_sheet_cells_verified": 576,
+    "additional_wider_native_pngs_actually_viewed": 4
+  },
+  "actual_visual_review": {
+    "file": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/ci_44509915589/COMPLETE_NATIVE_COLLAR_VISUAL_REVIEW.json",
+    "sha256": "58e3f71558aed31c3179d765bbf79b2afe4a73ed90fb83f7dfcfbea7773beafd",
+    "image_capture_head": "e06d906229f5fd918b44578a1c0d45fa59d773b3",
+    "final_reuse_basis": "The test-only final head changed no application/image files. Both final archives independently reproduce every same-browser full-frame hash, every native crop PNG/RGBA hash, and all20 visually inspected complete-collar sheets exactly.",
+    "native_crop_bbox_xywh": [
+      170,
+      330,
+      656,
+      826
+    ],
+    "complete_collar_detail_bbox_xywh": [
+      320,
+      330,
+      360,
+      260
+    ],
+    "detail_pixel_scale": 1,
+    "registered_collar_alpha_union_xyxy": [
+      337,
+      372,
+      646,
+      538
+    ],
+    "initial_top_crop_gap": "CLOSED by complete native captures and actual visual inspection"
+  },
+  "final_behavior_assertions": "Both browsers passed rejection hiding, View current rejection protection, explicit rejection explanation, restoration via the real store API, unchanged wear/Favorites, exactly the synthetic hide+restore events, and final network/browser checks.",
+  "preserved_visible_quality_limits": [
+    {
+      "kind": "PRE_EXISTING_VISIBLE_CONSTRUCTION",
+      "ids": [
+        "DS001",
+        "DS014"
+      ],
+      "observation": "Tied non-suit collar presents as a flat raised neck band. The wider native DS001 image confirms the preserved collar and shoulder/body joins."
+    },
+    {
+      "kind": "PRE_EXISTING_VISIBLE_CONSTRUCTION",
+      "ids": [
+        "DS017",
+        "DS034",
+        "DS035",
+        "DS036",
+        "DS051"
+      ],
+      "observation": "No Tie non-suit collar/placket joins retain a thin horizontal skin-tone bar or hard edge. DS035 additionally shows a hard stepped grey edge along a collar/body transition. Exact baseline equality establishes that these are retained appearances."
+    },
+    {
+      "kind": "PRE_EXISTING_VISIBLE_ALPHA_EDGES",
+      "ids": [
+        "DS023"
+      ],
+      "observation": "Jagged cutout pixels remain around the No Tie neckline. Other reconstructed shirt shoulder/neck joins also retain visible alpha boundaries. This audit does not certify seamless cutouts."
+    },
+    {
+      "kind": "PRE_EXISTING_BODY_TEXTURE_LIMIT",
+      "ids": [
+        "DS040"
+      ],
+      "observation": "Wider native shirt-only No Tie PNG shows a horizontal mid-chest band of vertically stretched GG pattern. The non-suit collar has flatter cloth/shading than the original retained suit collar. This is visible in a baseline-equal complete frame and is preserved; it is not a new rendering regression.",
+      "native_file": "photos_webkit/webkit/photos/native-collars/DS040-shirt-only-NO_TIE.png"
+    },
+    {
+      "kind": "DOCUMENTED_CONTEXT_SOURCE_DIFFERENCE",
+      "ids": [
+        "DS026",
+        "DS039",
+        "DS040",
+        "DS042",
+        "DS043"
+      ],
+      "observation": "Existing same-ID suit and non-suit pattern/color/cloth differences are visible. Their registered recipes preserve original suit inserts while using the supplied source photographs for non-suit reconstructions. No asset was normalized across contexts."
+    }
+  ],
+  "claims_boundary": [
+    "Pass applies to image identity/binding, preservation, collar capture completeness, the supported50-shirt three-context No Tie/T029 matrix and completed browser photo workflow.",
+    "Preserved visible joins, flat tied bands, jagged source cutouts and the DS040 horizontal stretched texture remain documented. Pixel preservation is not a claim of seamless reconstruction, exact physical color, measured fit, or individual reapproval.",
+    "The47 tie frames per browser have native readiness/identity checks and equality to the preceding reviewed run; only349 of396 frames per browser compare directly to the published baseline.",
+    "Parent retains merge, publication and live acceptance. No source/test changes, asset edits, publishing or owner-data access occurred during this final inspection."
+  ],
+  "tracked_reports_modified": false
+}

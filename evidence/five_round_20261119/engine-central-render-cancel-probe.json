@@ -1,0 +1,17 @@
+{
+  "schema": "hewrs.central-render-cancel-probe.v1",
+  "preference_before_manual_cleanup": {
+    "callback_reports_cancelled": true,
+    "promise": "pending",
+    "private_renderer_cancel_calls": 0,
+    "pending_image_requests": 14
+  },
+  "preference_after_direct_private_cancel": "rejected: Preference render cancelled",
+  "stylist_before_manual_cleanup": {
+    "promise": "pending",
+    "private_renderer_cancel_calls": 0,
+    "public_hook_accepts_cancellation_signal": false
+  },
+  "stylist_after_direct_private_cancel": "rejected: Visual candidate cancelled",
+  "conclusion": "Native cancellation settles correctly, but these central private-render hooks do not reach that cancel while an image is stalled. Preference callback is consulted only after render resolves."
+}

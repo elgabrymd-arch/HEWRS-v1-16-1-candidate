@@ -4,82 +4,407 @@
   "shirts": {
     "DS017": {
       "tied": {
-        "src": "ui/option-cards/3743523fef41265546eeca3df1559ab0f0658dbe8c7f9ff088b60bd0a59ac425.png",
-        "sha256": "3743523fef41265546eeca3df1559ab0f0658dbe8c7f9ff088b60bd0a59ac425",
+        "src": "ui/option-cards/6adb01cbbed02eae4f1cbece24a1eaaf462aafd3bc8a8e16e631633fb47a6530.png",
+        "sha256": "6adb01cbbed02eae4f1cbece24a1eaaf462aafd3bc8a8e16e631633fb47a6530",
         "width": 192,
         "height": 224,
-        "source_key": "DS017/tied"
+        "source_key": "DS017/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "9fefcde29fc2c4fae7c357ab889958fa3e2b260c4e0371f58f96e6cb59c3a74a",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS017_replica_A16-01.png",
+            "sha256": "9fefcde29fc2c4fae7c357ab889958fa3e2b260c4e0371f58f96e6cb59c3a74a",
+            "size_bytes": 1898246
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS017_closed-d9fe61a64017d862adeb0a18db72da8fe836da8df403b867d2b1b8ba261413f3.png",
+            "sha256": "d9fe61a64017d862adeb0a18db72da8fe836da8df403b867d2b1b8ba261413f3",
+            "size_bytes": 1849291
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "b36819599be3c092b9de3e3ce5147fbccaf0f89475207f5759daed2c300618a7",
+        "native_rgba_sha256": "63abfc990169610692022f794853ccc88c5c1abc0710ddfaf5590cfac35af6fa",
+        "crop_xyxy": [
+          0,
+          412,
+          986,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/7c7e1de3d98f75250554766d13925b79d5053198a712ebc0b1088cf3adb30279.png",
-        "sha256": "7c7e1de3d98f75250554766d13925b79d5053198a712ebc0b1088cf3adb30279",
+        "src": "ui/option-cards/edfe77e342a7ec5d082dac9c538525a68379941d0c12dfb2a3b6b08c9a4d2c37.png",
+        "sha256": "edfe77e342a7ec5d082dac9c538525a68379941d0c12dfb2a3b6b08c9a4d2c37",
         "width": 192,
         "height": 224,
-        "source_key": "DS017/no_tie"
+        "source_key": "DS017/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "9fefcde29fc2c4fae7c357ab889958fa3e2b260c4e0371f58f96e6cb59c3a74a",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS017_replica_A16-01.png",
+            "sha256": "9fefcde29fc2c4fae7c357ab889958fa3e2b260c4e0371f58f96e6cb59c3a74a",
+            "size_bytes": 1898246
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "d163ba812c1d7212af7bc2773cd796d8a513e0a6119b683268f5bbb795dd344f",
+        "native_rgba_sha256": "164f7e496a60d6c37ba6510eeb964546c0638fb63a2e2574e749d5601943a674",
+        "crop_xyxy": [
+          0,
+          412,
+          986,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS035": {
       "tied": {
-        "src": "ui/option-cards/e73495b0f0c83f398cb5aafd8273b9b6da7fb15298d9445b8deba77781ba3ffe.png",
-        "sha256": "e73495b0f0c83f398cb5aafd8273b9b6da7fb15298d9445b8deba77781ba3ffe",
+        "src": "ui/option-cards/7c70ad4eb7f3a55fe3edf57f8e8a7353c4f95227eaa031b13cb25b51747372a4.png",
+        "sha256": "7c70ad4eb7f3a55fe3edf57f8e8a7353c4f95227eaa031b13cb25b51747372a4",
         "width": 192,
         "height": 224,
-        "source_key": "DS035/tied"
+        "source_key": "DS035/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "14d24515f502c5570323f047eb7f529231f0b05bb4e8ecec81d424a7f9aa29c3",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS035_replica_A15-08.png",
+            "sha256": "14d24515f502c5570323f047eb7f529231f0b05bb4e8ecec81d424a7f9aa29c3",
+            "size_bytes": 1758117
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS035_closed-dd7950998083258f581846bf58bf326524d43ad249f99b6a0d08d38fbe91b8ee.png",
+            "sha256": "dd7950998083258f581846bf58bf326524d43ad249f99b6a0d08d38fbe91b8ee",
+            "size_bytes": 1795862
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS035-44df2f33bbb52e6e8c2497f5da73e0f3239359d268d9fc5b15a8f8ddb9cefdbb.png",
+            "sha256": "44df2f33bbb52e6e8c2497f5da73e0f3239359d268d9fc5b15a8f8ddb9cefdbb",
+            "size_bytes": 1800535
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "26a6c8441fbc22d36491a6a4e60f4ab939df31b0e3debe55924bc2a4df851c44",
+        "native_rgba_sha256": "2bbf0c790cd8dbe18bd1c9655843788b9e4704f433cb877461ce3f76b8169618",
+        "crop_xyxy": [
+          0,
+          410,
+          973,
+          1391
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/1e8ca66ec383e4e78a1bae754b0cb18e3700c20fcdb1b638871131e9cc718bd2.png",
-        "sha256": "1e8ca66ec383e4e78a1bae754b0cb18e3700c20fcdb1b638871131e9cc718bd2",
+        "src": "ui/option-cards/7767be2ddc15e3750ba9372e93d1e043681e9c24abb317fa38311a87bc99e2c3.png",
+        "sha256": "7767be2ddc15e3750ba9372e93d1e043681e9c24abb317fa38311a87bc99e2c3",
         "width": 192,
         "height": 224,
-        "source_key": "DS035/no_tie"
+        "source_key": "DS035/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "14d24515f502c5570323f047eb7f529231f0b05bb4e8ecec81d424a7f9aa29c3",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS035_replica_A15-08.png",
+            "sha256": "14d24515f502c5570323f047eb7f529231f0b05bb4e8ecec81d424a7f9aa29c3",
+            "size_bytes": 1758117
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS035-44df2f33bbb52e6e8c2497f5da73e0f3239359d268d9fc5b15a8f8ddb9cefdbb.png",
+            "sha256": "44df2f33bbb52e6e8c2497f5da73e0f3239359d268d9fc5b15a8f8ddb9cefdbb",
+            "size_bytes": 1800535
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "12a69a83436803e2f172aa162d2945a73c335c5061a90f44ea4284db2c535c9e",
+        "native_rgba_sha256": "713a1cbc21d17bd2315f8312134b655b6d1b500b812fef03d5afb0d2df481365",
+        "crop_xyxy": [
+          0,
+          410,
+          973,
+          1391
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS036": {
       "tied": {
-        "src": "ui/option-cards/b8411ad28a0ed92aaba5bfbf1ac1ae12070f8c2ab6e9fb686da69862bae94a8b.png",
-        "sha256": "b8411ad28a0ed92aaba5bfbf1ac1ae12070f8c2ab6e9fb686da69862bae94a8b",
+        "src": "ui/option-cards/e7419a437de6fbc55aa09c49c842a22ffaa099642dfd39de90ec0328722354bd.png",
+        "sha256": "e7419a437de6fbc55aa09c49c842a22ffaa099642dfd39de90ec0328722354bd",
         "width": 192,
         "height": 224,
-        "source_key": "DS036/tied"
+        "source_key": "DS036/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "5506f97ff64fdfc3fa5c6b030814740881d97f16a8f56484efba45a5f6438e8f",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS036_replica_A15-11.png",
+            "sha256": "5506f97ff64fdfc3fa5c6b030814740881d97f16a8f56484efba45a5f6438e8f",
+            "size_bytes": 1791225
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS036_closed-4a80787ba2a42e6deff2cbdabc714b1008f1b3794d5e52a7e2a63db8e2eb65c0.png",
+            "sha256": "4a80787ba2a42e6deff2cbdabc714b1008f1b3794d5e52a7e2a63db8e2eb65c0",
+            "size_bytes": 1789581
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "04361b77df77d000ed0f00120d66abab48b18b464875ceff25717a32d95dc46f",
+        "native_rgba_sha256": "e27e0a97ad57b3a89ca8d0fe9aaf79aa5b7a50c684e1fbbf44cf2288bf66954b",
+        "crop_xyxy": [
+          0,
+          412,
+          994,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/3df3bbdd51fcc3ee0238859212cfe5298e02575215906badbffec7f37463bb7a.png",
-        "sha256": "3df3bbdd51fcc3ee0238859212cfe5298e02575215906badbffec7f37463bb7a",
+        "src": "ui/option-cards/197a416d876a5fa29a5094097e09375ac3baff582dcd7efac28b162becca459a.png",
+        "sha256": "197a416d876a5fa29a5094097e09375ac3baff582dcd7efac28b162becca459a",
         "width": 192,
         "height": 224,
-        "source_key": "DS036/no_tie"
+        "source_key": "DS036/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "5506f97ff64fdfc3fa5c6b030814740881d97f16a8f56484efba45a5f6438e8f",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS036_replica_A15-11.png",
+            "sha256": "5506f97ff64fdfc3fa5c6b030814740881d97f16a8f56484efba45a5f6438e8f",
+            "size_bytes": 1791225
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "dcec792730abeb03012c0edcc0068fc5da8317e8a1c474e47c72d24b1cd2f950",
+        "native_rgba_sha256": "46a1557f05360a129b82f31593abcd016f4194185866f315de374ffb195a17ed",
+        "crop_xyxy": [
+          0,
+          412,
+          994,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS051": {
       "tied": {
-        "src": "ui/option-cards/9c130bca32ad5535df31416e958fa39039b799ce4cabd8fa9dabe5ff2a755541.png",
-        "sha256": "9c130bca32ad5535df31416e958fa39039b799ce4cabd8fa9dabe5ff2a755541",
+        "src": "ui/option-cards/754160beef827daa9eadeb7b91fb788fe889b474da45e70425b609a540d90a94.png",
+        "sha256": "754160beef827daa9eadeb7b91fb788fe889b474da45e70425b609a540d90a94",
         "width": 192,
         "height": 224,
-        "source_key": "DS051/tied"
+        "source_key": "DS051/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "c040ab0df6ab38fcc23a03d5edaac663cf8a32909da460ee842052f1ddf17957",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS051_replica_A15-06.png",
+            "sha256": "c040ab0df6ab38fcc23a03d5edaac663cf8a32909da460ee842052f1ddf17957",
+            "size_bytes": 1810188
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS051_closed-f9a67a3a6178c4cf501c28f30aa7fa2bb8e6f95ade899d09ad8cefc66e7158d0.png",
+            "sha256": "f9a67a3a6178c4cf501c28f30aa7fa2bb8e6f95ade899d09ad8cefc66e7158d0",
+            "size_bytes": 1846130
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "1aab57b61101a6f63c30e475af658509abbcd8e4a1ccf12b448117fffb13449a",
+        "native_rgba_sha256": "3a60a070c61d91d460db1a94a0ca4781a62792d3bf5934c2826168c92960fa01",
+        "crop_xyxy": [
+          0,
+          412,
+          994,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/c11994f70b79fd56ba1c4abf4adeb6c2783b6f88cde5bae39ffa0f89dbbf80c4.png",
-        "sha256": "c11994f70b79fd56ba1c4abf4adeb6c2783b6f88cde5bae39ffa0f89dbbf80c4",
+        "src": "ui/option-cards/7dbc8daea4b37491074ce0422c6a989f67ddbee02db136b94bb0c151bf626ae7.png",
+        "sha256": "7dbc8daea4b37491074ce0422c6a989f67ddbee02db136b94bb0c151bf626ae7",
         "width": 192,
         "height": 224,
-        "source_key": "DS051/no_tie"
+        "source_key": "DS051/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "c040ab0df6ab38fcc23a03d5edaac663cf8a32909da460ee842052f1ddf17957",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS051_replica_A15-06.png",
+            "sha256": "c040ab0df6ab38fcc23a03d5edaac663cf8a32909da460ee842052f1ddf17957",
+            "size_bytes": 1810188
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "43097c807097164586ca46b55e26f246e117cec995096e3ea6a9f7fe69a71d3d",
+        "native_rgba_sha256": "0cb12c38f200c9fd8dc41d3cd9aa82998609306aa3f7fcf3657cb772ab5d3208",
+        "crop_xyxy": [
+          0,
+          412,
+          994,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS034": {
       "tied": {
-        "src": "ui/option-cards/5225a912170b036f07a2c31a98668ac1b50243cb4116e62a86fdca2e54044051.png",
-        "sha256": "5225a912170b036f07a2c31a98668ac1b50243cb4116e62a86fdca2e54044051",
+        "src": "ui/option-cards/f9e13608513c0f10fc61eb9e4fdefbb9293cce08929d80a9b2d89703dfcecdc0.png",
+        "sha256": "f9e13608513c0f10fc61eb9e4fdefbb9293cce08929d80a9b2d89703dfcecdc0",
         "width": 192,
         "height": 224,
-        "source_key": "DS034/tied"
+        "source_key": "DS034/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "82889f9d84c4efc3554eb9e8c60299b47f15c54be5a0780b1e02664b04e855fb",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS034_closed-f5b734e1f1c5b2e04fa5ad92b17c3871d97569c54ad0b62820c23c9ec0fc6107.png",
+            "sha256": "f5b734e1f1c5b2e04fa5ad92b17c3871d97569c54ad0b62820c23c9ec0fc6107",
+            "size_bytes": 1730358
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS034-82889f9d84c4efc3554eb9e8c60299b47f15c54be5a0780b1e02664b04e855fb.png",
+            "sha256": "82889f9d84c4efc3554eb9e8c60299b47f15c54be5a0780b1e02664b04e855fb",
+            "size_bytes": 1758364
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "b1c225f7e94dcd8deedafad7c471cb9ce29a4e8ce1a3d2e30ad6e2c5d66831b4",
+        "native_rgba_sha256": "13acd46fae85872996200a50770fbca4903d12b76898232e2e2dacfb88c34a3e",
+        "crop_xyxy": [
+          0,
+          412,
+          994,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/2e4089ebb63083918d6d239216205c531dcc0ec5274a0eabc92ad9c315b6945a.png",
-        "sha256": "2e4089ebb63083918d6d239216205c531dcc0ec5274a0eabc92ad9c315b6945a",
+        "src": "ui/option-cards/af0e8bdf4ee784c2ef3583a8a2c5099f77ba06214e8fa4800e8f79e5b8d275a0.png",
+        "sha256": "af0e8bdf4ee784c2ef3583a8a2c5099f77ba06214e8fa4800e8f79e5b8d275a0",
         "width": 192,
         "height": 224,
-        "source_key": "DS034/no_tie"
+        "source_key": "DS034/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "82889f9d84c4efc3554eb9e8c60299b47f15c54be5a0780b1e02664b04e855fb",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS034-82889f9d84c4efc3554eb9e8c60299b47f15c54be5a0780b1e02664b04e855fb.png",
+            "sha256": "82889f9d84c4efc3554eb9e8c60299b47f15c54be5a0780b1e02664b04e855fb",
+            "size_bytes": 1758364
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "58cc053c61c986daf734f784b364fa800732984be418cb20a79dfa3d4bfe4958",
+        "native_rgba_sha256": "3024fcc02e9d38902417e7b09b52f6fdbb89e07f9092bbe42407ae8bf5623094",
+        "crop_xyxy": [
+          0,
+          412,
+          994,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS037": {
@@ -488,18 +813,81 @@
     },
     "DS001": {
       "tied": {
-        "src": "ui/option-cards/8492c1a984fb145f83b38d2c86dc0584a3a7f36a2ee55f0ff379d1f4cb15e8bd.png",
-        "sha256": "8492c1a984fb145f83b38d2c86dc0584a3a7f36a2ee55f0ff379d1f4cb15e8bd",
+        "src": "ui/option-cards/202b09518505baa57d765b442a764a1d5dfe7a6b0c49ac4773be3b8365d9e516.png",
+        "sha256": "202b09518505baa57d765b442a764a1d5dfe7a6b0c49ac4773be3b8365d9e516",
         "width": 192,
         "height": 224,
-        "source_key": "DS001/tied"
+        "source_key": "DS001/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS001_catalogue_sh-002-000.jpg",
+            "sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+            "size_bytes": 56784
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS001_closed-3fb60bc00a78987fc11f81f78c959a998599323fae5ff707acc87eaaed748ca9.png",
+            "sha256": "3fb60bc00a78987fc11f81f78c959a998599323fae5ff707acc87eaaed748ca9",
+            "size_bytes": 1669775
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "403a26e380921368324d0a82a3ea8934886b964b1070af411e709b268234e739",
+        "native_rgba_sha256": "cbd2433b6933d2f8d6b18b09d86ba81f6dc6ef13703256298160332266d3d22e",
+        "crop_xyxy": [
+          9,
+          412,
+          996,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/4f1e66cf1aefa3a85003a156b9327f4a7113b76ccf0dafd171e0b8c1df0cc5e7.png",
-        "sha256": "4f1e66cf1aefa3a85003a156b9327f4a7113b76ccf0dafd171e0b8c1df0cc5e7",
+        "src": "ui/option-cards/98b43a633538a14d00f61911c246951c759835eda269a5172329a1e81b6108ca.png",
+        "sha256": "98b43a633538a14d00f61911c246951c759835eda269a5172329a1e81b6108ca",
         "width": 192,
         "height": 224,
-        "source_key": "DS001/no_tie"
+        "source_key": "DS001/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS001_catalogue_sh-002-000.jpg",
+            "sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+            "size_bytes": 56784
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "1d7b1ec4ce224742eac98e475dae49a8954af1614a5fbbf4b342ae96255c04f1",
+        "native_rgba_sha256": "549953ac51fa4a7100f5ede86206727d28bf15e8d674c3634d9f7c5896a4964a",
+        "crop_xyxy": [
+          9,
+          412,
+          996,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS002": {
@@ -600,18 +988,81 @@
     },
     "DS014": {
       "tied": {
-        "src": "ui/option-cards/8492c1a984fb145f83b38d2c86dc0584a3a7f36a2ee55f0ff379d1f4cb15e8bd.png",
-        "sha256": "8492c1a984fb145f83b38d2c86dc0584a3a7f36a2ee55f0ff379d1f4cb15e8bd",
+        "src": "ui/option-cards/202b09518505baa57d765b442a764a1d5dfe7a6b0c49ac4773be3b8365d9e516.png",
+        "sha256": "202b09518505baa57d765b442a764a1d5dfe7a6b0c49ac4773be3b8365d9e516",
         "width": 192,
         "height": 224,
-        "source_key": "DS014/tied"
+        "source_key": "DS014/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS001_catalogue_sh-002-000.jpg",
+            "sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+            "size_bytes": 56784
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS001_closed-3fb60bc00a78987fc11f81f78c959a998599323fae5ff707acc87eaaed748ca9.png",
+            "sha256": "3fb60bc00a78987fc11f81f78c959a998599323fae5ff707acc87eaaed748ca9",
+            "size_bytes": 1669775
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "403a26e380921368324d0a82a3ea8934886b964b1070af411e709b268234e739",
+        "native_rgba_sha256": "cbd2433b6933d2f8d6b18b09d86ba81f6dc6ef13703256298160332266d3d22e",
+        "crop_xyxy": [
+          9,
+          412,
+          996,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/4f1e66cf1aefa3a85003a156b9327f4a7113b76ccf0dafd171e0b8c1df0cc5e7.png",
-        "sha256": "4f1e66cf1aefa3a85003a156b9327f4a7113b76ccf0dafd171e0b8c1df0cc5e7",
+        "src": "ui/option-cards/98b43a633538a14d00f61911c246951c759835eda269a5172329a1e81b6108ca.png",
+        "sha256": "98b43a633538a14d00f61911c246951c759835eda269a5172329a1e81b6108ca",
         "width": 192,
         "height": 224,
-        "source_key": "DS014/no_tie"
+        "source_key": "DS014/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS001_catalogue_sh-002-000.jpg",
+            "sha256": "6f7ed7390b70f23ee170cde2e0fa8b14d8889bab45b1edf9538a11cbd9050015",
+            "size_bytes": 56784
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "1d7b1ec4ce224742eac98e475dae49a8954af1614a5fbbf4b342ae96255c04f1",
+        "native_rgba_sha256": "549953ac51fa4a7100f5ede86206727d28bf15e8d674c3634d9f7c5896a4964a",
+        "crop_xyxy": [
+          9,
+          412,
+          996,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS015": {
@@ -696,18 +1147,81 @@
     },
     "DS023": {
       "tied": {
-        "src": "ui/option-cards/44ffed875668d423a118cf13015c9c3ca22b1fa9a773c3a19bfcd443c07023d0.png",
-        "sha256": "44ffed875668d423a118cf13015c9c3ca22b1fa9a773c3a19bfcd443c07023d0",
+        "src": "ui/option-cards/4c86369bc4be1b7d71f63c5d2e918130c4abfb4d2c19c388a600841333ad111c.png",
+        "sha256": "4c86369bc4be1b7d71f63c5d2e918130c4abfb4d2c19c388a600841333ad111c",
         "width": 192,
         "height": 224,
-        "source_key": "DS023/tied"
+        "source_key": "DS023/tied",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "T001",
+        "garment_mode": "tied",
+        "source_sha256": "453edf54819baed90ff8d9c5ce372828b908df75d9d84006aa1d8ebe9864fdff",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS023_catalogue_sh-024-019.jpg",
+            "sha256": "453edf54819baed90ff8d9c5ce372828b908df75d9d84006aa1d8ebe9864fdff",
+            "size_bytes": 68504
+          },
+          {
+            "path": "provenance/continuous-shirt-sources/generated/DS023_closed-f0ff4c5c6c3eb7dad56f1a5adec9718ce2b272be37c99c5707530dc60b5b4048.png",
+            "sha256": "f0ff4c5c6c3eb7dad56f1a5adec9718ce2b272be37c99c5707530dc60b5b4048",
+            "size_bytes": 1889826
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "baff81d885fb63f1d5ed7a062ba16a137c04629c730223a1d1758930ad2458d6",
+        "native_rgba_sha256": "54a4061f40ac5e1b1b497a0f671ac9032bd6101aa3dadbfdd4741edbaa97f50b",
+        "crop_xyxy": [
+          0,
+          411,
+          996,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       },
       "no_tie": {
-        "src": "ui/option-cards/d0d4779273f02fba14306c83e781737e246a9295d34be7a98671a6ce646dc60d.png",
-        "sha256": "d0d4779273f02fba14306c83e781737e246a9295d34be7a98671a6ce646dc60d",
+        "src": "ui/option-cards/3662a52207318a1e630546c315b5aa542c1d359418c1a81df311e590ca3197f2.png",
+        "sha256": "3662a52207318a1e630546c315b5aa542c1d359418c1a81df311e590ca3197f2",
         "width": 192,
         "height": 224,
-        "source_key": "DS023/no_tie"
+        "source_key": "DS023/no_tie",
+        "source_kind": "continuous_garment_preview",
+        "render_state": "NO_TIE",
+        "garment_mode": "no_tie",
+        "source_sha256": "453edf54819baed90ff8d9c5ce372828b908df75d9d84006aa1d8ebe9864fdff",
+        "source_layers": [
+          {
+            "path": "provenance/continuous-shirt-sources/DS023_catalogue_sh-024-019.jpg",
+            "sha256": "453edf54819baed90ff8d9c5ce372828b908df75d9d84006aa1d8ebe9864fdff",
+            "size_bytes": 68504
+          }
+        ],
+        "render_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+        "renderer_sha256": "9f355772c1542687a82b4f1da00d0f2d443b8144eb0e0b121f72ada6a3163a6f",
+        "garment_geometry_sha256": "2cc1d17652fd3abd9ba205cf36b6cf72799f9051454cd9184f121f774cee4ee0",
+        "native_rgba_sha256": "49d31a405b37c8c3c157daefa6ed83dd36af6d9de88d3684bbf0f8dde3eada8e",
+        "crop_xyxy": [
+          0,
+          411,
+          996,
+          1390
+        ],
+        "omitted_layers": [
+          "avatar",
+          "tie",
+          "pants",
+          "shoes",
+          "hands"
+        ],
+        "render_engine": "@napi-rs/canvas@0.1.100"
       }
     },
     "DS024": {

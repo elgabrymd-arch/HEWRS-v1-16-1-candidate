@@ -1,0 +1,115 @@
+name: Continuous shirt candidate
+
+on:
+  push:
+    branches: [fix/continuous-shirt-geometry-20261120]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/continuous-shirts.js'
+      - 'data/continuous-shirts*'
+      - 'provenance/continuous-shirt-sources/**'
+      - 'runtime/continuous-shirts-*'
+      - 'CONTINUOUS_CANDIDATE.json'
+      - 'index.html'
+      - 'app.html'
+      - 'tools/build_continuous*'
+      - 'tests/continuous-shirts*'
+      - '.github/workflows/continuous-shirts-candidate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: continuous-shirts-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  contract-and-source-locks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install the reviewed mesh compiler versions
+        run: python -m pip install --disable-pip-version-check numpy==2.3.5 scipy==1.17.0
+      - name: Reproduce meshes from reviewed source coordinates
+        run: |
+          python tools/build_continuous_shirts.py
+          git diff --exit-code -- data/continuous-shirts.json data/continuous-shirts.js provenance/continuous-shirt-sources/registration.json
+      - name: Verify immutable original sources and complete candidate delivery
+        run: |
+          git diff --exit-code f114d7dbedab3430761a29d77328ae80ac0882e4 -- assets assemblies data/inputs.json data/batch10.json data/shirt-reconstruction-batch1.json src/local-state.js src/favorites-state.js src/outfit-rejection-core.js src/outfit-rejection-ui.js vendor
+          python tools/build_continuous_candidate.py
+          node --check src/continuous-shirts.js
+          python -m py_compile tests/continuous-shirts-browser.py
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root=Path('.')
+          data=json.loads((root/'data/continuous-shirts.json').read_text())
+          assert sorted(data['ids'])==['DS001','DS014','DS017','DS023','DS034','DS035','DS036','DS051']
+          assert data['source_input_sha256']==hashlib.sha256((root/'data/inputs.json').read_bytes()).hexdigest()
+          for expected,name in data['assetPaths'].items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==expected, name
+          print('All eight IDs and every new photographic source hash verified')
+          PY
+      - name: Install isolated native canvas test dependency
+        run: npm install --prefix /tmp/hewrs-continuous-deps --no-audit --no-fund @napi-rs/canvas@0.1.100
+      - name: Verify projection, annotations, exact ties, clean modes and cancellation
+        env:
+          NODE_PATH: /tmp/hewrs-continuous-deps/node_modules
+        run: |
+          mkdir -p evidence/continuous_shirts/native
+          set -o pipefail
+          node --expose-gc tests/continuous-shirts.cjs | tee evidence/continuous_shirts/native/contract.log
+          node --expose-gc tests/continuous-shirts-bundle.cjs | tee evidence/continuous_shirts/native/compiled-bundle.log
+      - name: Preserve native contract evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_CONTINUOUS_NATIVE
+          path: evidence/continuous_shirts/native/
+          if-no-files-found: warn
+          retention-days: 30
+
+  whole-outfits-and-existing-state:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: f114d7dbedab3430761a29d77328ae80ac0882e4
+          path: baseline
+      - name: Install the existing browser audit versions
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow
+      - name: Capture full native and 390px phone outfits with all exact tie bindings
+        run: python tests/continuous-shirts-browser.py --browser '${{ matrix.browser }}' --baseline-root baseline
+      - name: Reuse current Favorites, rejection, persistence and cancellation regression
+        run: python tests/five-round-state-browser.py --browser '${{ matrix.browser }}'
+      - name: Preserve actual browser outfits and application-state evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_CONTINUOUS_${{ matrix.browser }}
+          path: |
+            evidence/continuous_shirts/browser/
+            evidence/five_round_20261119/browser/
+          if-no-files-found: error
+          retention-days: 30

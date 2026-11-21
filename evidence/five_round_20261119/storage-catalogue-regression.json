@@ -1,0 +1,57 @@
+{
+  "scope": "Current V1.18.0 application data modules; synthetic isolated Map backend, not owner or live browser records.",
+  "passed": 10,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Favorite save and duplicate prevention do not change the validated wear revision",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Shared garment imagery retains separate physical Favorite identities",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Favorites reload and export/import retain exact supported selections and IDs",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Favorites removal remains revision-guarded and cannot log wear",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Existing session format saves and reloads without personal scores in persistent data",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Confirmed wear retains exact IDs and invalidates a previously read generation token",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Legacy wear export validates and new Favorite backup is not mistaken for wear",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Insights reads confirmed wear without changing records, Favorites or session revision",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Corrupt Favorites retain raw bytes and do not make a valid wear ledger unavailable",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Stored manual outfit with held numerical source remains a valid wardrobe selection",
+      "passed": true,
+      "result": null
+    }
+  ]
+}

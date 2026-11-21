@@ -1,0 +1,686 @@
+{
+  "schema": "hewrs.live-publication-attempt-monitor.v1",
+  "recorded_at": "2026-11-19T11:35:59.445877+00:00",
+  "repository": "elgabrymd-arch/HEWRS-v1-16-1-candidate",
+  "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/",
+  "head": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+  "status": "failed",
+  "release_acceptance_complete": false,
+  "application_changed_since_tested_merge": false,
+  "accepted_candidate_head": "7c1fb9bdf394e23b258fcaf097e4b9695bfa32e6",
+  "application_merge_head": "a6874baf58c19f8a0ece853dd0fd5237fd457d5c",
+  "runs": {
+    "live": {
+      "id": 44513982945,
+      "name": "Verify live rejection integration",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44513982945",
+      "created_at": "2026-11-19T11:20:47Z",
+      "updated_at": "2026-11-19T11:33:10Z",
+      "run_number": 5,
+      "run_attempt": 1
+    },
+    "pages": {
+      "id": 44513982433,
+      "name": "pages build and deployment",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44513982433",
+      "created_at": "2026-11-19T11:20:47Z",
+      "updated_at": "2026-11-19T11:22:11Z",
+      "run_number": 63,
+      "run_attempt": 1
+    },
+    "home": {
+      "id": 44513982779,
+      "name": "Stage 10 Home preferences \u2014 isolated verification",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44513982779",
+      "created_at": "2026-11-19T11:20:47Z",
+      "updated_at": "2026-11-19T11:31:03Z",
+      "run_number": 22,
+      "run_attempt": 1
+    }
+  },
+  "jobs": {
+    "live": [
+      {
+        "id": 135525106320,
+        "name": "verify-live",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 135527509028,
+        "name": "audit-live-photos-and-state (webkit)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 135527509050,
+        "name": "audit-all-rejections (chromium, lifecycle)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 135527509063,
+        "name": "audit-live-photos-and-state (chromium)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 135527509088,
+        "name": "audit-all-rejections (webkit, reasons)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 135527509094,
+        "name": "audit-all-rejections (webkit, lifecycle)",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 135527509104,
+        "name": "audit-all-rejections (chromium, reasons)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "pages": [
+      {
+        "id": 135525115441,
+        "name": "build",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 135525511975,
+        "name": "report-build-status",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 135525512179,
+        "name": "deploy",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "home": [
+      {
+        "id": 135525105310,
+        "name": "build-and-test",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "suites": {
+    "publication": {
+      "result_path": "/workspace/scratch/0c5080ac53d0/verification/live393/publication/rejection_publication/RESULT.json",
+      "result_sha256": "31ff23988863465684d2dc0ef92fc4c704520a203c0ecf4f393a68d658f6c7bc",
+      "passed": 32,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "expected_commit": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "published_resources_checked": 31,
+      "all_resource_hashes_match": true,
+      "runtime_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+      "html_sha256": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
+      "observations": {
+        "publication_poll_attempts": 1,
+        "displayed_thumbnails": {
+          "expected_count": 2,
+          "images": [
+            {
+              "src": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ui/option-cards/3df3bbdd51fcc3ee0238859212cfe5298e02575215906badbffec7f37463bb7a.png",
+              "current_src": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ui/option-cards/3df3bbdd51fcc3ee0238859212cfe5298e02575215906badbffec7f37463bb7a.png",
+              "source_key": "DS036/no_tie",
+              "complete": true,
+              "natural_width": 192,
+              "natural_height": 224,
+              "hidden": false,
+              "fallback": false
+            },
+            {
+              "src": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ui/option-cards/c4a2d86c8c7203ae1a5307e6c5f9659fad9abd0ecaa336eb3c72dd1bc1f6848e.png",
+              "current_src": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ui/option-cards/c4a2d86c8c7203ae1a5307e6c5f9659fad9abd0ecaa336eb3c72dd1bc1f6848e.png",
+              "source_key": "shoe-11",
+              "complete": true,
+              "natural_width": 384,
+              "natural_height": 448,
+              "hidden": false,
+              "fallback": false
+            }
+          ]
+        },
+        "twenty_ui_refills_seconds": 111.6587,
+        "generation_button_clicks": 1,
+        "final_feedback_status": {
+          "ready": true,
+          "blocked": null,
+          "stale": false,
+          "loading": false,
+          "persistent": true,
+          "active": 20,
+          "historical": 0,
+          "events": 20,
+          "backend": "indexeddb",
+          "databaseName": "hewrs-rejections-v2",
+          "revision": 21,
+          "migratedLegacyCount": 0,
+          "legacyEventCount": 0,
+          "migrationRevision": 1,
+          "lastWriteError": null
+        },
+        "rejected_selections_count": 20
+      }
+    },
+    "S05_chromium": {
+      "result_path": "/workspace/scratch/0c5080ac53d0/verification/live393/publication/tie_reason_scope/live-fixed/chromium/RESULT.json",
+      "result_sha256": "dcb029938b7d4cdaf1c1797171c05e80e34563bc327512f463af62a4c0d88ac7",
+      "passed": 68,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": []
+    },
+    "all_rejections_chromium_reasons": {
+      "result_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_chromium_reasons/live/chromium/reasons/RESULT.json",
+      "result_sha256": "542a7de989a14c70444df1dc7c8d08ad0685384fa7813d6775e2057b9d0b7a2a",
+      "passed": 252,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "cases": [
+        {
+          "reason": "entire",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "shirt_tie_suit",
+          "expected_scope": "topwear_shirt_tie",
+          "stored_scope": "topwear_shirt_tie"
+        },
+        {
+          "reason": "tie_shirt",
+          "expected_scope": "shirt_tie",
+          "stored_scope": "shirt_tie"
+        },
+        {
+          "reason": "shirt_suit",
+          "expected_scope": "topwear_shirt",
+          "stored_scope": "topwear_shirt"
+        },
+        {
+          "reason": "shirt_appearance",
+          "expected_scope": "shirt",
+          "stored_scope": "shirt"
+        },
+        {
+          "reason": "tie_suit",
+          "expected_scope": "topwear_tie",
+          "stored_scope": "topwear_tie"
+        },
+        {
+          "reason": "footwear",
+          "expected_scope": "outfit",
+          "stored_scope": "outfit"
+        },
+        {
+          "reason": "colors",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "patterns",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "formality",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "other",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        }
+      ]
+    },
+    "all_rejections_chromium_lifecycle": {
+      "result_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_chromium_lifecycle/live/chromium/lifecycle/RESULT.json",
+      "result_sha256": "4db3744f4895de1113a01e88994397d6f442c890ebe225dc73de63b6104f28cf",
+      "passed": 185,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "cases": [
+        {
+          "scope": "clothing"
+        },
+        {
+          "scope": "outfit"
+        },
+        {
+          "scope": "shirt"
+        },
+        {
+          "scope": "topwear_shirt"
+        },
+        {
+          "scope": "topwear_shirt_tie"
+        },
+        {
+          "scope": "shirt_tie"
+        },
+        {
+          "scope": "topwear_tie"
+        },
+        {
+          "scope": "tie"
+        }
+      ]
+    },
+    "photos_chromium": {
+      "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44513982945/photos_chromium/chromium/live-photos/RESULT.json",
+      "result_sha256": "22f9203afb6e612fd0a375d4d98526f5e4e3295a518aeb20b0857aa460ad66fe",
+      "passed": 2393,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "reconciliation": {
+        "path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44513982945/photos_chromium/chromium/live-photos/LIVE_PHOTO_RECONCILIATION.json",
+        "sha256": "4468bd2167f305d993d8c7d46913555b0530c622a58dbc340406a30ad62ae0e5",
+        "native_frames": 396,
+        "full_frames_equal_accepted_candidate": 396,
+        "same_browser_published_baseline_comparisons": 349,
+        "same_browser_published_baseline_matches": 349,
+        "native_collar_png_entries": 288,
+        "native_collar_records_equal_candidate": 288,
+        "native_png_hashes_verified": 288,
+        "complete_collar_sheets_equal_inspected": 10,
+        "reconciliation_failures": []
+      }
+    },
+    "state_chromium": {
+      "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44513982945/photos_chromium/chromium/live-photos/chromium_live-state_RESULT.json",
+      "result_sha256": "6006b92dd297158bec09b3368ae9a87f0050210584041bd92febb4118bf12112",
+      "passed": 85,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "request_failures": [
+          {
+            "page": "render-tab",
+            "phase": "stalled-native-render",
+            "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/90c3c10c3452238194e68b859f665a9ab015d26d7876657962d81cd1708a0b0c.png",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "page": "render-tab",
+            "phase": "stalled-comparison-render",
+            "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "deliberately_stalled_urls": [
+        "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/90c3c10c3452238194e68b859f665a9ab015d26d7876657962d81cd1708a0b0c.png",
+        "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png"
+      ],
+      "unexpected_request_failures": []
+    },
+    "S05_webkit": {
+      "result_path": "/workspace/scratch/0c5080ac53d0/verification/live393/publication/tie_reason_scope/live-fixed/webkit/RESULT.json",
+      "result_sha256": "df3d85e6e1a9d0ad291635f1d602b98e418ec2df448f0bf90e4452142e967545",
+      "passed": 68,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": []
+    },
+    "all_rejections_webkit_reasons": {
+      "result_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_webkit_reasons/live/webkit/reasons/RESULT.json",
+      "result_sha256": "0c035e1c295a0783ac61e528ae611fa26315df3a0dd8113ff5cf0a0736343c00",
+      "passed": 252,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "cases": [
+        {
+          "reason": "entire",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "shirt_tie_suit",
+          "expected_scope": "topwear_shirt_tie",
+          "stored_scope": "topwear_shirt_tie"
+        },
+        {
+          "reason": "tie_shirt",
+          "expected_scope": "shirt_tie",
+          "stored_scope": "shirt_tie"
+        },
+        {
+          "reason": "shirt_suit",
+          "expected_scope": "topwear_shirt",
+          "stored_scope": "topwear_shirt"
+        },
+        {
+          "reason": "shirt_appearance",
+          "expected_scope": "shirt",
+          "stored_scope": "shirt"
+        },
+        {
+          "reason": "tie_suit",
+          "expected_scope": "topwear_tie",
+          "stored_scope": "topwear_tie"
+        },
+        {
+          "reason": "footwear",
+          "expected_scope": "outfit",
+          "stored_scope": "outfit"
+        },
+        {
+          "reason": "colors",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "patterns",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "formality",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        },
+        {
+          "reason": "other",
+          "expected_scope": "clothing",
+          "stored_scope": "clothing"
+        }
+      ]
+    },
+    "all_rejections_webkit_lifecycle": {
+      "result_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_webkit_lifecycle/live/webkit/lifecycle/RESULT.json",
+      "result_sha256": "84daff5ff54b650326dc75ff76f7394fbf9dcb50bcd9a13f474845f2c82daef9",
+      "passed": 184,
+      "failed": 1,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [
+          {
+            "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ui/option-cards/3069ffde3a27f9f6e01563dc5f6eaac3735b6fb111d612264c410dd7eb6bec65.png",
+            "error": "Load request cancelled"
+          }
+        ],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [
+        {
+          "name": "All application requests completed successfully",
+          "passed": false
+        }
+      ],
+      "cases": [
+        {
+          "scope": "clothing"
+        },
+        {
+          "scope": "outfit"
+        },
+        {
+          "scope": "shirt"
+        },
+        {
+          "scope": "topwear_shirt"
+        },
+        {
+          "scope": "topwear_shirt_tie"
+        },
+        {
+          "scope": "shirt_tie"
+        },
+        {
+          "scope": "topwear_tie"
+        },
+        {
+          "scope": "tie"
+        }
+      ]
+    },
+    "photos_webkit": {
+      "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44513982945/photos_webkit/webkit/live-photos/RESULT.json",
+      "result_sha256": "cd09014a21bc75d3e3041ef6b021b2a63f3e58f1025e3f551c4bd870e46818f2",
+      "passed": 2393,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "reconciliation": {
+        "path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44513982945/photos_webkit/webkit/live-photos/LIVE_PHOTO_RECONCILIATION.json",
+        "sha256": "cf6eca9e552680f0d04bc20a389dc480f9e245954cd22f2420d404a0a174fe49",
+        "native_frames": 396,
+        "full_frames_equal_accepted_candidate": 396,
+        "same_browser_published_baseline_comparisons": 349,
+        "same_browser_published_baseline_matches": 349,
+        "native_collar_png_entries": 288,
+        "native_collar_records_equal_candidate": 288,
+        "native_png_hashes_verified": 288,
+        "complete_collar_sheets_equal_inspected": 10,
+        "reconciliation_failures": []
+      }
+    },
+    "state_webkit": {
+      "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44513982945/photos_webkit/webkit/live-photos/webkit_live-state_RESULT.json",
+      "result_sha256": "0f16ce29baf46a3c1953a2c4e4e459585d71fc94ea3c8e96cabb6899b923de1e",
+      "passed": 85,
+      "failed": 0,
+      "errors": {
+        "page_errors": [],
+        "request_failures": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [],
+      "deliberately_stalled_urls": [
+        "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/90c3c10c3452238194e68b859f665a9ab015d26d7876657962d81cd1708a0b0c.png",
+        "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/assets/adcde76bc6146ca4b0c77564d921c5f33b94134ea399fe979a90efe7d6d16019.png"
+      ],
+      "unexpected_request_failures": []
+    }
+  },
+  "home_preferences": {
+    "evidence": "GitHub job 135525105310 logs, both emitted JSON summaries",
+    "active_app": {
+      "passed": 13,
+      "failed": 0
+    },
+    "retained_stage10": {
+      "passed": 14,
+      "failed": 0
+    }
+  },
+  "artifacts": [
+    {
+      "id": 14526300170,
+      "name": "HEWRS_LIVE_TOTAL_chromium",
+      "size_in_bytes": 288301199,
+      "digest": "sha256:07487fd45d68b21a914c16ec3d0872e77b507405bd1bb577cd624b2f222158f1",
+      "created_at": "2026-11-19T11:32:28Z",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "verified_download_sha256": "07487fd45d68b21a914c16ec3d0872e77b507405bd1bb577cd624b2f222158f1",
+      "digest_verified": true,
+      "archive_path": "/workspace/scratch/0c5080ac53d0/live_44513982945/HEWRS_LIVE_TOTAL_chromium_44513982945.zip"
+    },
+    {
+      "id": 14525571153,
+      "name": "HEWRS_LIVE_ALL_REJECTIONS_chromium_reasons",
+      "size_in_bytes": 2023803,
+      "digest": "sha256:213b49347933551474145dc54284830b6d0e3db8719133bf74b30cd4558ca9c6",
+      "created_at": "2026-11-19T11:28:35Z",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "verified_download_sha256": "213b49347933551474145dc54284830b6d0e3db8719133bf74b30cd4558ca9c6",
+      "digest_verified": true,
+      "archive_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_chromium_reasons.zip"
+    },
+    {
+      "id": 14525566627,
+      "name": "HEWRS_LIVE_TOTAL_webkit",
+      "size_in_bytes": 230381492,
+      "digest": "sha256:8577cbbefd08f844087396a02768f37da69964e6254a30e052cee075ac4627ec",
+      "created_at": "2026-11-19T11:33:06Z",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "verified_download_sha256": "8577cbbefd08f844087396a02768f37da69964e6254a30e052cee075ac4627ec",
+      "digest_verified": true,
+      "archive_path": "/workspace/scratch/0c5080ac53d0/live_44513982945/HEWRS_LIVE_TOTAL_webkit_44513982945.zip"
+    },
+    {
+      "id": 14525151807,
+      "name": "HEWRS_LIVE_ALL_REJECTIONS_webkit_lifecycle",
+      "size_in_bytes": 6764,
+      "digest": "sha256:7f77c48f1dbcbb8ac2ce00bf83b6be2c61c9470ca7960f196a59926f200665f1",
+      "created_at": "2026-11-19T11:29:13Z",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "verified_download_sha256": "7f77c48f1dbcbb8ac2ce00bf83b6be2c61c9470ca7960f196a59926f200665f1",
+      "digest_verified": true,
+      "archive_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_webkit_lifecycle.zip"
+    },
+    {
+      "id": 14525146985,
+      "name": "HEWRS_LIVE_ALL_REJECTIONS_webkit_reasons",
+      "size_in_bytes": 2213939,
+      "digest": "sha256:471410d1d67abd8eb6a955d30e1ce6e72c67e86dec1a15290c5ff1389ae8379e",
+      "created_at": "2026-11-19T11:30:16Z",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "verified_download_sha256": "471410d1d67abd8eb6a955d30e1ce6e72c67e86dec1a15290c5ff1389ae8379e",
+      "digest_verified": true,
+      "archive_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_webkit_reasons.zip"
+    },
+    {
+      "id": 14524636681,
+      "name": "HEWRS_LIVE_REJECTION_PUBLICATION_EVIDENCE",
+      "size_in_bytes": 2334308,
+      "digest": "sha256:382eabca10fba213f049d5fc5977212a40ef8caba68b1ce83326099fa329d1f4",
+      "created_at": "2026-11-19T11:25:24Z",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "archive_path": "/workspace/scratch/0c5080ac53d0/verification/live393/publication.zip",
+      "verified_download_sha256": "382eabca10fba213f049d5fc5977212a40ef8caba68b1ce83326099fa329d1f4",
+      "digest_verified": true
+    },
+    {
+      "id": 14524419341,
+      "name": "HEWRS_LIVE_ALL_REJECTIONS_chromium_lifecycle",
+      "size_in_bytes": 6708,
+      "digest": "sha256:73c4825c252403e65113e30642e9da2d5552cb718d027314d60a799256997e48",
+      "created_at": "2026-11-19T11:27:59Z",
+      "head_sha": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+      "verified_download_sha256": "73c4825c252403e65113e30642e9da2d5552cb718d027314d60a799256997e48",
+      "digest_verified": true,
+      "archive_path": "/workspace/scratch/0c5080ac53d0/verification/live393/HEWRS_LIVE_ALL_REJECTIONS_chromium_lifecycle.zip"
+    }
+  ],
+  "failure": {
+    "job_id": 135527509094,
+    "suite": "all_rejections_webkit_lifecycle",
+    "assertion": "All application requests completed successfully",
+    "requests": [
+      {
+        "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ui/option-cards/3069ffde3a27f9f6e01563dc5f6eaac3735b6fb111d612264c410dd7eb6bec65.png",
+        "error": "Load request cancelled"
+      }
+    ],
+    "thumbnail_source_key": "T026",
+    "all_behavioral_checks_completed": true,
+    "other_error_arrays_empty": true,
+    "attribution": "Exact cancellation phase is not established because this verifier version did not attach case, phase, or timestamp diagnostics to requests. Known mounted-image readiness gaps exist at navigation and context closure. Failure remains recorded; it is not reclassified as a pass.",
+    "next_gate": "A test-only mounted-image readiness and diagnostic correction is being prepared; a complete clean later live run is required."
+  },
+  "prior_failed_attempt": {
+    "head": "a6874baf58c19f8a0ece853dd0fd5237fd457d5c",
+    "live_run": 44513018105,
+    "pages_run": 44513017618,
+    "home_run": 44513018200,
+    "status": "failed",
+    "gate": {
+      "result_path": "/workspace/scratch/6e6ff96d182e/verification/five_round_20261119/live_44513018105/initial_gate_failure/rejection_publication/RESULT.json",
+      "result_sha256": "cf0561f90f0d56601150cc94eb97b19d64fbacc5872e2217027fcec2d2257397",
+      "passed": 4,
+      "failed": 1,
+      "errors": {
+        "page_errors": [],
+        "failed_requests": [],
+        "http_errors": [],
+        "external_requests": []
+      },
+      "failed_checks": [
+        {
+          "name": "Displayed garment thumbnails load with real image dimensions",
+          "passed": false
+        }
+      ]
+    },
+    "failure_scope": "Initial thumbnail-readiness assertion only; no 20-refill, S05, or downstream photo/state/all-rejection evidence from this attempt.",
+    "resolution_observed_in_current_attempt": "Bounded image-readiness check succeeded on the actual published host with two complete non-hidden non-fallback current-card images of real dimensions."
+  },
+  "scope_limits": [
+    "Fresh disposable profiles and synthetic records; owner data was not accessed.",
+    "Intentional image aborts in Chromium state cancellation tests are preserved separately from the unexpected WebKit lifecycle failure.",
+    "Per-suite assertion counts are reported without treating aggregate totals as distinct behaviors.",
+    "Successful deployment and successful photo/state tests do not make this failed live workflow acceptable."
+  ]
+}

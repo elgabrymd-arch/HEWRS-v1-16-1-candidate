@@ -1,0 +1,302 @@
+{
+  "saved": [
+    {
+      "id": "pref_first",
+      "created_at": "2026-11-19T01:00:00.000Z",
+      "a": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T029",
+        "shoeId": "shoe-1",
+        "watchId": null
+      },
+      "b": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T009",
+        "shoeId": "shoe-1",
+        "watchId": null
+      },
+      "vote": "A",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": null,
+      "context": {
+        "occasion": "work",
+        "requiredFormality": "any"
+      },
+      "source_revision": "audit_source"
+    },
+    {
+      "id": "pref_other_formality",
+      "created_at": "2026-11-19T01:00:00.000Z",
+      "a": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T029",
+        "shoeId": "shoe-1",
+        "watchId": null
+      },
+      "b": {
+        "suitId": "S05",
+        "shirtId": "DS029",
+        "state": "T009",
+        "shoeId": "shoe-1",
+        "watchId": null
+      },
+      "vote": "B",
+      "reason": "no_reason",
+      "partition": "training",
+      "pilot_id": null,
+      "context": {
+        "occasion": "work",
+        "requiredFormality": "tie_required"
+      },
+      "source_revision": "audit_source"
+    }
+  ],
+  "any": {
+    "revision": "hewrs.dual-outfit-learning.v1_24_0",
+    "id": "f8cf15f9",
+    "active": false,
+    "relative_active": false,
+    "enabled": true,
+    "counts": {
+      "directional": 1,
+      "informative": 1,
+      "topwear_groups": 1,
+      "neutral": 0,
+      "validation": 0,
+      "excluded": 0,
+      "duplicate_pairs": 1
+    },
+    "weights": [
+      1.14384743,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "feature_names": [
+      "tie_visual_prominence",
+      "competing_focal_elements",
+      "palette_saturation",
+      "layer_value_distance",
+      "light_tie_readability",
+      "open_collar",
+      "palette_coherence",
+      "shirt_depth",
+      "tie_pattern_contrast",
+      "shoe_formality",
+      "shoe_trouser_grounding",
+      "shoe_decoration"
+    ],
+    "bound": 0.35,
+    "acceptability": {
+      "active": false,
+      "weights": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "intercept": 0,
+      "bound": 0.2,
+      "counts": {
+        "comparisons": 0,
+        "label_occurrences": 0,
+        "unique_outfits": 0,
+        "positive": 0,
+        "negative": 0,
+        "groups": 0,
+        "positive_groups": 0,
+        "negative_groups": 0,
+        "conflicting_outfits": 0
+      },
+      "thresholds": {
+        "unique_outfits": 8,
+        "positive": 3,
+        "negative": 3,
+        "groups": 3,
+        "groups_per_label": 2
+      },
+      "reason": "Needs 8 distinct labelled outfits across 3 training groups, at least 3 per label and 2 groups per label. No forced A/B answers.",
+      "method": "Balanced logistic complete-outfit acceptability; centered semantic features; L2",
+      "validation": {
+        "unique_outfits": 0,
+        "positive": 0,
+        "negative": 0,
+        "correct": 0,
+        "incorrect": 0,
+        "uncertain": 0,
+        "conflicting_outfits": 0,
+        "scope": "Reserved records are not fitted. Diagnostic sign agreement, not calibrated accuracy or approval."
+      },
+      "regularization": {
+        "lambda": 0.25,
+        "epochs": 240,
+        "class_weight": "balanced",
+        "deduplication": "exact complete outfit and context",
+        "conflict_policy": "exclude contradictory labels; preserve raw feedback",
+        "probability_calibrated": false
+      }
+    },
+    "reason": "No learned channel is active yet. Existing responses are preserved; each channel has its own evidence requirements.",
+    "source_revision": "audit_source",
+    "regularization": {
+      "method": "pairwise logistic difference; L2",
+      "lambda": 0.2,
+      "epochs": 240,
+      "max_adjustment": 0.35,
+      "combined_bound": 0.35
+    },
+    "validation": {
+      "count": 0,
+      "correct": 0,
+      "ties": 0,
+      "scope": "Reserved A/B comparisons are never fitted. Provisional diagnostic, not a taste certificate."
+    },
+    "context_scope": {
+      "occasion": "work",
+      "records_in_scope": 2,
+      "other_occasion_records_retained": 0
+    }
+  },
+  "tie_required": {
+    "revision": "hewrs.dual-outfit-learning.v1_24_0",
+    "id": "f8cf15f9",
+    "active": false,
+    "relative_active": false,
+    "enabled": true,
+    "counts": {
+      "directional": 1,
+      "informative": 1,
+      "topwear_groups": 1,
+      "neutral": 0,
+      "validation": 0,
+      "excluded": 0,
+      "duplicate_pairs": 1
+    },
+    "weights": [
+      1.14384743,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "feature_names": [
+      "tie_visual_prominence",
+      "competing_focal_elements",
+      "palette_saturation",
+      "layer_value_distance",
+      "light_tie_readability",
+      "open_collar",
+      "palette_coherence",
+      "shirt_depth",
+      "tie_pattern_contrast",
+      "shoe_formality",
+      "shoe_trouser_grounding",
+      "shoe_decoration"
+    ],
+    "bound": 0.35,
+    "acceptability": {
+      "active": false,
+      "weights": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "intercept": 0,
+      "bound": 0.2,
+      "counts": {
+        "comparisons": 0,
+        "label_occurrences": 0,
+        "unique_outfits": 0,
+        "positive": 0,
+        "negative": 0,
+        "groups": 0,
+        "positive_groups": 0,
+        "negative_groups": 0,
+        "conflicting_outfits": 0
+      },
+      "thresholds": {
+        "unique_outfits": 8,
+        "positive": 3,
+        "negative": 3,
+        "groups": 3,
+        "groups_per_label": 2
+      },
+      "reason": "Needs 8 distinct labelled outfits across 3 training groups, at least 3 per label and 2 groups per label. No forced A/B answers.",
+      "method": "Balanced logistic complete-outfit acceptability; centered semantic features; L2",
+      "validation": {
+        "unique_outfits": 0,
+        "positive": 0,
+        "negative": 0,
+        "correct": 0,
+        "incorrect": 0,
+        "uncertain": 0,
+        "conflicting_outfits": 0,
+        "scope": "Reserved records are not fitted. Diagnostic sign agreement, not calibrated accuracy or approval."
+      },
+      "regularization": {
+        "lambda": 0.25,
+        "epochs": 240,
+        "class_weight": "balanced",
+        "deduplication": "exact complete outfit and context",
+        "conflict_policy": "exclude contradictory labels; preserve raw feedback",
+        "probability_calibrated": false
+      }
+    },
+    "reason": "No learned channel is active yet. Existing responses are preserved; each channel has its own evidence requirements.",
+    "source_revision": "audit_source",
+    "regularization": {
+      "method": "pairwise logistic difference; L2",
+      "lambda": 0.2,
+      "epochs": 240,
+      "max_adjustment": 0.35,
+      "combined_bound": 0.35
+    },
+    "validation": {
+      "count": 0,
+      "correct": 0,
+      "ties": 0,
+      "scope": "Reserved A/B comparisons are never fitted. Provisional diagnostic, not a taste certificate."
+    },
+    "context_scope": {
+      "occasion": "work",
+      "records_in_scope": 2,
+      "other_occasion_records_retained": 0
+    }
+  }
+}

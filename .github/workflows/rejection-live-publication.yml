@@ -1,0 +1,123 @@
+name: Verify live rejection integration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'app.html'
+      - 'runtime/outfit-refill-preview.js'
+      - 'runtime/continuous-shirts-*.js'
+      - 'CONTINUOUS_CANDIDATE.json'
+      - 'src/continuous-shirts.js'
+      - 'data/continuous-shirts*'
+      - 'data/option-card-thumbnails.*'
+      - 'tools/verify_active_delivery.py'
+      - 'tests/five-round-photos-browser.py'
+      - 'tests/five-round-state-browser.py'
+      - 'src/outfit-refill-*.js'
+      - 'src/outfit-rejection*.js'
+      - 'src/rejection-database.js'
+      - 'src/owner-feedback.js'
+      - 'src/reviewed-rejection-integration.js'
+      - 'src/tie-*.js'
+      - 'tests/rejection-live-publication.py'
+      - 'tests/tie-reason-scope-browser.py'
+      - 'tests/all-rejections-browser.py'
+      - '.github/workflows/rejection-live-publication.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hewrs-live-publication
+  cancel-in-progress: true
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure checkout ownership
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Install matching Playwright driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - name: Verify published files and twenty consecutive rejection refills
+        run: python tests/rejection-live-publication.py --publication-wait 600
+      - name: Verify published S05 tie-only reasons and persistence in Chromium
+        run: python tests/tie-reason-scope-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser chromium
+      - name: Verify published S05 tie-only reasons and persistence in WebKit
+        run: python tests/tie-reason-scope-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser webkit
+      - name: Preserve live verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_LIVE_REJECTION_PUBLICATION_EVIDENCE
+          path: |
+            evidence/rejection_publication/
+            evidence/tie_reason_scope/
+          if-no-files-found: error
+
+  audit-all-rejections:
+    needs: verify-live
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        section: [reasons, lifecycle]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - name: Audit all rejection controls on the verified publication
+        run: python tests/all-rejections-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}' --section '${{ matrix.section }}'
+      - name: Preserve live all-rejection evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_LIVE_ALL_REJECTIONS_${{ matrix.browser }}_${{ matrix.section }}
+          path: evidence/all_rejections/
+          if-no-files-found: error
+          retention-days: 30
+
+  audit-live-photos-and-state:
+    needs: verify-live
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
+          path: baseline
+      - name: Install matching browser and image audit drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow
+      - name: Verify published shirts against the protected baseline and exact correction scope
+        run: python tests/five-round-photos-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --baseline-root baseline --browser '${{ matrix.browser }}'
+      - name: Verify published concurrent saves and cancellation
+        run: python tests/five-round-state-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}'
+      - name: Preserve live photo and state evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_LIVE_TOTAL_${{ matrix.browser }}
+          path: evidence/five_round_20261119/browser/
+          if-no-files-found: error
+          retention-days: 30

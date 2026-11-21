@@ -1,0 +1,31 @@
+{
+  "schema": "hewrs.api-backup-verification.v1",
+  "verified_date": "2026-11-18",
+  "operation": "Read existing refs; no backup branch created or changed by this audit.",
+  "backups": [
+    {
+      "repository": "elgabrymd-arch/HEWRS-v1-16-1-candidate",
+      "branch": "backup/ai-five-distinct-20261118",
+      "sha": "38d4b5574b99e811b0846c6b0fdf26c9a5a6dc82",
+      "verified": true
+    },
+    {
+      "repository": "elgabrymd-arch/HEWRS-v1-16-1-candidate",
+      "branch": "backup/visual-stylist-api-20261118",
+      "sha": "87c1170eb674e5ed72bc8771b06abe78fe9eb447",
+      "verified": true
+    },
+    {
+      "repository": "elgabrymd-arch/HEWRS-AI-service",
+      "branch": "backup/ai-five-generation-20261118",
+      "sha": "ed9386fcd468db6217f6815be940121ee03a17a8",
+      "verified": true
+    },
+    {
+      "repository": "elgabrymd-arch/HEWRS-AI-service",
+      "branch": "backup/creative-outfit-api-20261118",
+      "sha": "7cc48d8bae62a2ffb34eae3886bdbaab881b5db4",
+      "verified": true
+    }
+  ]
+}

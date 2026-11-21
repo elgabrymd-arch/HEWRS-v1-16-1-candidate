@@ -8,7 +8,8 @@ const MAX=500,MAX_BYTES=1000000,clone=x=>structuredClone(x);
 const need=(v,m)=>{if(!v)throw Error(m);};
 const fields=(v,n)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===n.length&&n.every(k=>Object.hasOwn(v,k));
 function create(connection,lock,backend){
- let state={schema:SCHEMA,source_lock:lock,revision:0,items:[]},raw=null,blocked=null,persistent=!!backend;
+ let state={schema:SCHEMA,source_lock:lock,revision:0,items:[]},raw=null,blocked=null,persistent=!!backend,rawReadable=!backend;
+ const previews=new WeakMap();let writeQueue=Promise.resolve();
  function selection(value){const s=connection.validateSelection(value);need(s.state!=='REFERENCE','A retained reference is not an exact favorite outfit');return s;}
  function key(value){const s=selection(value);return JSON.stringify([s.shirtOnly===true?'shirt-only':s.blazerId?'blazer':'suit',s.suitId??null,s.blazerId??null,s.pantId??null,s.shirtId,s.state,s.shoeId,s.watchId]);}
  function validate(value){
@@ -25,17 +26,29 @@ function create(connection,lock,backend){
   }
   return clone(value);
  }
- try{if(backend){raw=backend.getItem(KEY);if(raw!==null){need(raw.length<=MAX_BYTES,'Stored Favorites exceed the size limit');state=validate(JSON.parse(raw));}}}
- catch(e){blocked='Saved Favorites retained, not reset: '+e.message;}
+ function refresh(){
+  if(backend){let incoming;try{incoming=backend.getItem(KEY);rawReadable=true;need(incoming===null||incoming.length<=MAX_BYTES,'Stored Favorites exceed the size limit');
+    const next=incoming===null?{schema:SCHEMA,source_lock:lock,revision:0,items:[]}:validate(JSON.parse(incoming));state=next;raw=incoming;blocked=null;
+   }catch(e){rawReadable=incoming!==undefined;if(rawReadable)raw=incoming;blocked='Saved Favorites retained, not reset: '+e.message;throw Error(blocked);}}
+  need(!blocked,blocked);return clone(state);
+ }
+ try{refresh();}catch{}
+ function assertBackingCurrent(){need(!blocked,blocked);if(backend)need(backend.getItem(KEY)===raw,'Favorites changed in another tab; reload before saving');}
+ async function exclusive(callback){
+  need(typeof callback==='function','A Favorites save operation is required');const token={raw,revision:state.revision};
+  const run=()=>{need(raw===token.raw&&state.revision===token.revision,'Favorites changed while waiting to save; review again');assertBackingCurrent();return callback();};
+  if(backend){need(root.navigator?.locks?.request,'Cross-tab Favorites saving is unavailable in this browser. Open HEWRS over HTTPS in a browser with Web Locks support. Read and export remain available; nothing was saved.');return root.navigator.locks.request(KEY,{mode:'exclusive'},run);}
+  const work=writeQueue.then(run);writeQueue=work.catch(()=>{});return work;
+ }
  function commit(next){
   need(!blocked,blocked);const checked=validate(next),text=JSON.stringify(checked);need(text.length<=MAX_BYTES,'Favorites backup exceeds the size limit');
-  if(backend){try{need(backend.getItem(KEY)===raw,'Favorites changed in another tab; reload before saving');backend.setItem(KEY,text);need(backend.getItem(KEY)===text,'Favorites write could not be verified');raw=text;}
+  if(backend){try{need(backend.getItem(KEY)===raw,'Favorites changed in another tab; reload before saving');backend.setItem(KEY,text);need(backend.getItem(KEY)===text,'Favorites write could not be verified');raw=text;persistent=true;}
    catch(e){persistent=false;throw Error('No Favorite save confirmed: '+e.message);}}
   state=checked;return clone(state);
  }
  function find(value){const k=key(value);return clone(state.items.find(i=>key(i.selection)===k)||null);}
  function add(value,{id,created_at}={}){
-  need(!blocked,blocked);const s=selection(value),existing=find(s);if(existing)return {added:false,item:existing,persistent:!!backend&&persistent};
+  assertBackingCurrent();const s=selection(value),existing=find(s);if(existing)return {added:false,item:existing,persistent:!!backend&&persistent};
   const item={id,created_at,selection:s};const next=commit({...state,revision:state.revision+1,items:[...state.items,item]});
   return {added:true,item:clone(next.items.at(-1)),persistent:!!backend&&persistent};
  }
@@ -56,18 +69,22 @@ function create(connection,lock,backend){
   return {items,added,already_saved:alreadySaved};
  }
  function previewImport(text){
-  need(!blocked,blocked);need(typeof text==='string'&&text.length<=MAX_BYTES,'Favorites backup is too large');
-  const data=validate(JSON.parse(text)),m=merged(data);
-  return {data,revision:state.revision,existing:state.items.length,incoming:data.items.length,added:m.added,already_saved:m.already_saved,total:m.items.length};
+  need(typeof text==='string'&&text.length<=MAX_BYTES,'Favorites backup is too large');const data=validate(JSON.parse(text));refresh();const m=merged(data);
+  const preview={data,revision:state.revision,existing:state.items.length,incoming:data.items.length,added:m.added,already_saved:m.already_saved,total:m.items.length};
+  previews.set(preview,{raw,payload:JSON.stringify(preview)});return preview;
  }
  function merge(preview){
-  need(preview&&preview.revision===state.revision,'Favorites changed after preview; select the file again');
+  const reviewed=previews.get(preview);
+  need(reviewed&&preview.revision===state.revision&&reviewed.raw===raw&&reviewed.payload===JSON.stringify(preview),'Favorites changed after preview; select the file again');assertBackingCurrent();
   const m=merged(preview.data);need(!blocked,blocked);
   if(!m.added)return {added:0,already_saved:m.already_saved,total:state.items.length};
   commit({...state,revision:state.revision+1,items:m.items});return {added:m.added,already_saved:m.already_saved,total:state.items.length};
  }
- return Object.freeze({key:KEY,snapshot:()=>clone(state),status:()=>({persistent:!!backend&&persistent,blocked,scope:'Favorites in this browser only; wear history is separate',max:MAX}),validate,selectionKey:key,find,add,remove,previewImport,merge,
-  exportText:()=>{if(blocked){need(raw!==null,'Saved Favorites could not be read; no backup claimed');return raw;}return JSON.stringify(state,null,2);}});
+ function exportText(){
+  try{refresh();}catch{need(rawReadable&&raw!==null,'Saved Favorites could not be read; no backup claimed');return raw;}
+  return JSON.stringify(state,null,2);
+ }
+ return Object.freeze({key:KEY,exclusive,refresh,snapshot:()=>clone(state),status:()=>({persistent:!!backend&&persistent,blocked,writeLockAvailable:!backend||typeof root.navigator?.locks?.request==='function',scope:'Favorites in this browser only; wear history is separate',max:MAX}),validate,selectionKey:key,find,add,remove,previewImport,merge,exportText});
 }
 root.HEWRSFavorites=Object.freeze({create,KEY,SCHEMA,MAX});
 })(globalThis);

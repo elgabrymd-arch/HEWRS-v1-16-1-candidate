@@ -5,7 +5,8 @@ const KEY='hewrs:connected-app:v1',SCHEMA='hewrs.connected-app.local.v1';
 const clone=x=>structuredClone(x),need=(x,s)=>{if(!x)throw Error(s);};
 function date(v){if(typeof v!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(v))return false;const d=new Date(v+'T00:00:00Z');return Number.isFinite(+d)&&d.toISOString().slice(0,10)===v;}
 function create(connection,lock,backend){
- let state={schema:SCHEMA,source_lock:lock,revision:0,session:null,events:[]},raw=null,blocked=null,persistent=!!backend;
+ let state={schema:SCHEMA,source_lock:lock,revision:0,session:null,events:[]},raw=null,blocked=null,persistent=!!backend,rawReadable=!backend;
+ const previews=new WeakMap();let writeQueue=Promise.resolve();
  const suitSelection=['suitId','shirtId','state','shoeId','watchId'],blazerSelection=['blazerId','pantId','shirtId','state','shoeId','watchId'],shirtOnlySelection=['shirtOnly','pantId','shirtId','state','shoeId','watchId'];
  function selection(s){need(s&&typeof s==='object'&&!Array.isArray(s),'Malformed saved selection');const fields=Object.hasOwn(s,'shirtOnly')?shirtOnlySelection:Object.hasOwn(s,'blazerId')?blazerSelection:suitSelection;need(Object.keys(s).length===fields.length&&fields.every(k=>Object.hasOwn(s,k)),'Unexpected selection fields');return connection.validateSelection(s);}
  function session(s){
@@ -36,12 +37,12 @@ function create(connection,lock,backend){
   }
   return clone(v);
  }
- try{if(backend){raw=backend.getItem(KEY);if(raw!==null)state=validate(JSON.parse(raw));}}catch(e){blocked='Stored data retained, not reset: '+e.message;}
+ try{if(backend){raw=backend.getItem(KEY);rawReadable=true;if(raw!==null)state=validate(JSON.parse(raw));}}catch(e){blocked='Stored data retained, not reset: '+e.message;}
  // Read-side guard for generation: synchronize valid backing data without
  // writing it; never interpret a load failure as an empty confirmed ledger.
  function readForGeneration(){
-  if(backend){let incoming;try{incoming=backend.getItem(KEY);const v=incoming===null?{schema:SCHEMA,source_lock:lock,revision:0,session:null,events:[]}:validate(JSON.parse(incoming));state=v;raw=incoming;blocked=null;persistent=true;}
-   catch(e){if(incoming!==undefined)raw=incoming;blocked='Wear history unavailable; saved data retained: '+e.message;throw Error(blocked);}}
+  if(backend){let incoming;try{incoming=backend.getItem(KEY);rawReadable=true;const v=incoming===null?{schema:SCHEMA,source_lock:lock,revision:0,session:null,events:[]}:validate(JSON.parse(incoming));state=v;raw=incoming;blocked=null;persistent=true;}
+   catch(e){rawReadable=incoming!==undefined;if(rawReadable)raw=incoming;blocked='Wear history unavailable; saved data retained: '+e.message;throw Error(blocked);}}
   need(!blocked,blocked||'Wear history unavailable');
   return {events:clone(state.events),token:{raw,revision:state.revision,events:JSON.stringify(state.events)}};
  }
@@ -49,16 +50,38 @@ function create(connection,lock,backend){
   if(backend){let incoming;try{incoming=backend.getItem(KEY);}catch(e){throw Error('Cannot verify current wear history: '+e.message);}need(incoming===token.raw,'Wear history/session changed in another tab; generate again. No stale recommendation was accepted.');}
   need(state.revision===token.revision&&JSON.stringify(state.events)===token.events,'History snapshot changed during generation; generate again');return true;
  }
+ async function exclusive(callback){
+  need(typeof callback==='function','A wear/session save operation is required');
+  const token={raw,revision:state.revision,events:JSON.stringify(state.events)},run=()=>{assertCurrent(token);return callback();};
+  // The active app acquires this lock around every mutation. Keep the original
+  // synchronous methods for older integrations; a compare/read alone is not CAS.
+  if(backend){need(root.navigator?.locks?.request,'Cross-tab wear/session saving is unavailable in this browser. Open HEWRS over HTTPS in a browser with Web Locks support. Read and export remain available; nothing was saved.');return root.navigator.locks.request(KEY,{mode:'exclusive'},run);}
+  const work=writeQueue.then(run);writeQueue=work.catch(()=>{});return work;
+ }
  function commit(next){
   need(!blocked,blocked);const v=validate(next),text=JSON.stringify(v);
-  if(backend){try{need(backend.getItem(KEY)===raw,'Storage changed in another tab; reload before writing');backend.setItem(KEY,text);need(backend.getItem(KEY)===text,'Persistent write could not be verified');raw=text;}catch(e){persistent=false;throw Error('No save confirmed: '+e.message);}}
+  if(backend){try{need(backend.getItem(KEY)===raw,'Storage changed in another tab; reload before writing');backend.setItem(KEY,text);need(backend.getItem(KEY)===text,'Persistent write could not be verified');raw=text;persistent=true;}catch(e){persistent=false;throw Error('No save confirmed: '+e.message);}}
   state=v;return clone(state);
  }
  function saveSession(value){session(value);return commit({...clone(state),revision:state.revision+1,session:clone(value)});}
  function addEvent(e){need(!state.events.some(x=>x.id===e.id),'Duplicate event; nothing added');return commit({...clone(state),revision:state.revision+1,events:[...clone(state.events),clone(e)]});}
- function previewImport(text){need(typeof text==='string'&&text.length<=25_000_000,'Backup too large');return validate(JSON.parse(text));}
- function restore(preview){need(!blocked,'Existing invalid data remains preserved; restore into a fresh namespace only');return commit({...validate(preview),revision:state.revision+1});}
- return Object.freeze({key:KEY,readForGeneration,assertCurrent,snapshot:()=>clone(state),status:()=>({persistent:!!backend&&persistent,blocked,scope:'Only this candidate namespace; production history is not read'}),validate,saveSession,addEvent,previewImport,restore,exportText:()=>{if(blocked){need(raw!==null,'Existing saved data could not be read; no backup claimed');return raw;}return JSON.stringify(state,null,2);}});
+ function previewImport(text){
+  need(typeof text==='string'&&text.length<=25_000_000,'Backup too large');const value=validate(JSON.parse(text));
+  previews.set(value,{token:readForGeneration().token,payload:JSON.stringify(value)});return value;
+ }
+ function restore(preview){
+  need(!blocked,'Existing invalid data remains preserved; restore into a fresh namespace only');const reviewed=previews.get(preview);
+  need(reviewed,'Select a validated backup preview before restoring');assertCurrent(reviewed.token);
+  need(JSON.stringify(preview)===reviewed.payload,'Backup changed after preview; select the file again');
+  const result=commit({...validate(preview),revision:state.revision+1});previews.delete(preview);return result;
+ }
+ function exportText(){
+  // Export the current backing record, never a cache left behind by another
+  // tab or a failed read. Invalid but readable bytes remain recoverable.
+  try{readForGeneration();}catch{need(rawReadable&&raw!==null,'Existing saved data could not be read; no backup claimed');return raw;}
+  return JSON.stringify(state,null,2);
+ }
+ return Object.freeze({key:KEY,exclusive,readForGeneration,assertCurrent,snapshot:()=>clone(state),status:()=>({persistent:!!backend&&persistent,blocked,writeLockAvailable:!backend||typeof root.navigator?.locks?.request==='function',scope:'Only this candidate namespace; production history is not read'}),validate,saveSession,addEvent,previewImport,restore,exportText});
 }
 root.HEWRSLocalState=Object.freeze({create,KEY,SCHEMA,date});
 })(globalThis);

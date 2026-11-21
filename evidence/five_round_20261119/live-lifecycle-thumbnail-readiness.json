@@ -1,0 +1,65 @@
+{
+  "schema": "hewrs.live-lifecycle-thumbnail-readiness.v1",
+  "recorded_at_utc": "2026-11-19T11:31:37.900409+00:00",
+  "status": "STRICT_LIVE_RERUN_PASSED",
+  "failed_attempt": {
+    "head": "393231d3a9ba288cd5fe48c465b1c73eda2bfc1e",
+    "run_id": 44513982945,
+    "job_id": 135527509094,
+    "artifact_id": 14525151807,
+    "artifact_zip_sha256": "7f77c48f1dbcbb8ac2ce00bf83b6be2c61c9470ca7960f196a59926f200665f1",
+    "result_sha256": "84daff5ff54b650326dc75ff76f7394fbf9dcb50bcd9a13f474845f2c82daef9",
+    "passed": 184,
+    "failed": 1,
+    "failed_check": "All application requests completed successfully",
+    "failed_requests": [
+      {
+        "url": "https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ui/option-cards/3069ffde3a27f9f6e01563dc5f6eaac3735b6fb111d612264c410dd7eb6bec65.png",
+        "error": "Load request cancelled"
+      }
+    ],
+    "page_errors": [],
+    "http_errors": [],
+    "external_requests": []
+  },
+  "observed_resource": {
+    "registered_identity": "T026",
+    "path": "ui/option-cards/3069ffde3a27f9f6e01563dc5f6eaac3735b6fb111d612264c410dd7eb6bec65.png",
+    "registered_dimensions": [
+      192,
+      224
+    ],
+    "local_file_sha256": "3069ffde3a27f9f6e01563dc5f6eaac3735b6fb111d612264c410dd7eb6bec65"
+  },
+  "source_observation": "The lifecycle harness waits for avatar/runtime readiness, then performs scripted selection changes, reloads and context teardown without waiting for independently mounted card thumbnails. Its original request-failure record has no case, action or timestamp.",
+  "cause_boundary": "A scripted supersession or teardown cancellation is plausible, but the original artifact cannot establish its exact trigger. A cancellation message alone is not treated as proof of a test-only cause.",
+  "correction_contract": [
+    "Bounded readiness for current expected mounted card images before scripted supersession, reload and teardown.",
+    "Strict source/count/decode/dimension/fallback checks.",
+    "Record case, timestamp and phase for request failures.",
+    "Keep all original behavior assertions and fail on every captured request failure or HTTP error; no cancellation allowlist and no retry."
+  ],
+  "application_changed": false,
+  "application_bundle_sha256": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+  "acceptance": "The complete subsequent live workflow passed with the strict network aggregate intact. The old failed attempt remains failed; the exact trigger of its original cancellation is not retroactively asserted.",
+  "accepted_rerun": {
+    "head": "7621ce47446b9b62b022c01bbb35e8e962931d7c",
+    "run_id": 44516353326,
+    "workflow_conclusion": "success",
+    "all_jobs_successful": 7,
+    "webkit_lifecycle_job": 135535591671,
+    "webkit_lifecycle_checks_passed": 185,
+    "webkit_lifecycle_checks_failed": 0,
+    "webkit_lifecycle_image_readiness_passed": 146,
+    "webkit_lifecycle_image_readiness_failed": 0,
+    "all_rejection_assertions_passed": 874,
+    "all_rejection_image_readiness_boundaries_passed": 536,
+    "all_rejection_error_arrays_empty": true,
+    "T026_decoded_successful_observations": 6,
+    "T026_dimensions": [
+      192,
+      224
+    ],
+    "final_evidence": "live-round5-final.json"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schema": "hewrs.five-round-ui-review.v1",
+  "round": 4,
+  "reviewer": "/root/s05_reproduction",
+  "recorded_at": "2026-11-19T07:01:29.987512+00:00",
+  "coverage": {
+    "src/outfit-rejection-ui.js": {
+      "kind": "complete source read",
+      "paths": [
+        "native dialog heading/label association",
+        "checkbox/fieldset labels, explicit scope and applicable controls",
+        "scope conflict and invalid occasion input handling",
+        "500-character combined reason/note boundary without truncation",
+        "captured mutation settings and disabled pending controls",
+        "temporary/permanent distinction, undo and next-generation skip clearing",
+        "manager pagination, normalized display-only legacy copies, import/export busy state"
+      ],
+      "sha256": "d3194747c465b3c22aca7fbf5fe2222fe44539a1734ef5b6e790a69cd832dc5b"
+    },
+    "src/outfit-rejection.css": {
+      "kind": "complete stylesheet read",
+      "paths": [
+        "focus-visible indication",
+        "native control sizing and wrapping",
+        "dialog viewport bounds",
+        "hidden rejected output remains display:none"
+      ],
+      "sha256": "c239153e8ac8403204f663ca87bee23507cab6117dcf48e60d4f7f18b40a13e5"
+    },
+    "src/sheet-layout.js": {
+      "kind": "complete source read",
+      "paths": [
+        "viewport/keyboard dimensions",
+        "pinch zoom exemption",
+        "desktop search vs coarse-pointer Close focus",
+        "listener and animation frame lifetime"
+      ],
+      "sha256": "ad8b20e5546ff388f5475dc6a13f018b178df6b3e19ae5abc19fcea5b1666179"
+    },
+    "src/photo-picker-integration.js": {
+      "kind": "complete source read",
+      "paths": [
+        "approved contextual source identity",
+        "decorative images vs named native buttons",
+        "image-failure fallback",
+        "idempotent observer decoration"
+      ],
+      "sha256": "179f29d38c8a7dbbd6b23bba7b8fc3ae8bad49affce6a3232b5ef35d3835e363"
+    },
+    "src/blazer-picker-preview.js": {
+      "kind": "complete source read",
+      "paths": [
+        "source eligibility",
+        "preserved native choice handlers and accessible names",
+        "conditional current utility route",
+        "suit/blazer visibility and image-failure labels"
+      ],
+      "sha256": "fc2cf20e9beb9e5a5c97cb5e63e653150737b285e0494573b644405cf216e8d7"
+    },
+    "src/source-aware-pickers.js": {
+      "kind": "complete source read",
+      "paths": [
+        "same source capability guard in list, programmatic choose and commit",
+        "no implicit replacement when topwear changes",
+        "exact shirt tie-state capability and explicit No Tie instruction"
+      ],
+      "sha256": "acb64bd2b91b80fcb0c182eb08de805fda452ea2e699c9bfa07db0dfda6e6cd7"
+    },
+    "src/suit-photo-review.js": {
+      "kind": "complete source read",
+      "paths": [
+        "two suit buttons and corrected/previous mode controls",
+        "aria-pressed updates",
+        "current return link",
+        "exact images and source approval wording preserved"
+      ],
+      "sha256": "808fcc367bcd65998e067a6c1d9b47f9e97d7a269749c1f60b3007638dd9f44c"
+    },
+    "src/suit-photo-review.css": {
+      "kind": "complete stylesheet read",
+      "paths": [
+        "focus-visible links/buttons",
+        "44px native button minimum",
+        "mobile image/detail stacking",
+        "text and link wrapping"
+      ],
+      "sha256": "5f06a9da5c75275cd4e3e50f8f83c2feb7bfcde05c82db969b1cd4e29257f6e0"
+    },
+    "src/shirt-picker-preview.css": {
+      "kind": "source rules inspected",
+      "paths": [
+        "focus-visible choice styling",
+        "labels and image-unavailable fallback",
+        "contextual decoration layout"
+      ],
+      "sha256": "84ab53241aeb5e60873a57465efeab7d95fe2f37caeb0708bc00cdf7a6c2f62e"
+    },
+    "src/tie-picker-preview.css": {
+      "kind": "source rules inspected",
+      "paths": [
+        "focus-visible choice styling",
+        "labels and image-unavailable fallback",
+        "native button identity preserved"
+      ],
+      "sha256": "930c4967b877a782f37042829ba503f56be9acf21c2d0a04ba7f012695262235"
+    },
+    "src/application.css": {
+      "kind": "specific modal/picker/presentation rules only",
+      "paths": [
+        "visible focus",
+        "scroll bounds and hidden state",
+        "search text sizing",
+        "button control sizes",
+        "collar/full-image controls"
+      ],
+      "sha256": "f45ceea1448218fbc0feac7b92b05f18ac247045193d316f879af181103ecf34"
+    },
+    "src/outfit-refill-application.js": {
+      "kind": "specific UI functions only",
+      "paths": [
+        "openSheet/dismissSheet focus restoration",
+        "button captured-token error boundary",
+        "openPicker draft/apply/cancel and labels",
+        "showFavorites/saveCurrentFavorite/backup/removal",
+        "storage listeners that refresh a visible Favorites panel"
+      ],
+      "sha256": "78099bdc35a7f4189000a0eb53a4dfee1cea5cf91e9ecbb48683d674c9c66c57"
+    },
+    "src/reviewed-rejection-integration.js": {
+      "kind": "UI controls, render/hide/undo lifecycle only",
+      "paths": [
+        "native modal and labelled selectors",
+        "No Tie/no-jacket exact controls and formality conflict refusal",
+        "close/cancel invalidation and busy-save control lock",
+        "explicit diagnostic vs new unreviewed labels",
+        "review hide scope remains outfit/clothing, as explicitly shown"
+      ],
+      "sha256": "e598414dca714ddf9c06149c4f8af2a40583cbdf6c277ab131f384fdb041f6ff"
+    },
+    "feedback-candidate/reviewed/automatic-image-panel.js": {
+      "kind": "complete source read for UI contract; transport not re-audited",
+      "paths": [
+        "labelled password/consent controls",
+        "optional configured-service gate",
+        "running action/control disabled state",
+        "close cancels request and clears token/consent",
+        "test-only response wording and separate export"
+      ],
+      "sha256": "43dc758765b9a69d73a9e2405d4c07d14f1d4085cc17e8824a41a9ca9c76b796"
+    },
+    "tests/five-round-state-browser.py": {
+      "kind": "complete read-only harness review",
+      "paths": [
+        "same-origin lock barriers and queue observation",
+        "storage-event modal replacement",
+        "real refusal and durable success claims",
+        "held exact image URL cancellation and failure allowlist"
+      ],
+      "sha256": "e49304de2a47f2209e60e225c444bcc8d789ccc08c346e82891ea51d91e8de10"
+    }
+  },
+  "confirmed_application_defects_new_this_round": [],
+  "confirmed_harness_finding": {
+    "file": "tests/five-round-state-browser.py",
+    "defect": "The concurrent Favorites check required a stale-write error message even when the legitimate peer storage event had already replaced the Favorites modal. The central button guard correctly suppresses a closed-panel error, making the old assertion timing-dependent.",
+    "owner": "/root/deployment_audit",
+    "repair_reported": "Accept either the matching recorded refusal, or the exact other-tab-refresh notice with a new non-null Favorites storage event. Still require the first durable record, no second saved claim, explicit retry, and both durable successes.",
+    "validation_limit": "Read-only source review and owner-reported harness edit; no browser run by this reviewer."
+  },
+  "input_and_accessibility_findings": [
+    "Reviewed native buttons/checkboxes/selectors have text or associated labels; decorative thumbnail images are hidden from accessibility while garment IDs/names remain on buttons.",
+    "Both rejection and reviewed dialogs name their heading; rejection errors use alert and results/count messages use status.",
+    "Explicit scope remains authoritative, conflicting diagnoses disable save, and No Tie/no-topwear controls expose only relevant scopes/reasons.",
+    "Reason plus optional-note overflow fails with an explanation; it is not truncated or silently saved under a different scope.",
+    "Rejection mutations disable editable controls and prevent Escape while saving; finally restores the appropriate availability rules.",
+    "Source-aware pickers repeat capability validation during programmatic choose and commit, preserving explicit unsupported selections until the user changes them.",
+    "Picker focus policy keeps coarse-pointer opening from forcing the software keyboard while retaining search focus for desktop input; viewport code does not resize around pinch zoom.",
+    "Current photo utility retains exact approved/previous image identity, updates pressed-state attributes, and returns to the real application.",
+    "The optional automatic-image panel exposes separate consent, disables controls while working and clears its in-memory credential on close."
+  ],
+  "lineage_completion": {
+    "report": "evidence/five_round_20261119/ui-round4-reachability.json",
+    "resolved_modules": 58,
+    "resolved_template_or_alternate_html": 6,
+    "remaining_unexplained_current_browser_load_edges": 0,
+    "inventory_tool": "tools/audit_product_inventory.py",
+    "guard": "Reviewed retained hashes and non-reachability must still match. The report is an explicit versioned input; changed files or newly reachable retained entries stop inventory generation.",
+    "inventory_no_to_review_categories": true,
+    "missing_active_files": []
+  },
+  "source_edits_this_round": [
+    "tools/audit_product_inventory.py"
+  ],
+  "application_source_edits_this_round": [],
+  "verification": [
+    "Executed inventory generation successfully after attaching all64 resolved lineage records.",
+    "No optional broad browser rerun performed. Earlier actual-handler tests are identified in their own rounds rather than recounted as new Round4 passes."
+  ],
+  "limits": [
+    "This is a source and actual-handler-contract review, not an assistive-technology certification.",
+    "No screen-reader or physical keyboard session was executed here; native browser focus/visual behavior still depends on integration artifacts.",
+    "No source photo or rendered collar was visually certified from CI artifacts in this round; those artifacts are pending independent viewing.",
+    "Historical application pages retain their own older behavior when opened directly; they are outside the current UI graph.",
+    "Global asynchronous panel loading was inspected, but no additional behavioral failure was established; speculative timing observations were not labelled fixed defects."
+  ]
+}

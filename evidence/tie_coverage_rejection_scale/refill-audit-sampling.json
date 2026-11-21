@@ -1,0 +1,196 @@
+{
+  "schema": "hewrs.rejection-refill-audit.v1",
+  "base_commit": "69545e85bf4ee0719d29dc81bade011332c4caf8",
+  "synthetic": true,
+  "actual_owner_usage": false,
+  "browser_test": false,
+  "scope": "Actual candidate engine with synthetic in-memory persistence and the native feedback validators.",
+  "checks": [
+    {
+      "name": "Rejecting the whole sampled pool causes a no-match within the bounded search",
+      "passed": true
+    },
+    {
+      "name": "An unscored, unrejected source outfit passes the actual engine when its shirt and tie are anchored",
+      "passed": true
+    }
+  ],
+  "generations": [
+    {
+      "label": "fixed-suit-before-rejections",
+      "milliseconds": 1016.1628089999995,
+      "count": 20,
+      "rejection_events": 0,
+      "active_clothing_rejections": 0,
+      "active_tie_rejections": 0,
+      "ids": [
+        "S10|SUIT_TROUSERS|DS036|NO_TIE|shoe-11|watch-AP09",
+        "S10|SUIT_TROUSERS|DS029|T039|shoe-1|watch-AP09",
+        "S10|SUIT_TROUSERS|DS020|T036|shoe-1|watch-R09",
+        "S10|SUIT_TROUSERS|DS026|T001|shoe-2|watch-R09",
+        "S10|SUIT_TROUSERS|DS035|T014|shoe-2|watch-R11",
+        "S10|SUIT_TROUSERS|DS017|T005|shoe-3|watch-R11",
+        "S10|SUIT_TROUSERS|DS024|T007|shoe-3|watch-R13",
+        "S10|SUIT_TROUSERS|DS004|T016|shoe-7|watch-R13",
+        "S10|SUIT_TROUSERS|DS022|T041|shoe-7|watch-R14",
+        "S10|SUIT_TROUSERS|DS040|NO_TIE|shoe-13|watch-R14",
+        "S10|SUIT_TROUSERS|DS025|T029|shoe-4|watch-AP06",
+        "S10|SUIT_TROUSERS|DS011|T028|shoe-4|watch-AP06",
+        "S10|SUIT_TROUSERS|DS008|T040|shoe-46|watch-AP10",
+        "S10|SUIT_TROUSERS|DS003|T035|shoe-46|watch-AP10",
+        "S10|SUIT_TROUSERS|DS029|T018|shoe-5|watch-AP13",
+        "S10|SUIT_TROUSERS|DS035|T034|shoe-5|watch-AP13",
+        "S10|SUIT_TROUSERS|DS002|T032|shoe-6|watch-P01",
+        "S10|SUIT_TROUSERS|DS044|T020|shoe-6|watch-P01",
+        "S10|SUIT_TROUSERS|DS008|T030|shoe-0|watch-P03",
+        "S10|SUIT_TROUSERS|DS014|T013|shoe-0|watch-P03"
+      ],
+      "tie_ids": [
+        "NO_TIE",
+        "T039",
+        "T036",
+        "T001",
+        "T014",
+        "T005",
+        "T007",
+        "T016",
+        "T041",
+        "NO_TIE",
+        "T029",
+        "T028",
+        "T040",
+        "T035",
+        "T018",
+        "T034",
+        "T032",
+        "T020",
+        "T030",
+        "T013"
+      ],
+      "refill": null,
+      "reason": null,
+      "enumerated": 2212,
+      "source_eligible": 1968,
+      "preference_evaluated": 167,
+      "complete_outfit_shortlist": 167,
+      "bounded_source_review": {
+        "source_eligible": 1968,
+        "scored": 167,
+        "method": "Deterministic exact-ID sample plus best eligible source per topwear/shirt/collar, topwear/tie, physical-trouser and source-profile coverage key.",
+        "exact_owner_approvals_searched_against_full_source": true,
+        "global_optimum_claimed": false
+      },
+      "capacity_fallback_to_full_source": false,
+      "source_capacity_bounds": {
+        "topwear": 20,
+        "shirt": 100,
+        "tie": 49,
+        "pants": 20,
+        "upper_bound": 20,
+        "distinct_scored_trouser_ids": 0,
+        "explanation": "These counts bound the FULL source-eligible pool, before weather, accessory and combined item restrictions."
+      },
+      "rejection_reasons": {}
+    },
+    {
+      "label": "all-sampled-clothing-rejected",
+      "milliseconds": 363.68199099999947,
+      "count": 0,
+      "rejection_events": 167,
+      "active_clothing_rejections": 167,
+      "active_tie_rejections": 0,
+      "ids": [],
+      "tie_ids": [],
+      "refill": null,
+      "reason": "The checked clothing could not be completed with accessories that pass the current selections and eligibility rules.",
+      "enumerated": 2212,
+      "source_eligible": 1968,
+      "preference_evaluated": 167,
+      "complete_outfit_shortlist": 167,
+      "bounded_source_review": {
+        "source_eligible": 1968,
+        "scored": 167,
+        "method": "Deterministic exact-ID sample plus best eligible source per topwear/shirt/collar, topwear/tie, physical-trouser and source-profile coverage key.",
+        "exact_owner_approvals_searched_against_full_source": true,
+        "global_optimum_claimed": false
+      },
+      "capacity_fallback_to_full_source": false,
+      "source_capacity_bounds": {
+        "topwear": 20,
+        "shirt": 100,
+        "tie": 49,
+        "pants": 20,
+        "upper_bound": 20,
+        "distinct_scored_trouser_ids": 0,
+        "explanation": "These counts bound the FULL source-eligible pool, before weather, accessory and combined item restrictions."
+      },
+      "rejection_reasons": {
+        "OWNER_FEEDBACK": 8517,
+        "WATCH_OR_STYLE_LOCK": 167
+      }
+    },
+    {
+      "label": "unscored-witness-0",
+      "milliseconds": 184.61329300000034,
+      "count": 1,
+      "rejection_events": 167,
+      "active_clothing_rejections": 167,
+      "active_tie_rejections": 0,
+      "ids": [
+        "S10|SUIT_TROUSERS|DS036|T041|shoe-1|watch-AP09"
+      ],
+      "tie_ids": [
+        "T041"
+      ],
+      "refill": null,
+      "reason": "Found 1 distinct outfits within source eligibility, locks, weather, one-use tie and two-use other-item limits. No duplicated clothing or relaxed constraint was used.",
+      "enumerated": 1,
+      "source_eligible": 1,
+      "preference_evaluated": 1,
+      "complete_outfit_shortlist": 1,
+      "bounded_source_review": {
+        "source_eligible": 1,
+        "scored": 1,
+        "method": "Deterministic exact-ID sample plus best eligible source per topwear/shirt/collar, topwear/tie, physical-trouser and source-profile coverage key.",
+        "exact_owner_approvals_searched_against_full_source": true,
+        "global_optimum_claimed": false
+      },
+      "capacity_fallback_to_full_source": false,
+      "source_capacity_bounds": {
+        "topwear": 20,
+        "shirt": 20,
+        "tie": 20,
+        "pants": 20,
+        "upper_bound": 20,
+        "distinct_scored_trouser_ids": 0,
+        "explanation": "These counts bound the FULL source-eligible pool, before weather, accessory and combined item restrictions."
+      },
+      "rejection_reasons": {}
+    }
+  ],
+  "duration_seconds": 12.942,
+  "sampling": {
+    "test_only_capture": true,
+    "rankings_unchanged": true,
+    "topwear_id": "suit-9",
+    "raw_source_eligible": 1968,
+    "scored_clothing_keys": 167,
+    "source_eligible_but_unscored": 1801,
+    "initial_options": 20,
+    "rejected_all_scored_clothing": true,
+    "witness": {
+      "selection": {
+        "suitId": "S10",
+        "shirtId": "DS036",
+        "state": "T041",
+        "shoeId": "shoe-1",
+        "watchId": "watch-AP09"
+      },
+      "clothing_key": "S10|SUIT_TROUSERS|DS036|T041",
+      "compatibility_score": 9.419178,
+      "preference_score": 9.142759
+    },
+    "conclusion": "The bounded search can return no match although an unrejected source-eligible complete outfit exists. Extra shirt/tie locks expose a candidate omitted by the original deterministic sample. This deliberately exhausts the sample; it is not a reproduction of failure at 20–30 ordinary rejections."
+  },
+  "complete": true
+}

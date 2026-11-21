@@ -10,7 +10,8 @@
 const W=996,H=2748,oldBlazer=root.HEWRSBlazerRenderer,oldShirt=root.HEWRSShirtOnlyRenderer;
 function create(canvas,connection,resolveUrl,kind){
  const inherited=(kind==='blazer'?oldBlazer:oldShirt).create(canvas,connection,resolveUrl);
- const d=connection.batch10;canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d',{willReadFrequently:true});let epoch=0;const cache=new Map();
+ const d=connection.batch10;canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d',{willReadFrequently:true});let epoch=0;
+ const loads=root.HEWRSRenderImageLoader.create({limit:16,resolveUrl,width:W,height:H,missing:'Batch source failed to load; no garment substitution',dimensions:'Wrong batch source dimensions'});
  const applies=s=>!!s&&d.ids.includes(s.shirtId);
  function plan(s){if(!applies(s))return inherited.plan(s);connection.validateSelection(s);
   if(kind==='blazer'&&!connection.blazerConnection.isBlazer(s)||kind==='shirt-only'&&!connection.shirtOnlyConnection.isShirtOnly(s))throw Error('Wrong batch renderer mode');
@@ -24,12 +25,10 @@ function create(canvas,connection,resolveUrl,kind){
   return p;
  }
  function load(v){if(!v||v.rect?.join(',')!=='0,0,996,2748'||!Object.hasOwn(connection.assetPaths,v.sha256))throw Error('Unbound batch source');
-  if(cache.has(v.sha256)){const x=cache.get(v.sha256);cache.delete(v.sha256);cache.set(v.sha256,x);return x;}
-  const p=new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>im.naturalWidth===W&&im.naturalHeight===H?resolve(im):reject(Error('Wrong batch source dimensions'));im.onerror=()=>reject(Error('Batch source failed to load; no garment substitution'));try{im.src=resolveUrl(v);}catch(e){reject(e);}});
-  cache.set(v.sha256,p);p.catch(()=>{if(cache.get(v.sha256)===p)cache.delete(v.sha256);});while(cache.size>16)cache.delete(cache.keys().next().value);return p;
+  return loads.load(v);
  }
- async function render(s){const token=++epoch;inherited.cancel();if(!applies(s))return inherited.render(s);const p=plan(s),descs=[...(p.rear?[p.rear]:[]),p.avatar,p.shoes,p.pants,p.body,...(p.tie?[p.tie]:[]),...p.leaves,...p.hands,...p.cuffs,...(p.jacket?[p.jacket,p.ownership]:[])];
-  const images=await Promise.all(descs.map(load));if(token!==epoch)return {cancelled:true};const at=v=>images[descs.findIndex(x=>x.sha256===v.sha256)];
+ async function render(s){const token=++epoch;loads.cancel();inherited.cancel();if(!applies(s))return inherited.render(s);const p=plan(s),descs=[...(p.rear?[p.rear]:[]),p.avatar,p.shoes,p.pants,p.body,...(p.tie?[p.tie]:[]),...p.leaves,...p.hands,...p.cuffs,...(p.jacket?[p.jacket,p.ownership]:[])];
+  const images=await Promise.all(descs.map(load)).catch(error=>{if(token!==epoch)return null;throw error;});if(token!==epoch||!images)return {cancelled:true};const at=v=>images[descs.findIndex(x=>x.sha256===v.sha256)];
   const frame=document.createElement('canvas'),shirt=document.createElement('canvas');frame.width=shirt.width=W;frame.height=shirt.height=H;const fc=frame.getContext('2d',{willReadFrequently:true}),sc=shirt.getContext('2d',{willReadFrequently:true});
   try{
    let own=null;if(p.ownership){sc.drawImage(at(p.ownership),0,0);own=sc.getImageData(0,0,W,H).data;sc.clearRect(0,0,W,H);}
@@ -39,7 +38,7 @@ function create(canvas,connection,resolveUrl,kind){
    if(token!==epoch)return {cancelled:true};ctx.putImageData(fc.getImageData(0,0,W,H),0,0);return {status:'ready',selection:structuredClone(s),source_assembly:p.reconstructed?(d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH5')?'BATCH5_SOURCE_RECONSTRUCTION_CANDIDATE':d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH4')?'BATCH4_SOURCE_RECONSTRUCTION_CANDIDATE':d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH3')?'BATCH3_SOURCE_RECONSTRUCTION_CANDIDATE':d.shirts[s.shirtId].modes.no_tie.base.role.includes('BATCH2')?'BATCH2_PDF_RECONSTRUCTION_CANDIDATE':'BATCH1_PDF_RECONSTRUCTION_CANDIDATE'):p.ds023Edges?'V1163_DS023_EDGE_MATTES':p.ds023Cleanup?'V1162_DS023_ALPHA_COMPOSITE':'V116_BATCH16_SOURCE_REGISTRATION',source_registration:d.shirts[s.shirtId].source_sha256,derivative_not_original:true};
   }finally{frame.width=frame.height=shirt.width=shirt.height=1;}
  }
- return Object.freeze({plan,render,cancel(){epoch++;inherited.cancel();},stats:()=>({...inherited.stats(),batch10Cache:cache.size,maxBatch10Images:16})});
+ return Object.freeze({plan,render,cancel(){epoch++;loads.cancel();inherited.cancel();},stats:()=>({...inherited.stats(),batch10Cache:loads.size,maxBatch10Images:16})});
 }
 root.HEWRSBatch10Renderer=Object.freeze({implementationVersion:'1.16-batch16'});
 root.HEWRSBlazerRenderer=Object.freeze({create:(c,n,u)=>create(c,n,u,'blazer')});
