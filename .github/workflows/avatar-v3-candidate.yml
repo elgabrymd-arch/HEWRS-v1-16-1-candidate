@@ -39,10 +39,20 @@ jobs:
           python - <<'PY'
           import base64, io
           from PIL import Image
-          image = Image.open('evidence/avatar_v3/avatar-v2-v3-geometry-compare.png')
-          image.thumbnail((620,800))
+          from PIL import ImageDraw
+          left = Image.open('assets/a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d.png').convert('RGBA')
+          right = Image.open('evidence/avatar_v3/avatar-v3.png').convert('RGBA')
+          sheet = Image.new('RGB',(992,800),'#eeeeee')
+          for n, im in enumerate((left,right)):
+              tile = Image.new('RGBA',(496,800),'#eeeeee')
+              tile.alpha_composite(im.crop((250,0,746,800)))
+              sheet.paste(tile.convert('RGB'),(n*496,0))
+          ImageDraw.Draw(sheet).text((12,12),'V2 original',fill='black',stroke_width=2,stroke_fill='white')
+          ImageDraw.Draw(sheet).text((508,12),'V3 candidate',fill='black',stroke_width=2,stroke_fill='white')
+          sheet.save('evidence/avatar_v3/head-neck-closeup.png',format='PNG',optimize=True)
+          sheet.thumbnail((800,650))
           buf = io.BytesIO()
-          image.save(buf, format='PNG', optimize=True)
+          sheet.save(buf, format='PNG', optimize=True)
           print('AVATAR_V3_PREVIEW_B64='+base64.b64encode(buf.getvalue()).decode())
           PY
       - name: Assert no modification to V2, wardrobe, app or stored-state logic
