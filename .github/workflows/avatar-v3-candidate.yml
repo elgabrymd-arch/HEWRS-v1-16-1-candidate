@@ -11,6 +11,10 @@ on:
       - 'tests/avatar-v3*'
   workflow_dispatch:
 
+concurrency:
+  group: avatar-v3-${{ github.ref_name }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -42,6 +46,5 @@ jobs:
           path: |
             evidence/avatar_v3/
             data/avatar-v3-candidate.json
-            assets/*.png
           if-no-files-found: error
           retention-days: 30
