@@ -1,0 +1,27 @@
+name: Issue19 B01 mobile layout diagnostic
+on:
+  push:
+    branches: [test/issue19-b01-mobile-diagnostic]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - run: python tests/issue19-layout-diagnostic.py --browser '${{ matrix.browser }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ISSUE19_B01_LAYOUT_${{ matrix.browser }}
+          path: evidence/issue19-layout-diagnostic/${{ matrix.browser }}/
+          retention-days: 7
