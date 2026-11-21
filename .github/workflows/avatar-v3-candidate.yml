@@ -1,0 +1,42 @@
+name: HEWRS avatar V3 isolated source survey
+
+on:
+  push:
+    branches:
+      - feat/avatar-v3-proportions-pose-20261120
+    paths:
+      - 'tools/analyze_avatar_v3.py'
+      - '.github/workflows/avatar-v3-candidate.yml'
+      - 'tools/build_avatar_v3.py'
+      - 'tests/avatar-v3*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  isolated-source-and-pose-geometry:
+    name: Inspect immutable V2 asset before designing V3
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install candidate inspection dependency
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Analyze frozen avatar source and source asset registrations
+        run: python tools/analyze_avatar_v3.py
+      - name: Assert no modification to V2, wardrobe, app or stored-state logic
+        run: |
+          git diff --exit-code HEAD -- assets/ assemblies/ data/inputs.json data/inputs.js src/ runtime/ index.html app.html
+          git status --short
+      - name: Publish isolated visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_AVATAR_V3_SOURCE_SURVEY
+          path: evidence/avatar_v3/
+          if-no-files-found: error
+          retention-days: 30
