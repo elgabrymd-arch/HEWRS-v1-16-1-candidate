@@ -9,15 +9,17 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {spawnSync}=require('node:child_process');
 const {load,selection,digest,ROOT,WIDTH:W,HEIGHT:H}=require('./avatar-v3-fit-runtime.cjs');
 const MODULE='src/avatar-v3-shirt-collar-fit.js';
-const STRIPS=[[330,355,92,260],[575,355,91,260]],CORRIDOR=[422,355,153,260];
+const STRIPS=[[330,355,92,260],[575,355,91,260]],TOP_CENTER=[422,420,153,47],CORRIDOR=[422,467,153,148],FACE=[422,0,153,420];
 const CASES=[
  ['DS034','NO_TIE','S05'],['DS034','T019','S05'],
  ['DS038','NO_TIE','S05'],['DS038','T047','S05'],
  ['DS013','T001','B03'],['DS040','NO_TIE','shirt-only'],
- ['DS026','T047','S05'],['DS026','T047','B03'],['DS035','T001','B15']
+ ['DS026','T047','S05'],['DS026','T047','B03'],['DS035','T001','B15'],
+ ['DS002','T001','B03'],['DS002','T001','S05'],['DS004','T019','B03'],['DS005','T047','shirt-only'],
+ ['DS012','T001','B03'],['DS032','NO_TIE','S05'],['DS033','T017','shirt-only'],['DS046','NO_TIE','B03']
 ];
 const plain=value=>JSON.parse(JSON.stringify(value));
-const allowed=(x,y)=>STRIPS.some(([a,b,w,h])=>x>=a&&x<a+w&&y>=b&&y<b+h);
+const allowed=(x,y,tied)=>[...STRIPS,...(tied?[TOP_CENTER]:[])].some(([a,b,w,h])=>x>=a&&x<a+w&&y>=b&&y<b+h);
 function expectedSources(h,s,p){
  if(h.connection.continuousShirts.ids.includes(s.shirtId))return [p.garment.body.source.sha256];
  if(Array.isArray(p)){
@@ -33,8 +35,9 @@ async function single(index){
  assert.equal(after.metadata.kind,'EXACT_SHIPPED_RUNTIME_PREFIX');
  assert.equal(before.metadata.runtime_sha256,after.metadata.runtime_sha256,'same current compiled runtime');
  const spec=plain(after.g.HEWRSAvatarV3ShirtCollarFit.spec);
- assert.equal(spec.revision,'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_1');
+ assert.equal(spec.revision,'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_2');
  assert.deepEqual(spec.modified_strips,STRIPS,'independent maximum collar envelopes');
+ assert.deepEqual(spec.top_center_bounds,TOP_CENTER,'neckband cleanup remains below the approved chin and above the knot');
  assert.deepEqual(spec.protected_knot_corridor,CORRIDOR,'complete full tie knot corridor');
  assert.deepEqual(spec.active_ids,[...after.connection.limits.shirt_ids].sort(),'all 50 active shirt identities');
  assert.equal(spec.active_ids.length,50);assert.equal(spec.active_ids.includes('DS049'),false);
@@ -45,12 +48,13 @@ async function single(index){
  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
   const i=(y*W+x)*4;
   if(original.rgba[i]===fitted.rgba[i]&&original.rgba[i+1]===fitted.rgba[i+1]&&original.rgba[i+2]===fitted.rgba[i+2]&&original.rgba[i+3]===fitted.rgba[i+3])continue;
-  changed++;if(!allowed(x,y))outside++;
+  changed++;if(!allowed(x,y,s.state!=='NO_TIE'))outside++;
  }
  assert.ok(changed>0,'selected collar correction is active');
- assert.equal(outside,0,'every pixel outside the independent lateral strips remains exact');
+ assert.equal(outside,0,'every pixel outside the independent lateral strips and tied neckband remains exact');
  const cropHash=(h,r)=>digest(Buffer.from(h.canvas.getContext('2d').getImageData(...r).data));
- assert.equal(cropHash(before,CORRIDOR),cropHash(after,CORRIDOR),'final compiled tie knot and central neck remain byte-exact after collar correction');
+ assert.equal(cropHash(before,CORRIDOR),cropHash(after,CORRIDOR),'final compiled tie knot and body remain byte-exact after collar correction');
+ assert.equal(cropHash(before,FACE),cropHash(after,FACE),'approved central face and chin above row420 remain byte-exact');
  const stats=plain(after.renderer.stats().collarFit),expected=plain(expectedSources(after,s,fitted.plan));
  assert.equal(stats.shirt_id,s.shirtId);assert.equal(stats.topwear_id,s.suitId||s.blazerId||null);
  assert.equal(stats.mode,s.state==='NO_TIE'?'no_tie':'tied');
@@ -76,7 +80,7 @@ async function single(index){
   assert.equal(digest(Buffer.from(after.canvas.getContext('2d').getImageData(0,0,W,H).data)),committed,'cancelled correction retains complete previous pixels');
  }
  console.log('COLLAR_CASE='+JSON.stringify({selection:s,changed_pixels:changed,outside_strip_changes:outside,
-  protected_knot_sha256:cropHash(after,CORRIDOR),source_hashes:expected,source_capture:stats.source_capture,
+  protected_knot_sha256:cropHash(after,CORRIDOR),protected_face_sha256:cropHash(after,FACE),source_hashes:expected,source_capture:stats.source_capture,
   stand_top_rows:stats.stand_top_rows,front_source_top_rows:stats.front_source_top_rows,
   runtime_sha256:after.metadata.runtime_sha256}));
 }
@@ -91,6 +95,6 @@ async function main(){
   records.push(JSON.parse(line.slice('COLLAR_CASE='.length)));
  }
  console.log('AVATAR_V3_SHIRT_COLLAR_FIT='+JSON.stringify({status:'PASS_COMPILED_COLLAR_SCOPE_AND_SOURCES_NOT_VISUAL_APPROVAL',
-  cases:records.length,independent_strips:STRIPS,protected_knot_corridor:CORRIDOR,records}));
+  cases:records.length,independent_strips:STRIPS,tied_neckband_bounds:TOP_CENTER,protected_face:FACE,protected_knot_corridor:CORRIDOR,records}));
 }
 main().catch(error=>{console.error(error.stack||error);process.exitCode=1;});

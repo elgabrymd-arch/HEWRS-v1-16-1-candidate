@@ -28,6 +28,7 @@ const DAMAGED_LEFT=new Set([
 const spec=Object.freeze({revision:'AVATAR_V3_CONCEALED_CUFFS_2',canvas:Object.freeze([W,H]),
  bounds:REGIONS,source_rows:Object.freeze([Y0,SOURCE_END]),
  hand_source_sha256:HANDS,source_preserving:true,shirt_only:'exact_pass_through',
+ opaque_hand_pixels:'inherited_finished_frame_exact',
  method:'selected-jacket-lower-sleeve-registration-to-original-wrist-cap',
  before_approved_arm_pose:false,approved_pose_applied_once_to_sources:true,
  source_matte_repair_jackets:Object.freeze([...DAMAGED_LEFT]),
@@ -156,8 +157,21 @@ function fitted(jacket,hands,sourceHash){
  // Original approved hands receive the exact approved pose once. Copy the
  // resulting source pixels, never a second pose, fitted or repainted hand.
  for(const hand of h){const hc=canvas();hc.getContext('2d').putImageData(hand,0,0);ctx.drawImage(hc,0,0);clear(hc);}
- const result=REGIONS.map(([x,y,w,h])=>ctx.getImageData(x,y,w,h));clear(c);
- return {regions:result,details};
+ const result=REGIONS.map(([x,y,w,h])=>ctx.getImageData(x,y,w,h));
+ // The finished inherited frame has already posed the full composition.
+ // Posing isolated source hands can differ from that composition by one
+ // premultiplied-alpha rounding step, even at a resulting opaque pixel.
+ // Keep the inherited pixel at every opaque hand location instead of
+ // replacing it with a separately composited source-hand approximation.
+ const opaqueHands=REGIONS.map(([x,y,w,height])=>{
+  const mask=new Uint8Array(w*height);
+  for(let row=0;row<height;row++)for(let col=0;col<w;col++){
+   const at=((y+row)*W+x+col)*4+3;
+   mask[row*w+col]=h.some(hand=>hand.data[at]===255)?1:0;
+  }
+  return mask;
+ });
+ clear(c);return {regions:result,opaqueHands,details};
 }
 function create(visible,connection,options={}){
  need(connection.avatarV3?.hands?.join(',')===HANDS.join(','),'approved V3 hands are required');
@@ -188,8 +202,17 @@ function create(visible,connection,options={}){
    const result=await engine.render(input);if(token!==epoch||result?.cancelled)return {cancelled:true};
    const selected=connection.validateSelection(input),p=garment(selected),patch=p?await correction(p):null;
    if(token!==epoch)return {cancelled:true};
-   const frame=off.getContext('2d',{willReadFrequently:true}).getImageData(0,0,W,H);vc.putImageData(frame,0,0);
-   if(patch)for(let n=0;n<REGIONS.length;n++)vc.putImageData(patch.regions[n],REGIONS[n][0],REGIONS[n][1]);
+   const frame=off.getContext('2d',{willReadFrequently:true}).getImageData(0,0,W,H);
+   if(patch)for(let n=0;n<REGIONS.length;n++){
+    const [x,y,w,height]=REGIONS[n],source=patch.regions[n].data,hand=patch.opaqueHands[n];
+    for(let row=0;row<height;row++)for(let col=0;col<w;col++){
+     const p=row*w+col;if(hand[p])continue;
+     const to=((y+row)*W+x+col)*4,from=p*4;
+     frame.data[to]=source[from];frame.data[to+1]=source[from+1];
+     frame.data[to+2]=source[from+2];frame.data[to+3]=source[from+3];
+    }
+   }
+   vc.putImageData(frame,0,0);
    for(const key of Object.keys(visible.dataset))if(!Object.hasOwn(off.dataset,key))delete visible.dataset[key];
    Object.assign(visible.dataset,off.dataset,{loading:'false'});
    if(patch)visible.dataset.avatarV3Cuffs='concealed';else delete visible.dataset.avatarV3Cuffs;

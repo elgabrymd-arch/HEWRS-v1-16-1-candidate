@@ -454,7 +454,7 @@ def main():
             if issue19:
                 fit = page.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec,tie:globalThis.HEWRSAvatarV3TieFit?.spec})")
                 check('Published Issue 19 runtime contains all three source-bound fit modules',
-                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_1'
+                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_2'
                       and fit.get('cuff', {}).get('revision') == 'AVATAR_V3_CONCEALED_CUFFS_2'
                       and fit.get('tie', {}).get('revision') == 'AVATAR_V3_TIE_FIT_1', fit)
                 issue19_fidelity = page.evaluate('()=>HEWRSApp.connection.tieFidelity.data')

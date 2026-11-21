@@ -37,6 +37,7 @@ V3_SOURCES = {
 # Independent maximum correction envelopes. These are deliberately separate
 # from runtime declarations; widening a runtime transform cannot widen a test.
 COLLAR_RECTS = ((330, 355, 422, 615), (575, 355, 666, 615))
+TIED_NECKBAND_RECT = (422, 420, 575, 467)
 TIE_RECT = (422, 467, 575, 1251)
 CUFF_RECTS = ((20, 1180, 260, 1426), (736, 1180, 976, 1426))
 DETAILS = {'collar': (248, 300, 748, 800), 'cuffs': (75, 1250, 921, 1625),
@@ -103,6 +104,7 @@ def change_check(old, new, selected, hand_mask):
     draw = ImageDraw.Draw(permitted)
     rectangles = list(COLLAR_RECTS)
     if selected['state'] != 'NO_TIE':
+        rectangles.append(TIED_NECKBAND_RECT)
         rectangles.append(TIE_RECT)
     if not selected.get('shirtOnly'):
         rectangles.extend(CUFF_RECTS)
@@ -110,10 +112,22 @@ def change_check(old, new, selected, hand_mask):
         draw.rectangle((left, top, right - 1, bottom - 1), fill=255)
     forbidden = ImageChops.subtract(changed, permitted)
     hands = ImageChops.multiply(changed, hand_mask)
+    hand_points = []
+    if hands.getbbox():
+        left, top, right, bottom = hands.getbbox()
+        for y in range(top, bottom):
+            for x in range(left, right):
+                if hands.getpixel((x, y)):
+                    hand_points.append({'xy': [x, y], 'before': old.getpixel((x, y)), 'after': new.getpixel((x, y))})
+                    if len(hand_points) >= 12:
+                        break
+            if len(hand_points) >= 12:
+                break
     return {'changed_pixels': changed.histogram()[255], 'changed_bbox': changed.getbbox(),
             'outside_allowed_pixels': forbidden.histogram()[255],
             'outside_allowed_bbox': forbidden.getbbox(),
             'opaque_hand_pixels_changed': hands.histogram()[255],
+            'opaque_hand_difference_samples': hand_points,
             'permitted_rectangles_xyxy': rectangles}
 
 
@@ -128,8 +142,16 @@ HAND_MASK = r'''async()=>{
  return c.toDataURL('image/png');
 }'''
 
+# The shared historical helper closes B01's reviewed dialog after its native
+# capture. Keep that exact rendered surface open until THIS test has captured
+# the phone screen and measured it at each viewport width.
+_REVIEW_CLOSE = 'if(reviewed)HEWRSReviewedIntegration.close();'
+assert FIT.FRAME.count(_REVIEW_CLOSE) == 1, 'Reviewed mobile capture lifecycle anchor differs'
+_OPEN_REVIEW_FRAME = FIT.FRAME.replace(_REVIEW_CLOSE, '')
 FIT_FRAME = r'''async input=>{
- const captured=await (''' + FIT.FRAME + r''')(input),s=input.selected,c=HEWRSApp.connection;
+ const captured=await (''' + _OPEN_REVIEW_FRAME + r''')(input),s=input.selected,c=HEWRSApp.connection;
+ const surface=document.getElementById(s.blazerId==='B01'?'rd-canvas':'avatar'),face=surface.getContext('2d').getImageData(422,0,153,420).data;
+ captured.face_and_chin_sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',face)),x=>x.toString(16).padStart(2,'0')).join('');
  const targets=[];
  function visit(value){if(!value||typeof value!=='object')return;
   if(value.avatar_v3_tie_fit)targets.push({sha256:value.sha256,...value.avatar_v3_tie_fit});
@@ -285,15 +307,17 @@ def run(args):
             features = after.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec||null,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec||null,tie:globalThis.HEWRSAvatarV3TieFit?.spec||null})")
             check('All three coordinated fit corrections are installed', all(features.values()), features)
             check('All 50 collars use the bounded V3 registration contract',
-                  features['collar']['revision'] == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_1'
+                  features['collar']['revision'] == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_2'
                   and features['collar']['active_ids'] == SHIRTS
                   and features['collar']['bounds'] == [330, 355, 336, 260]
                   and features['collar']['modified_strips'] == [[330, 355, 92, 260], [575, 355, 91, 260]]
-                  and features['collar']['protected_knot_corridor'] == [422, 355, 153, 260])
+                  and features['collar']['top_center_bounds'] == [422, 420, 153, 47]
+                  and features['collar']['protected_knot_corridor'] == [422, 467, 153, 148])
             check('Concealed cuffs use bounded selected-jacket sleeves and preserve shirt-only',
                   features['cuff']['revision'] == 'AVATAR_V3_CONCEALED_CUFFS_2'
                   and features['cuff']['bounds'] == [[20, 1180, 240, 246], [736, 1180, 240, 246]]
-                  and features['cuff']['shirt_only'] == 'exact_pass_through')
+                  and features['cuff']['shirt_only'] == 'exact_pass_through'
+                  and features['cuff']['opaque_hand_pixels'] == 'inherited_finished_frame_exact')
             report['fit_contracts'] = features
             report['runtime'] = after.evaluate("()=>document.querySelector('script[src^=\"runtime/\"]').getAttribute('src')")
             fidelity = after.evaluate('()=>HEWRSApp.connection.tieFidelity.data')
@@ -305,7 +329,9 @@ def run(args):
                 check('All permitted shirt and tie plans in these routes succeed', plans['accepted'] == expected, plans)
                 report['selection_plan_coverage'] = plans
             hand_raw = base64.b64decode(after.evaluate(HAND_MASK).split(',', 1)[1])
-            hand_mask = Image.open(io.BytesIO(hand_raw)).getchannel('A').point(lambda alpha: 255 if alpha == 255 else 0).filter(ImageFilter.MinFilter(3))
+            hand_alpha = Image.open(io.BytesIO(hand_raw)).getchannel('A')
+            hand_mask = hand_alpha.point(lambda alpha: 255 if alpha == 255 else 0)
+            hand_shape = hand_alpha.point(lambda alpha: 255 if alpha else 0)
             report['opaque_hand_mask_sha256'] = digest(hand_mask.tobytes())
             old_state, new_state = before.evaluate(FIT.PROTECTED), after.evaluate(FIT.PROTECTED)
             wrist_references = {}
@@ -345,14 +371,25 @@ def run(args):
                 check(name + ': corrections stay inside independent fit boundaries', differences['outside_allowed_pixels'] == 0, differences)
                 check(name + ': approved opaque hand pixels remain exact', differences['opaque_hand_pixels_changed'] == 0, differences)
                 check(name + ': approved head, legs and footwear remain exact', old['head_sha256'] == new['head_sha256'] and old['lower_sha256'] == new['lower_sha256'])
-                wrists = [digest(new_image.crop(rect).tobytes()) for rect in CUFF_RECTS]
+                check(name + ': approved central face and chin above row420 remain exact', old['face_and_chin_sha256'] == new['face_and_chin_sha256'])
                 if selected.get('shirtOnly'):
-                    check(name + ': shirt-only sleeves stay exact', wrists == [digest(old_image.crop(rect).tobytes()) for rect in CUFF_RECTS])
+                    check(name + ': shirt-only sleeves stay exact',
+                          [digest(new_image.crop(rect).tobytes()) for rect in CUFF_RECTS]
+                          == [digest(old_image.crop(rect).tobytes()) for rect in CUFF_RECTS])
                 else:
+                    # The original fully composed hand pixels are retained
+                    # exactly above. Test shirt-independent jacket cloth
+                    # separately from its hand silhouette; browser rounding
+                    # in preserved hand pixels is not a fabric substitution.
+                    wrists = []
+                    for rect in CUFF_RECTS:
+                        cloth = new_image.crop(rect)
+                        cloth.paste((0, 0, 0, 0), (0, 0), hand_shape.crop(rect))
+                        wrists.append(digest(cloth.tobytes()))
                     key = row['mode']
                     if key not in wrist_references:
                         wrist_references[key] = wrists
-                    check(name + ': concealed cuffs do not depend on shirt or tie choice', wrists == wrist_references[key])
+                    check(name + ': concealed sleeve cloth does not depend on shirt or tie choice', wrists == wrist_references[key])
                 check(name + ': render preserves saved records and correct garment card',
                       all(record['state_unchanged'] and record['photos_decoded'] and record['card_shirt'] == selected['shirtId']
                           and record['card_tie'] == (None if selected['state'] == 'NO_TIE' else selected['state']) for record in (old, new)))
@@ -360,13 +397,28 @@ def run(args):
                       new['layout']['viewport'] == 390 and new['layout']['width'] <= 391 and new['layout']['left'] >= -1
                       and new['layout']['right'] <= 391 and new['layout']['height'] > 0, new['layout'])
                 if row['mode'] not in phone_modes:
+                    if row['mode'] == 'B01':
+                        check(name + ': B01 mobile evidence retains its actual reviewed render',
+                              after.evaluate("()=>document.getElementById('rd-dialog').open&&document.getElementById('rd-canvas').dataset.status==='ready'"))
+                        after.locator('#rd-canvas').scroll_into_view_if_needed()
                     after.screenshot(path=str(output / 'phone' / (name + '-390.png')), full_page=True)
                     for width in (320, 430, 768):
                         after.set_viewport_size({'width': width, 'height': 844})
-                        geometry = after.evaluate("()=>({viewport:innerWidth,width:document.documentElement.scrollWidth})")
-                        check(name + f': {width}px presentation has no horizontal overflow', geometry['width'] <= width + 1, geometry)
+                        geometry = after.evaluate("""reviewed=>{
+                          const canvas=document.getElementById(reviewed?'rd-canvas':'avatar'),rect=canvas.getBoundingClientRect(),dialog=document.getElementById('rd-dialog');
+                          return {viewport:innerWidth,width:document.documentElement.scrollWidth,canvas_left:rect.left,canvas_right:rect.right,canvas_height:rect.height,
+                            reviewed_dialog_open:!!dialog?.open,dialog_width:reviewed?dialog.clientWidth:null,dialog_scroll_width:reviewed?dialog.scrollWidth:null};
+                        }""", row['mode'] == 'B01')
+                        check(name + f': {width}px actual outfit presentation has no horizontal overflow',
+                              geometry['width'] <= width + 1 and geometry['canvas_left'] >= -1
+                              and geometry['canvas_right'] <= width + 1 and geometry['canvas_height'] > 0
+                              and (row['mode'] != 'B01' or (geometry['reviewed_dialog_open']
+                                   and geometry['dialog_scroll_width'] <= geometry['dialog_width'] + 1)), geometry)
                     after.set_viewport_size({'width': 390, 'height': 844})
                     phone_modes.add(row['mode'])
+                if row['mode'] == 'B01':
+                    before.evaluate('()=>HEWRSReviewedIntegration.close()')
+                    after.evaluate('()=>HEWRSReviewedIntegration.close()')
                 captures.append({**row, 'original_rgba_sha256': old['full_sha256'], 'candidate_rgba_sha256': new['full_sha256'],
                                  'original_source_binding_sha256': old['source_binding_sha256'],
                                  'candidate_source_binding_sha256': new['source_binding_sha256'],

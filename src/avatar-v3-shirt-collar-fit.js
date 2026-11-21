@@ -1,21 +1,20 @@
 /* AVATAR_V3 neckline fitting. Original garment files and identifiers remain
  * immutable. Only the selected shirt's own registered cloth supplies its
- * neckline; the selected jacket remains the final occluder. The rear stand is
- * behind the approved avatar, so this never reshapes the head or neck.
+ * neckline; the selected jacket remains the final occluder. The original
+ * approved avatar is composited without resampling or geometry changes.
  */
 (function(root){'use strict';
 const prior=root.HEWRSAtomicRenderer,W=996,H=2748;
 const X=330,Y=355,CW=336,CH=260,BOTTOM=Y+CH;
 const IDS=Object.freeze(Array.from({length:51},(_,n)=>'DS'+String(n+1).padStart(3,'0')).filter(id=>id!=='DS049'));
-const SPEC=Object.freeze({revision:'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_1',active_ids:IDS,
+const SPEC=Object.freeze({revision:'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_2',active_ids:IDS,
  bounds:Object.freeze([X,Y,CW,CH]),native_canvas:Object.freeze([W,H]),
  neckband_reveal:7,knot_anchor:Object.freeze([498,467]),
  method:'continuous selected-shirt-source collar registration to selected jacket neck',
- modified_strips:Object.freeze([[330,355,92,260],[575,355,91,260]]),protected_knot_corridor:Object.freeze([422,355,153,260]),original_sources_modified:false,avatar_geometry_modified:false});
+ modified_strips:Object.freeze([[330,355,92,260],[575,355,91,260]]),top_center_bounds:Object.freeze([422,420,153,47]),protected_knot_corridor:Object.freeze([422,467,153,148]),original_sources_modified:false,avatar_geometry_modified:false});
 const need=(v,m)=>{if(!v)throw Error('V3 shirt collar: '+m);};
 function canvas(w=W,h=H){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
 function release(c){c.width=c.height=1;}
-function polygon(ctx,lines){ctx.beginPath();for(const line of lines){ctx.moveTo(...line[0]);for(const p of line.slice(1))ctx.lineTo(...p);ctx.closePath();}}
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)),smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t);};
 function create(visible,connection,options={}){
  need(connection.avatarV3?.sha256==='4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93','approved V3 avatar required');
@@ -43,18 +42,40 @@ function create(visible,connection,options={}){
  function draw(ctx,d,images){if(!d)return;const image=images.get(d.sha256);need(image,'missing registered source '+d.sha256);if(!d.display_alpha_mask){ctx.drawImage(image,-X,-Y);return;}
   const c=canvas(CW,CH),cc=c.getContext('2d');cc.drawImage(image,-X,-Y);cc.globalCompositeOperation='destination-in';cc.drawImage(images.get(d.display_alpha_mask.sha256),-X,-Y);ctx.drawImage(c,0,0);release(c);
  }
+ function cleanNativeMatte(ctx,fit,images,shirtId){
+  // These four solid dark shirts share a registered-photo matte defect:
+  // opaque white background survives at the outer body collar edge. Their
+  // clean, original collar leaves supply the replacement pixels. Patterned
+  // garments and all original image files are deliberately unaffected.
+  if(!['DS012','DS032','DS033','DS046'].includes(shirtId))return 0;
+  const c=canvas(CW,CH),cc=c.getContext('2d',{willReadFrequently:true});for(const d of fit.parts.slice(1))draw(cc,d,images);
+  const leaf=cc.getImageData(0,0,CW,CH).data,body=ctx.getImageData(0,0,CW,CH),data=body.data;
+  const at=(x,y)=>((y-Y)*CW+x-X)*4,rows=[[],[]];
+  for(let side=0;side<2;side++)for(let y=Y;y<490;y++){
+   const xs=[];for(let x=side?575:350;x<(side?650:422);x++){const q=at(x,y);if(leaf[q+3]>=248&&Math.max(leaf[q],leaf[q+1],leaf[q+2])<100)xs.push(x);}
+   if(xs.length)rows[side].push({y,xs});
+  }
+  let repaired=0;
+  for(let side=0;side<2;side++)for(let y=Y;y<490;y++)for(let x=side?575:350;x<(side?650:422);x++){
+   const q=at(x,y),low=Math.min(data[q],data[q+1],data[q+2]),high=Math.max(data[q],data[q+1],data[q+2]);
+   if(!data[q+3]||low<100||high-low>65||!rows[side].length)continue;
+   const row=rows[side].reduce((a,b)=>Math.abs(b.y-y)<Math.abs(a.y-y)?b:a,rows[side][0]),sx=row.xs.reduce((a,b)=>Math.abs(b-x)<Math.abs(a-x)?b:a,row.xs[0]),source=at(sx,row.y),mix=clamp((low-85)/45,0,1);
+   for(let k=0;k<3;k++)data[q+k]=Math.round(data[q+k]*(1-mix)+leaf[source+k]*mix);repaired++;
+  }
+  ctx.putImageData(body,0,0);release(c);return repaired;
+ }
  async function selectedCloth(s,p,fit,token){
   const key=[s.shirtId,fit.mode,fit.continuous?'continuous':fit.source_profile].join('/');
   if(collars.has(key)){const entry=collars.get(key);collars.delete(key);collars.set(key,entry);return entry;}
-  const c=canvas(CW,CH),ctx=c.getContext('2d',{willReadFrequently:true});let hashes=[];
+  const c=canvas(CW,CH),ctx=c.getContext('2d',{willReadFrequently:true});let hashes=[],matteRepairs=0;
   if(fit.continuous){release(c);throw Error('V3 shirt collar: raw registered cloth capture is unavailable');
-  }else{const images=await loadAll(fit.parts.flatMap(list));if(token!==epoch){release(c);return null;}for(const d of fit.parts)draw(ctx,d,images);hashes=fit.parts.map(d=>d.sha256);}
-  const pixels=ctx.getImageData(0,0,CW,CH);release(c);const entry={pixels,hashes};collars.set(key,entry);while(collars.size>12)collars.delete(collars.keys().next().value);return entry;
+  }else{const images=await loadAll(fit.parts.flatMap(list));if(token!==epoch){release(c);return null;}for(const d of fit.parts)draw(ctx,d,images);matteRepairs=cleanNativeMatte(ctx,fit,images,s.shirtId);hashes=fit.parts.map(d=>d.sha256);}
+  const pixels=ctx.getImageData(0,0,CW,CH);release(c);const entry={pixels,hashes,matteRepairs};collars.set(key,entry);while(collars.size>12)collars.delete(collars.keys().next().value);return entry;
  }
  function fitPatch(frame,cloth,fit,images){
   const avatar=canvas(CW,CH),ac=avatar.getContext('2d',{willReadFrequently:true});draw(ac,fit.avatar,images);const av=ac.getImageData(0,0,CW,CH).data;
   const jacket=canvas(CW,CH),jc=jacket.getContext('2d',{willReadFrequently:true});draw(jc,fit.jacket,images);const ja=jc.getImageData(0,0,CW,CH).data;
-  const raw=cloth.pixels.data,clean=new Uint8ClampedArray(raw),stand=ac.createImageData(CW,CH),boundaries=[[],[]],tops=[];
+  const raw=cloth.pixels.data,clean=new Uint8ClampedArray(raw),boundaries=[[],[]],tops=[];
   const index=(x,y)=>((y-Y)*CW+x-X)*4;
   const alpha=(data,x,y)=>x>=X&&x<X+CW&&y>=Y&&y<BOTTOM?data[index(x,y)+3]:0;
   for(let y=Y;y<BOTTOM;y++){
@@ -130,16 +151,41 @@ function create(visible,connection,options={}){
     }
    }
   }
+  // Outside the approved neck, the shirt may rise only slightly above
+  // the selected jacket collar. This removes isolated source-photo flaps
+  // while keeping the jacket silhouette and neck pixels unmodified.
+  let exteriorClipped=0;
+  if(fit.jacket)for(let x=X;x<X+CW;x++){
+   let jacketTop=-1;for(let y=Y;y<452;y++)if(alpha(ja,x,y)>=200){jacketTop=y;break;}
+   if(jacketTop<0)continue;
+   const side=x<498?0:1,distance=Math.abs(x-boundaries[side][jacketTop-Y]),reveal=7*clamp(1-(distance-20)/30,0,1),top=jacketTop-reveal;
+   for(let y=Y;y<Math.min(452,Math.ceil(top)+1);y++){
+    const q=index(x,y),coverage=clamp(y+.5-top,0,1),opacity=Math.round(registered[q+3]*(av[q+3]/255+(1-av[q+3]/255)*coverage));
+    if(opacity!==registered[q+3])exteriorClipped++;registered[q+3]=opacity;if(!opacity)registered[q]=registered[q+1]=registered[q+2]=0;
+   }
+  }
+  // A tied collar wraps below the throat and meets the unchanged knot at
+  // row 467. Some original registered inserts include a tall flat fill above
+  // this seam. Remove only its cloth alpha over the original approved neck;
+  // the avatar is never transformed, sampled as fabric, or painted over.
+  let necklineCleared=0;
+  if(fit.mode==='tied')for(let y=Y;y<467;y++)for(let x=X;x<X+CW;x++){
+   if(x>=422&&x<575&&y<420)continue;
+   const q=index(x,y),neckline=467-.005*(x-498)*(x-498),coverage=clamp(y+.5-neckline,0,1);
+   const opacity=Math.round(registered[q+3]*(1-av[q+3]/255*(1-coverage)));
+   if(opacity!==registered[q+3])necklineCleared++;
+   registered[q+3]=opacity;if(!opacity)registered[q]=registered[q+1]=registered[q+2]=0;
+  }
   const rearPixels=0,frontTops=peaks.map(p=>p.y);
-  const out=canvas(CW,CH),oc=out.getContext('2d',{willReadFrequently:true});oc.putImageData(stand,0,0);oc.drawImage(avatar,0,0);
+  const out=canvas(CW,CH),oc=out.getContext('2d',{willReadFrequently:true});oc.drawImage(avatar,0,0);
   const shirt=canvas(CW,CH),sc=shirt.getContext('2d');sc.putImageData(new ImageData(registered,CW,CH),0,0);oc.drawImage(shirt,0,0);oc.drawImage(jacket,0,0);
   // Preserve the exact central knot/body corridor while replacing only the
   // fitted lateral collar. Source jacket pixels remain its final occlusion.
-  const replacement=oc.getImageData(0,0,CW,CH),fc=frame.getContext('2d');fc.putImageData(replacement,X,Y,0,0,92,CH);fc.putImageData(replacement,X,Y,245,0,91,CH);
+  const replacement=oc.getImageData(0,0,CW,CH),fc=frame.getContext('2d');fc.putImageData(replacement,X,Y,0,0,92,CH);fc.putImageData(replacement,X,Y,245,0,91,CH);if(fit.mode==='tied')fc.putImageData(replacement,X,Y,92,65,153,47);
   release(avatar);release(jacket);release(out);release(shirt);
   return {shirt_id:fit.shirtId,topwear_id:fit.topwear,mode:fit.mode,source_profile:fit.source_profile,
-   bounds:[X,Y,CW,CH],source_hashes:cloth.hashes,source_capture:cloth.capture||'isolated_registered_native_body_and_leaves',jacket_source_sha256:fit.jacket?.sha256||null,
-   stand_top_rows:tops,front_source_top_rows:frontTops,collar_source_peaks:peaks,collar_target_peaks:targets,front_target_top:405,reveal_pixels:fit.jacket?7:null,cleaned_edge_pixels:cleaned,rear_stand_pixels:rearPixels,knot_anchor:[498,467]};
+   bounds:[X,Y,CW,CH],source_hashes:cloth.hashes,native_matte_repair_pixels:cloth.matteRepairs||0,source_capture:cloth.capture||'isolated_registered_native_body_and_leaves',jacket_source_sha256:fit.jacket?.sha256||null,
+   stand_top_rows:tops,front_source_top_rows:frontTops,collar_source_peaks:peaks,collar_target_peaks:targets,front_target_top:405,reveal_pixels:fit.jacket?7:null,cleaned_edge_pixels:cleaned,cleared_neckline_pixels:necklineCleared,clipped_exterior_pixels:exteriorClipped,rear_stand_pixels:rearPixels,knot_anchor:[498,467]};
  }
  async function render(input){
   const token=++epoch;loads.cancel();visible.dataset.loading='true';
