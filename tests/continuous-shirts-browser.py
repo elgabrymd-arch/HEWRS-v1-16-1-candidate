@@ -62,6 +62,66 @@ def fixtures(ids, modes):
     return rows
 
 
+def capture_full_app(selected, mode):
+    if mode == 'shirt-only' and selected['state'] in ['NO_TIE', 'T001']:
+        return True
+    return (selected['shirtId'], mode, selected['state']) in {
+        ('DS001', 'B03', 'NO_TIE'), ('DS035', 'B02', 'T029'),
+        ('DS034', 'S05', 'NO_TIE'), ('DS051', 'S11', 'T001'),
+        ('DS051', 'S11', 'T017'),
+    }
+
+
+# Read the bytes directly: writing them to another canvas before capture would
+# introduce the very alpha conversion that this diagnostic needs to measure.
+HEAD_SNAPSHOT = r'''async canvas => {
+ const bytes=canvas.getContext('2d').getImageData(0,0,996,350).data;
+ let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));
+ return {dimensions:[996,350],canvas_dimensions:[canvas.width,canvas.height],rgba_base64:btoa(binary),
+  rgba_sha256:Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('')};
+}'''
+
+HEAD_REFERENCES = r'''async()=>{
+ const app=HEWRSApp,d=app.connection.manifest.static.avatar,image=new Image();
+ image.src=app.resolveUrl(d);await image.decode();
+ const make=(height,frequent)=>{const c=document.createElement('canvas');c.width=996;c.height=height;
+  return [c,c.getContext('2d',frequent?{willReadFrequently:true}:undefined)];};
+ const [raw,rc]=make(350,false);rc.drawImage(image,0,0);
+ const [native,nc]=make(2748,true);nc.drawImage(image,0,0);
+ const [committed,cc]=make(2748,true);cc.putImageData(nc.getImageData(0,0,996,2748),0,0);
+ const capture=(''' + HEAD_SNAPSHOT + r''');
+ return {source_sha256:d.sha256,source_url:app.resolveUrl(d),
+  raw_head:await capture(raw),native_source:await capture(native),native_commit:await capture(committed)};
+}'''
+
+
+def head_difference(reference, actual):
+    """Exact channel diagnostics; this deliberately defines no tolerance."""
+    if reference.size != actual.size:
+        return dict(equal=False, reference_size=reference.size, actual_size=actual.size)
+    changed = alpha_changed = opaque_changed = partial_changed = transparent_changed = 0
+    maxima = [0, 0, 0, 0]
+    bounds = [reference.width, reference.height, -1, -1]
+    samples = []
+    for index, (expected, observed) in enumerate(zip(reference.getdata(), actual.getdata())):
+        if expected == observed:
+            continue
+        changed += 1
+        alpha_changed += expected[3] != observed[3]
+        opaque_changed += expected[3] == observed[3] == 255
+        transparent_changed += expected[3] == observed[3] == 0
+        partial_changed += 0 < expected[3] < 255 or 0 < observed[3] < 255
+        x, y = index % reference.width, index // reference.width
+        bounds = [min(bounds[0], x), min(bounds[1], y), max(bounds[2], x), max(bounds[3], y)]
+        maxima = [max(maxima[channel], abs(expected[channel] - observed[channel])) for channel in range(4)]
+        if len(samples) < 16:
+            samples.append(dict(x=x, y=y, expected=list(expected), actual=list(observed)))
+    return dict(equal=changed == 0, changed_pixels=changed, alpha_changed_pixels=alpha_changed,
+                opaque_changed_pixels=opaque_changed, partial_alpha_changed_pixels=partial_changed,
+                transparent_rgb_changed_pixels=transparent_changed, max_channel_delta=maxima,
+                difference_bounds=None if not changed else bounds, samples=samples)
+
+
 FRAME = r'''async selected => {
  const app=HEWRSApp,applied=await app.apply(selected,{origin:'manual',save:false,keepPreferences:true});
  if(applied?.cancelled)throw Error('Unexpected complete-frame cancellation');
@@ -80,6 +140,7 @@ FRAME = r'''async selected => {
   rgba_sha256:await digest(ctx.getImageData(0,0,canvas.width,canvas.height).data),
   head_sha256:await digest(ctx.getImageData(0,0,996,350).data),
   photos_decoded:photos.length>0&&photos.every(image=>image.naturalWidth>0&&image.naturalHeight>0),
+  card_images:photos.map(image=>({src:image.getAttribute('src'),alt:image.alt,natural_width:image.naturalWidth,natural_height:image.naturalHeight})),
   card_shirt:card.items.find(x=>x.role==='Shirt'),card_tie:card.items.find(x=>x.role==='Tie'),
   plan:{operation:p.operation,kind:p.kind,avatar:p.avatar?.sha256,tie:p.tie?.sha256||null,
     jacket:p.jacket?.sha256||null,pants:p.pants?.sha256||null,
@@ -144,7 +205,8 @@ def main():
     args = parser.parse_args()
     ids, modes = args.ids.split(','), args.modes.split(',')
     output = args.output.resolve() / args.browser
-    for directory in [output, output / 'native', output / 'upper', output / 'phone']:
+    for directory in [output, output / 'native', output / 'upper', output / 'phone',
+                      output / 'full-page', output / 'option-card-items', output / 'head-diagnostics']:
         directory.mkdir(parents=True, exist_ok=True)
     checks, frames, errors, failures, http_errors, external = [], [], [], [], [], []
     report = dict(schema='hewrs.continuous-shirts.browser.v1', browser=args.browser,
@@ -152,7 +214,7 @@ def main():
                   entrypoint_sha256=hashlib.sha256((args.root / args.entrypoint).read_bytes()).hexdigest(),
                   owner_data_accessed=False, fresh_browser_context=True,
                   visual_approval='NOT_GRANTED_BY_AUTOMATED_CHECKS', ids=ids, modes=modes,
-                  checks=checks, frames=frames, page_errors=errors, failed_requests=failures,
+                  checks=checks, frames=frames, full_app_captures=[], page_errors=errors, failed_requests=failures,
                   http_errors=http_errors, blocked_external_requests=external)
 
     def save():
@@ -163,6 +225,19 @@ def main():
         checks.append(dict(name=name, passed=bool(okay), detail=detail))
         if not okay:
             raise AssertionError(name + ': ' + str(detail))
+
+    head_images = {}
+
+    def retain_head(name, snapshot, selected=None):
+        pixels = base64.b64decode(snapshot.pop('rgba_base64'))
+        picture = Image.frombytes('RGBA', tuple(snapshot['dimensions']), pixels)
+        path = 'head-diagnostics/' + name + '.png'
+        picture.save(output / path)
+        metadata = dict(snapshot, path=path, captured_rgba_sha256=hashlib.sha256(pixels).hexdigest())
+        if selected is not None:
+            metadata['selection'] = selected
+        head_images[name] = picture
+        return metadata
 
     servers = []
     server, origin = serve(args.root.resolve())
@@ -209,7 +284,17 @@ def main():
             before = protected(page)
             report['all_tie_bindings'] = page.evaluate(ALL_TIES)
             check('All 47 exact tie bindings survive all enabled shirts in three rendering modes', report['all_tie_bindings']['checked'] == len(actual) * 47 * 3 and not report['all_tie_bindings']['failures'], report['all_tie_bindings'])
-            head = page.evaluate('''async()=>{const app=HEWRSApp,d=app.connection.manifest.static.avatar,image=new Image();image.src=app.resolveUrl(d);await image.decode();const c=document.createElement('canvas');c.width=996;c.height=350;c.getContext('2d').drawImage(image,0,0);return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',c.getContext('2d').getImageData(0,0,996,350).data)),b=>b.toString(16).padStart(2,'0')).join('');}''')
+            reference = page.evaluate(HEAD_REFERENCES)
+            report['head_references'] = dict(source_sha256=reference['source_sha256'], source_url=reference['source_url'], images={})
+            for name in ['raw_head', 'native_source', 'native_commit']:
+                report['head_references']['images'][name] = retain_head(name, reference[name])
+            head = reference['raw_head']['rgba_sha256']
+            report['head_reference_comparisons'] = {
+                name: head_difference(head_images['raw_head'], head_images[name])
+                for name in ['native_source', 'native_commit']
+            }
+            save()
+            baseline_page = None
             if args.baseline_root:
                 baseline_server, baseline_origin = serve(args.baseline_root.resolve())
                 servers.append(baseline_server)
@@ -219,29 +304,66 @@ def main():
                 for shirt, state, mode in controls:
                     selected = selection(shirt, state, mode)
                     current, original = page.evaluate(FRAME, selected), baseline_page.evaluate(FRAME, selected)
+                    name = 'baseline-' + shirt + '-' + mode + '-' + state
+                    report['head_references']['images'][name] = retain_head(
+                        name, baseline_page.evaluate('() => (' + HEAD_SNAPSHOT + ')(document.getElementById("avatar"))'), selected)
                     check('Unchanged delegated full frame: ' + shirt + '/' + mode, current['rgba_sha256'] == original['rgba_sha256'])
-                    report['unaffected_controls'].append(dict(selection=selected, rgba_sha256=current['rgba_sha256'], identical=True))
-                baseline_context.close()
+                    report['unaffected_controls'].append(dict(selection=selected, rgba_sha256=current['rgba_sha256'],
+                                                             head_sha256=original['head_sha256'], head_reference=name, identical=True))
             for row in fixtures(ids, modes):
                 selected, mode = row['selection'], row['mode']
                 label = selected['shirtId'] + '-' + mode + '-' + selected['state']
                 result = page.evaluate(FRAME, selected)
                 raw = base64.b64decode(result.pop('png').split(',', 1)[1])
                 picture = Image.open(io.BytesIO(raw)).convert('RGBA')
+                # Preserve the failing frame before any assertion. A failed
+                # browser gate must leave the exact pixels available for review.
+                native_path, upper_path, phone_path = 'native/' + label + '.png', 'upper/' + label + '.png', 'phone/' + label + '.png'
+                (output / native_path).write_bytes(raw)
+                picture.crop((0, 0, 996, 1440)).save(output / upper_path)
+                result.update(mode=mode, primary=row['primary'], native_path=native_path, upper_path=upper_path,
+                              phone_path=phone_path, validation_complete=False)
+                frames.append(result)
+                save()
+                page.locator('#avatar').screenshot(path=str(output / phone_path))
+                if capture_full_app(selected, mode):
+                    full_page_path = 'full-page/' + label + '.png'
+                    option_items_path = 'option-card-items/' + label + '.png'
+                    page.screenshot(path=str(output / full_page_path), full_page=True)
+                    page.locator('#option-card-items').screenshot(path=str(output / option_items_path))
+                    result['full_page_path'], result['option_card_items_path'] = full_page_path, option_items_path
+                    report['full_app_captures'].append(dict(selection=selected, mode=mode, viewport_width=390,
+                                                           full_page_path=full_page_path, option_card_items_path=option_items_path))
+                head_detail = dict(source_expected=AVATAR, source_actual=result['plan']['avatar'],
+                                   expected_raw_head_sha256=head, actual_head_sha256=result['head_sha256'])
+                if result['head_sha256'] != head:
+                    name = 'actual-' + label
+                    head_detail['actual'] = retain_head(
+                        name, page.evaluate('() => (' + HEAD_SNAPSHOT + ')(document.getElementById("avatar"))'), selected)
+                    if baseline_page is not None:
+                        baseline_frame = baseline_page.evaluate(FRAME, selected)
+                        baseline_native_path = 'head-diagnostics/baseline-matching-' + label + '-native.png'
+                        (output / baseline_native_path).write_bytes(base64.b64decode(baseline_frame.pop('png').split(',', 1)[1]))
+                        baseline_name = 'baseline-matching-' + label
+                        report['head_references']['images'][baseline_name] = retain_head(
+                            baseline_name, baseline_page.evaluate('() => (' + HEAD_SNAPSHOT + ')(document.getElementById("avatar"))'), selected)
+                        head_detail['baseline_matching_native_path'] = baseline_native_path
+                        head_detail['baseline_matching_head_reference'] = baseline_name
+                    head_detail['comparisons'] = {
+                        reference_name: head_difference(image, head_images[name])
+                        for reference_name, image in head_images.items() if reference_name != name
+                    }
+                result['head_diagnostics'] = head_detail
+                save()
                 check(label + ': selected and committed outfit identities agree', result['selection'] == selected and result['last'] == selected)
                 check(label + ': complete native frame', result['status'] == 'ready' and result['dimensions'] == [996, 2748] and picture.size == (996, 2748))
                 check(label + ': decoded pixels match browser digest', hashlib.sha256(picture.tobytes()).hexdigest() == result['rgba_sha256'])
                 check(label + ': corrected whole garment route excludes old ownership', result['plan']['operation'] == 'CONTINUOUS_SOURCE_SHIRT' and result['plan']['body'] and not result['plan']['borrowed_ownership'])
-                check(label + ': frozen avatar registration and head pixels remain exact', result['plan']['avatar'] == AVATAR and result['head_sha256'] == head)
+                check(label + ': frozen avatar registration and head pixels remain exact', result['plan']['avatar'] == AVATAR and result['head_sha256'] == head, head_detail)
                 check(label + ': registered garment previews and exact shirt/tie identities remain available', result['photos_decoded'] and result['card_shirt']['id'] == selected['shirtId'] and result['card_tie']['id'] == (None if selected['state'] == 'NO_TIE' else selected['state']))
                 layout = result['layout']
                 check(label + ': native outfit remains inside 390px phone layout', layout['viewport'] == 390 and layout['document_width'] <= 391 and layout['canvas_left'] >= -1 and layout['canvas_right'] <= 391 and layout['canvas_height'] > 0, layout)
-                native_path, upper_path, phone_path = 'native/' + label + '.png', 'upper/' + label + '.png', 'phone/' + label + '.png'
-                (output / native_path).write_bytes(raw)
-                picture.crop((0, 0, 996, 1440)).save(output / upper_path)
-                page.locator('#avatar').screenshot(path=str(output / phone_path))
-                result.update(mode=mode, primary=row['primary'], native_path=native_path, upper_path=upper_path, phone_path=phone_path)
-                frames.append(result)
+                result['validation_complete'] = True
                 save()
                 print('CAPTURED ' + label, flush=True)
             check('Render-only review leaves wear, Favorites and rejection records unchanged', protected(page) == before)
