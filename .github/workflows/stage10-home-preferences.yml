@@ -34,7 +34,7 @@ jobs:
           from pathlib import Path
           sys.path.insert(0, str(Path('tools').resolve()))
           from verify_active_delivery import active_runtime
-          continuous = active_runtime().startswith('runtime/continuous-shirts-')
+          continuous = active_runtime().startswith(('runtime/continuous-shirts-', 'runtime/avatar-v3-candidate-'))
           with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
               stream.write('continuous=' + str(continuous).lower() + '\n')
           PY_ROUTE

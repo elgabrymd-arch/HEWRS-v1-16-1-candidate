@@ -96,8 +96,24 @@ def describe_avatar_v3(root):
         require(digest((root / row['url']).read_bytes()) == sha, 'V3 source bytes differ: ' + name)
         original = spec['source_layer_hashes'][name]
         require(digest((root / ('assets/' + original + '.png')).read_bytes()) == original, 'Immutable V2 layer changed: ' + name)
-    modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-pose.js')
+    modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-tie-fit.js',
+               'src/avatar-v3-shirt-collar-fit.js', 'src/avatar-v3-cuff-fit.js', 'src/avatar-v3-pose.js')
     require(release['source_modules'] == {name: digest((root / name).read_bytes()) for name in modules}, 'V3 source module pins are stale')
+    fit_modules = modules[2:5]
+    require(release.get('issue19_fit_modules') == preview.get('issue19_fit_modules') ==
+            {name:digest((root / name).read_bytes()) for name in fit_modules}, 'Issue 19 fit source bindings differ')
+    require(release.get('issue19_runtime_compatibility') == preview.get('issue19_runtime_compatibility') ==
+            {'vendor/active50-renderer.js':'release_only_masked_temporary_canvas_never_borrowed_loader_canvas',
+             'src/render-image-loader.js':'cache_includes_source_bound_tie_display_registration',
+             'src/continuous-shirts.js':'capture_exact_registered_body_before_tie_and_avatar_composition'},
+            'V3 borrowed canvas ownership contract differs')
+    require(release.get('issue19_baseline') == {
+        'commit':'ee6bdb7c0986597e569056499ff9eedca1ec3c98',
+        'entrypoint':'avatar-v3-issue19-baseline.html',
+        'entrypoint_sha256':'4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b'},
+        'Issue 19 original published V3 reference differs')
+    require(digest((root / 'avatar-v3-issue19-baseline.html').read_bytes()) == release['issue19_baseline']['entrypoint_sha256'],
+            'Issue 19 published V3 comparison page changed')
     require(preview.get('collar_fit_source_sha256') == release['source_modules']['src/avatar-v3-collar-fit.js'] and
             preview.get('collar_fit_revision') == release.get('collar_fit_revision') == 'AVATAR_V3_B15_COLLAR_FIT_1',
             'V3 collar registration source or revision differs')

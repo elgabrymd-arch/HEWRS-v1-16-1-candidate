@@ -8,6 +8,7 @@ import argparse
 import base64
 import functools
 import hashlib
+import importlib.util
 import io
 import json
 import sys
@@ -18,7 +19,7 @@ from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 from playwright.sync_api import sync_playwright
 from avatar_geometry_contract import (AVATAR_PROFILE, PLAN_SOURCES, comparison_policy,
                                       native_difference, validate_profile)
@@ -184,6 +185,18 @@ def main():
     active_delivery = describe()
     continuous = active_delivery.get('target_ids') == list(TARGET_IDS)
     expected_avatar = active_delivery.get('avatar_sha256', AVATAR_SHA256)
+    release = json.loads((ROOT / 'AVATAR_V3_RELEASE.json').read_text()) if active_delivery['kind'] == 'avatar-v3' else {}
+    issue19 = release.get('issue19_baseline', {}).get('entrypoint') == 'avatar-v3-issue19-baseline.html'
+    issue19_contract = None
+    if issue19:
+        # describe() has already validated every release/source/runtime pin.
+        # The exact previous V3 page gives a stricter comparison for this
+        # follow-up than adding new allowances to an older V2 geometry mask.
+        if hashlib.sha256((ROOT / 'avatar-v3-issue19-baseline.html').read_bytes()).hexdigest() != '4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b':
+            raise AssertionError('Issue 19 requires the exact published V3 baseline page')
+        fit_spec = importlib.util.spec_from_file_location('issue19_photo_contract', ROOT / 'tests/issue19-browser.py')
+        issue19_contract = importlib.util.module_from_spec(fit_spec)
+        fit_spec.loader.exec_module(issue19_contract)
     catalogue = json.loads((ROOT / 'evidence/five_round_20261119/CATALOGUE.json').read_text())
     shirts = sorted(catalogue['shirts'], key=lambda row: row['id'])
     # The catalogue retains the original photographic baseline. Only these
@@ -201,18 +214,21 @@ def main():
     else:
         server, base = serve(ROOT)
     baseline_base = None
-    if args.baseline_root:
+    if issue19:
+        baseline_server, baseline_base = serve(ROOT)
+        baseline_base += '/avatar-v3-issue19-baseline.html'
+    elif args.baseline_root:
         baseline_server, baseline_base = serve(args.baseline_root)
     output = ROOT / 'evidence/five_round_20261119/browser' / args.browser / ('live-photos' if args.url else 'photos')
     output.mkdir(parents=True, exist_ok=True)
     checks, frames, errors, failed_requests, http_errors, external_requests = [], [], [], [], [], []
     result = dict(schema='hewrs.five-round-shirt-browser.v1', browser=args.browser, url=base,
                   active_delivery=active_delivery,
-                  baseline_policy=dict(original_garment_comparison='exact full native RGBA for V2; exact outside the declared V3 avatar/pose mask for V3',
-                      intentional_correction_ids=list(TARGET_IDS) if continuous else [],
+                  baseline_policy=dict(original_garment_comparison=('exact approved V3 baseline; only bounded collar, same-ID tie and jacket cuff corrections' if issue19 else 'exact full native RGBA for V2; exact outside the declared V3 avatar/pose mask for V3'),
+                      intentional_correction_ids=([row['id'] for row in shirts] if issue19 else list(TARGET_IDS) if continuous else []),
                       frozen_head_bbox_xywh=[0, 0, 996, 350],
                       frozen_head_reference=('exact canonical native commit of the pinned avatar; old baseline head differences are recorded' if continuous else None),
-                      detailed_corrected_geometry_gate='tests/continuous-shirts-browser.py' if continuous else None),
+                      detailed_corrected_geometry_gate=('tests/issue19-browser.py' if issue19 else 'tests/continuous-shirts-browser.py' if continuous else None)),
                   baseline_compared=bool(baseline_base), owner_data_accessed=False,
                   started_at=datetime.now(timezone.utc).isoformat(), checks=checks, frames=frames,
                   page_errors=errors, failed_requests=failed_requests, http_errors=http_errors,
@@ -226,6 +242,7 @@ def main():
                       native_png_directory='native-collars', expected_native_png_count=288))
     pictures, native_pictures = {}, {}
     canonical_head = avatar_profile = baseline_avatar_profile = None
+    issue19_hands = issue19_fidelity = None
 
     def save():
         result['passed'] = sum(row['passed'] for row in checks)
@@ -267,6 +284,23 @@ def main():
     def protected(page):
         return page.evaluate('()=>({wear:HEWRSApp.store.snapshot(),favorites:HEWRSApp.favorites.snapshot(),rejections:HEWRSApp.ownerFeedback.snapshot().events})')
 
+    def issue19_comparison(frame, baseline, current_png, original_png, selection, label):
+        current, _ = issue19_contract.decode_frame({'png': current_png, 'full_sha256': frame['rgba_sha256']})
+        original, _ = issue19_contract.decode_frame({'png': original_png, 'full_sha256': baseline['rgba_sha256']})
+        difference = issue19_contract.change_check(original, current, selection, issue19_hands)
+        check(label + ': original garments and exact same physical tie sources remain registered',
+              issue19_contract.source_identity(frame['source_bindings'], selection['state'], issue19_fidelity)
+              == issue19_contract.source_identity(baseline['source_bindings'], selection['state'], issue19_fidelity))
+        check(label + ': approved V3 head and opaque hand pixels remain exact',
+              frame['head_rgba_sha256'] == baseline['head_rgba_sha256']
+              and difference['opaque_hand_pixels_changed'] == 0, difference)
+        check(label + ': every changed pixel stays inside the independent Issue 19 fit bounds',
+              difference['outside_allowed_pixels'] == 0, difference)
+        if selection.get('shirtOnly'):
+            check(label + ': original shirt-only sleeves remain exact',
+                  all(current.crop(rect).tobytes() == original.crop(rect).tobytes() for rect in issue19_contract.CUFF_RECTS))
+        return dict(policy='issue19_bounded_fit', baseline_commit=issue19_contract.BASELINE, difference=difference)
+
     def render(page, selection, label, baseline_page=None, capture_key=None):
         corrected = continuous and selection['shirtId'] in TARGET_IDS
         compare_native = baseline_page is not None and (corrected or avatar_profile['version'] == 'v3')
@@ -291,7 +325,10 @@ def main():
         if baseline_page is not None:
             baseline = baseline_page.evaluate(FRAME, dict(selection=selection, captureComparison=compare_native))
             frame['baseline_rgba_sha256'] = baseline['rgba_sha256']
-            if corrected and baseline['actual_render']['operation'] != 'CONTINUOUS_SOURCE_SHIRT':
+            if issue19:
+                frame['baseline_comparison'] = issue19_comparison(frame, baseline, comparison_png,
+                    baseline['comparison_png'], selection, label)
+            elif corrected and baseline['actual_render']['operation'] != 'CONTINUOUS_SOURCE_SHIRT':
                 difference = intentional_difference(comparison_png, baseline['comparison_png'], frame['rgba_sha256'], baseline['rgba_sha256'])
                 check(label + ': authorized garment correction changes native pixels', difference['changed_pixels'] > 0, difference)
                 # The old DS051/S05 PARENT_DS051_STORED_RGB profile changes RGB
@@ -370,7 +407,10 @@ def main():
             frame['baseline_rgba_sha256'] = baseline['rgba_sha256']
             check('topwear/B01: baseline exact native selection agrees',
                   baseline['selection'] == selected and baseline['rendered_selection'] == selected)
-            if avatar_profile['version'] == 'v3':
+            if issue19:
+                frame['baseline_comparison'] = issue19_comparison(frame, baseline, comparison_png,
+                    baseline['comparison_png'], selected, 'topwear/B01')
+            elif avatar_profile['version'] == 'v3':
                 difference = native_difference(comparison_png, baseline['comparison_png'], frame['rgba_sha256'],
                     baseline['rgba_sha256'], avatar_profile, baseline_avatar_profile, ROOT,
                     selection=selected, source_bindings=frame['source_bindings'])
@@ -411,6 +451,19 @@ def main():
                 baseline_context, baseline_page = new_page(browser, baseline_base, 'baseline')
                 baseline_avatar_profile = validate_profile(baseline_page.evaluate(AVATAR_PROFILE))
                 result['baseline_avatar_profile'] = baseline_avatar_profile
+            if issue19:
+                fit = page.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec,tie:globalThis.HEWRSAvatarV3TieFit?.spec})")
+                check('Published Issue 19 runtime contains all three source-bound fit modules',
+                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_1'
+                      and fit.get('cuff', {}).get('revision') == 'AVATAR_V3_CONCEALED_CUFFS_2'
+                      and fit.get('tie', {}).get('revision') == 'AVATAR_V3_TIE_FIT_1', fit)
+                issue19_fidelity = page.evaluate('()=>HEWRSApp.connection.tieFidelity.data')
+                check('Published tie source registry equals the original V3 registry',
+                      issue19_fidelity == baseline_page.evaluate('()=>HEWRSApp.connection.tieFidelity.data'))
+                mask_png = page.evaluate(issue19_contract.HAND_MASK)
+                mask = Image.open(io.BytesIO(base64.b64decode(mask_png.split(',', 1)[1]))).getchannel('A')
+                issue19_hands = mask.point(lambda value: 255 if value == 255 else 0).filter(ImageFilter.MinFilter(3))
+                result['issue19_fit_contracts'] = fit
             before = protected(page)
             live_roster = page.evaluate('()=>({shirts:HEWRSApp.connection.manifest.shirt_order,suits:HEWRSApp.connection.suitSources.ids,blazers:HEWRSApp.connection.blazerConnection.availableIds})')
             check('Current browser contains the exact active 50 shirt identities', sorted(live_roster['shirts']) == [row['id'] for row in shirts])
@@ -433,8 +486,8 @@ def main():
             check('All 288 complete native-resolution collar crops were saved', len(native_pictures) == 288)
             if continuous and baseline_page is not None:
                 original_ids = sorted({row['selection']['shirtId'] for row in frames if row['selection']['shirtId'] not in TARGET_IDS
-                    and row['baseline_comparison']['policy'] in ('exact_original_pixels', 'original_garments_v3_avatar_geometry')})
-                check('All 42 unaffected shirts preserve original garment sources and pixels outside authorized avatar geometry', len(original_ids) == 42 and original_ids == sorted(set(live_roster['shirts']) - set(TARGET_IDS)))
+                    and row['baseline_comparison']['policy'] in ('exact_original_pixels', 'original_garments_v3_avatar_geometry', 'issue19_bounded_fit')})
+                check('All 42 legacy shirts preserve original garment sources and pixels outside the exact authorized geometry', len(original_ids) == 42 and original_ids == sorted(set(live_roster['shirts']) - set(TARGET_IDS)))
                 corrected_frames = [row for row in frames if row['selection']['shirtId'] in TARGET_IDS]
                 check('All 48 corrected shirt/context/collar frames ran the source-locked renderer and preserved the pinned active head', len(corrected_frames) == 48)
             for shirt in shirts:

@@ -11,6 +11,7 @@ import argparse
 import base64
 import functools
 import hashlib
+import importlib.util
 import io
 import json
 import shutil
@@ -22,7 +23,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from playwright.sync_api import sync_playwright
 from avatar_geometry_contract import (AVATAR_PROFILE, PLAN_SOURCES, SOURCE_LAYERS, comparison_policy,
                                       native_difference, validate_profile)
@@ -209,6 +210,14 @@ def main():
     parser.add_argument('--modes', default=','.join(MODES))
     args = parser.parse_args()
     active_delivery = describe(args.root)
+    release = json.loads((args.root / 'AVATAR_V3_RELEASE.json').read_text()) if active_delivery['kind'] == 'avatar-v3' else {}
+    issue19 = release.get('issue19_baseline', {}).get('entrypoint') == 'avatar-v3-issue19-baseline.html'
+    issue19_contract = None
+    if issue19:
+        contract_spec = importlib.util.spec_from_file_location('issue19_preservation', ROOT / 'tests/issue19-browser.py')
+        issue19_contract = importlib.util.module_from_spec(contract_spec)
+        contract_spec.loader.exec_module(issue19_contract)
+        assert hashlib.sha256((args.root / release['issue19_baseline']['entrypoint']).read_bytes()).hexdigest() == '4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b'
     expected_delivery_avatar = (SOURCE_LAYERS['v3']['avatar'] if args.entrypoint == 'avatar-v3-review.html'
                                 else active_delivery.get('avatar_sha256', SOURCE_LAYERS['v2']['avatar']))
     ids, modes = args.ids.split(','), args.modes.split(',')
@@ -261,7 +270,7 @@ def main():
             browser = getattr(pw, args.browser).launch(**launch)
             contexts = []
 
-            def open_page(base, label):
+            def open_page(base, label, entrypoint=None):
                 context = browser.new_context(viewport=dict(width=390, height=844), timezone_id='UTC', has_touch=True, is_mobile=True)
                 contexts.append(context)
                 expected = urlsplit(base)[:2]
@@ -279,7 +288,7 @@ def main():
                 page.on('pageerror', lambda error: errors.append(dict(profile=label, error=str(error))))
                 page.on('requestfailed', lambda request: failures.append(dict(profile=label, url=request.url, error=request.failure)))
                 page.on('response', lambda response: http_errors.append(dict(profile=label, url=response.url, status=response.status)) if response.status >= 400 and not response.url.endswith('/favicon.ico') else None)
-                response = page.goto(base + args.entrypoint, wait_until='domcontentloaded', timeout=120000)
+                response = page.goto(base + (entrypoint or args.entrypoint), wait_until='domcontentloaded', timeout=120000)
                 check(label + ': actual entrypoint loads', response is not None and response.status == 200)
                 page.wait_for_function('()=>globalThis.HEWRS_READY && HEWRSApp.rejection', timeout=120000)
                 page.evaluate('async()=>{await HEWRSApp.rejection.ready;await HEWRSApp.ownerFeedback.sync();}')
@@ -316,12 +325,25 @@ def main():
             }
             save()
             baseline_page = None
-            if args.baseline_root:
-                baseline_server, baseline_origin = serve(args.baseline_root.resolve())
+            if args.baseline_root or issue19:
+                baseline_server, baseline_origin = serve(args.root.resolve() if issue19 else args.baseline_root.resolve())
                 servers.append(baseline_server)
-                baseline_context, baseline_page = open_page(baseline_origin, 'baseline')
+                baseline_context, baseline_page = open_page(baseline_origin, 'baseline',
+                    release['issue19_baseline']['entrypoint'] if issue19 else None)
                 baseline_avatar_profile = validate_profile(baseline_page.evaluate(AVATAR_PROFILE))
                 report['baseline_avatar_profile'] = baseline_avatar_profile
+                if issue19:
+                    fidelity = page.evaluate('()=>HEWRSApp.connection.tieFidelity.data')
+                    check('Issue 19 retains the original 47-tie source registry',
+                          fidelity == baseline_page.evaluate('()=>HEWRSApp.connection.tieFidelity.data'))
+                    hand_png = page.evaluate(issue19_contract.HAND_MASK)
+                    hand_mask = Image.open(io.BytesIO(base64.b64decode(hand_png.split(',', 1)[1]))).getchannel('A').point(
+                        lambda alpha: 255 if alpha == 255 else 0).filter(ImageFilter.MinFilter(3))
+                    report['baseline_geometry_policy'] = {'policy': 'issue19_bounded_fit',
+                        'baseline': release['issue19_baseline'],
+                        'collar_strips_xyxy': issue19_contract.COLLAR_RECTS,
+                        'cuffs_xyxy': issue19_contract.CUFF_RECTS, 'tie_xyxy': issue19_contract.TIE_RECT,
+                        'complete_all_shirt_matrix': 'tests/issue19-browser.py'}
                 controls = [('DS005', 'NO_TIE', 'shirt-only'), ('DS015', 'T017', 'B03'), ('DS029', 'T029', 'S05')]
                 report['unaffected_controls'] = []
                 for shirt, state, mode in controls:
@@ -330,7 +352,25 @@ def main():
                     name = 'baseline-' + shirt + '-' + mode + '-' + state
                     report['head_references']['images'][name] = retain_head(
                         name, baseline_page.evaluate('() => (' + HEAD_SNAPSHOT + ')(document.getElementById("avatar"))'), selected)
-                    if avatar_profile['version'] == 'v3':
+                    if issue19:
+                        images = []
+                        for frame in (original, current):
+                            image = Image.open(io.BytesIO(base64.b64decode(frame['png'].split(',', 1)[1]))).convert('RGBA')
+                            check('Exact decoded native comparison pixels: ' + shirt + '/' + mode,
+                                  image.size == (996, 2748) and hashlib.sha256(image.tobytes()).hexdigest() == frame['rgba_sha256'])
+                            images.append(image)
+                        difference = issue19_contract.change_check(images[0], images[1], selected, hand_mask)
+                        difference['policy'] = 'issue19_bounded_fit'
+                        check('Original garment sources and exact same-ID tie sources remain registered: ' + shirt + '/' + mode,
+                              issue19_contract.source_identity(current['source_bindings'], state, fidelity)
+                              == issue19_contract.source_identity(original['source_bindings'], state, fidelity))
+                        check('Final collar, cuffs and tie stay inside independent Issue 19 boundaries: ' + shirt + '/' + mode,
+                              difference['outside_allowed_pixels'] == 0, difference)
+                        check('Approved posed hands remain exact: ' + shirt + '/' + mode,
+                              difference['opaque_hand_pixels_changed'] == 0, difference)
+                        check('Final frame uses the exact approved V3 head: ' + shirt + '/' + mode,
+                              current['head_sha256'] == original['head_sha256'] == head)
+                    elif avatar_profile['version'] == 'v3':
                         difference = native_difference(current['png'], original['png'], current['rgba_sha256'],
                             original['rgba_sha256'], avatar_profile, baseline_avatar_profile, args.root,
                             selection=selected, source_bindings=current['source_bindings'])
