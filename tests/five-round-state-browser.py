@@ -9,6 +9,8 @@ import argparse
 import copy
 import functools
 import hashlib
+import contextlib
+import io
 import json
 import sys
 import threading
@@ -41,12 +43,37 @@ def serve():
     return server, 'http://127.0.0.1:%d/' % server.server_address[1]
 
 
+def audited_delivery(url):
+    """Bind the test to the requested, reproducibly built entrypoint.
+
+    A V3 preview loads a distinct runtime. Validating that runtime against the
+    production filename prevents the state tests from running at all; silently
+    accepting any loaded script would lose their source-identity guarantee.
+    """
+    active = describe()
+    if not url or Path(urllib.parse.urlsplit(url).path).name != 'avatar-v3-review.html':
+        return active
+    import build_avatar_v3_candidate
+    with contextlib.redirect_stdout(io.StringIO()):
+        build_avatar_v3_candidate.main(write=False)
+    preview = json.loads((ROOT / 'AVATAR_V3_REVIEW_BUILD.json').read_text())
+    assert preview['base_runtime'] == active['runtime']
+    assert preview['base_runtime_sha256'] == active['runtime_sha256']
+    files = ['AVATAR_V3_REVIEW_BUILD.json', preview['preview_entrypoint'], preview['runtime'],
+             'src/avatar-v3.js', 'src/avatar-v3-pose.js', 'data/avatar-v3-candidate.json']
+    return {**active, 'kind': 'avatar-v3-preview', 'runtime': preview['runtime'],
+            'runtime_sha256': preview['runtime_sha256'], 'avatar_sha256': preview['new_avatar_sha256'],
+            'base_runtime': active['runtime'], 'base_runtime_sha256': active['runtime_sha256'],
+            'source_sha256': {**active['source_sha256'], **{
+                name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in files}}}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', choices=('chromium', 'webkit'), default='chromium')
     parser.add_argument('--url')
     args = parser.parse_args()
-    active_delivery = describe()
+    active_delivery = audited_delivery(args.url)
     server, url = (None, args.url) if args.url else serve()
     output = ROOT / 'evidence/five_round_20261119/browser' / args.browser / ('live-state' if args.url else 'state')
     output.mkdir(parents=True, exist_ok=True)
@@ -102,6 +129,8 @@ if(text&&text!==auditLastMessage)window.__auditMessages.push(text);auditLastMess
             !!navigator.locks?.request && !!navigator.locks?.query &&
             HEWRSApp.store.status().persistent && HEWRSApp.favorites.status().persistent &&
             HEWRSApp.ownerFeedback.status().ready && !HEWRSApp.feedbackReadError'''))
+        check(label + ': completed rejection check clears its loading status',
+              page.locator('#rejection-status').inner_text() != 'Loading saved rejections…')
 
     def new_page(context, label):
         page = context.new_page()

@@ -11,7 +11,7 @@
   const element = (tag, text, className) => {const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(className)n.className=className; return n;};
   const button = (text, id, action) => {const b=element('button',text); b.type='button'; b.id=id; b.addEventListener('click',event=>{Promise.resolve().then(()=>action(event)).catch(error=>say(error.message,true));}); return b;};
   const reasons = [['','No reason supplied'],['colors','Color combination'],['patterns','Pattern combination'],['formality','Too formal / too casual'],['footwear','Shoes with this outfit'],['other','Other']];
-  let pending = false, lastId = null, feedbackError = null, dialog = null, urls = [];
+  let pending = false, lastId = null, feedbackError = null, dialog = null, urls = [], noticeKind = 'action';
   let booting=true, checking=false, validationTask=null, validationRequested=false, reconcileRequested=false, retryRequested=false,managerRefresh=null;
   let deferredFeedback=false,handledFeedbackToken=null;
   const PAGE_SIZE=50, MAX_BACKUP_BYTES=64*1024*1024;
@@ -30,7 +30,7 @@
   const homeRetry=button('Retry rejection check','retry-rejection-check',()=>invalidateFeedback(true));
   homeFailure.append(homeNotice,homeRetry);homeManage.before(homeFailure);
   const migrationNotice=element('p','','fx-caption');migrationNotice.id='rejection-migration-notice';migrationNotice.hidden=true;homeManage.before(migrationNotice);
-  function say(text, error=false) {notice.textContent=text; notice.dataset.error=String(error);}
+  function say(text, error=false, kind='action') {notice.textContent=text; notice.dataset.error=String(error);noticeKind=kind;}
   function readFailure(error){feedbackError=error==null?null:String(error.message||error);original.setFeedbackReadError(feedbackError);}
   function failureMessage(){return 'Saved rejections could not be checked. Generation and outfit display are paused. '+feedbackError+' Existing records were retained.';}
   function currentAllowed(state) {
@@ -53,9 +53,9 @@
     homeFailure.hidden=!(feedbackError||loading);homeNotice.textContent=loading?'Loading saved rejections…':feedbackError?failureMessage():'';
     retryButton.hidden=!feedbackError||loading;homeRetry.hidden=loading;retryButton.disabled=homeRetry.disabled=pending||checking||state.busy;
     if(feedbackError||loading||pending||checking){
-      if(loading)say('Loading saved rejections…');else if(feedbackError)say(failureMessage(),true);
+      if(loading)say('Loading saved rejections…',false,'availability');else if(feedbackError)say(failureMessage(),true,'availability');
       for(const id of ['generate-options','regenerate','generate-current-selections','open-results','prev-option','next-option'])if($(id))$(id).disabled=true;
-    }
+    }else if(noticeKind==='availability')say('Saved rejections checked.');
   }
   async function synchronize(options) {
     if(fb.sync)await fb.sync(options);

@@ -43,7 +43,7 @@ class Element {
   }
 }
 
-async function harness(selection=selected) {
+async function harness(selection=selected, {initiallyLoading=false}={}) {
   const body=new Element('body'),documentListeners=new Map();
   const document={body,createElement:tag=>new Element(tag),getElementById:id=>body.querySelectorAll('#'+id)[0]||null,
     addEventListener(type,listener){documentListeners.set(type,listener);}};
@@ -55,8 +55,10 @@ async function harness(selection=selected) {
     async rejectionChanged(){return {count:19};},
     async refillRejected(options){refills.push(copy(options));return {count:20,target:20,added:1};}};
   const snapshot=()=>({active:events.filter(e=>e.type==='hide'),temporary:events.filter(e=>e.type==='temporary_skip'),events:events.filter(e=>e.type==='hide')});
-  const feedback={ready:Promise.resolve(),prefixes:['synthetic:'],sync:async()=>{},refresh:snapshot,snapshot,
-    status:()=>({ready:true,persistent:true,stale:false,loading:false,blocked:null}),allowed:()=>true,
+  let finishInitialRead;
+  const firstRead=initiallyLoading?new Promise(resolve=>{finishInitialRead=()=>{initiallyLoading=false;resolve();};}):Promise.resolve();
+  const feedback={ready:firstRead,prefixes:['synthetic:'],sync:async()=>{},refresh:snapshot,snapshot,
+    status:()=>({ready:!initiallyLoading,persistent:true,stale:false,loading:initiallyLoading,blocked:null}),allowed:()=>true,
     token:()=>String(events.length),subscribe:()=>()=>{},persistentForScope:()=>true,clearTemporary:()=>{},
     async hide(s,options){calls.push({action:'hide',selection:copy(s),options:copy(options)});if(blockHide)await blockHide;const event={id:'saved_'+(++nextId),type:'hide',selection:copy(s),...copy(options),occasion:options.context};events.push(event);return event;},
     async skip(s,options){calls.push({action:'skip',selection:copy(s),options:copy(options)});const event={id:'skip_'+(++nextId),type:'temporary_skip',selection:copy(s),...copy(options),occasion:options.context};events.push(event);return event;},
@@ -65,9 +67,10 @@ async function harness(selection=selected) {
     addEventListener(){},HEWRSApp:app,HEWRS_READY:true,HEWRSRejectionPreviewCore:{attach:()=>feedback},
     HEWRSOutfitFeedback:{key:value=>JSON.stringify(value)}});
   vm.runInContext(source,context,{filename:'src/outfit-rejection-ui.js'});
-  await context.HEWRSApp.rejection.ready;
+  if(!initiallyLoading)await context.HEWRSApp.rejection.ready;
   const get=id=>{const node=document.getElementById(id);assert.ok(node,'Expected DOM node '+id);return node;};
   return {get,document,context,calls,refills,events,
+    async completeInitialRead(){finishInitialRead?.();await context.HEWRSApp.rejection.ready;},
     open:()=>context.HEWRSApp.rejection.open(),
     reason(id,checked=true){const node=get('rejection-issue-'+id);node.checked=checked;node.fire('change');},
     scope(value){const node=get('rejection-scope');node.value=value;node.fire('change');},

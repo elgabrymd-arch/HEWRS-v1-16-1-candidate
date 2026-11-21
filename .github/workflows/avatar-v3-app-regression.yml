@@ -9,6 +9,11 @@ on:
       - 'avatar-v3-review.html'
       - 'AVATAR_V3_REVIEW_BUILD.json'
       - 'runtime/avatar-v3-candidate-*.js'
+      - 'src/outfit-rejection-ui.js'
+      - 'tests/rejection-status-ui.cjs'
+      - 'tests/all-rejections-ui.cjs'
+      - 'tests/five-round-state-browser.py'
+      - 'tools/build_avatar_v3_candidate.py'
       - '.github/workflows/avatar-v3-app-regression.yml'
   workflow_dispatch:
 
@@ -20,14 +25,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  rejection-status:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify readiness messages and preserved rejection intent
+        run: node --test tests/rejection-status-ui.cjs tests/all-rejections-ui.cjs tests/five-round-ui-rejection.cjs tests/tie-only-replacement.cjs
+
   verify-native-state-and-rejections:
-    name: Native preview state and rejection regression — ${{ matrix.browser }}
+    name: Native preview regression — ${{ matrix.browser }} — ${{ matrix.section }}
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     strategy:
       fail-fast: false
       matrix:
         browser: [chromium, webkit]
+        section: [state, tie, reasons, lifecycle]
     container:
       image: mcr.microsoft.com/playwright/python:v1.56.0-noble
       options: --init --ipc=host
@@ -46,20 +63,21 @@ jobs:
           assert hashlib.sha256(Path(d['runtime']).read_bytes()).hexdigest()==d['runtime_sha256']
           print('VERIFIED_V3_PREVIEW='+d['preview_entrypoint'])
           PY
-      - name: Start private browser server and verify all saved-state and rejection routes
+      - name: Verify actual saved-state or rejection routes in fresh profiles
         run: |
           python -m http.server 8765 --bind 127.0.0.1 > /tmp/v3-preview-server.log 2>&1 &
           server_pid=$!
           trap 'kill $server_pid 2>/dev/null || true' EXIT
-          python tests/five-round-state-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}'
-          python tests/tie-reason-scope-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}'
-          python tests/all-rejections-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' --section reasons
-          python tests/all-rejections-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' --section lifecycle
+          case '${{ matrix.section }}' in
+            state) python tests/five-round-state-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' ;;
+            tie) python tests/tie-reason-scope-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' ;;
+            reasons|lifecycle) python tests/all-rejections-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' --section '${{ matrix.section }}' ;;
+          esac
       - name: Preserve verification evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: HEWRS_AVATAR_V3_PROTECTED_STATE_${{ matrix.browser }}
+          name: HEWRS_AVATAR_V3_PROTECTED_STATE_${{ matrix.browser }}_${{ matrix.section }}
           path: |
             evidence/five_round_20261119/browser/
             evidence/tie_reason_scope/
