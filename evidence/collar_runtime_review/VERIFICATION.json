@@ -1,0 +1,3433 @@
+{
+  "schema": "hewrs.collar-candidate-verification.v1",
+  "status": "BROWSER_VERIFIED_CANDIDATE_VISUAL_APPROVAL_PENDING",
+  "source_commit": "b105df7873f825217ab120c22fae93174cf31d45",
+  "workflow_run": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44841862890",
+  "main_commit": "f114d7dbedab3430761a29d77328ae80ac0882e4",
+  "entrypoint": "collar-candidate.html",
+  "entrypoint_sha256": "e706e164f40ec5ef0825ed9411659078c3b09ed29a71aeb843174cccb86b523d",
+  "runtime": "runtime/collar-candidate-5e84aa9c745925a1ecd2.js",
+  "runtime_sha256": "5e84aa9c745925a1ecd273ad68d4828a52a53ddf9ac1757a748a64a05e94a22d",
+  "source_input_sha256": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "canvas": [
+    996,
+    2748
+  ],
+  "allowed_changed_bbox_xyxy": [
+    320,
+    350,
+    680,
+    590
+  ],
+  "browser_storage_migration": false,
+  "owner_profile_accessed": false,
+  "source_assets_modified": false,
+  "active_entrypoint_modified": false,
+  "browsers": {
+    "chromium": {
+      "status": "PASS",
+      "candidate_checks_passed": 715,
+      "candidate_checks_failed": 0,
+      "baseline_checks_passed": 427,
+      "baseline_checks_failed": 0,
+      "baseline_frames": 84,
+      "candidate_frames": 84,
+      "required_full_frame_controls": 38,
+      "all_unchanged_frames": 50,
+      "changed_frames": 34,
+      "artifact_id": 14681502304,
+      "artifact_sha256": "723e5e74068ef5bf033c22e49acf33ae1e2ac14320a50cb75be8fdbe1f064322",
+      "raw_report_sha256": "0ccea7b1aedd8c745fab1f4bb5b5440ae86b0894e8bc9b563d2d4767c63d3f87",
+      "rejection_smoke": {
+        "status": "passed",
+        "fresh_synthetic_context": true,
+        "Generate_actions": 1,
+        "consecutive_clothing_rejections": 20,
+        "accepted_rows_retained_in_order": true,
+        "all_prior_rejections_excluded": true,
+        "tie_only_replacement_preserves_other_garments": true,
+        "undo_and_reload_preserve_twenty_bans": true,
+        "wear_and_favorites_unchanged": true,
+        "external_requests": 0
+      },
+      "frames": [
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "7974e1f03809f747804e6837ac36f78d921816b04f68a98c6cc83547afda33c4",
+          "baseline_rgba_sha256": "7974e1f03809f747804e6837ac36f78d921816b04f68a98c6cc83547afda33c4",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "f0dab06e73cc505d67205164ba217f13011dc337e61731d4691ba836f4eb232c",
+          "baseline_rgba_sha256": "e07f9501cd4ce77a6a4957c1aee36c2bf0b4f7278ff4220cd9ae1923c0370779",
+          "changed_pixels": 39117,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "7974e1f03809f747804e6837ac36f78d921816b04f68a98c6cc83547afda33c4",
+          "baseline_rgba_sha256": "7974e1f03809f747804e6837ac36f78d921816b04f68a98c6cc83547afda33c4",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "f0dab06e73cc505d67205164ba217f13011dc337e61731d4691ba836f4eb232c",
+          "baseline_rgba_sha256": "e07f9501cd4ce77a6a4957c1aee36c2bf0b4f7278ff4220cd9ae1923c0370779",
+          "changed_pixels": 39117,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "2434d935116d33a1df377e0a24a01c350987fdc53b80fa952f947436bbf167b2",
+          "baseline_rgba_sha256": "2e26c009c0686a7e2b294c447d84eeb8e03ae4ca63caabc8b48b85fba05faeed",
+          "changed_pixels": 400,
+          "changed_bbox_xyxy": [
+            355,
+            430,
+            641,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "6db1c0e7fdcbdb9379b9b0ef66a7ff00a4e958adfa21cecb999beaeece1c34db",
+          "baseline_rgba_sha256": "6db1c0e7fdcbdb9379b9b0ef66a7ff00a4e958adfa21cecb999beaeece1c34db",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "526388a0868086518be8cf6516c4b1343ede710cb69c60fc7af6eed9be58e56a",
+          "baseline_rgba_sha256": "a6c93dccc5361e069c218128ad02b9b378f470a0ddf7cc0e1fcf872eeabf9f90",
+          "changed_pixels": 397,
+          "changed_bbox_xyxy": [
+            393,
+            399,
+            590,
+            532
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "48ba51f575c352d24f47ca9c4380843dcbcce0758eb4ee46d10f4ad4a22907ed",
+          "baseline_rgba_sha256": "48ba51f575c352d24f47ca9c4380843dcbcce0758eb4ee46d10f4ad4a22907ed",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "d726e81ff01363b99e32702df713def2ab63f6ff2df0acd3a3a3e043b1420908",
+          "baseline_rgba_sha256": "c2e4802774700ec81bfe07bd9b3771f2766aa824007ecf3c120f8f1de2ebe17e",
+          "changed_pixels": 463,
+          "changed_bbox_xyxy": [
+            355,
+            456,
+            637,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "f59db788af3d8ff884d9af5acc065468b3c0035f607325025114f4dc87c3cb54",
+          "baseline_rgba_sha256": "f59db788af3d8ff884d9af5acc065468b3c0035f607325025114f4dc87c3cb54",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "2684bfcd33079047d8a58a2151d5669cff9d25a6be8cc0834e5edb6423807db4",
+          "baseline_rgba_sha256": "5d4c79d71599cc83bd40f7f4b7315994bcf54c441a50c5071b50877df5264e30",
+          "changed_pixels": 1389,
+          "changed_bbox_xyxy": [
+            381,
+            436,
+            617,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "ce241b57c8942acda19fc3502a2bb95df31de57e85e7d9ffce900563e21e9fa7",
+          "baseline_rgba_sha256": "ce241b57c8942acda19fc3502a2bb95df31de57e85e7d9ffce900563e21e9fa7",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "5b63c7318e8efd5504c0d7ad592847c28bfd57ee8d27322028ada0366bc6ea76",
+          "baseline_rgba_sha256": "b9950d6ebdaeb5c99e450677a826c49d725e91ada42136e2cf72797568234d8a",
+          "changed_pixels": 422,
+          "changed_bbox_xyxy": [
+            355,
+            440,
+            641,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "e474d9bfa48bf6477863411b21684ffba04b507503352b48d03f66cec5183a87",
+          "baseline_rgba_sha256": "e474d9bfa48bf6477863411b21684ffba04b507503352b48d03f66cec5183a87",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "0467f514c90d91918627bc8ff501df458a274e9b95383b0c67d1083997ea13fc",
+          "baseline_rgba_sha256": "e4fd1b966413cc1dff5af3b46dcfd9428a7547db06979f0000da6618f1f2b681",
+          "changed_pixels": 463,
+          "changed_bbox_xyxy": [
+            355,
+            456,
+            637,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "96f65b276a95206ad6673f8c1e8eaf93e54743b7d34d6e4a5cb9049ab3350674",
+          "baseline_rgba_sha256": "96f65b276a95206ad6673f8c1e8eaf93e54743b7d34d6e4a5cb9049ab3350674",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "d58b9197bf562abfef904c0c3f0562d74080ea758954a62df4ef5cae5ad0a0ac",
+          "baseline_rgba_sha256": "d58b9197bf562abfef904c0c3f0562d74080ea758954a62df4ef5cae5ad0a0ac",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "136358ee0b6bf0b919aeeee8967f93dbe11e346225371df5dc9ff75324ca6687",
+          "baseline_rgba_sha256": "8d2e2ebbecf16a6fc0a4dff07a2c4ba8135d890abaf20c4bafdb506ca34f9111",
+          "changed_pixels": 28845,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "d58b9197bf562abfef904c0c3f0562d74080ea758954a62df4ef5cae5ad0a0ac",
+          "baseline_rgba_sha256": "d58b9197bf562abfef904c0c3f0562d74080ea758954a62df4ef5cae5ad0a0ac",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "136358ee0b6bf0b919aeeee8967f93dbe11e346225371df5dc9ff75324ca6687",
+          "baseline_rgba_sha256": "8d2e2ebbecf16a6fc0a4dff07a2c4ba8135d890abaf20c4bafdb506ca34f9111",
+          "changed_pixels": 28845,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "c356f0a879f70810e6506543ae05606f0af6b79ddf0ba208c0fa48520c2f76f0",
+          "baseline_rgba_sha256": "deb2f88722422ce864db2c6da7147ea1f14e02fb6025389c157eb1d82dcd084f",
+          "changed_pixels": 286,
+          "changed_bbox_xyxy": [
+            475,
+            530,
+            521,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "fa881d97f6927c7a52914f5e1250f61eb4fde758dacd921f33ee71595369f42c",
+          "baseline_rgba_sha256": "fa881d97f6927c7a52914f5e1250f61eb4fde758dacd921f33ee71595369f42c",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "9a712c904c9f7a3539355be3ab4082cd31db679bcb8303d0116d9f79cef5db73",
+          "baseline_rgba_sha256": "90732cadf568d790787df5d52573879a7b04651298d34b181da085836fecab79",
+          "changed_pixels": 396,
+          "changed_bbox_xyxy": [
+            393,
+            401,
+            590,
+            532
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "f7f966a4f18a2e7612b8da2bf2c427903d10b1af517131db1a1ae20e103946f4",
+          "baseline_rgba_sha256": "f7f966a4f18a2e7612b8da2bf2c427903d10b1af517131db1a1ae20e103946f4",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "01011d267f39019891c19cf80064ab3800ace5d3451c73b3f93f9f75b3b1116b",
+          "baseline_rgba_sha256": "366ec654ab668b33414aea8bac816c90b01f60f322d925840abc61964aa02a0d",
+          "changed_pixels": 325,
+          "changed_bbox_xyxy": [
+            475,
+            456,
+            615,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "21b8b27eca0b5213593eb3c1818eac595626ced31d5df8fe3ca0ddc9b58fe402",
+          "baseline_rgba_sha256": "21b8b27eca0b5213593eb3c1818eac595626ced31d5df8fe3ca0ddc9b58fe402",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "e26fc10bd627fc8bf7b0e813d8cf2b383b7f838cd3cac2b3bd9fe8ce09b07d4c",
+          "baseline_rgba_sha256": "89bfee6a0523eaad5e74350cca275c7fb3116ad7bca49fc9c063804a42fd89cf",
+          "changed_pixels": 1356,
+          "changed_bbox_xyxy": [
+            384,
+            436,
+            616,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "23f331030c711e1b54b0a9c121891939a8fcbe9bf3a47345e941de94650c0949",
+          "baseline_rgba_sha256": "23f331030c711e1b54b0a9c121891939a8fcbe9bf3a47345e941de94650c0949",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "b99a83c740647951ac8fe728c4e8d3f5f2b52219d97d7a080bee0282868ad9bb",
+          "baseline_rgba_sha256": "83a2622cad97cef974301213f658d1723dffd98ce76aec34e4128a37b4cfc86c",
+          "changed_pixels": 286,
+          "changed_bbox_xyxy": [
+            475,
+            530,
+            521,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "02ef826844deeb1de1723450a90856818e5dd7af1b038471bdb85718340278be",
+          "baseline_rgba_sha256": "02ef826844deeb1de1723450a90856818e5dd7af1b038471bdb85718340278be",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "5b8b69c523aee4d9f2cae5255cdcaf254c16ac46bc59cf03a6e644df45aeb9a9",
+          "baseline_rgba_sha256": "b9957cbbcc361276514357f9f87d10790b7512c60fb2b3e65db9a609357311e6",
+          "changed_pixels": 325,
+          "changed_bbox_xyxy": [
+            475,
+            456,
+            615,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "69ed43323ce6d06921ef154c6f5b20e7e32bebed7554733c27c024659d33a935",
+          "baseline_rgba_sha256": "69ed43323ce6d06921ef154c6f5b20e7e32bebed7554733c27c024659d33a935",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "c976410ba0c4746ad8c228030cf11058b9d73d68a1d9945530c42cd26080194b",
+          "baseline_rgba_sha256": "c382b857d1825fecb37682f2ae089abbf801ed4f154e0bc1a9055d26faa52200",
+          "changed_pixels": 39080,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "e9b681f364acea9585167048c9e5a103e64de661a3df939052ff677beb62c440",
+          "baseline_rgba_sha256": "8cc5503fd2030a7e8b146520bc40f1fe5602fa45cfa1c7537124e353b9c0240a",
+          "changed_pixels": 28808,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "9c2f3a909b737313b79f11578e8a639b225281fa259643bbfc08c4df2aa6a4a7",
+          "baseline_rgba_sha256": "e9825ab29807113c1eecb94825751d6e6f145c7be05f83e86d2840f025dae703",
+          "changed_pixels": 39107,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "dba814fc7eb6bf8f6b43f3e3353a8b10cbab0c0e360c5fd9e8f585ea77cdf88d",
+          "baseline_rgba_sha256": "9f17d24aa167f1b902fb84f1d665d79784d01cf65233547da669ffd8e24c0f9c",
+          "changed_pixels": 28835,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "dccfe2dce001961f60927f2d2469ee0e442727546e9e1b7c3e6f06cc7feec8c7",
+          "baseline_rgba_sha256": "a5a4115f8fc4a5fc829ef05ed706f33d26e52cf021b684ea1923bf8480c6e77d",
+          "changed_pixels": 39113,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "047b890622eae673ef7e99284e4cba0a2dd4532a1fbdd4b10f4f558ca05f93cf",
+          "baseline_rgba_sha256": "8c642627204f6ab0f80db44624a4249d85bc82c24e8489c1dd5eae375f065293",
+          "changed_pixels": 28841,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "180146631fede84a630673df0503eac050b65c79209d8edff8205c418af5a241",
+          "baseline_rgba_sha256": "180146631fede84a630673df0503eac050b65c79209d8edff8205c418af5a241",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "52c682b68541f5826d42dd51260c077f84297a1e4a48418c4fdd7ae236e3ada8",
+          "baseline_rgba_sha256": "caedbd481f61c6a687b14984e10bab84e403dca53f669defb3295c122d020b1d",
+          "changed_pixels": 25780,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "ca2a926d5cc17309c27d615f9bde1048f863b1cf68aa03d8e56db467bbb008eb",
+          "baseline_rgba_sha256": "784242c9a55c7d48415c1e29875dfbb86f0c6152fd13308dfa94df52abcbc277",
+          "changed_pixels": 25770,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "7a32b27ac0768715c4ef262bb92c40cc961ba7ff197723d1751e793c201c4514",
+          "baseline_rgba_sha256": "424ff34d5773ebff4342cf6a8549c71eaaf15a7505e9ab1683a0c3604a36d641",
+          "changed_pixels": 25776,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-T029.png"
+        },
+        {
+          "selection": {
+            "blazerId": "B01",
+            "pantId": "PT006",
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "ce980de60b268023f9e09cdfef26056a147ce94d85bc583ef50366aa78f95d68",
+          "baseline_rgba_sha256": "ce980de60b268023f9e09cdfef26056a147ce94d85bc583ef50366aa78f95d68",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B01-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "c976410ba0c4746ad8c228030cf11058b9d73d68a1d9945530c42cd26080194b",
+          "baseline_rgba_sha256": "c382b857d1825fecb37682f2ae089abbf801ed4f154e0bc1a9055d26faa52200",
+          "changed_pixels": 39080,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "e9b681f364acea9585167048c9e5a103e64de661a3df939052ff677beb62c440",
+          "baseline_rgba_sha256": "8cc5503fd2030a7e8b146520bc40f1fe5602fa45cfa1c7537124e353b9c0240a",
+          "changed_pixels": 28808,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "9c2f3a909b737313b79f11578e8a639b225281fa259643bbfc08c4df2aa6a4a7",
+          "baseline_rgba_sha256": "e9825ab29807113c1eecb94825751d6e6f145c7be05f83e86d2840f025dae703",
+          "changed_pixels": 39107,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "dba814fc7eb6bf8f6b43f3e3353a8b10cbab0c0e360c5fd9e8f585ea77cdf88d",
+          "baseline_rgba_sha256": "9f17d24aa167f1b902fb84f1d665d79784d01cf65233547da669ffd8e24c0f9c",
+          "changed_pixels": 28835,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "dccfe2dce001961f60927f2d2469ee0e442727546e9e1b7c3e6f06cc7feec8c7",
+          "baseline_rgba_sha256": "a5a4115f8fc4a5fc829ef05ed706f33d26e52cf021b684ea1923bf8480c6e77d",
+          "changed_pixels": 39113,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "047b890622eae673ef7e99284e4cba0a2dd4532a1fbdd4b10f4f558ca05f93cf",
+          "baseline_rgba_sha256": "8c642627204f6ab0f80db44624a4249d85bc82c24e8489c1dd5eae375f065293",
+          "changed_pixels": 28841,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "180146631fede84a630673df0503eac050b65c79209d8edff8205c418af5a241",
+          "baseline_rgba_sha256": "180146631fede84a630673df0503eac050b65c79209d8edff8205c418af5a241",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "52c682b68541f5826d42dd51260c077f84297a1e4a48418c4fdd7ae236e3ada8",
+          "baseline_rgba_sha256": "caedbd481f61c6a687b14984e10bab84e403dca53f669defb3295c122d020b1d",
+          "changed_pixels": 25780,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "ca2a926d5cc17309c27d615f9bde1048f863b1cf68aa03d8e56db467bbb008eb",
+          "baseline_rgba_sha256": "784242c9a55c7d48415c1e29875dfbb86f0c6152fd13308dfa94df52abcbc277",
+          "changed_pixels": 25770,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "7a32b27ac0768715c4ef262bb92c40cc961ba7ff197723d1751e793c201c4514",
+          "baseline_rgba_sha256": "424ff34d5773ebff4342cf6a8549c71eaaf15a7505e9ab1683a0c3604a36d641",
+          "changed_pixels": 25776,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-T029.png"
+        },
+        {
+          "selection": {
+            "blazerId": "B01",
+            "pantId": "PT006",
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "ce980de60b268023f9e09cdfef26056a147ce94d85bc583ef50366aa78f95d68",
+          "baseline_rgba_sha256": "ce980de60b268023f9e09cdfef26056a147ce94d85bc583ef50366aa78f95d68",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B01-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "6a7ff551109467061c481d0633524d3ca807160635954ab238676d7c2129e43f",
+          "baseline_rgba_sha256": "6a7ff551109467061c481d0633524d3ca807160635954ab238676d7c2129e43f",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "059e4a907bb806f29ada3c3db1d966a8f662b6eb9b3986092f17ebd5f978315a",
+          "baseline_rgba_sha256": "059e4a907bb806f29ada3c3db1d966a8f662b6eb9b3986092f17ebd5f978315a",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "576b098037777cb00a1ac233ea4d738dc1dd0689f95fdeaa2d1c1760d65ac02a",
+          "baseline_rgba_sha256": "576b098037777cb00a1ac233ea4d738dc1dd0689f95fdeaa2d1c1760d65ac02a",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S05-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "8563bda37551ce9c90ddf1269fd97f6c768f8d367952293b0d8ae57934ee117a",
+          "baseline_rgba_sha256": "8563bda37551ce9c90ddf1269fd97f6c768f8d367952293b0d8ae57934ee117a",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "1d608fe991513220d3f728b681f17b8fc210680d97bd588082517866f2e2b7b9",
+          "baseline_rgba_sha256": "1d608fe991513220d3f728b681f17b8fc210680d97bd588082517866f2e2b7b9",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "3b30491acecac0ef42d3a50e9fd4a282c115ed29cbed441c5407827624f8fd92",
+          "baseline_rgba_sha256": "3b30491acecac0ef42d3a50e9fd4a282c115ed29cbed441c5407827624f8fd92",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S05-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "aef62dbe943604826f50e1c953963d65a56b727a9acd8114e9707201fdd42e35",
+          "baseline_rgba_sha256": "aef62dbe943604826f50e1c953963d65a56b727a9acd8114e9707201fdd42e35",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S11-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "413a1c1242108d834f0aa2aff210cca40c7ce3e87259229f3bc5445a5415f3d3",
+          "baseline_rgba_sha256": "413a1c1242108d834f0aa2aff210cca40c7ce3e87259229f3bc5445a5415f3d3",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S11-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "682418f7e791d515e8356005bc09539a4e5344aa0b29c975dc0a69ff27d50893",
+          "baseline_rgba_sha256": "682418f7e791d515e8356005bc09539a4e5344aa0b29c975dc0a69ff27d50893",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S11-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "22455a4fae4e97321f10fe2e2d3abc0755a8aa471297ad5e575da6ae6824d339",
+          "baseline_rgba_sha256": "22455a4fae4e97321f10fe2e2d3abc0755a8aa471297ad5e575da6ae6824d339",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S11-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "05feba677dc55c3a04ca3c417beab099fe7fbd10dea7b2092f66d182e5a673da",
+          "baseline_rgba_sha256": "05feba677dc55c3a04ca3c417beab099fe7fbd10dea7b2092f66d182e5a673da",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S11-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "ccf52d89279c2be408d88ee0b1626d90fa943b7d2076e5fe753d9b9e1747e1ca",
+          "baseline_rgba_sha256": "ccf52d89279c2be408d88ee0b1626d90fa943b7d2076e5fe753d9b9e1747e1ca",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S11-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "dd7b64f858d247befe7ff6154c4305242127b7db714a71fd8e2fdd12b6c40a13",
+          "baseline_rgba_sha256": "dd7b64f858d247befe7ff6154c4305242127b7db714a71fd8e2fdd12b6c40a13",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "1d2de78da9f8abd4a28b2272af08c6e4821c9d33e00a9b7c49a5a05d03d22ecf",
+          "baseline_rgba_sha256": "1d2de78da9f8abd4a28b2272af08c6e4821c9d33e00a9b7c49a5a05d03d22ecf",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "fd111085be44e2653fcf30121aaaad1ef6f7283a7460c9ec77af16a8156ecdcf",
+          "baseline_rgba_sha256": "fd111085be44e2653fcf30121aaaad1ef6f7283a7460c9ec77af16a8156ecdcf",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "07825cb1c3b1703a34d76b01d95fff350c7b30c202d5ef64e34bd09d0009dc1a",
+          "baseline_rgba_sha256": "07825cb1c3b1703a34d76b01d95fff350c7b30c202d5ef64e34bd09d0009dc1a",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "7194e7afde4bf06e3f73e5db782cd8e31605e411e1f181bac491719c2daafc1b",
+          "baseline_rgba_sha256": "7194e7afde4bf06e3f73e5db782cd8e31605e411e1f181bac491719c2daafc1b",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "2735c60ba12bdc68375a234deba40e062e55a0310acc76319fd8839d1da5d658",
+          "baseline_rgba_sha256": "2735c60ba12bdc68375a234deba40e062e55a0310acc76319fd8839d1da5d658",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "f65e5f2a3cc9f9f247605b6212334620af2a7cf949a43984c0d9cd04a3bc39f2",
+          "baseline_rgba_sha256": "f65e5f2a3cc9f9f247605b6212334620af2a7cf949a43984c0d9cd04a3bc39f2",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "751fc085c4d224c8a9ace3bcbb414f0c73abca0d5f9ad6b06ea9dfdb680c3841",
+          "baseline_rgba_sha256": "751fc085c4d224c8a9ace3bcbb414f0c73abca0d5f9ad6b06ea9dfdb680c3841",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "badcc0eac9b5a67cb84699a68436b7e31ec8bf897d28f2099ecdfe0e94a0b18f",
+          "baseline_rgba_sha256": "badcc0eac9b5a67cb84699a68436b7e31ec8bf897d28f2099ecdfe0e94a0b18f",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "c6239ea57c4a0bf8e4f9b965e4833341dc9b6668626f783fbbcf1f4b2b3b8c32",
+          "baseline_rgba_sha256": "c6239ea57c4a0bf8e4f9b965e4833341dc9b6668626f783fbbcf1f4b2b3b8c32",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "2c3f09411ef824eaf35ab89c556b058131a47c7887068801ef6d97a05c0ea470",
+          "baseline_rgba_sha256": "2c3f09411ef824eaf35ab89c556b058131a47c7887068801ef6d97a05c0ea470",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "707b03a99626b6149cb6ba76979c85da2a8462ac7daa6cc29c2ed5716cc3a5e3",
+          "baseline_rgba_sha256": "707b03a99626b6149cb6ba76979c85da2a8462ac7daa6cc29c2ed5716cc3a5e3",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "93a051c473ff4036576009d8f6b861834222219aeaba6e334bda4beb6451a2d3",
+          "baseline_rgba_sha256": "93a051c473ff4036576009d8f6b861834222219aeaba6e334bda4beb6451a2d3",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "0c1385af0b7549366193ddb027cfce2273742ff94959c3c9b4b44e4b00671b2f",
+          "baseline_rgba_sha256": "0c1385af0b7549366193ddb027cfce2273742ff94959c3c9b4b44e4b00671b2f",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "72f976cd53c3eca1d239c3a525b2d013d6acd310da08887cd162d4ddfbb4ea75",
+          "baseline_rgba_sha256": "72f976cd53c3eca1d239c3a525b2d013d6acd310da08887cd162d4ddfbb4ea75",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "a2d30d34e50c97c0fa637a77e0b33fc381b34925ed3731a9aceeed7341148ba8",
+          "baseline_rgba_sha256": "a2d30d34e50c97c0fa637a77e0b33fc381b34925ed3731a9aceeed7341148ba8",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "f0753ca3e07f8affadc01775f3179e05dcc29672f19e9dbb35d10a884fedb038",
+          "baseline_rgba_sha256": "f0753ca3e07f8affadc01775f3179e05dcc29672f19e9dbb35d10a884fedb038",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "0eb910c323baf419cf20dc5043b3aa54e1a93af42ab9b6897699e29780342dd8",
+          "baseline_rgba_sha256": "0eb910c323baf419cf20dc5043b3aa54e1a93af42ab9b6897699e29780342dd8",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-S05-T017.png"
+        }
+      ]
+    },
+    "webkit": {
+      "status": "PASS",
+      "candidate_checks_passed": 715,
+      "candidate_checks_failed": 0,
+      "baseline_checks_passed": 427,
+      "baseline_checks_failed": 0,
+      "baseline_frames": 84,
+      "candidate_frames": 84,
+      "required_full_frame_controls": 38,
+      "all_unchanged_frames": 50,
+      "changed_frames": 34,
+      "artifact_id": 14681397695,
+      "artifact_sha256": "7805d21c2e352968f5fd3d8a390dc6ee0bc9189ef0b0eb61b7cf43ec2bf38064",
+      "raw_report_sha256": "453b1c5a41b7749cf97ee7db775cc9f1b7598a48abae5f70313a43d40f9f7f73",
+      "rejection_smoke": {
+        "status": "passed",
+        "fresh_synthetic_context": true,
+        "Generate_actions": 1,
+        "consecutive_clothing_rejections": 20,
+        "accepted_rows_retained_in_order": true,
+        "all_prior_rejections_excluded": true,
+        "tie_only_replacement_preserves_other_garments": true,
+        "undo_and_reload_preserve_twenty_bans": true,
+        "wear_and_favorites_unchanged": true,
+        "external_requests": 0
+      },
+      "frames": [
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "9cc9993ad2abcc728c64eb0c9f9fa2f7ba7096bccf69e892f8da7a69e6c964f7",
+          "baseline_rgba_sha256": "9cc9993ad2abcc728c64eb0c9f9fa2f7ba7096bccf69e892f8da7a69e6c964f7",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "6cf86de0d5d4ebafb20f1d0fb575ee5054d81bfb88ff00b3d6ef13931b438590",
+          "baseline_rgba_sha256": "f12cae206a148c1d2e3348703bcbd3bf840fca6ed6f18d0faf5864bbac90e5e8",
+          "changed_pixels": 39116,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "9cc9993ad2abcc728c64eb0c9f9fa2f7ba7096bccf69e892f8da7a69e6c964f7",
+          "baseline_rgba_sha256": "9cc9993ad2abcc728c64eb0c9f9fa2f7ba7096bccf69e892f8da7a69e6c964f7",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "6cf86de0d5d4ebafb20f1d0fb575ee5054d81bfb88ff00b3d6ef13931b438590",
+          "baseline_rgba_sha256": "f12cae206a148c1d2e3348703bcbd3bf840fca6ed6f18d0faf5864bbac90e5e8",
+          "changed_pixels": 39116,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "4a50496a3f2732599a7177d09042d386be34ee08d8c55966acf9664a8317d29b",
+          "baseline_rgba_sha256": "70696e2d950a2345f10544d01c0af1c2dbc94ded7541d18c21d330c8fb40aec0",
+          "changed_pixels": 400,
+          "changed_bbox_xyxy": [
+            355,
+            430,
+            641,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "9440deec83060154219de0db41fe9e1dd2e969e00d1768bb60fbd24f933b2864",
+          "baseline_rgba_sha256": "9440deec83060154219de0db41fe9e1dd2e969e00d1768bb60fbd24f933b2864",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "623d2d5c04d2820b6ee1d430ab1a29d3f386be9b248aff2b6338d996776e5146",
+          "baseline_rgba_sha256": "fe155f57485ffb5e9c40376f51a4e232bb03b010e60ad894fc523bccf57c5f1a",
+          "changed_pixels": 397,
+          "changed_bbox_xyxy": [
+            393,
+            399,
+            590,
+            532
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "488dd57216d21166f390bd27994e819d09bf22bf8df2f1ced5adb95474c5f96e",
+          "baseline_rgba_sha256": "488dd57216d21166f390bd27994e819d09bf22bf8df2f1ced5adb95474c5f96e",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "8dd6648f02e3bcb2ab287ae58b6c32634f37c6a5113f8b2874dc455adcb1f00f",
+          "baseline_rgba_sha256": "e3aa8e32f5bb96dd31161eb83c241d4220bf4e40311d841adaf4c024d80f2d44",
+          "changed_pixels": 463,
+          "changed_bbox_xyxy": [
+            355,
+            456,
+            637,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "4d0a9450c4a2b4fb60c668e451fc95265a0c14afc7a237753be022003d26dd37",
+          "baseline_rgba_sha256": "4d0a9450c4a2b4fb60c668e451fc95265a0c14afc7a237753be022003d26dd37",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "c666a66cd240a8a969ff5ffaac5702ad110cf330f720b2d0b18cb65fe7856897",
+          "baseline_rgba_sha256": "019a8bb532c2059a4d0e713ff5c49e4917e76eef1ce6018b1b907cf4232d619d",
+          "changed_pixels": 1389,
+          "changed_bbox_xyxy": [
+            381,
+            436,
+            617,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "cd7fe8f9855535deb72a9c75a0f97e086d12ea4a7e165b331dfba4fabcdaa2e7",
+          "baseline_rgba_sha256": "cd7fe8f9855535deb72a9c75a0f97e086d12ea4a7e165b331dfba4fabcdaa2e7",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "cd7b4513ec90ae858a817f0dfdff7acd7023701f522e7542e3c7455daa82724c",
+          "baseline_rgba_sha256": "174649878a79201f2aba78213f70b7eecb6e9c8d23a4f30bea863eac9809867e",
+          "changed_pixels": 422,
+          "changed_bbox_xyxy": [
+            355,
+            440,
+            641,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "01f0a19fd0f1efc3dd57e87869e4c2f9a8184d9a72065b7c1e9faf612cd391e3",
+          "baseline_rgba_sha256": "01f0a19fd0f1efc3dd57e87869e4c2f9a8184d9a72065b7c1e9faf612cd391e3",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "c164edc212b4af1e1278c7acbea3cfaeb3900399128ff56274f92a3679c03473",
+          "baseline_rgba_sha256": "3323af29aa005a99509964825ee8a78f93269f7df56eadec93115dc6dbe1e215",
+          "changed_pixels": 463,
+          "changed_bbox_xyxy": [
+            355,
+            456,
+            637,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "8f6eb795709b9acebb67cfb779f69b6c7ae6377ce43361f6a21a8e4d8d6a1860",
+          "baseline_rgba_sha256": "8f6eb795709b9acebb67cfb779f69b6c7ae6377ce43361f6a21a8e4d8d6a1860",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-shirt-only-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "ed2eec1cbdd37614fd1c4ebb79d8296b7a3392eb11f52b03ed0451dba9fbd962",
+          "baseline_rgba_sha256": "ed2eec1cbdd37614fd1c4ebb79d8296b7a3392eb11f52b03ed0451dba9fbd962",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "d04ce163c5868a162b32c1e7bc6ec27394aa0422ddcd0ff820bcc3be4a71f006",
+          "baseline_rgba_sha256": "2677eea59a78eb5cb0a2ac3c2b8df1d25372e48d5b810f2c74073eb1d9f1cd71",
+          "changed_pixels": 28845,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "ed2eec1cbdd37614fd1c4ebb79d8296b7a3392eb11f52b03ed0451dba9fbd962",
+          "baseline_rgba_sha256": "ed2eec1cbdd37614fd1c4ebb79d8296b7a3392eb11f52b03ed0451dba9fbd962",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "d04ce163c5868a162b32c1e7bc6ec27394aa0422ddcd0ff820bcc3be4a71f006",
+          "baseline_rgba_sha256": "2677eea59a78eb5cb0a2ac3c2b8df1d25372e48d5b810f2c74073eb1d9f1cd71",
+          "changed_pixels": 28845,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "790b4d9e8ea052cbdb4582110885dee83f8adf81d3f046626af1d37240a3998b",
+          "baseline_rgba_sha256": "41d3384f80fccdd9fe91c394c155142ecec4b8347a5307747ec5f1ed4f54b71f",
+          "changed_pixels": 286,
+          "changed_bbox_xyxy": [
+            475,
+            530,
+            521,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS017",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "18e6dff62118c3ecad35a0a45e5fa5f0e1f360e271cccb7e72c0b0ccd758670a",
+          "baseline_rgba_sha256": "18e6dff62118c3ecad35a0a45e5fa5f0e1f360e271cccb7e72c0b0ccd758670a",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS017-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "5d56edfe8890a6afe8ba3071a99e183819ba8b48c307c817213d4ad9993ebbf3",
+          "baseline_rgba_sha256": "08cb360bfdbb41f99226a4c648220c50bc6158b0094c4d6ad9768a93bc721105",
+          "changed_pixels": 396,
+          "changed_bbox_xyxy": [
+            393,
+            401,
+            590,
+            532
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "0fe186b0f1c8e5131e59b1a42876324697bce431efcec2cff49709d377a77542",
+          "baseline_rgba_sha256": "0fe186b0f1c8e5131e59b1a42876324697bce431efcec2cff49709d377a77542",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "1ce8d9ac7c108f190d3caafaa03616a0298a35b79d212b2a4bccebcf391a625a",
+          "baseline_rgba_sha256": "deb6a37a9c295192cfa45cdcf18185dc22b1285a041380867fceebdf3dd43fc7",
+          "changed_pixels": 325,
+          "changed_bbox_xyxy": [
+            475,
+            456,
+            615,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS034",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "be32d55af61fd67bd9a147013e0e6a337d399e7388cc4fd4823feae3135fc868",
+          "baseline_rgba_sha256": "be32d55af61fd67bd9a147013e0e6a337d399e7388cc4fd4823feae3135fc868",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS034-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "9157708c01b7cc4e2c792c31f4f9b0e326ac7f887a6b18c13f7ece7ac5243eef",
+          "baseline_rgba_sha256": "dda12d5dc457ccda85aa572e3f9b79fd15daa4f77761742726b4d3676d0c88f6",
+          "changed_pixels": 1356,
+          "changed_bbox_xyxy": [
+            384,
+            436,
+            616,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "a745154ad6b9226edb9f441abaaa3bb4c1b6d1577c544d8a2d6b14569d90a685",
+          "baseline_rgba_sha256": "a745154ad6b9226edb9f441abaaa3bb4c1b6d1577c544d8a2d6b14569d90a685",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "5ba6133eed40acea3720607645e7ff03792f55058a174ab54863699b2da4bee1",
+          "baseline_rgba_sha256": "4f22b4ee7dfc90ba2bd2d23aab8a7f7a4051bef3aa09cf9899a4f8cf3157e0ff",
+          "changed_pixels": 286,
+          "changed_bbox_xyxy": [
+            475,
+            530,
+            521,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS036",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "1a9622867adf8c4d01748519fd9ee4bbe64ad527c8065f6dc8d0119d57f2a10d",
+          "baseline_rgba_sha256": "1a9622867adf8c4d01748519fd9ee4bbe64ad527c8065f6dc8d0119d57f2a10d",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS036-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "ee189ac4c3f35bee426433a1197773552131443adae691e3ca815619dc099707",
+          "baseline_rgba_sha256": "acbe7826c887df38de488eb8c8f21bc1e64bec4e8f8832a5b1a8a06fe7d60737",
+          "changed_pixels": 325,
+          "changed_bbox_xyxy": [
+            475,
+            456,
+            615,
+            537
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS051",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "03378b0eb14e5b758c1bc27fa209b65b9a09b7d0657f3fea5ff78ce900771423",
+          "baseline_rgba_sha256": "03378b0eb14e5b758c1bc27fa209b65b9a09b7d0657f3fea5ff78ce900771423",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS051-B03-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "5d01f072c2ecc8fe56fd6f7a8ff6aa645f6ccbff883557d2e03ba33cee941042",
+          "baseline_rgba_sha256": "daa3496d1d714e1623530c9510046487f74cc0c26edf5dcd751c958948cf2e14",
+          "changed_pixels": 39079,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "bb4ec644fcf6ee3750e5aa7e393563fa0b51a3633ec10cf38143e141ee365c0f",
+          "baseline_rgba_sha256": "c6318588b05d20db0afc350d910d29381ca938e6c7571fd381cca5d23e42e2cc",
+          "changed_pixels": 28808,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "96a528f23818ffb5d7cdcaf0505f4f0a7a53d0686e48ac94275a301264fd156f",
+          "baseline_rgba_sha256": "5f89cb0005e22fe5e938f1e86bfe24b3926123252400611949293957c634db84",
+          "changed_pixels": 39106,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "57dc575f0f11559d035f62de05594113eebbb12a6d29d5ccba8de66dd20d1a53",
+          "baseline_rgba_sha256": "4bc8b249b79991f419b179c100e6f5a58f923ca3b166055052e03c091f4775de",
+          "changed_pixels": 28835,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "7e5263249c80c4b8f71906ccd58942a47d3961d66351e9770b9484ec6152cb37",
+          "baseline_rgba_sha256": "89ee9bd47725aab603ed1a1f8d8802313e9cc40b55d892078b3d18fd9a6c2796",
+          "changed_pixels": 39112,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-shirt-only-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "2a978f6ccc3c2291f99f1d78e6839d85858435a9e1e69c6d7c7c78d7a2b54478",
+          "baseline_rgba_sha256": "9f4479fdb499ab0e0a62deffefda16f4abb018e449470ab1ef4a0461b455fc3b",
+          "changed_pixels": 28841,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS001-B03-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "dbe4761692d3467da3f48d4df926141c28857bf4ce113d732a033224222a51af",
+          "baseline_rgba_sha256": "dbe4761692d3467da3f48d4df926141c28857bf4ce113d732a033224222a51af",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "eb64db336676447d9192bce7d562845ec4918785b679bf366b441ae6f3ed0319",
+          "baseline_rgba_sha256": "b9adda8ff734ca9e78735e78505f274e4bf14084f65766b46d37f0a2629f39ba",
+          "changed_pixels": 25780,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "6ab8bf755da2224aab26461a4b93a44de44fded03a34e67029586d29476e3752",
+          "baseline_rgba_sha256": "4d53711ff5e31f9ba3b474ce09a9173b465dddc8c9d982ee98f049c11e44f536",
+          "changed_pixels": 25770,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS001",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "4949a8673ee90140451a04b62fa5e28414ea6eec2f4163c766be90d4ddef8900",
+          "baseline_rgba_sha256": "bdcfa6722ecf1cf80470a250331078352355b4b195b0b6b86cd88d11d0188888",
+          "changed_pixels": 25776,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B02-T029.png"
+        },
+        {
+          "selection": {
+            "blazerId": "B01",
+            "pantId": "PT006",
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "cd91b13405d447fd6dd26d035da760208d938620b3b615a997f3dca7b315a720",
+          "baseline_rgba_sha256": "cd91b13405d447fd6dd26d035da760208d938620b3b615a997f3dca7b315a720",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS001-B01-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "5d01f072c2ecc8fe56fd6f7a8ff6aa645f6ccbff883557d2e03ba33cee941042",
+          "baseline_rgba_sha256": "daa3496d1d714e1623530c9510046487f74cc0c26edf5dcd751c958948cf2e14",
+          "changed_pixels": 39079,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "bb4ec644fcf6ee3750e5aa7e393563fa0b51a3633ec10cf38143e141ee365c0f",
+          "baseline_rgba_sha256": "c6318588b05d20db0afc350d910d29381ca938e6c7571fd381cca5d23e42e2cc",
+          "changed_pixels": 28808,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "96a528f23818ffb5d7cdcaf0505f4f0a7a53d0686e48ac94275a301264fd156f",
+          "baseline_rgba_sha256": "5f89cb0005e22fe5e938f1e86bfe24b3926123252400611949293957c634db84",
+          "changed_pixels": 39106,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "57dc575f0f11559d035f62de05594113eebbb12a6d29d5ccba8de66dd20d1a53",
+          "baseline_rgba_sha256": "4bc8b249b79991f419b179c100e6f5a58f923ca3b166055052e03c091f4775de",
+          "changed_pixels": 28835,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "7e5263249c80c4b8f71906ccd58942a47d3961d66351e9770b9484ec6152cb37",
+          "baseline_rgba_sha256": "89ee9bd47725aab603ed1a1f8d8802313e9cc40b55d892078b3d18fd9a6c2796",
+          "changed_pixels": 39112,
+          "changed_bbox_xyxy": [
+            351,
+            355,
+            648,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-shirt-only-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "2a978f6ccc3c2291f99f1d78e6839d85858435a9e1e69c6d7c7c78d7a2b54478",
+          "baseline_rgba_sha256": "9f4479fdb499ab0e0a62deffefda16f4abb018e449470ab1ef4a0461b455fc3b",
+          "changed_pixels": 28841,
+          "changed_bbox_xyxy": [
+            393,
+            366,
+            623,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": 0,
+          "collar_image": "collars/DS014-B03-T029.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "dbe4761692d3467da3f48d4df926141c28857bf4ce113d732a033224222a51af",
+          "baseline_rgba_sha256": "dbe4761692d3467da3f48d4df926141c28857bf4ce113d732a033224222a51af",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T001",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "eb64db336676447d9192bce7d562845ec4918785b679bf366b441ae6f3ed0319",
+          "baseline_rgba_sha256": "b9adda8ff734ca9e78735e78505f274e4bf14084f65766b46d37f0a2629f39ba",
+          "changed_pixels": 25780,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-T001.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "6ab8bf755da2224aab26461a4b93a44de44fded03a34e67029586d29476e3752",
+          "baseline_rgba_sha256": "4d53711ff5e31f9ba3b474ce09a9173b465dddc8c9d982ee98f049c11e44f536",
+          "changed_pixels": 25770,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS014",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B02",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": false,
+          "candidate_rgba_sha256": "4949a8673ee90140451a04b62fa5e28414ea6eec2f4163c766be90d4ddef8900",
+          "baseline_rgba_sha256": "bdcfa6722ecf1cf80470a250331078352355b4b195b0b6b86cd88d11d0188888",
+          "changed_pixels": 25776,
+          "changed_bbox_xyxy": [
+            360,
+            355,
+            636,
+            555
+          ],
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B02-T029.png"
+        },
+        {
+          "selection": {
+            "blazerId": "B01",
+            "pantId": "PT006",
+            "shirtId": "DS014",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "cd91b13405d447fd6dd26d035da760208d938620b3b615a997f3dca7b315a720",
+          "baseline_rgba_sha256": "cd91b13405d447fd6dd26d035da760208d938620b3b615a997f3dca7b315a720",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS014-B01-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "88ea8cfa60e94a08fe5bf358e71e1ee756d2194df4952b47f544354dc7c130c8",
+          "baseline_rgba_sha256": "88ea8cfa60e94a08fe5bf358e71e1ee756d2194df4952b47f544354dc7c130c8",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "c58d1f467669a935caa280601d24cc8567a577640229c4dab1309ec25d620616",
+          "baseline_rgba_sha256": "c58d1f467669a935caa280601d24cc8567a577640229c4dab1309ec25d620616",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "7d225414c5a3e1f211bc58669d62c93de072579e9eba2d39d37db59157fc5f9b",
+          "baseline_rgba_sha256": "7d225414c5a3e1f211bc58669d62c93de072579e9eba2d39d37db59157fc5f9b",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S05-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "74a6d3ee45ee50e35f2a65c5c06faca58a9f980f87297330bfa37d3b53d52f07",
+          "baseline_rgba_sha256": "74a6d3ee45ee50e35f2a65c5c06faca58a9f980f87297330bfa37d3b53d52f07",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "fd751d8fec71042dc1f95e7a5af71dce7cfc2a42dc15258bfccd9d153d44c91a",
+          "baseline_rgba_sha256": "fd751d8fec71042dc1f95e7a5af71dce7cfc2a42dc15258bfccd9d153d44c91a",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "2fcb329bdca320372f42c989c5ff93dc942a9c6d018d1fe59e4b52b3c5612b01",
+          "baseline_rgba_sha256": "2fcb329bdca320372f42c989c5ff93dc942a9c6d018d1fe59e4b52b3c5612b01",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S05-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "3ebf3fad72ec9c17f8f3dd8f65942dc91b98f6177ded7357791452098476dc21",
+          "baseline_rgba_sha256": "3ebf3fad72ec9c17f8f3dd8f65942dc91b98f6177ded7357791452098476dc21",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S11-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "4698902770189ade6f112a2bdf3c45928d6ea43363d4ad525f3336d23072c915",
+          "baseline_rgba_sha256": "4698902770189ade6f112a2bdf3c45928d6ea43363d4ad525f3336d23072c915",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S11-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "583ed4f37d2ae43ac00d642c087b3c6a0187eb686d23dd75f6638338771795ea",
+          "baseline_rgba_sha256": "583ed4f37d2ae43ac00d642c087b3c6a0187eb686d23dd75f6638338771795ea",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS035-S11-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "9fe0435b31dbbc3f84e8be4a7352c37fc8bd117222e48fa585a821b2b6a5b9ba",
+          "baseline_rgba_sha256": "9fe0435b31dbbc3f84e8be4a7352c37fc8bd117222e48fa585a821b2b6a5b9ba",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S11-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "fb03dcf8831749f6f54894e5453fe45aea88e1b97499c93ffc9a67b72d081da2",
+          "baseline_rgba_sha256": "fb03dcf8831749f6f54894e5453fe45aea88e1b97499c93ffc9a67b72d081da2",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S11-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS023",
+            "state": "T028",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S11"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "a08d27b1a049c050057301999e1f06d977cbc5fb5a4bb617ee32557c26aca689",
+          "baseline_rgba_sha256": "a08d27b1a049c050057301999e1f06d977cbc5fb5a4bb617ee32557c26aca689",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS023-S11-T028.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "2a06a791774949b5638511eb75be0c81d5eb697336fee40e13ccd3683f9c1d46",
+          "baseline_rgba_sha256": "2a06a791774949b5638511eb75be0c81d5eb697336fee40e13ccd3683f9c1d46",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "73f3b552cb6902db5efcc07500d0fb17764456b883e31fef59b653d4e2a7eb29",
+          "baseline_rgba_sha256": "73f3b552cb6902db5efcc07500d0fb17764456b883e31fef59b653d4e2a7eb29",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "31971427492cee5df4d4114f59d3c6e780c0bf3d9eb6418e74f4fab119d2c6f4",
+          "baseline_rgba_sha256": "31971427492cee5df4d4114f59d3c6e780c0bf3d9eb6418e74f4fab119d2c6f4",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "7925b5b5ca8e14b1fb623511c105a7cc50058d52bf5823658b0d9c2ca364de01",
+          "baseline_rgba_sha256": "7925b5b5ca8e14b1fb623511c105a7cc50058d52bf5823658b0d9c2ca364de01",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "a13db1ad3a9b671aecfaaae5402206d546c8b811fafa3c3c6c6b3de6882f1ec6",
+          "baseline_rgba_sha256": "a13db1ad3a9b671aecfaaae5402206d546c8b811fafa3c3c6c6b3de6882f1ec6",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS002",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "e0c50154b88b652e7cc96b4e039e4f55acf1464effc88646401bef3133794630",
+          "baseline_rgba_sha256": "e0c50154b88b652e7cc96b4e039e4f55acf1464effc88646401bef3133794630",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS002-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "d4760cf82969c8ff1a082c1a6810e51b424df5c2f6fa37fe238adc4ca2aa48bb",
+          "baseline_rgba_sha256": "d4760cf82969c8ff1a082c1a6810e51b424df5c2f6fa37fe238adc4ca2aa48bb",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "8ad74af36d72819814006719467066d9b45fc4749379dd2c9e99c50feff1d5bb",
+          "baseline_rgba_sha256": "8ad74af36d72819814006719467066d9b45fc4749379dd2c9e99c50feff1d5bb",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "b650c20884f5e1587115bba431231ba0032aeb79de4059c3395b0a08d4065832",
+          "baseline_rgba_sha256": "b650c20884f5e1587115bba431231ba0032aeb79de4059c3395b0a08d4065832",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "eedf92ce86d84b2d7d4e86865fed64bba14a089bafe2d7f663351bd768b69c6f",
+          "baseline_rgba_sha256": "eedf92ce86d84b2d7d4e86865fed64bba14a089bafe2d7f663351bd768b69c6f",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "3f7e9c988127d08aa2c814530e34012bfdbe196745f420744f185ff20db42e11",
+          "baseline_rgba_sha256": "3f7e9c988127d08aa2c814530e34012bfdbe196745f420744f185ff20db42e11",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS015",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "480905684f376a61575957474b36c16a7e5eaf098195d0d5a8f1936e80900f52",
+          "baseline_rgba_sha256": "480905684f376a61575957474b36c16a7e5eaf098195d0d5a8f1936e80900f52",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS015-S05-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "83065146a4e5f9b667de933758fe27dcf481441decf228d4595dd248b38ee059",
+          "baseline_rgba_sha256": "83065146a4e5f9b667de933758fe27dcf481441decf228d4595dd248b38ee059",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-shirt-only-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "aa0a2d35f76a7d04af84181587cc25ce1d28379061673d829d958095492348f5",
+          "baseline_rgba_sha256": "aa0a2d35f76a7d04af84181587cc25ce1d28379061673d829d958095492348f5",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-B03-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "0f4a19ac5bb848ffb7d6dd2a3cb2dfafdd0a6677363f1e2a596a9cf168b7a5d5",
+          "baseline_rgba_sha256": "0f4a19ac5bb848ffb7d6dd2a3cb2dfafdd0a6677363f1e2a596a9cf168b7a5d5",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-S05-NO_TIE.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "shirtOnly": true,
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "5872d28bc1577d97081c45b4fd7d7e5c04f2a03f8defc2ae0408e75f07d26961",
+          "baseline_rgba_sha256": "5872d28bc1577d97081c45b4fd7d7e5c04f2a03f8defc2ae0408e75f07d26961",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-shirt-only-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "blazerId": "B03",
+            "pantId": "PG002"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "2804534c9816f70fa87b12dc4ce12df456b8b1909479d4091cc428502e87e364",
+          "baseline_rgba_sha256": "2804534c9816f70fa87b12dc4ce12df456b8b1909479d4091cc428502e87e364",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-B03-T017.png"
+        },
+        {
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T017",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "suitId": "S05"
+          },
+          "required_unchanged_control": true,
+          "candidate_rgba_sha256": "b7bf5d0e69f41809383459458fee901a2b3575d8b82ebe10e1a7484a6e6384e1",
+          "baseline_rgba_sha256": "b7bf5d0e69f41809383459458fee901a2b3575d8b82ebe10e1a7484a6e6384e1",
+          "changed_pixels": 0,
+          "changed_bbox_xyxy": null,
+          "outside_collar_changed_pixels": 0,
+          "B03_foreground_changed_pixels": null,
+          "collar_image": "collars/DS026-S05-T017.png"
+        }
+      ]
+    }
+  },
+  "preservation_sha256": {
+    "index.html": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
+    "app.html": "bc0944376139bb22cb3d3b9c90d61370644fd6f7254482abebf0cd080688e40c",
+    "runtime/outfit-refill-preview.js": "d4231feabdc5bcad3a9ec784f61359404586489359d03b2fd81f72135388dfb8",
+    "data/inputs.json": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+    "STANDARD_RELEASE.json": "1ae6444d8bf1a9903534630f386cf1b0dba9424ab52d427ffd66e2cdbde3d1ac",
+    "STARTUP_RESOURCES.json": "2c81c3161b23dac56d78b2d75109ab6d83692ff7981b0a25e32a3dbedc58cbcd"
+  },
+  "residual_visual_limits": [
+    "DS001/DS014 original NO_TIE opening fringe remains unchanged.",
+    "Some exterior collar/shoulder cutout defects remain, including bright scraps on DS034/DS051 and the gray side strip in the unchanged DS035 tied source.",
+    "Original native white-collar blur and existing tie-knot step edges remain.",
+    "Chromium and WebKit automation are not a physical iPhone test."
+  ],
+  "native_tie_source_mapping": {
+    "registered_legacy_tie_states": 47,
+    "all_bound_native_sources_available": true,
+    "exhaustive_browser_render_for_all_ties": false
+  }
+}
