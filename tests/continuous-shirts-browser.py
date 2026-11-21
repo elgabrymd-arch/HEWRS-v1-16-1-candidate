@@ -14,6 +14,7 @@ import hashlib
 import io
 import json
 import shutil
+import sys
 import threading
 import traceback
 from datetime import datetime, timezone
@@ -23,11 +24,14 @@ from urllib.parse import urlsplit
 
 from PIL import Image, ImageDraw, ImageFont
 from playwright.sync_api import sync_playwright
+from avatar_geometry_contract import (AVATAR_PROFILE, PLAN_SOURCES, SOURCE_LAYERS, comparison_policy,
+                                      native_difference, validate_profile)
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+from verify_active_delivery import describe
 IDS = ['DS001', 'DS014', 'DS017', 'DS023', 'DS034', 'DS035', 'DS036', 'DS051']
 MODES = ['shirt-only', 'B03', 'B02', 'S05', 'S11']
-AVATAR = 'a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d'
 
 
 class Quiet(SimpleHTTPRequestHandler):
@@ -139,10 +143,11 @@ FRAME = r'''async selected => {
   dimensions:[canvas.width,canvas.height],png:canvas.toDataURL('image/png'),
   rgba_sha256:await digest(ctx.getImageData(0,0,canvas.width,canvas.height).data),
   head_sha256:await digest(ctx.getImageData(0,0,996,350).data),
+  source_bindings:(''' + PLAN_SOURCES + r''')(p),
   photos_decoded:photos.length>0&&photos.every(image=>image.naturalWidth>0&&image.naturalHeight>0),
   card_images:photos.map(image=>({src:image.getAttribute('src'),alt:image.alt,natural_width:image.naturalWidth,natural_height:image.naturalHeight})),
   card_shirt:card.items.find(x=>x.role==='Shirt'),card_tie:card.items.find(x=>x.role==='Tie'),
-  plan:{operation:p.operation,kind:p.kind,avatar:p.avatar?.sha256,tie:p.tie?.sha256||null,
+  plan:{operation:p.operation,kind:p.kind,avatar:p.avatar?.sha256,hands:(p.hands||[]).map(h=>h.sha256),tie:p.tie?.sha256||null,
     jacket:p.jacket?.sha256||null,pants:p.pants?.sha256||null,
     body:source(p.garment?.body),front_collar:source(p.garment?.front_collar),jacket_rear:source(p.jacketRear),
     cuffs:(p.garment?.cuffs||[]).map(source),borrowed_ownership:!!p.ownership},
@@ -159,7 +164,7 @@ ALL_TIES = r'''() => {
    ...(kind==='shirt-only'?{shirtOnly:true,pantId:'PG002'}:kind==='B03'?{blazerId:'B03',pantId:'PG002'}:{suitId:'S05'})};
   const p=app.renderer.plan(selected),expected=c.tieFidelity.replace(c.batch10.ties[state]);
   if(p.operation!=='CONTINUOUS_SOURCE_SHIRT'||p.tie?.sha256!==expected.sha256||
-     p.avatar?.sha256!==HEWRSContinuousShirts.avatarSource||p.garment!==c.continuousShirts.shirts[id].modes.tied)
+     p.avatar?.sha256!==c.manifest.static.avatar.sha256||p.garment!==c.continuousShirts.shirts[id].modes.tied)
    failures.push({id,state,kind});
   checked++;
  }
@@ -203,6 +208,9 @@ def main():
     parser.add_argument('--ids', default=','.join(IDS))
     parser.add_argument('--modes', default=','.join(MODES))
     args = parser.parse_args()
+    active_delivery = describe(args.root)
+    expected_delivery_avatar = (SOURCE_LAYERS['v3']['avatar'] if args.entrypoint == 'avatar-v3-review.html'
+                                else active_delivery.get('avatar_sha256', SOURCE_LAYERS['v2']['avatar']))
     ids, modes = args.ids.split(','), args.modes.split(',')
     output = args.output.resolve() / args.browser
     for directory in [output, output / 'native', output / 'upper', output / 'phone',
@@ -210,6 +218,7 @@ def main():
         directory.mkdir(parents=True, exist_ok=True)
     checks, frames, errors, failures, http_errors, external = [], [], [], [], [], []
     report = dict(schema='hewrs.continuous-shirts.browser.v1', browser=args.browser,
+                  active_delivery=active_delivery,
                   started_at=datetime.now(timezone.utc).isoformat(), entrypoint=args.entrypoint,
                   entrypoint_sha256=hashlib.sha256((args.root / args.entrypoint).read_bytes()).hexdigest(),
                   owner_data_accessed=False, fresh_browser_context=True,
@@ -277,6 +286,13 @@ def main():
                 return context, page
 
             context, page = open_page(origin, 'candidate')
+            avatar_profile = validate_profile(page.evaluate(AVATAR_PROFILE))
+            expected_avatar = avatar_profile['avatar_sha256']
+            expected_hands = [avatar_profile['sources']['left_hand'], avatar_profile['sources']['right_hand']]
+            report['avatar_profile'] = avatar_profile
+            report['baseline_geometry_policy'] = comparison_policy(avatar_profile)
+            check('Active avatar and both hands have exact declared and fetched source bytes for the selected delivery',
+                  expected_avatar == expected_delivery_avatar, avatar_profile)
             actual = page.evaluate('()=>HEWRSApp.connection.continuousShirts.ids')
             check('Candidate enables every requested exact shirt ID', all(sid in actual for sid in ids), actual)
             check('Fresh synthetic rejection state is empty and ready', page.evaluate('()=>HEWRSApp.ownerFeedback.status().ready&&!HEWRSApp.feedbackReadError&&HEWRSApp.ownerFeedback.snapshot().active.length===0'))
@@ -285,6 +301,7 @@ def main():
             report['all_tie_bindings'] = page.evaluate(ALL_TIES)
             check('All 47 exact tie bindings survive all enabled shirts in three rendering modes', report['all_tie_bindings']['checked'] == len(actual) * 47 * 3 and not report['all_tie_bindings']['failures'], report['all_tie_bindings'])
             reference = page.evaluate(HEAD_REFERENCES)
+            check('Canonical head reference uses the pinned active avatar', reference['source_sha256'] == expected_avatar)
             report['head_references'] = dict(source_sha256=reference['source_sha256'], source_url=reference['source_url'], images={})
             for name in ['raw_head', 'native_source', 'native_commit']:
                 report['head_references']['images'][name] = retain_head(name, reference[name])
@@ -303,6 +320,8 @@ def main():
                 baseline_server, baseline_origin = serve(args.baseline_root.resolve())
                 servers.append(baseline_server)
                 baseline_context, baseline_page = open_page(baseline_origin, 'baseline')
+                baseline_avatar_profile = validate_profile(baseline_page.evaluate(AVATAR_PROFILE))
+                report['baseline_avatar_profile'] = baseline_avatar_profile
                 controls = [('DS005', 'NO_TIE', 'shirt-only'), ('DS015', 'T017', 'B03'), ('DS029', 'T029', 'S05')]
                 report['unaffected_controls'] = []
                 for shirt, state, mode in controls:
@@ -311,9 +330,23 @@ def main():
                     name = 'baseline-' + shirt + '-' + mode + '-' + state
                     report['head_references']['images'][name] = retain_head(
                         name, baseline_page.evaluate('() => (' + HEAD_SNAPSHOT + ')(document.getElementById("avatar"))'), selected)
-                    check('Unchanged delegated full frame: ' + shirt + '/' + mode, current['rgba_sha256'] == original['rgba_sha256'])
+                    if avatar_profile['version'] == 'v3':
+                        difference = native_difference(current['png'], original['png'], current['rgba_sha256'],
+                            original['rgba_sha256'], avatar_profile, baseline_avatar_profile, args.root,
+                            selection=selected, source_bindings=current['source_bindings'])
+                        check('Delegated original garment sources stay exact: ' + shirt + '/' + mode,
+                              current['source_bindings'] == original['source_bindings'])
+                        check('Delegated frame changes only inside the declared V3 geometry mask for this selection: ' + shirt + '/' + mode,
+                              difference['outside_permitted_mask_changed_pixels'] == 0, difference)
+                        check('Delegated frame uses the exact active V3 head: ' + shirt + '/' + mode,
+                              current['head_sha256'] == head)
+                    else:
+                        check('Unchanged delegated full frame: ' + shirt + '/' + mode, current['rgba_sha256'] == original['rgba_sha256'])
+                        difference = dict(policy='exact_original_pixels', changed_pixels=0)
                     report['unaffected_controls'].append(dict(selection=selected, rgba_sha256=current['rgba_sha256'],
-                                                             head_sha256=original['head_sha256'], head_reference=name, identical=True))
+                        baseline_rgba_sha256=original['rgba_sha256'], head_sha256=original['head_sha256'],
+                        head_reference=name, full_frame_identical=current['rgba_sha256'] == original['rgba_sha256'],
+                        comparison=difference))
             for row in fixtures(ids, modes):
                 selected, mode = row['selection'], row['mode']
                 label = selected['shirtId'] + '-' + mode + '-' + selected['state']
@@ -361,7 +394,7 @@ def main():
                                   and box['left'] >= viewport['left'] and box['right'] <= viewport['right'], controls)
                         finally:
                             page.locator('#page-outfits').evaluate('(element,top)=>{element.scrollTop=top;}', original_top)
-                head_detail = dict(source_expected=AVATAR, source_actual=result['plan']['avatar'],
+                head_detail = dict(source_expected=expected_avatar, source_actual=result['plan']['avatar'],
                                    expected_reference='native_commit', expected_head_sha256=head,
                                    raw_head_sha256=reference['raw_head']['rgba_sha256'], actual_head_sha256=result['head_sha256'])
                 if result['head_sha256'] != head:
@@ -387,7 +420,9 @@ def main():
                 check(label + ': complete native frame', result['status'] == 'ready' and result['dimensions'] == [996, 2748] and picture.size == (996, 2748))
                 check(label + ': decoded pixels match browser digest', hashlib.sha256(picture.tobytes()).hexdigest() == result['rgba_sha256'])
                 check(label + ': corrected whole garment route excludes old ownership', result['plan']['operation'] == 'CONTINUOUS_SOURCE_SHIRT' and result['plan']['body'] and not result['plan']['borrowed_ownership'])
-                check(label + ': frozen avatar registration and head pixels remain exact', result['plan']['avatar'] == AVATAR and result['head_sha256'] == head, head_detail)
+                check(label + ': pinned active avatar registration, hand sources and head pixels remain exact',
+                      result['plan']['avatar'] == expected_avatar and result['plan']['hands'] == expected_hands
+                      and result['head_sha256'] == head, head_detail)
                 check(label + ': registered garment previews and exact shirt/tie identities remain available', result['photos_decoded'] and result['card_shirt']['id'] == selected['shirtId'] and result['card_tie']['id'] == (None if selected['state'] == 'NO_TIE' else selected['state']))
                 layout = result['layout']
                 check(label + ': native outfit remains inside 390px phone layout', layout['viewport'] == 390 and layout['document_width'] <= 391 and layout['canvas_left'] >= -1 and layout['canvas_right'] <= 391 and layout['canvas_height'] > 0, layout)

@@ -1,0 +1,76 @@
+{
+  "schema": "hewrs.avatar-v3-candidate.v1",
+  "stage": "source_candidate_only",
+  "enabled_in_production": false,
+  "source_profile": "AVATAR_V2_MASTER",
+  "variant_profile": "AVATAR_V3_PROPOSED",
+  "width_height": [
+    996,
+    2748
+  ],
+  "geometry": {
+    "head_top_width_scale": 0.92,
+    "neck_blend_end_row": 800,
+    "head_top_vertical_shift_pixels": 36.0,
+    "wrist_rotation_degrees": {
+      "left_hand": 4.0,
+      "right_hand": -4.0
+    },
+    "wrist_pivots": {
+      "left_hand": [
+        166.98,
+        1380.06
+      ],
+      "right_hand": [
+        815.19,
+        1373.53
+      ]
+    },
+    "sleeve_refit_required": true,
+    "shirt_collar_refit_required": true
+  },
+  "source_layer_hashes": {
+    "avatar": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+    "left_hand": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+    "right_hand": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9"
+  },
+  "candidate_layers": {
+    "avatar": {
+      "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+      "review_artifact": "evidence/avatar_v3/avatar-v3.png",
+      "url": "assets/4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93.png",
+      "rect": [
+        0,
+        0,
+        996,
+        2748
+      ],
+      "original_sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d"
+    },
+    "left_hand": {
+      "sha256": "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+      "review_artifact": "evidence/avatar_v3/left_hand-v3.png",
+      "url": "assets/26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8.png",
+      "rect": [
+        0,
+        0,
+        996,
+        2748
+      ],
+      "original_sha256": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34"
+    },
+    "right_hand": {
+      "sha256": "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b",
+      "review_artifact": "evidence/avatar_v3/right_hand-v3.png",
+      "url": "assets/cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b.png",
+      "rect": [
+        0,
+        0,
+        996,
+        2748
+      ],
+      "original_sha256": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9"
+    }
+  },
+  "policy": "Do not merge into the app before full shirt, blazer, suit and state regression."
+}

@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Preserve the original source lock with one explicit eight-shirt UI exception."""
+"""Preserve original sources with exact shirt-preview and V3-preview additions."""
 import argparse
+import base64
 import copy
 import json
 import re
 import struct
 import subprocess
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
-from verify_active_delivery import BASE, INPUT_SHA256, ROOT, TARGET_IDS, describe, digest, require
+from verify_active_delivery import BASE, INPUT_SHA256, ROOT, TARGET_IDS, describe, digest, require, runtime_binding
 
 PROTECTED = ('assets', 'assemblies', 'data', 'ui', 'ui-assets', 'STANDARD_RELEASE.json',
              'outfit-feedback.js', 'tools/build.py', 'vendor')
@@ -20,6 +22,16 @@ DATA_ADDITIONS = {'data/continuous-shirts.json', 'data/continuous-shirts.js', 'd
 NEW_FIELDS = {'source_kind', 'render_state', 'garment_mode', 'source_sha256', 'source_layers',
               'render_data_sha256', 'renderer_sha256', 'garment_geometry_sha256',
               'native_rgba_sha256', 'crop_xyxy', 'omitted_layers', 'render_engine'}
+V3_DATA = 'data/avatar-v3-candidate.json'
+V3_MANIFEST_SHA256 = '9f0a135ab18ea14b467c44930068ff274cc70a573a83c9dac4a22b1a96b70c3e'
+V3_LAYERS = {
+    'avatar': ('a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d',
+               '4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93'),
+    'left_hand': ('8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34',
+                  '26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8'),
+    'right_hand': ('3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9',
+                   'cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b'),
+}
 
 
 def script_json(text, name):
@@ -55,6 +67,95 @@ def file_bytes(root, name):
     require(not path.is_symlink() and path.resolve().is_relative_to(root.resolve()), 'Unsafe source path: ' + name)
     require(path.is_file(), 'Missing source: ' + name)
     return path.read_bytes()
+
+
+def validate_avatar_v3_manifest(data):
+    """No new asset identity, source substitution or registry edit is permitted."""
+    require(data.get('schema') == 'hewrs.avatar-v3-candidate.v1' and
+            data.get('stage') == 'source_candidate_only' and data.get('enabled_in_production') is False,
+            'V3 additions are limited to the isolated source candidate')
+    require(data.get('source_profile') == 'AVATAR_V2_MASTER' and
+            data.get('variant_profile') == 'AVATAR_V3_PROPOSED' and data.get('width_height') == [996, 2748],
+            'V3 source profile or native canvas changed')
+    require(data.get('source_layer_hashes') == {name: hashes[0] for name, hashes in V3_LAYERS.items()},
+            'V3 original layer bindings changed')
+    require(set(data.get('candidate_layers', {})) == set(V3_LAYERS), 'V3 must contain exactly three named layers')
+    for name, (original, candidate) in V3_LAYERS.items():
+        artifact = 'avatar-v3.png' if name == 'avatar' else name + '-v3.png'
+        expected = {'sha256': candidate, 'review_artifact': 'evidence/avatar_v3/' + artifact,
+                    'url': 'assets/' + candidate + '.png', 'rect': [0, 0, 996, 2748],
+                    'original_sha256': original}
+        require(data['candidate_layers'][name] == expected, 'V3 layer descriptor changed: ' + name)
+
+
+def verify_avatar_v3_sources(root, active):
+    """Allow only the pinned three source additions attached to a real preview.
+
+    Merely adding a candidate manifest never authorizes arbitrary assets or a
+    change to the production avatar, original inputs, or existing registry.
+    """
+    if not (root / V3_DATA).exists():
+        return set()
+    require(active['kind'] in ('continuous', 'avatar-v3'), 'V3 preview requires the verified continuous-shirt baseline')
+    integrated = active['kind'] == 'avatar-v3'
+    base_runtime = active['continuous_runtime'] if integrated else active['runtime']
+    base_sha256 = active['continuous_runtime_sha256'] if integrated else active['runtime_sha256']
+    raw = file_bytes(root, V3_DATA)
+    data = json.loads(raw)
+    validate_avatar_v3_manifest(data)
+    require(digest(raw) == V3_MANIFEST_SHA256, 'V3 candidate manifest is not the exact reviewed source contract')
+    images = set()
+    for name, (original, candidate) in V3_LAYERS.items():
+        for expected in (original, candidate):
+            path = 'assets/' + expected + '.png'
+            image = file_bytes(root, path)
+            require(digest(image) == expected and image[:8] == b'\x89PNG\r\n\x1a\n' and
+                    image[12:16] == b'IHDR' and struct.unpack('>II', image[16:24]) == (996, 2748),
+                    'V3 original or candidate source bytes/native dimensions changed: ' + name)
+        images.add('assets/' + candidate + '.png')
+    require(digest(file_bytes(root, 'data/inputs.json')) == INPUT_SHA256, 'V3 cannot remap original input registrations')
+    preview = json.loads(file_bytes(root, 'AVATAR_V3_REVIEW_BUILD.json'))
+    require(preview.get('schema') == 'hewrs.avatar-v3-preview.v1' and
+            preview.get('preview_entrypoint') == 'avatar-v3-review.html' and
+            preview.get('app_production_entrypoints_unchanged') is (not integrated) and
+            preview.get('approval') == 'ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN',
+            'V3 source exception requires its isolated preview contract')
+    base_entrypoint = preview.get('base_entrypoint', 'index.html')
+    require(base_entrypoint in ('index.html', 'avatar-v2-reference.html') and
+            (not integrated or base_entrypoint == 'avatar-v2-reference.html'),
+            'V3 preview uses an unexpected baseline entrypoint')
+    require(preview.get('base_runtime') == base_runtime and preview.get('base_runtime_sha256') == base_sha256 and
+            preview.get('base_index_sha256') == digest(file_bytes(root, base_entrypoint)),
+            'V3 preview is not bound to the verified production baseline')
+    require(preview.get('layer_hashes') == {name: hashes[1] for name, hashes in V3_LAYERS.items()} and
+            preview.get('new_avatar_sha256') == V3_LAYERS['avatar'][1] and
+            preview.get('v2_avatar_sha256') == V3_LAYERS['avatar'][0] and
+            preview.get('pose_source_sha256') == digest(file_bytes(root, 'src/avatar-v3-pose.js')) and
+            preview.get('collar_fit_source_sha256') == digest(file_bytes(root, 'src/avatar-v3-collar-fit.js')) and
+            preview.get('collar_fit_revision') == 'AVATAR_V3_B15_COLLAR_FIT_1',
+            'V3 preview layer or pose source bindings changed')
+    runtime, expected = preview.get('runtime', ''), preview.get('runtime_sha256', '')
+    require(re.fullmatch(r'[a-f0-9]{64}', expected) is not None and
+            runtime == 'runtime/avatar-v3-candidate-' + expected[:20] + '.js',
+            'V3 preview runtime must be content-addressed')
+    require(digest(file_bytes(root, runtime)) == expected, 'V3 preview runtime bytes changed')
+    if integrated:
+        require(runtime == active['runtime'] and expected == active['runtime_sha256'],
+                'Integrated V3 runtime differs from the verified candidate')
+    file_bytes(root, preview['preview_entrypoint'])
+    binding = runtime_binding(root, preview['preview_entrypoint'])
+    source = urlsplit(binding['src'])
+    require(not source.scheme and not source.netloc and not source.fragment and source.path == runtime and
+            parse_qs(source.query).get('v') == [expected[:16]] and
+            binding.get('integrity') == 'sha256-' + base64.b64encode(bytes.fromhex(expected)).decode(),
+            'V3 preview is missing its exact runtime, cache pin or SRI binding')
+    return {V3_DATA, *images}
+
+
+def validate_protected_changes(differences, allowed):
+    require(differences == allowed, 'Protected changes differ from the exact continuous allowlist: ' + json.dumps({
+        'unexpected_or_wrong_status': {name: value for name, value in differences.items() if allowed.get(name) != value},
+        'missing': sorted(set(allowed) - set(differences))}))
 
 
 def geometry_hashes(root):
@@ -143,7 +244,7 @@ def audit(base, root=ROOT):
               'active_delivery': active['kind'], 'runtime': active['runtime'],
               'protected_roots': list(PROTECTED), 'existing_exclusion': EXCLUDED,
               'changes': differences}
-    if active['kind'] != 'continuous':
+    if active['kind'] not in ('continuous', 'avatar-v3'):
         require(not differences, 'Original source protection failed: ' + ', '.join(differences))
         report.update(authorized_thumbnail_descriptors=0, added_thumbnail_images=[])
         return report
@@ -154,12 +255,14 @@ def audit(base, root=ROOT):
     require(script_json(file_bytes(root, MAP_JS).decode(), 'HEWRS_OPTION_CARD_THUMBNAILS') == after, 'Thumbnail JSON/JavaScript differ')
     changes = validate_descriptor_changes(before, after)
     images, source_count = verify_new_sources(root, changes)
-    allowed = {MAP_JSON: 'M', MAP_JS: 'M', **{name: 'A' for name in DATA_ADDITIONS | images}}
-    require(differences == allowed, 'Protected changes differ from the exact continuous allowlist: ' + json.dumps({'unexpected_or_wrong_status': {name: value for name, value in differences.items() if allowed.get(name) != value}, 'missing': sorted(set(allowed) - set(differences))}))
+    avatar_additions = verify_avatar_v3_sources(root, active)
+    allowed = {MAP_JSON: 'M', MAP_JS: 'M', **{name: 'A' for name in DATA_ADDITIONS | images | avatar_additions}}
+    validate_protected_changes(differences, allowed)
     for name in allowed:
         file_bytes(root, name)
         require(not (root / name).stat().st_mode & 0o111, 'Unexpected executable protected data: ' + name)
     report.update(authorized_thumbnail_descriptors=len(changes), added_thumbnail_images=sorted(images),
+                  isolated_avatar_v3_additions=sorted(avatar_additions),
                   continuous_photographs_verified=source_count,
                   original_assets_and_other_data='unchanged against exact baseline',
                   original_scoring_and_identity_rows='byte-identical',

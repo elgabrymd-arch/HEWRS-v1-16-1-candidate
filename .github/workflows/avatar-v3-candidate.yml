@@ -1,0 +1,75 @@
+name: HEWRS avatar V3 source and complete outfit verification
+
+on:
+  push:
+    branches: [feat/avatar-v3-proportions-pose-20261120]
+    paths:
+      - 'tools/*avatar_v3*'
+      - 'src/avatar-v3*.js'
+      - 'tests/avatar-v3*'
+      - 'AVATAR_V3_RELEASE.json'
+      - 'AVATAR_V3_REVIEW_BUILD.json'
+      - 'avatar-v2-reference.html'
+      - 'runtime/avatar-v3-candidate-*.js'
+      - '.github/workflows/avatar-v3-candidate.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: avatar-v3-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  source-profile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify exact original and derived sources with no asset rewriting
+        run: |
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          python tools/audit_continuous_source_lock.py
+          python tools/verify_active_delivery.py --check --syntax
+          python tests/active-delivery-audit.py
+          git diff --exit-code
+      - name: Install the reviewed native canvas version
+        run: npm install --prefix /tmp/hewrs-v3-collar-deps --no-audit --no-fund @napi-rs/canvas@0.1.100
+      - name: Verify bounded collar pixels, decoder compatibility and cancellation
+        env:
+          NODE_PATH: /tmp/hewrs-v3-collar-deps/node_modules
+        run: node --test tests/avatar-v3-collar-fit.cjs
+
+  compare-v2-v3-browser:
+    name: Complete V2 and active V3 outfits — ${{ matrix.browser }}
+    needs: source-profile
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install existing browser review dependencies
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Check complete native profiles and unchanged saved records
+        run: python tests/avatar-v3-browser.py --browser '${{ matrix.browser }}'
+      - name: Preserve actual browser comparisons
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_AVATAR_V3_BROWSER_${{ matrix.browser }}
+          path: evidence/avatar_v3/browser/
+          if-no-files-found: error
+          retention-days: 30

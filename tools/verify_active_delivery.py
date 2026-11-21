@@ -25,6 +25,12 @@ TARGET_IDS = ('DS001', 'DS014', 'DS017', 'DS023', 'DS034', 'DS035', 'DS036', 'DS
 MANIFEST = 'CONTINUOUS_CANDIDATE.json'
 MODULES = ('data/continuous-shirts.js', 'src/continuous-shirts.js')
 CONTINUOUS_RUNTIME = re.compile(r'runtime/continuous-shirts-([a-f0-9]{20})\.js\Z')
+AVATAR_V3_RUNTIME = re.compile(r'runtime/avatar-v3-candidate-([a-f0-9]{20})\.js\Z')
+V3_LAYERS = {
+    'avatar': '4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93',
+    'left_hand': '26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8',
+    'right_hand': 'cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b',
+}
 
 
 def digest(raw):
@@ -55,29 +61,84 @@ def runtime_binding(root, name):
     return bindings[0]
 
 
-def active_runtime(root=ROOT):
+def active_runtime(root=ROOT, entrypoints=('index.html', 'app.html')):
     root = Path(root)
-    paths = [urlsplit(runtime_binding(root, name)['src']).path for name in ('index.html', 'app.html')]
+    paths = [urlsplit(runtime_binding(root, name)['src']).path for name in entrypoints]
     require(paths[0] == paths[1], 'App pages bind different runtimes')
     return paths[0]
 
 
-def describe(root=ROOT):
+def describe_avatar_v3(root):
+    """Validate a promoted V3 profile against its retained exact V2 delivery."""
+    release_name = 'AVATAR_V3_RELEASE.json'
+    release = json.loads((root / release_name).read_text())
+    require(release.get('schema') == 'hewrs.avatar-v3-release.v1' and release.get('profile') == 'AVATAR_V3', 'Unrecognized V3 release contract')
+    require(release.get('baseline_entrypoint') == 'avatar-v2-reference.html', 'V3 baseline page differs')
+    base = describe(root, ('avatar-v2-reference.html', 'avatar-v2-reference.html'))
+    require(base['kind'] == 'continuous', 'V3 lacks the exact continuous-shirt baseline')
+    preview = json.loads((root / 'AVATAR_V3_REVIEW_BUILD.json').read_text())
+    runtime = active_runtime(root)
+    runtime_sha = digest((root / runtime).read_bytes())
+    require(preview['runtime'] == release['runtime'] == runtime and preview['runtime_sha256'] == release['runtime_sha256'] == runtime_sha, 'V3 runtime pins differ')
+    require(AVATAR_V3_RUNTIME.fullmatch(runtime)[1] == runtime_sha[:20], 'V3 content-addressed runtime differs')
+    require(preview['base_entrypoint'] == release['baseline_entrypoint'] and preview['base_index_sha256'] == release['baseline_entrypoint_sha256'] == digest((root / release['baseline_entrypoint']).read_bytes()), 'V3 baseline page hash differs')
+    require(preview['base_runtime'] == release['continuous_runtime'] == base['runtime'] and preview['base_runtime_sha256'] == release['continuous_runtime_sha256'] == base['runtime_sha256'], 'V3 continuous runtime differs')
+    require(release['baseline_manifest_sha256'] == digest((root / MANIFEST).read_bytes()), 'V3 baseline manifest differs')
+    spec_name = 'data/avatar-v3-candidate.json'
+    spec = json.loads((root / spec_name).read_text())
+    require(release['source_specification'] == spec_name and release['source_specification_sha256'] == digest((root / spec_name).read_bytes()), 'V3 source specification differs')
+    require(spec['width_height'] == [996, 2748] and spec['source_profile'] == 'AVATAR_V2_MASTER', 'V3 native source registration differs')
+    require(release['layer_hashes'] == preview['layer_hashes'] == V3_LAYERS, 'V3 source identities differ')
+    require(release['immutable_v2_hashes'] == spec['source_layer_hashes'] and spec['source_layer_hashes']['avatar'] == AVATAR_SHA256, 'V3 original identity differs')
+    for name, sha in V3_LAYERS.items():
+        row = spec['candidate_layers'][name]
+        require(row['sha256'] == sha and row['url'] == 'assets/' + sha + '.png' and row['rect'] == [0, 0, 996, 2748], 'V3 layer registration differs: ' + name)
+        require(digest((root / row['url']).read_bytes()) == sha, 'V3 source bytes differ: ' + name)
+        original = spec['source_layer_hashes'][name]
+        require(digest((root / ('assets/' + original + '.png')).read_bytes()) == original, 'Immutable V2 layer changed: ' + name)
+    modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-pose.js')
+    require(release['source_modules'] == {name: digest((root / name).read_bytes()) for name in modules}, 'V3 source module pins are stale')
+    require(preview.get('collar_fit_source_sha256') == release['source_modules']['src/avatar-v3-collar-fit.js'] and
+            preview.get('collar_fit_revision') == release.get('collar_fit_revision') == 'AVATAR_V3_B15_COLLAR_FIT_1',
+            'V3 collar registration source or revision differs')
+    require((root / 'index.html').read_bytes() == (root / 'app.html').read_bytes(), 'V3 app pages differ')
+    for name in ('index.html', 'app.html'):
+        text = (root / name).read_text()
+        require('data-avatar-profile="AVATAR_V3"' in text, name + ': V3 profile is not promoted')
+        require(release['entrypoints'][name] == digest(text.encode()), name + ': V3 entrypoint hash differs')
+        binding = runtime_binding(root, name)
+        url = urlsplit(binding['src'])
+        require(not url.scheme and not url.netloc and not url.fragment, name + ': V3 runtime must be local')
+        require(binding.get('integrity') == 'sha256-' + base64.b64encode(bytes.fromhex(runtime_sha)).decode(), name + ': V3 SRI mismatch')
+        require(parse_qs(url.query).get('v') == [runtime_sha[:16]], name + ': V3 cache pin mismatch')
+    files = ['index.html', 'app.html', runtime, release_name, 'AVATAR_V3_REVIEW_BUILD.json', 'avatar-v3-review.html', spec_name, *modules]
+    return {**base, 'kind': 'avatar-v3', 'manifest': release_name,
+            'runtime': runtime, 'runtime_sha256': runtime_sha,
+            'continuous_runtime': base['runtime'], 'continuous_runtime_sha256': base['runtime_sha256'],
+            'avatar_sha256': V3_LAYERS['avatar'], 'avatar_profile': 'AVATAR_V3',
+            'avatar_layers': dict(V3_LAYERS), 'baseline_entrypoint': release['baseline_entrypoint'],
+            'source_sha256': {**base['source_sha256'], **{name: digest((root / name).read_bytes()) for name in files}}}
+
+
+def describe(root=ROOT, entrypoints=('index.html', 'app.html')):
     """Validate current byte bindings; no Git access, builds, or file writes."""
     root = Path(root)
-    runtime = active_runtime(root)
+    runtime = active_runtime(root, entrypoints)
+    if AVATAR_V3_RUNTIME.fullmatch(runtime):
+        require(entrypoints == ('index.html', 'app.html'), 'V3 baseline cannot recursively select V3')
+        return describe_avatar_v3(root)
     match = CONTINUOUS_RUNTIME.fullmatch(runtime)
     require(bool(match) or runtime == ORIGINAL_RUNTIME, 'Unrecognized active runtime: ' + runtime)
-    require((root / 'index.html').read_bytes() == (root / 'app.html').read_bytes(), 'App entrypoints differ')
+    require((root / entrypoints[0]).read_bytes() == (root / entrypoints[1]).read_bytes(), 'App entrypoints differ')
     runtime_sha = digest((root / runtime).read_bytes())
-    for name in ('index.html', 'app.html'):
+    for name in entrypoints:
         binding = runtime_binding(root, name)
         url = urlsplit(binding['src'])
         require(not url.scheme and not url.netloc and not url.fragment, name + ': runtime must be local')
         require(binding.get('integrity') == 'sha256-' + base64.b64encode(bytes.fromhex(runtime_sha)).decode(), name + ': runtime SRI mismatch')
         require(parse_qs(url.query).get('v') == [runtime_sha[:16]], name + ': runtime cache pin mismatch')
     result = {'kind': 'continuous' if match else 'legacy', 'runtime': runtime, 'runtime_sha256': runtime_sha}
-    files = ['index.html', 'app.html', runtime]
+    files = [*entrypoints, runtime]
     if match:
         manifest = json.loads((root / MANIFEST).read_text())
         require(manifest.get('schema') == 'hewrs.continuous-shirt-candidate.v1', 'Unexpected continuous manifest schema')
@@ -88,7 +149,7 @@ def describe(root=ROOT):
         require(manifest.get('original_runtime_sha256') == ORIGINAL_RUNTIME_SHA256 == digest((root / ORIGINAL_RUNTIME).read_bytes()), 'Original complete-app runtime changed')
         require(manifest.get('modules') == {name: digest((root / name).read_bytes()) for name in MODULES}, 'Continuous source module pins are stale')
         require(manifest.get('garment_data_sha256') == digest((root / 'data/continuous-shirts.json').read_bytes()), 'Continuous garment data pin is stale')
-        require(manifest.get('entrypoints') == {name: digest((root / name).read_bytes()) for name in ('index.html', 'app.html')}, 'Continuous entrypoint pins are stale')
+        require(manifest.get('entrypoints') == {name: digest((root / actual).read_bytes()) for name, actual in zip(('index.html', 'app.html'), entrypoints)}, 'Continuous entrypoint pins are stale')
         require(manifest.get('approval') == 'CANDIDATE_ONLY_OWNER_APPROVAL_NOT_GRANTED', 'Candidate approval marker changed')
         data = json.loads((root / 'data/continuous-shirts.json').read_text())
         require(data.get('schema') == 'hewrs.continuous-shirts.v1' and data.get('source_input_sha256') == INPUT_SHA256, 'Continuous garment contract source mismatch')
@@ -132,6 +193,8 @@ def verify(verify_base=False, syntax=False):
         finally:
             delivery.RUNTIME, delivery.DEPENDENCIES = previous_runtime, previous_dependencies
         subprocess.run([sys.executable, str(ROOT / 'tools/build_continuous_candidate.py')], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
+        if active['kind'] == 'avatar-v3':
+            subprocess.run([sys.executable, str(ROOT / 'tools/integrate_avatar_v3.py'), '--check'], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
     if syntax:
         subprocess.run(['node', '--check', str(ROOT / active['runtime'])], cwd=ROOT, check=True)
     return active
@@ -146,7 +209,7 @@ def main():
     parser.add_argument('--syntax', action='store_true')
     args = parser.parse_args()
     if args.is_continuous:
-        print('true' if CONTINUOUS_RUNTIME.fullmatch(active_runtime()) else 'false')
+        print('true' if CONTINUOUS_RUNTIME.fullmatch(active_runtime()) or AVATAR_V3_RUNTIME.fullmatch(active_runtime()) else 'false')
         return
     active = describe() if args.describe else verify(args.verify_base, args.syntax)
     print(json.dumps(active, indent=2))
