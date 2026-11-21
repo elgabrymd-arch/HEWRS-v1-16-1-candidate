@@ -91,6 +91,26 @@ FRAME = r'''async input => {
   shirt:model.items.find(x=>x.role==='Shirt'),tie:model.items.find(x=>x.role==='Tie')};
 }'''
 
+CANONICAL_HEAD = r'''async () => {
+ const app=HEWRSApp,descriptor=app.connection.manifest.static.avatar,url=app.resolveUrl(descriptor);
+ const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
+ const response=await fetch(url);if(!response.ok)throw Error('Frozen avatar source did not load');
+ const sourceHash=await digest(await response.arrayBuffer());
+ if(sourceHash!==descriptor.sha256)throw Error('Frozen avatar image bytes differ from source pin');
+ const image=new Image();image.src=url;await image.decode();
+ if(image.naturalWidth!==996||image.naturalHeight!==2748)throw Error('Frozen avatar native dimensions differ');
+ // Match the application's full native CPU-backed render and atomic commit.
+ // A 350-high/default-context canvas is a different WebKit decode/read path.
+ const source=document.createElement('canvas');source.width=996;source.height=2748;
+ const src=source.getContext('2d',{willReadFrequently:true});src.drawImage(image,0,0);
+ const committed=document.createElement('canvas');committed.width=996;committed.height=2748;
+ const dst=committed.getContext('2d',{willReadFrequently:true});
+ dst.putImageData(src.getImageData(0,0,996,2748),0,0);
+ return {source_sha256:sourceHash,canvas_dimensions:[996,2748],head_bbox_xywh:[0,0,996,350],
+  construction:'full-native-willReadFrequently-source-and-ImageData-commit',
+  head_rgba_sha256:await digest(dst.getImageData(0,0,996,350).data)};
+}'''
+
 REVIEWED_B01_FRAME = r'''async selection => {
  const app=HEWRSApp,panel=HEWRSReviewedIntegration,before=app.state().selection;
  await panel.load({initialUpdate:false});
@@ -141,8 +161,10 @@ def intentional_difference(current_png, baseline_png, current_hash, baseline_has
     changed = channels[0]
     for channel in channels[1:]:
         changed = ImageChops.lighter(changed, channel)
+    head_changed = changed.crop((0, 0, 996, 350))
     return dict(changed_pixels=sum(changed.histogram()[1:]), changed_bbox_xyxy=changed.getbbox(),
-                native_dimensions=[996, 2748])
+                head_changed_pixels=sum(head_changed.histogram()[1:]),
+                head_changed_bbox_xyxy=head_changed.getbbox(), native_dimensions=[996, 2748])
 
 
 def main():
@@ -180,6 +202,7 @@ def main():
                   baseline_policy=dict(exact_native_pixels_for='all non-target shirts and original topwear routes',
                       intentional_correction_ids=list(TARGET_IDS) if continuous else [],
                       frozen_head_bbox_xywh=[0, 0, 996, 350],
+                      frozen_head_reference=('exact canonical native commit of the pinned avatar; old baseline head differences are recorded' if continuous else None),
                       detailed_corrected_geometry_gate='tests/continuous-shirts-browser.py' if continuous else None),
                   baseline_compared=bool(baseline_base), owner_data_accessed=False,
                   started_at=datetime.now(timezone.utc).isoformat(), checks=checks, frames=frames,
@@ -193,6 +216,7 @@ def main():
                       detail_sheet_description='Unscaled native RGBA crop on neutral background. Entire registered collar is included; wider native PNGs preserve neck/chest context.',
                       native_png_directory='native-collars', expected_native_png_count=288))
     pictures, native_pictures = {}, {}
+    canonical_head = None
 
     def save():
         result['passed'] = sum(row['passed'] for row in checks)
@@ -250,6 +274,8 @@ def main():
                   and actual['shirt_id'] == selection['shirtId']
                   and actual['legacy_shirt_layers_used'] is False
                   and actual['avatar_source_sha256'] == AVATAR_SHA256, actual)
+            check(label + ': committed head pixels exactly match the frozen avatar source',
+                  frame['head_rgba_sha256'] == canonical_head['head_rgba_sha256'])
         else:
             check(label + ': original shirt does not enter the continuous correction', frame['actual_render']['operation'] != 'CONTINUOUS_SOURCE_SHIRT')
         if baseline_page is not None:
@@ -257,10 +283,15 @@ def main():
             frame['baseline_rgba_sha256'] = baseline['rgba_sha256']
             if corrected:
                 difference = intentional_difference(comparison_png, baseline['comparison_png'], frame['rgba_sha256'], baseline['rgba_sha256'])
-                check(label + ': frozen head pixels equal the original baseline', frame['head_rgba_sha256'] == baseline['head_rgba_sha256'])
                 check(label + ': authorized garment correction changes native pixels', difference['changed_pixels'] > 0, difference)
+                # The old DS051/S05 PARENT_DS051_STORED_RGB profile changes RGB
+                # at partial-alpha head edges. Preserve that measured difference
+                # while the canonical-source gate above still checks every pixel.
                 frame['baseline_comparison'] = dict(policy='intentional_eight_shirt_correction',
-                    frozen_head_equal=True, baseline_head_rgba_sha256=baseline['head_rgba_sha256'], **difference)
+                    canonical_frozen_head_equal=True,
+                    canonical_head_rgba_sha256=canonical_head['head_rgba_sha256'],
+                    baseline_head_equal=frame['head_rgba_sha256'] == baseline['head_rgba_sha256'],
+                    baseline_head_rgba_sha256=baseline['head_rgba_sha256'], **difference)
             else:
                 check(label + ': approved native pixels equal the published baseline', baseline['rgba_sha256'] == frame['rgba_sha256'])
                 frame['baseline_comparison'] = dict(policy='exact_original_pixels', changed_pixels=0)
@@ -331,6 +362,12 @@ def main():
             check('Actual browser loads the exact audited runtime', loaded['scripts'].count(expected_runtime) == 1, loaded['scripts'])
             if continuous:
                 check('Only the eight authorized shirts activate the continuous baseline exception', loaded['ids'] == list(TARGET_IDS) and loaded['source'] == INPUT_SHA256 and loaded['avatar'] == AVATAR_SHA256, loaded)
+                canonical_head = page.evaluate(CANONICAL_HEAD)
+                check('Canonical head reference verifies the immutable avatar bytes and native commit',
+                      canonical_head['source_sha256'] == AVATAR_SHA256
+                      and canonical_head['canvas_dimensions'] == [996, 2748]
+                      and canonical_head['head_bbox_xywh'] == [0, 0, 996, 350])
+                result['canonical_head_reference'] = canonical_head
             baseline_page = None
             if baseline_base:
                 baseline_context, baseline_page = new_page(browser, baseline_base, 'baseline')

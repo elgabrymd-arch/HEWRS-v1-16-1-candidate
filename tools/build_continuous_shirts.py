@@ -59,6 +59,27 @@ def interpolate_outline(points, step=15):
     return out
 
 
+def serialized_area_statistics(vertices, triangles):
+    """Measure the emitted mesh, independent of BLAS interpolation roundoff."""
+    # Mesh coordinates are serialized to four decimal places. Integer
+    # determinants bind these diagnostics to the actual delivered geometry,
+    # not platform-dependent floating-point tails from RBF interpolation.
+    scaled = [[int(round(value * 10000)) for value in point] for point in vertices]
+    ratios = []
+    for triangle in triangles:
+        a, b, c = [scaled[int(index)] for index in triangle]
+        source_area = (b[0]-a[0])*(c[1]-a[1])-(c[0]-a[0])*(b[1]-a[1])
+        destination_area = (b[2]-a[2])*(c[3]-a[3])-(c[2]-a[2])*(b[3]-a[3])
+        if source_area * destination_area <= 0:
+            raise ValueError('Serialized mesh contains a folded or degenerate triangle')
+        ratios.append(destination_area / source_area)
+    return {
+        'min_area_ratio': round(min(ratios), 9),
+        'max_area_ratio': round(max(ratios), 9),
+        'area_ratio_basis': 'serialized_four_decimal_mesh_integer_determinants',
+    }
+
+
 def make_mesh(row, mode, source, patch, target_changes):
     landmarks = row['landmarks']
     targets = copy.deepcopy(TARGET)
@@ -165,8 +186,7 @@ def make_mesh(row, mode, source, patch, target_changes):
     return {'body': surface, 'rear': None,
             'front_collar': front if mode == 'tied' else None, 'cuffs': cuff_surfaces}, {
         'controls': registration, 'vertices': len(vertices), 'triangles': len(triangles),
-        'folded_triangles': len(flipped), 'min_area_ratio': float(np.min(signed_d/signed_s)),
-        'max_area_ratio': float(np.max(signed_d/signed_s)),
+        'folded_triangles': len(flipped), **serialized_area_statistics(combined, triangles),
     }
 
 

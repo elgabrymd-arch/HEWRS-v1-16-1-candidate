@@ -288,7 +288,11 @@ def main():
             report['head_references'] = dict(source_sha256=reference['source_sha256'], source_url=reference['source_url'], images={})
             for name in ['raw_head', 'native_source', 'native_commit']:
                 report['head_references']['images'][name] = retain_head(name, reference[name])
-            head = reference['raw_head']['rgba_sha256']
+            # Use the same full-size read/commit path as the renderer. WebKit's
+            # small default canvas has a different partial-alpha RGB readback.
+            # The complete canonical head still requires exact byte equality.
+            head = reference['native_commit']['rgba_sha256']
+            report['head_reference_authority'] = 'native_commit'
             report['head_reference_comparisons'] = {
                 name: head_difference(head_images['raw_head'], head_images[name])
                 for name in ['native_source', 'native_commit']
@@ -332,10 +336,34 @@ def main():
                     page.screenshot(path=str(output / full_page_path), full_page=True)
                     page.locator('#option-card-items').screenshot(path=str(output / option_items_path))
                     result['full_page_path'], result['option_card_items_path'] = full_page_path, option_items_path
-                    report['full_app_captures'].append(dict(selection=selected, mode=mode, viewport_width=390,
-                                                           full_page_path=full_page_path, option_card_items_path=option_items_path))
+                    capture = dict(selection=selected, mode=mode, viewport_width=390,
+                                   full_page_path=full_page_path, option_card_items_path=option_items_path)
+                    report['full_app_captures'].append(capture)
+                    if label == 'DS035-B02-T029':
+                        original_top = page.locator('#page-outfits').evaluate('(element)=>element.scrollTop')
+                        try:
+                            controls = page.evaluate('''async()=>{
+                              const page=document.getElementById('page-outfits');page.scrollTop=page.scrollHeight;
+                              await new Promise(requestAnimationFrame);
+                              const bounds=node=>{const r=node.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
+                              return {scroll_top:page.scrollTop,scroll_height:page.scrollHeight,client_height:page.clientHeight,
+                                page_bounds:bounds(page),toolbar_bounds:bounds(page.querySelector('.lb-toolbar')),
+                                navigation_bounds:bounds(page.querySelector('.lb-card-controls'))};
+                            }''')
+                            controls['path'] = 'full-page/' + label + '-scrolled-controls.png'
+                            page.screenshot(path=str(output / controls['path']), full_page=True)
+                            result['scrolled_controls'] = controls
+                            capture['scrolled_controls_path'] = controls['path']
+                            save()
+                            box, viewport = controls['toolbar_bounds'], controls['page_bounds']
+                            check(label + ': toolbar remains reachable inside the scrolled phone page',
+                                  box['height'] > 0 and box['top'] >= viewport['top'] and box['bottom'] <= viewport['bottom']
+                                  and box['left'] >= viewport['left'] and box['right'] <= viewport['right'], controls)
+                        finally:
+                            page.locator('#page-outfits').evaluate('(element,top)=>{element.scrollTop=top;}', original_top)
                 head_detail = dict(source_expected=AVATAR, source_actual=result['plan']['avatar'],
-                                   expected_raw_head_sha256=head, actual_head_sha256=result['head_sha256'])
+                                   expected_reference='native_commit', expected_head_sha256=head,
+                                   raw_head_sha256=reference['raw_head']['rgba_sha256'], actual_head_sha256=result['head_sha256'])
                 if result['head_sha256'] != head:
                     name = 'actual-' + label
                     head_detail['actual'] = retain_head(

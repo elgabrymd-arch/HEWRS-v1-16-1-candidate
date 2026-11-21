@@ -1,0 +1,104 @@
+{
+  "schema": "hewrs.verification-reference-correction.v1",
+  "runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
+  "garment_data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+  "avatar_sha256": "a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d",
+  "application_runtime_or_original_asset_bytes_changed_by_these_gate_fixes": false,
+  "webkit": {
+    "evidence_run": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44864067172",
+    "candidate_commit": "28610e0e2d75bfb8b7ef96382d4d3aaf8662477a",
+    "selection": {
+      "shirtId": "DS001",
+      "state": "NO_TIE",
+      "shoeId": "shoe-8",
+      "watchId": null,
+      "shirtOnly": true,
+      "pantId": "PG002"
+    },
+    "raw_small_canvas_head_sha256": "04e01272e071c223e99d7848124536574469bbc0fc7c1613e8dba0916c0ced81",
+    "actual_and_canonical_head_sha256": "6b1bad3102e25a5db9984789faa8652076b06a25b949ed07409bd6fc06be7398",
+    "small_default_canvas_vs_actual": {
+      "equal": false,
+      "changed_pixels": 57,
+      "alpha_changed_pixels": 0,
+      "opaque_changed_pixels": 0,
+      "partial_alpha_changed_pixels": 57,
+      "max_channel_delta": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "difference_bounds": [
+        351,
+        12,
+        656,
+        335
+      ]
+    },
+    "native_commit_vs_actual": {
+      "equal": true,
+      "changed_pixels": 0,
+      "alpha_changed_pixels": 0,
+      "opaque_changed_pixels": 0,
+      "partial_alpha_changed_pixels": 0,
+      "max_channel_delta": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "difference_bounds": null
+    },
+    "full_native_source_and_four_baseline_heads_equal_actual": true,
+    "finding": "The small 996x350 default-context reference has a different partial-alpha RGB readback from the full 996x2748 willReadFrequently context. The actual committed head exactly matches the full native source, canonical commit and actual baseline heads."
+  },
+  "ds051_original_baseline": {
+    "selection": {
+      "shirtId": "DS051",
+      "suitId": "S05",
+      "state": "NO_TIE",
+      "shoeId": "shoe-8",
+      "watchId": null
+    },
+    "evidence_kind": "Actual original and candidate engine frames rendered with native canvas",
+    "original_vs_candidate": {
+      "pixels": 3916,
+      "bbox": [
+        341,
+        5,
+        657,
+        350
+      ],
+      "avatar_opaque": 0,
+      "avatar_partial": 3916,
+      "avatar_transparent": 0,
+      "alpha_differences": 0
+    },
+    "frozen_avatar_vs_candidate": {
+      "pixels": 0,
+      "bbox": null,
+      "avatar_opaque": 0,
+      "avatar_partial": 0,
+      "avatar_transparent": 0,
+      "alpha_differences": 0,
+      "samples": []
+    },
+    "source_code": "vendor/active50-renderer.js: storedOver/legacyFrame; PARENT_DS051_STORED_RGB",
+    "finding": "The original profile darkens partially transparent head-edge RGB when it stores premultiplied color in ImageData. Candidate pixels match the frozen avatar source. Requiring the rejected baseline head hash would preserve this artifact."
+  },
+  "exact_reference_contract": {
+    "source": "Fetch and verify the immutable avatar hash and 996x2748 dimensions.",
+    "construction": "Draw at 0,0 on a full native willReadFrequently canvas; commit full ImageData to an equally sized willReadFrequently canvas.",
+    "comparison": "Exact RGBA hash for [0,0,996,350]; no tolerance, masks, skipped pixels or per-shirt exception.",
+    "non_target_frames": "All 42 unaffected shirts retain exact full-frame comparison to the original baseline.",
+    "old_target_baseline_differences": "Recorded as evidence, including old head hashes and changed-pixel bounds."
+  },
+  "registration_determinism": {
+    "evidence_run": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44864067172",
+    "finding": "Native CI exposed platform-dependent floating-point tails only in area-ratio diagnostics. Delivered geometry was identical.",
+    "correction": "Compute ratios from integer determinants of the serialized four-decimal mesh; serialize diagnostic ratios to nine decimal places. Retain full-precision fold checks and additionally reject a folded serialized mesh.",
+    "delivered_geometry_sha256_unchanged": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033"
+  },
+  "final_browser_validation": "Separate CI runs validate the corrected references and complete app; this diagnostic record grants no owner approval."
+}
