@@ -15,10 +15,9 @@ matrix = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(matrix)
 PROBES = {
     'original': '',
-    'select_overflow': '.rd-dialog .rd-label select{overflow:hidden;text-overflow:ellipsis}',
-    'select_containment': '.rd-dialog .rd-label select{contain:inline-size}',
-    'label_clip': '.rd-dialog .rd-label{overflow-x:clip}',
-    'select_block': '.rd-dialog .rd-label{display:block}.rd-dialog .rd-label select{display:block;margin-top:5px}',
+    'clip_margin': '.rd-dialog .rd-label{overflow-x:clip;overflow-clip-margin:4px}',
+    'clip_gutter': '.rd-dialog .rd-label{overflow-x:clip;margin-inline:-4px;padding-inline:4px}',
+    'select_paint': '.rd-dialog .rd-label select{contain:paint}',
 }
 SNAPSHOT = r'''()=>{
  const d=document.getElementById('rd-dialog'),box=d.getBoundingClientRect(),surface=document.getElementById('rd-canvas').getBoundingClientRect();
@@ -31,6 +30,9 @@ SNAPSHOT = r'''()=>{
  }).filter(e=>e.width>0&&(e.right>box.left+d.clientWidth+1||e.scrollWidth>e.clientWidth+1));
  return {viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,
    dialog:{left:box.left,width:d.clientWidth,scrollWidth:d.scrollWidth,open:d.open},
+   clip_margin_supported:CSS.supports('overflow-clip-margin','4px'),
+   select_state:[...d.querySelectorAll('select')].map(s=>({id:s.id,value:s.value,options:[...s.options].map(o=>[o.value,o.text])})),
+   focused:{id:document.activeElement.id,visible:document.activeElement.matches(':focus-visible'),outline:getComputedStyle(document.activeElement).outline,offset:getComputedStyle(document.activeElement).outlineOffset},
    canvas:{left:surface.left,right:surface.right,height:surface.height},offenders:items};
 }'''
 
@@ -58,6 +60,7 @@ def main():
                 for width in [320,390,430,768]:
                     page.set_viewport_size({'width':width,'height':844})
                     page.evaluate('()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+                    page.locator('#rd-topwear').focus();page.keyboard.press('Tab');page.keyboard.press('Shift+Tab')
                     row={'phase':phase,'width':width,'css':css,**page.evaluate(SNAPSHOT)};rows.append(row)
                     page.evaluate('()=>document.getElementById("rd-dialog").scrollTop=0')
                     page.screenshot(path=str(output/f'{phase}-{width}-top.png'))
