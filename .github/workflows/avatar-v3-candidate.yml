@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   isolated-source-and-pose-geometry:
@@ -59,6 +59,27 @@ jobs:
         run: |
           git diff --exit-code HEAD -- assets/ assemblies/ data/inputs.json data/inputs.js src/ runtime/ index.html app.html
           git status --short
+      - name: Save only the 3 derived V3 sources and manifest to the isolated branch
+        if: github.event_name == 'push' && github.ref_name == 'feat/avatar-v3-proportions-pose-20261120'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/avatar-v3-candidate.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/avatar-v3-candidate.json').read_text())
+          with open('/tmp/hewrs-v3-asset-add.txt','w') as f:
+              for row in d['candidate_layers'].values():
+                  target=Path(row['url'])
+                  assert target.exists() and target.name == row['sha256']+'.png'
+                  f.write(str(target)+'\n')
+          PY
+          while IFS= read -r file; do git add -- "$file"; done < /tmp/hewrs-v3-asset-add.txt
+          git diff --cached --quiet || {
+            git commit -m 'Store isolated V3 avatar/head and wrist candidates'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          }
       - name: Publish isolated visual evidence
         if: always()
         uses: actions/upload-artifact@v4
