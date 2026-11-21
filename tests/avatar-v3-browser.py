@@ -52,6 +52,7 @@ RENDER=r'''async input=>{
    stateUnchanged:JSON.stringify(before)===JSON.stringify(after),
    stateBefore:before,stateAfter:after,
    planOperation:p?.operation||null,
+   poseRevision:app.renderer.stats().avatarV3Pose||null,
    overflow:document.documentElement.scrollWidth>innerWidth+1,
    current:app.state().selection,
  };
@@ -112,15 +113,18 @@ def run(browser):
                 assert new['v3']['sha256']==hashes['avatar'] and new['v3']['hands']==[hashes['left_hand'],hashes['right_hand']],name
                 if new['avatar'] is not None:assert new['avatar']==hashes['avatar'],(name,new['avatar'])
                 if new['hands']:assert new['hands']==[hashes['left_hand'],hashes['right_hand']],(name,new['hands'])
+                assert new['poseRevision']=='AVATAR_V3_ARM_POSE_CANDIDATE_1',name+' pose geometry absent'
                 assert old_img.crop((0,1700,996,2748)).tobytes()==new_img.crop((0,1700,996,2748)).tobytes(),name+' changed lower body'
                 changed=ImageChops.difference(old_img,new_img).getbbox()
                 assert changed is not None,name+' has no avatar change'
                 a=old_img.crop((0,0,996,350));b=new_img.crop((0,0,996,350))
                 assert ImageChops.difference(a,b).getbbox(),name+' did not change head'
+                arm_diff=ImageChops.difference(old_img.crop((0,850,996,1250)),new_img.crop((0,850,996,1250))).getbbox()
+                assert arm_diff is not None,name+' arm silhouette did not change'
                 old_img.save(OUT/(name+'-v2.png'))
                 new_img.save(OUT/(name+'-v3.png'))
                 report['results'].append({'name':name,'selection':selection,'original':{k:v for k,v in old.items() if k not in ('stateBefore','stateAfter')},'candidate':{k:v for k,v in new.items() if k not in ('stateBefore','stateAfter')},
-                 'image_different_bounds':changed,'lower_body_exact':True,'head_changed':True})
+                 'image_different_bounds':changed,'lower_body_exact':True,'head_changed':True,'arm_region_changed':True,'arm_diff_bbox':arm_diff})
                 profiles.append((name,old_img,new_img,old,new))
             sheet=preview_sheet(profiles)
             sheet.thumbnail((390,1350))
