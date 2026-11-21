@@ -14,6 +14,8 @@ import importlib.util
 import io
 import json
 import math
+import re
+import tempfile
 import threading
 import traceback
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -39,13 +41,18 @@ V3_SOURCES = {
 COLLAR_RECTS = ((330, 355, 422, 615), (575, 355, 666, 615))
 TIED_NECKBAND_RECT = (422, 420, 575, 467)
 LOWER_COLLAR_BACKING_RECT = (422, 530, 575, 615)
+JACKET_LOWER_OPENING_RECT = (422, 615, 575, 850)
+JACKET_OUTER_SHOULDER_RECTS = ((0, 350, 330, 600), (666, 350, 996, 600))
 TIED_NECK_CORNER_RECTS = ((422, 401, 441, 420), (560, 405, 575, 420))
 TIE_RECT = (422, 467, 575, 1251)
 CUFF_RECTS = ((20, 1180, 260, 1426), (736, 1180, 976, 1426))
 DETAILS = {'collar': (248, 300, 748, 800), 'cuffs': (75, 1250, 921, 1625),
-           'tie': (350, 430, 646, 1250)}
+           'tie': (350, 430, 646, 1250), 'shoulders': (0, 355, 996, 615)}
 SEAMS = json.loads((ROOT / 'tests/issue19-collar-seam-fixtures.json').read_text())
 SHOULDERS = json.loads((ROOT / 'tests/issue19-shoulder-contour-fixtures.json').read_text())
+JACKET_GAPS = json.loads((ROOT / 'tests/issue19-jacket-gap-fixtures.json').read_text())
+PARTIAL_TIES = json.loads((ROOT / 'tests/issue19-partial-tie-backing-fixtures.json').read_text())
+SHOULDER_EDGES = json.loads((ROOT / 'tests/issue19-outer-shoulder-fixtures.json').read_text())
 
 spec = importlib.util.spec_from_file_location('existing_v3_fit', ROOT / 'tests/avatar-v3-fit-browser.py')
 FIT = importlib.util.module_from_spec(spec)
@@ -67,6 +74,15 @@ def fixtures(suite):
                 state = f'T{index:03}'
                 rows.append({'name': '-'.join((mode, 'DS035', state)), 'mode': mode,
                              'selection': FIT.selection('DS035', state, mode)})
+            if mode == 'S02':
+                # These independently observed aperture and partial tie-edge
+                # regressions reach below the unscaled knot. Exercise every
+                # projected physical tie on all three affected shirts here.
+                for shirt in ('DS027', 'DS037', 'DS048'):
+                    for index in range(2, 48):
+                        state = f'T{index:03}'
+                        rows.append({'name': '-'.join((mode, shirt, state)), 'mode': mode,
+                                     'selection': FIT.selection(shirt, state, mode)})
     return rows
 
 
@@ -130,7 +146,7 @@ def collar_join_diagnostics(image):
     return {'interior_low_alpha_pixels': count, 'minimum_alpha': minimum, 'samples': samples}
 
 
-def change_check(old, new, selected, hand_mask, avatar_source):
+def change_check(old, new, selected, hand_mask, avatar_source, jacket_shoulder_source=None):
     channels = ImageChops.difference(old, new).split()
     changed = channels[0]
     for channel in channels[1:]:
@@ -145,6 +161,8 @@ def change_check(old, new, selected, hand_mask, avatar_source):
         rectangles.extend(TIED_NECK_CORNER_RECTS)
     if not selected.get('shirtOnly'):
         rectangles.extend(CUFF_RECTS)
+        rectangles.append(JACKET_LOWER_OPENING_RECT)
+        rectangles.extend(JACKET_OUTER_SHOULDER_RECTS)
     for left, top, right, bottom in rectangles:
         draw.rectangle((left, top, right - 1, bottom - 1), fill=255)
     forbidden = ImageChops.subtract(changed, permitted)
@@ -161,6 +179,25 @@ def change_check(old, new, selected, hand_mask, avatar_source):
             if len(hand_points) >= 12:
                 break
     corner_wrong, corner_restored, corner_checked = 0, 0, 0
+    outer_checked, outer_wrong, jacket_opaque_wrong = 0, 0, 0
+    if not selected.get('shirtOnly'):
+        if jacket_shoulder_source is None:
+            raise AssertionError('Jacket routes require the browser-decoded original shoulder source')
+        shoulder_changes = changed.crop((0, 350, 996, 600))
+        jacket_opaque = jacket_shoulder_source.getchannel('A').point(lambda alpha: 255 if alpha == 255 else 0)
+        jacket_opaque_wrong = ImageChops.multiply(shoulder_changes, jacket_opaque).histogram()[255]
+        for rectangle in JACKET_OUTER_SHOULDER_RECTS:
+            if not changed.crop(rectangle).getbbox():
+                continue
+            left, top, right, bottom = rectangle
+            for y in range(top, bottom):
+                for x in range(left, right):
+                    if not changed.getpixel((x, y)):
+                        continue
+                    source = jacket_shoulder_source.getpixel((x, y - 350))
+                    outer_checked += 1
+                    outer_wrong += (new.getpixel((x, y)) != source or avatar_source.getpixel((x, y))[3] != 0
+                                    or old.getpixel((x, y))[3] <= source[3])
     if selected['state'] != 'NO_TIE':
         for left, top, right, bottom in TIED_NECK_CORNER_RECTS:
             for y in range(top, bottom):
@@ -180,6 +217,9 @@ def change_check(old, new, selected, hand_mask, avatar_source):
             'neck_corner_wrong_source_pixels': corner_wrong,
             'neck_corner_exact_avatar_pixels': corner_checked,
             'neck_corner_restored_pixels': corner_restored,
+            'outer_original_jacket_pixels_checked': outer_checked,
+            'outer_wrong_source_pixels': outer_wrong,
+            'opaque_original_jacket_shoulder_pixels_changed': jacket_opaque_wrong,
             'permitted_rectangles_xyxy': rectangles}
 
 
@@ -200,6 +240,30 @@ AVATAR_SOURCE = r'''async()=>{
  i.src=HEWRSApp.resolveUrl(d);await i.decode();c.getContext('2d').drawImage(i,0,0);
  return c.toDataURL('image/png');
 }'''
+
+JACKET_SHOULDER_SOURCE = r'''async s=>{
+ const c=HEWRSApp.connection,p=HEWRSApp.renderer.plan(s);
+ const d=Array.isArray(p)?c.assemblies.forSelection(s.suitId,s.shoeId,s.shirtId).static.jacket:p.jacket;
+ if(!d)throw Error('Missing selected original jacket');
+ const canvas=document.createElement('canvas');canvas.width=996;canvas.height=250;
+ // Retain the protected, previously approved V3 B15 registration as well as
+ // each original photograph. This loader does not apply the new fit wrapper.
+ const loader=HEWRSRenderImageLoader.create({resolveUrl:HEWRSApp.resolveUrl,width:996,height:2748,limit:2});
+ const ctx=canvas.getContext('2d'),image=await loader.load(d);ctx.drawImage(image,0,-350);
+ if(d.display_alpha_mask){const mask=new Image();mask.src=HEWRSApp.resolveUrl(d.display_alpha_mask);await mask.decode();ctx.globalCompositeOperation='destination-in';ctx.drawImage(mask,0,-350);}
+ return canvas.toDataURL('image/png');
+}'''
+
+
+def jacket_shoulder_source(page, selected, cache):
+    if selected.get('shirtOnly'):
+        return None
+    key = selected.get('suitId') or selected.get('blazerId')
+    if key not in cache:
+        png = page.evaluate(JACKET_SHOULDER_SOURCE, selected)
+        cache[key] = Image.open(io.BytesIO(base64.b64decode(png.split(',', 1)[1]))).convert('RGBA')
+        assert cache[key].size == (996, 250)
+    return cache[key]
 
 # The shared historical helper closes B01's reviewed dialog after its native
 # capture. Keep that exact rendered surface open until THIS test has captured
@@ -257,7 +321,7 @@ def shoulder_contour_samples(image, selected):
     if not selected.get('shirtOnly'):
         return []
     samples = []
-    for fixture in SHOULDERS['fixtures'] + SHOULDERS.get('antialias_fixtures', []):
+    for fixture in SHOULDERS['fixtures'] + SHOULDERS.get('antialias_fixtures', []) + SHOULDERS.get('enclosed_fixtures', []):
         if (fixture['shirt'] != selected['shirtId']
                 or (fixture['state'] == 'NO_TIE') != (selected['state'] == 'NO_TIE')):
             continue
@@ -276,6 +340,77 @@ def shoulder_contour_samples(image, selected):
         samples.append({'xy': fixture['xy'], 'rgba': rgba,
                         'body_source_sha256': fixture['body_source_sha256'], 'patch_pixels': patch_pixels})
     return samples
+
+
+@functools.lru_cache(maxsize=14)
+def original_jacket_control_source(suit):
+    row = next(item for item in JACKET_GAPS['same_effective_alpha_geometry'] if item['suit'] == suit)
+    source = ROOT / 'assets' / (row['jacket_source_sha256'] + '.png')
+    assert digest(source.read_bytes()) == row['jacket_source_sha256'], 'Original jacket bytes changed'
+    return Image.open(source).convert('RGBA')
+
+
+def jacket_aperture_samples(image, selected):
+    """Literal independent interior, exterior and selected-jacket controls."""
+    rows = [row for row in JACKET_GAPS['fixtures']
+            if row['shirt'] == selected['shirtId'] and selected.get('suitId') in row['suit_ids']]
+    if not rows:
+        return None
+    samples = []
+    for row in rows:
+        rgba = list(image.getpixel(tuple(row['xy'])))
+        assert rgba[3] == row['expected_alpha'], (selected, 'jacket aperture', row['xy'], rgba)
+        samples.append({'xy': row['xy'], 'rgba': rgba, 'component_id': row['component_id']})
+    exterior, opaque = 0, 0
+    for row in JACKET_GAPS['negative_exterior_fixtures']:
+        if (row['shirt'] == selected['shirtId'] and selected.get('suitId') in row['suit_ids']
+                and selected['state'] == row['state']):
+            assert list(image.getpixel(tuple(row['xy']))) == row['expected_rgba'], (selected, 'true exterior', row['xy'])
+            exterior += 1
+    source = original_jacket_control_source(selected['suitId'])
+    for row in JACKET_GAPS['opaque_jacket_control_regions']:
+        if row['shirt'] != selected['shirtId'] or selected.get('suitId') not in row['suit_ids']:
+            continue
+        x, y, width, height = row['xywh']
+        for yy in range(y, y + height):
+            for xx in range(x, x + width):
+                rgba = source.getpixel((xx, yy))
+                assert rgba[3] == 255 and image.getpixel((xx, yy)) == rgba, (selected, 'original opaque jacket', xx, yy)
+                opaque += 1
+    return {'points': samples, 'transparent_exterior_controls': exterior,
+            'opaque_original_jacket_control_pixels': opaque}
+
+
+def partial_tie_backing_samples(image, selected):
+    rows = [row for row in PARTIAL_TIES['fixtures'] if row['shirt'] == selected['shirtId']
+            and selected.get('suitId') in row['suit_ids'] and selected['state'] != 'NO_TIE']
+    result = []
+    for row in rows:
+        rgba = list(image.getpixel(tuple(row['xy'])))
+        assert rgba[3] == row['expected_alpha'], (selected, 'partial tie backing', row['xy'], rgba)
+        result.append({'xy': row['xy'], 'rgba': rgba})
+    return result
+
+
+def matching_shoulder_edges(selected, key):
+    mode = selected.get('suitId') or selected.get('blazerId')
+    state_class = 'no_tie' if selected['state'] == 'NO_TIE' else 'tied'
+    return [row for row in SHOULDER_EDGES[key] if row['mode'] == mode
+            and row['shirt'] == selected['shirtId'] and row['state_class'] == state_class]
+
+
+def shoulder_edge_samples(image, selected, source, retained_reference=None):
+    concealment, retained = [], []
+    for row in matching_shoulder_edges(selected, 'concealment_points'):
+        x, y = row['xy']; rgba = image.getpixel((x, y))
+        assert rgba == source.getpixel((x, y - 350)) and rgba[3] == row['expected_alpha'], (selected, 'concealed source shoulder', row['xy'], rgba)
+        concealment.append({'xy': row['xy'], 'rgba': rgba})
+    for row in matching_shoulder_edges(selected, 'retained_reveal_points'):
+        xy = tuple(row['xy']); rgba = image.getpixel(xy)
+        assert retained_reference is not None, 'Retained reveal needs its same-engine pre-shoulder frame'
+        assert rgba[3] >= row['minimum_alpha'] and rgba == retained_reference.getpixel(xy), (selected, 'retained neck reveal', xy, rgba)
+        retained.append({'xy': row['xy'], 'rgba': rgba})
+    return {'concealed_source_points': concealment, 'exact_retained_neck_reveal_points': retained}
 
 
 def save_details(output, name, old, new, native=False):
@@ -314,6 +449,11 @@ def contact_sheets(output, rows):
 
 
 def run(args):
+    live_origin = None
+    if args.url:
+        live_origin = args.url.rstrip('/') + '/'
+        if live_origin != 'https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/':
+            raise ValueError('Live verification is restricted to the established HEWRS publication')
     rows = [row for row in fixtures(args.suite) if MODES.index(row['mode']) % args.shards == args.shard]
     if args.only_mode:
         rows = [row for row in rows if row['mode'] == args.only_mode]
@@ -328,8 +468,24 @@ def run(args):
         raise ValueError('Baseline entrypoint must be inside the working tree')
     if digest(baseline.read_bytes()) != '4670d41cc6139d12956dfbd064692e92fe28c719160ec2e142754b2e22de718b':
         raise AssertionError('Baseline page differs from the exact published V3 checkpoint')
+    # Four independently retained collar cases use the immutable pre-shoulder
+    # runtime as a same-engine pixel oracle. This is a separate diagnostic
+    # context, never the candidate application or its published delivery.
+    reference_runtime = ROOT / 'runtime/avatar-v3-candidate-f39eace65c2a874a0b64.js'
+    reference_sha = 'f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43'
+    assert digest(reference_runtime.read_bytes()) == reference_sha
+    reference_html = baseline.read_text()
+    runtime_tags = re.findall(r'<script\b[^>]*\bsrc="runtime/[^\"]+"[^>]*></script>', reference_html)
+    assert len(runtime_tags) == 1
+    tag = re.sub(r'src="[^"]+"', 'src="' + str(reference_runtime.relative_to(ROOT)) + '?v=' + reference_sha[:16] + '"', runtime_tags[0])
+    sri = base64.b64encode(bytes.fromhex(reference_sha)).decode()
+    tag = re.sub(r'integrity="[^"]+"', 'integrity="sha256-' + sri + '"', tag)
+    reference_html = reference_html.replace(runtime_tags[0], tag)
+    with tempfile.NamedTemporaryFile('w', dir=ROOT, prefix='issue19-collar-reference-', suffix='.html', delete=False) as reference_file:
+        reference_file.write(reference_html)
+        reference_path = Path(reference_file.name)
     output = args.output.resolve() / args.browser / args.suite / f'shard-{args.shard}'
-    for part in ['collar', 'cuffs', 'tie', 'native', 'phone', 'sheets']:
+    for part in [*DETAILS, 'native', 'phone', 'sheets']:
         (output / part).mkdir(parents=True, exist_ok=True)
     checks, captures, errors, bad_requests, external = [], [], [], [], []
     report = {'schema': 'hewrs.issue19.browser-matrix.v1', 'browser': args.browser,
@@ -338,6 +494,8 @@ def run(args):
               'expected_cases': len(rows), 'checks': checks,
               'captures': captures, 'page_errors': errors, 'bad_requests': bad_requests,
               'external_requests': external, 'owner_data_accessed': False,
+              'application_url': live_origin, 'application_response_source': 'live_https_only' if live_origin else 'local_checkout_http',
+              'retained_collar_reference_runtime_sha256': reference_sha,
               'visual_acceptance': 'requires_independent_inspection_of_actual_captures'}
 
     def check(name, condition, detail=None):
@@ -367,10 +525,11 @@ def run(args):
             contexts = []
 
             def open_page(relative, label):
+                page_origin = live_origin if live_origin and label == 'issue19-candidate' else origin
                 context = browser.new_context(viewport={'width': 390, 'height': 844}, has_touch=True, is_mobile=True)
                 contexts.append(context)
                 def route(request):
-                    if urlsplit(request.request.url)[:2] == urlsplit(origin)[:2]:
+                    if urlsplit(request.request.url)[:2] == urlsplit(page_origin)[:2]:
                         request.continue_()
                     else:
                         external.append({'page': label, 'url': request.request.url}); request.abort()
@@ -380,8 +539,9 @@ def run(args):
                 page.on('requestfailed', lambda request: bad_requests.append({'page': label, 'url': request.url, 'error': request.failure}))
                 page.on('response', lambda response: bad_requests.append({'page': label, 'url': response.url, 'status': response.status})
                         if response.status >= 400 and not response.url.endswith('/favicon.ico') else None)
-                response = page.goto(origin + relative, wait_until='domcontentloaded', timeout=120000)
+                response = page.goto(page_origin + relative, wait_until='domcontentloaded', timeout=120000)
                 check(label + ': entrypoint HTTP 200', response.status == 200)
+                check(label + ': exact expected entrypoint bytes', digest(response.body()) == digest((ROOT / relative).read_bytes()))
                 page.wait_for_function('globalThis.HEWRS_READY && HEWRSApp.rejection', timeout=120000)
                 page.evaluate('async()=>{await HEWRSApp.rejection.ready;await HEWRSApp.ownerFeedback.sync();}')
                 return page
@@ -399,13 +559,16 @@ def run(args):
             features = after.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec||null,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec||null,tie:globalThis.HEWRSAvatarV3TieFit?.spec||null})")
             check('All three coordinated fit corrections are installed', all(features.values()), features)
             check('All 50 collars use the bounded V3 registration contract',
-                  features['collar']['revision'] == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_5'
+                  features['collar']['revision'] == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_6'
                   and features['collar']['active_ids'] == SHIRTS
                   and features['collar']['bounds'] == [330, 355, 336, 260]
                   and features['collar']['modified_strips'] == [[330, 355, 92, 260], [575, 355, 91, 260]]
                   and features['collar']['top_center_bounds'] == [422, 420, 153, 47]
                   and features['collar']['protected_knot_corridor'] == [422, 467, 153, 63]
                   and features['collar']['lower_center_backing_bounds'] == [422, 530, 153, 85]
+                  and features['collar']['jacket_lower_opening_backing_bounds'] == [422, 615, 153, 235]
+                  and features['collar']['jacket_outer_shoulder_bounds'] == [[0, 350, 330, 250], [666, 350, 330, 250]]
+                  and features['collar']['jacket_inner_shoulder_neck_distance'] == 50
                   and features['collar']['tied_neck_corner_cleanup'] == [[422, 401, 19, 19], [560, 405, 15, 15]])
             check('Concealed cuffs use bounded selected-jacket sleeves and preserve shirt-only',
                   features['cuff']['revision'] == 'AVATAR_V3_CONCEALED_CUFFS_2'
@@ -433,6 +596,8 @@ def run(args):
             report['opaque_hand_mask_sha256'] = digest(hand_mask.tobytes())
             old_state, new_state = before.evaluate(FIT.PROTECTED), after.evaluate(FIT.PROTECTED)
             wrist_references = {}
+            original_shoulders = {}
+            retained_references = {}
             phone_modes = set()
             previous_mode = None
             for index, row in enumerate(rows):
@@ -451,8 +616,8 @@ def run(args):
                 old_image, _ = decode_frame(old); new_image, native_png = decode_frame(new)
                 # Every case retains full-frame RGBA hashes and paired details.
                 # Keep full native PNGs for priority shirts and two additional
-                # ties per route, without duplicating all 1,472 tie PNGs.
-                keep_native = (args.suite == 'shirts' and selected['shirtId'] in {'DS013', 'DS019', 'DS034', 'DS038', 'DS035'}
+                # ties per route, without duplicating all 1,564 tie PNGs.
+                keep_native = (args.suite == 'shirts' and selected['shirtId'] in {'DS013', 'DS019', 'DS027', 'DS034', 'DS038', 'DS035', 'DS048'}
                                or args.suite == 'ties' and selected['state'] in {'T017', 'T047'})
                 details = save_details(output, name, old_image, new_image, native=keep_native)
                 seam_samples = collar_seams(new_image, name)
@@ -474,15 +639,42 @@ def run(args):
                           bool(targets) and all(target['target_end'] == new['issue19']['expected_tie_end']
                               and target['sha256'] == new['issue19']['same_tie_full_sha256']
                               and target['revision'] == 'AVATAR_V3_TIE_FIT_1' for target in targets), targets)
-                differences = change_check(old_image, new_image, selected, hand_mask, avatar_source)
+                original_shoulder = jacket_shoulder_source(after, selected, original_shoulders)
+                differences = change_check(old_image, new_image, selected, hand_mask, avatar_source, original_shoulder)
                 check(name + ': corrections stay inside independent fit boundaries', differences['outside_allowed_pixels'] == 0, differences)
                 check(name + ': approved opaque hand pixels remain exact', differences['opaque_hand_pixels_changed'] == 0, differences)
                 check(name + ': approved head, legs and footwear remain exact', old['head_sha256'] == new['head_sha256'] and old['lower_sha256'] == new['lower_sha256'])
                 check(name + ': approved central face and chin remain exact outside source-restoration slots', old['face_and_chin_sha256'] == new['face_and_chin_sha256'])
                 check(name + ': tied neck cleanup restores exact original avatar pixels', differences['neck_corner_wrong_source_pixels'] == 0, differences)
+                check(name + ': shoulder concealment uses exact original jacket pixels and preserves opaque jacket cloth',
+                      differences['outer_wrong_source_pixels'] == 0 and differences['opaque_original_jacket_shoulder_pixels_changed'] == 0, differences)
                 shoulder_samples = shoulder_contour_samples(new_image, selected)
                 if shoulder_samples:
                     check(name + ': independently observed original shoulder BODY coverage remains intact', True, shoulder_samples)
+                jacket_samples = jacket_aperture_samples(new_image, selected)
+                if jacket_samples:
+                    check(name + ': complete audited shirt opening and original jacket controls remain correct', True, jacket_samples)
+                partial_tie_samples = partial_tie_backing_samples(new_image, selected)
+                if partial_tie_samples:
+                    check(name + ': independently audited partial tie edges have opaque shirt backing', True, partial_tie_samples)
+                retained_reference = None
+                if matching_shoulder_edges(selected, 'retained_reveal_points'):
+                    reference_key = (row['mode'], selected['shirtId'], selected['state'] == 'NO_TIE')
+                    if reference_key not in retained_references:
+                        reference_page = open_page(reference_path.name, 'retained-collar-reference')
+                        reference_capture = reference_page.evaluate(FIT_FRAME, {'selected': selected, 'ignoredHashes': []})
+                        reference_image, _ = decode_frame(reference_capture)
+                        retained_references[reference_key] = (reference_image, selected.copy())
+                        reference_context = reference_page.context
+                        reference_context.close(); contexts.remove(reference_context)
+                    # The independent fixture proves all47 projected ties have
+                    # zero alpha at these exact retained collar controls.
+                    retained_reference, reference_selection = retained_references[reference_key]
+                edge_samples = shoulder_edge_samples(new_image, selected, original_shoulder, retained_reference)
+                if retained_reference is not None:
+                    edge_samples['same_engine_reference_selection'] = reference_selection
+                if any(edge_samples.values()):
+                    check(name + ': independent shoulder leaks close while the same-engine neck reveal remains exact', True, edge_samples)
                 if selected.get('shirtOnly'):
                     check(name + ': shirt-only sleeves stay exact',
                           [digest(new_image.crop(rect).tobytes()) for rect in CUFF_RECTS]
@@ -544,6 +736,9 @@ def run(args):
                                  'tie_registration': new['issue19'],
                                  'collar_seam_regressions': seam_samples, 'collar_join_diagnostics': join_diagnostics,
                                  'shoulder_contour_regressions': shoulder_samples,
+                                 'jacket_aperture_regressions': jacket_samples,
+                                 'partial_tie_backing_regressions': partial_tie_samples,
+                                 'shoulder_edge_regressions': edge_samples,
                                  'differences': differences, **details})
                 if index % 12 == 0 or index == len(rows) - 1:
                     write_report(); print(f'ISSUE19_CAPTURED {args.browser} {args.suite} {args.shard} {index + 1}/{len(rows)} {name}', flush=True)
@@ -562,7 +757,7 @@ def run(args):
     finally:
         if captures and not (output / 'VISUAL_REVIEW_INDEX.json').exists():
             contact_sheets(output, captures)
-        write_report(); server.shutdown(); server.server_close()
+        write_report(); server.shutdown(); server.server_close(); reference_path.unlink(missing_ok=True)
     print(json.dumps({'status': report['status'], 'browser': args.browser, 'suite': args.suite,
                       'shard': args.shard, 'captures': len(captures), 'passed': report['passed'], 'failed': report['failed']}))
 
@@ -576,6 +771,7 @@ if __name__ == '__main__':
     parser.add_argument('--baseline-entrypoint', default='avatar-v3-issue19-baseline.html')
     parser.add_argument('--output', type=Path, default=ROOT / 'evidence/issue19/browser')
     parser.add_argument('--executable')
+    parser.add_argument('--url', help='Verify the established live HTTPS application against the local retained V3 baseline')
     parser.add_argument('--limit', type=int)
     parser.add_argument('--only-mode', choices=MODES, help='Explicit targeted preflight; the unfiltered suites remain the exhaustive gates')
     parser.add_argument('--list', action='store_true')

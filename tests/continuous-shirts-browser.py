@@ -341,6 +341,7 @@ def main():
                         lambda alpha: 255 if alpha == 255 else 0).filter(ImageFilter.MinFilter(3))
                     avatar_png = page.evaluate(issue19_contract.AVATAR_SOURCE)
                     avatar_source = Image.open(io.BytesIO(base64.b64decode(avatar_png.split(',', 1)[1]))).convert('RGBA')
+                    original_shoulders = {}
                     report['baseline_geometry_policy'] = {'policy': 'issue19_bounded_fit',
                         'baseline': release['issue19_baseline'],
                         'collar_strips_xyxy': issue19_contract.COLLAR_RECTS,
@@ -361,7 +362,8 @@ def main():
                             check('Exact decoded native comparison pixels: ' + shirt + '/' + mode,
                                   image.size == (996, 2748) and hashlib.sha256(image.tobytes()).hexdigest() == frame['rgba_sha256'])
                             images.append(image)
-                        difference = issue19_contract.change_check(images[0], images[1], selected, hand_mask, avatar_source)
+                        original_shoulder = issue19_contract.jacket_shoulder_source(page, selected, original_shoulders)
+                        difference = issue19_contract.change_check(images[0], images[1], selected, hand_mask, avatar_source, original_shoulder)
                         difference['policy'] = 'issue19_bounded_fit'
                         check('Original garment sources and exact same-ID tie sources remain registered: ' + shirt + '/' + mode,
                               issue19_contract.source_identity(current['source_bindings'], state, fidelity)
@@ -372,10 +374,16 @@ def main():
                               difference['opaque_hand_pixels_changed'] == 0, difference)
                         check('Neck cleanup reveals exact original avatar pixels: ' + shirt + '/' + mode,
                               difference['neck_corner_wrong_source_pixels'] == 0, difference)
+                        check('Shoulders retain exact original jacket pixels: ' + shirt + '/' + mode,
+                              difference['outer_wrong_source_pixels'] == 0 and difference['opaque_original_jacket_shoulder_pixels_changed'] == 0, difference)
                         shoulder_samples = issue19_contract.shoulder_contour_samples(images[1], selected)
                         if shoulder_samples:
                             check('Original shoulder BODY coverage remains intact: ' + shirt + '/' + mode, True, shoulder_samples)
                         difference['shoulder_contour_regressions'] = shoulder_samples
+                        jacket_samples = issue19_contract.jacket_aperture_samples(images[1], selected)
+                        if jacket_samples:
+                            check('Audited shirt opening and original jacket controls remain correct: ' + shirt + '/' + mode, True, jacket_samples)
+                        difference['jacket_aperture_regressions'] = jacket_samples
                         check('Final frame uses the exact approved V3 head: ' + shirt + '/' + mode,
                               current['head_sha256'] == original['head_sha256'] == head)
                     elif avatar_profile['version'] == 'v3':

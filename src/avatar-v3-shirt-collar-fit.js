@@ -6,12 +6,15 @@
 (function(root){'use strict';
 const prior=root.HEWRSAtomicRenderer,W=996,H=2748;
 const X=330,Y=355,CW=336,CH=260,BOTTOM=Y+CH;
+const BACKING_BOTTOM=850,BACKING_HEIGHT=BACKING_BOTTOM-Y;
+const SHOULDER_Y=350,SHOULDER_HEIGHT=250;
 const IDS=Object.freeze(Array.from({length:51},(_,n)=>'DS'+String(n+1).padStart(3,'0')).filter(id=>id!=='DS049'));
-const SPEC=Object.freeze({revision:'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_5',active_ids:IDS,
- bounds:Object.freeze([X,Y,CW,CH]),native_canvas:Object.freeze([W,H]),
+const SPEC=Object.freeze({revision:'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_6',active_ids:IDS,
+ bounds:Object.freeze([X,Y,CW,CH]),native_canvas:Object.freeze([W,H]),jacket_lower_opening_backing_bounds:Object.freeze([422,615,153,235]),
+ jacket_outer_shoulder_bounds:Object.freeze([[0,350,330,250],[666,350,330,250]]),jacket_inner_shoulder_neck_distance:50,
  neckband_reveal:7,knot_anchor:Object.freeze([498,467]),
  method:'continuous selected-shirt-source collar registration to selected jacket neck',
- modified_strips:Object.freeze([[330,355,92,260],[575,355,91,260]]),top_center_bounds:Object.freeze([422,420,153,47]),tied_neck_corner_cleanup:Object.freeze([[422,401,19,19],[560,405,15,15]]),shirt_only_body_contour_bounds:Object.freeze([[330,420,92,195],[575,420,91,195]]),shirt_only_body_contour_leaf_guard:Object.freeze({opaque_body_alpha:255,front_leaf_alpha_below:128}),shirt_only_body_contour_method:'original_body_coverage_outside_avatar_preserving_leaf_core_opaque_composite_and_tie',lower_center_backing_bounds:Object.freeze([422,530,153,85]),protected_knot_corridor:Object.freeze([422,467,153,63]),tie_pixel_preservation:'every_nonzero_alpha_pixel_of_selected_registered_tie',original_sources_modified:false,avatar_geometry_modified:false});
+ modified_strips:Object.freeze([[330,355,92,260],[575,355,91,260]]),top_center_bounds:Object.freeze([422,420,153,47]),tied_neck_corner_cleanup:Object.freeze([[422,401,19,19],[560,405,15,15]]),shirt_only_body_contour_bounds:Object.freeze([[330,420,92,195],[575,420,91,195]]),shirt_only_body_contour_leaf_guard:Object.freeze({opaque_body_alpha:255,front_leaf_alpha_below:128}),shirt_only_body_contour_method:'original_body_coverage_outside_avatar_preserving_leaf_core_opaque_composite_and_tie',shirt_only_enclosed_join_method:'eight_connected_interior_backing_with_same_shirt_cloth_after_body_restoration',lower_center_backing_bounds:Object.freeze([422,530,153,85]),protected_knot_corridor:Object.freeze([422,467,153,63]),tie_pixel_preservation:'exact_opaque_and_knot_pixels_partial_foreground_contribution_preserved_under_enclosed_backing',original_sources_modified:false,avatar_geometry_modified:false});
 const need=(v,m)=>{if(!v)throw Error('V3 shirt collar: '+m);};
 function canvas(w=W,h=H){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
 function release(c){c.width=c.height=1;}
@@ -24,7 +27,7 @@ function create(visible,connection,options={}){
   need(p?.garment?.body?.type==='mesh'&&p.garment.body.source?.sha256,'unregistered continuous cloth callback');
   const key=[p.selection.shirtId,p.selection.state==='NO_TIE'?'no_tie':'tied','continuous'].join('/');
   const pixels=ctx.getImageData(X,Y,CW,CH);
-  collars.delete(key);collars.set(key,{pixels,bodyPixels:pixels,bodyAlpha:alphaPlane(pixels),leafAlpha:null,bodyHash:p.garment.body.source.sha256,leafHashes:[],hashes:[p.garment.body.source.sha256],capture:'raw_registered_body_before_avatar_tie_jacket'});
+  collars.delete(key);collars.set(key,{pixels,backingPixels:ctx.getImageData(X,Y,CW,BACKING_HEIGHT),outerShoulderPixels:ctx.getImageData(0,SHOULDER_Y,W,SHOULDER_HEIGHT),bodyPixels:pixels,bodyAlpha:alphaPlane(pixels),leafAlpha:null,bodyHash:p.garment.body.source.sha256,leafHashes:[],hashes:[p.garment.body.source.sha256],capture:'raw_registered_body_before_avatar_tie_jacket'});
   while(collars.size>12)collars.delete(collars.keys().next().value);
  }
  const off=canvas(),engine=prior.create(off,connection,{...options,captureShirtCloth});
@@ -41,8 +44,13 @@ function create(visible,connection,options={}){
   return {continuous,mode,topwear,avatar,jacket,tie,parts,source_profile:s.suitId?'suit':'non-suit'};
  }
  async function loadAll(descriptors){const unique=[...new Map(descriptors.map(d=>[d.sha256,d])).values()],images=await Promise.all(unique.map(d=>loads.load(d)));return new Map(unique.map((d,i)=>[d.sha256,images[i]]));}
- function draw(ctx,d,images){if(!d)return;const image=images.get(d.sha256);need(image,'missing registered source '+d.sha256);if(!d.display_alpha_mask){ctx.drawImage(image,-X,-Y);return;}
-  const c=canvas(CW,CH),cc=c.getContext('2d');cc.drawImage(image,-X,-Y);cc.globalCompositeOperation='destination-in';cc.drawImage(images.get(d.display_alpha_mask.sha256),-X,-Y);ctx.drawImage(c,0,0);release(c);
+ function draw(ctx,d,images,height=CH){if(!d)return;const image=images.get(d.sha256);need(image,'missing registered source '+d.sha256);if(!d.display_alpha_mask){ctx.drawImage(image,-X,-Y);return;}
+  const c=canvas(CW,height),cc=c.getContext('2d');cc.drawImage(image,-X,-Y);cc.globalCompositeOperation='destination-in';cc.drawImage(images.get(d.display_alpha_mask.sha256),-X,-Y);ctx.drawImage(c,0,0);release(c);
+ }
+ function drawShoulder(ctx,d,images){if(!d)return;const image=images.get(d.sha256);need(image,'missing original shoulder source '+d.sha256);
+  if(!d.display_alpha_mask){ctx.drawImage(image,0,-SHOULDER_Y);return;}
+  const c=canvas(W,SHOULDER_HEIGHT),cc=c.getContext('2d');cc.drawImage(image,0,-SHOULDER_Y);
+  cc.globalCompositeOperation='destination-in';cc.drawImage(images.get(d.display_alpha_mask.sha256),0,-SHOULDER_Y);ctx.drawImage(c,0,0);release(c);
  }
  function cleanNativeMatte(ctx,fit,images,shirtId){
   // These four solid dark shirts share a registered-photo matte defect:
@@ -69,15 +77,17 @@ function create(visible,connection,options={}){
  async function selectedCloth(s,p,fit,token){
   const key=[s.shirtId,fit.mode,fit.continuous?'continuous':fit.source_profile].join('/');
   if(collars.has(key)){const entry=collars.get(key);collars.delete(key);collars.set(key,entry);return entry;}
-  const c=canvas(CW,CH),ctx=c.getContext('2d',{willReadFrequently:true});let hashes=[],matteRepairs=0,bodyPixels=null,bodyAlpha=null,leafAlpha=null;
+  const c=canvas(CW,BACKING_HEIGHT),ctx=c.getContext('2d',{willReadFrequently:true});let hashes=[],matteRepairs=0,bodyPixels=null,bodyAlpha=null,leafAlpha=null,outerShoulderPixels=null;
   if(fit.continuous){release(c);throw Error('V3 shirt collar: raw registered cloth capture is unavailable');
   }else{const images=await loadAll(fit.parts.flatMap(list));if(token!==epoch){release(c);return null;}
-   draw(ctx,fit.parts[0],images);bodyPixels=ctx.getImageData(0,0,CW,CH);bodyAlpha=alphaPlane(bodyPixels);
+   const outer=canvas(W,SHOULDER_HEIGHT),outerContext=outer.getContext('2d',{willReadFrequently:true});
+   for(const d of fit.parts)drawShoulder(outerContext,d,images);outerShoulderPixels=outerContext.getImageData(0,0,W,SHOULDER_HEIGHT);release(outer);
+   draw(ctx,fit.parts[0],images,BACKING_HEIGHT);bodyPixels=ctx.getImageData(0,0,CW,CH);bodyAlpha=alphaPlane(bodyPixels);
    const leaves=canvas(CW,CH),lc=leaves.getContext('2d',{willReadFrequently:true});
-   for(const d of fit.parts.slice(1)){draw(ctx,d,images);draw(lc,d,images);}leafAlpha=alphaPlane(lc.getImageData(0,0,CW,CH));release(leaves);
+   for(const d of fit.parts.slice(1)){draw(ctx,d,images,BACKING_HEIGHT);draw(lc,d,images);}leafAlpha=alphaPlane(lc.getImageData(0,0,CW,CH));release(leaves);
    matteRepairs=cleanNativeMatte(ctx,fit,images,s.shirtId);hashes=fit.parts.map(d=>d.sha256);
   }
-  const pixels=ctx.getImageData(0,0,CW,CH);release(c);const entry={pixels,hashes,matteRepairs,bodyPixels,bodyAlpha,leafAlpha,bodyHash:fit.parts[0].sha256,leafHashes:fit.parts.slice(1).map(d=>d.sha256)};collars.set(key,entry);while(collars.size>12)collars.delete(collars.keys().next().value);return entry;
+  const pixels=ctx.getImageData(0,0,CW,CH),backingPixels=ctx.getImageData(0,0,CW,BACKING_HEIGHT);release(c);const entry={pixels,backingPixels,outerShoulderPixels,hashes,matteRepairs,bodyPixels,bodyAlpha,leafAlpha,bodyHash:fit.parts[0].sha256,leafHashes:fit.parts.slice(1).map(d=>d.sha256)};collars.set(key,entry);while(collars.size>12)collars.delete(collars.keys().next().value);return entry;
  }
  function fitPatch(frame,cloth,fit,images){
   const avatar=canvas(CW,CH),ac=avatar.getContext('2d',{willReadFrequently:true});draw(ac,fit.avatar,images);const av=ac.getImageData(0,0,CW,CH).data;
@@ -301,12 +311,170 @@ function create(visible,connection,options={}){
    if(original.some((value,k)=>value!==av[q+k]))neckCornerRestored++;
    replacement.data.set(av.subarray(q,q+4),q);
   }
+  // Restoring the original BODY edge can enclose a tiny hole that was open
+  // during the earlier seam pass. Classify the actual final alpha topology
+  // after restoration. An eight-connected path to any crop edge always
+  // remains exterior; this preserves the original open shoulder notches.
+  // Back only completely enclosed components inside one lateral shoulder
+  // strip, beneath existing partial cloth, using nearby opaque cloth from
+  // this same selected shirt. Opaque avatar/output and every selected tie
+  // pixel stay exact. At a partial neck edge, backing remains beneath the
+  // existing composite, preserving its original avatar contribution.
+  let enclosedShoulderPixels=0,enclosedShoulderComponents=0;
+  if(!fit.topwear){
+   const count=CW*CH,opacity=new Uint8ClampedArray(count),seen=new Uint8Array(count),queue=new Int32Array(count);
+   for(let y=Y;y<BOTTOM;y++)for(let x=X;x<X+CW;x++){
+    const q=index(x,y),lateral=x<422||x>=575,center=y>=530||(fit.mode==='tied'&&y>=420&&y<467);
+    const corner=fit.mode==='tied'&&SPEC.tied_neck_corner_cleanup.some(r=>x>=r[0]&&x<r[0]+r[2]&&y>=r[1]&&y<r[1]+r[3]);
+    opacity[q/4]=(lateral||center||corner)?replacement.data[q+3]:surrounding[((y-Y)*W+x)*4+3];
+   }
+   const shoulderSide=(x,y)=>y>=420&&y<BOTTOM?(x>=330&&x<422?0:x>=575&&x<666?1:-1):-1;
+   const donors=[null,null];
+   for(let seed=0;seed<count;seed++){
+    if(seen[seed]||opacity[seed]>=248)continue;
+    let read=0,write=1,exterior=false,eligible=true,side=-1;queue[0]=seed;seen[seed]=1;
+    while(read<write){
+     const pixel=queue[read++],cx=pixel%CW,cy=Math.floor(pixel/CW),x=cx+X,y=cy+Y,q=pixel*4;
+     if(cx===0||cx===CW-1||cy===0||cy===CH-1)exterior=true;
+     const currentSide=shoulderSide(x,y);
+     if(currentSide<0||av[q+3]===255||ta[q+3]||(side>=0&&currentSide!==side))eligible=false;
+     if(side<0&&currentSide>=0)side=currentSide;
+     for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      if((!dx&&!dy)||cx+dx<0||cx+dx>=CW||cy+dy<0||cy+dy>=CH)continue;
+      const next=pixel+dy*CW+dx;if(!seen[next]&&opacity[next]<248){seen[next]=1;queue[write++]=next;}
+     }
+    }
+    if(exterior||!eligible||side<0)continue;
+    if(!donors[side]){
+     donors[side]=[];const [sx,sy,sw,sh]=SPEC.shirt_only_body_contour_bounds[side];
+     for(let y=sy;y<sy+sh;y++)for(let x=sx;x<sx+sw;x++){
+      const q=index(x,y);
+      if(opacity[q/4]===255&&!av[q+3]&&!ta[q+3]&&(registered[q+3]>=248||cloth.bodyAlpha[q/4]>=248))donors[side].push({x,y,q});
+     }
+    }
+    if(!donors[side].length)continue;
+    for(let n=0;n<write;n++){
+     const pixel=queue[n],q=pixel*4,x=pixel%CW+X,y=Math.floor(pixel/CW)+Y;
+     let nearest=null,distance=Infinity;
+     for(const donor of donors[side]){const d=(donor.x-x)*(donor.x-x)+(donor.y-y)*(donor.y-y);if(d<distance){distance=d;nearest=donor;}}
+     const coverage=replacement.data[q+3]/255;
+     for(let k=0;k<3;k++)replacement.data[q+k]=Math.round(replacement.data[q+k]*coverage+replacement.data[nearest.q+k]*(1-coverage));
+     replacement.data[q+3]=255;enclosedShoulderPixels++;
+    }
+    enclosedShoulderComponents++;
+   }
+  }
   fc.putImageData(replacement,X,Y,0,0,92,CH);fc.putImageData(replacement,X,Y,245,0,91,CH);if(fit.mode==='tied')fc.putImageData(replacement,X,Y,92,65,153,47);fc.putImageData(replacement,X,Y,92,175,153,85);
   if(fit.mode==='tied')for(const [cx,cy,cw,ch] of SPEC.tied_neck_corner_cleanup)fc.putImageData(replacement,X,Y,cx-X,cy-Y,cw,ch);
   release(avatar);release(jacket);release(tieMask);release(out);release(shirt);
-  return {shirt_id:fit.shirtId,topwear_id:fit.topwear,mode:fit.mode,source_profile:fit.source_profile,
+  let fittedShirtAlpha=null;
+  if(fit.jacket){fittedShirtAlpha=alphaPlane({data:registered});for(let p=0;p<fittedShirtAlpha.length;p++)fittedShirtAlpha[p]=Math.max(fittedShirtAlpha[p],backing.data[p*4+3]);}
+  return {fittedShirtAlpha,stats:{shirt_id:fit.shirtId,topwear_id:fit.topwear,mode:fit.mode,source_profile:fit.source_profile,
    bounds:[X,Y,CW,CH],source_hashes:cloth.hashes,native_matte_repair_pixels:cloth.matteRepairs||0,source_capture:cloth.capture||'isolated_registered_native_body_and_leaves',jacket_source_sha256:fit.jacket?.sha256||null,
-   stand_top_rows:tops,front_source_top_rows:frontTops,collar_source_peaks:peaks,collar_target_peaks:targets,front_target_top:405,reveal_pixels:fit.jacket?7:null,cleaned_edge_pixels:cleaned,cleared_neckline_pixels:necklineCleared,restored_neck_corner_pixels:neckCornerRestored,clipped_exterior_pixels:exteriorClipped,filled_neck_aperture_pixels:apertureFilled,enclosed_collar_join_pixels:enclosedJoined,foreground_join_pixels:foregroundJoined,composite_seam_fill_pixels:compositeSeams,lower_center_backing_pixels:centralBacking,restored_shirt_only_body_contour_pixels:bodyContourRestored,restored_body_dominant_leaf_edge_pixels:bodyDominantEdgeRestored,body_contour_source_sha256:cloth.bodyHash,body_contour_leaf_source_sha256:cloth.leafHashes,tie_preserved_pixels:tiePreserved,tie_mask_source_sha256:fit.tie?.sha256||null,rear_stand_pixels:rearPixels,knot_anchor:[498,467]};
+   stand_top_rows:tops,front_source_top_rows:frontTops,collar_source_peaks:peaks,collar_target_peaks:targets,front_target_top:405,reveal_pixels:fit.jacket?7:null,cleaned_edge_pixels:cleaned,cleared_neckline_pixels:necklineCleared,restored_neck_corner_pixels:neckCornerRestored,clipped_exterior_pixels:exteriorClipped,filled_neck_aperture_pixels:apertureFilled,enclosed_collar_join_pixels:enclosedJoined,foreground_join_pixels:foregroundJoined,composite_seam_fill_pixels:compositeSeams,lower_center_backing_pixels:centralBacking,restored_shirt_only_body_contour_pixels:bodyContourRestored,restored_body_dominant_leaf_edge_pixels:bodyDominantEdgeRestored,closed_shirt_only_interior_pixels:enclosedShoulderPixels,closed_shirt_only_interior_components:enclosedShoulderComponents,body_contour_source_sha256:cloth.bodyHash,body_contour_leaf_source_sha256:cloth.leafHashes,tie_preserved_pixels:tiePreserved,tie_mask_source_sha256:fit.tie?.sha256||null,rear_stand_pixels:rearPixels,knot_anchor:[498,467]}};
+ }
+ function backJacketInterior(frame,cloth,fit,images){
+  if(!fit.topwear)return {jacket_interior_backing_pixels:0,jacket_interior_backing_components:0};
+  // The photographed shirt opening can contain enclosed source seams below
+  // the collar, including its lower V tip. Supply only missing shirt backing;
+  // the already-composited original jacket, avatar and tie stay in front.
+  const fc=frame.getContext('2d'),pixels=fc.getImageData(X,Y,CW,BACKING_HEIGHT),data=pixels.data;
+  const avatar=canvas(CW,BACKING_HEIGHT),ac=avatar.getContext('2d',{willReadFrequently:true});draw(ac,fit.avatar,images,BACKING_HEIGHT);
+  const tie=canvas(CW,BACKING_HEIGHT),tc=tie.getContext('2d',{willReadFrequently:true});draw(tc,fit.tie,images,BACKING_HEIGHT);
+  const av=ac.getImageData(0,0,CW,BACKING_HEIGHT).data,ta=tc.getImageData(0,0,CW,BACKING_HEIGHT).data,material=cloth.backingPixels.data;
+  release(avatar);release(tie);
+  const count=CW*BACKING_HEIGHT,seen=new Uint8Array(count),queue=new Int32Array(count);
+  let donorCount=0;for(let p=0;p<count;p++)if(material[p*4+3]>=248)donorCount++;
+  function nearestCloth(x,y){
+   let nearest=-1,distance=Infinity;
+   const consider=(xx,yy)=>{if(xx<0||xx>=CW||yy<0||yy>=BACKING_HEIGHT)return;
+    const p=yy*CW+xx;if(material[p*4+3]<248)return;
+    const dx=xx-x,dy=yy-y,d=dx*dx+dy*dy;
+    if(d<distance||(d===distance&&p<nearest)){distance=d;nearest=p;}
+   };
+   // Search complete square rings until every unseen donor is farther away.
+   // This is the same Euclidean nearest original pixel as a full scan, with
+   // the same row-order tie break, without repeatedly scanning all the cloth.
+   for(let radius=0;radius<Math.max(CW,BACKING_HEIGHT);radius++){
+    if(radius===0)consider(x,y);
+    else{for(let dx=-radius;dx<=radius;dx++){consider(x+dx,y-radius);consider(x+dx,y+radius);}
+     for(let dy=-radius+1;dy<radius;dy++){consider(x-radius,y+dy);consider(x+radius,y+dy);}}
+    if(nearest>=0&&(radius+1)*(radius+1)>distance)return nearest;
+   }
+   return nearest;
+  }
+  let backed=0,components=0,partialTieBacked=0;
+  for(let seed=0;seed<count;seed++){
+   if(seen[seed]||data[seed*4+3]===255)continue;
+   let read=0,write=1,exterior=false,eligible=true;queue[0]=seed;seen[seed]=1;
+   while(read<write){
+    const p=queue[read++],cx=p%CW,cy=Math.floor(p/CW),x=cx+X,y=cy+Y,q=p*4;
+    if(cx===0||cx===CW-1||cy===0||cy===BACKING_HEIGHT-1)exterior=true;
+    const lateral=y>=420&&y<BOTTOM&&(x<422||x>=575),opening=x>=422&&x<575&&y>=530&&y<BACKING_BOTTOM;
+    if((!lateral&&!opening)||av[q+3]===255||ta[q+3]===255)eligible=false;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+     if((!dx&&!dy)||cx+dx<0||cx+dx>=CW||cy+dy<0||cy+dy>=BACKING_HEIGHT)continue;
+     const next=p+dy*CW+dx;if(!seen[next]&&data[next*4+3]<255){seen[next]=1;queue[write++]=next;}
+    }
+   }
+   if(exterior||!eligible||!donorCount)continue;
+   const changed=[];
+   for(let n=0;n<write;n++){
+    const p=queue[n],q=p*4,x=p%CW,y=Math.floor(p/CW),nearest=nearestCloth(x,y);
+    // Back the existing composite, including a partial original tie edge;
+    // its foreground contribution is retained instead of being repainted.
+    if(ta[q+3])partialTieBacked++;
+    const coverage=data[q+3]/255,source=nearest*4;
+    for(let k=0;k<3;k++)data[q+k]=Math.round(data[q+k]*coverage+material[source+k]*(1-coverage));
+    data[q+3]=255;changed.push(p);backed++;
+   }
+   // Write only changed row runs, so untouched source-edge pixels do not
+   // undergo an unnecessary canvas premultiplication round trip.
+   changed.sort((a,b)=>a-b);
+   for(let n=0;n<changed.length;){const first=changed[n],row=Math.floor(first/CW);let end=n+1;
+    while(end<changed.length&&changed[end]===changed[end-1]+1&&Math.floor(changed[end]/CW)===row)end++;
+    fc.putImageData(pixels,X,Y,first%CW,row,end-n,1);n=end;
+   }
+   components++;
+  }
+  return {jacket_interior_backing_pixels:backed,jacket_interior_backing_components:components,jacket_partial_tie_edge_backing_pixels:partialTieBacked};
+ }
+ function concealJacketShoulders(frame,cloth,fit,images,fittedShirtAlpha){
+  if(!fit.topwear)return {concealed_outer_shoulder_pixels:0,concealed_inner_shoulder_pixels:0};
+  // Original shoulder cloth can protrude above a different jacket outline.
+  // Restore the selected jacket's own effective pixels above its first
+  // opaque shoulder row, with positive selected-shirt ownership. Inside the
+  // collar strips, preserve the existing seven-pixel near-neck reveal by
+  // requiring at least 50px separation from the original avatar neck edge.
+  const fc=frame.getContext('2d'),pixels=fc.getImageData(0,SHOULDER_Y,W,SHOULDER_HEIGHT),data=pixels.data;
+  const planes={};
+  for(const [name,descriptor]of [['avatar',fit.avatar],['jacket',fit.jacket],['tie',fit.tie]]){
+   const c=canvas(W,SHOULDER_HEIGHT),ctx=c.getContext('2d',{willReadFrequently:true});drawShoulder(ctx,descriptor,images);
+   planes[name]=ctx.getImageData(0,0,W,SHOULDER_HEIGHT).data;release(c);
+  }
+  const av=planes.avatar,ja=planes.jacket,ta=planes.tie,raw=cloth.outerShoulderPixels.data,changed=[];
+  let outer=0,inner=0,partialJacket=0,fittedOnly=0;
+  for(const [lo,hi]of [[0,422],[575,W]])for(let x=lo;x<hi;x++){
+   let top=-1;for(let y=0;y<SHOULDER_HEIGHT;y++)if(ja[(y*W+x)*4+3]===255){top=y;break;}
+   if(top<0)continue;const lateral=x>=X&&x<X+CW;
+   if(lateral){let edge=-1;for(let xx=0;xx<W;xx++)if(av[(top*W+xx)*4+3]>=128){edge=xx;if(x<498)break;}
+    if(edge<0||(x<498?edge-x:x-edge)<50)continue;
+   }
+   for(let y=0;y<top;y++){
+    const p=y*W+x,q=p*4,nativeY=y+SHOULDER_Y;if(lateral&&nativeY<Y)continue;
+    const rawOwned=raw[q+3]>0,fittedOwned=lateral&&fittedShirtAlpha?.[(nativeY-Y)*CW+x-X]>0;
+    if((!rawOwned&&!fittedOwned)||data[q+3]<=ja[q+3]||av[q+3]||ta[q+3])continue;
+    data.set(ja.subarray(q,q+4),q);changed.push(p);if(lateral)inner++;else outer++;
+    if(ja[q+3])partialJacket++;if(!rawOwned)fittedOnly++;
+   }
+  }
+  changed.sort((a,b)=>a-b);
+  for(let n=0;n<changed.length;){const first=changed[n],row=Math.floor(first/W);let end=n+1;
+   while(end<changed.length&&changed[end]===changed[end-1]+1&&Math.floor(changed[end]/W)===row)end++;
+   fc.putImageData(pixels,0,SHOULDER_Y,first%W,row,end-n,1);n=end;
+  }
+  return {concealed_outer_shoulder_pixels:outer,concealed_inner_shoulder_pixels:inner,
+   restored_original_jacket_edge_pixels:partialJacket,concealed_fitted_only_shoulder_pixels:fittedOnly};
  }
  async function render(input){
   const token=++epoch;loads.cancel();visible.dataset.loading='true';
@@ -316,7 +484,8 @@ function create(visible,connection,options={}){
     need(IDS.includes(s.shirtId),'unknown active shirt');const p=engine.plan(s),fit={...garmentPlan(s,p),shirtId:s.shirtId};
     const cloth=await selectedCloth(s,p,fit,token);if(token!==epoch||!cloth)return {cancelled:true};
     const images=await loadAll([...list(fit.avatar),...list(fit.jacket),...list(fit.tie)]);if(token!==epoch)return {cancelled:true};
-    lastFit=fitPatch(off,cloth,fit,images);
+    const fitted=fitPatch(off,cloth,fit,images);
+    lastFit={...fitted.stats,...backJacketInterior(off,cloth,fit,images),...concealJacketShoulders(off,cloth,fit,images,fitted.fittedShirtAlpha)};
    }else lastFit=null;
    if(token!==epoch)return {cancelled:true};vc.putImageData(off.getContext('2d').getImageData(0,0,W,H),0,0);
    for(const key of Object.keys(visible.dataset))if(!Object.hasOwn(off.dataset,key))delete visible.dataset[key];Object.assign(visible.dataset,off.dataset,{loading:'false',avatarV3CollarFit:SPEC.revision});last=structuredClone(s);

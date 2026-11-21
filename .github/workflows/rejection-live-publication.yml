@@ -28,6 +28,8 @@ on:
       - 'src/reviewed-rejection-integration.js'
       - 'src/tie-*.js'
       - 'tests/rejection-live-publication.py'
+      - 'tests/issue19-browser.py'
+      - 'tests/issue19-jacket-gap-fixtures.json'
       - 'tests/tie-reason-scope-browser.py'
       - 'tests/all-rejections-browser.py'
       - '.github/workflows/rejection-live-publication.yml'
@@ -125,5 +127,41 @@ jobs:
         with:
           name: HEWRS_LIVE_TOTAL_${{ matrix.browser }}
           path: evidence/five_round_20261119/browser/
+          if-no-files-found: error
+          retention-days: 30
+
+  audit-live-issue19-fit:
+    needs: verify-live
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Verify every shirt on the affected suit and blazer geometries
+        run: |
+          for mode in S02 B06 B15; do
+            python tests/issue19-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}' --suite shirts --shards 1 --only-mode "$mode" --output "evidence/issue19/live-fit/$mode"
+          done
+      - name: Preserve actual live fit reports and detail evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_LIVE_ISSUE19_FIT_${{ matrix.browser }}
+          path: |
+            evidence/issue19/live-fit/**/RESULT.json
+            evidence/issue19/live-fit/**/VISUAL_REVIEW_INDEX.json
+            evidence/issue19/live-fit/**/phone/
+            evidence/issue19/live-fit/**/collar/
+            evidence/issue19/live-fit/**/shoulders/
+            evidence/issue19/live-fit/**/cuffs/
+            evidence/issue19/live-fit/**/tie/
           if-no-files-found: error
           retention-days: 30

@@ -38,7 +38,7 @@ The two lateral fit strips are `[330,355,92,260]` and `[575,355,91,260]`, in nat
 XYWH coordinates. Tied neckline cleanup is confined to `[422,420,153,47]` above
 the existing knot. A separately declared `[422,530,153,85]` lower-center backing
 area closes verified interior shirt/jacket alpha seams. Backing preserves
-opaque composed pixels and every nonzero-alpha selected tie pixel. The complete
+opaque composed pixels and selected tie pixels. The complete
 knot rectangle `[422,467,153,63]` remains exact. Two independently measured
 tied-only neck-corner slots, `[422,401,19,19]` and `[560,405,15,15]`, restore the
 approved avatar's exact original pixels where the old shirt inserts left
@@ -66,6 +66,49 @@ original contribution dominates the leaf (leaf alpha below 128); those edge
 pixels use the original BODY RGB. Opaque or dominant collar leaves remain
 excluded. This operation never runs for a jacket outfit and cannot change
 shirt-only sleeves.
+
+A final shirt-only backing pass closes tiny enclosed holes left between the
+restored BODY slope and the relocated collar. It classifies eight-connected
+low-alpha components in the actual final composite. Components connected to a
+crop edge, extending beyond one declared shoulder strip, or touching opaque
+avatar/tie pixels are excluded. Opaque selected-shirt cloth supplies backing
+beneath the existing partial composite. This retains the original contribution
+of partial neck-edge pixels without warping or changing the avatar source.
+Original open exterior notches remain open. Independent inspection identified
+62 enclosed components containing 144 pixels across 37 states, including actual
+Chromium reproductions; those points are separate positive regression gates.
+
+Jacket outfits also receive original selected-shirt backing at enclosed gaps
+inside the visible shirt opening, including the lower V tip. The additional
+lower bound is `[422,615,153,235]`; the existing lateral and lower-center collar
+bounds cover the upper gaps. Eight-connected components must be wholly inside
+that union and disconnected from the crop exterior. Every originally opaque
+composite pixel remains exact. At a partially transparent tie edge, backing is
+composited beneath the existing foreground contribution; the original tie image,
+projection and opaque pixels remain unchanged. The independent fixed-point
+fixture identifies 830 actual gap pixels on DS027 and DS048 across the 14 suits
+with this opening geometry, plus transparent exterior and opaque jacket controls.
+An independent all50-shirt S02 sweep additionally identified two partial tie-edge
+points on DS037. A separate three-point fixture, including the known DS027 edge,
+constrains these backing exceptions to the observed locations. All47 actual
+projected tie masks are checked at those points; no general relaxation of tie
+preservation is permitted.
+
+Original shirt cloth protruding above a selected jacket's shoulder is concealed
+inside the outer bounds `[0,350,330,250]` and `[666,350,330,250]`. Only pixels
+with positive selected-shirt ownership, excess alpha above the jacket, and no
+avatar or tie contribution are eligible. The selected jacket's original
+effective RGBA supplies the replacement, including the unchanged approved V3
+B15 registration. This preserves the jacket silhouette and photographic edge.
+Inside the existing lateral collar strips, the same correction requires at
+least 50 native pixels of distance from the approved avatar neck edge. The
+intended near-neck collar reveal remains intact. All work ends before row600,
+where the unchanged approved arm pose begins. Shirt-only outfits bypass it.
+Eighteen fixed shoulder controls require exact original effective jacket pixels.
+Eight retained collar controls use a separate immutable pre-shoulder runtime
+in the same browser engine to verify that the near-neck reveal remains exact.
+Those reference contexts are diagnostics and cannot replace the delivered
+candidate or the live application.
 
 ### Concealed jacket cuffs
 
@@ -146,9 +189,18 @@ The [Issue 19 workflow](../../.github/workflows/issue19-validation.yml) runs:
   lifecycle, plus Home preferences and storage recovery.
 - Every supported shirt/state/topwear route: 3,172 actual paired frames per
   browser across 18 suits, 15 blazers and shirt-only.
-- Another 1,472 paired frames per browser, covering the other 46 ties across the 32
-  routes where ties are allowed. The first tie already covers every eligible
-  shirt in the shirt matrix.
+- Another 1,610 paired frames per browser: the other 46 ties across the 32 routes
+  where ties are allowed, plus all 46 additional ties on DS027, DS037 and DS048 in S02.
+  The latter checks the complete projected tie against the independently found
+  shirt-opening gaps. The first tie already covers every eligible shirt in the
+  shirt matrix. Together the suites contain 4,782 frames per browser, 9,564 total.
+- A separate 94-selection contract per browser compares DS027 and DS037 with
+  all 47 ties against an explicitly identified diagnostic that omits only the
+  exact compiled collar wrapper. It independently projects the original tie,
+  preserves every opaque tie and knot pixel exactly, and permits source-over
+  backing only at the three independently fixed partial-edge locations. A
+  one-channel-unit rounding allowance applies only to those partial points.
+  Neither the delivered runtime nor an owner's profile is modified by this test.
 - All 70,884 permitted selection plans per browser, with incompatible shirt and
   owner-rule combinations checked separately.
 - Native 996×2748 pixels, original source identities, exact head and opaque hands,
@@ -162,8 +214,9 @@ The [Issue 19 workflow](../../.github/workflows/issue19-validation.yml) runs:
   attempts and restored previews are captured separately for visual review.
 
 Fifteen fixed-point alpha regressions come from independently inspected collar
-seams, not runtime fit counters. Paired native tests also preserve every selected
-tie pixel through the new collar backing operation and positively compare the
+seams, not runtime fit counters. Paired native tests also preserve selected
+tie pixels through collar fitting, with a separately audited source-over backing
+exception for an enclosed gap beneath a partial tie edge, and positively compare the
 two neck-corner slots to the decoded approved avatar. Per-case interior-alpha
 diagnostics retain wider evidence for visual review without confusing legitimate
 outer-edge antialiasing with a gap.
@@ -178,10 +231,17 @@ original RGBA. The rejected compiled builds fail these points; native and actual
 browser checks require the corrected build to pass them. Optional 3×3 patches
 cover the surrounding source-owned cloth.
 
-Every matrix case retains exact native RGBA hashes and paired collar, cuff and
-tie details. Numbered contact sheets and a manifest index cover those details.
+The final enclosure fixture adds 144 observed pinhole points. Together, the
+shoulder fixtures cover 416 distinct observed points. These checks require
+opaque final cloth at enclosed joins while separately preserving source-owned
+shoulder coverage, original open exterior, the exact protected face and every
+selected tie pixel. A passing capture is still subject to independent visual
+inspection on light and dark backgrounds.
+
+Every matrix case retains exact native RGBA hashes and paired collar, cuff,
+tie and full-width shoulder details. Numbered contact sheets and a manifest index cover those details.
 Selected full native PNGs supplement the complete detail set. Reports/phone
-screens, detail images and full native PNGs are uploaded separately so archive
+screens, core details, shoulder details and full native PNGs are uploaded separately so archive
 size cannot make the reports inaccessible. Artifact retention is 30 days; the
 accepted run, audit conclusions and release identity remain linked in PR 20.
 
@@ -212,6 +272,13 @@ Pages deployment and the live-publication regression workflow, then verify that
 the live entrypoint and downloaded runtime hashes match the merged release
 manifest. Do not describe a merged commit or a queued deployment as verified
 production. Close Issue 19 only after the production result is established.
+
+The live workflow additionally runs all50 shirts in both legal states on S02,
+B06 and B15 in Chromium and WebKit:288 paired native frames per engine. It
+fetches the actual live HTTPS application into isolated profiles and compares
+the original source controls, corrected gaps and mobile presentation against
+the retained approved V3 baseline. All startup files, including the additive
+mobile stylesheet, must first match the exact merged checkout hashes.
 
 ## Limits
 

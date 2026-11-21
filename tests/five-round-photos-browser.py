@@ -243,6 +243,7 @@ def main():
     pictures, native_pictures = {}, {}
     canonical_head = avatar_profile = baseline_avatar_profile = None
     issue19_hands = issue19_fidelity = issue19_avatar = None
+    issue19_original_shoulders = {}
 
     def save():
         result['passed'] = sum(row['passed'] for row in checks)
@@ -284,10 +285,11 @@ def main():
     def protected(page):
         return page.evaluate('()=>({wear:HEWRSApp.store.snapshot(),favorites:HEWRSApp.favorites.snapshot(),rejections:HEWRSApp.ownerFeedback.snapshot().events})')
 
-    def issue19_comparison(frame, baseline, current_png, original_png, selection, label):
+    def issue19_comparison(page, frame, baseline, current_png, original_png, selection, label):
         current, _ = issue19_contract.decode_frame({'png': current_png, 'full_sha256': frame['rgba_sha256']})
         original, _ = issue19_contract.decode_frame({'png': original_png, 'full_sha256': baseline['rgba_sha256']})
-        difference = issue19_contract.change_check(original, current, selection, issue19_hands, issue19_avatar)
+        original_shoulder = issue19_contract.jacket_shoulder_source(page, selection, issue19_original_shoulders)
+        difference = issue19_contract.change_check(original, current, selection, issue19_hands, issue19_avatar, original_shoulder)
         check(label + ': original garments and exact same physical tie sources remain registered',
               issue19_contract.source_identity(frame['source_bindings'], selection['state'], issue19_fidelity)
               == issue19_contract.source_identity(baseline['source_bindings'], selection['state'], issue19_fidelity))
@@ -297,10 +299,16 @@ def main():
         check(label + ': every changed pixel stays inside the independent Issue 19 fit bounds',
               difference['outside_allowed_pixels'] == 0, difference)
         check(label + ': neck cleanup reveals exact original avatar pixels', difference['neck_corner_wrong_source_pixels'] == 0, difference)
+        check(label + ': shoulders retain exact original jacket pixels',
+              difference['outer_wrong_source_pixels'] == 0 and difference['opaque_original_jacket_shoulder_pixels_changed'] == 0, difference)
         shoulder_samples = issue19_contract.shoulder_contour_samples(current, selection)
         if shoulder_samples:
             check(label + ': independently observed original shoulder BODY coverage remains intact', True, shoulder_samples)
         difference['shoulder_contour_regressions'] = shoulder_samples
+        jacket_samples = issue19_contract.jacket_aperture_samples(current, selection)
+        if jacket_samples:
+            check(label + ': complete audited shirt opening and original jacket controls remain correct', True, jacket_samples)
+        difference['jacket_aperture_regressions'] = jacket_samples
         if selection.get('shirtOnly'):
             check(label + ': original shirt-only sleeves remain exact',
                   all(current.crop(rect).tobytes() == original.crop(rect).tobytes() for rect in issue19_contract.CUFF_RECTS))
@@ -331,7 +339,7 @@ def main():
             baseline = baseline_page.evaluate(FRAME, dict(selection=selection, captureComparison=compare_native))
             frame['baseline_rgba_sha256'] = baseline['rgba_sha256']
             if issue19:
-                frame['baseline_comparison'] = issue19_comparison(frame, baseline, comparison_png,
+                frame['baseline_comparison'] = issue19_comparison(page, frame, baseline, comparison_png,
                     baseline['comparison_png'], selection, label)
             elif corrected and baseline['actual_render']['operation'] != 'CONTINUOUS_SOURCE_SHIRT':
                 difference = intentional_difference(comparison_png, baseline['comparison_png'], frame['rgba_sha256'], baseline['rgba_sha256'])
@@ -413,7 +421,7 @@ def main():
             check('topwear/B01: baseline exact native selection agrees',
                   baseline['selection'] == selected and baseline['rendered_selection'] == selected)
             if issue19:
-                frame['baseline_comparison'] = issue19_comparison(frame, baseline, comparison_png,
+                frame['baseline_comparison'] = issue19_comparison(page, frame, baseline, comparison_png,
                     baseline['comparison_png'], selected, 'topwear/B01')
             elif avatar_profile['version'] == 'v3':
                 difference = native_difference(comparison_png, baseline['comparison_png'], frame['rgba_sha256'],
@@ -459,7 +467,7 @@ def main():
             if issue19:
                 fit = page.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec,tie:globalThis.HEWRSAvatarV3TieFit?.spec})")
                 check('Published Issue 19 runtime contains all three source-bound fit modules',
-                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_5'
+                      fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_6'
                       and fit.get('cuff', {}).get('revision') == 'AVATAR_V3_CONCEALED_CUFFS_2'
                       and fit.get('tie', {}).get('revision') == 'AVATAR_V3_TIE_FIT_1', fit)
                 issue19_fidelity = page.evaluate('()=>HEWRSApp.connection.tieFidelity.data')

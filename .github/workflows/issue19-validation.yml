@@ -57,7 +57,7 @@ jobs:
           python tools/verify_active_delivery.py --check --syntax
           python tests/issue19-source.py
           python tests/active-delivery-audit.py
-          python -m py_compile tests/issue19-browser.py tests/issue19-source.py
+          python -m py_compile tests/issue19-browser.py tests/issue19-source.py tests/issue19-partial-tie-browser.py
           node --check tests/avatar-v3-fit-runtime.cjs
           git diff --exit-code
       - name: Verify native tie, wrist and preserved B15 registration
@@ -122,6 +122,33 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  partial-tie-preservation:
+    name: Fixed partial tie foreground — ${{ matrix.browser }}
+    needs: native-source-and-application
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Compare all 47 ties on DS027 and DS037 against the same-engine collar-only diagnostic
+        run: python tests/issue19-partial-tie-browser.py --browser '${{ matrix.browser }}'
+      - name: Preserve original foreground, fixed backing and exact projection evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_PARTIAL_TIE_${{ matrix.browser }}
+          path: evidence/issue19/partial-tie-browser/${{ matrix.browser }}/
+          if-no-files-found: error
+          retention-days: 30
+
   exhaustive-fit:
     name: All garment routes — ${{ matrix.browser }} — ${{ matrix.suite }} — ${{ matrix.shard }}
     needs: native-source-and-application
@@ -171,6 +198,14 @@ jobs:
         with:
           name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_NATIVE
           path: evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/native/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve complete paired outer-shoulder evidence separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_${{ matrix.browser }}_${{ matrix.suite }}_${{ matrix.shard }}_SHOULDERS
+          path: evidence/issue19/browser/${{ matrix.browser }}/${{ matrix.suite }}/shard-${{ matrix.shard }}/shoulders/
           if-no-files-found: error
           retention-days: 30
 
