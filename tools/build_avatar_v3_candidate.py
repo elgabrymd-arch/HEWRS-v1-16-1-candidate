@@ -28,6 +28,7 @@ def main(write=False):
         image=(ROOT/row['url']).read_bytes()
         assert h(image)==row['sha256'] and row['original_sha256']==data['source_layer_hashes'][n]
     source=(ROOT/'src/avatar-v3.js').read_text()
+    pose_source=(ROOT/'src/avatar-v3-pose.js').read_text()
     for n, row in data['candidate_layers'].items():
         assert row['sha256'] in source, 'unregistered V3 hash in '+n
     index=(ROOT/'index.html').read_text()
@@ -44,7 +45,7 @@ def main(write=False):
     old_metadata="avatar_source_sha256:AVATAR,tie_source_sha256:"
     assert code.count(old_metadata)==1,'Avatar provenance metadata anchor absent'
     code=code.replace(old_metadata,"avatar_source_sha256:p.avatar.sha256,tie_source_sha256:")
-    code=code.replace(marker,"/* ISOLATED AVATAR_V3 SOURCE: src/avatar-v3.js */\n"+source+"\n;\n"+marker)
+    code=code.replace(marker,"/* ISOLATED AVATAR_V3 SOURCE: src/avatar-v3.js */\n"+source+"\n;\n/* ISOLATED V3 POSE: src/avatar-v3-pose.js */\n"+pose_source+"\n;\n"+marker)
     encoded=code.encode()
     digest=h(encoded)
     output='runtime/avatar-v3-candidate-'+digest[:20]+'.js'
@@ -64,6 +65,8 @@ def main(write=False):
         'base_runtime_sha256':h(base.encode()),
         'base_index_sha256':h(index.encode()),
         'new_avatar_sha256':data['candidate_layers']['avatar']['sha256'],
+        'pose_source_sha256':h(pose_source.encode()),
+        'pose_approval':'CANDIDATE_GEOMETRY_OWNER_VISUAL_REVIEW_PENDING',
         'v2_avatar_sha256':data['source_layer_hashes']['avatar'],
         'layer_hashes':{n:v['sha256'] for n,v in data['candidate_layers'].items()},
         'app_production_entrypoints_unchanged':True,
