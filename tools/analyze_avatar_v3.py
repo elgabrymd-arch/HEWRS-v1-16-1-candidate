@@ -60,7 +60,24 @@ def survey():
             for i, v in enumerate(obj[:150]):
                 if isinstance(v, (dict,list)): walk(v, path + "/" + str(i), depth + 1)
     walk(doc)
-    original_thumb = Image.new("RGBA", original.size, "#eeeeee")
+    hand_sources = {
+        "left": "8f7dcd492af271648ab6fdad83ca6cd401177aac05317d536cdb4b44149c4e34",
+        "right": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9"
+    }
+    hands = {}
+    for hand, sha in hand_sources.items():
+        target = ROOT / "assets" / (sha + ".png")
+        assert hashlib.sha256(target.read_bytes()).hexdigest() == sha, "Registered hand changed"
+        im = Image.open(target).convert("RGBA")
+        assert im.size == (996, 2748), "Unexpected hand dimensions"
+        alpha = im.getchannel("A")
+        bound = alpha.getbbox()
+        rows_h = {}
+        for y in range(max(0, bound[1]-30), min(h, bound[3]+30), 30):
+            b = alpha.crop((0,y,w,y+1)).getbbox()
+            rows_h[str(y)] = None if not b else [b[0], b[2]]
+        hands[hand] = {"sha256":sha,"alpha_bbox":bound,"rows":rows_h}
+        original_thumb = Image.new("RGBA", original.size, "#eeeeee")
     original_thumb.alpha_composite(original)
     original_thumb.convert("RGB").resize((332, 916)).save(VIEW)
     report = {
@@ -68,7 +85,7 @@ def survey():
         "source": str(FILE.relative_to(ROOT)),
         "frozen_sha256": AVATAR_SHA,
         "dimensions": [w,h],
-        "alpha_bbox": a.getbbox(),
+        "alpha_bbox": a.getbbox(),\n        "hand_sources": hands,
         "alpha_rows": rows,
         "skin_rows": skin_by_row,
         "input_root_keys": list(doc.keys()),
@@ -82,7 +99,7 @@ def survey():
         "input_keys": report["input_root_keys"],
         "alpha_rows": {k:v for k,v in rows.items() if int(k)%100==0},
         "skin_rows": {k:v for k,v in skin_by_row.items() if int(k)%100==0},
-        "descriptors": descriptors[:25]
+        "descriptors": descriptors[:25], "hands": hands
     }))
     return report
 
