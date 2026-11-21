@@ -89,9 +89,12 @@ def run(browser):
     serv,url=server()
     expected=json.loads((ROOT/'data/avatar-v3-candidate.json').read_text())
     hashes={k:v['sha256'] for k,v in expected['candidate_layers'].items()}
+    integrated=(ROOT/'AVATAR_V3_RELEASE.json').is_file()
+    baseline='avatar-v2-reference.html' if integrated else 'index.html'
+    candidate='index.html' if integrated else 'avatar-v3-review.html'
     report={'schema':'hewrs.avatar-v3-browser-review.v1',
      'browser':browser_name,'timestamp_utc':datetime.now(timezone.utc).isoformat(),
-     'preview':'avatar-v3-review.html','original':'index.html','results':[],
+     'preview':candidate,'original':baseline,'results':[],
      'visual_approval':'REQUIRES_OWNER_REVIEW'}
     try:
         with sync_playwright() as play:
@@ -99,8 +102,8 @@ def run(browser):
             v2=browser.new_context(viewport={'width':390,'height':844},device_scale_factor=1)
             v3=browser.new_context(viewport={'width':390,'height':844},device_scale_factor=1)
             p2=v2.new_page();p3=v3.new_page()
-            p2.goto(url+'index.html',wait_until='domcontentloaded',timeout=90000)
-            p3.goto(url+'avatar-v3-review.html',wait_until='domcontentloaded',timeout=90000)
+            p2.goto(url+baseline,wait_until='domcontentloaded',timeout=90000)
+            p3.goto(url+candidate,wait_until='domcontentloaded',timeout=90000)
             p2.wait_for_function('globalThis.HEWRS_READY===true',timeout=120000)
             p3.wait_for_function('globalThis.HEWRS_READY===true',timeout=120000)
             profiles=[]
@@ -111,6 +114,7 @@ def run(browser):
                 assert old['connectionAvatar']==expected['source_layer_hashes']['avatar'],(name,old['connectionAvatar'])
                 assert new['connectionAvatar']==hashes['avatar'],(name,new['connectionAvatar'])
                 assert new['v3']['sha256']==hashes['avatar'] and new['v3']['hands']==[hashes['left_hand'],hashes['right_hand']],name
+                assert new['v3']['production_integrated']==integrated,name+' incorrect active profile'
                 if new['avatar'] is not None:assert new['avatar']==hashes['avatar'],(name,new['avatar'])
                 if new['hands']:assert new['hands']==[hashes['left_hand'],hashes['right_hand']],(name,new['hands'])
                 assert new['poseRevision']=='AVATAR_V3_ARM_POSE_CANDIDATE_1',name+' pose geometry absent'

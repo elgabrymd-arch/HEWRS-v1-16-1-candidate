@@ -41,8 +41,11 @@ def main():
         raise ValueError('Candidate runtime is stale; rebuild with --write')
     current_runtime = delivery.RUNTIME
     delivery.RUNTIME = runtime
-    for name in ('index.html', 'app.html'):
-        base_html = subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT).decode()
+    integrated = (ROOT / 'AVATAR_V3_RELEASE.json').is_file()
+    pages = ('avatar-v2-reference.html',) if integrated else ('index.html', 'app.html')
+    for name in pages:
+        source_name = 'index.html' if name == 'avatar-v2-reference.html' else name
+        base_html = subprocess.check_output(['git', 'show', BASE+':'+source_name], cwd=ROOT).decode()
         if base_html.count(current_runtime) != 1:
             raise ValueError('Expected one current complete-app runtime')
         html = delivery.pin_resources(base_html.replace(current_runtime, runtime), sri)
@@ -58,7 +61,7 @@ def main():
         'avatar_sha256': 'a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d',
         'garment_data_sha256': sha((ROOT/'data/continuous-shirts.json').read_bytes()),
         'modules': {name: sha((ROOT/name).read_bytes()) for name in MODULES},
-        'entrypoints': {name: sha((ROOT/name).read_bytes()) for name in ('index.html','app.html')},
+        'entrypoints': {name: sha((ROOT/('avatar-v2-reference.html' if integrated else name)).read_bytes()) for name in ('index.html','app.html')},
         'approval': 'CANDIDATE_ONLY_OWNER_APPROVAL_NOT_GRANTED',
     }
     content = json.dumps(metadata, indent=2)+'\n'

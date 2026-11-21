@@ -31,7 +31,8 @@ def main(write=False):
     pose_source=(ROOT/'src/avatar-v3-pose.js').read_text()
     for n, row in data['candidate_layers'].items():
         assert row['sha256'] in source, 'unregistered V3 hash in '+n
-    index=(ROOT/'index.html').read_text()
+    base_entrypoint = 'avatar-v2-reference.html' if (ROOT/'avatar-v2-reference.html').is_file() else 'index.html'
+    index=(ROOT/base_entrypoint).read_text()
     match=re.search(r'<script defer src="(runtime/continuous-shirts-[a-f0-9]{20}\.js)\?v=[a-f0-9]{16}" integrity="sha256-([A-Za-z0-9+/=]+)"',index)
     assert match is not None, 'Current page does not use the reviewed continuous-shirt runtime'
     original=match.group(1)
@@ -62,6 +63,7 @@ def main(write=False):
         'runtime':output,
         'runtime_sha256':digest,
         'base_runtime':original,
+        'base_entrypoint':base_entrypoint,
         'base_runtime_sha256':h(base.encode()),
         'base_index_sha256':h(index.encode()),
         'new_avatar_sha256':data['candidate_layers']['avatar']['sha256'],
@@ -69,7 +71,7 @@ def main(write=False):
         'pose_approval':'CANDIDATE_GEOMETRY_OWNER_VISUAL_REVIEW_PENDING',
         'v2_avatar_sha256':data['source_layer_hashes']['avatar'],
         'layer_hashes':{n:v['sha256'] for n,v in data['candidate_layers'].items()},
-        'app_production_entrypoints_unchanged':True,
+        'app_production_entrypoints_unchanged':not (ROOT/'AVATAR_V3_RELEASE.json').is_file(),
         'approval':'ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN'
     }
     rec=json.dumps(evidence,indent=2)+'\n'

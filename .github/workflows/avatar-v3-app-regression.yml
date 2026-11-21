@@ -1,4 +1,4 @@
-name: HEWRS AVATAR_V3 isolated application state and rejection audit
+name: HEWRS AVATAR_V3 application state and rejection audit
 
 on:
   push:
@@ -8,12 +8,17 @@ on:
       - 'tests/avatar-v3*'
       - 'avatar-v3-review.html'
       - 'AVATAR_V3_REVIEW_BUILD.json'
+      - 'AVATAR_V3_RELEASE.json'
+      - 'index.html'
+      - 'app.html'
       - 'runtime/avatar-v3-candidate-*.js'
       - 'src/outfit-rejection-ui.js'
       - 'tests/rejection-status-ui.cjs'
       - 'tests/all-rejections-ui.cjs'
       - 'tests/five-round-state-browser.py'
       - 'tools/build_avatar_v3_candidate.py'
+      - 'tools/integrate_avatar_v3.py'
+      - 'tools/verify_active_delivery.py'
       - '.github/workflows/avatar-v3-app-regression.yml'
   workflow_dispatch:
 
@@ -33,11 +38,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install isolated database test dependency
+        run: npm install --prefix /tmp/hewrs-v3-rejection-deps --ignore-scripts --no-audit --no-fund fake-indexeddb@6.2.8
       - name: Verify readiness messages and preserved rejection intent
-        run: node --test tests/rejection-status-ui.cjs tests/all-rejections-ui.cjs tests/five-round-ui-rejection.cjs tests/tie-only-replacement.cjs
+        env:
+          NODE_PATH: /tmp/hewrs-v3-rejection-deps/node_modules
+        run: node --test tests/rejection-status-ui.cjs tests/all-rejections-ui.cjs tests/five-round-ui-rejection.cjs tests/tie-only-replacement.cjs tests/all-rejections-core.cjs tests/rejection-database.cjs
 
   verify-native-state-and-rejections:
-    name: Native preview regression — ${{ matrix.browser }} — ${{ matrix.section }}
+    name: Native application regression — ${{ matrix.browser }} — ${{ matrix.section }}
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     strategy:
@@ -52,26 +61,45 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install existing native regression driver
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
-      - name: Verify exact isolated entrypoint and source integrity
+      - name: Verify exact application entrypoint and source integrity
         run: |
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          if test -f AVATAR_V3_RELEASE.json; then
+            python tools/integrate_avatar_v3.py --check
+          fi
           python tools/build_avatar_v3_candidate.py
           python - <<'PY'
-          import hashlib, json
+          import hashlib, json, sys
           from pathlib import Path
           d=json.loads(Path('AVATAR_V3_REVIEW_BUILD.json').read_text())
-          assert d['app_production_entrypoints_unchanged']
+          if Path('AVATAR_V3_RELEASE.json').exists():
+              sys.path.insert(0, 'tools')
+              from verify_active_delivery import describe
+              active=describe()
+              assert active['kind']=='avatar-v3'
+              assert not d['app_production_entrypoints_unchanged']
+              assert d['base_entrypoint']=='avatar-v2-reference.html'
+              assert hashlib.sha256(Path(d['base_entrypoint']).read_bytes()).hexdigest()==d['base_index_sha256']
+              assert (d['runtime'],d['runtime_sha256'])==(active['runtime'],active['runtime_sha256'])
+          else:
+              assert d['app_production_entrypoints_unchanged']
           assert hashlib.sha256(Path(d['runtime']).read_bytes()).hexdigest()==d['runtime_sha256']
-          print('VERIFIED_V3_PREVIEW='+d['preview_entrypoint'])
+          print('VERIFIED_V3_RUNTIME='+d['runtime'])
           PY
       - name: Verify actual saved-state or rejection routes in fresh profiles
         run: |
           python -m http.server 8765 --bind 127.0.0.1 > /tmp/v3-preview-server.log 2>&1 &
           server_pid=$!
           trap 'kill $server_pid 2>/dev/null || true' EXIT
+          if test -f AVATAR_V3_RELEASE.json; then
+            target_url=http://127.0.0.1:8765/index.html
+          else
+            target_url=http://127.0.0.1:8765/avatar-v3-review.html
+          fi
           case '${{ matrix.section }}' in
-            state) python tests/five-round-state-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' ;;
-            tie) python tests/tie-reason-scope-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' ;;
-            reasons|lifecycle) python tests/all-rejections-browser.py --url http://127.0.0.1:8765/avatar-v3-review.html --browser '${{ matrix.browser }}' --section '${{ matrix.section }}' ;;
+            state) python tests/five-round-state-browser.py --url "$target_url" --browser '${{ matrix.browser }}' ;;
+            tie) python tests/tie-reason-scope-browser.py --url "$target_url" --browser '${{ matrix.browser }}' ;;
+            reasons|lifecycle) python tests/all-rejections-browser.py --url "$target_url" --browser '${{ matrix.browser }}' --section '${{ matrix.section }}' ;;
           esac
       - name: Preserve verification evidence
         if: always()

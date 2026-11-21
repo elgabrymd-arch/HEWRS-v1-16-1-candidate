@@ -57,13 +57,18 @@ def audited_delivery(url):
     with contextlib.redirect_stdout(io.StringIO()):
         build_avatar_v3_candidate.main(write=False)
     preview = json.loads((ROOT / 'AVATAR_V3_REVIEW_BUILD.json').read_text())
-    assert preview['base_runtime'] == active['runtime']
-    assert preview['base_runtime_sha256'] == active['runtime_sha256']
+    baseline_runtime = active.get('continuous_runtime', active['runtime'])
+    baseline_sha256 = active.get('continuous_runtime_sha256', active['runtime_sha256'])
+    assert preview['base_runtime'] == baseline_runtime
+    assert preview['base_runtime_sha256'] == baseline_sha256
+    if active['kind'] == 'avatar-v3':
+        assert preview['runtime'] == active['runtime']
+        assert preview['runtime_sha256'] == active['runtime_sha256']
     files = ['AVATAR_V3_REVIEW_BUILD.json', preview['preview_entrypoint'], preview['runtime'],
              'src/avatar-v3.js', 'src/avatar-v3-pose.js', 'data/avatar-v3-candidate.json']
     return {**active, 'kind': 'avatar-v3-preview', 'runtime': preview['runtime'],
             'runtime_sha256': preview['runtime_sha256'], 'avatar_sha256': preview['new_avatar_sha256'],
-            'base_runtime': active['runtime'], 'base_runtime_sha256': active['runtime_sha256'],
+            'base_runtime': baseline_runtime, 'base_runtime_sha256': baseline_sha256,
             'source_sha256': {**active['source_sha256'], **{
                 name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in files}}}
 

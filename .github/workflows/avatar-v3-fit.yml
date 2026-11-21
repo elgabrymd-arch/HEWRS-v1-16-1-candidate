@@ -1,0 +1,80 @@
+name: HEWRS AVATAR_V3 complete garment fit and source preservation
+
+on:
+  push:
+    branches: [feat/avatar-v3-proportions-pose-20261120]
+    paths:
+      - 'src/avatar-v3*.js'
+      - 'src/continuous-shirts.js'
+      - 'tests/avatar-v3-fit-browser.py'
+      - 'avatar-v3-review.html'
+      - 'AVATAR_V3_REVIEW_BUILD.json'
+      - 'AVATAR_V3_RELEASE.json'
+      - 'data/avatar-v3-candidate.json'
+      - 'index.html'
+      - 'app.html'
+      - 'avatar-v2-reference.html'
+      - 'runtime/avatar-v3-candidate-*.js'
+      - '.github/workflows/avatar-v3-fit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: avatar-v3-garment-fit-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  garment-fit:
+    name: All active garments — ${{ matrix.browser }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install exact browser and review drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Verify candidate without regenerating source assets
+        run: |
+          if [ -f AVATAR_V3_RELEASE.json ]; then
+            python tools/integrate_avatar_v3.py --check
+          else
+            python tools/build_avatar_v3_candidate.py
+          fi
+      - name: Capture complete garment matrix and enforce source preservation
+        run: |
+          if [ -f AVATAR_V3_RELEASE.json ]; then
+            python tests/avatar-v3-fit-browser.py --baseline avatar-v2-reference.html --candidate index.html --browser '${{ matrix.browser }}'
+          else
+            python tests/avatar-v3-fit-browser.py --baseline index.html --candidate avatar-v3-review.html --browser '${{ matrix.browser }}'
+          fi
+      - name: Preserve before/after collar and cuff review packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_AVATAR_V3_FIT_${{ matrix.browser }}
+          path: |
+            evidence/avatar_v3/fit/${{ matrix.browser }}/RESULT.json
+            evidence/avatar_v3/fit/${{ matrix.browser }}/VISUAL_REVIEW_INDEX.json
+            evidence/avatar_v3/fit/${{ matrix.browser }}/centre-registered-hand-exclusion.png
+            evidence/avatar_v3/fit/${{ matrix.browser }}/collar/
+            evidence/avatar_v3/fit/${{ matrix.browser }}/cuffs/
+            evidence/avatar_v3/fit/${{ matrix.browser }}/sheets/
+            evidence/avatar_v3/fit/${{ matrix.browser }}/phone/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve every exact full-size V3 frame separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_AVATAR_V3_FIT_NATIVE_${{ matrix.browser }}
+          path: evidence/avatar_v3/fit/${{ matrix.browser }}/native/
+          if-no-files-found: error
+          retention-days: 30

@@ -1,9 +1,10 @@
 {
   "schema": "hewrs.avatar-v3-preview.v1",
   "preview_entrypoint": "avatar-v3-review.html",
-  "runtime": "runtime/avatar-v3-candidate-f33a50c037724eb6850b.js",
-  "runtime_sha256": "f33a50c037724eb6850bda7b66e89f95cb46ea6e0b443ad940c39d1b03557fda",
+  "runtime": "runtime/avatar-v3-candidate-09c8c3184b6e8375510b.js",
+  "runtime_sha256": "09c8c3184b6e8375510baa86dc2072b8b2aa0c990be400718eeef9317a774bff",
   "base_runtime": "runtime/continuous-shirts-4fae538c1847c9f7d1e9.js",
+  "base_entrypoint": "avatar-v2-reference.html",
   "base_runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
   "base_index_sha256": "aef2acfff54f2ab6a60d3124f3533f49d3ebb22d75952726776feaf9a3080f92",
   "new_avatar_sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
@@ -15,6 +16,6 @@
     "left_hand": "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
     "right_hand": "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
   },
-  "app_production_entrypoints_unchanged": true,
+  "app_production_entrypoints_unchanged": false,
   "approval": "ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN"
 }

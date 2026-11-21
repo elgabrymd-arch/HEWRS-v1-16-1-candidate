@@ -1,9 +1,10 @@
-/* AVATAR_V3 isolated candidate: replace native avatar/hand descriptors only.
- * No source asset edits, no clothing re-ranking, no wear/rejection storage changes.
- * Loaded exclusively by avatar-v3-review.html, never the production entrypoint.
+/* AVATAR_V3 persistent source profile: replace native avatar/hand descriptors.
+ * Immutable V2 remains available as the exact comparison and rollback profile.
+ * The primary entrypoint identifies promotion; the review page stays a preview.
  */
 (function(root){'use strict';
 const previous=root.HEWRSCleanConnection,clone=x=>structuredClone(x);
+const integrated=root.document?.documentElement?.dataset?.avatarProfile==='AVATAR_V3';
 const need=(p,m)=>{if(!p)throw Error('AVATAR_V3: '+m);};
 const V2=Object.freeze({
  avatar:'a4dd223fa59824df6b96af01e37d10b70a35e77fa7cb942d2356e3008e00aa3d',
@@ -17,7 +18,7 @@ const V3=Object.freeze({
 });
 const names=Object.freeze(['avatar','left_hand','right_hand']);
 const desc=n=>Object.freeze({url:'assets/'+V3[n]+'.png',sha256:V3[n],rect:[0,0,996,2748],
-  role:'AVATAR_V3_ISOLATED_CANDIDATE_'+n.toUpperCase()});
+  role:'AVATAR_V3_SOURCE_'+n.toUpperCase()});
 const target=Object.freeze(Object.fromEntries(names.map(n=>[n,desc(n)])));
 const hands=Object.freeze([target.left_hand,target.right_hand]);
 function checkPair(pair,label){
@@ -60,11 +61,11 @@ function create(...args){
  return Object.freeze({...c,manifest,assemblies,blazerConnection:blazer,shirtOnlyConnection:shirtOnly,
   continuousShirts:continuous,assetPaths:assets,
   avatarV3:Object.freeze({source_sha256:V2.avatar,sha256:V3.avatar,
-    hands:[V3.left_hand,V3.right_hand],revision:'AVATAR_V3_CANDIDATE_SOURCE_ONLY',
-    production_integrated:false,sleeve_refit_approved:false})});
+    hands:[V3.left_hand,V3.right_hand],revision:'AVATAR_V3',
+    production_integrated:integrated,source_profile:'AVATAR_V3'})});
 }
 need(previous?.create,'source connection missing');
 root.HEWRSCleanConnection=Object.freeze({create});
-root.HEWRSAvatarV3=Object.freeze({source:V2,candidate:V3,kind:'ISOLATED_REVIEW',
-  terms:'Source-level replacement only; collar and sleeve visual acceptance pending'});
+root.HEWRSAvatarV3=Object.freeze({source:V2,candidate:V3,kind:integrated?'INTEGRATED':'REVIEW',
+  terms:'Persistent V3 source profile with immutable V2 comparison sources'});
 })(globalThis);

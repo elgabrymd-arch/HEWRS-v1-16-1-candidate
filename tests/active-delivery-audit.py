@@ -3,6 +3,7 @@
 import base64
 import copy
 import json
+import struct
 import sys
 import tempfile
 import unittest
@@ -170,6 +171,206 @@ class ActiveRuntime(unittest.TestCase):
             self.write(name, (self.root / name).read_text().replace('integrity="sha256-', 'integrity="wrong-'))
         with self.assertRaisesRegex(ValueError, 'SRI mismatch'):
             delivery.describe(self.root)
+
+    def test_promoted_v3_requires_local_unfragmented_runtime_url(self):
+        reference = (self.root / 'index.html').read_bytes()
+        self.write('avatar-v2-reference.html', reference)
+        candidates = {name: delivery.digest(('candidate ' + name).encode()) for name in ('avatar', 'left_hand', 'right_hand')}
+        originals = {'avatar': delivery.AVATAR_SHA256,
+                     **{name: delivery.digest(('original ' + name).encode()) for name in ('left_hand', 'right_hand')}}
+        for name in candidates:
+            self.write('assets/' + candidates[name] + '.png', ('candidate ' + name).encode())
+            if name != 'avatar':
+                self.write('assets/' + originals[name] + '.png', ('original ' + name).encode())
+        spec = {'width_height': [996, 2748], 'source_profile': 'AVATAR_V2_MASTER', 'source_layer_hashes': originals,
+                'candidate_layers': {name: {'sha256': sha, 'url': 'assets/' + sha + '.png', 'rect': [0, 0, 996, 2748]}
+                                     for name, sha in candidates.items()}}
+        self.write('data/avatar-v3-candidate.json', json.dumps(spec))
+        modules = ('src/avatar-v3.js', 'src/avatar-v3-pose.js')
+        for name in modules:
+            self.write(name, name)
+        runtime_sha = delivery.digest(b'promoted runtime')
+        runtime = 'runtime/avatar-v3-candidate-' + runtime_sha[:20] + '.js'
+        self.write(runtime, b'promoted runtime')
+        sri = base64.b64encode(bytes.fromhex(runtime_sha)).decode()
+        html = '<html data-avatar-profile="AVATAR_V3"><script src="' + runtime + '?v=' + runtime_sha[:16] + '" integrity="sha256-' + sri + '"></script></html>'
+        preview = {'runtime': runtime, 'runtime_sha256': runtime_sha, 'base_entrypoint': 'avatar-v2-reference.html',
+                   'base_index_sha256': delivery.digest(reference), 'base_runtime': self.runtime,
+                   'base_runtime_sha256': self.runtime_sha, 'layer_hashes': candidates}
+        self.write('AVATAR_V3_REVIEW_BUILD.json', json.dumps(preview))
+        self.write('avatar-v3-review.html', html)
+        release = {'schema': 'hewrs.avatar-v3-release.v1', 'profile': 'AVATAR_V3',
+            'baseline_entrypoint': 'avatar-v2-reference.html', 'baseline_entrypoint_sha256': delivery.digest(reference),
+            'runtime': runtime, 'runtime_sha256': runtime_sha, 'continuous_runtime': self.runtime,
+            'continuous_runtime_sha256': self.runtime_sha,
+            'baseline_manifest_sha256': delivery.digest((self.root / delivery.MANIFEST).read_bytes()),
+            'source_specification': 'data/avatar-v3-candidate.json',
+            'source_specification_sha256': delivery.digest((self.root / 'data/avatar-v3-candidate.json').read_bytes()),
+            'layer_hashes': candidates, 'immutable_v2_hashes': originals,
+            'source_modules': {name: delivery.digest((self.root / name).read_bytes()) for name in modules}}
+
+        def primary(text):
+            for name in ('index.html', 'app.html'):
+                self.write(name, text)
+            release['entrypoints'] = {name: delivery.digest(text.encode()) for name in ('index.html', 'app.html')}
+            self.write('AVATAR_V3_RELEASE.json', json.dumps(release))
+
+        with patch.object(delivery, 'V3_LAYERS', candidates):
+            primary(html)
+            self.assertEqual(delivery.describe(self.root)['kind'], 'avatar-v3')
+            for changed in (html.replace('src="runtime/', 'src="https:runtime/'),
+                            html.replace('?v=' + runtime_sha[:16], '?v=' + runtime_sha[:16] + '#unexpected')):
+                with self.subTest(url=changed):
+                    primary(changed)
+                    with self.assertRaisesRegex(ValueError, 'runtime must be local'):
+                        delivery.describe(self.root)
+
+
+class AvatarV3SourceScope(unittest.TestCase):
+    """Synthetic byte pins exercise the gate without editing real source assets."""
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.layers = {}
+        header = b'\x89PNG\r\n\x1a\n\0\0\0\rIHDR' + struct.pack('>II', 996, 2748)
+        for name in ('avatar', 'left_hand', 'right_hand'):
+            values = []
+            for version in ('original', 'candidate'):
+                raw = header + (name + version).encode()
+                sha = delivery.digest(raw)
+                self.write('assets/' + sha + '.png', raw)
+                values.append(sha)
+            self.layers[name] = tuple(values)
+        self.data = {'schema': 'hewrs.avatar-v3-candidate.v1', 'stage': 'source_candidate_only',
+            'enabled_in_production': False, 'source_profile': 'AVATAR_V2_MASTER',
+            'variant_profile': 'AVATAR_V3_PROPOSED', 'width_height': [996, 2748],
+            'source_layer_hashes': {name: hashes[0] for name, hashes in self.layers.items()},
+            'candidate_layers': {name: {'sha256': hashes[1], 'original_sha256': hashes[0],
+                'url': 'assets/' + hashes[1] + '.png', 'rect': [0, 0, 996, 2748],
+                'review_artifact': 'evidence/avatar_v3/' + ('avatar-v3.png' if name == 'avatar' else name + '-v3.png')}
+                for name, hashes in self.layers.items()}}
+        raw_data = json.dumps(self.data).encode()
+        self.write(source_lock.V3_DATA, raw_data)
+        pins = patch.multiple(source_lock, V3_LAYERS=self.layers, V3_MANIFEST_SHA256=delivery.digest(raw_data),
+                              INPUT_SHA256=delivery.digest(b'input'))
+        pins.start()
+        self.addCleanup(pins.stop)
+        self.write('data/inputs.json', b'input')
+        self.write('src/avatar-v3-pose.js', b'pose')
+        self.write('index.html', b'production baseline')
+        runtime_sha = delivery.digest(b'preview runtime')
+        self.runtime = 'runtime/avatar-v3-candidate-' + runtime_sha[:20] + '.js'
+        self.write(self.runtime, b'preview runtime')
+        self.preview = {'schema': 'hewrs.avatar-v3-preview.v1', 'preview_entrypoint': 'avatar-v3-review.html',
+            'app_production_entrypoints_unchanged': True, 'approval': 'ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN',
+            'base_runtime': 'runtime/continuous-shirts-base.js', 'base_runtime_sha256': delivery.digest(b'base runtime'),
+            'base_index_sha256': delivery.digest(b'production baseline'),
+            'layer_hashes': {name: hashes[1] for name, hashes in self.layers.items()},
+            'new_avatar_sha256': self.layers['avatar'][1], 'v2_avatar_sha256': self.layers['avatar'][0],
+            'pose_source_sha256': delivery.digest(b'pose'), 'runtime': self.runtime, 'runtime_sha256': runtime_sha}
+        self.write('AVATAR_V3_REVIEW_BUILD.json', json.dumps(self.preview))
+        self.write('avatar-v3-review.html', '<script src="' + self.runtime + '?v=' + runtime_sha[:16] +
+                   '" integrity="sha256-' + base64.b64encode(bytes.fromhex(runtime_sha)).decode() + '"></script>')
+        self.active = {'kind': 'continuous', 'runtime': self.preview['base_runtime'],
+                       'runtime_sha256': self.preview['base_runtime_sha256']}
+
+    def write(self, name, value):
+        path = self.root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(value.encode() if isinstance(value, str) else value)
+
+    def verify(self):
+        return source_lock.verify_avatar_v3_sources(self.root, self.active)
+
+    def test_only_three_pinned_assets_and_one_manifest_are_allowed(self):
+        expected = {source_lock.V3_DATA} | {'assets/' + hashes[1] + '.png' for hashes in self.layers.values()}
+        self.assertEqual(self.verify(), expected)
+
+    def test_integrated_v3_retains_exact_continuous_reference(self):
+        self.write('avatar-v2-reference.html', b'production baseline')
+        self.preview.update(base_entrypoint='avatar-v2-reference.html', app_production_entrypoints_unchanged=False)
+        self.write('AVATAR_V3_REVIEW_BUILD.json', json.dumps(self.preview))
+        self.active = {'kind': 'avatar-v3', 'runtime': self.runtime, 'runtime_sha256': self.preview['runtime_sha256'],
+                       'continuous_runtime': self.preview['base_runtime'],
+                       'continuous_runtime_sha256': self.preview['base_runtime_sha256']}
+        self.assertEqual(len(self.verify()), 4)
+        self.active['runtime_sha256'] = '0' * 64
+        with self.assertRaisesRegex(ValueError, 'Integrated V3 runtime differs'):
+            self.verify()
+
+    def test_original_or_new_source_pixel_changes_are_rejected(self):
+        for kind in (0, 1):
+            with self.subTest(kind=kind):
+                path = self.root / ('assets/' + self.layers['left_hand'][kind] + '.png')
+                before = path.read_bytes()
+                path.write_bytes(before + b'changed')
+                with self.assertRaisesRegex(ValueError, 'source bytes/native dimensions changed'):
+                    self.verify()
+                path.write_bytes(before)
+
+    def test_layer_swaps_or_new_asset_identity_are_rejected(self):
+        for mutation in ('swap', 'replace', 'extra'):
+            with self.subTest(mutation=mutation):
+                data = copy.deepcopy(self.data)
+                if mutation == 'swap':
+                    data['candidate_layers']['left_hand'], data['candidate_layers']['right_hand'] = data['candidate_layers']['right_hand'], data['candidate_layers']['left_hand']
+                elif mutation == 'replace':
+                    data['candidate_layers']['avatar'].update(sha256='0' * 64, url='assets/' + '0' * 64 + '.png')
+                else:
+                    data['candidate_layers']['shirt'] = copy.deepcopy(data['candidate_layers']['avatar'])
+                self.write(source_lock.V3_DATA, json.dumps(data))
+                with self.assertRaisesRegex(ValueError, 'layer descriptor changed|exactly three named layers'):
+                    self.verify()
+
+    def test_canvas_original_hash_and_rect_are_not_relaxed(self):
+        for mutation in ('canvas', 'original', 'rect'):
+            with self.subTest(mutation=mutation):
+                data = copy.deepcopy(self.data)
+                if mutation == 'canvas':
+                    data['width_height'] = [995, 2748]
+                elif mutation == 'original':
+                    data['source_layer_hashes']['avatar'] = '0' * 64
+                else:
+                    data['candidate_layers']['avatar']['rect'] = [0, 0, 995, 2748]
+                self.write(source_lock.V3_DATA, json.dumps(data))
+                with self.assertRaisesRegex(ValueError, 'native canvas|original layer bindings|layer descriptor'):
+                    self.verify()
+
+    def test_manifest_alone_does_not_activate_asset_exception(self):
+        (self.root / 'avatar-v3-review.html').unlink()
+        with self.assertRaisesRegex(ValueError, 'Missing source'):
+            self.verify()
+
+    def test_preview_must_pin_its_actual_runtime(self):
+        original = (self.root / 'avatar-v3-review.html').read_text()
+        self.write('avatar-v3-review.html', original.replace('?v=', '?wrong='))
+        with self.assertRaisesRegex(ValueError, 'cache pin or SRI'):
+            self.verify()
+        self.write('avatar-v3-review.html', original)
+        self.write(self.runtime, b'other runtime')
+        with self.assertRaisesRegex(ValueError, 'runtime bytes changed'):
+            self.verify()
+
+    def test_input_remapping_and_extra_manifest_policy_are_rejected(self):
+        self.write('data/inputs.json', b'other input')
+        with self.assertRaisesRegex(ValueError, 'remap original input registrations'):
+            self.verify()
+        self.write('data/inputs.json', b'input')
+        self.data['extra_remapping'] = {'DS029': 'DS001'}
+        self.write(source_lock.V3_DATA, json.dumps(self.data))
+        with self.assertRaisesRegex(ValueError, 'exact reviewed source contract'):
+            self.verify()
+
+    def test_extra_assets_data_and_existing_asset_edits_are_rejected(self):
+        allowed = {name: 'A' for name in self.verify()}
+        for name, status in [('assets/arbitrary.png', 'A'), ('data/new-registry.json', 'A'),
+                             ('assets/' + self.layers['avatar'][0] + '.png', 'M')]:
+            with self.subTest(path=name):
+                with self.assertRaisesRegex(ValueError, 'exact continuous allowlist'):
+                    source_lock.validate_protected_changes({**allowed, name: status}, allowed)
+        with self.assertRaisesRegex(ValueError, 'exact continuous allowlist'):
+            source_lock.validate_protected_changes({**allowed, source_lock.V3_DATA: 'M'}, allowed)
 
 
 if __name__ == '__main__':
