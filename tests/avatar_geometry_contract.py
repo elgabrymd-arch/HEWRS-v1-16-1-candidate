@@ -1,9 +1,10 @@
 """Exact V2/V3 source contracts and declared geometry-only pixel comparison.
 
 V3 intentionally changes the registered head/neck and hands, then remaps the
-two sleeve bands. A V2 comparison may differ only within those source alpha
-footprints and the exact pose destination bands. Garment descriptors are
-compared separately; this mask never authorizes another garment source.
+two sleeve bands. B15 also registers its existing upper-left collar to the
+narrower neck. A V2 comparison may differ only within those source alpha
+footprints, exact pose bands, and (for B15 alone) the pinned collar rectangle.
+Garment descriptors are compared separately; no replacement source is allowed.
 """
 import base64
 import hashlib
@@ -32,6 +33,16 @@ POSE_CONTROLS = [[0, 0], [600, 0], [720, -5], [950, -24], [1100, -17],
 # Half-open destination boxes taken from src/avatar-v3-pose.js. No central
 # torso or leg pixels are exempted except exact source-avatar/hand alpha.
 POSE_BOXES = ((80, 600, 250, 1660), (747, 600, 916, 1660))
+COLLAR_FIT_SPEC = {
+    'revision': 'AVATAR_V3_B15_COLLAR_FIT_1', 'source_profile': 'AVATAR_V3',
+    'jacket_id': 'B15',
+    'source_sha256': 'e34e249bf344b0130e1f0b805285444758801a80a7c07b1c787687de7e36569a',
+    'width_height': [996, 2748], 'bounds': [280, 375, 460, 600],
+    'horizontal_shift': 46, 'horizontal_peak': 345, 'vertical_fade': [410, 600],
+    'target_tip': [391, 420], 'alpha_threshold': 128,
+    'method': 'original jacket alpha contour registered to a smooth shoulder-to-neck edge',
+    'source_pixels_replaced': False,
+}
 
 AVATAR_PROFILE = r'''async () => {
  const app=HEWRSApp,c=app.connection,sources={},loaded={};
@@ -42,10 +53,18 @@ AVATAR_PROFILE = r'''async () => {
   if(!response.ok)throw Error('Avatar source did not load: '+name);
   loaded[name]=await digest(await response.arrayBuffer());
  }
+ const fit=globalThis.HEWRSAvatarV3CollarFit;let collarFit=null;
+ if(fit){
+  const plan=app.renderer.plan({blazerId:'B15',pantId:'PG002',shirtId:'DS003',state:'NO_TIE',shoeId:'shoe-8',watchId:null});
+  const d=plan.jacket,response=await fetch(app.resolveUrl(d));
+  if(!response.ok)throw Error('B15 collar donor did not load');
+  collarFit={spec:fit.spec,descriptor:{sha256:d.sha256,rect:d.rect},
+   loaded_sha256:await digest(await response.arrayBuffer())};
+ }
  return {version:c.avatarV3?'v3':'v2',sources,loaded_sources:loaded,
   avatar_sha256:sources.avatar,pose_revision:app.renderer.stats().avatarV3Pose||null,
   pose_controls:globalThis.HEWRSAvatarV3ArmPose?.controls||null,
-  pose_parameters:globalThis.HEWRSAvatarV3ArmPose?.spec||null};
+  pose_parameters:globalThis.HEWRSAvatarV3ArmPose?.spec||null,collar_fit:collarFit};
 }'''
 
 # Only the six explicitly pinned avatar descriptors are omitted. Every
@@ -79,14 +98,21 @@ def validate_profile(value):
                 or parameters.get('head_unchanged_to_row') != 600
                 or parameters.get('legs_unchanged_from_row') != 1660):
             raise AssertionError('V3 pose no longer matches the declared comparison envelope')
+        fit = value.get('collar_fit') or {}
+        if (fit.get('spec') != COLLAR_FIT_SPEC
+                or fit.get('descriptor') != {'sha256': COLLAR_FIT_SPEC['source_sha256'], 'rect': [0, 0, 996, 2748]}
+                or fit.get('loaded_sha256') != COLLAR_FIT_SPEC['source_sha256']):
+            raise AssertionError('V3 B15 collar registration or original donor bytes differ from the declared contract')
     elif value.get('pose_revision') is not None:
         raise AssertionError('V2 sources unexpectedly use a V3 pose transform')
+    elif value.get('collar_fit') is not None:
+        raise AssertionError('V2 sources unexpectedly use the V3 B15 collar registration')
     return value
 
 
-@lru_cache(maxsize=2)
-def permitted_mask(root):
-    """Source-alpha union plus exact pose destination bands, with checksum."""
+@lru_cache(maxsize=4)
+def permitted_mask(root, b15_collar_fit=False):
+    """Source-alpha union and pose bands; B15 has one explicit local rectangle."""
     root = Path(root)
     mask = Image.new('L', (996, 2748), 0)
     for layers in SOURCE_LAYERS.values():
@@ -101,16 +127,32 @@ def permitted_mask(root):
     draw = ImageDraw.Draw(mask)
     for left, top, right, bottom in POSE_BOXES:
         draw.rectangle((left, top, right - 1, bottom - 1), fill=255)
+    if b15_collar_fit:
+        sha = COLLAR_FIT_SPEC['source_sha256']
+        if hashlib.sha256((root / 'assets' / (sha + '.png')).read_bytes()).hexdigest() != sha:
+            raise AssertionError('B15 collar comparison donor bytes differ')
+        left, top, right, bottom = COLLAR_FIT_SPEC['bounds']
+        draw.rectangle((left, top, right - 1, bottom - 1), fill=255)
     return mask
 
 
-def comparison_policy(profile):
+def is_b15_selection(selection):
+    return bool(selection and selection.get('blazerId') == 'B15'
+                and not selection.get('suitId') and not selection.get('shirtOnly'))
+
+
+def comparison_policy(profile, selection=None):
     if profile['version'] == 'v3':
         return {
             'name': 'explicit_v3_head_neck_hands_and_pose_envelope',
             'source_alpha_union': SOURCE_LAYERS,
             'pose_destination_boxes_xyxy_half_open': [list(box) for box in POSE_BOXES],
             'pose_revision': POSE_REVISION,
+            'conditional_b15_collar_registration': {
+                'spec': COLLAR_FIT_SPEC,
+                'applies_to_this_selection': is_b15_selection(selection),
+                'requirement': 'B15 selection with the exact original jacket donor; no allowance for other garments',
+            },
             'outside_mask_requirement': 'exact native RGBA equality; zero tolerance',
             'garment_requirement': 'exact source descriptor signature; avatar/hand pins checked separately',
         }
@@ -118,7 +160,7 @@ def comparison_policy(profile):
 
 
 def native_difference(current_png, baseline_png, current_hash, baseline_hash,
-                      profile, baseline_profile, root):
+                      profile, baseline_profile, root, selection=None, source_bindings=None):
     """Compare every decoded native pixel; permit only the explicit V2->V3 mask."""
     pictures = [Image.open(io.BytesIO(base64.b64decode(value.split(',', 1)[1]))).convert('RGBA')
                 for value in (current_png, baseline_png)]
@@ -132,14 +174,22 @@ def native_difference(current_png, baseline_png, current_hash, baseline_hash,
         changed = ImageChops.lighter(changed, channel)
     changed = changed.point(lambda value: 255 if value else 0)
     transition = profile['version'] == 'v3' and baseline_profile['version'] == 'v2'
+    b15_fit = transition and is_b15_selection(selection)
     if transition:
-        mask = permitted_mask(str(Path(root).resolve()))
+        if b15_fit:
+            validate_profile(profile)
+            if not any(row.get('path') == 'plan/jacket'
+                       and row.get('sha256') == COLLAR_FIT_SPEC['source_sha256']
+                       and row.get('rect') == [0, 0, 996, 2748]
+                       for row in (source_bindings or [])):
+                raise AssertionError('B15 collar allowance requires the exact jacket descriptor in the rendered plan')
+        mask = permitted_mask(str(Path(root).resolve()), b15_fit)
         forbidden = ImageChops.subtract(changed, mask)
     else:
         mask = Image.new('L', (996, 2748), 0)
         forbidden = changed
     return {
-        'policy': comparison_policy(profile) if transition else comparison_policy({'version': 'v2'}),
+        'policy': comparison_policy(profile, selection) if transition else comparison_policy({'version': 'v2'}),
         'baseline_profile': baseline_profile['version'], 'current_profile': profile['version'],
         'native_dimensions': [996, 2748], 'changed_pixels': changed.histogram()[255],
         'changed_bbox_xyxy': changed.getbbox(), 'outside_permitted_mask_changed_pixels': forbidden.histogram()[255],

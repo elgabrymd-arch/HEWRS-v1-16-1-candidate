@@ -40,7 +40,7 @@ def selection(shirt, state, mode):
     if mode == 'shirt-only':
         result.update(shirtOnly=True, pantId='PG002')
     elif mode.startswith('B'):
-        result.update(blazerId=mode, pantId='PG002')
+        result.update(blazerId=mode, pantId='PT006' if mode == 'B01' else 'PG002')
     else:
         result['suitId'] = mode
     return result
@@ -67,12 +67,20 @@ def fixtures(inventory):
         for state in ['NO_TIE', 'T001']:
             add('DS035', state, mode, 'all-suit-collars-and-sleeves')
     for mode in sorted(inventory['blazers']):
-        # Existing owner B11 restriction: no tie, loafers or dressy sneakers.
-        for state in (['NO_TIE'] if mode == 'B11' else ['NO_TIE', 'T001']):
+        # B01 requires the explicit summer-weekend-dinner reviewed route,
+        # chinos and no tie. B11 also prohibits ties. Prohibited B01 requests
+        # are checked separately; they are not rendered as supported cases.
+        for state in (['NO_TIE'] if mode in ('B01', 'B11') else ['NO_TIE', 'T001']):
             add('DS035', state, mode, 'all-blazer-collars-and-sleeves')
     for shirt in CORRECTED:
         for state in ['NO_TIE', 'T001']:
             add(shirt, state, 'B02', 'corrected-shirt-narrow-jacket-opening')
+    # The B15 collar now has its own V3 registration. Every supported shirt
+    # must be inspected through both the continuous and legacy render paths.
+    for shirt in sorted(inventory['shirts']):
+        states = ['NO_TIE'] if shirt in inventory['no_tie_only'] else ['NO_TIE', 'T001']
+        for state in states:
+            add(shirt, state, 'B15', 'all-active-shirts-b15-collar-refit')
     return rows
 
 
@@ -106,10 +114,44 @@ FRAME = r'''async ({selected,ignoredHashes}) => {
  const app=HEWRSApp,plan=app.renderer.plan(selected),ignored=new Set(ignoredHashes);
  const before={wear:JSON.stringify(app.store.snapshot()),favorites:JSON.stringify(app.favorites.snapshot()),
   feedback:JSON.stringify(app.ownerFeedback.snapshot().events)};
- const result=await app.apply(selected,{origin:'manual',save:false,keepPreferences:true});
+ const mainSelection=JSON.stringify(app.state().selection),reviewed=selected.blazerId==='B01';
+ let result,c,committed,rendered,card,photos,ownerContext=null;
+ if(reviewed){
+  // Home has no B01 use-case selector. Exercise the existing real reviewed
+  // controls, as the five-round photo audit does, without bypassing its veto.
+  if(selected.state!=='NO_TIE'||selected.pantId!=='PT006')throw Error('B01 fit fixture violates its owner restrictions');
+  const panel=HEWRSReviewedIntegration;await panel.load({initialUpdate:false});
+  const settings={'rd-view':'explore','rd-style':'AUTO','rd-occasion':'dinner','rd-mode':'blazer',
+   'rd-formality':'open_collar_allowed','rd-b01-context':'summer_weekend_dinner',
+   'rd-topwear':'B01','rd-pants':selected.pantId,'rd-shirt':selected.shirtId,
+   'rd-tie':'__NONE__','rd-shoe':selected.shoeId,'rd-watch-choice':'__NONE__'};
+  for(const [id,value]of Object.entries(settings)){
+   const control=document.getElementById(id);control.value=value;
+   if(control.value!==value)throw Error('Missing exact B01 reviewed choice: '+id+'='+value);
+  }
+  document.getElementById('rd-watch-choice').dispatchEvent(new Event('change',{bubbles:true}));
+  const dialog=document.getElementById('rd-dialog');if(!dialog.open)dialog.showModal();
+  ownerContext=panel.ownerContext();
+  if(!HEWRSOutfitFeedback.ownerRuleCheck(selected,{context:ownerContext}).allowed||!app.ownerFeedback.allowed(selected,ownerContext))
+   throw Error('Exact B01 reviewed fixture violates the live owner gate');
+  const search=await panel.update();
+  if(!search||search.all_possibilities.length!==1||search.counts.clothing_considered!==1||search.counts.footwear_expansions!==1)
+   throw Error('Exact B01 fit request did not yield one supported possibility');
+  const entry=search.all_possibilities[0];result=await panel.render(entry.id);
+  if(result?.status!=='ready'||!result.unreviewed||entry.owner_approved!==false)throw Error('B01 fit preview did not complete as an unreviewed native render');
+  rendered=panel.discovery().nativeSelection(panel.currentEntry().outfit,panel.watch());
+  committed=result.selection;c=document.getElementById('rd-canvas');
+  card=HEWRSOptionCards.create(app.connection).model(rendered);
+  photos=Array.from(document.querySelectorAll('#rd-component-cards img'));
+  if(JSON.stringify(app.state().selection)!==mainSelection)throw Error('B01 reviewed fit changed the main outfit');
+ }else{
+  result=await app.apply(selected,{origin:'manual',save:false,keepPreferences:true});
+  app.showPage('outfits');c=document.getElementById('avatar');
+  rendered=app.state().selection;committed=app.renderer.last();card=app.cardSnapshot();
+  photos=Array.from(document.querySelectorAll('#option-card-items img'));
+ }
  if(result?.cancelled)throw Error('Unexpected cancelled full frame');
- app.showPage('outfits');
- const c=document.getElementById('avatar'),ctx=c.getContext('2d',{willReadFrequently:true});
+ const ctx=c.getContext('2d',{willReadFrequently:true});
  const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');
  const region=async (x,y,w,h)=>digest(ctx.getImageData(x,y,w,h).data);
  const sourceBindings=[];
@@ -121,12 +163,13 @@ FRAME = r'''async ({selected,ignoredHashes}) => {
    if(value[key]&&typeof value[key]==='object')sources(value[key],path+'/'+key);
  }
  sources(plan);
- const photos=Array.from(document.querySelectorAll('#option-card-items img'));
  await Promise.all(photos.map(image=>image.decode()));
  const after={wear:JSON.stringify(app.store.snapshot()),favorites:JSON.stringify(app.favorites.snapshot()),
   feedback:JSON.stringify(app.ownerFeedback.snapshot().events)};
- const bounds=c.getBoundingClientRect(),card=app.cardSnapshot();
- return {selection:app.state().selection,last:app.renderer.last(),status:c.dataset.status,
+ const bounds=c.getBoundingClientRect();
+ const captured={selection:rendered,last:committed,status:c.dataset.status,
+  render_route:reviewed?'reviewed-explicit-b01-use-case':'main-outfit',owner_context:ownerContext,
+  selection_authority:reviewed?'reviewed-current-entry-and-completed-native-render':'main-state-and-renderer-last',
   dimensions:[c.width,c.height],png:c.toDataURL('image/png'),
   full_sha256:await region(0,0,996,2748),head_sha256:await region(0,0,996,350),
   centre_sha256:await region(250,800,496,900),lower_sha256:await region(0,1700,996,1048),
@@ -134,11 +177,14 @@ FRAME = r'''async ({selected,ignoredHashes}) => {
   connection_avatar:app.connection.manifest.static.avatar.sha256,plan_avatar:plan.avatar?.sha256||null,
   hands:(plan.hands||[]).map(x=>x.sha256),operation:plan.operation||plan.kind||null,
   v3:app.connection.avatarV3||null,pose_revision:app.renderer.stats().avatarV3Pose||null,
+  collar_fit:globalThis.HEWRSAvatarV3CollarFit?.spec||null,
   state_unchanged:JSON.stringify(before)===JSON.stringify(after),
   photos_decoded:photos.length>0&&photos.every(image=>image.naturalWidth>0&&image.naturalHeight>0),
   card_shirt:card.items.find(x=>x.role==='Shirt')?.id,
   card_tie:card.items.find(x=>x.role==='Tie')?.id??null,
   layout:{viewport:innerWidth,width:document.documentElement.scrollWidth,left:bounds.left,right:bounds.right,height:bounds.height}};
+ if(reviewed)HEWRSReviewedIntegration.close();
+ return captured;
 }'''
 
 
@@ -169,7 +215,7 @@ def retain_frame(output, name, old, new, centre_hand_mask):
             native.write_bytes(raw)
             row['native_path'] = str(native.relative_to(output))
         # A native detail pair preserves baseline context without retaining a
-        # second copy of all 363 full canvases in the Actions artifact.
+        # second copy of every full canvas in the Actions artifact.
         row['decoded_rgba_matches'] = hashlib.sha256(picture.tobytes()).hexdigest() == row['full_sha256']
         row['_image'] = picture
     # The newly rotated right hand can extend to x733..745. It is not a
@@ -257,6 +303,7 @@ def run(args):
                   scope_limitations=['Rendering and source preservation do not establish styling suitability.',
                                      'Visual collar exposure and natural pose require inspection of the captured images.',
                                      'Four original NO_TIE_ONLY shirts are tested open; their tied states remain forbidden.',
+                                     'B01 is tested without a tie and with PT006 through the explicit summer-weekend-dinner reviewed route; its prohibited Work/tied/dress-trouser route must still fail.',
                                      'B11 is exercised without a tie under the existing owner restriction.'])
 
     def save():
@@ -311,6 +358,19 @@ def run(args):
             if args.candidate in ['index.html', 'app.html']:
                 check('Primary application declares the integrated V3 renderer',
                       v3.evaluate('()=>HEWRSApp.connection.avatarV3?.production_integrated===true'))
+            collar_fit = v3.evaluate('''()=>({spec:HEWRSAvatarV3CollarFit.spec,
+                frozen:Object.isFrozen(HEWRSAvatarV3CollarFit)&&Object.isFrozen(HEWRSAvatarV3CollarFit.spec)
+                    &&['width_height','bounds','vertical_fade','target_tip'].every(k=>Object.isFrozen(HEWRSAvatarV3CollarFit.spec[k]))})''')
+            report['collar_fit_contract'] = collar_fit
+            check('B15 source and bounded V3 collar geometry are exact', collar_fit['frozen'] and all(
+                collar_fit['spec'].get(key) == value for key, value in {
+                    'revision': 'AVATAR_V3_B15_COLLAR_FIT_1', 'source_profile': 'AVATAR_V3', 'jacket_id': 'B15',
+                    'source_sha256': 'e34e249bf344b0130e1f0b805285444758801a80a7c07b1c787687de7e36569a',
+                    'width_height': [996, 2748], 'bounds': [280, 375, 460, 600], 'horizontal_shift': 46,
+                    'horizontal_peak': 345, 'vertical_fade': [410, 600], 'target_tip': [391, 420],
+                    'alpha_threshold': 128, 'source_pixels_replaced': False}.items()), collar_fit)
+            check('V2 baseline has no V3 collar registration',
+                  v2.evaluate('()=>globalThis.HEWRSAvatarV3CollarFit===undefined'))
             inventory = v3.evaluate(INVENTORY)
             report['inventory'] = inventory
             check('Active wardrobe inventory equals baseline', inventory == v2.evaluate(INVENTORY))
@@ -320,12 +380,24 @@ def run(args):
             check('The existing four no-tie-only shirts remain restricted',
                   set(inventory['no_tie_only']) == {'DS040', 'DS041', 'DS042', 'DS043'}, inventory['no_tie_only'])
             forbidden = [selection(shirt, 'T001', mode) for shirt in inventory['no_tie_only']
-                         for mode in ['S05', 'B03', 'shirt-only']]
+                         for mode in ['S05', 'B03', 'shirt-only', 'B15']]
             for label, page in [('v2', v2), ('v3', v3)]:
                 refused = page.evaluate('''rows=>rows.map(s=>{try{HEWRSApp.renderer.plan(s);return {selection:s,rejected:false};}
                     catch(error){return {selection:s,rejected:true,reason:error.message};}})''', forbidden)
-                check(label + ': all twelve prohibited tied-shirt requests are refused',
-                      len(refused) == 12 and all(row['rejected'] for row in refused), refused)
+                check(label + ': all sixteen prohibited tied-shirt requests are refused',
+                      len(refused) == 16 and all(row['rejected'] for row in refused), refused)
+                denied = page.evaluate('''async()=>{
+                  const selected={blazerId:'B01',pantId:'PG002',shirtId:'DS035',state:'T001',shoeId:'shoe-8',watchId:null};
+                  const context={occasion:'work',requiredFormality:'any'},before=JSON.stringify(HEWRSApp.state().selection);
+                  const policy=HEWRSOutfitFeedback.ownerRuleCheck(selected,{context});
+                  try{await HEWRSApp.apply(selected,{save:false,keepPreferences:true,context});return {blocked:false,policy};}
+                  catch(error){return {blocked:true,policy,message:error.message,
+                    selection_unchanged:JSON.stringify(HEWRSApp.state().selection)===before};}
+                }''')
+                check(label + ': prohibited B01 Work/tie/dress-trouser fixture remains rejected without changing the current outfit',
+                      denied.get('blocked') and denied.get('selection_unchanged') and not denied['policy']['allowed']
+                      and [r['id'] for r in denied['policy']['reasons']] == ['OWNER-B01-NO-TIE', 'OWNER-B01-NOT-WORK',
+                          'OWNER-B01-SUMMER-CONTEXT', 'OWNER-B01-TROUSERS'], denied)
             report['scripts'] = {label: page.evaluate('()=>Array.from(document.querySelectorAll("script[src]"),x=>({src:x.getAttribute("src"),integrity:x.integrity}))')
                                  for label, page in [('v2', v2), ('v3', v3)]}
             hand_mask = v3.evaluate(HAND_MASK, dict(
@@ -352,6 +424,9 @@ def run(args):
                   set(report['coverage']['shirts']) == set(inventory['shirts'])
                   and set(report['coverage']['suits']) == set(inventory['suits'])
                   and set(report['coverage']['blazers']) == set(inventory['blazers']))
+            b15 = [r for r in rows if r['mode'] == 'B15']
+            check('B15 covers all fifty shirts and all ninety-six supported collar states',
+                  len(b15) == 96 and {r['selection']['shirtId'] for r in b15} == set(inventory['shirts']))
             for index, case in enumerate(rows):
                 selected, name = case['selection'], case['name']
                 old = v2.evaluate(FRAME, dict(selected=selected, ignoredHashes=ignored))
@@ -361,6 +436,12 @@ def run(args):
                 check(name + ': exact complete selections and native pixels',
                       all(r['selection'] == selected and r['last'] == selected and r['status'] == 'ready'
                           and r['dimensions'] == [996, 2748] and r['decoded_rgba_matches'] for r in [old, new]))
+                if case['mode'] == 'B01':
+                    check(name + ': B01 uses its explicit reviewed summer-weekend-dinner route without a tie and with chinos',
+                          selected['state'] == 'NO_TIE' and selected['pantId'] == 'PT006'
+                          and all(r['render_route'] == 'reviewed-explicit-b01-use-case'
+                              and r['owner_context']['occasion'] == 'dinner'
+                              and r['owner_context']['owner_use_case'] == 'summer_weekend_dinner' for r in [old, new]))
                 check(name + ': V3 registered head and hands are active',
                       new['connection_avatar'] == expected['avatar']
                       and new['v3']['sha256'] == expected['avatar']
@@ -371,6 +452,9 @@ def run(args):
                       old['connection_avatar'] == manifest['source_layer_hashes']['avatar']
                       and old['head_sha256'] != new['head_sha256'])
                 check(name + ': coordinated V3 arm pose is active', bool(new['pose_revision']))
+                if case['mode'] == 'B15':
+                    check(name + ': source-bound collar-fit revision is active',
+                          new['collar_fit'] == collar_fit['spec'] and old['collar_fit'] is None)
                 check(name + ': exact garment, tie, trouser and shoe source bindings',
                       old['source_bindings'] == new['source_bindings'],
                       {'original': old['source_binding_sha256'], 'candidate': new['source_binding_sha256']})
@@ -385,7 +469,8 @@ def run(args):
                       all(r['layout']['viewport'] == 390 and r['layout']['width'] <= 391
                           and r['layout']['left'] >= -1 and r['layout']['right'] <= 391
                           and r['layout']['height'] > 0 for r in [old, new]))
-                if selected['shirtId'] in CORRECTED and case['mode'] in ['B02', 'S11', 'shirt-only']:
+                if ((selected['shirtId'] in CORRECTED and case['mode'] in ['B02', 'S11', 'shirt-only', 'B15'])
+                        or (selected['shirtId'] == 'DS003' and case['mode'] == 'B15')):
                     path = output / 'phone' / (name + '.png')
                     v3.screenshot(path=str(path), full_page=True)
                     new['phone_path'] = str(path.relative_to(output))

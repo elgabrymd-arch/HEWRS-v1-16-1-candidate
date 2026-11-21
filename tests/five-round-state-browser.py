@@ -65,7 +65,7 @@ def audited_delivery(url):
         assert preview['runtime'] == active['runtime']
         assert preview['runtime_sha256'] == active['runtime_sha256']
     files = ['AVATAR_V3_REVIEW_BUILD.json', preview['preview_entrypoint'], preview['runtime'],
-             'src/avatar-v3.js', 'src/avatar-v3-pose.js', 'data/avatar-v3-candidate.json']
+             'src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-pose.js', 'data/avatar-v3-candidate.json']
     return {**active, 'kind': 'avatar-v3-preview', 'runtime': preview['runtime'],
             'runtime_sha256': preview['runtime_sha256'], 'avatar_sha256': preview['new_avatar_sha256'],
             'base_runtime': baseline_runtime, 'base_runtime_sha256': baseline_sha256,

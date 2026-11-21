@@ -186,7 +186,7 @@ class ActiveRuntime(unittest.TestCase):
                 'candidate_layers': {name: {'sha256': sha, 'url': 'assets/' + sha + '.png', 'rect': [0, 0, 996, 2748]}
                                      for name, sha in candidates.items()}}
         self.write('data/avatar-v3-candidate.json', json.dumps(spec))
-        modules = ('src/avatar-v3.js', 'src/avatar-v3-pose.js')
+        modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-pose.js')
         for name in modules:
             self.write(name, name)
         runtime_sha = delivery.digest(b'promoted runtime')
@@ -196,7 +196,9 @@ class ActiveRuntime(unittest.TestCase):
         html = '<html data-avatar-profile="AVATAR_V3"><script src="' + runtime + '?v=' + runtime_sha[:16] + '" integrity="sha256-' + sri + '"></script></html>'
         preview = {'runtime': runtime, 'runtime_sha256': runtime_sha, 'base_entrypoint': 'avatar-v2-reference.html',
                    'base_index_sha256': delivery.digest(reference), 'base_runtime': self.runtime,
-                   'base_runtime_sha256': self.runtime_sha, 'layer_hashes': candidates}
+                   'base_runtime_sha256': self.runtime_sha, 'layer_hashes': candidates,
+                   'collar_fit_source_sha256': delivery.digest((self.root / 'src/avatar-v3-collar-fit.js').read_bytes()),
+                   'collar_fit_revision': 'AVATAR_V3_B15_COLLAR_FIT_1'}
         self.write('AVATAR_V3_REVIEW_BUILD.json', json.dumps(preview))
         self.write('avatar-v3-review.html', html)
         release = {'schema': 'hewrs.avatar-v3-release.v1', 'profile': 'AVATAR_V3',
@@ -207,6 +209,7 @@ class ActiveRuntime(unittest.TestCase):
             'source_specification': 'data/avatar-v3-candidate.json',
             'source_specification_sha256': delivery.digest((self.root / 'data/avatar-v3-candidate.json').read_bytes()),
             'layer_hashes': candidates, 'immutable_v2_hashes': originals,
+            'collar_fit_revision': 'AVATAR_V3_B15_COLLAR_FIT_1',
             'source_modules': {name: delivery.digest((self.root / name).read_bytes()) for name in modules}}
 
         def primary(text):
@@ -258,6 +261,7 @@ class AvatarV3SourceScope(unittest.TestCase):
         self.addCleanup(pins.stop)
         self.write('data/inputs.json', b'input')
         self.write('src/avatar-v3-pose.js', b'pose')
+        self.write('src/avatar-v3-collar-fit.js', b'collar')
         self.write('index.html', b'production baseline')
         runtime_sha = delivery.digest(b'preview runtime')
         self.runtime = 'runtime/avatar-v3-candidate-' + runtime_sha[:20] + '.js'
@@ -268,7 +272,10 @@ class AvatarV3SourceScope(unittest.TestCase):
             'base_index_sha256': delivery.digest(b'production baseline'),
             'layer_hashes': {name: hashes[1] for name, hashes in self.layers.items()},
             'new_avatar_sha256': self.layers['avatar'][1], 'v2_avatar_sha256': self.layers['avatar'][0],
-            'pose_source_sha256': delivery.digest(b'pose'), 'runtime': self.runtime, 'runtime_sha256': runtime_sha}
+            'pose_source_sha256': delivery.digest(b'pose'),
+            'collar_fit_source_sha256': delivery.digest(b'collar'),
+            'collar_fit_revision': 'AVATAR_V3_B15_COLLAR_FIT_1',
+            'runtime': self.runtime, 'runtime_sha256': runtime_sha}
         self.write('AVATAR_V3_REVIEW_BUILD.json', json.dumps(self.preview))
         self.write('avatar-v3-review.html', '<script src="' + self.runtime + '?v=' + runtime_sha[:16] +
                    '" integrity="sha256-' + base64.b64encode(bytes.fromhex(runtime_sha)).decode() + '"></script>')
@@ -350,6 +357,17 @@ class AvatarV3SourceScope(unittest.TestCase):
         self.write('avatar-v3-review.html', original)
         self.write(self.runtime, b'other runtime')
         with self.assertRaisesRegex(ValueError, 'runtime bytes changed'):
+            self.verify()
+
+    def test_collar_geometry_module_must_match_preview_source_pin(self):
+        self.write('src/avatar-v3-collar-fit.js', b'unregistered collar geometry')
+        with self.assertRaisesRegex(ValueError, 'source bindings changed'):
+            self.verify()
+
+    def test_unknown_collar_registration_revision_is_rejected(self):
+        self.preview['collar_fit_revision'] = 'UNREVIEWED_GEOMETRY'
+        self.write('AVATAR_V3_REVIEW_BUILD.json', json.dumps(self.preview))
+        with self.assertRaisesRegex(ValueError, 'source bindings changed'):
             self.verify()
 
     def test_input_remapping_and_extra_manifest_policy_are_rejected(self):

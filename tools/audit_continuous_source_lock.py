@@ -130,7 +130,9 @@ def verify_avatar_v3_sources(root, active):
     require(preview.get('layer_hashes') == {name: hashes[1] for name, hashes in V3_LAYERS.items()} and
             preview.get('new_avatar_sha256') == V3_LAYERS['avatar'][1] and
             preview.get('v2_avatar_sha256') == V3_LAYERS['avatar'][0] and
-            preview.get('pose_source_sha256') == digest(file_bytes(root, 'src/avatar-v3-pose.js')),
+            preview.get('pose_source_sha256') == digest(file_bytes(root, 'src/avatar-v3-pose.js')) and
+            preview.get('collar_fit_source_sha256') == digest(file_bytes(root, 'src/avatar-v3-collar-fit.js')) and
+            preview.get('collar_fit_revision') == 'AVATAR_V3_B15_COLLAR_FIT_1',
             'V3 preview layer or pose source bindings changed')
     runtime, expected = preview.get('runtime', ''), preview.get('runtime_sha256', '')
     require(re.fullmatch(r'[a-f0-9]{64}', expected) is not None and

@@ -298,17 +298,18 @@ def main():
                 # at partial-alpha head edges. Preserve that measured difference
                 # while the canonical-source gate above still checks every pixel.
                 frame['baseline_comparison'] = dict(policy='intentional_eight_shirt_correction',
-                    active_avatar_policy=comparison_policy(avatar_profile),
+                    active_avatar_policy=comparison_policy(avatar_profile, selection),
                     canonical_active_head_equal=True,
                     canonical_head_rgba_sha256=canonical_head['head_rgba_sha256'],
                     baseline_head_equal=frame['head_rgba_sha256'] == baseline['head_rgba_sha256'],
                     baseline_head_rgba_sha256=baseline['head_rgba_sha256'], **difference)
             elif avatar_profile['version'] == 'v3':
                 difference = native_difference(comparison_png, baseline['comparison_png'],
-                    frame['rgba_sha256'], baseline['rgba_sha256'], avatar_profile, baseline_avatar_profile, ROOT)
+                    frame['rgba_sha256'], baseline['rgba_sha256'], avatar_profile, baseline_avatar_profile, ROOT,
+                    selection=selection, source_bindings=frame['source_bindings'])
                 check(label + ': original garment source descriptors exactly match the baseline',
                       frame['source_bindings'] == baseline['source_bindings'])
-                check(label + ': baseline pixel changes stay inside the declared V3 head/neck/hand/pose mask',
+                check(label + ': baseline pixel changes stay inside the declared V3 geometry mask for this selection',
                       difference['outside_permitted_mask_changed_pixels'] == 0, difference)
                 frame['baseline_comparison'] = dict(policy='original_garments_v3_avatar_geometry', **{'difference': difference})
             else:
@@ -371,7 +372,8 @@ def main():
                   baseline['selection'] == selected and baseline['rendered_selection'] == selected)
             if avatar_profile['version'] == 'v3':
                 difference = native_difference(comparison_png, baseline['comparison_png'], frame['rgba_sha256'],
-                    baseline['rgba_sha256'], avatar_profile, baseline_avatar_profile, ROOT)
+                    baseline['rgba_sha256'], avatar_profile, baseline_avatar_profile, ROOT,
+                    selection=selected, source_bindings=frame['source_bindings'])
                 check('topwear/B01: original garment sources remain exact and pixel changes stay inside the declared V3 geometry mask',
                       frame['source_bindings'] == baseline['source_bindings']
                       and difference['outside_permitted_mask_changed_pixels'] == 0, difference)

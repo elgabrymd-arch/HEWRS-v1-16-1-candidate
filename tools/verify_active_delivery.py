@@ -96,8 +96,11 @@ def describe_avatar_v3(root):
         require(digest((root / row['url']).read_bytes()) == sha, 'V3 source bytes differ: ' + name)
         original = spec['source_layer_hashes'][name]
         require(digest((root / ('assets/' + original + '.png')).read_bytes()) == original, 'Immutable V2 layer changed: ' + name)
-    modules = ('src/avatar-v3.js', 'src/avatar-v3-pose.js')
+    modules = ('src/avatar-v3.js', 'src/avatar-v3-collar-fit.js', 'src/avatar-v3-pose.js')
     require(release['source_modules'] == {name: digest((root / name).read_bytes()) for name in modules}, 'V3 source module pins are stale')
+    require(preview.get('collar_fit_source_sha256') == release['source_modules']['src/avatar-v3-collar-fit.js'] and
+            preview.get('collar_fit_revision') == release.get('collar_fit_revision') == 'AVATAR_V3_B15_COLLAR_FIT_1',
+            'V3 collar registration source or revision differs')
     require((root / 'index.html').read_bytes() == (root / 'app.html').read_bytes(), 'V3 app pages differ')
     for name in ('index.html', 'app.html'):
         text = (root / name).read_text()

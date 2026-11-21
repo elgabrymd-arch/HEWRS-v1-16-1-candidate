@@ -332,10 +332,11 @@ def main():
                         name, baseline_page.evaluate('() => (' + HEAD_SNAPSHOT + ')(document.getElementById("avatar"))'), selected)
                     if avatar_profile['version'] == 'v3':
                         difference = native_difference(current['png'], original['png'], current['rgba_sha256'],
-                            original['rgba_sha256'], avatar_profile, baseline_avatar_profile, args.root)
+                            original['rgba_sha256'], avatar_profile, baseline_avatar_profile, args.root,
+                            selection=selected, source_bindings=current['source_bindings'])
                         check('Delegated original garment sources stay exact: ' + shirt + '/' + mode,
                               current['source_bindings'] == original['source_bindings'])
-                        check('Delegated frame changes only inside the declared V3 head/neck/hand/pose mask: ' + shirt + '/' + mode,
+                        check('Delegated frame changes only inside the declared V3 geometry mask for this selection: ' + shirt + '/' + mode,
                               difference['outside_permitted_mask_changed_pixels'] == 0, difference)
                         check('Delegated frame uses the exact active V3 head: ' + shirt + '/' + mode,
                               current['head_sha256'] == head)

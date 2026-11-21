@@ -40,6 +40,12 @@ jobs:
           python tools/verify_active_delivery.py --check --syntax
           python tests/active-delivery-audit.py
           git diff --exit-code
+      - name: Install the reviewed native canvas version
+        run: npm install --prefix /tmp/hewrs-v3-collar-deps --no-audit --no-fund @napi-rs/canvas@0.1.100
+      - name: Verify bounded collar pixels, decoder compatibility and cancellation
+        env:
+          NODE_PATH: /tmp/hewrs-v3-collar-deps/node_modules
+        run: node --test tests/avatar-v3-collar-fit.cjs
 
   compare-v2-v3-browser:
     name: Complete V2 and active V3 outfits — ${{ matrix.browser }}
