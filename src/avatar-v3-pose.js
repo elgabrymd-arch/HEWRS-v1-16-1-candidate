@@ -15,8 +15,8 @@ const CONTROL=Object.freeze([
 const P=Object.freeze({revision:'AVATAR_V3_ARM_POSE_CANDIDATE_1',
   left_elbow_shift:-24,right_elbow_shift:24,
   left_wrist_shift:15,right_wrist_shift:-15,
-  unmodified_head_below:600,unmodified_legs_above:1660,
-  sleeve_transform:'source-preserving-bicubic-width-cubic-fade'});
+  head_unchanged_to_row:600,legs_unchanged_from_row:1660,
+  sleeve_transform:'source-preserving-premultiplied-linear-cubic-fade'});
 function cubic(t){return t*t*(3-2*t);}
 function deltaAt(y){
  for(let i=1;i<CONTROL.length;i++){
