@@ -15,11 +15,11 @@ matrix = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(matrix)
 PROBES = {
     'original': '',
-    'buttons': '.rd-dialog button{max-width:100%;min-width:0;box-sizing:border-box;white-space:normal;overflow-wrap:anywhere}',
-    'grid_children': '.rd-dialog .rd-visuals>*{min-width:0;max-width:100%}.rd-dialog .rd-head h2{min-width:0;overflow-wrap:anywhere}',
-    'summaries': '.rd-dialog summary{overflow-wrap:anywhere;white-space:normal;max-width:100%}',
+    'select_overflow': '.rd-dialog .rd-label select{overflow:hidden;text-overflow:ellipsis}',
+    'select_containment': '.rd-dialog .rd-label select{contain:inline-size}',
+    'label_clip': '.rd-dialog .rd-label{overflow-x:clip}',
+    'select_block': '.rd-dialog .rd-label{display:block}.rd-dialog .rd-label select{display:block;margin-top:5px}',
 }
-PROBES['combined'] = ''.join(PROBES.values())
 SNAPSHOT = r'''()=>{
  const d=document.getElementById('rd-dialog'),box=d.getBoundingClientRect(),surface=document.getElementById('rd-canvas').getBoundingClientRect();
  const items=[...d.querySelectorAll('*')].map(e=>{
