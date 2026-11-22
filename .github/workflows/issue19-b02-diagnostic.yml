@@ -30,6 +30,8 @@ jobs:
       options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
+      - name: Trust only this checked-out repository in the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Fetch unchanged approved baseline
         run: git fetch --depth=1 origin ee6bdb7c0986597e569056499ff9eedca1ec3c98
       - name: Install matching browser and image drivers
