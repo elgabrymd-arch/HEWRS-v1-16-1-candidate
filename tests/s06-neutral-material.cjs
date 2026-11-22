@@ -68,14 +68,22 @@ function phoneAppearance(canvas) {
     }
     return {rect, mean_luma: mean, detrended_rms_luma: Math.sqrt(squares / values.length)};
   }
+  // The preceding release passed maximum-only checks while its approved
+  // Glen check disappeared at phone scale. Demand a quiet but non-flat cloth
+  // signal in jacket AND trousers, without permitting the former coarse plaid.
+  // These measured bounds supplement, rather than replace, owner visual review.
   const patches = [
-    {name: 'chest', rect: [108, 300, 40, 50], maximum_rms: 3.5},
-    {name: 'lower_jacket', rect: [125, 472, 37, 48], maximum_rms: 3.5},
-    {name: 'left_thigh', rect: [129, 647, 40, 75], maximum_rms: 3.5},
-    {name: 'right_thigh', rect: [222, 647, 38, 75], maximum_rms: 5}
+    {name: 'chest', rect: [108, 300, 40, 50], minimum_rms: 3.6, maximum_rms: 6.25},
+    {name: 'lower_jacket', rect: [125, 472, 37, 48], minimum_rms: 3.5, maximum_rms: 6.25},
+    {name: 'left_thigh', rect: [129, 647, 40, 75], minimum_rms: 3.5, maximum_rms: 6.25},
+    {name: 'right_thigh', rect: [222, 647, 38, 75], minimum_rms: 4.2, maximum_rms: 7.5}
   ].map(row => ({...row, ...patch(row.rect)}));
-  for (const row of patches) A.ok(row.detrended_rms_luma < row.maximum_rms,
-    'S06 at 390px must not reintroduce broad checker blocks: ' + JSON.stringify(row));
+  for (const row of patches) {
+    A.ok(row.detrended_rms_luma > row.minimum_rms,
+      'S06 at 390px must retain visible fine textile contrast: ' + JSON.stringify(row));
+    A.ok(row.detrended_rms_luma < row.maximum_rms,
+      'S06 at 390px must not reintroduce broad checker blocks: ' + JSON.stringify(row));
+  }
   const foldShadow = patch([228, 908, 20, 12]), foldHighlight = patch([228, 875, 20, 12]);
   const foldContrast = foldHighlight.mean_luma - foldShadow.mean_luma;
   A.ok(foldContrast >= 18, 'Quiet cloth must retain the registered calf fold instead of becoming a flat fill');
