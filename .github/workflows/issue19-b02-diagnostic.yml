@@ -1,0 +1,46 @@
+name: Issue 19 B02 exact pixel diagnostic
+
+on:
+  push:
+    branches: [audit/issue19-b02-webkit-6ef5c92]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: issue19-b02-diagnostic-${{ github.ref_name }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  capture:
+    name: B02 source planes — ${{ matrix.browser }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch unchanged approved baseline
+        run: git fetch --depth=1 origin ee6bdb7c0986597e569056499ff9eedca1ec3c98
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Collect exact browser pixels without modifying release assertions
+        run: python tests/issue19-b02-diagnostic.py --browser '${{ matrix.browser }}' --output 'evidence/issue19/b02-diagnostic/${{ matrix.browser }}'
+      - name: Retain full frames, independent source planes and pixel rows
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_B02_DIAGNOSTIC_${{ matrix.browser }}
+          path: evidence/issue19/b02-diagnostic/${{ matrix.browser }}/
+          if-no-files-found: error
+          retention-days: 30
