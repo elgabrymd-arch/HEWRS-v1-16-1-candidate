@@ -76,10 +76,15 @@ def describe_avatar_v3(root):
     release_name = 'AVATAR_V3_RELEASE.json'
     release = json.loads((root / release_name).read_text())
     require(release.get('schema') == 'hewrs.avatar-v3-release.v1' and release.get('profile') == 'AVATAR_V3', 'Unrecognized V3 release contract')
+    if 'issue22' in release:
+        from issue22_delivery import verify as verify_issue22
+        verify_issue22(release['issue22'], root)
     require(release.get('baseline_entrypoint') == 'avatar-v2-reference.html', 'V3 baseline page differs')
     base = describe(root, ('avatar-v2-reference.html', 'avatar-v2-reference.html'))
     require(base['kind'] == 'continuous', 'V3 lacks the exact continuous-shirt baseline')
     preview = json.loads((root / 'AVATAR_V3_REVIEW_BUILD.json').read_text())
+    if 'issue22' in release:
+        require(preview.get('issue22') == release['issue22'], 'Issue 22 preview and release sources differ')
     runtime = active_runtime(root)
     runtime_sha = digest((root / runtime).read_bytes())
     require(preview['runtime'] == release['runtime'] == runtime and preview['runtime_sha256'] == release['runtime_sha256'] == runtime_sha, 'V3 runtime pins differ')
@@ -143,11 +148,16 @@ def describe_avatar_v3(root):
                 name + ': V3 mobile stylesheet SRI mismatch')
         require(parse_qs(style_url.query).get('v') == [mobile_style_sha[:16]], name + ': V3 mobile stylesheet cache pin mismatch')
     files = ['index.html', 'app.html', runtime, release_name, 'AVATAR_V3_REVIEW_BUILD.json', 'avatar-v3-review.html', spec_name, mobile_style, *modules]
+    issue22 = release.get('issue22')
+    if issue22:
+        files += [issue22['baseline_entrypoint'], *issue22['modules'],
+                  *[issue22[key]['path'] for key in ('matching_index','picker_previews','reviewed_panel')]]
     return {**base, 'kind': 'avatar-v3', 'manifest': release_name,
             'runtime': runtime, 'runtime_sha256': runtime_sha,
             'continuous_runtime': base['runtime'], 'continuous_runtime_sha256': base['runtime_sha256'],
             'avatar_sha256': V3_LAYERS['avatar'], 'avatar_profile': 'AVATAR_V3',
             'avatar_layers': dict(V3_LAYERS), 'baseline_entrypoint': release['baseline_entrypoint'],
+            **({'issue22':issue22} if issue22 else {}),
             'source_sha256': {**base['source_sha256'], **{name: digest((root / name).read_bytes()) for name in files}}}
 
 
@@ -212,7 +222,13 @@ def verify(verify_base=False, syntax=False):
         require(current == pinned, 'Reviewed lazy module delivery is stale')
         previous_runtime, previous_dependencies = delivery.RUNTIME, delivery.DEPENDENCIES
         delivery.RUNTIME = active['runtime']
-        delivery.DEPENDENCIES = [active['runtime'] if name == previous_runtime else name for name in previous_dependencies]
+        substitutions = {previous_runtime: active['runtime']}
+        if active.get('issue22'):
+            # The complete original panel is retained. Only the verified V3
+            # panel occupies its original dependency position; the original
+            # count, ordering and SRI checks still run unchanged.
+            substitutions['src/reviewed-rejection-integration.js'] = active['issue22']['reviewed_panel']['path']
+        delivery.DEPENDENCIES = [substitutions.get(name,name) for name in previous_dependencies]
         try:
             sri = 'sha256-' + base64.b64encode(bytes.fromhex(active['runtime_sha256'])).decode()
             for name in ('index.html', 'app.html'):

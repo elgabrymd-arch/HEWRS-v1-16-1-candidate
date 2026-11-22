@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+'use strict';
+/* Issue #22 material projection, never a new garment or avatar.
+ * All cut, alpha, seams and hardware come from the selected registered layer.
+ * Suit color and fine textile signal come from the owner's supplied photographs.
+ * The linen swatch is explicitly generated material, not photographic evidence.
+ */
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+let native;try{native=require('@napi-rs/canvas');}catch(_){native=require(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES||'/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules','@napi-rs/canvas'));}
+const {createCanvas,loadImage}=native,ROOT=path.resolve(__dirname,'..'),W=996,H=2748;
+const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),smooth=x=>{x=clamp(x,0,1);return x*x*(3-2*x);};
+const lum=(r,g,b)=>.2126*r+.7152*g+.0722*b;
+const SOURCES={
+ S06:{jacket:'65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935',trousers:'aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861'},
+ S13:{jacket:'1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537',trousers:'3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1'},
+ S14:{jacket:'527d35bdda91922b1467e7ce171dec13d100330b16c5a6ee3b048e59896c9e64',trousers:'ed8dc4d60dc595d27d6f9b1466b7a3fa3fd8e247a801362a36fd9f8879e5685e'},
+ B01:{jacket:'7e772b95f1268946fc0f23ba9d12428869117d086167636d470350008edb2387'},
+ B06:{jacket:'ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b'},
+ B10:{jacket:'9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea'}
+};
+const SPECS={
+ S06:{photo:'IMG_1744.jpeg',color_rect:[530,480,100,240],texture_photo:'IMG_1744.jpeg',texture_rect:[440,820,140,160],texture_scale:1.15,texture_gain:.72,blur:9,detail:.03,shade_gain:.85,reference_photos:['IMG_1743.jpeg','IMG_1744.jpeg'],description:'Warm gray fine interlocking Glen check'},
+ S13:{photo:'IMG_1745.jpeg',color_rect:[422,360,110,240],texture_photo:'IMG_1745.jpeg',texture_rect:[420,340,100,130],texture_scale:1.3,texture_gain:.62,blur:5,detail:.08,shade_gain:.92,reference_photos:['IMG_1741.jpeg','IMG_1745.jpeg'],description:'Dark blue-gray fine interlocking check'},
+ S14:{photo:'IMG_1748.jpeg',color_rect:[520,720,112,260],texture_photo:'IMG_1748.jpeg',texture_rect:[570,850,60,160],texture_scale:1.15,texture_gain:.7,blur:12,detail:0,shade_gain:.93,reference_photos:['IMG_1747.jpeg','IMG_1748.jpeg'],description:'Medium blue-gray fine near-solid weave'},
+ B01:{linen:true,texture_scale:.42,texture_gain:.36,blur:3,detail:.12,description:'Original navy color, fine natural matte linen'},
+ B06:{linen:true,texture_scale:.42,texture_gain:.61,blur:6,detail:0,description:'Original very pale desaturated sage color and crest, fine natural matte linen'},
+ B10:{linen:true,texture_scale:.42,texture_gain:.52,blur:12,detail:0,description:'Original camel color, fine natural matte linen'}
+};
+async function image(file){const im=await loadImage(path.join(ROOT,file)),c=createCanvas(im.width,im.height),ctx=c.getContext('2d');ctx.drawImage(im,0,0);return{width:im.width,height:im.height,data:ctx.getImageData(0,0,im.width,im.height).data};}
+function medianRGB(im,rect){const channels=[[],[],[]];for(let y=rect[1];y<rect[1]+rect[3];y++)for(let x=rect[0];x<rect[0]+rect[2];x++){const i=(y*im.width+x)*4;for(let k=0;k<3;k++)channels[k].push(im.data[i+k]);}return channels.map(a=>{a.sort((a,b)=>a-b);return a[Math.floor(a.length/2)];});}
+// Alpha-normalized separable box smoothing. Three passes approximate a
+// Gaussian without importing black transparent pixels into garment edges.
+function blurScalar(values,weights,w,h,r){
+ let value=Float32Array.from(values),weight=Float32Array.from(weights);
+ for(let pass=0;pass<3;pass++){
+  const next=new Float32Array(value.length),nw=new Float32Array(value.length),horizontal=pass!==1;
+  const rows=horizontal?h:w,cols=horizontal?w:h;
+  for(let line=0;line<rows;line++){
+   const at=x=>horizontal?line*w+x:x*w+line;
+   let sum=0,den=0;for(let k=0;k<=Math.min(r,cols-1);k++){sum+=value[at(k)]*weight[at(k)];den+=weight[at(k)];}
+   for(let x=0;x<cols;x++){
+    const p=at(x);next[p]=den?sum/den:value[p];nw[p]=weight[p];
+    const remove=x-r,add=x+r+1;if(remove>=0){sum-=value[at(remove)]*weight[at(remove)];den-=weight[at(remove)];}if(add<cols){sum+=value[at(add)]*weight[at(add)];den+=weight[at(add)];}
+   }
+  }value=next;weight=nw;
+ }return value;
+}
+function scalar(im){const v=new Float32Array(im.width*im.height),a=new Float32Array(v.length);for(let p=0;p<v.length;p++){const i=p*4;v[p]=lum(...im.data.subarray(i,i+3));a[p]=im.data[i+3]/255;}return{v,a};}
+function sampleTexture(im,rect){const [x0,y0,w,h]=rect,v=new Float32Array(w*h),a=new Float32Array(w*h).fill(1);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=((y0+y)*im.width+x0+x)*4;v[y*w+x]=lum(...im.data.subarray(i,i+3));}const trend=blurScalar(v,a,w,h,Math.max(5,Math.round(Math.min(w,h)/13)));for(let p=0;p<v.length;p++)v[p]-=trend[p];
+ // Overlap unreflected neighbouring swatches. Reflection reverses the weave
+ // and produces false chevrons; a short crossfade retains its real direction.
+ const overlap=Math.max(4,Math.round(Math.min(w,h)*.16)),tw=w-overlap,th=h-overlap,tile=new Float32Array(tw*th);let mean=0;
+ for(let y=0;y<th;y++)for(let x=0;x<tw;x++){const fx=x<overlap?smooth(x/overlap):1,fy=y<overlap?smooth(y/overlap):1,xx=x<overlap?x+tw:x,yy=y<overlap?y+th:y;const value=v[y*w+x]*fx*fy+v[y*w+xx]*(1-fx)*fy+v[yy*w+x]*fx*(1-fy)+v[yy*w+xx]*(1-fx)*(1-fy);tile[y*tw+x]=value;mean+=value;}
+ mean/=tile.length;for(let p=0;p<tile.length;p++)tile[p]-=mean;return{w:tw,h:th,v:tile};}
+const wrap=(x,n)=>((x%n)+n)%n;
+function texAt(t,x,y){x=wrap(x,t.w);y=wrap(y,t.h);const ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy,jx=(ix+1)%t.w,jy=(iy+1)%t.h;return t.v[iy*t.w+ix]*(1-fx)*(1-fy)+t.v[iy*t.w+jx]*fx*(1-fy)+t.v[jy*t.w+ix]*(1-fx)*fy+t.v[jy*t.w+jx]*fx*fy;}
+function distance(x,y,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],u=clamp(((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy),0,1);return Math.hypot(x-a[0]-u*dx,y-a[1]-u*dy);}
+function polyDistance(x,y,points){let d=Infinity;for(let i=1;i<points.length;i++)d=Math.min(d,distance(x,y,points[i-1],points[i]));return d;}
+function protectedDetails(id,kind){
+ if(kind==='trousers')return{lines:[],ellipses:[]};
+ if(id.startsWith('S'))return{lines:[[[285,511],[506,854],[499,934]],[[694,512],[508,956]],[[623,727],[750,702]],[[245,1098],[350,1110]],[[241,1173],[340,1184]],[[658,1112],[775,1100]],[[660,1175],[775,1167]]],ellipses:[[498,988,20,23],[475,1148,22,23]]};
+ if(id==='B01')return{lines:[[[298,488],[463,780]],[[698,486],[570,785]],[[630,639],[758,620]],[[260,1036],[374,1042],[371,1260],[344,1312],[251,1304]],[[626,1044],[756,1043],[771,1280],[744,1310],[657,1310]]],ellipses:[]};
+ return{lines:[[[289,511],[490,944]],[[715,530],[505,973]],[[643,693],[754,675]],[[235,1084],[350,1114],[358,1325],[250,1328]],[[651,1114],[787,1086],[801,1316],[712,1334]]],ellipses:[[511,965,21,22],...(id==='B06'?[[714,773,34,42]]:[])]};
+}
+function preserveWeight(x,y,shapes){let w=0;for(const [cx,cy,rx,ry]of shapes.ellipses){const d=Math.hypot((x-cx)/rx,(y-cy)/ry);w=Math.max(w,1-smooth((d-.9)/.4));}for(const line of shapes.lines)w=Math.max(w,1-smooth((polyDistance(x,y,line)-1.1)/2.6));return w;}
+function coordinates(id,kind,x,y,scale){let u=x,v=y;if(kind==='jacket'){if(x<235)u+=.06*(y-750);else if(x>775)u-=.06*(y-750);if(y<930&&x>285&&x<480){u=x*.88+(y-430)*.27;v=y*.93-x*.23;}else if(y<930&&x>520&&x<708){u=x*.88-(y-430)*.27;v=y*.93+x*.23;}}return[u/scale,v/scale];}
+function project(source,id,kind,spec,texture,target){
+ const {v,a}=scalar(source),low=blurScalar(v,a,W,H,spec.blur),output=new Uint8ClampedArray(source.data),details=protectedDetails(id,kind);
+ let mean=0,n=0;for(let p=0;p<v.length;p++)if(a[p]>.99){mean+=low[p];n++;}mean/=n;
+ const stats={source_mean_rgb:[0,0,0],display_mean_rgb:[0,0,0],alpha_changed_pixels:0,changed_rgb_pixels:0,protected_hardware_pixels:0,opaque_pixels:n};
+ for(let p=0;p<v.length;p++){
+  const i=p*4;if(!source.data[i+3])continue;
+  const x=p%W,y=Math.floor(p/W),preserve=preserveWeight(x,y,details),[u,vv]=coordinates(id,kind,x,y,spec.texture_scale),thread=clamp(texAt(texture,u,vv)*spec.texture_gain,-15,15);
+  const shade=low[p]-mean,detail=(v[p]-low[p])*spec.detail;
+  let hardware=0;for(const [cx,cy,rx,ry]of details.ellipses){const d=Math.hypot((x-cx)/rx,(y-cy)/ry);hardware=Math.max(hardware,1-smooth((d-.9)/.4));}if(hardware===1)stats.protected_hardware_pixels++;
+  for(let k=0;k<3;k++){
+   // Linen keeps local chroma and cloth mean. Suits use sampled photographic
+   // chroma with source light/dark folds; seam/hardware color remains native.
+   let value;if(spec.linen){const chroma=source.data[i+k]-v[p];value=low[p]+chroma+detail+thread;}else value=target[k]+shade*spec.shade_gain+detail+thread;
+   const preserved=spec.linen?source.data[i+k]:clamp(v[p]-mean+target[k],0,255);
+   value=value*(1-preserve)+preserved*preserve;
+   // Buttons and the existing crest are original RGB, without recoloring.
+   value=value*(1-hardware)+source.data[i+k]*hardware;output[i+k]=clamp(Math.round(value),0,255);
+  }
+  if(output[i]!==source.data[i]||output[i+1]!==source.data[i+1]||output[i+2]!==source.data[i+2])stats.changed_rgb_pixels++;
+  if(a[p]>.99)for(let k=0;k<3;k++){stats.source_mean_rgb[k]+=source.data[i+k];stats.display_mean_rgb[k]+=output[i+k];}
+ }
+ for(const key of ['source_mean_rgb','display_mean_rgb'])stats[key]=stats[key].map(v=>Math.round(v/n*1000)/1000);
+ const alpha=Buffer.alloc(W*H);for(let p=0;p<W*H;p++){alpha[p]=source.data[p*4+3];if(alpha[p]!==output[p*4+3])stats.alpha_changed_pixels++;}
+ return{data:output,stats,alpha_sha256:sha(alpha)};
+}
+async function build(){
+ const linen=await image('provenance/issue22/natural-linen-material-v1.png'),linenTexture=sampleTexture(linen,[0,0,linen.width,linen.height]);
+ const manifest={schema:'hewrs.issue22.materials.v1',revision:'ISSUE22_SOURCE_BOUND_MATERIALS_1',canvas:[W,H],scope:Object.keys(SOURCES),alpha_policy:'exact_source_alpha',avatar_policy:'no_avatar_asset_or_geometry_access',assetPaths:{},bindings:{},garments:{},limitations:['Source photographs are phone screenshots without calibrated lighting or color.','Suit colors are photographic sample interpretations, not physical color measurements.','Linen microtexture is a generated material swatch; garment geometry, local colors, seams and hardware retain their registered source.']};
+ const provenance={schema:'hewrs.issue22.material-provenance.v1',issue:22,generated_linen:{path:'provenance/issue22/natural-linen-material-v1.png',sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/natural-linen-material-v1.png'))),purpose:'Neutral fine matte natural flax linen material; no garment design or avatar generated',tool:'built-in image_gen',prompt:'Square straight-on macro fine natural matte linen cloth, neutral light gray, subtle slubs and tiny soft crinkles, low contrast uniform lighting, no garment edges, seams, labels, logos or coarse holes.'},photographs:{},source_alpha_locked:true,source_files_unchanged:true};
+ for(const [id,layers]of Object.entries(SOURCES)){
+  const spec=SPECS[id];let texture=linenTexture,target=null;
+  if(!spec.linen){const color=await image('provenance/issue22/'+spec.photo),sample=await image('provenance/issue22/'+spec.texture_photo);target=medianRGB(color,spec.color_rect);texture=sampleTexture(sample,spec.texture_rect);for(const f of spec.reference_photos)provenance.photographs[f]={path:'provenance/issue22/'+f,sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/'+f))),role:'owner-supplied-garment-photo',id};}
+  manifest.garments[id]={description:spec.description,material:spec.linen?'linen':'photographic-suit-fabric',target_rgb:target,parameters:spec,source_layers:[]};
+  for(const[kind,hash]of Object.entries(layers)){
+   const sourcePath='assets/'+hash+'.png',bytes=fs.readFileSync(path.join(ROOT,sourcePath));if(sha(bytes)!==hash)throw Error('Source hash differs '+id+'/'+kind);
+   const source=await image(sourcePath);if(source.width!==W||source.height!==H)throw Error('Native source dimensions differ');
+   const rendered=project(source,id,kind,spec,texture,target),canvas=createCanvas(W,H),ctx=canvas.getContext('2d'),frame=ctx.createImageData(W,H);frame.data.set(rendered.data);ctx.putImageData(frame,0,0);const png=canvas.toBuffer('image/png'),displaySha=sha(png),url='assets/issue22-materials/'+id+'-'+kind+'-'+displaySha.slice(0,16)+'.png';fs.writeFileSync(path.join(ROOT,url),png);
+   manifest.assetPaths[displaySha]=url;manifest.bindings[hash]={garment_id:id,layer:kind,source_sha256:hash,source_url:sourcePath,display_sha256:displaySha,display_url:url,rect:[0,0,W,H],alpha_sha256:rendered.alpha_sha256,measurements:rendered.stats};manifest.garments[id].source_layers.push(hash);
+   console.log(id+'/'+kind+' '+JSON.stringify(rendered.stats)+' -> '+url);
+  }
+ }
+ fs.writeFileSync(path.join(ROOT,'data/issue22-materials.json'),JSON.stringify(manifest,null,2)+'\n');fs.writeFileSync(path.join(ROOT,'data/issue22-materials.js'),'globalThis.HEWRS_ISSUE22_MATERIALS='+JSON.stringify(manifest)+';\n');fs.writeFileSync(path.join(ROOT,'provenance/issue22/material-provenance.json'),JSON.stringify(provenance,null,2)+'\n');return manifest;
+}
+module.exports={build,SOURCES,SPECS,project,protectedDetails,preserveWeight,sha,texAt,sampleTexture};if(require.main===module)build().catch(e=>{console.error(e.stack||e);process.exitCode=1;});
