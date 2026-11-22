@@ -25,10 +25,12 @@ const DAMAGED_LEFT=new Set([
  'fae2f2c297c7c88c234bc3f0a1946827dd135aa7b75a21976a3b536890abd659',
  '1066bc14207a64eb007e5354356aca34c36f02332509d57bdf2cf3647bc97f58'
 ]);
-const spec=Object.freeze({revision:'AVATAR_V3_CONCEALED_CUFFS_2',canvas:Object.freeze([W,H]),
+const spec=Object.freeze({revision:'AVATAR_V3_CONCEALED_CUFFS_3',canvas:Object.freeze([W,H]),
  bounds:REGIONS,source_rows:Object.freeze([Y0,SOURCE_END]),
  hand_source_sha256:HANDS,source_preserving:true,shirt_only:'exact_pass_through',
  opaque_hand_pixels:'inherited_finished_frame_exact',
+ underlay:'selected-original-trousers-posed-once-no-avatar-exposure',
+ inner_seam:'selected-original-jacket-retained-to-fitted-sleeve-boundary',
  method:'selected-jacket-lower-sleeve-registration-to-original-wrist-cap',
  before_approved_arm_pose:false,approved_pose_applied_once_to_sources:true,
  source_matte_repair_jackets:Object.freeze([...DAMAGED_LEFT]),
@@ -105,7 +107,7 @@ function clothTone(data,geometry,left,a,b){
  }
  need(count>100,'no clean same-jacket cloth tone samples');return sum.map(n=>n/count);
 }
-function fitted(jacket,hands,sourceHash){
+function fitted(jacket,hands,sourceHash,trousers){
  const j=rgba(jacket),h=hands.map(rgba),c=canvas(),ctx=c.getContext('2d',{willReadFrequently:true}),patch=ctx.createImageData(W,H),details=[];
  const geometries=[sourceSleeve(j.data,0),sourceSleeve(j.data,1)],repairLeft=DAMAGED_LEFT.has(sourceHash);
  const cleanTone=repairLeft?clothTone(j.data,geometries[0],true,.3,.5):null,
@@ -115,15 +117,21 @@ function fitted(jacket,hands,sourceHash){
   const left=side===0,source=geometries[side],wrist=cap(h[side].data,side),[L,,width]=REGIONS[side],R=L+width;
   const interior=new Uint8ClampedArray(4);
   const donorLeft=left?source.outer[Y0]:source.inner[Y0],donorRight=left?source.inner[Y0]:source.outer[Y0];
+  const bottom=wrist.bottom;
   for(let y=Y0;y<Y1;y++)for(let x=L;x<R;x++){
    const i=(y*W+x)*4;
-   // Keep the selected jacket front on the torso side of its source seam.
-   // The old sleeve, cutout remnants and every source shirt cuff are absent.
-   if(left?x>source.inner[y]+1:x<source.inner[y]-1){
+   // Retain the selected jacket on the torso side of both seam boundaries.
+   // The fitted inner edge can move away from the original inner edge;
+   // clearing that corridor would cut a slit through the original jacket.
+   // Its exterior sleeve remains excluded, as do all separate shirt cuffs.
+   const t=Math.max(0,Math.min(1,(y-Y0)/(bottom-Y0))),weight=smooth(t);
+   const fittedInner=left?donorRight+(wrist.x1-donorRight)*weight:donorLeft+(wrist.x0-donorLeft)*weight;
+   const keepSource=left?x>source.inner[y]+1:x<source.inner[y]-1;
+   const keepInner=y<=Math.ceil(bottom)&&(left?x+1>fittedInner:x<fittedInner);
+   if(keepSource||keepInner){
     patch.data.set(j.data.subarray(i,i+4),i);
    }
   }
-  const bottom=wrist.bottom;
   for(let y=Y0;y<=Math.ceil(bottom);y++){
    const t=Math.max(0,Math.min(1,(y-Y0)/(bottom-Y0))),weight=smooth(t);
    const l=donorLeft+(wrist.x0-donorLeft)*weight,r=donorRight+(wrist.x1-donorRight)*weight;
@@ -136,6 +144,7 @@ function fitted(jacket,hands,sourceHash){
     const a=interpolate(left?source.outer:source.inner),b=interpolate(left?source.inner:source.outer);
     // Interior sampling avoids propagating translucent source matte pixels.
     const sx=a+.6+u*Math.max(1,b-a-1.2),i=(y*W+x)*4;
+    const underlay=patch.data.slice(i,i+4);
     sample(j.data,sx,sy,patch.data,i,coverage);
     if(left&&repairLeft){
      const donor=geometries[1],dl=interpolate(donor.inner),dr=interpolate(donor.outer),dx=dl+(dr-dl)*(.16+.68*u);
@@ -143,6 +152,13 @@ function fitted(jacket,hands,sourceHash){
      const blend=smooth(Math.min(1,(y-Y0)/34));
      for(let k=0;k<3;k++)patch.data[i+k]=patch.data[i+k]*(1-blend)+Math.max(0,Math.min(255,interior[k]+tone[k]))*blend;
      patch.data[i+3]=patch.data[i+3]*(1-blend)+interior[3]*blend;
+    }
+    // A fitted edge is antialiased foreground over the retained original
+    // seam, not an instruction to erase its source-backed background.
+    if(underlay[3]&&patch.data[i+3]<255){
+     const foreground=patch.data[i+3]/255,background=underlay[3]/255*(1-foreground),alpha=foreground+background;
+     for(let k=0;k<3;k++)patch.data[i+k]=(patch.data[i+k]*foreground+underlay[k]*background)/alpha;
+     patch.data[i+3]=alpha*255;
     }
    }
   }
@@ -157,6 +173,21 @@ function fitted(jacket,hands,sourceHash){
  // Original approved hands receive the exact approved pose once. Copy the
  // resulting source pixels, never a second pose, fitted or repainted hand.
  for(const hand of h){const hc=canvas();hc.getContext('2d').putImageData(hand,0,0);ctx.drawImage(hc,0,0);clear(hc);}
+ // The fitted sleeve is foreground, not an entire replacement background.
+ // Preserve the selected original trousers beneath its transparent
+ // and antialiased pixels. Using the inherited finished frame here would
+ // reintroduce the shirt cuffs that this layer deliberately conceals.
+ // Raw avatar forearms are deliberately excluded: their source extends
+ // outside the fitted sleeve silhouette and would expose bare skin. The
+ // registered trouser source receives the unchanged approved pose once.
+ const lower=canvas(),lc=lower.getContext('2d',{willReadFrequently:true});
+ try{
+  lc.drawImage(trousers,0,0);
+  const background=lc.getImageData(0,0,W,H);
+  root.HEWRSAvatarV3ArmPose.apply(background);lc.putImageData(background,0,0);
+  ctx.globalCompositeOperation='destination-over';ctx.drawImage(lower,0,0);
+  ctx.globalCompositeOperation='source-over';
+ }finally{clear(lower);}
  const result=REGIONS.map(([x,y,w,h])=>ctx.getImageData(x,y,w,h));
  // The finished inherited frame has already posed the full composition.
  // Posing isolated source hands can differ from that composition by one
@@ -182,17 +213,19 @@ function create(visible,connection,options={}){
   if(connection.shirtOnlyConnection.isShirtOnly(s)||s.state==='REFERENCE')return null;
   if(connection.blazerConnection.isBlazer(s)){
    const b=connection.blazerConnection.knownBlazer(s.blazerId),j=b.assembly?.jacket||b.checkpoint_layer;
-   return {id:s.blazerId,jacket:j,hands:connection.blazerConnection.data.assembly.hands};
+   return {id:s.blazerId,jacket:j,hands:connection.blazerConnection.data.assembly.hands,trousers:connection.blazerConnection.knownPant(s.pantId).layer};
   }
   const m=connection.assemblies.forSelection(s.suitId,s.shoeId,s.shirtId);
-  return {id:s.suitId,jacket:m.static.jacket,hands:[m.static.left_hand,m.static.right_hand]};
+  return {id:s.suitId,jacket:m.static.jacket,hands:[m.static.left_hand,m.static.right_hand],trousers:m.static.trousers};
  }
  async function correction(p){
-  const key=p.jacket.sha256+'|'+p.hands.map(h=>h.sha256).join('|');
+  const key=[p.jacket,...p.hands,p.trousers].map(d=>d.sha256).join('|');
   if(cache.has(key)){const value=cache.get(key);cache.delete(key);cache.set(key,value);return value;}
   need(p.hands.map(h=>h.sha256).join(',')===HANDS.join(','),'unapproved hand source');
-  for(const d of [p.jacket,...p.hands])need(d.rect?.join(',')==='0,0,996,2748'&&Object.hasOwn(connection.assetPaths,d.sha256),'unbound garment source');
-  const images=await Promise.all([p.jacket,...p.hands].map(d=>loads.load(d))),value=fitted(images[0],images.slice(1),p.jacket.sha256);
+  for(const d of [p.jacket,...p.hands,p.trousers])need(d.rect?.join(',')==='0,0,996,2748'&&Object.hasOwn(connection.assetPaths,d.sha256),'unbound garment source');
+  need(!p.trousers.display_alpha_mask,'selected trouser mask is not registered for cuff fitting');
+  const images=await Promise.all([p.jacket,...p.hands,p.trousers].map(d=>loads.load(d))),value=fitted(images[0],images.slice(1,3),p.jacket.sha256,images[3]);
+  value.trouser_sha256=p.trousers.sha256;
   value.jacket_id=p.id;value.source_sha256=p.jacket.sha256;for(const d of value.details)d.source_sha256=p.jacket.sha256;
   cache.set(key,value);while(cache.size>2)cache.delete(cache.keys().next().value);return value;
  }
@@ -225,7 +258,7 @@ function create(visible,connection,options={}){
  function cancel(){epoch++;engine.cancel();loads.cancel();visible.dataset.loading='false';visible.dataset.status=last?'ready':'empty';}
  return Object.freeze({render,cancel,plan:s=>engine.plan(s),last:()=>last?structuredClone(last):null,
   stats:()=>({...engine.stats(),avatarV3CuffFit:{revision:spec.revision,cache_size:cache.size,
-   jackets:[...cache.values()].map(x=>({jacket_id:x.jacket_id,source_sha256:x.source_sha256,wrists:x.details}))},epoch})});
+   jackets:[...cache.values()].map(x=>({jacket_id:x.jacket_id,source_sha256:x.source_sha256,trouser_sha256:x.trouser_sha256,wrists:x.details}))},epoch})});
 }
 need(prior?.create&&root.HEWRSRenderImageLoader?.create,'renderer dependencies unavailable');
 need(root.HEWRSAvatarV3ArmPose?.spec?.revision==='AVATAR_V3_ARM_POSE_CANDIDATE_1','install after the approved arm pose');

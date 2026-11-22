@@ -54,7 +54,11 @@ JACKET_GAPS = json.loads((ROOT / 'tests/issue19-jacket-gap-fixtures.json').read_
 PARTIAL_TIES = json.loads((ROOT / 'tests/issue19-partial-tie-backing-fixtures.json').read_text())
 SHOULDER_EDGES = json.loads((ROOT / 'tests/issue19-outer-shoulder-fixtures.json').read_text())
 B02_MASK = json.loads((ROOT / 'tests/issue19-b02-mask-fixtures.json').read_text())
+CUFF_UNDERLAYS = json.loads((ROOT / 'tests/issue19-cuff-underlay-fixtures.json').read_text())
 assert hashlib.sha256((ROOT / B02_MASK['data_path']).read_bytes()).hexdigest() == B02_MASK['data_sha256']
+assert CUFF_UNDERLAYS['baseline_commit'] == BASELINE
+assert CUFF_UNDERLAYS['cuff_bounds_xywh'] == [[x, y, r - x, b - y] for x, y, r, b in CUFF_RECTS]
+assert hashlib.sha256((ROOT / 'src/avatar-v3-pose.js').read_bytes()).hexdigest() == CUFF_UNDERLAYS['approved_pose_source_sha256']
 
 spec = importlib.util.spec_from_file_location('existing_v3_fit', ROOT / 'tests/avatar-v3-fit-browser.py')
 FIT = importlib.util.module_from_spec(spec)
@@ -256,6 +260,198 @@ AVATAR_SOURCE = r'''async()=>{
  i.src=HEWRSApp.resolveUrl(d);await i.decode();c.getContext('2d').drawImage(i,0,0);
  return c.toDataURL('image/png');
 }'''
+
+CUFF_UNDERLAY_IDENTITY = r'''s=>{
+ const c=HEWRSApp.connection,p=HEWRSApp.renderer.plan(s);
+ let sources;
+ if(s.blazerId){
+  const b=c.blazerConnection.knownBlazer(s.blazerId);
+  sources={avatar:c.manifest.static.avatar,shoes:c.shoeLayers[s.shoeId],
+   pants:c.blazerConnection.knownPant(s.pantId).layer,jacket:b.assembly?.jacket||b.checkpoint_layer,
+   hands:c.blazerConnection.data.assembly.hands};
+ }else{
+  const m=c.assemblies.forSelection(s.suitId,s.shoeId,s.shirtId).static;
+  sources={avatar:m.avatar,shoes:m.shoe,pants:m.trousers,jacket:m.jacket,hands:[m.left_hand,m.right_hand]};
+ }
+ // This runs in the immutable published baseline, independently of the
+ // candidate cuff wrapper. The original suit renderer and continuous/blazer
+ // renderers have different lower-source orders; establish both explicitly.
+ const legacySuit=!s.blazerId&&!c.continuousShirts.ids.includes(s.shirtId);
+ if(Array.isArray(p)!==legacySuit)throw Error('Original lower-source route differs');
+ const order=legacySuit?['shoes','pants','avatar']:['avatar','shoes','pants'];
+ const expected=order.map(role=>sources[role].sha256);
+ const actual=legacySuit?p.filter(d=>expected.includes(d.sha256)).map(d=>d.sha256):[p.avatar,p.shoes,p.pants].map(d=>d.sha256);
+ if(JSON.stringify(actual)!==JSON.stringify(expected))throw Error('Original lower-source order differs');
+ return JSON.stringify({sources,order});
+}'''
+
+CUFF_UNDERLAY_SOURCE = r'''async ({identity,points,rectangles})=>{
+ if(HEWRSAvatarV3ArmPose.spec.revision!=='AVATAR_V3_ARM_POSE_CANDIDATE_1')throw Error('Approved original pose differs');
+ const W=996,H=2748,canvases=[],verified=new Set();
+ function canvas(){const c=document.createElement('canvas');c.width=W;c.height=H;canvases.push(c);return c;}
+ async function image(d){
+  if(d.rect.join(',')!=='0,0,996,2748')throw Error('Original cuff source dimensions differ');
+  const url=HEWRSApp.resolveUrl(d),response=await fetch(url);
+  if(!response.ok)throw Error('Original cuff source request failed');
+  const bytes=await response.arrayBuffer();
+  const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),v=>v.toString(16).padStart(2,'0')).join('');
+  if(hash!==d.sha256)throw Error('Original cuff source bytes differ');verified.add(hash);
+  const im=new Image();im.src=url;await im.decode();
+  if(im.naturalWidth!==W||im.naturalHeight!==H)throw Error('Decoded original source dimensions differ');
+  const c=canvas(),ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(im,0,0);
+  if(d.display_alpha_mask){ctx.globalCompositeOperation='destination-in';ctx.drawImage(await image(d.display_alpha_mask),0,0);ctx.globalCompositeOperation='source-over';}
+  return c;
+ }
+ function posed(c){const ctx=c.getContext('2d',{willReadFrequently:true}),p=ctx.getImageData(0,0,W,H);HEWRSAvatarV3ArmPose.apply(p);return p;}
+ const pixel=(frame,[x,y])=>Array.from(frame.data.slice((y*W+x)*4,(y*W+x)*4+4));
+ try{
+  const source=identity.sources,images={},frames={};
+  for(const role of ['avatar','shoes','pants']){images[role]=await image(source[role]);frames[role]=posed(images[role]);}
+  const lower=canvas(),lc=lower.getContext('2d',{willReadFrequently:true});
+  for(const role of identity.order)lc.drawImage(images[role],0,0);
+  const stack=posed(lower);let compared=0,overlap=0,wrong=0;
+  for(const [x,y,r,b]of rectangles)for(let yy=y;yy<b;yy++)for(let xx=x;xx<r;xx++){
+   const i=(yy*W+xx)*4;if(!frames.pants.data[i+3])continue;compared++;
+   if(frames.avatar.data[i+3]||frames.shoes.data[i+3])overlap++;
+   if([0,1,2,3].some(k=>stack.data[i+k]!==frames.pants.data[i+k]))wrong++;
+  }
+  if(!compared||overlap||wrong)throw Error('Selected trousers are not independent of the original lower-source stack in cuff bounds');
+  const output=canvas();output.getContext('2d',{willReadFrequently:true}).putImageData(frames.pants,0,0);
+  const controls=[];
+  if(points.length){
+   frames.jacket=posed(await image(source.jacket));
+   frames.hands=[];for(const hand of source.hands)frames.hands.push(posed(await image(hand)));
+   const original=canvas(),oc=original.getContext('2d',{willReadFrequently:true});
+   oc.putImageData(frames.jacket,0,0);oc.globalCompositeOperation='destination-over';oc.drawImage(output,0,0);
+   const jacketOverTrousers=oc.getImageData(0,0,W,H);
+   for(const xy of points)controls.push({xy,avatar:pixel(frames.avatar,xy),pants:pixel(frames.pants,xy),
+    jacket:pixel(frames.jacket,xy),jacket_over_trousers:pixel(jacketOverTrousers,xy),
+    hands:frames.hands.map(frame=>pixel(frame,xy))});
+  }
+  return {png:output.toDataURL('image/png'),controls,original_stack_pixels_compared:compared,
+   original_stack_disagreements:wrong,original_avatar_or_shoe_overlap:overlap,verified_source_sha256:[...verified].sort()};
+ }finally{for(const c of canvases)c.width=c.height=1;}
+}'''
+
+
+def cuff_underlay_source(baseline_page, selected, cache):
+    """Decode original pants and the original pose in the pinned baseline page."""
+    if selected.get('shirtOnly'):
+        return None
+    key = baseline_page.evaluate(CUFF_UNDERLAY_IDENTITY, selected)
+    if key not in cache:
+        identity = json.loads(key)
+        mode = selected.get('suitId') or selected.get('blazerId')
+        cases = [row for row in CUFF_UNDERLAYS['cases'] if row['mode'] == mode]
+        points = sorted({tuple(xy) for row in cases for kind in
+                         ('exact_underlay_points_xy', 'transparent_exterior_points_xy', 'avatar_only_exposure_controls_xy',
+                          'positive_jacket_coverage_points_xy', 'exact_original_jacket_points_xy',
+                          'exact_original_jacket_over_trousers_points_xy', 'exact_original_jacket_aa_points_xy')
+                         for xy in row.get(kind, [])})
+        captured = baseline_page.evaluate(CUFF_UNDERLAY_SOURCE,
+                                         {'identity': identity, 'points': points, 'rectangles': CUFF_RECTS})
+        image = Image.open(io.BytesIO(base64.b64decode(captured.pop('png').split(',', 1)[1]))).convert('RGBA')
+        assert image.size == (996, 2748)
+        proof = {'identity_sha256': digest(key.encode()), 'identity': identity, **captured,
+                 'posed_original_trousers_rgba_sha256': digest(image.tobytes()),
+                 'reference': 'exact_published_baseline_sources_and_approved_pose_once'}
+        cache[key] = {'image': image, 'proof': proof, 'cases': cases,
+                      'controls': {tuple(row['xy']): row for row in captured['controls']}}
+        # Cases are grouped by jacket; its legacy and continuous source
+        # orders need at most two originals. Bound retained native RGBA data
+        # independently of the number of captures in the complete matrix.
+        while len(cache) > 4:
+            del cache[next(iter(cache))]
+    else:
+        value = cache.pop(key)
+        cache[key] = value
+    return cache[key]
+
+
+def cuff_underlay_samples(image, reference):
+    """Check current frames against original trousers, never new fit counters."""
+    if reference is None:
+        return None
+    source, proof = reference['image'], reference['proof']
+    checked, lost = 0, 0
+    for rectangle in CUFF_RECTS:
+        opaque = source.crop(rectangle).getchannel('A').point(lambda alpha: 255 if alpha == 255 else 0)
+        missing = image.crop(rectangle).getchannel('A').point(lambda alpha: 0 if alpha == 255 else 255)
+        checked += opaque.histogram()[255]
+        lost += ImageChops.multiply(opaque, missing).histogram()[255]
+    assert checked > 0, 'Original selected trousers have no cuff-bound coverage'
+    result = {'reference_identity_sha256': proof['identity_sha256'], 'opaque_original_trouser_pixels': checked,
+              'opaque_trouser_pixels_lost': lost, 'positive_points_checked': 0, 'positive_points_wrong': 0,
+              'exact_original_trouser_controls': [], 'transparent_exterior_controls': [],
+              'original_jacket_points_checked': 0, 'original_jacket_coverage_lost': 0,
+              'exact_original_jacket_controls': [], 'exact_original_jacket_over_trousers_controls': [],
+              'exact_original_jacket_antialias_controls': [],
+              'concealed_avatar_exterior_controls': [], 'fixed_control_failures': []}
+    sources = proof['identity']['sources']
+    for fixture in reference['cases']:
+        expected = fixture['source_hashes']
+        for role in ('avatar', 'pants', 'shoes', 'jacket'):
+            assert sources[role]['sha256'] == expected[role], ('Original cuff source binding', role)
+        assert [d['sha256'] for d in sources['hands']] == expected['hands']
+        assert (sources['jacket'].get('display_alpha_mask') or {}).get('sha256') == expected.get('jacket_alpha_mask')
+        for xy in fixture.get('positive_coverage_points_xy', []):
+            assert source.getpixel(tuple(xy))[3] == 255, ('Audited original trouser coverage', xy)
+            result['positive_points_checked'] += 1
+            result['positive_points_wrong'] += image.getpixel(tuple(xy))[3] != 255
+        for xy in fixture.get('exact_underlay_points_xy', []):
+            point = tuple(xy); control = reference['controls'][point]
+            assert control['jacket'][3] == 0 and all(hand[3] == 0 for hand in control['hands'])
+            rgba, original = image.getpixel(point), source.getpixel(point)
+            result['exact_original_trouser_controls'].append({'xy': xy, 'rgba': rgba, 'original_rgba': original})
+            if rgba != original:
+                result['fixed_control_failures'].append({'kind': 'original_trousers', 'xy': xy, 'rgba': rgba, 'expected': original})
+        for xy in fixture.get('transparent_exterior_points_xy', []):
+            point = tuple(xy); control = reference['controls'][point]
+            assert source.getpixel(point)[3] == control['jacket'][3] == 0 and all(hand[3] == 0 for hand in control['hands'])
+            rgba = image.getpixel(point)
+            result['transparent_exterior_controls'].append({'xy': xy, 'rgba': rgba})
+            if rgba[3] != 0:
+                result['fixed_control_failures'].append({'kind': 'true_exterior', 'xy': xy, 'rgba': rgba})
+        for xy in fixture.get('avatar_only_exposure_controls_xy', []):
+            point = tuple(xy); control = reference['controls'][point]
+            assert source.getpixel(point)[3] == 0 and control['avatar'][3] > 0
+            rgba = image.getpixel(point)
+            result['concealed_avatar_exterior_controls'].append({'xy': xy, 'rgba': rgba, 'original_avatar_rgba': control['avatar']})
+            if rgba[3] != 0:
+                result['fixed_control_failures'].append({'kind': 'unwanted_avatar_exposure', 'xy': xy, 'rgba': rgba})
+        for xy in fixture.get('positive_jacket_coverage_points_xy', []):
+            point = tuple(xy); control = reference['controls'][point]
+            assert control['jacket'][3] > 0 and all(hand[3] == 0 for hand in control['hands'])
+            result['original_jacket_points_checked'] += 1
+            result['original_jacket_coverage_lost'] += image.getpixel(point)[3] < control['jacket'][3]
+        for xy in fixture.get('exact_original_jacket_points_xy', []):
+            point = tuple(xy); control = reference['controls'][point]
+            assert control['jacket'][3] == 255 and all(hand[3] == 0 for hand in control['hands'])
+            rgba, original = image.getpixel(point), tuple(control['jacket'])
+            result['exact_original_jacket_controls'].append({'xy': xy, 'rgba': rgba, 'original_rgba': original})
+            if rgba != original:
+                result['fixed_control_failures'].append({'kind': 'original_jacket', 'xy': xy, 'rgba': rgba, 'expected': original})
+        # These frozen points had zero fitted foreground in the rejected
+        # runtime. Their expected original jacket over selected trousers is
+        # independent of the new seam implementation. Other partially fitted
+        # points use the source-coverage gate, not a doubled old foreground.
+        for xy in fixture.get('exact_original_jacket_over_trousers_points_xy', []):
+            point = tuple(xy); control = reference['controls'][point]
+            assert control['jacket'][3] > 0 and all(hand[3] == 0 for hand in control['hands'])
+            rgba, original = image.getpixel(point), tuple(control['jacket_over_trousers'])
+            result['exact_original_jacket_over_trousers_controls'].append({'xy': xy, 'rgba': rgba, 'original_rgba': original})
+            if rgba != original:
+                result['fixed_control_failures'].append({'kind': 'original_jacket_over_trousers', 'xy': xy, 'rgba': rgba, 'expected': original})
+        for xy in fixture.get('exact_original_jacket_aa_points_xy', []):
+            point = tuple(xy); control = reference['controls'][point]
+            assert 0 < control['jacket'][3] < 255 and control['pants'][3] == 0
+            assert all(hand[3] == 0 for hand in control['hands'])
+            rgba, original = image.getpixel(point), tuple(control['jacket_over_trousers'])
+            result['exact_original_jacket_antialias_controls'].append({'xy': xy, 'rgba': rgba, 'original_rgba': original})
+            if rgba != original:
+                result['fixed_control_failures'].append({'kind': 'original_jacket_antialias', 'xy': xy, 'rgba': rgba, 'expected': original})
+    return result
+
 
 JACKET_SHOULDER_SOURCE = r'''async s=>{
  const c=HEWRSApp.connection,p=HEWRSApp.renderer.plan(s);
@@ -577,6 +773,8 @@ def run(args):
               'external_requests': external, 'owner_data_accessed': False,
               'application_url': live_origin, 'application_response_source': 'live_https_only' if live_origin else 'local_checkout_http',
               'retained_collar_reference_runtime_sha256': reference_sha,
+              'cuff_underlay_fixture_sha256': digest((ROOT / 'tests/issue19-cuff-underlay-fixtures.json').read_bytes()),
+              'cuff_underlay_source_oracles': {},
               'visual_acceptance': 'requires_independent_inspection_of_actual_captures'}
 
     def check(name, condition, detail=None):
@@ -652,10 +850,12 @@ def run(args):
                   and features['collar']['jacket_inner_shoulder_neck_distance'] == 50
                   and features['collar']['tied_neck_corner_cleanup'] == [[422, 401, 19, 19], [560, 405, 15, 15]])
             check('Concealed cuffs use bounded selected-jacket sleeves and preserve shirt-only',
-                  features['cuff']['revision'] == 'AVATAR_V3_CONCEALED_CUFFS_2'
+                  features['cuff']['revision'] == 'AVATAR_V3_CONCEALED_CUFFS_3'
                   and features['cuff']['bounds'] == [[20, 1180, 240, 246], [736, 1180, 240, 246]]
                   and features['cuff']['shirt_only'] == 'exact_pass_through'
-                  and features['cuff']['opaque_hand_pixels'] == 'inherited_finished_frame_exact')
+                  and features['cuff']['opaque_hand_pixels'] == 'inherited_finished_frame_exact'
+                  and features['cuff']['underlay'] == 'selected-original-trousers-posed-once-no-avatar-exposure'
+                  and features['cuff']['inner_seam'] == 'selected-original-jacket-retained-to-fitted-sleeve-boundary')
             report['fit_contracts'] = features
             report['runtime'] = after.evaluate("()=>document.querySelector('script[src^=\"runtime/\"]').getAttribute('src')")
             fidelity = after.evaluate('()=>HEWRSApp.connection.tieFidelity.data')
@@ -677,6 +877,7 @@ def run(args):
             report['opaque_hand_mask_sha256'] = digest(hand_mask.tobytes())
             old_state, new_state = before.evaluate(FIT.PROTECTED), after.evaluate(FIT.PROTECTED)
             wrist_references = {}
+            original_cuff_underlays = {}
             original_shoulders = {}
             retained_references = {}
             phone_modes = set()
@@ -727,6 +928,16 @@ def run(args):
                 differences = change_check(old_image, new_image, selected, hand_mask, avatar_source, original_shoulder)
                 check(name + ': corrections stay inside independent fit boundaries', differences['outside_allowed_pixels'] == 0, differences)
                 check(name + ': approved opaque hand pixels remain exact', differences['opaque_hand_pixels_changed'] == 0, differences)
+                cuff_reference = cuff_underlay_source(before, selected, original_cuff_underlays)
+                cuff_samples = cuff_underlay_samples(new_image, cuff_reference)
+                if cuff_samples is not None:
+                    proof = cuff_reference['proof']
+                    report['cuff_underlay_source_oracles'][proof['identity_sha256']] = proof
+                    check(name + ': original trouser and jacket ownership survives cuff fitting with fixed exterior controls',
+                          cuff_samples['opaque_trouser_pixels_lost'] == 0
+                          and cuff_samples['positive_points_wrong'] == 0
+                          and cuff_samples['original_jacket_coverage_lost'] == 0
+                          and not cuff_samples['fixed_control_failures'], cuff_samples)
                 check(name + ': approved head, legs and footwear remain exact', old['head_sha256'] == new['head_sha256'] and old['lower_sha256'] == new['lower_sha256'])
                 check(name + ': approved central face and chin remain exact outside source-restoration slots', old['face_and_chin_sha256'] == new['face_and_chin_sha256'])
                 check(name + ': tied neck cleanup restores exact original avatar pixels', differences['neck_corner_wrong_source_pixels'] == 0, differences)
@@ -827,6 +1038,7 @@ def run(args):
                                  'jacket_aperture_regressions': jacket_samples,
                                  'partial_tie_backing_regressions': partial_tie_samples,
                                  'b02_source_mask_regressions': b02_samples,
+                                 'cuff_underlay_regressions': cuff_samples,
                                  'shoulder_edge_regressions': edge_samples,
                                  'differences': differences, **details})
                 if index % 12 == 0 or index == len(rows) - 1:

@@ -215,6 +215,48 @@ retained exactly, including browser-specific rounding. Damaged left-sleeve
 matte on the affected blazer sources uses the same jacket's intact sleeve
 interior, without changing its source photograph or ID.
 
+An independent final visual audit rejected runtime `44233e6c…` after finding
+an enclosed transparent sliver beside S03's left wrist. The old cuff patch
+replaced its entire rectangle using jacket and hand sources alone, erasing
+legitimate selected-trouser pixels beneath the hand. The observed component
+contains 194 pixels below alpha 128, including 61 fully transparent pixels,
+inside `[219,1387,235,1426]` in native XYXY coordinates. It ends at the cuff
+patch boundary and is not an original exterior gap or white shirt fabric.
+
+The corrected cuff layer composes only the selected original trousers behind
+the fitted sleeve and hands. The approved pose is applied once to that original
+trouser source. The raw avatar forearm is excluded: restoring it outside the
+fitted sleeve would introduce a bare-skin strip, a separately rejected local
+candidate. Fixed exterior controls prevent that new exposure. Existing
+opaque sleeve pixels and the exact inherited opaque hands remain protected.
+All 27 distinct original trouser sources were independently checked against
+both original lower-layer orders in the cuff bounds: their covered pixels
+have no avatar/shoe overlap and reproduce the original selected-trouser
+contribution exactly. The old complete outfit is never used as backing, so
+shirt cuffs cannot be reintroduced. Every change remains inside the existing
+two cuff rectangles. The selected trouser source identity joins the correction
+cache key, preventing one trouser source from being reused for another.
+
+The same review found a separate B15 inner-seam defect. Its upper component
+contains 324 pixels inside `[770,1180,783,1291]`; all belong to the unchanged
+original jacket, including 103 opaque pixels. Restoring trousers alone leaves
+part of that seam transparent and paints other jacket pixels as trouser cloth.
+The corrected layer retains original jacket material on the torso side of
+the fitted sleeve's inner boundary as well as the original torso boundary.
+The fitted antialiased edge is composed over that retained material, rather
+than erasing it. The outer sleeve silhouette, source photographs, wrist cap
+and approved pose remain unchanged. This rule applies to every selected
+jacket; it is not a painted patch or a B15 color substitution.
+
+The independent cuff-underlay fixture and native/browser checks positively
+verify the observed missing trouser and jacket material against original
+sources, preserve true exterior transparency and approved hands, and exercise
+changing and restoring selected blazer trousers. Original-jacket seam
+allowances must be independently bound to the immutable previous geometry
+and exact selected source. They cannot exempt arbitrary cuff-region changes.
+The earlier passing cuff-contact checks did not cover these failures and do
+not approve the rejected runtime.
+
 Shirt-only and reference outfits pass through without cuff changes. The wrapper
 uses a bounded cache and retains the last complete frame on cancellation or a
 failed replacement.
@@ -297,6 +339,10 @@ The [Issue 19 workflow](../../.github/workflows/issue19-validation.yml) runs:
   replacement, exports, persistence, failed-read and cross-tab recovery tests.
 - Chromium and WebKit functional tests for state, tie feedback, reasons and
   lifecycle, plus Home preferences and storage recovery.
+- A cuff-source preflight in both engines verifies the fixed S03 trouser
+  component in two legacy collar states and B15's original inner jacket seam
+  with a continuous shirt. Both preflights must pass before the exhaustive
+  fit jobs begin; they supplement the complete matrix rather than replace it.
 - Every supported shirt/state/topwear route: 3,172 actual paired frames per
   browser across 18 suits, 15 blazers and shirt-only.
 - Another 1,610 paired frames per browser: the other 46 ties across the 32 routes

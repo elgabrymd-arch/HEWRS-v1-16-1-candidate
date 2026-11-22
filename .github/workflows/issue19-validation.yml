@@ -65,7 +65,7 @@ jobs:
           NODE_PATH: /tmp/hewrs-issue19-deps/node_modules
         run: |
           mkdir -p evidence/issue19/native
-          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs tests/avatar-v3-shirt-collar-fit.cjs | tee evidence/issue19/native/fit-contracts.log
+          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs tests/avatar-v3-shirt-collar-fit.cjs tests/issue19-cuff-underlay.cjs | tee evidence/issue19/native/fit-contracts.log
           node --expose-gc tests/continuous-shirts-bundle.cjs | tee evidence/issue19/native/compiled-runtime.log
       - name: Run complete existing five-round application regressions
         env:
@@ -149,9 +149,38 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  cuff-source-preflight:
+    name: Original cuff underlay and jacket seam — ${{ matrix.browser }}
+    needs: native-source-and-application
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Check original S03 trousers in both legacy collar states
+        run: python tests/issue19-browser.py --browser '${{ matrix.browser }}' --suite shirts --shard 0 --shards 1 --only-mode S03 --limit 2 --output evidence/issue19/cuff-preflight
+      - name: Check original B15 inner jacket seam with a continuous shirt
+        run: python tests/issue19-browser.py --browser '${{ matrix.browser }}' --suite ties --shard 0 --shards 1 --only-mode B15 --limit 1 --output evidence/issue19/cuff-preflight
+      - name: Preserve exact source controls and actual browser captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_CUFF_PREFLIGHT_${{ matrix.browser }}
+          path: evidence/issue19/cuff-preflight/${{ matrix.browser }}/
+          if-no-files-found: error
+          retention-days: 30
+
   exhaustive-fit:
     name: All garment routes — ${{ matrix.browser }} — ${{ matrix.suite }} — ${{ matrix.shard }}
-    needs: native-source-and-application
+    needs: [native-source-and-application, cuff-source-preflight]
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     strategy:
