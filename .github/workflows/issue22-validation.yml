@@ -101,15 +101,6 @@ jobs:
         run: |
           mkdir -p evidence/issue22/ci
           node --expose-gc tests/issue22-render-matrix.cjs --shard '${{ matrix.shard }}' --shards 4 | tee evidence/issue22/ci/native-matrix.log
-      - name: Verify the retained collar, tie, cuff and V2 contracts
-        if: matrix.shard == 1
-        env:
-          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
-        run: |
-          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs | tee evidence/issue22/ci/current-fit.log
-          NODE_OPTIONS=--require=./tests/issue22-retained-source-baseline.cjs node --expose-gc tests/avatar-v3-shirt-collar-fit.cjs | tee evidence/issue22/ci/historical-collar-contract.log
-          NODE_OPTIONS=--require=./tests/issue22-retained-source-baseline.cjs node --expose-gc tests/issue19-cuff-underlay.cjs | tee evidence/issue22/ci/historical-cuff-contract.log
-          node --expose-gc tests/continuous-shirts-bundle.cjs | tee evidence/issue22/ci/retained-v2.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -117,6 +108,58 @@ jobs:
           path: |
             evidence/issue22/native/
             evidence/issue22/ci/
+          if-no-files-found: error
+          retention-days: 30
+
+  retained-fit:
+    name: Retained collar, tie, cuff and V2 contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned native rendering dependencies
+        run: npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
+      - name: Verify current source ownership, full historical collar coverage and retained V2
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/retained-fit
+          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs | tee evidence/issue22/retained-fit/current-fit.log
+          NODE_OPTIONS=--require=./tests/issue22-retained-source-baseline.cjs node --expose-gc tests/avatar-v3-shirt-collar-fit.cjs | tee evidence/issue22/retained-fit/historical-collar-contract.log
+          node --expose-gc tests/continuous-shirts-bundle.cjs | tee evidence/issue22/retained-fit/retained-v2.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_RETAINED_FIT
+          path: evidence/issue22/retained-fit/
+          if-no-files-found: error
+          retention-days: 30
+
+  retained-cuff:
+    name: Complete retained cuff source and cache contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned native rendering dependencies
+        run: npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
+      - name: Verify all 27 original trouser sources, all 33 garments, cache restoration and shirt-only controls
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/retained-cuff
+          python3 tests/issue22-retained-cuff.py | tee evidence/issue22/retained-cuff/full-source-contract.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_RETAINED_CUFF
+          path: evidence/issue22/retained-cuff/
           if-no-files-found: error
           retention-days: 30
 
@@ -240,7 +283,7 @@ jobs:
   issue22-required:
     name: Issue 22 required validation
     if: always()
-    needs: [source-and-matching, native-visual, functional, browser-visual, browser-functional, storage-recovery]
+    needs: [source-and-matching, native-visual, retained-fit, retained-cuff, functional, browser-visual, browser-functional, storage-recovery]
     runs-on: ubuntu-24.04
     steps:
       - name: Require every validation job to succeed
