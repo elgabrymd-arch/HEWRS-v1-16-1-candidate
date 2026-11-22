@@ -73,7 +73,7 @@ ELIGIBILITY = r'''async ({id,style,occasion}) => {
    ...Object.fromEntries(['topwear','shirt','tie','shoes','bottoms','watch'].map(k=>[k,{mode:'any'}])),
    topwear:{mode:'item',id:alias},watch:{mode:'none'}},
    localDate:'2026-11-22',occasion,style,formality:'any',environment:{source:'not_assessed',date:'2026-11-22'}};
- const q=c.makeRequest(config),result=c.controller.generate(q,c.catalogue,[]);
+ const q=c.makeRequest(config),result=await c.controller.generateAsync(q,c.catalogue,[]);
  if(!c.controller.verifyOptionSet(result.options,q))throw Error('Actual engine option-set verification failed');
  const rows=result.options.map(option=>{
    const selection=c.selectionFromOption(option,q).selection,owner=HEWRSOutfitFeedback.ownerRuleCheck(selection,{context:q.context});
@@ -152,6 +152,13 @@ def context_rows():
             for garment in GARMENTS for style in STYLES for occasion in OCCASIONS]
 
 
+def expected_eligible(query):
+    # Existing owner/use-case and strict style restrictions are part of this
+    # acceptance matrix. Every other target context must produce a real frame.
+    return query['id'] != 'B01' and not (query['id'] in {'B06', 'B10'}
+                                        and query['style'] in {'CLASSIC', 'HYBRID'})
+
+
 def part(rows, args):
     return [row for index, row in enumerate(rows) if index % args.shards == args.shard - 1]
 
@@ -194,6 +201,8 @@ def run(args):
               'baseline_commit': BASELINE_COMMIT, 'baseline_entrypoint': BASELINE,
               'shard': args.shard, 'shards': args.shards, 'shards_are_one_based': True,
               'expected_contexts': len(contexts), 'expected_render_fixtures': len(rows),
+              'expected_eligible_contexts': sum(expected_eligible(query) for query in contexts),
+              'expected_capture_pairs': len(rows) + sum(expected_eligible(query) for query in contexts),
               'checks': checks, 'captures': captures, 'eligibility': eligibility,
               'page_errors': errors, 'bad_requests': bad_requests, 'external_requests': external,
               'owner_data_accessed': False, 'source': 'exact_local_shipped_index',
@@ -333,6 +342,10 @@ def run(args):
                 result = after.evaluate(ELIGIBILITY, query)
                 eligibility.append(result)
                 check('/'.join(query.values()) + ': actual engine checked all returned options', result['returned'] == len(result['options']))
+                check('/'.join(query.values()) + ': required eligibility coverage matches preserved policy',
+                      bool(result['first_selection']) == expected_eligible(query)
+                      and (result['returned'] > 0) == expected_eligible(query),
+                      {'expected_eligible': expected_eligible(query), 'returned': result['returned']})
                 if query['id'] == 'B01':
                     check('/'.join(query.values()) + ': B01 Home use-case restriction retained', result['returned'] == 0 and not result['direct_owner']['allowed'], result['direct_owner'])
                 if result['first_selection']:
@@ -346,6 +359,9 @@ def run(args):
             check('Every assigned style/occasion context checked', len(eligibility) == len(contexts))
             check('Every assigned exact garment/control fixture rendered', sum(row['purpose'] != 'actual-style-occasion-engine-option' for row in captures) == len(rows))
             check('Every eligible context has an actual complete browser frame', sum(row['purpose'] == 'actual-style-occasion-engine-option' for row in captures) == sum(bool(row['first_selection']) for row in eligibility))
+            check('Required eligible-context count and complete capture-pair count reached',
+                  sum(bool(row['first_selection']) for row in eligibility) == report['expected_eligible_contexts']
+                  and len(captures) == report['expected_capture_pairs'])
             check('No browser page errors', not errors, errors)
             check('No failed local asset requests', not bad_requests, bad_requests)
             check('No external services or production endpoints contacted', not external, external)
