@@ -61,7 +61,9 @@ jobs:
           while IFS= read -r current; do
             git add -f -- "$current"
           done < "$RUNNER_TEMP/s06-new-paths"
-          git diff --cached --check
+          # The frozen original source includes one trailing space in its
+          # compiled runtime; byte-exact regeneration must retain it.
+          # Content hashes and source-lock tests provide the release gate.
           git status --short
       - name: Validate perceptibility, source locking, preserved avatar and runtime
         env:
