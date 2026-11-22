@@ -46,7 +46,9 @@ def main():
             page.on('pageerror', lambda error: errors.append(str(error)))
             page.route('**/*', lambda route: route.continue_() if route.request.url.startswith(origin+'/') or route.request.url.startswith('data:') else route.abort())
             page.goto(origin+'/index.html', wait_until='load')
-            page.wait_for_function('()=>globalThis.HEWRS_READY&&globalThis.HEWRSIssue22Reviewed', timeout=120000)
+            page.wait_for_function('()=>globalThis.HEWRS_READY&&globalThis.HEWRSApp?.rejection&&globalThis.HEWRSIssue22Reviewed', timeout=120000)
+            # Runtime readiness precedes the IndexedDB rejection store opening.
+            page.evaluate('async()=>{await HEWRSApp.rejection.ready;await HEWRSApp.ownerFeedback.sync();}')
             before = page.evaluate('''() => ({wear:HEWRSApp.store.snapshot(),favorites:HEWRSApp.favorites.snapshot(),feedback:HEWRSApp.ownerFeedback.snapshot().events})''')
             state = page.evaluate('''async()=>{
               await HEWRSReviewedIntegration.load({initialUpdate:false});
