@@ -537,6 +537,31 @@ FIT_FRAME = r'''async input=>{
  return captured;
 }'''
 
+
+# Exploration intentionally excludes already-reviewed exact outfits. Before
+# checking B01 shirt geometry, use the actual immutable review registry to
+# select a still-unreviewed, owner-permitted loafer. This never treats an
+# existing review as new and never changes the garment under test.
+B01_REVIEW_AUDIT = r'''async selected => {
+ await HEWRSReviewedIntegration.load({initialUpdate:false});
+ const bridge=HEWRSReviewedIntegration.bridge();
+ const known=new Set(bridge.entries().map(entry=>{
+  const o=entry.outfit;return [o.topwear||'SHIRT_ONLY',o.pants||'SUIT_TROUSERS',o.shirt,o.tie||'NO_TIE',o.shoe].join('|');
+ }));
+ const shoes=['shoe-8','shoe-9','shoe-10','shoe-11','shoe-12','shoe-13','shoe-14','shoe-15','shoe-16','shoe-17','shoe-18','shoe-19'];
+ return shoes.map(shoeId=>{
+  const o={topwear:selected.blazerId,pants:selected.pantId,shirt:selected.shirtId,tie:null,shoe:shoeId};
+  const s={...selected,shoeId};
+  const key=[o.topwear,o.pants,o.shirt,'NO_TIE',o.shoe].join('|');
+  const context={style:'AUTO',occasion:'dinner',mode:'blazer',formality:'open_collar_allowed',
+   owner_use_case:'summer_weekend_dinner',
+   anchors:{topwear:o.topwear,pants:o.pants,shirt:o.shirt,tie:null,shoe:o.shoe}};
+  return {shoeId,already_reviewed:known.has(key),
+   owner_allowed:HEWRSOutfitFeedback.ownerRuleCheck(s,{context}).allowed,
+   source_constraints_pass:bridge.inspect(o,context).hard_constraints.status==='pass'};
+ });
+}'''
+
 PLAN_MATRIX = r'''({modes,shirts})=>{
  const c=HEWRSApp.connection,renderer=HEWRSApp.renderer;
  let accepted=0,forbidden=0;
@@ -892,6 +917,25 @@ def run(args):
                     after = open_page('index.html', 'issue19-candidate')
                     old_state, new_state = before.evaluate(FIT.PROTECTED), after.evaluate(FIT.PROTECTED)
                     previous_mode = row['mode']
+                if selected.get('blazerId') == 'B01':
+                    original_footwear = selected['shoeId']
+                    # Paired baseline/candidate registries must agree; a new
+                    # texture cannot rewrite a previous review or owner rule.
+                    previous_review = before.evaluate(B01_REVIEW_AUDIT, selected)
+                    current_review = after.evaluate(B01_REVIEW_AUDIT, selected)
+                    check(name + ': B01 exact reviewed-outfit and owner gate parity',
+                          previous_review == current_review, {'baseline': previous_review, 'candidate': current_review})
+                    allowed = [r for r in previous_review
+                               if not r['already_reviewed'] and r['owner_allowed'] and r['source_constraints_pass']]
+                    check(name + ': supported B01 unreviewed loafer exists',
+                          bool(allowed), previous_review)
+                    chosen = allowed[0]['shoeId']
+                    if chosen != original_footwear:
+                        report.setdefault('reviewed_fixture_displacements', []).append(
+                            {'case': name, 'original_shoe': original_footwear, 'actual_shoe': chosen,
+                             'reason': 'original exact outfit already reviewed or restricted; do not relabel'})
+                        selected = {**selected, 'shoeId': chosen}
+                        row = {**row, 'selection': selected}
                 report['current_case'] = row
                 old = before.evaluate(FIT_FRAME, {'selected': selected, 'ignoredHashes': []})
                 new = after.evaluate(FIT_FRAME, {'selected': selected, 'ignoredHashes': []})
