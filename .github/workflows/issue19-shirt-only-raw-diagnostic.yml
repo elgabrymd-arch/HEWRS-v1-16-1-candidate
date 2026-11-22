@@ -1,0 +1,44 @@
+name: Issue19 exact shirt-only raw-frame diagnostic
+on:
+  push:
+    branches: [audit/issue19-shirt-only-raw-c62ce06]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: issue19-shirt-only-raw-c62ce06
+  cancel-in-progress: true
+jobs:
+  exact-raw-frames:
+    name: Exact shirt-only native frames — ${{ matrix.browser }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prove the diagnostic preserves the exact candidate tree except its two observation files
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch --depth=1 origin c62ce06f949eda7dbda7f95d44c1d7d69573d283
+          git diff --exit-code c62ce06f949eda7dbda7f95d44c1d7d69573d283 HEAD -- . ':(exclude).github/workflows/issue19-shirt-only-raw-diagnostic.yml' ':(exclude)tests/issue19-shirt-only-raw-diagnostic.py'
+      - name: Install the same pinned browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Capture all 96 shirt-only selections with every existing preservation assertion
+        run: python tests/issue19-shirt-only-raw-diagnostic.py --browser '${{ matrix.browser }}'
+      - name: Preserve raw actual browser frames and identity
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HEWRS_ISSUE19_SHIRT_ONLY_RAW_${{ matrix.browser }}
+          path: |
+            evidence/issue19/shirt-only-raw/${{ matrix.browser }}/**/RESULT.json
+            evidence/issue19/shirt-only-raw/${{ matrix.browser }}/**/DIAGNOSTIC_IDENTITY.json
+            evidence/issue19/shirt-only-raw/${{ matrix.browser }}/**/native/
+          if-no-files-found: error
+          retention-days: 30
