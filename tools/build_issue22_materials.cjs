@@ -21,11 +21,11 @@ const SOURCES={
  B10:{jacket:'9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea'}
 };
 // S06 retains the approved neutral-gray fabric reference. A 1.6x textile
-// projection and a bounded gain restore its quiet check after phone-sized
+// projection and a calibrated bounded gain preserve its quiet check after phone-sized
 // downsampling. Keep the 24px source low-pass to avoid the OLD coarse plaid;
 // do not remove the periodic texture antialias or touch the approved avatar.
 const SPECS={
- S06:{approved_fabric:'s06-approved-fabric-preview.png',color_rect:[80,140,620,740],texture_rect:[80,140,620,740],neutralize_color:true,texture_scale:1.6,texture_gain:2.4,texture_filter:'periodic_binomial_3x3',blur:24,detail:0,shade_gain:.85,description:'Neutral gray subtle Glen-check weave from the owner-approved generated fabric reference'},
+ S06:{approved_fabric:'s06-approved-fabric-preview.png',color_rect:[80,140,620,740],texture_rect:[80,140,620,740],neutralize_color:true,texture_scale:1.6,texture_gain:1.55,texture_filter:'periodic_binomial_3x3',blur:24,detail:0,shade_gain:.85,description:'Neutral gray subtle Glen-check weave from the owner-approved generated fabric reference'},
  S13:{photo:'IMG_1745.jpeg',color_rect:[422,360,110,240],texture_photo:'IMG_1745.jpeg',texture_rect:[420,340,100,130],texture_scale:1.3,texture_gain:.62,blur:5,detail:.08,shade_gain:.92,reference_photos:['IMG_1741.jpeg','IMG_1745.jpeg'],description:'Dark blue-gray fine interlocking check'},
  S14:{photo:'IMG_1748.jpeg',color_rect:[520,720,112,260],texture_photo:'IMG_1748.jpeg',texture_rect:[570,850,60,160],texture_scale:1.15,texture_gain:.7,blur:12,detail:0,shade_gain:.93,reference_photos:['IMG_1747.jpeg','IMG_1748.jpeg'],description:'Medium blue-gray fine near-solid weave'},
  B01:{linen:true,texture_scale:.42,texture_gain:.36,blur:3,detail:.12,description:'Original navy color, fine natural matte linen'},
