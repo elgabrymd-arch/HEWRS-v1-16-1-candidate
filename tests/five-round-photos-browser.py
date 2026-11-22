@@ -472,7 +472,9 @@ def main():
                 fit = page.evaluate("()=>({collar:globalThis.HEWRSAvatarV3ShirtCollarFit?.spec,cuff:globalThis.HEWRSAvatarV3CuffFit?.spec,tie:globalThis.HEWRSAvatarV3TieFit?.spec})")
                 check('Published Issue 19 runtime contains all three source-bound fit modules',
                       fit.get('collar', {}).get('revision') == 'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_6'
-                      and fit.get('cuff', {}).get('revision') == 'AVATAR_V3_CONCEALED_CUFFS_2'
+                      and fit.get('cuff', {}).get('revision') == 'AVATAR_V3_CONCEALED_CUFFS_3'
+                      and fit.get('cuff', {}).get('underlay') == 'selected-original-trousers-posed-once-no-avatar-exposure'
+                      and fit.get('cuff', {}).get('inner_seam') == 'selected-original-jacket-retained-to-fitted-sleeve-boundary'
                       and fit.get('tie', {}).get('revision') == 'AVATAR_V3_TIE_FIT_1', fit)
                 issue19_fidelity = page.evaluate('()=>HEWRSApp.connection.tieFidelity.data')
                 check('Published tie source registry equals the original V3 registry',
