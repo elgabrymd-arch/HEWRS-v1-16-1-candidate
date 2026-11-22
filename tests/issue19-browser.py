@@ -900,7 +900,8 @@ def run(args):
                 # Keep full native PNGs for priority shirts and two additional
                 # ties per route, without duplicating all 1,564 tie PNGs.
                 keep_native = (args.suite == 'shirts' and selected['shirtId'] in {'DS013', 'DS019', 'DS027', 'DS034', 'DS038', 'DS035', 'DS048'}
-                               or args.suite == 'ties' and selected['state'] in {'T017', 'T047'})
+                               or args.suite == 'ties' and selected['state'] in {'T017', 'T047'}
+                               or (args.limit is not None and args.only_mode in {'S03', 'B15'}))
                 details = save_details(output, name, old_image, new_image, native=keep_native)
                 seam_samples = collar_seams(new_image, name)
                 if seam_samples:

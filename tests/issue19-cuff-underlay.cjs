@@ -283,12 +283,12 @@ async function main() {
     equal(continuous.original_plan, 'continuous-object', 'continuous source-order regression uses the actual original continuous route');
     ok(legacy.original_order.join('|') !== continuous.original_order.join('|'), 'legacy and continuous original lower orders really differ');
   }
-  if (!limited) {
-    const s = selection('DS035', 'NO_TIE', 'B03');
-    const first = await verify(s, 'B03-pants-cache-original');
-    const changed = await verify({...s, pantId: 'PBR001'}, 'B03-pants-cache-brown');
-    const third = await verify({...s, pantId: 'PN001'}, 'B03-pants-cache-navy-eviction');
-    const restored = await verify(s, 'B03-pants-cache-restored');
+  if (!limited || process.argv.includes('--diagnostic-cache')) {
+    const s = selection('DS035', 'NO_TIE', 'B02');
+    const first = await verify(s, 'B02-pants-cache-original');
+    const changed = await verify({...s, pantId: 'PBR001'}, 'B02-pants-cache-brown');
+    const third = await verify({...s, pantId: 'PN001'}, 'B02-pants-cache-navy-eviction');
+    const restored = await verify(s, 'B02-pants-cache-restored');
     equal(new Set([first.original_pants_sha256, changed.original_pants_sha256, third.original_pants_sha256]).size, 3, 'cache controls use three distinct original trouser sources across the two-patch cache');
     ok(first.pure_underlay_pixels > 0 && changed.pure_underlay_pixels > 0, 'cache colour assertion checks visible pure trouser underlay');
     equal(new Set([first.cuff_rgba_sha256, changed.cuff_rgba_sha256, third.cuff_rgba_sha256]).size, 3, 'same jacket follows all three original pants colours across cache eviction');
