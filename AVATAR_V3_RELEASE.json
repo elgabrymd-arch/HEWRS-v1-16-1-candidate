@@ -7,8 +7,8 @@
   "baseline_manifest_sha256": "c2ebff6341b4c1b23eb08f3524f57d3640ad80e732c540b26f0ea0d189de6de8",
   "continuous_runtime": "runtime/continuous-shirts-4fae538c1847c9f7d1e9.js",
   "continuous_runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
-  "runtime": "runtime/avatar-v3-candidate-ed326c1f8f1b513a3a96.js",
-  "runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+  "runtime": "runtime/avatar-v3-candidate-66617ee8cb0a8017d508.js",
+  "runtime_sha256": "66617ee8cb0a8017d508e4f5e5fc575eb14238d00e6758f43d122d7151a1a742",
   "source_specification": "data/avatar-v3-candidate.json",
   "source_specification_sha256": "9f0a135ab18ea14b467c44930068ff274cc70a573a83c9dac4a22b1a96b70c3e",
   "source_modules": {
@@ -50,12 +50,54 @@
     "right_hand": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9"
   },
   "entrypoints": {
-    "index.html": "dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba",
-    "app.html": "dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba"
+    "index.html": "a3fc0258fd82549255a893e2203a06997ec1fbae14164b15ca779e8340132b62",
+    "app.html": "a3fc0258fd82549255a893e2203a06997ec1fbae14164b15ca779e8340132b62"
   },
   "rollback_entrypoint": "avatar-v2-reference.html",
   "garments_and_scoring": "original_sources_preserved_v3_all_shirt_collar_cuff_and_tie_display_registration",
   "browser_storage_migration": "none",
   "authority": "owner_requested_source_avatar_update_and_continuation_through_integration",
-  "visual_acceptance": "not_inferred_from_automated_tests"
+  "visual_acceptance": "not_inferred_from_automated_tests",
+  "issue22": {
+    "schema": "hewrs.issue22.delivery.v1",
+    "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
+    "baseline_commit": "95d14073e33f2b699bdb0cdbd42504b1a1be2274",
+    "baseline_entrypoint": "avatar-v3-issue22-baseline.html",
+    "baseline_entrypoint_sha256": "dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba",
+    "garment_ids": [
+      "S06",
+      "S13",
+      "S14",
+      "B01",
+      "B06",
+      "B10",
+      "B08"
+    ],
+    "modules": {
+      "data/issue22-garment-dna.js": "249c1ad050ba29bdda61b05e2f3bf18f1abe70a443a79361d77143f024c41357",
+      "src/issue22-matching.js": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f",
+      "data/issue22-materials.js": "02fdcbe16087d56bd82a56dc416a3434106db97b35aa86522d1dc50ae82cca82",
+      "src/issue22-materials.js": "ea2e4c6d8fdac9ed2b84a6d1c51bb4d2e4eb661e238032f456a7ac56f26509c6",
+      "src/issue22-b08.js": "d76bf8bffc41bc2a595600180c8fc74311064bab24655b3be6314727e308c8be",
+      "src/issue22-render-guard.js": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc",
+      "data/issue22-reviewed-overlay.js": "2e7d28ac48b68bd99da29c394a1a89a8f7e5795a13cd35964079fe631feae6d4",
+      "src/issue22-reviewed-data.js": "b95bfe77dbfccee90ac55ed1304a5b2c6fc2536ef9a915d0f892ecea7c28d432"
+    },
+    "matching_index": {
+      "path": "data/issue22-option-index.js",
+      "sha256": "d11c09c491e66c6472752c417b33bbf15cb3e608a167ff6b17e91e6fe06b21a8"
+    },
+    "picker_previews": {
+      "path": "data/issue22-picker-images.js",
+      "sha256": "75551302a60cf6c1c63cfa2ae0582b520c817f221ab79d49cbed9a9f16343003"
+    },
+    "reviewed_panel": {
+      "path": "src/issue22-reviewed-panel-5534eaf26b837372d738.js",
+      "sha256": "5534eaf26b837372d73872c9f02523fce088785c348e83047f85482461a9b74c"
+    },
+    "original_sources": "unchanged; separate source-bound display materials and versioned DNA",
+    "browser_storage_migration": "none",
+    "merge_target": "integration/issue22-v3",
+    "production_deployment_authorized": false
+  }
 }

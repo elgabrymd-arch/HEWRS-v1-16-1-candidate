@@ -9,6 +9,7 @@ import base64
 import hashlib
 import json
 import re
+import issue22_delivery
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT='avatar-v3-review.html'
@@ -49,6 +50,7 @@ def main(write=False):
     old="need(p.avatar.sha256===AVATAR,'changed avatar registration');return p;"
     assert base.count(old)==1,'Continuous-shirt source lock not found exactly once'
     code=base.replace(old,"need(p.avatar.sha256===(connection.avatarV3?.sha256||AVATAR),'changed avatar registration');return p;")
+    code=issue22_delivery.matching(code)
     old_metadata="avatar_source_sha256:AVATAR,tie_source_sha256:"
     assert code.count(old_metadata)==1,'Avatar provenance metadata anchor absent'
     code=code.replace(old_metadata,"avatar_source_sha256:p.avatar.sha256,tie_source_sha256:")
@@ -78,7 +80,7 @@ def main(write=False):
     # its sleeve edge cannot acquire a step at the pose map's outer boundary.
     fit_marker='/* SOURCE: data/option-card-thumbnails.js */'
     assert code.count(fit_marker)==1, 'Missing post-tie-fidelity fit installation point'
-    code=code.replace(fit_marker,fit_code+"/* ISOLATED V3 POSE: src/avatar-v3-pose.js */\n"+pose_source+"\n;\n"+cuff_code+fit_marker)
+    code=code.replace(fit_marker,fit_code+"/* ISOLATED V3 POSE: src/avatar-v3-pose.js */\n"+pose_source+"\n;\n"+cuff_code+issue22_delivery.rendering()+fit_marker)
     encoded=code.encode()
     digest=h(encoded)
     output='runtime/avatar-v3-candidate-'+digest[:20]+'.js'
@@ -93,6 +95,7 @@ def main(write=False):
     style_tag='<link rel="stylesheet" href="'+MOBILE_STYLE+'?v='+mobile_style_sha[:16]+'" integrity="'+style_sri+'">'
     assert preview.count('</head>')==1 and MOBILE_STYLE not in preview, 'Unique V3 mobile stylesheet insertion required'
     preview=preview.replace('</head>',style_tag+'\n</head>')
+    preview=issue22_delivery.pin_html(preview,write=write)
     evidence={
         'schema':'hewrs.avatar-v3-preview.v1',
         'preview_entrypoint':OUT,
@@ -115,7 +118,8 @@ def main(write=False):
         'v2_avatar_sha256':data['source_layer_hashes']['avatar'],
         'layer_hashes':{n:v['sha256'] for n,v in data['candidate_layers'].items()},
         'app_production_entrypoints_unchanged':not (ROOT/'AVATAR_V3_RELEASE.json').is_file(),
-        'approval':'ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN'
+        'approval':'ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN',
+        'issue22':issue22_delivery.record(),
     }
     rec=json.dumps(evidence,indent=2)+'\n'
     if write:

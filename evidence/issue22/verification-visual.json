@@ -1,0 +1,241 @@
+{
+  "schema": "hewrs.issue22.independent-visual-verification.v1",
+  "status": "PASS",
+  "review_date": "2026-11-22",
+  "reviewer": "matching_implementation agent",
+  "independence": "Reviewer authored the matching/DNA implementation, not the material generator, rendering wrappers or B08 repair. This pass independently assesses those rendering changes. It is not an independent audit of matching code.",
+  "method": [
+    "Direct visual comparison of six full-avatar renders and enlarged textile regions with all six supplied suit photographs.",
+    "Direct inspection of original B01/B06/B10 registered jacket assets and corrected material detail/full-avatar views.",
+    "Direct comparison of B08 before/after waist render crops.",
+    "Independent Pillow/NumPy verification of nine original/display file hashes, every alpha byte, and linen RGB means.",
+    "Read source-bound material resolver, bounded B08 repair and direct rendering no-tie guard; inspected their target-ID and source-hash scope."
+  ],
+  "material_manifest_sha256": "c5118a9ba904ff256b5c2d8a89c84b724190d851b65d1e2a634059259b9e32f6",
+  "inspected_artifacts": [
+    {
+      "path": "evidence/issue22/visual-inspection/full-avatar-contact.png",
+      "sha256": "39eb7dc0370ed0f39116b274c8cb3da2d9d8670bcdb6e4dbd1770f1a06f3e3da"
+    },
+    {
+      "path": "evidence/issue22/visual-inspection/material-details.png",
+      "sha256": "89cc5cfc91999b82f5a76e96b4cc8340fdf05dfdee904b13ce9b9b255018715d"
+    },
+    {
+      "path": "evidence/issue22/visual-inspection/B08-waist-before.png",
+      "sha256": "25b9d29005e853bced9bfdd1e190f1c1e3a481b336950ad36a0ad69e0518d855"
+    },
+    {
+      "path": "evidence/issue22/visual-inspection/B08-waist-after.png",
+      "sha256": "e1ebf78df979f3046e0cd4a416885c4e7a248c184f5f8a3c5be4065253dc0d98"
+    }
+  ],
+  "photographic_references": [
+    {
+      "path": "provenance/issue22/IMG_1743.jpeg",
+      "sha256": "eb4801af5f1862797365faf9f684881d53ddcf8fba0404f3b1ac32b177cac7f5"
+    },
+    {
+      "path": "provenance/issue22/IMG_1744.jpeg",
+      "sha256": "8d79caf534c3d9b4ff44dda61ac50d5b3bb337b385f0665ef6b27b819df5ef4c"
+    },
+    {
+      "path": "provenance/issue22/IMG_1741.jpeg",
+      "sha256": "84e6fe08ba808b6aad8c3ca87aad4aff1767c523725325514848bb4005575f1c"
+    },
+    {
+      "path": "provenance/issue22/IMG_1745.jpeg",
+      "sha256": "d3fab84c8171e8587c504f3fa8673f8bf9e7ee1961d6c8b0d89ff053da56a6c0"
+    },
+    {
+      "path": "provenance/issue22/IMG_1747.jpeg",
+      "sha256": "1559d2901dc790e9a7d4630364e775fe211ca0783e30093fab7cac38bbe7876c"
+    },
+    {
+      "path": "provenance/issue22/IMG_1748.jpeg",
+      "sha256": "32758dc9bb273d4f3c9860ba9594a68847a24f8d710dc74090342bc7e9d2d770"
+    }
+  ],
+  "findings": [
+    {
+      "id": "S06",
+      "references": [
+        "IMG_1743.jpeg",
+        "IMG_1744.jpeg"
+      ],
+      "status": "PASS",
+      "observation": "Warm medium-dark gray with a brown cast and fine interlocking Glen/hound check. Reference close-up has more local contrast under its lighting; the full-avatar scale keeps the same restrained check family. Jacket and trousers agree in color and pattern. Approved notch lapels, two-button front, pockets and silhouette remain recognizable."
+    },
+    {
+      "id": "S13",
+      "references": [
+        "IMG_1741.jpeg",
+        "IMG_1745.jpeg"
+      ],
+      "status": "PASS",
+      "observation": "Dark muted slate blue-gray with visible fine intersecting check and streaked weave. The corrected garment is not flat navy or a featureless solid. Relative darkness, subdued check and paired trouser texture agree with the clothed reference."
+    },
+    {
+      "id": "S14",
+      "references": [
+        "IMG_1747.jpeg",
+        "IMG_1748.jpeg"
+      ],
+      "status": "PASS",
+      "observation": "Medium slate/steel blue-gray fine near-solid fabric, visibly lighter than S13. No prominent navy plaid remains. Lapel, chest pocket and lower pocket outlines remain visible. The mild violet-gray cast also appears in the supplied warm-lit phone images."
+    },
+    {
+      "id": "B01",
+      "references": [
+        "registered original jacket",
+        "owner approved visual reference"
+      ],
+      "status": "PASS",
+      "observation": "Original navy color, patch-pocket outline, lapels and open jacket geometry remain. New cross-weave has small irregular slubs and subdued cloth wrinkles; it reads as matte linen at full-avatar and textile-detail scales. Comparison is to the approved registered render; no new physical-fabric claim is made."
+    },
+    {
+      "id": "B06",
+      "references": [
+        "registered original jacket"
+      ],
+      "status": "PASS",
+      "observation": "Very pale desaturated sage color and embroidered crest remain. Coarse original dot/knit appearance is replaced by fine matte natural-looking linen weave. Original button, chest emblem, patch pockets, folds and silhouette are retained."
+    },
+    {
+      "id": "B10",
+      "references": [
+        "registered original jacket"
+      ],
+      "status": "PASS",
+      "observation": "Warm camel/taupe-beige color, button and patch-pocket design remain. The original exaggerated geometric texture becomes restrained under a fine slubbed linen weave, consistent with the approved near-solid/faint-texture DNA. Color ordering and local garment shading remain."
+    },
+    {
+      "id": "B08",
+      "references": [
+        "B08-waist-before.png",
+        "B08-waist-after.png"
+      ],
+      "status": "PASS",
+      "observation": "Both abrupt horizontal inner-panel scars visible in the before crop are removed. Continuous cloth now reaches the same original jacket opening; the adjacent shirt, tie and lower gap are unchanged. Real pocket edges remain outside the bounded repair."
+    }
+  ],
+  "independent_pixel_checks": [
+    {
+      "id": "S06",
+      "layer": "jacket",
+      "source_sha256": "65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935",
+      "display_sha256": "2079a865f1d65785a911fcdb9e7bb85180dc0aa48c3d1f420df6d261ab909f24",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        -26.773338,
+        -31.135489,
+        -36.609547
+      ]
+    },
+    {
+      "id": "S06",
+      "layer": "trousers",
+      "source_sha256": "aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861",
+      "display_sha256": "569cf8a2456971e593ee548cdcaf19e9aae167fa59d30a1aad9a90bc2cc28d90",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        -16.995219,
+        -21.297379,
+        -26.626238
+      ]
+    },
+    {
+      "id": "S13",
+      "layer": "jacket",
+      "source_sha256": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
+      "display_sha256": "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        -0.419279,
+        -3.53107,
+        -14.242181
+      ]
+    },
+    {
+      "id": "S13",
+      "layer": "trousers",
+      "source_sha256": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
+      "display_sha256": "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        8.886019,
+        6.637557,
+        -1.47107
+      ]
+    },
+    {
+      "id": "S14",
+      "layer": "jacket",
+      "source_sha256": "527d35bdda91922b1467e7ce171dec13d100330b16c5a6ee3b048e59896c9e64",
+      "display_sha256": "bb717e2606224a5dabf28f00f8b1fee2a5dc1bf87c891259e187bb369e5d8fd6",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        34.761242,
+        28.97424,
+        30.695921
+      ]
+    },
+    {
+      "id": "S14",
+      "layer": "trousers",
+      "source_sha256": "ed8dc4d60dc595d27d6f9b1466b7a3fa3fd8e247a801362a36fd9f8879e5685e",
+      "display_sha256": "42507467e8e0affe0b82be5ccc25901582433e4991141b89322ad9fa2b695fc2",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        36.741232,
+        31.486418,
+        33.808856
+      ]
+    },
+    {
+      "id": "B01",
+      "layer": "jacket",
+      "source_sha256": "7e772b95f1268946fc0f23ba9d12428869117d086167636d470350008edb2387",
+      "display_sha256": "cee158709a72028923cad4e8cf31c5430ec602c5b62ecf827aeb58144f3c69c4",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        -0.003441,
+        -0.003593,
+        -0.004917
+      ]
+    },
+    {
+      "id": "B06",
+      "layer": "jacket",
+      "source_sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+      "display_sha256": "dacc6584f84f0aacaa9fa620bb33b2b0618bfd6b3a412d4cc771b2842777f683",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        0.235695,
+        0.235695,
+        0.235695
+      ]
+    },
+    {
+      "id": "B10",
+      "layer": "jacket",
+      "source_sha256": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+      "display_sha256": "da9987823fe8436c3baab5ee06c4d10574ff2c7d3b5396f7ba6c97fff521728a",
+      "alpha_changed_pixels": 0,
+      "opaque_rgb_mean_delta": [
+        0.182702,
+        0.182702,
+        0.182702
+      ]
+    }
+  ],
+  "confirmed_remaining_defects": [],
+  "limitations": [
+    "Phone screenshots have uncontrolled lighting, exposure and white balance; this validates visible relative color and texture, not calibrated physical color.",
+    "No physical fabric composition percentage or exact real-world pattern repeat can be established from these images.",
+    "B01/B06/B10 preserve the current approved rendered colors and designs; their historical phone-photo files are not present in this checkout.",
+    "Linen microtexture is a generated display material. It preserves source alpha/geometry and color rather than claiming a new garment photograph.",
+    "Visual inspection covers representative DS001 open-collar frames plus the supplied B08 tied crop; comprehensive shirt/state/mode/occasion and unrelated-garment matrices are separate automated gates."
+  ],
+  "owner_approval_created": false
+}

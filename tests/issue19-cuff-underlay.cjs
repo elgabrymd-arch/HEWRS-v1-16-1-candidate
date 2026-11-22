@@ -258,6 +258,18 @@ async function main() {
   const limited = modesArg >= 0 ? process.argv[modesArg + 1].split(',') : null;
   if (limited) ok(limited.every(mode => allModes.includes(mode)), 'explicit limited diagnostic modes');
   const {avatar, proof} = await proveOriginalScope(limited);
+  // ISSUE22_SOURCE_SCOPE_ONLY_BEGIN
+  // A separate process can prove every original trouser source before the
+  // render batches. This partial result is never a complete regression gate.
+  if (process.argv.includes('--source-scope-only')) {
+    ok(!limited && !process.argv.includes('--diagnostic-cache'), 'source-only proof requires the complete original source inventory');
+    equal(proof.length, 27, 'source-only proof includes all original trouser sources');
+    for (const [filename, hash] of sourceHashes) equal(digest(fs.readFileSync(filename)), hash, 'original PNG bytes remain unchanged');
+    equal(current.storage.snapshot(), [], 'no owner/browser data loaded or written');
+    console.log('ISSUE19_CUFF_SOURCE_SCOPE_ONLY=' + JSON.stringify({status: 'PASS_SOURCE_SCOPE_ONLY_NOT_RELEASE_GATE', checks, runtime_sha256: current.metadata.runtime_sha256, baseline_runtime_sha256: approved.metadata.runtime_sha256, rejected_runtime_sha256: fixture.rejected_runtime_sha256, original_source_files: sourceHashes.size, source_scope_records: proof.length, proof}));
+    return;
+  }
+  // ISSUE22_SOURCE_SCOPE_ONLY_END
   const hands = await Promise.all([c.manifest.static.left_hand, c.manifest.static.right_hand].map(d => plane([d])));
   const handsRaw = await Promise.all([c.manifest.static.left_hand, c.manifest.static.right_hand].map(d => plane([d], true, false)));
   async function verify(s, label) {
@@ -372,6 +384,9 @@ async function main() {
       const after = await capture(current.renderer, current.canvas, current.storage, only);
       equal(digest(after), digest(before), 'shirt-only sleeves and complete frame are exact pass-through: ' + shirt + '/' + state);
       equal(current.canvas.dataset.avatarV3Cuffs, undefined, 'shirt-only bypasses cuff fitting');
+      // ISSUE22_SHIRT_ONLY_EVIDENCE_BEGIN
+      console.log('CUFF_SHIRT_ONLY_CASE=' + JSON.stringify({shirtId: shirt, state, before_rgba_sha256: digest(before), after_rgba_sha256: digest(after), cuff_fitting_applied: current.canvas.dataset.avatarV3Cuffs !== undefined}));
+      // ISSUE22_SHIRT_ONLY_EVIDENCE_END
     }
   }
   for (const [filename, hash] of sourceHashes) equal(digest(fs.readFileSync(filename)), hash, 'original PNG bytes remain unchanged');

@@ -1,0 +1,49 @@
+{
+  "schema": "hewrs.issue22.independent-matching-review.v1",
+  "status": "PASS",
+  "reviewer": "reference_audit agent; material author, not matching/DNA author",
+  "source_scope": [
+    {
+      "path": "data/issue22-garment-dna.json",
+      "sha256": "e4f767189c4ceb9b93602010d02fb794ee318509c46d933e8e9e9de09db25b97"
+    },
+    {
+      "path": "src/issue22-matching.js",
+      "sha256": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f"
+    },
+    {
+      "path": "data/issue22-option-index.json",
+      "sha256": "9299d4990bde8be3bd8c47d43af0e224db1db7fa7d55f2ea4c5ff2ae952262c0"
+    },
+    {
+      "path": "src/issue22-render-guard.js",
+      "sha256": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc"
+    }
+  ],
+  "checks": {
+    "unaffectedFeatures": 130,
+    "unaffectedProfiles": 130,
+    "unaffectedGroups": 81,
+    "allAffectedCacheRowsReevaluated": 22188,
+    "linenTiedCacheRowsIneligible": 15228,
+    "allLinenTiesAcrossFourModesThreeOccasions": 1692,
+    "conflictingIdentifierEvaluateAndRankRegressions": 12
+  },
+  "confirmed_defects": [
+    {
+      "finding": "NO_TIE helper trusted suitId/blazerId while raw ensemble consumed topwearId, allowing contradictory identifiers to bypass policy",
+      "before": "B06 with suitId S05 + T001 scored eligible 9.086415; B10 with blazerId B03 + T001 scored eligible 9.214737",
+      "resolution": "Matching author rejects all conflicting topwear declarations and checks every linen identity",
+      "verification": "All twelve conflicting-ID cases now reject both evaluate and rank"
+    }
+  ],
+  "dna_review": {
+    "suits": "S06 warm-gray fine Glen; S13 dark blue-gray fine check; S14 medium blue-gray near-solid; latest supplied photo mapping retained",
+    "linen": "Existing navy, pale sage, and camel colors/construction/IDs remain unchanged; natural linen and universal no-tie explicit",
+    "numeric_features": "Styling ordinal interpretations explicitly labelled, not physical color or fibre measurements",
+    "existing_rules": "B01 occasion/footwear and B11 owner restrictions remain active"
+  },
+  "limitations": [
+    "Render guard reviewed statically; root integrated native/browser matrix supplies end-to-end render evidence."
+  ]
+}
