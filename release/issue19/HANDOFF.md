@@ -166,6 +166,45 @@ source and contour; plan checks are not additional raster captures.
 The literal source hashes, contour and controls are recorded in
 [`tests/issue19-b02-mask-fixtures.json`](../../tests/issue19-b02-mask-fixtures.json).
 
+#### Independent browser reference settings
+
+Runtime `44233e6c…` exposed a WebKit reference-image mismatch in the five-round
+photo test and the B02 tie matrix. The independent jacket oracle originally
+used default canvas contexts, whereas the production collar and shoulder
+surfaces use `willReadFrequently: true`. The isolated
+[source-plane diagnostic](https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44969802533)
+captured six selections in each engine, including both failing selections,
+legacy and continuous shirts, an unmasked B03 control and B02 repeated after
+B03. It retained the actual baseline/candidate RGBA and full/cropped source
+planes before applying comparisons. The application bytes remained unchanged.
+
+For the failing WebKit DS026/T029/B02 selection, the default reference classified
+90,721 jacket pixels as opaque; the independently constructed full reference
+using the production context settings classified 90,691. All 30 disputed pixels
+were at the partially erased contour. The candidate matched all 90,691 opaque
+pixels of that independent source exactly. Full-image and cropped
+references using those settings were byte-identical, including the mask alpha.
+The default mask differed at 196 edge pixels. At the fixed `(392,407)` control,
+its alpha was incorrectly compared as zero instead of the actual partial
+source alpha of 5, explaining the separate partial-edge assertion failure.
+Chromium's corresponding references were identical under both settings.
+
+The browser oracle therefore constructs every intermediate jacket surface with
+the same explicit readback context setting as the renderer. It still derives
+the source independently from the immutable full photograph and literal mask.
+Every existing exact-preservation check and bounded partial source-over check
+remains enforced. An additional B02 comparison requires every independently
+constructed source pixel with alpha 255 to match the candidate exactly. No
+production code, source photograph, contour, opacity threshold or tolerance
+changed for this reference repair.
+
+The unchanged existing assertions passed on all 12 retained diagnostic
+captures with the corrected reference. This bounded diagnosis does not replace
+the complete release matrix or its three independent audits. The compact
+[reference-context audit](B02_REFERENCE_CONTEXT_AUDIT.json) records source,
+capture and artifact identities; the linked Actions run retains the complete
+source planes and disputed RGBA rows.
+
 ### Concealed jacket cuffs
 
 `src/avatar-v3-cuff-fit.js` executes after the unchanged approved arm/hand pose.

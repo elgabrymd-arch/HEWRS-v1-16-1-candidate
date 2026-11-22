@@ -182,12 +182,24 @@ def change_check(old, new, selected, hand_mask, avatar_source, jacket_shoulder_s
                 break
     corner_wrong, corner_restored, corner_checked = 0, 0, 0
     outer_checked, outer_wrong, jacket_opaque_wrong = 0, 0, 0
+    b02_opaque_checked, b02_opaque_wrong_source = 0, 0
     if not selected.get('shirtOnly'):
         if jacket_shoulder_source is None:
             raise AssertionError('Jacket routes require the browser-decoded original shoulder source')
         shoulder_changes = changed.crop((0, 350, 996, 600))
         jacket_opaque = jacket_shoulder_source.getchannel('A').point(lambda alpha: 255 if alpha == 255 else 0)
         jacket_opaque_wrong = ImageChops.multiply(shoulder_changes, jacket_opaque).histogram()[255]
+        if selected.get('blazerId') == 'B02':
+            # Check the complete current source-owned region as well as the
+            # unchanged baseline preservation gate. Equal old/new pixels alone
+            # would not establish that either frame uses the original source.
+            source_channels = ImageChops.difference(new.crop((0, 350, 996, 600)), jacket_shoulder_source).split()
+            source_changed = source_channels[0]
+            for channel in source_channels[1:]:
+                source_changed = ImageChops.lighter(source_changed, channel)
+            source_changed = source_changed.point(lambda value: 255 if value else 0)
+            b02_opaque_checked = jacket_opaque.histogram()[255]
+            b02_opaque_wrong_source = ImageChops.multiply(source_changed, jacket_opaque).histogram()[255]
         for rectangle in JACKET_OUTER_SHOULDER_RECTS:
             if not changed.crop(rectangle).getbbox():
                 continue
@@ -222,6 +234,8 @@ def change_check(old, new, selected, hand_mask, avatar_source, jacket_shoulder_s
             'outer_original_jacket_pixels_checked': outer_checked,
             'outer_wrong_source_pixels': outer_wrong,
             'opaque_original_jacket_shoulder_pixels_changed': jacket_opaque_wrong,
+            'b02_effective_opaque_jacket_pixels_checked': b02_opaque_checked,
+            'b02_effective_opaque_jacket_wrong_source_pixels': b02_opaque_wrong_source,
             'permitted_rectangles_xyxy': rectangles}
 
 
@@ -257,16 +271,19 @@ JACKET_SHOULDER_SOURCE = r'''async s=>{
  // Retain the protected, previously approved V3 B15 registration as well as
  // each original photograph and its existing source-bound jacket mask.
  // Construct the effective source independently of the new fit wrapper.
+ // Match the original continuous renderer and production jacket mask context.
+ // WebKit's default context rasterizes this fractional contour differently;
+ // the independent full/cropped willReadFrequently references agree exactly.
  const loader=HEWRSRenderImageLoader.create({resolveUrl:HEWRSApp.resolveUrl,width:996,height:2748,limit:2});
  const bitmap=document.createElement('canvas');bitmap.width=996;bitmap.height=2748;
- const bc=bitmap.getContext('2d'),image=await loader.load(d);bc.drawImage(image,0,0);
+ const bc=bitmap.getContext('2d',{willReadFrequently:true}),image=await loader.load(d);bc.drawImage(image,0,0);
  if(d.display_alpha_mask){const alpha=new Image();alpha.src=HEWRSApp.resolveUrl(d.display_alpha_mask);await alpha.decode();bc.globalCompositeOperation='destination-in';bc.drawImage(alpha,0,0);}
  const effective=document.createElement('canvas');effective.width=996;effective.height=2748;
- const ec=effective.getContext('2d');ec.save();
+ const ec=effective.getContext('2d',{willReadFrequently:true});ec.save();
  if(mask?.keep_contours){path(ec,mask.keep_contours);ec.clip('evenodd');}
  ec.drawImage(bitmap,0,0);ec.restore();
  if(mask?.erase_contours){ec.save();ec.globalCompositeOperation='destination-out';path(ec,mask.erase_contours);ec.fill('evenodd');ec.restore();}
- canvas.getContext('2d').drawImage(effective,0,-350);bitmap.width=bitmap.height=effective.width=effective.height=1;
+ canvas.getContext('2d',{willReadFrequently:true}).drawImage(effective,0,-350);bitmap.width=bitmap.height=effective.width=effective.height=1;
  return canvas.toDataURL('image/png');
 }'''
 
@@ -715,6 +732,10 @@ def run(args):
                 check(name + ': tied neck cleanup restores exact original avatar pixels', differences['neck_corner_wrong_source_pixels'] == 0, differences)
                 check(name + ': shoulder concealment uses exact original jacket pixels and preserves opaque jacket cloth',
                       differences['outer_wrong_source_pixels'] == 0 and differences['opaque_original_jacket_shoulder_pixels_changed'] == 0, differences)
+                if selected.get('blazerId') == 'B02':
+                    check(name + ': every effective opaque B02 jacket pixel equals its independent original source',
+                          differences['b02_effective_opaque_jacket_pixels_checked'] > 0
+                          and differences['b02_effective_opaque_jacket_wrong_source_pixels'] == 0, differences)
                 shoulder_samples = shoulder_contour_samples(new_image, selected)
                 if shoulder_samples:
                     check(name + ': independently observed original shoulder BODY coverage remains intact', True, shoulder_samples)

@@ -301,6 +301,10 @@ def main():
         check(label + ': neck cleanup reveals exact original avatar pixels', difference['neck_corner_wrong_source_pixels'] == 0, difference)
         check(label + ': shoulders retain exact original jacket pixels',
               difference['outer_wrong_source_pixels'] == 0 and difference['opaque_original_jacket_shoulder_pixels_changed'] == 0, difference)
+        if selection.get('blazerId') == 'B02':
+            check(label + ': every effective opaque B02 jacket pixel equals its independent original source',
+                  difference['b02_effective_opaque_jacket_pixels_checked'] > 0
+                  and difference['b02_effective_opaque_jacket_wrong_source_pixels'] == 0, difference)
         shoulder_samples = issue19_contract.shoulder_contour_samples(current, selection)
         if shoulder_samples:
             check(label + ': independently observed original shoulder BODY coverage remains intact', True, shoulder_samples)
