@@ -16,7 +16,7 @@ async function main(){
   assert.ok(original?.history_id,'Exact existing picker identity required: '+id);
   records[id]={src:filename,sha256:sha,width:360,height:993,label:dna.records[id]?.fields.description||original.label,
    history_id:original.history_id,source_kind:'native_avatar_preview',object_position:'50% 26%',
-   source_note:id[0]==='S'?'Current photo-matched cloth':id==='B08'?'Continuous jacket rendering':'Natural linen · No Tie',
+   source_note:id==='S06'?'Approved neutral-grey fabric':id[0]==='S'?'Current photo-matched cloth':id==='B08'?'Continuous jacket rendering':'Natural linen · No Tie',
    issue22_revision:dna.revision,render_selection:selected,rgba_sha256:frame.rgba_sha256};
  }
  const data={schema:'hewrs.issue22.picker-previews.v1',source_lock:h.g.HEWRS_INPUT_SHA256,items:records,

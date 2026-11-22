@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.issue22.garment-dna.v1",
-  "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+  "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
   "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
   "scope": [
     "S06",
@@ -18,10 +18,10 @@
   "records": {
     "S06": {
       "fields": {
-        "description": "Warm medium-dark grey suit with fine interlocking Glen check",
-        "primary_text": "Warm medium-dark grey; subtle brown cast",
-        "secondary_text": "Tonal charcoal grey; muted warm grey",
-        "pattern_text": "Fine interlocking Glen / houndstooth check",
+        "description": "Neutral medium-dark grey suit with fine low-contrast Glen check; near-solid at distance",
+        "primary_text": "Neutral medium-dark grey",
+        "secondary_text": "Tonal charcoal grey; light neutral grey",
+        "pattern_text": "Fine low-contrast interlocking Glen / houndstooth check; near-solid at distance",
         "texture_text": "Fine matte woven texture",
         "scale_text": "Fine (1)",
         "contrast_text": "Low (1.2)",
@@ -30,7 +30,7 @@
       },
       "interpretation": {
         "value": 2.4,
-        "temperature": "warm-neutral",
+        "temperature": "neutral",
         "saturation": 0.08,
         "pattern": {
           "family": "grid",
@@ -108,7 +108,22 @@
         "fibre_composition": null,
         "seasonal_restrictions": []
       },
-      "authority": "owner photographs and explicit Issue #22 correction"
+      "authority": "Owner photographs and explicit neutral-grey S06 correction approved 2026-11-22",
+      "owner_correction": {
+        "approved_date": "2026-11-22",
+        "colour": "Neutral grey; the previous warm-neutral and brown-cast interpretation is superseded",
+        "close_reading": "Fine grey Glen / houndstooth check",
+        "distance_reading": "Near-solid grey at normal viewing distance; fine low-contrast check visible close up",
+        "interpretation_scope": "Colour semantics and distance description only; existing value, saturation, scale and contrast remain ordinal styling interpretations",
+        "render_scope": "Owner explicitly authorized applying the approved fabric preview to S06 in the application, including picker and outfit views; original avatar, garment geometry and hardware remain registered sources",
+        "approved_material_reference": {
+          "repository_path": "provenance/issue22/s06-approved-fabric-preview.png",
+          "sha256": "3c2730b546f08b77b2c1d0764a6b69e5c96dd0085c00023d222dac438c825d51",
+          "kind": "owner-approved generated fabric preview",
+          "approved_date": "2026-11-22",
+          "scope": "Neutral-grey colour, fine low-contrast weave and near-solid distance appearance; not a physical fabric measurement or a new whole-outfit approval"
+        }
+      }
     },
     "S13": {
       "fields": {

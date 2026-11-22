@@ -201,9 +201,48 @@ def run(args):
     assert {(row['shirt'], tuple(row['xy'])) for row in fixture['fixtures']} == {
         (shirt, tuple(row['xy'])) for shirt, rows in POINTS.items() for row in rows}
     geometry = fixture['geometry_extension_verification']
-    assert geometry['runtime_sha256'] == digest(runtime), 'Expanded scope belongs to different runtime bytes'
     revalidation = geometry['runtime_revalidation']
-    assert revalidation['runtime_sha256'] == digest(runtime)
+    assert revalidation['runtime_sha256'] == geometry['runtime_sha256'], 'Historical geometry evidence is inconsistent'
+    geometry_binding = {'kind': 'exact_fixture_runtime', 'fixture_runtime_sha256': geometry['runtime_sha256']}
+    if geometry['runtime_sha256'] != digest(runtime):
+        # Issue 22 changes registered cloth RGB and effective DNA. Keep the
+        # original fixture/runtime evidence exact, then independently prove
+        # that the CURRENT renderer retains the same fit modules and garment
+        # alpha before executing every original 162-case pixel assertion.
+        issue22 = release.get('issue22', {})
+        assert issue22.get('baseline_commit') == '95d14073e33f2b699bdb0cdbd42504b1a1be2274'
+        retained_path = ROOT / ('runtime/avatar-v3-candidate-' + geometry['runtime_sha256'][:20] + '.js')
+        retained_runtime = retained_path.read_bytes()
+        assert digest(retained_runtime) == geometry['runtime_sha256'], 'Original geometry-proof runtime changed'
+        modules = {}
+        for name, expected_sha in release['source_modules'].items():
+            module = (ROOT / name).read_bytes()
+            assert digest(module) == expected_sha
+            assert retained_runtime.count(module) == runtime.count(module) == 1, 'Current fit source differs from original geometry proof: ' + name
+            modules[name] = expected_sha
+        materials = json.loads((ROOT / 'data/issue22-materials.json').read_text())
+        alpha_proofs = []
+        for row in materials['bindings'].values():
+            if not row['garment_id'].startswith('S'):
+                continue
+            original_bytes = (ROOT / row['source_url']).read_bytes()
+            display_bytes = (ROOT / row['display_url']).read_bytes()
+            assert digest(original_bytes) == row['source_sha256']
+            assert digest(display_bytes) == row['display_sha256']
+            original_image = Image.open(io.BytesIO(original_bytes)).convert('RGBA')
+            display_image = Image.open(io.BytesIO(display_bytes)).convert('RGBA')
+            assert original_image.size == display_image.size == (996, 2748)
+            assert row['rect'] == [0, 0, 996, 2748]
+            original_alpha = original_image.getchannel('A').tobytes()
+            assert original_alpha == display_image.getchannel('A').tobytes(), 'Current suit material changed tie-occluding geometry'
+            alpha_proofs.append({'id': row['garment_id'], 'layer': row['layer'],
+                                 'source_sha256': row['source_sha256'], 'display_sha256': row['display_sha256'],
+                                 'independent_alpha_sha256': digest(original_alpha)})
+        assert len(alpha_proofs) == 6 and {row['id'] for row in alpha_proofs} == {'S06', 'S13', 'S14'}
+        geometry_binding = {'kind': 'current_runtime_same_fit_sources_and_independently_exact_material_alpha',
+                            'fixture_runtime_sha256': geometry['runtime_sha256'],
+                            'current_runtime_sha256': digest(runtime), 'fit_modules': modules,
+                            'material_alpha_proofs': alpha_proofs}
     assert revalidation['unchanged_tie_source_sha256'] == release['source_modules']['src/avatar-v3-tie-fit.js']
     assert revalidation['all18_suit_paths_same_no_mask_branch'] is True
     assert revalidation['selected_source_projection_plans'] == 1692
@@ -225,6 +264,7 @@ def run(args):
               'fixture_sha256': digest((ROOT / 'tests/issue19-partial-tie-backing-fixtures.json').read_bytes()),
               'geometry_source_proof_sha256': geometry['source_projection_proof_sha256'],
               'geometry_render_proof_sha256': geometry['render_proof_sha256'],
+              'current_geometry_binding': geometry_binding,
               'expected_cases': len(case_inputs), 'cases': cases, 'checks': checks, 'page_errors': errors,
               'coverage': {'S02_all47_actual_selections': 94, 'other17_suit_T001_T047_actual_selections': 68,
                            'other_ties_on_other_suits': 'source/endpoint plans and identical projected alpha geometry; not additional actual rendered selections'},

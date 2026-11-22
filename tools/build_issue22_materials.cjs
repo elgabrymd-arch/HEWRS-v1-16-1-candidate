@@ -2,7 +2,8 @@
 'use strict';
 /* Issue #22 material projection, never a new garment or avatar.
  * All cut, alpha, seams and hardware come from the selected registered layer.
- * Suit color and fine textile signal come from the owner's supplied photographs.
+ * S06 uses the owner's approved generated fabric reference; the other suit
+ * colors and fine textile signals come from the owner's supplied photographs.
  * The linen swatch is explicitly generated material, not photographic evidence.
  */
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
@@ -20,7 +21,7 @@ const SOURCES={
  B10:{jacket:'9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea'}
 };
 const SPECS={
- S06:{photo:'IMG_1744.jpeg',color_rect:[530,480,100,240],texture_photo:'IMG_1744.jpeg',texture_rect:[440,820,140,160],texture_scale:1.15,texture_gain:.72,blur:9,detail:.03,shade_gain:.85,reference_photos:['IMG_1743.jpeg','IMG_1744.jpeg'],description:'Warm gray fine interlocking Glen check'},
+ S06:{approved_fabric:'s06-approved-fabric-preview.png',color_rect:[80,140,620,740],texture_rect:[80,140,620,740],neutralize_color:true,texture_scale:1,texture_gain:.72,texture_filter:'periodic_binomial_3x3',blur:24,detail:0,shade_gain:.85,description:'Neutral gray subtle Glen-check weave from the owner-approved generated fabric reference'},
  S13:{photo:'IMG_1745.jpeg',color_rect:[422,360,110,240],texture_photo:'IMG_1745.jpeg',texture_rect:[420,340,100,130],texture_scale:1.3,texture_gain:.62,blur:5,detail:.08,shade_gain:.92,reference_photos:['IMG_1741.jpeg','IMG_1745.jpeg'],description:'Dark blue-gray fine interlocking check'},
  S14:{photo:'IMG_1748.jpeg',color_rect:[520,720,112,260],texture_photo:'IMG_1748.jpeg',texture_rect:[570,850,60,160],texture_scale:1.15,texture_gain:.7,blur:12,detail:0,shade_gain:.93,reference_photos:['IMG_1747.jpeg','IMG_1748.jpeg'],description:'Medium blue-gray fine near-solid weave'},
  B01:{linen:true,texture_scale:.42,texture_gain:.36,blur:3,detail:.12,description:'Original navy color, fine natural matte linen'},
@@ -53,6 +54,23 @@ function sampleTexture(im,rect){const [x0,y0,w,h]=rect,v=new Float32Array(w*h),a
  const overlap=Math.max(4,Math.round(Math.min(w,h)*.16)),tw=w-overlap,th=h-overlap,tile=new Float32Array(tw*th);let mean=0;
  for(let y=0;y<th;y++)for(let x=0;x<tw;x++){const fx=x<overlap?smooth(x/overlap):1,fy=y<overlap?smooth(y/overlap):1,xx=x<overlap?x+tw:x,yy=y<overlap?y+th:y;const value=v[y*w+x]*fx*fy+v[y*w+xx]*(1-fx)*fy+v[yy*w+x]*fx*(1-fy)+v[yy*w+xx]*(1-fx)*(1-fy);tile[y*tw+x]=value;mean+=value;}
  mean/=tile.length;for(let p=0;p<tile.length;p++)tile[p]-=mean;return{w:tw,h:th,v:tile};}
+// The approved normal-view swatch contains subpixel weave at phone size.
+// A small periodic low-pass removes the sampling frequencies that otherwise
+// become false broad checker blocks when the avatar is reduced to 360/390px.
+// This affects the material signal only; source silhouette and garment edges
+// never enter this filter. Periodic addressing preserves seamless tiling.
+function antialiasTexture(texture){
+ const {w,h,v}=texture,result=new Float32Array(v.length);
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+  let value=0;
+  for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+   const weight=(dx===0?2:1)*(dy===0?2:1);
+   value+=v[((y+dy+h)%h)*w+(x+dx+w)%w]*weight;
+  }
+  result[y*w+x]=value/16;
+ }
+ return{w,h,v:result};
+}
 const wrap=(x,n)=>((x%n)+n)%n;
 function texAt(t,x,y){x=wrap(x,t.w);y=wrap(y,t.h);const ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy,jx=(ix+1)%t.w,jy=(iy+1)%t.h;return t.v[iy*t.w+ix]*(1-fx)*(1-fy)+t.v[iy*t.w+jx]*fx*(1-fy)+t.v[jy*t.w+ix]*(1-fx)*fy+t.v[jy*t.w+jx]*fx*fy;}
 function distance(x,y,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],u=clamp(((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy),0,1);return Math.hypot(x-a[0]-u*dx,y-a[1]-u*dy);}
@@ -75,8 +93,8 @@ function project(source,id,kind,spec,texture,target){
   const shade=low[p]-mean,detail=(v[p]-low[p])*spec.detail;
   let hardware=0;for(const [cx,cy,rx,ry]of details.ellipses){const d=Math.hypot((x-cx)/rx,(y-cy)/ry);hardware=Math.max(hardware,1-smooth((d-.9)/.4));}if(hardware===1)stats.protected_hardware_pixels++;
   for(let k=0;k<3;k++){
-   // Linen keeps local chroma and cloth mean. Suits use sampled photographic
-   // chroma with source light/dark folds; seam/hardware color remains native.
+   // Linen keeps local chroma and cloth mean. Suits use their explicit fabric
+   // reference color with native light/dark folds; hardware stays original RGB.
    let value;if(spec.linen){const chroma=source.data[i+k]-v[p];value=low[p]+chroma+detail+thread;}else value=target[k]+shade*spec.shade_gain+detail+thread;
    const preserved=spec.linen?source.data[i+k]:clamp(v[p]-mean+target[k],0,255);
    value=value*(1-preserve)+preserved*preserve;
@@ -92,12 +110,17 @@ function project(source,id,kind,spec,texture,target){
 }
 async function build(){
  const linen=await image('provenance/issue22/natural-linen-material-v1.png'),linenTexture=sampleTexture(linen,[0,0,linen.width,linen.height]);
- const manifest={schema:'hewrs.issue22.materials.v1',revision:'ISSUE22_SOURCE_BOUND_MATERIALS_1',canvas:[W,H],scope:Object.keys(SOURCES),alpha_policy:'exact_source_alpha',avatar_policy:'no_avatar_asset_or_geometry_access',assetPaths:{},bindings:{},garments:{},limitations:['Source photographs are phone screenshots without calibrated lighting or color.','Suit colors are photographic sample interpretations, not physical color measurements.','Linen microtexture is a generated material swatch; garment geometry, local colors, seams and hardware retain their registered source.']};
+ const manifest={schema:'hewrs.issue22.materials.v1',revision:'ISSUE22_S06_APPROVED_FABRIC_20261122_2',canvas:[W,H],scope:Object.keys(SOURCES),alpha_policy:'exact_source_alpha',avatar_policy:'no_avatar_asset_or_geometry_access',assetPaths:{},bindings:{},garments:{},limitations:['Source photographs are phone screenshots without calibrated lighting or color.','S13 and S14 colors are photographic sample interpretations, not physical color measurements.','S06 uses the normal-view panel of the owner-approved generated fabric reference, with its median luminance neutralized to equal RGB channels; approval applies to fabric appearance, not a new garment or avatar. Its material signal is prefiltered to prevent false checker blocks on phone-size downscaling; the original coarse plaid is suppressed before retaining source shading.','Linen microtexture is a generated material swatch; garment geometry, local colors, seams and hardware retain their registered source.']};
  const provenance={schema:'hewrs.issue22.material-provenance.v1',issue:22,generated_linen:{path:'provenance/issue22/natural-linen-material-v1.png',sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/natural-linen-material-v1.png'))),purpose:'Neutral fine matte natural flax linen material; no garment design or avatar generated',tool:'built-in image_gen',prompt:'Square straight-on macro fine natural matte linen cloth, neutral light gray, subtle slubs and tiny soft crinkles, low contrast uniform lighting, no garment edges, seams, labels, logos or coarse holes.'},photographs:{},source_alpha_locked:true,source_files_unchanged:true};
  for(const [id,layers]of Object.entries(SOURCES)){
   const spec=SPECS[id];let texture=linenTexture,target=null;
-  if(!spec.linen){const color=await image('provenance/issue22/'+spec.photo),sample=await image('provenance/issue22/'+spec.texture_photo);target=medianRGB(color,spec.color_rect);texture=sampleTexture(sample,spec.texture_rect);for(const f of spec.reference_photos)provenance.photographs[f]={path:'provenance/issue22/'+f,sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/'+f))),role:'owner-supplied-garment-photo',id};}
-  manifest.garments[id]={description:spec.description,material:spec.linen?'linen':'photographic-suit-fabric',target_rgb:target,parameters:spec,source_layers:[]};
+  if(spec.approved_fabric){
+   const referencePath='provenance/issue22/'+spec.approved_fabric,reference=await image(referencePath),sampled=medianRGB(reference,spec.color_rect);
+   target=spec.neutralize_color?Array(3).fill(Math.round(lum(...sampled))):sampled;texture=sampleTexture(reference,spec.texture_rect);
+   if(spec.texture_filter==='periodic_binomial_3x3')texture=antialiasTexture(texture);
+   provenance.generated_fabrics??={};provenance.generated_fabrics[id]={path:referencePath,sha256:sha(fs.readFileSync(path.join(ROOT,referencePath))),source_type:'owner-approved-generated-fabric-reference',approval_scope:'fabric appearance only; not a new garment geometry or avatar approval',panel:'normal view (left); close-up panel excluded from projection',sample_rect:spec.texture_rect,sampled_median_rgb:sampled,target_rgb:target,color_policy:'equal RGB channels from rounded sample median luminance',texture_filter:spec.texture_filter,source_shading_policy:'24-pixel alpha-normalized smoothing suppresses old coarse plaid; original seams and hardware retain their existing protection masks; no residual original fabric detail is reintroduced',tool:'built-in image_gen',purpose:'Project the approved subtle neutral-gray textile onto the existing registered jacket and paired trousers'};
+  }else if(!spec.linen){const color=await image('provenance/issue22/'+spec.photo),sample=await image('provenance/issue22/'+spec.texture_photo);target=medianRGB(color,spec.color_rect);texture=sampleTexture(sample,spec.texture_rect);for(const f of spec.reference_photos)provenance.photographs[f]={path:'provenance/issue22/'+f,sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/'+f))),role:'owner-supplied-garment-photo',id};}
+  manifest.garments[id]={description:spec.description,material:spec.linen?'linen':spec.approved_fabric?'owner-approved-generated-fabric':'photographic-suit-fabric',target_rgb:target,parameters:spec,source_layers:[]};
   for(const[kind,hash]of Object.entries(layers)){
    const sourcePath='assets/'+hash+'.png',bytes=fs.readFileSync(path.join(ROOT,sourcePath));if(sha(bytes)!==hash)throw Error('Source hash differs '+id+'/'+kind);
    const source=await image(sourcePath);if(source.width!==W||source.height!==H)throw Error('Native source dimensions differ');

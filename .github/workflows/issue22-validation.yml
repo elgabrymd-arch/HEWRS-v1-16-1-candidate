@@ -4,7 +4,7 @@ on:
   push:
     branches: [fix/issue22-garment-fidelity-20261122]
   pull_request:
-    branches: [integration/issue22-v3]
+    branches: [integration/issue22-v3, main]
   workflow_dispatch:
 
 permissions:
@@ -36,6 +36,7 @@ jobs:
           git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
           git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
           git fetch --depth=1 origin 1d5529c4a1a2f87b1212ac68392af1b4dc87d7bb
+          git fetch --depth=1 origin f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9
       - name: Install pinned verification dependencies
         run: |
           npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
@@ -54,6 +55,7 @@ jobs:
         run: |
           python tools/verify_active_delivery.py --check --syntax
           python tests/issue22-source.py
+          python tests/issue22-source-lock.py
           python tests/active-delivery-audit.py
           python -m py_compile tests/issue22-browser.py tools/issue22_delivery.py tools/issue22_reviewed.py
       - name: Verify all mode and occasion policies, exact scoring scope and historical records
@@ -62,6 +64,8 @@ jobs:
         run: |
           mkdir -p evidence/issue22/ci
           node tests/issue22-matching.cjs | tee evidence/issue22/ci/matching.log
+          node tests/s06-neutral-dna.cjs | tee evidence/issue22/ci/s06-neutral-dna.log
+          node tests/s06-neutral-material.cjs | tee evidence/issue22/ci/s06-neutral-material.log
           node tests/issue22-reviewed.cjs | tee evidence/issue22/ci/reviewed.log
       - uses: actions/upload-artifact@v4
         if: always()
@@ -219,6 +223,31 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  current-partial-tie:
+    name: Current runtime exact tie and knot preservation — ${{ matrix.browser }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Prove retained fit sources and material alpha, then check all 162 current partial-tie cases
+        run: python tests/issue19-partial-tie-browser.py --browser '${{ matrix.browser }}' --output evidence/issue22/current-partial-tie
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_CURRENT_PARTIAL_TIE_${{ matrix.browser }}
+          path: evidence/issue22/current-partial-tie/
+          if-no-files-found: error
+          retention-days: 30
+
   browser-functional:
     name: Protected UI behavior — ${{ matrix.browser }} — ${{ matrix.section }}
     runs-on: ubuntu-24.04
@@ -283,7 +312,7 @@ jobs:
   issue22-required:
     name: Issue 22 required validation
     if: always()
-    needs: [source-and-matching, native-visual, retained-fit, retained-cuff, functional, browser-visual, browser-functional, storage-recovery]
+    needs: [source-and-matching, native-visual, retained-fit, retained-cuff, functional, browser-visual, current-partial-tie, browser-functional, storage-recovery]
     runs-on: ubuntu-24.04
     steps:
       - name: Require every validation job to succeed

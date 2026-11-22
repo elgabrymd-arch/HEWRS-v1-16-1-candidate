@@ -1,8 +1,8 @@
 {
   "schema": "hewrs.avatar-v3-preview.v1",
   "preview_entrypoint": "avatar-v3-review.html",
-  "runtime": "runtime/avatar-v3-candidate-66617ee8cb0a8017d508.js",
-  "runtime_sha256": "66617ee8cb0a8017d508e4f5e5fc575eb14238d00e6758f43d122d7151a1a742",
+  "runtime": "runtime/avatar-v3-candidate-14e5819a66ce1af14ed3.js",
+  "runtime_sha256": "14e5819a66ce1af14ed31c080ddd60e1c4ab1a0d5e00cee2fdf612f0458370f9",
   "base_runtime": "runtime/continuous-shirts-4fae538c1847c9f7d1e9.js",
   "base_entrypoint": "avatar-v2-reference.html",
   "base_runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
@@ -50,30 +50,36 @@
       "B08"
     ],
     "modules": {
-      "data/issue22-garment-dna.js": "249c1ad050ba29bdda61b05e2f3bf18f1abe70a443a79361d77143f024c41357",
+      "data/issue22-garment-dna.js": "fbe07c745271d928279f4fe9dd2af7bc0c17fd4f174ac4a1673aadcd8120694b",
       "src/issue22-matching.js": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f",
-      "data/issue22-materials.js": "02fdcbe16087d56bd82a56dc416a3434106db97b35aa86522d1dc50ae82cca82",
+      "data/issue22-materials.js": "2c810cff41f759a21aaa424b55243aae58dfd269c6606f1f646eec1dce738401",
       "src/issue22-materials.js": "ea2e4c6d8fdac9ed2b84a6d1c51bb4d2e4eb661e238032f456a7ac56f26509c6",
       "src/issue22-b08.js": "d76bf8bffc41bc2a595600180c8fc74311064bab24655b3be6314727e308c8be",
       "src/issue22-render-guard.js": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc",
-      "data/issue22-reviewed-overlay.js": "2e7d28ac48b68bd99da29c394a1a89a8f7e5795a13cd35964079fe631feae6d4",
+      "data/issue22-reviewed-overlay.js": "a8972569634220669d187f1f84ae122f4770c140aeec44282ad13db835a5a833",
       "src/issue22-reviewed-data.js": "b95bfe77dbfccee90ac55ed1304a5b2c6fc2536ef9a915d0f892ecea7c28d432"
     },
     "matching_index": {
       "path": "data/issue22-option-index.js",
-      "sha256": "d11c09c491e66c6472752c417b33bbf15cb3e608a167ff6b17e91e6fe06b21a8"
+      "sha256": "6f6b46a3538cd28a8a67a272e6e0fb48b4726e2bc42da22a3d1d7b1cebbbe1d8"
     },
     "picker_previews": {
       "path": "data/issue22-picker-images.js",
-      "sha256": "75551302a60cf6c1c63cfa2ae0582b520c817f221ab79d49cbed9a9f16343003"
+      "sha256": "f52e359ac61381d3ebb7b1ce912d58ca76275467ae35eeb2967f5af4535e7c4c"
     },
     "reviewed_panel": {
-      "path": "src/issue22-reviewed-panel-5534eaf26b837372d738.js",
-      "sha256": "5534eaf26b837372d73872c9f02523fce088785c348e83047f85482461a9b74c"
+      "path": "src/issue22-reviewed-panel-a9d953556b6f8099d105.js",
+      "sha256": "a9d953556b6f8099d1052ceeb847a11adca5329f695fc95e8289b6584ab2d565"
     },
     "original_sources": "unchanged; separate source-bound display materials and versioned DNA",
     "browser_storage_migration": "none",
-    "merge_target": "integration/issue22-v3",
-    "production_deployment_authorized": false
+    "merge_target": "main",
+    "integration_branch": "integration/issue22-v3",
+    "production_deployment_authorized": true,
+    "production_authorization": {
+      "date": "2026-11-22",
+      "authority": "explicit_owner_instruction",
+      "scope": "complete S06 appearance, DNA and compatibility validation; merge into the primary application and publish"
+    }
   }
 }

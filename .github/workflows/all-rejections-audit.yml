@@ -56,6 +56,8 @@ jobs:
           git fetch --depth=1 origin 3238e36445cdc3597af43c873a5425e0018cb97f
           git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
           git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
+          git fetch --depth=1 origin f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9
           python tools/audit_continuous_source_lock.py --base 3238e36445cdc3597af43c873a5425e0018cb97f
           python tools/verify_active_delivery.py --check --syntax
       - name: Verify narrow delivery and source-lock audit regressions

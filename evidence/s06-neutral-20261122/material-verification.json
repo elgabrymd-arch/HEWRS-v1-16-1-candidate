@@ -1,0 +1,123 @@
+{
+  "schema": "hewrs.s06-neutral-material-verification.v1",
+  "status": "PASS",
+  "baseline_commit": "f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9",
+  "material_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
+  "approved_generated_reference_sha256": "3c2730b546f08b77b2c1d0764a6b69e5c96dd0085c00023d222dac438c825d51",
+  "changed_layers": [
+    {
+      "layer": "jacket",
+      "source_sha256": "65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935",
+      "before_display_sha256": "2079a865f1d65785a911fcdb9e7bb85180dc0aa48c3d1f420df6d261ab909f24",
+      "after_display_sha256": "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444",
+      "changed_rgb_pixels": 743818,
+      "alpha_changed_pixels": 0,
+      "transparent_changed_pixels": 0
+    },
+    {
+      "layer": "trousers",
+      "source_sha256": "aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861",
+      "before_display_sha256": "569cf8a2456971e593ee548cdcaf19e9aae167fa59d30a1aad9a90bc2cc28d90",
+      "after_display_sha256": "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169",
+      "changed_rgb_pixels": 573496,
+      "alpha_changed_pixels": 0,
+      "transparent_changed_pixels": 0
+    }
+  ],
+  "preserved_material_layers": 7,
+  "changed_picker_ids": [
+    "S06"
+  ],
+  "preserved_picker_images": 6,
+  "runtime": "runtime/avatar-v3-candidate-14e5819a66ce1af14ed3.js",
+  "runtime_sha256": "14e5819a66ce1af14ed31c080ddd60e1c4ab1a0d5e00cee2fdf612f0458370f9",
+  "before_native_rgba_sha256": "e4ae327468c98a4317b6502fb7206656b3657973211f9d8a9ac47c14946b9fe5",
+  "after_native_rgba_sha256": "3f31e4b72db2f6ecf20b92517672e48d1d7d133d039a9143b56d0147f45f711e",
+  "protected_head_pixels": 104620,
+  "active_material_bindings_verified": 2,
+  "active_picker_manifest_verified": true,
+  "picker_matches_shipped_native_pixels": true,
+  "original_avatar_sources_preserved": true,
+  "saved_data_writes": 0,
+  "normal_distance_appearance": {
+    "width": 390,
+    "height": 1076,
+    "patches": [
+      {
+        "name": "chest",
+        "rect": [
+          108,
+          300,
+          40,
+          50
+        ],
+        "maximum_rms": 3.5,
+        "mean_luma": 98.8375,
+        "detrended_rms_luma": 2.7500947598195946
+      },
+      {
+        "name": "lower_jacket",
+        "rect": [
+          125,
+          472,
+          37,
+          48
+        ],
+        "maximum_rms": 3.5,
+        "mean_luma": 100.39301801801801,
+        "detrended_rms_luma": 2.47348627499873
+      },
+      {
+        "name": "left_thigh",
+        "rect": [
+          129,
+          647,
+          40,
+          75
+        ],
+        "maximum_rms": 3.5,
+        "mean_luma": 100.04566666666666,
+        "detrended_rms_luma": 2.697878518906264
+      },
+      {
+        "name": "right_thigh",
+        "rect": [
+          222,
+          647,
+          38,
+          75
+        ],
+        "maximum_rms": 5,
+        "mean_luma": 97.35087719298245,
+        "detrended_rms_luma": 4.066979530093556
+      }
+    ],
+    "retained_calf_fold": {
+      "shadow": {
+        "rect": [
+          228,
+          908,
+          20,
+          12
+        ],
+        "mean_luma": 84.51666666666667,
+        "detrended_rms_luma": 3.7104727656700582
+      },
+      "highlight": {
+        "rect": [
+          228,
+          875,
+          20,
+          12
+        ],
+        "mean_luma": 105.07916666666667,
+        "detrended_rms_luma": 2.508720451102241
+      },
+      "contrast_luma": 20.5625,
+      "minimum_contrast_luma": 18
+    },
+    "scope": "Sampling regression in fixed normal-distance cloth regions; not a calibrated physical-cloth measurement"
+  },
+  "authority": "Owner-approved generated fabric representation on unchanged registered garment and avatar geometry.",
+  "limitations": "Source/pixel regression verification, not a calibrated physical colour match, a new avatar approval, or a new whole-outfit visual judgment."
+}

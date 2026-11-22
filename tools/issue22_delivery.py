@@ -106,8 +106,14 @@ def record():
         'reviewed_panel':reviewed_panel()[0],
         'original_sources':'unchanged; separate source-bound display materials and versioned DNA',
         'browser_storage_migration':'none',
-        'merge_target':'integration/issue22-v3',
-        'production_deployment_authorized':False,
+        'merge_target':'main',
+        'integration_branch':'integration/issue22-v3',
+        'production_deployment_authorized':True,
+        'production_authorization':{
+            'date':'2026-11-22',
+            'authority':'explicit_owner_instruction',
+            'scope':'complete S06 appearance, DNA and compatibility validation; merge into the primary application and publish',
+        },
     }
 
 

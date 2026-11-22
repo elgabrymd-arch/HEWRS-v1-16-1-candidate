@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.issue22.materials.v1",
-  "revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+  "revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
   "canvas": [
     996,
     2748
@@ -16,8 +16,8 @@
   "alpha_policy": "exact_source_alpha",
   "avatar_policy": "no_avatar_asset_or_geometry_access",
   "assetPaths": {
-    "2079a865f1d65785a911fcdb9e7bb85180dc0aa48c3d1f420df6d261ab909f24": "assets/issue22-materials/S06-jacket-2079a865f1d65785.png",
-    "569cf8a2456971e593ee548cdcaf19e9aae167fa59d30a1aad9a90bc2cc28d90": "assets/issue22-materials/S06-trousers-569cf8a2456971e5.png",
+    "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444": "assets/issue22-materials/S06-jacket-28a90f89c50c10a8.png",
+    "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169": "assets/issue22-materials/S06-trousers-14073a9d35557250.png",
     "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107": "assets/issue22-materials/S13-jacket-48a38b7f615ab203.png",
     "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8": "assets/issue22-materials/S13-trousers-71315979b9cf914e.png",
     "bb717e2606224a5dabf28f00f8b1fee2a5dc1bf87c891259e187bb369e5d8fd6": "assets/issue22-materials/S14-jacket-bb717e2606224a5d.png",
@@ -32,8 +32,8 @@
       "layer": "jacket",
       "source_sha256": "65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935",
       "source_url": "assets/65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935.png",
-      "display_sha256": "2079a865f1d65785a911fcdb9e7bb85180dc0aa48c3d1f420df6d261ab909f24",
-      "display_url": "assets/issue22-materials/S06-jacket-2079a865f1d65785.png",
+      "display_sha256": "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444",
+      "display_url": "assets/issue22-materials/S06-jacket-28a90f89c50c10a8.png",
       "rect": [
         0,
         0,
@@ -48,12 +48,12 @@
           105.722
         ],
         "display_mean_rgb": [
-          77.092,
-          72.101,
-          69.117
+          99.901,
+          99.884,
+          99.884
         ],
         "alpha_changed_pixels": 0,
-        "changed_rgb_pixels": 747186,
+        "changed_rgb_pixels": 746405,
         "protected_hardware_pixels": 2452,
         "opaque_pixels": 731386
       }
@@ -63,8 +63,8 @@
       "layer": "trousers",
       "source_sha256": "aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861",
       "source_url": "assets/aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861.png",
-      "display_sha256": "569cf8a2456971e593ee548cdcaf19e9aae167fa59d30a1aad9a90bc2cc28d90",
-      "display_url": "assets/issue22-materials/S06-trousers-569cf8a2456971e5.png",
+      "display_sha256": "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169",
+      "display_url": "assets/issue22-materials/S06-trousers-14073a9d35557250.png",
       "rect": [
         0,
         0,
@@ -79,12 +79,12 @@
           95.624
         ],
         "display_mean_rgb": [
-          76.998,
-          71.998,
-          68.998
+          100.007,
+          100.007,
+          100.007
         ],
         "alpha_changed_pixels": 0,
-        "changed_rgb_pixels": 573607,
+        "changed_rgb_pixels": 573149,
         "protected_hardware_pixels": 0,
         "opaque_pixels": 561454
       }
@@ -309,38 +309,35 @@
   },
   "garments": {
     "S06": {
-      "description": "Warm gray fine interlocking Glen check",
-      "material": "photographic-suit-fabric",
+      "description": "Neutral gray subtle Glen-check weave from the owner-approved generated fabric reference",
+      "material": "owner-approved-generated-fabric",
       "target_rgb": [
-        77,
-        72,
-        69
+        100,
+        100,
+        100
       ],
       "parameters": {
-        "photo": "IMG_1744.jpeg",
+        "approved_fabric": "s06-approved-fabric-preview.png",
         "color_rect": [
-          530,
-          480,
-          100,
-          240
-        ],
-        "texture_photo": "IMG_1744.jpeg",
-        "texture_rect": [
-          440,
-          820,
+          80,
           140,
-          160
+          620,
+          740
         ],
-        "texture_scale": 1.15,
+        "texture_rect": [
+          80,
+          140,
+          620,
+          740
+        ],
+        "neutralize_color": true,
+        "texture_scale": 1,
         "texture_gain": 0.72,
-        "blur": 9,
-        "detail": 0.03,
+        "texture_filter": "periodic_binomial_3x3",
+        "blur": 24,
+        "detail": 0,
         "shade_gain": 0.85,
-        "reference_photos": [
-          "IMG_1743.jpeg",
-          "IMG_1744.jpeg"
-        ],
-        "description": "Warm gray fine interlocking Glen check"
+        "description": "Neutral gray subtle Glen-check weave from the owner-approved generated fabric reference"
       },
       "source_layers": [
         "65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935",
@@ -476,7 +473,8 @@
   },
   "limitations": [
     "Source photographs are phone screenshots without calibrated lighting or color.",
-    "Suit colors are photographic sample interpretations, not physical color measurements.",
+    "S13 and S14 colors are photographic sample interpretations, not physical color measurements.",
+    "S06 uses the normal-view panel of the owner-approved generated fabric reference, with its median luminance neutralized to equal RGB channels; approval applies to fabric appearance, not a new garment or avatar. Its material signal is prefiltered to prevent false checker blocks on phone-size downscaling; the original coarse plaid is suppressed before retaining source shading.",
     "Linen microtexture is a generated material swatch; garment geometry, local colors, seams and hardware retain their registered source."
   ]
 }

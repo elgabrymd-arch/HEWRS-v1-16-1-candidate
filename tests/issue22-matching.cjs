@@ -30,10 +30,10 @@ for(const id of ['B01','B06','B10']){
  A.equal(current.mode_policy,'NO_TIE_ONLY');A.match(current.texture_text,/matte linen/);
  const normalized=c.engine.get(id);A.equal(normalized.relaxedTailoring,true);A.equal(normalized.surface,'pronounced');
 }
-A.match(c.features.get('S06').primary_text,/Warm medium-dark grey/);
+A.match(c.features.get('S06').primary_text,/Neutral medium-dark grey/);
 A.match(c.features.get('S06').pattern_text,/interlocking/);
 A.equal(c.engine.get('S06').primary.value,2.4);
-A.equal(c.engine.get('S06').primary.temperature,'warm-neutral');
+A.equal(c.engine.get('S06').primary.temperature,'neutral');
 A.equal(c.engine.get('S06').pattern.contrast,1.2);
 A.equal(c.engine.get('S06').pattern.quiet,true);
 A.match(c.features.get('S13').pattern_text,/interlocking check/);

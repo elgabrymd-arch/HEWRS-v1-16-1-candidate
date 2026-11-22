@@ -32,6 +32,15 @@ V3_LAYERS = {
     'right_hand': ('3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9',
                    'cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b'),
 }
+ISSUE22_APPROVED_MAIN = '95d14073e33f2b699bdb0cdbd42504b1a1be2274'
+ISSUE22_INTEGRATION = 'f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9'
+ISSUE22_DATA = {
+    'garment-dna': ('HEWRS_ISSUE22_GARMENT_DNA', 'hewrs.issue22.garment-dna.v1'),
+    'materials': ('HEWRS_ISSUE22_MATERIALS', 'hewrs.issue22.materials.v1'),
+    'option-index': ('HEWRS_OPTION_INDEX', 'hewrs.derived-clothing-index.v1_17_0'),
+    'picker-images': ('HEWRS_ISSUE22_PICKER_IMAGES', 'hewrs.issue22.picker-previews.v1'),
+    'reviewed-overlay': ('HEWRS_ISSUE22_REVIEWED_OVERLAY', 'hewrs.issue22.reviewed-overlay.v1'),
+}
 
 
 def script_json(text, name):
@@ -152,6 +161,127 @@ def verify_avatar_v3_sources(root, active):
     return {V3_DATA, *images}
 
 
+def verify_issue22_sources(root, active):
+    """Authorize only source-bound current and immutable retained additions.
+
+    The old continuous allowlist still governs every original file. New Issue
+    22 paths must be enumerated by the shipped manifests or the exact merged
+    integration checkpoint; directory names alone grant no exception.
+    """
+    if not active.get('issue22'):
+        return set()
+    require(active['kind'] == 'avatar-v3', 'Issue 22 additions require the active V3 delivery')
+    from issue22_delivery import verify as verify_issue22
+    verify_issue22(active['issue22'], root)
+
+    def at_commit(ref, name):
+        return subprocess.check_output(['git', 'show', ref + ':' + name], cwd=root)
+
+    def blob_index(ref):
+        rows = subprocess.check_output(['git', 'ls-tree', '-r', '-z', ref, '--', *PROTECTED], cwd=root)
+        return {name.decode(): fields.decode().split()[2]
+                for row in rows.split(b'\0') if row
+                for fields, name in [row.split(b'\t', 1)]}
+
+    approved_blobs = blob_index(ISSUE22_APPROVED_MAIN)
+    retained_blobs = blob_index(ISSUE22_INTEGRATION)
+
+    def exact_blob(name, inventory, label):
+        import hashlib
+        raw = file_bytes(root, name)
+        actual = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+        require(name in inventory and inventory[name] == actual, label + ': ' + name)
+        return raw
+
+    def png(name, expected, dimensions):
+        raw = file_bytes(root, name)
+        require(re.fullmatch(r'[a-f0-9]{64}', expected) is not None and digest(raw) == expected and
+                raw[:8] == b'\x89PNG\r\n\x1a\n' and raw[12:16] == b'IHDR' and
+                struct.unpack('>II', raw[16:24]) == tuple(dimensions),
+                'Issue 22 content-addressed PNG bytes or dimensions changed: ' + name)
+
+    additions, data = set(), {}
+    for stem, (variable, schema) in ISSUE22_DATA.items():
+        name = 'data/issue22-' + stem
+        data[stem] = json.loads(file_bytes(root, name + '.json'))
+        script = file_bytes(root, name + '.js').decode()
+        if stem == 'picker-images':
+            # Picker data also installs the registered previews. Preserve that
+            # executable suffix byte-for-byte against the merged checkpoint.
+            old_script = at_commit(ISSUE22_INTEGRATION, name + '.js').decode()
+            pattern = r'(?:/\*[^*]*\*/\s*)?globalThis\.' + re.escape(variable) + '='
+            match, old_match = re.match(pattern, script), re.match(pattern, old_script)
+            require(bool(match) and bool(old_match), 'Issue 22 picker assignment wrapper differs')
+            parsed, end = json.JSONDecoder().raw_decode(script[match.end():])
+            _, old_end = json.JSONDecoder().raw_decode(old_script[old_match.end():])
+            require(script[:match.end()] == old_script[:old_match.end()] and
+                    script[match.end()+end:] == old_script[old_match.end()+old_end:],
+                    'Issue 22 picker installer changed from the immutable integration')
+        else:
+            parsed = script_json(script, variable)
+        require(data[stem].get('schema') == schema and parsed == data[stem],
+                'Issue 22 JSON and executable data must agree: ' + stem)
+        additions.update((name + '.json', name + '.js'))
+
+    runtime = file_bytes(root, active['runtime'])
+    for stem in ('garment-dna', 'materials'):
+        require(runtime.count(file_bytes(root, 'data/issue22-' + stem + '.js')) == 1,
+                'Issue 22 data must occur exactly once in the shipped runtime: ' + stem)
+    panel = file_bytes(root, active['issue22']['reviewed_panel']['path'])
+    require(panel.count(file_bytes(root, 'data/issue22-reviewed-overlay.js')) == 1,
+            'Issue 22 reviewed data must occur exactly once in the shipped panel')
+
+    previous = json.loads(at_commit(ISSUE22_INTEGRATION, 'data/issue22-materials.json'))
+    materials = data['materials']
+    require(materials.get('canvas') == previous['canvas'] == [996, 2748] and
+            materials.get('scope') == previous['scope'] == ['S06', 'S13', 'S14', 'B01', 'B06', 'B10'] and
+            set(materials.get('bindings', {})) == set(previous['bindings']) and
+            len(materials['bindings']) == 9 and
+            materials.get('alpha_policy') == previous['alpha_policy'] == 'exact_source_alpha',
+            'Issue 22 material/source scope differs from the immutable integration')
+    require(data['garment-dna'].get('scope') == data['reviewed-overlay'].get('scope') == materials['scope'] and
+            data['option-index'].get('source_input_sha256') == INPUT_SHA256,
+            'Issue 22 data scope or original catalogue identity changed')
+    for source_hash, old in previous['bindings'].items():
+        row = materials['bindings'][source_hash]
+        for key in ('garment_id', 'layer', 'source_sha256', 'source_url', 'rect', 'alpha_sha256'):
+            require(row.get(key) == old[key], 'Issue 22 original material registration changed: ' + key)
+        require(row['source_sha256'] == source_hash and row['source_url'] == 'assets/' + source_hash + '.png',
+                'Issue 22 original material source path differs')
+        raw = exact_blob(row['source_url'], approved_blobs, 'Approved main material source changed')
+        require(digest(raw) == source_hash, 'Issue 22 original material SHA differs')
+        if row['garment_id'] != 'S06':
+            require(row == old, 'A non-S06 material binding changed after integration')
+        for binding in (old, row):
+            expected_path = 'assets/issue22-materials/' + binding['garment_id'] + '-' + binding['layer'] + '-' + binding['display_sha256'][:16] + '.png'
+            require(binding['display_url'] == expected_path, 'Issue 22 display path is not bound to its garment and content')
+            png(expected_path, binding['display_sha256'], materials['canvas'])
+            additions.add(expected_path)
+        exact_blob(old['display_url'], retained_blobs, 'Retained integration material bytes changed')
+    require(materials.get('assetPaths') == {row['display_sha256']: row['display_url'] for row in materials['bindings'].values()},
+            'Issue 22 material asset map contains an unbound path')
+
+    previous_picker = json.loads(at_commit(ISSUE22_INTEGRATION, 'data/issue22-picker-images.json'))
+    picker = data['picker-images']
+    require(set(picker.get('items', {})) == set(previous_picker['items']) == set(materials['scope']) | {'B08'},
+            'Issue 22 picker identity scope differs from the immutable integration')
+    for garment_id, old in previous_picker['items'].items():
+        row = picker['items'][garment_id]
+        for key in ('history_id', 'render_selection', 'source_kind', 'width', 'height'):
+            require(row.get(key) == old[key], 'Issue 22 picker identity or native layout changed: ' + garment_id)
+        if garment_id != 'S06':
+            require({key: value for key, value in row.items() if key != 'issue22_revision'} ==
+                    {key: value for key, value in old.items() if key != 'issue22_revision'},
+                    'A non-S06 picker changed after integration')
+        for item in (old, row):
+            require(item['src'] == 'ui/issue22/' + item['sha256'] + '.png', 'Issue 22 picker path is not content-addressed')
+            png(item['src'], item['sha256'], (item['width'], item['height']))
+            additions.add(item['src'])
+        exact_blob(old['src'], retained_blobs, 'Retained integration picker bytes changed')
+    require(not (additions & set(approved_blobs)), 'Issue 22 may only add paths absent from the approved main tree')
+    return additions
+
+
 def validate_protected_changes(differences, allowed):
     require(differences == allowed, 'Protected changes differ from the exact continuous allowlist: ' + json.dumps({
         'unexpected_or_wrong_status': {name: value for name, value in differences.items() if allowed.get(name) != value},
@@ -256,13 +386,15 @@ def audit(base, root=ROOT):
     changes = validate_descriptor_changes(before, after)
     images, source_count = verify_new_sources(root, changes)
     avatar_additions = verify_avatar_v3_sources(root, active)
-    allowed = {MAP_JSON: 'M', MAP_JS: 'M', **{name: 'A' for name in DATA_ADDITIONS | images | avatar_additions}}
+    issue22_additions = verify_issue22_sources(root, active)
+    allowed = {MAP_JSON: 'M', MAP_JS: 'M', **{name: 'A' for name in DATA_ADDITIONS | images | avatar_additions | issue22_additions}}
     validate_protected_changes(differences, allowed)
     for name in allowed:
         file_bytes(root, name)
         require(not (root / name).stat().st_mode & 0o111, 'Unexpected executable protected data: ' + name)
     report.update(authorized_thumbnail_descriptors=len(changes), added_thumbnail_images=sorted(images),
                   isolated_avatar_v3_additions=sorted(avatar_additions),
+                  issue22_source_bound_additions=sorted(issue22_additions),
                   continuous_photographs_verified=source_count,
                   original_assets_and_other_data='unchanged against exact baseline',
                   original_scoring_and_identity_rows='byte-identical',

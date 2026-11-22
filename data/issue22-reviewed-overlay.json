@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.issue22.reviewed-overlay.v1",
-  "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+  "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
   "scope": [
     "S06",
     "S13",
@@ -10,7 +10,7 @@
     "B10"
   ],
   "baseline_catalogue_fingerprint": "38a4a61d788fa2e985b68abed1d5643b699fe8f82c1374399d0027aca28c7c14",
-  "catalogue_fingerprint": "6ccf48e67d1a89fb3e21f265433cd65cdcf74024c4dd783a8af84698aac7dfb6",
+  "catalogue_fingerprint": "67ddf0655e5d806b72f4b709d4d5b244a1f333f32121f0271c311a94e17c9502",
   "review_data_sha256": "29335fc3513cb5e896bf98c554b60b1be7773591a4a70b7b43ddba6958837a11",
   "discovery_features_sha256": "20d20a6e3bbf4a596e9ce95fb76c8863a89e66667ba97bc22f870a92d6fb58ec",
   "records": {
@@ -18,20 +18,20 @@
       "id": "S06",
       "category": "suit",
       "history_id": "suit-5",
-      "label": "Warm medium-dark grey suit with fine interlocking Glen check",
+      "label": "Neutral medium-dark grey suit with fine low-contrast Glen check; near-solid at distance",
       "active": true,
       "photo_status": "complete_by_owner_instruction",
       "evidence_status": "new_visual_candidate_from_repository_imagery",
       "source_conflict": false,
-      "source_fingerprint": "bb10864e5abc22aa3e07abe0d14b314c7c21deae30a91a800992060b32e8350f",
+      "source_fingerprint": "cc095b243ae56cd89069ef3d167afa2fda2a156efc21062a57e229815f7b09fb",
       "source": {
         "feature": {
           "id": "S06",
           "category": "suit",
-          "description": "Warm medium-dark grey suit with fine interlocking Glen check",
-          "primary_text": "Warm medium-dark grey; subtle brown cast",
-          "secondary_text": "Tonal charcoal grey; muted warm grey",
-          "pattern_text": "Fine interlocking Glen / houndstooth check",
+          "description": "Neutral medium-dark grey suit with fine low-contrast Glen check; near-solid at distance",
+          "primary_text": "Neutral medium-dark grey",
+          "secondary_text": "Tonal charcoal grey; light neutral grey",
+          "pattern_text": "Fine low-contrast interlocking Glen / houndstooth check; near-solid at distance",
           "texture_text": "Fine matte woven texture",
           "construction_text": "Single-breasted; notch lapels",
           "scale_text": "Fine (1)",
@@ -40,7 +40,7 @@
           "recorded_contrast": 1.2,
           "source": {
             "source_id": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
-            "authority": "owner photographs and explicit Issue #22 correction",
+            "authority": "Owner photographs and explicit neutral-grey S06 correction approved 2026-11-22",
             "photographs": [
               "provenance/issue22/IMG_1743.jpeg",
               "provenance/issue22/IMG_1744.jpeg"
@@ -95,10 +95,10 @@
           "normalization_status": "PROPOSED_SEMANTIC_FEATURE_INPUT_NOT_A_MEASUREMENT",
           "fibre_composition": null,
           "seasonal_restrictions": [],
-          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue22_interpretation": {
             "value": 2.4,
-            "temperature": "warm-neutral",
+            "temperature": "neutral",
             "saturation": 0.08,
             "pattern": {
               "family": "grid",
@@ -114,8 +114,8 @@
           "suitId": "S06",
           "historyId": "suit-5",
           "jacket": {
-            "sha256": "2079a865f1d65785a911fcdb9e7bb85180dc0aa48c3d1f420df6d261ab909f24",
-            "url": "assets/issue22-materials/S06-jacket-2079a865f1d65785.png",
+            "sha256": "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444",
+            "url": "assets/issue22-materials/S06-jacket-28a90f89c50c10a8.png",
             "rect": [
               0,
               0,
@@ -123,11 +123,11 @@
               2748
             ],
             "source_sha256": "65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "trousers": {
-            "sha256": "569cf8a2456971e593ee548cdcaf19e9aae167fa59d30a1aad9a90bc2cc28d90",
-            "url": "assets/issue22-materials/S06-trousers-569cf8a2456971e5.png",
+            "sha256": "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169",
+            "url": "assets/issue22-materials/S06-trousers-14073a9d35557250.png",
             "rect": [
               0,
               0,
@@ -135,7 +135,7 @@
               2748
             ],
             "source_sha256": "aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "template": "S11",
           "approval": "EXISTING_OWNER_APPROVAL_PRESERVED",
@@ -144,7 +144,7 @@
           "dynamic_compositor_registered": false
         },
         "issue22": {
-          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
           "historical_source_fingerprint": "decf9c19dc51480f02479313818aa2aa599adfce18a5b83f37a25595efa4fe1d"
         },
@@ -253,8 +253,8 @@
         "schema": "hewrs.rebuild.visual-dna.v2",
         "id": "S06",
         "category": "suit",
-        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
-        "label": "Warm medium-dark grey suit with fine interlocking Glen check",
+        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
+        "label": "Neutral medium-dark grey suit with fine low-contrast Glen check; near-solid at distance",
         "status": "issue22_effective_garment_facts",
         "evidence": {
           "kind": "registered_garment_render",
@@ -277,7 +277,7 @@
           "inspection_scope": "Jacket appearance. A suit record is not a new physical-fit or separate trouser-fabric verification.",
           "issue22": {
             "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
-            "authority": "owner photographs and explicit Issue #22 correction",
+            "authority": "Owner photographs and explicit neutral-grey S06 correction approved 2026-11-22",
             "photographs": [
               {
                 "repository_path": "provenance/issue22/IMG_1743.jpeg",
@@ -288,21 +288,28 @@
                 "sha256": "8d79caf534c3d9b4ff44dda61ac50d5b3bb337b385f0665ef6b27b819df5ef4c"
               }
             ],
-            "material_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+            "material_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
+            "approved_material_reference": {
+              "repository_path": "provenance/issue22/s06-approved-fabric-preview.png",
+              "sha256": "3c2730b546f08b77b2c1d0764a6b69e5c96dd0085c00023d222dac438c825d51",
+              "kind": "owner-approved generated fabric preview",
+              "approved_date": "2026-11-22",
+              "scope": "Neutral-grey colour, fine low-contrast weave and near-solid distance appearance; not a physical fabric measurement or a new whole-outfit approval"
+            },
             "whole_outfit_review_added": false
           }
         },
         "observed": {
           "colour": {
-            "dominant": "Warm medium-dark grey; subtle brown cast",
-            "temperature": "warm-neutral",
+            "dominant": "Neutral medium-dark grey",
+            "temperature": "neutral",
             "relative_value": "medium-dark",
             "relative_saturation": "low",
             "measurement_status": "qualitative_visual_not_colorimetry"
           },
           "pattern": {
-            "close_reading": "Fine interlocking Glen / houndstooth check",
-            "distance_reading": "fine, restrained interlocking check",
+            "close_reading": "Fine low-contrast interlocking Glen / houndstooth check; near-solid at distance",
+            "distance_reading": "Near-solid grey at normal viewing distance; fine low-contrast check visible close up",
             "relative_contrast": "low",
             "measured_repeat_mm": null
           },
@@ -357,9 +364,9 @@
         "restrictions_added": [],
         "automatic_season_exclusions": [],
         "owner_approval_added": false,
-        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1"
+        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2"
       },
-      "visual_label": "Warm medium-dark grey suit with fine interlocking Glen check"
+      "visual_label": "Neutral medium-dark grey suit with fine low-contrast Glen check; near-solid at distance"
     },
     "S13": {
       "id": "S13",
@@ -370,7 +377,7 @@
       "photo_status": "complete_by_owner_instruction",
       "evidence_status": "new_visual_candidate_from_repository_imagery",
       "source_conflict": false,
-      "source_fingerprint": "93443f2be23d928445e1ea07439329f6bc10b21fd83aa69e10b1fcafd31597f2",
+      "source_fingerprint": "c8c3b49b9ade297efe5be6071cc34bce6fad2914047823c2bc4c64d95b08458f",
       "source": {
         "feature": {
           "id": "S13",
@@ -442,7 +449,7 @@
           "normalization_status": "PROPOSED_SEMANTIC_FEATURE_INPUT_NOT_A_MEASUREMENT",
           "fibre_composition": null,
           "seasonal_restrictions": [],
-          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue22_interpretation": {
             "value": 1.8,
             "temperature": "cool",
@@ -470,7 +477,7 @@
               2748
             ],
             "source_sha256": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "trousers": {
             "sha256": "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8",
@@ -482,7 +489,7 @@
               2748
             ],
             "source_sha256": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "template": "S11",
           "approval": "EXISTING_OWNER_APPROVAL_PRESERVED",
@@ -491,7 +498,7 @@
           "dynamic_compositor_registered": false
         },
         "issue22": {
-          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
           "historical_source_fingerprint": "eb8dd2eb5e2d9307e50c66c70562033a6c5f5ac5810fd7cacf0890008cebc97b"
         },
@@ -600,7 +607,7 @@
         "schema": "hewrs.rebuild.visual-dna.v2",
         "id": "S13",
         "category": "suit",
-        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
         "label": "Dark slate blue-grey suit with fine interlocking check",
         "status": "issue22_effective_garment_facts",
         "evidence": {
@@ -635,7 +642,7 @@
                 "sha256": "d3fab84c8171e8587c504f3fa8673f8bf9e7ee1961d6c8b0d89ff053da56a6c0"
               }
             ],
-            "material_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+            "material_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
             "whole_outfit_review_added": false
           }
         },
@@ -704,7 +711,7 @@
         "restrictions_added": [],
         "automatic_season_exclusions": [],
         "owner_approval_added": false,
-        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1"
+        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2"
       },
       "visual_label": "Dark slate blue-grey suit with fine interlocking check"
     },
@@ -717,7 +724,7 @@
       "photo_status": "complete_by_owner_instruction",
       "evidence_status": "new_visual_candidate_from_repository_imagery",
       "source_conflict": false,
-      "source_fingerprint": "ae499e6821c325ba4a31202d139ef90070f0d78b67d4a503d534db2f63a1d040",
+      "source_fingerprint": "fa032908eb438b374ce269f53347f66de34e6d4aec9366eadeec2e064bcadb01",
       "source": {
         "feature": {
           "id": "S14",
@@ -789,7 +796,7 @@
           "normalization_status": "PROPOSED_SEMANTIC_FEATURE_INPUT_NOT_A_MEASUREMENT",
           "fibre_composition": null,
           "seasonal_restrictions": [],
-          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue22_interpretation": {
             "value": 3,
             "temperature": "cool",
@@ -817,7 +824,7 @@
               2748
             ],
             "source_sha256": "527d35bdda91922b1467e7ce171dec13d100330b16c5a6ee3b048e59896c9e64",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "trousers": {
             "sha256": "42507467e8e0affe0b82be5ccc25901582433e4991141b89322ad9fa2b695fc2",
@@ -829,7 +836,7 @@
               2748
             ],
             "source_sha256": "ed8dc4d60dc595d27d6f9b1466b7a3fa3fd8e247a801362a36fd9f8879e5685e",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "template": "S11",
           "approval": "EXISTING_OWNER_APPROVAL_PRESERVED",
@@ -838,7 +845,7 @@
           "dynamic_compositor_registered": false
         },
         "issue22": {
-          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
           "historical_source_fingerprint": "4aa30f4aac8340391af8a6cce4b9e9aaf07222f0a38261fc5c4d24cbe43a6d5b"
         },
@@ -947,7 +954,7 @@
         "schema": "hewrs.rebuild.visual-dna.v2",
         "id": "S14",
         "category": "suit",
-        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
         "label": "Medium slate / steel blue-grey suit with near-solid fine weave",
         "status": "issue22_effective_garment_facts",
         "evidence": {
@@ -982,7 +989,7 @@
                 "sha256": "32758dc9bb273d4f3c9860ba9594a68847a24f8d710dc74090342bc7e9d2d770"
               }
             ],
-            "material_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+            "material_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
             "whole_outfit_review_added": false
           }
         },
@@ -1051,7 +1058,7 @@
         "restrictions_added": [],
         "automatic_season_exclusions": [],
         "owner_approval_added": false,
-        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1"
+        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2"
       },
       "visual_label": "Medium slate / steel blue-grey suit with near-solid fine weave"
     },
@@ -1064,7 +1071,7 @@
       "photo_status": "complete_by_owner_instruction",
       "evidence_status": "new_visual_candidate_from_repository_imagery",
       "source_conflict": false,
-      "source_fingerprint": "5b29a61496561cd2dc66b29afeefc33f510f312eedc09097c370ee568922dcc7",
+      "source_fingerprint": "ce64b7a0247bb2cf1012bd1fa3882df143c635a1a8343df6e0cf72e3a19ea342",
       "source": {
         "feature": {
           "id": "B01",
@@ -1122,7 +1129,7 @@
           "seasonal_restrictions": [],
           "fabric_family": "linen",
           "mode_policy": "NO_TIE_ONLY",
-          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue22_interpretation": {
             "fabric_family": "linen",
             "surface": "natural matte linen weave; subtle slubs and soft wrinkles",
@@ -1152,7 +1159,7 @@
               2748
             ],
             "source_sha256": "7e772b95f1268946fc0f23ba9d12428869117d086167636d470350008edb2387",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "checkpoint_control": {
             "url": "assets/b6b02d9c4695ec80b4fa56ffc10e59e6d07faf8cbfed86ae1cb52f78b45fcc76.png",
@@ -1227,7 +1234,7 @@
           }
         },
         "issue22": {
-          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
           "historical_source_fingerprint": "8a6c93afb7f3d37ebf3fac0dde6f829d31e5d542ea4778b409c985fad72b2a71"
         },
@@ -1385,7 +1392,7 @@
         "schema": "hewrs.rebuild.visual-dna.v2",
         "id": "B01",
         "category": "blazer",
-        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
         "label": "medium navy, medium-weight linen, visible natural slub, patch pockets; natural matte linen",
         "status": "issue22_effective_garment_facts",
         "evidence": {
@@ -1422,7 +1429,7 @@
             "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
             "authority": "explicit owner linen and no-tie instruction in Issue #22",
             "photographs": [],
-            "material_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+            "material_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
             "whole_outfit_review_added": false
           }
         },
@@ -1498,7 +1505,7 @@
         ],
         "automatic_season_exclusions": [],
         "owner_approval_added": false,
-        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1"
+        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2"
       },
       "visual_label": "medium navy, medium-weight linen, visible natural slub, patch pockets; natural matte linen",
       "no_tie_only": true,
@@ -1513,7 +1520,7 @@
       "photo_status": "complete_by_owner_instruction",
       "evidence_status": "new_visual_candidate_from_repository_imagery",
       "source_conflict": false,
-      "source_fingerprint": "61747213f009b11babdfeac4db273c1128cb9f85e7ef74f74831a47083d4f458",
+      "source_fingerprint": "2b8b4b35e76f01717a66fbb77d65532bea58e4df209a3d16422dac5bc217bb82",
       "source": {
         "feature": {
           "id": "B06",
@@ -1571,7 +1578,7 @@
           "seasonal_restrictions": [],
           "fabric_family": "linen",
           "mode_policy": "NO_TIE_ONLY",
-          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue22_interpretation": {
             "fabric_family": "linen",
             "surface": "natural matte linen weave; subtle slubs and soft wrinkles",
@@ -1603,7 +1610,7 @@
               2748
             ],
             "source_sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "checkpoint_control": {
             "url": "assets/7d22c65b9b78f28498f2c7996d944c46d962c42ca546f5f0ff9bf5a7bd3488f6.png",
@@ -1661,7 +1668,7 @@
           }
         },
         "issue22": {
-          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
           "historical_source_fingerprint": "6bbb4b4425fef9fc9327f2c0df84f04e9866ba8b26d524fa2de901c026d074fc"
         },
@@ -1804,7 +1811,7 @@
         "schema": "hewrs.rebuild.visual-dna.v2",
         "id": "B06",
         "category": "blazer",
-        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
         "label": "very pale highly desaturated sage, very thin lightweight cloth; natural matte linen",
         "status": "issue22_effective_garment_facts",
         "evidence": {
@@ -1841,7 +1848,7 @@
             "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
             "authority": "explicit owner linen and no-tie instruction in Issue #22",
             "photographs": [],
-            "material_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+            "material_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
             "whole_outfit_review_added": false
           }
         },
@@ -1917,7 +1924,7 @@
         ],
         "automatic_season_exclusions": [],
         "owner_approval_added": false,
-        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1"
+        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2"
       },
       "visual_label": "very pale highly desaturated sage, very thin lightweight cloth; natural matte linen",
       "no_tie_only": true,
@@ -1932,7 +1939,7 @@
       "photo_status": "complete_by_owner_instruction",
       "evidence_status": "new_visual_candidate_from_repository_imagery",
       "source_conflict": false,
-      "source_fingerprint": "44223ae004b838108c9f9bb89a2688f7c87a068e640ec354673b5ffbc21ec351",
+      "source_fingerprint": "7cfa5a756b8d3ff9703ef879a2df6f57753fb114754180e9ec3ce515ee7dcce7",
       "source": {
         "feature": {
           "id": "B10",
@@ -1988,7 +1995,7 @@
           "seasonal_restrictions": [],
           "fabric_family": "linen",
           "mode_policy": "NO_TIE_ONLY",
-          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue22_interpretation": {
             "fabric_family": "linen",
             "surface": "natural matte linen weave; subtle slubs and soft wrinkles",
@@ -2020,7 +2027,7 @@
               2748
             ],
             "source_sha256": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
-            "issue22_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1"
+            "issue22_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2"
           },
           "checkpoint_control": {
             "url": "assets/656626070d9dd58c9cfdd5ffd157569dc6a9e1eda77b09cb97910b26034ac038.png",
@@ -2078,7 +2085,7 @@
           }
         },
         "issue22": {
-          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+          "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
           "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
           "historical_source_fingerprint": "ed5692030536fa0600959fbe227726c7e857c947e1d2c586d3dd8ddbd752b80e"
         },
@@ -2219,7 +2226,7 @@
         "schema": "hewrs.rebuild.visual-dna.v2",
         "id": "B10",
         "category": "blazer",
-        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+        "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
         "label": "Light Camel / Warm Taupe-Beige Near-Solid Textured Blazer; natural matte linen",
         "status": "issue22_effective_garment_facts",
         "evidence": {
@@ -2256,7 +2263,7 @@
             "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
             "authority": "explicit owner linen and no-tie instruction in Issue #22",
             "photographs": [],
-            "material_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+            "material_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
             "whole_outfit_review_added": false
           }
         },
@@ -2332,7 +2339,7 @@
         ],
         "automatic_season_exclusions": [],
         "owner_approval_added": false,
-        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1"
+        "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2"
       },
       "visual_label": "Light Camel / Warm Taupe-Beige Near-Solid Textured Blazer; natural matte linen",
       "no_tie_only": true,
@@ -2343,8 +2350,8 @@
     "S06": {
       "id": "S06",
       "category": "suit",
-      "source_fingerprint": "bb10864e5abc22aa3e07abe0d14b314c7c21deae30a91a800992060b32e8350f",
-      "label": "Warm medium-dark grey suit with fine interlocking Glen check",
+      "source_fingerprint": "cc095b243ae56cd89069ef3d167afa2fda2a156efc21062a57e229815f7b09fb",
+      "label": "Neutral medium-dark grey suit with fine low-contrast Glen check; near-solid at distance",
       "provenance_paths": [
         "visual_dna.observed.colour",
         "visual_dna.observed.pattern",
@@ -2352,7 +2359,7 @@
         "visual_dna.observed.construction",
         "source.issue22"
       ],
-      "dominant_text": "Warm medium-dark grey; subtle brown cast",
+      "dominant_text": "Neutral medium-dark grey",
       "dominant_families": [
         "grey"
       ],
@@ -2373,15 +2380,15 @@
       "uncertainty": [],
       "unknowns_remain_unknown": true,
       "pattern_coverage": 0.55,
-      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "encoding_basis": "Declared ordinal styling interpretation of the supplied visual evidence; not a measured color or physical fibre test.",
-      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "pattern_quiet": true
     },
     "S13": {
       "id": "S13",
       "category": "suit",
-      "source_fingerprint": "93443f2be23d928445e1ea07439329f6bc10b21fd83aa69e10b1fcafd31597f2",
+      "source_fingerprint": "c8c3b49b9ade297efe5be6071cc34bce6fad2914047823c2bc4c64d95b08458f",
       "label": "Dark slate blue-grey suit with fine interlocking check",
       "provenance_paths": [
         "visual_dna.observed.colour",
@@ -2412,15 +2419,15 @@
       "uncertainty": [],
       "unknowns_remain_unknown": true,
       "pattern_coverage": 0.55,
-      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "encoding_basis": "Declared ordinal styling interpretation of the supplied visual evidence; not a measured color or physical fibre test.",
-      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "pattern_quiet": true
     },
     "S14": {
       "id": "S14",
       "category": "suit",
-      "source_fingerprint": "ae499e6821c325ba4a31202d139ef90070f0d78b67d4a503d534db2f63a1d040",
+      "source_fingerprint": "fa032908eb438b374ce269f53347f66de34e6d4aec9366eadeec2e064bcadb01",
       "label": "Medium slate / steel blue-grey suit with near-solid fine weave",
       "provenance_paths": [
         "visual_dna.observed.colour",
@@ -2451,15 +2458,15 @@
       "uncertainty": [],
       "unknowns_remain_unknown": true,
       "pattern_coverage": 0.55,
-      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "encoding_basis": "Declared ordinal styling interpretation of the supplied visual evidence; not a measured color or physical fibre test.",
-      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "pattern_quiet": true
     },
     "B01": {
       "id": "B01",
       "category": "blazer",
-      "source_fingerprint": "5b29a61496561cd2dc66b29afeefc33f510f312eedc09097c370ee568922dcc7",
+      "source_fingerprint": "ce64b7a0247bb2cf1012bd1fa3882df143c635a1a8343df6e0cf72e3a19ea342",
       "label": "medium navy, medium-weight linen, visible natural slub, patch pockets; natural matte linen",
       "provenance_paths": [
         "visual_dna.observed.colour",
@@ -2489,15 +2496,15 @@
       "uncertainty": [],
       "unknowns_remain_unknown": true,
       "pattern_coverage": 0.55,
-      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "encoding_basis": "Declared ordinal styling interpretation of the supplied visual evidence; not a measured color or physical fibre test.",
-      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "fabric_family": "linen"
     },
     "B06": {
       "id": "B06",
       "category": "blazer",
-      "source_fingerprint": "61747213f009b11babdfeac4db273c1128cb9f85e7ef74f74831a47083d4f458",
+      "source_fingerprint": "2b8b4b35e76f01717a66fbb77d65532bea58e4df209a3d16422dac5bc217bb82",
       "label": "very pale highly desaturated sage, very thin lightweight cloth; natural matte linen",
       "provenance_paths": [
         "visual_dna.observed.colour",
@@ -2527,15 +2534,15 @@
       "uncertainty": [],
       "unknowns_remain_unknown": true,
       "pattern_coverage": 0.55,
-      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "encoding_basis": "Declared ordinal styling interpretation of the supplied visual evidence; not a measured color or physical fibre test.",
-      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "fabric_family": "linen"
     },
     "B10": {
       "id": "B10",
       "category": "blazer",
-      "source_fingerprint": "44223ae004b838108c9f9bb89a2688f7c87a068e640ec354673b5ffbc21ec351",
+      "source_fingerprint": "7cfa5a756b8d3ff9703ef879a2df6f57753fb114754180e9ec3ce515ee7dcce7",
       "label": "Light Camel / Warm Taupe-Beige Near-Solid Textured Blazer; natural matte linen",
       "provenance_paths": [
         "visual_dna.observed.colour",
@@ -2565,15 +2572,15 @@
       "uncertainty": [],
       "unknowns_remain_unknown": true,
       "pattern_coverage": 0.55,
-      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "encoding_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "encoding_basis": "Declared ordinal styling interpretation of the supplied visual evidence; not a measured color or physical fibre test.",
-      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v1",
+      "issue22_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
       "fabric_family": "linen"
     }
   },
   "assetPaths": {
-    "2079a865f1d65785a911fcdb9e7bb85180dc0aa48c3d1f420df6d261ab909f24": "assets/issue22-materials/S06-jacket-2079a865f1d65785.png",
-    "569cf8a2456971e593ee548cdcaf19e9aae167fa59d30a1aad9a90bc2cc28d90": "assets/issue22-materials/S06-trousers-569cf8a2456971e5.png",
+    "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444": "assets/issue22-materials/S06-jacket-28a90f89c50c10a8.png",
+    "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169": "assets/issue22-materials/S06-trousers-14073a9d35557250.png",
     "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107": "assets/issue22-materials/S13-jacket-48a38b7f615ab203.png",
     "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8": "assets/issue22-materials/S13-trousers-71315979b9cf914e.png",
     "bb717e2606224a5dabf28f00f8b1fee2a5dc1bf87c891259e187bb369e5d8fd6": "assets/issue22-materials/S14-jacket-bb717e2606224a5d.png",
@@ -2582,7 +2589,7 @@
     "dacc6584f84f0aacaa9fa620bb33b2b0618bfd6b3a412d4cc771b2842777f683": "assets/issue22-materials/B06-jacket-dacc6584f84f0aac.png",
     "da9987823fe8436c3baab5ee06c4d10574ff2c7d3b5396f7ba6c97fff521728a": "assets/issue22-materials/B10-jacket-da9987823fe8436c.png"
   },
-  "materials_revision": "ISSUE22_SOURCE_BOUND_MATERIALS_1",
+  "materials_revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
   "historical_review_ids": [
     "O06",
     "O13",

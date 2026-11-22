@@ -14,6 +14,8 @@ on:
       - 'AVATAR_V3_REVIEW_BUILD.json'
       - 'src/avatar-v3*.js'
       - 'data/avatar-v3-candidate.json'
+      - 'data/issue22-*'
+      - 'src/issue22-*'
       - 'src/continuous-shirts.js'
       - 'data/continuous-shirts*'
       - 'data/option-card-thumbnails.*'
@@ -29,6 +31,8 @@ on:
       - 'src/tie-*.js'
       - 'tests/rejection-live-publication.py'
       - 'tests/issue19-browser.py'
+      - 'tests/issue22-browser.py'
+      - 'tests/s06-neutral-*'
       - 'tests/issue19-b02-mask-fixtures.json'
       - 'tests/issue19-jacket-gap-fixtures.json'
       - 'tests/tie-reason-scope-browser.py'
@@ -100,6 +104,7 @@ jobs:
           retention-days: 30
 
   audit-live-photos-and-state:
+    name: Retained photo contracts and current live saved state — ${{ matrix.browser }}
     needs: verify-live
     runs-on: ubuntu-24.04
     timeout-minutes: 45
@@ -114,12 +119,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          ref: 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
-          path: baseline
+          ref: 95d14073e33f2b699bdb0cdbd42504b1a1be2274
+          path: retained-issue19
       - name: Install matching browser and image audit drivers
-        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow
-      - name: Verify published shirts against the protected baseline and exact correction scope
-        run: python tests/five-round-photos-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --baseline-root baseline --browser '${{ matrix.browser }}'
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Preserve original RGB, collar and tied-B06 photo contracts on their exact checkpoint
+        working-directory: retained-issue19
+        run: python tests/five-round-photos-browser.py --browser '${{ matrix.browser }}'
       - name: Verify published concurrent saves and cancellation
         run: python tests/five-round-state-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}'
       - name: Preserve live photo and state evidence
@@ -127,11 +133,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: HEWRS_LIVE_TOTAL_${{ matrix.browser }}
-          path: evidence/five_round_20261119/browser/
+          path: |
+            evidence/five_round_20261119/browser/
+            retained-issue19/evidence/five_round_20261119/browser/
           if-no-files-found: error
           retention-days: 30
 
   audit-live-issue19-fit:
+    name: Live retained geometries and historical B06 — ${{ matrix.browser }}
     needs: verify-live
     runs-on: ubuntu-24.04
     timeout-minutes: 60
@@ -144,13 +153,21 @@ jobs:
       options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout exact original B06 RGB and tied-eligibility contract
+        uses: actions/checkout@v4
+        with:
+          ref: 95d14073e33f2b699bdb0cdbd42504b1a1be2274
+          path: retained-issue19
       - name: Install matching browser and image drivers
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
-      - name: Verify every shirt on the affected suit and blazer geometries
+      - name: Verify every shirt on unchanged live suit and blazer geometries
         run: |
-          for mode in S02 S03 B02 B06 B15; do
+          for mode in S02 S03 B02 B15; do
             python tests/issue19-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}' --suite shirts --shards 1 --only-mode "$mode" --output "evidence/issue19/live-fit/$mode"
           done
+      - name: Retain all original B06 shirt and tie assertions against their exact checkpoint
+        working-directory: retained-issue19
+        run: python tests/issue19-browser.py --browser '${{ matrix.browser }}' --suite shirts --shards 1 --only-mode B06 --output evidence/issue19/retained-B06
       - name: Preserve actual live fit reports and detail evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -164,5 +181,41 @@ jobs:
             evidence/issue19/live-fit/**/shoulders/
             evidence/issue19/live-fit/**/cuffs/
             evidence/issue19/live-fit/**/tie/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve explicitly historical B06 evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_RETAINED_ISSUE19_B06_${{ matrix.browser }}
+          path: retained-issue19/evidence/issue19/retained-B06/
+          if-no-files-found: error
+          retention-days: 30
+
+  audit-live-issue22:
+    name: Live current materials, S06 DNA and all contexts — ${{ matrix.browser }} — ${{ matrix.shard }}
+    needs: verify-live
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        shard: [1, 2]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0 numpy==2.2.6
+      - name: Verify actual live corrected garments, S06 image bytes and neutral scoring semantics
+        run: python tests/issue22-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}' --shard '${{ matrix.shard }}' --shards 2 --output evidence/issue22/live
+      - name: Preserve current live material, eligibility and pixel evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_LIVE_ISSUE22_${{ matrix.browser }}_${{ matrix.shard }}
+          path: evidence/issue22/live/
           if-no-files-found: error
           retention-days: 30

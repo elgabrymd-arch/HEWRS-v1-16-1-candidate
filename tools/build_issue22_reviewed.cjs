@@ -10,7 +10,7 @@ const canonical=value=>JSON.stringify(value);
 const baseline=read('feedback-candidate/reviewed/review-data.json'),semantic=read('feedback-candidate/reviewed/discovery-features.json');
 const dna=read('data/issue22-garment-dna.json'),materials=read('data/issue22-materials.json');
 const records={},features={},scope=new Set(dna.scope),noTie=new Set(dna.linen_no_tie_ids);
-const interpretation={S06:{families:['grey'],value:'medium-dark',saturation:'low',distance:'fine, restrained interlocking check'},S13:{families:['blue','grey'],value:'dark',saturation:'low',distance:'fine, restrained interlocking check'},S14:{families:['blue','grey'],value:'medium',saturation:'low',distance:'near-solid fine weave'}};
+const interpretation={S06:{families:['grey'],value:'medium-dark',saturation:'low',distance:dna.records.S06.owner_correction.distance_reading},S13:{families:['blue','grey'],value:'dark',saturation:'low',distance:'fine, restrained interlocking check'},S14:{families:['blue','grey'],value:'medium',saturation:'low',distance:'near-solid fine weave'}};
 for(const id of scope){
  const historical=baseline.catalogue.records.find(r=>r.id===id),feature=c.features.get(id),correction=dna.records[id];
  assert(historical&&feature,'Missing reviewed garment '+id);
@@ -28,7 +28,7 @@ for(const id of scope){
   else row.source.binding.checkpoint_layer=descriptor;
  }
  row.visual_dna={...row.visual_dna,revision:dna.revision,label:row.label,status:'issue22_effective_garment_facts',
-  evidence:{...row.visual_dna.evidence,issue22:{issue_url:dna.issue_url,authority:correction.authority,photographs:correction.photographs.map(path=>({repository_path:path,sha256:hash(fs.readFileSync(root+'/'+path))})),material_revision:materials.revision,whole_outfit_review_added:false}},
+  evidence:{...row.visual_dna.evidence,issue22:{issue_url:dna.issue_url,authority:correction.authority,photographs:correction.photographs.map(path=>({repository_path:path,sha256:hash(fs.readFileSync(root+'/'+path))})),material_revision:materials.revision,...(correction.owner_correction?.approved_material_reference?{approved_material_reference:structuredClone(correction.owner_correction.approved_material_reference)}:{}),whole_outfit_review_added:false}},
   observed:obs,reconciliation_note:'Issue #22 supersedes only the scoped colour, pattern and fabric facts. Original construction and historical evidence remain preserved. No whole-outfit approval is added.',
   issue22_revision:dna.revision};
  if(interpretation[id]){

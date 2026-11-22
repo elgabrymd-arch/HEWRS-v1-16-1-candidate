@@ -2,8 +2,9 @@
 """Real shipped-app Issue 22 eligibility, full-avatar and preservation gate.
 
 Runs in isolated browser profiles, through the real Home engine and the real
-reviewed B01 controls. No owner approval, production request or saved user data
-is used. Pixel checks support a separately recorded human visual inspection;
+reviewed B01 controls. The default is the local checkout; --url verifies the
+established live publication against that exact checkout. No owner approval
+or saved user data is used. Pixel checks support a separate visual inspection;
 they do not grant visual approval. Shards are one-based and partition every
 matrix deterministically. The non-sharded run covers all 84 contexts.
 """
@@ -184,7 +185,72 @@ def sheets(output, captures):
     (output / 'VISUAL_REVIEW_INDEX.json').write_text(json.dumps(review, indent=2) + '\n')
 
 
+def verify_s06_picker(page, output, check):
+    """Check the real picker DOM and fetched image, without applying a choice."""
+    expected = json.loads((ROOT / 'data/issue22-picker-images.json').read_text())['items']['S06']
+    check('S06 picker expected PNG matches its independent checkout hash',
+          digest((ROOT / expected['src']).read_bytes()) == expected['sha256'])
+    protected = page.evaluate(PROTECTED)
+    selection = page.evaluate('()=>HEWRSApp.state().selection')
+    preferences = page.evaluate('()=>HEWRSApp.ui.snapshot()')
+    page.evaluate("()=>HEWRSApp.showPage('home')")
+    page.locator('#pref-topwear').click()
+    page.locator('#picker-type').select_option('suit')
+    page.locator('#picker-search').fill('S06')
+    button = page.locator('#picker-list [data-item-id="S06"]')
+    image = button.locator('img[data-source-id="S06"]')
+    image.wait_for(state='visible')
+    image.scroll_into_view_if_needed()
+    actual = button.evaluate("""async button=>{
+      const image=button.querySelector('img[data-source-id="S06"]');
+      await image.decode();
+      const response=await fetch(image.currentSrc,{cache:'no-store'});
+      if(!response.ok)throw Error('S06 picker image HTTP '+response.status);
+      const bytes=await response.arrayBuffer(),sha256=Array.from(new Uint8Array(
+        await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');
+      const style=getComputedStyle(image),bounds=image.getBoundingClientRect();
+      return {id:button.dataset.itemId,source_id:image.dataset.sourceId,
+        src:image.getAttribute('src'),current_src:image.currentSrc,
+        expected_current_src:new URL(image.getAttribute('src'),document.baseURI).href,
+        declared_sha256:image.dataset.sourceSha256,fetched_sha256:sha256,
+        response_url:response.url,http_status:response.status,bytes:bytes.byteLength,
+        dimensions:[image.naturalWidth,image.naturalHeight],disabled:button.disabled,
+        displayed:!image.hidden&&style.display!=='none'&&style.visibility==='visible'
+          &&bounds.width>0&&bounds.height>0,
+        unavailable:!!button.querySelector('.hewrs-blazer-picker-image-failed'),
+        label:button.querySelector('.fx-choice-name')?.textContent};
+    }""")
+    check('S06 topwear picker binds the current registered selection image',
+          actual['id'] == actual['source_id'] == 'S06'
+          and actual['src'] == expected['src']
+          and actual['declared_sha256'] == expected['sha256']
+          and actual['current_src'] == actual['expected_current_src']
+          and actual['label'] == expected['label'], actual)
+    check('S06 picker fetched PNG bytes match the current corrected image',
+          actual['http_status'] == 200 and actual['bytes'] > 0
+          and actual['fetched_sha256'] == expected['sha256']
+          and actual['response_url'] == actual['current_src'], actual)
+    check('S06 picker image decodes visibly at its registered dimensions',
+          actual['dimensions'] == [expected['width'], expected['height']]
+          and actual['displayed'] and not actual['disabled'] and not actual['unavailable'], actual)
+    actual['screenshot'] = 'phone/S06-current-picker.png'
+    button.screenshot(path=str(output / actual['screenshot']))
+    page.locator('#fx-sheet-close').click()
+    check('S06 picker inspection preserves current selection and unapplied preferences',
+          page.evaluate('()=>HEWRSApp.state().selection') == selection
+          and page.evaluate('()=>HEWRSApp.ui.snapshot()') == preferences
+          and page.evaluate('()=>HEWRSApp.ui.draft()') is None)
+    check('S06 picker inspection preserves seeded records and saved preferences',
+          page.evaluate(PROTECTED) == protected)
+    return actual
+
+
 def run(args):
+    live_origin = None
+    if args.url:
+        live_origin = args.url.rstrip('/') + '/'
+        if live_origin != 'https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/':
+            raise ValueError('Live verification is restricted to the established HEWRS publication')
     if args.shards < 1 or not 1 <= args.shard <= args.shards:
         raise ValueError('Shards are one-based; require 1 <= --shard <= --shards')
     rows, contexts = part(fixtures(), args), part(context_rows(), args)
@@ -205,7 +271,11 @@ def run(args):
               'expected_capture_pairs': len(rows) + sum(expected_eligible(query) for query in contexts),
               'checks': checks, 'captures': captures, 'eligibility': eligibility,
               'page_errors': errors, 'bad_requests': bad_requests, 'external_requests': external,
-              'owner_data_accessed': False, 'source': 'exact_local_shipped_index',
+              'owner_data_accessed': False,
+              'source': 'exact_live_shipped_index' if live_origin else 'exact_local_shipped_index',
+              'application_url': live_origin,
+              'candidate_response_source': 'live_https_only' if live_origin else 'local_checkout_http',
+              'baseline_response_source': 'local_immutable_issue19_checkpoint',
               'visual_acceptance': 'requires_independent_inspection_of_actual_captures',
               'started_at': datetime.now(timezone.utc).isoformat()}
 
@@ -233,10 +303,11 @@ def run(args):
             browser = getattr(pw, args.browser).launch(**launch)
 
             def open_page(relative, label):
+                page_origin = live_origin if live_origin and label == 'candidate' else origin
                 context = browser.new_context(viewport={'width': 390, 'height': 844}, has_touch=True, is_mobile=True)
 
                 def route(request):
-                    if urlsplit(request.request.url)[:2] == urlsplit(origin)[:2]:
+                    if urlsplit(request.request.url)[:2] == urlsplit(page_origin)[:2]:
                         request.continue_()
                     else:
                         external.append({'page': label, 'url': request.request.url})
@@ -249,7 +320,7 @@ def run(args):
                 page.on('requestfailed', lambda request: bad_requests.append({'page': label, 'url': request.url, 'error': request.failure}))
                 page.on('response', lambda response: bad_requests.append({'page': label, 'url': response.url, 'status': response.status})
                         if response.status >= 400 and not response.url.endswith('/favicon.ico') else None)
-                response = page.goto(origin + relative, wait_until='domcontentloaded', timeout=120000)
+                response = page.goto(page_origin + relative, wait_until='domcontentloaded', timeout=120000)
                 check(label + ': exact entrypoint served', response.status == 200 and digest(response.body()) == digest((ROOT / relative).read_bytes()))
                 page.wait_for_function('globalThis.HEWRS_READY && HEWRSApp.rejection', timeout=120000)
                 page.evaluate('async()=>{await HEWRSApp.rejection.ready;await HEWRSApp.ownerFeedback.sync();}')
@@ -268,6 +339,85 @@ def run(args):
             modules = after.evaluate("()=>({matching:globalThis.HEWRSIssue22Matching?.revision,materials:globalThis.HEWRSIssue22Materials?.revision,b08:globalThis.HEWRSAvatarV3B08SeamFit?.spec?.revision,guard:HEWRSApp.renderer.stats().issue22_no_tie_revision})")
             check('All Issue 22 runtime modules active in actual shipped index', all(modules.values()) and len(modules) == 4, modules)
             report['runtime_modules'] = modules
+            expected_s06 = json.loads((ROOT / 'data/issue22-garment-dna.json').read_text())['records']['S06']
+            s06 = after.evaluate("""()=>{
+              const c=HEWRSApp.connection, record=HEWRS_ISSUE22_GARMENT_DNA.records.S06,
+                raw=c.engine.get('S06'), preference=HEWRSOutfitPreference.create(c).profile('S06');
+              return {fields:record.fields,interpretation:record.interpretation,
+                effective_primary:c.features.get('S06').primary_text,
+                raw_temperature:raw.primary.temperature,preference_temperature:preference.primary.temperature,
+                raw_pattern:raw.pattern,preference_pattern:preference.pattern};
+            }""")
+            check('S06 active DNA and both matching paths use approved neutral grey',
+                  s06['fields'] == expected_s06['fields']
+                  and s06['interpretation'] == expected_s06['interpretation']
+                  and s06['effective_primary'] == expected_s06['fields']['primary_text']
+                  and s06['raw_temperature'] == s06['preference_temperature'] == 'neutral'
+                  and all(s06[key]['family'] == 'grid' and s06[key]['quiet']
+                          for key in ('raw_pattern', 'preference_pattern')), s06)
+            expected_materials = json.loads((ROOT / 'data/issue22-materials.json').read_text())
+            expected_s06_materials = [{'layer': row['layer'], 'url': row['display_url'], 'sha256': row['display_sha256']}
+                                      for row in expected_materials['bindings'].values() if row['garment_id'] == 'S06']
+            actual_s06_materials = after.evaluate("""async()=>{
+              const rows=Object.values(HEWRS_ISSUE22_MATERIALS.bindings).filter(row=>row.garment_id==='S06'),out=[];
+              for(const row of rows){
+                const response=await fetch(row.display_url,{cache:'no-store'});
+                if(!response.ok)throw Error('S06 material HTTP '+response.status);
+                const bytes=await response.arrayBuffer(),hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');
+                if(hash!==row.display_sha256)throw Error('S06 material bytes differ from registered source');
+                out.push({layer:row.layer,url:row.display_url,sha256:hash});
+              }
+              return out;
+            }""")
+            check('S06 served jacket and trousers match the registered corrected image bytes',
+                  actual_s06_materials == expected_s06_materials and len(actual_s06_materials) == 2,
+                  actual_s06_materials)
+            report['s06_current_dna'] = s06
+            report['s06_current_materials'] = actual_s06_materials
+            if args.shard == 1:
+                report['s06_current_picker'] = verify_s06_picker(after, output, check)
+                # Retain the actual current 50-shirt photo-picker coverage
+                # when the original whole-outfit RGB audit runs historically.
+                # Expected photographs come from the preserved catalogue and
+                # its eight explicitly registered current card corrections.
+                photo_catalogue = json.loads((ROOT / 'evidence/five_round_20261119/CATALOGUE.json').read_text())
+                photo_shirts = sorted(photo_catalogue['shirts'], key=lambda row: row['id'])
+                current_cards = json.loads((ROOT / 'data/option-card-thumbnails.json').read_text())
+                corrected_ids = set(json.loads((ROOT / 'data/continuous-shirts.json').read_text())['ids'])
+                for shirt in photo_shirts:
+                    if shirt['id'] in corrected_ids:
+                        assert not shirt.get('nonSuitThumbnails'), 'Unexpected corrected-shirt photo override'
+                        shirt['thumbnails'] = current_cards['shirts'][shirt['id']]
+                picker_state = after.evaluate(PROTECTED)
+                picker_rows = []
+                for mode, top in [('suit', 'S05'), ('blazer', 'B03'), ('shirt-only', 'shirt-only')]:
+                    selected = FIT.selection('DS026', 'NO_TIE', top)
+                    after.evaluate("s=>{HEWRSApp.ui.fromSelection(s);HEWRSApp.setMode('anchor');HEWRSApp.showPage('home');}", selected)
+                    after.locator('#pref-shirt').click()
+                    after.wait_for_selector('#picker-list [data-item-id="DS001"] img')
+                    actual = after.locator('#picker-list [data-item-id]').evaluate_all("""async nodes=>{
+                      await Promise.all(nodes.map(n=>n.querySelector('img').decode()));
+                      return nodes.map(n=>{const image=n.querySelector('img');return {id:n.dataset.itemId,
+                        src:image.getAttribute('src'),key:image.dataset.sourceKey,
+                        label:n.querySelector('.fx-choice-name')?.textContent,disabled:n.disabled,
+                        decoded:!!image.naturalWidth&&!!image.naturalHeight&&!image.hidden&&getComputedStyle(image).display!=='none'};});
+                    }""")
+                    by_id = {row['id']: row for row in actual}
+                    check(mode + ': current photo picker contains all 50 active shirts',
+                          len(actual) == 50 and set(by_id) == {row['id'] for row in photo_shirts})
+                    for shirt in photo_shirts:
+                        expected = (shirt.get('nonSuitThumbnails') or {}).get('no_tie') if mode != 'suit' else None
+                        expected = expected or shirt['thumbnails']['no_tie']
+                        row = by_id[shirt['id']]
+                        check(mode + '/' + shirt['id'] + ': current picker uses its exact decoded contextual photograph',
+                              row['src'] == expected['src'] and not row['disabled'] and row['decoded'], row)
+                    check(mode + ': technical placeholders do not leak into garment names',
+                          all('source-repaired' not in row['label'] for row in actual))
+                    picker_rows.append({'mode': mode, 'verified_active_photographs': len(actual)})
+                    after.keyboard.press('Escape')
+                check('Current photo-picker inspection preserves seeded records and saved preferences',
+                      after.evaluate(PROTECTED) == picker_state)
+                report['current_photo_picker_coverage'] = picker_rows
             protected = {label: page.evaluate(PROTECTED) for label, page in [('baseline', before), ('candidate', after)]}
 
             def capture(row, context=None):
@@ -363,8 +513,8 @@ def run(args):
                   sum(bool(row['first_selection']) for row in eligibility) == report['expected_eligible_contexts']
                   and len(captures) == report['expected_capture_pairs'])
             check('No browser page errors', not errors, errors)
-            check('No failed local asset requests', not bad_requests, bad_requests)
-            check('No external services or production endpoints contacted', not external, external)
+            check('No failed application asset requests', not bad_requests, bad_requests)
+            check('No requests outside the selected application origins', not external, external)
             sheets(output, captures)
             report['status'] = 'passed'
             report['completed_at'] = datetime.now(timezone.utc).isoformat()
@@ -386,6 +536,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', choices=['chromium', 'webkit'], default='chromium')
     parser.add_argument('--executable', help='Optional local browser executable, e.g. /usr/bin/chromium')
+    parser.add_argument('--url', help='Verify the established live HTTPS application against the exact local release')
     parser.add_argument('--output', type=Path, default=ROOT / 'evidence/issue22-browser')
     parser.add_argument('--shard', type=int, default=1, help='One-based shard number')
     parser.add_argument('--shards', type=int, default=1)
