@@ -1,0 +1,2947 @@
+{
+  "schema": "hewrs.issue19.B02-reference-context-independent-audit.v1",
+  "status": "PASS_REFERENCE_ONLY_CORRECTION_JUSTIFIED",
+  "runtime_sha256": "44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12",
+  "collar_module_sha256": "49eeb2268fd308a87392fa6cdd6321e4b4b86d12005fc65a46d26a8363c18827",
+  "diagnostic_script_sha256": "7f9c4828db1ecfa2c53407c90e66361d8ece32ac0049f0914fd651c46295c5ba",
+  "diagnostic_commit": "7f52f58f027147beb0181fd50354db50006946fb",
+  "diagnostic_run_id": 44969802533,
+  "candidate_base_head": "6ef5c92b33a0e8b1e0e7ee54068f51347ef0719b",
+  "artifact_pixel_files_independently_hash_verified": true,
+  "engines": [
+    {
+      "browser": "chromium",
+      "browser_version": "141.0.7390.37",
+      "artifact_id": 14733022374,
+      "archive_sha256": "1a1dbc66a68494bb17b1f467dc67d87efec7f3261e42c7c816eeccbbf51dd102",
+      "archive_bytes": 87579812,
+      "result_json_sha256": "973b215c565f2782c7df3b3268d2b54ca34174aa456c0a20bee6dd9f7bf82a5c",
+      "cases": [
+        {
+          "name": "00-B02-DS026-T029",
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 0,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 0,
+          "candidate_vs_default_opaque_wrong": 0,
+          "default_vs_cpu_mask_pixels_different": 0,
+          "raw_default_vs_cpu_pixels_different": 0,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                173,
+                110,
+                78,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "independent_expected_rgb": [
+                174,
+                111,
+                78
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                147,
+                96,
+                72,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "independent_expected_rgb": [
+                148,
+                97,
+                72
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                115,
+                78,
+                62,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "independent_expected_rgb": [
+                115,
+                78,
+                63
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                88,
+                62,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "independent_expected_rgb": [
+                88,
+                62,
+                53
+              ],
+              "maximum_rgb_error": 1
+            }
+          ]
+        },
+        {
+          "name": "01-B02-DS035-T002",
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T002",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 0,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 0,
+          "candidate_vs_default_opaque_wrong": 0,
+          "default_vs_cpu_mask_pixels_different": 0,
+          "raw_default_vs_cpu_pixels_different": 0,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                173,
+                110,
+                78,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "independent_expected_rgb": [
+                174,
+                111,
+                78
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                147,
+                96,
+                72,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "independent_expected_rgb": [
+                148,
+                97,
+                72
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                115,
+                78,
+                62,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "independent_expected_rgb": [
+                115,
+                78,
+                63
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                88,
+                62,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "independent_expected_rgb": [
+                88,
+                62,
+                53
+              ],
+              "maximum_rgb_error": 1
+            }
+          ]
+        },
+        {
+          "name": "02-B02-DS001-NO_TIE",
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 0,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 0,
+          "candidate_vs_default_opaque_wrong": 0,
+          "default_vs_cpu_mask_pixels_different": 0,
+          "raw_default_vs_cpu_pixels_different": 0,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                190,
+                188,
+                191,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                51,
+                51,
+                51,
+                5
+              ]
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                162,
+                160,
+                165,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                35,
+                35,
+                45,
+                51
+              ]
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                128,
+                128,
+                133,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                102
+              ]
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                98,
+                99,
+                104,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                25,
+                28,
+                35,
+                145
+              ]
+            }
+          ]
+        },
+        {
+          "name": "03-B02-DS013-NO_TIE",
+          "selection": {
+            "shirtId": "DS013",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 0,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 0,
+          "candidate_vs_default_opaque_wrong": 0,
+          "default_vs_cpu_mask_pixels_different": 0,
+          "raw_default_vs_cpu_pixels_different": 0,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                141,
+                139,
+                134,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                51,
+                51,
+                51,
+                5
+              ]
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                103,
+                103,
+                101,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                35,
+                35,
+                45,
+                51
+              ]
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                71,
+                71,
+                71,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                102
+              ]
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                48,
+                50,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                25,
+                28,
+                35,
+                145
+              ]
+            }
+          ]
+        },
+        {
+          "name": "04-B03-DS026-T029",
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B03"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 0,
+          "canonical_effective_opaque_pixels": 60538,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 0,
+          "candidate_vs_default_opaque_wrong": 0,
+          "default_vs_cpu_mask_pixels_different": 0,
+          "raw_default_vs_cpu_pixels_different": 0,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                128,
+                114,
+                110,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                107,
+                115,
+                123,
+                178
+              ],
+              "default_oracle_foreground": [
+                107,
+                115,
+                123,
+                178
+              ]
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                148,
+                133,
+                129,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                135,
+                142,
+                152,
+                176
+              ],
+              "default_oracle_foreground": [
+                135,
+                142,
+                152,
+                176
+              ]
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                168,
+                152,
+                149,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                166,
+                171,
+                180,
+                177
+              ],
+              "default_oracle_foreground": [
+                166,
+                171,
+                180,
+                177
+              ]
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                172,
+                145,
+                136,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                172,
+                178,
+                187,
+                139
+              ],
+              "default_oracle_foreground": [
+                172,
+                178,
+                187,
+                139
+              ]
+            }
+          ]
+        },
+        {
+          "name": "05-B02-DS026-T029",
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 0,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 0,
+          "candidate_vs_default_opaque_wrong": 0,
+          "default_vs_cpu_mask_pixels_different": 0,
+          "raw_default_vs_cpu_pixels_different": 0,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                173,
+                110,
+                78,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "independent_expected_rgb": [
+                174,
+                111,
+                78
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                147,
+                96,
+                72,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "independent_expected_rgb": [
+                148,
+                97,
+                72
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                115,
+                78,
+                62,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "independent_expected_rgb": [
+                115,
+                78,
+                63
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                88,
+                62,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "independent_expected_rgb": [
+                88,
+                62,
+                53
+              ],
+              "maximum_rgb_error": 1
+            }
+          ]
+        }
+      ],
+      "first_failing_case_disputed_pixels": [],
+      "B02_repeat_full_frame_exact": true,
+      "repeat_rgba_sha256": "e094dc28955ae527cbad9e074ecb5908eaf72f13742715ad1ae7386d5eb9158c"
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.0",
+      "artifact_id": 14733535402,
+      "archive_sha256": "5650edaabb8a7f6437c5b58f4a1da9ff28bf4ef2355ec0dc4d6b929e2f42b9f0",
+      "archive_bytes": 90642174,
+      "result_json_sha256": "96b06201f8284c9caab322f55e7eabf7d5fa74ad42f314dcfbcb3f2573b1b422",
+      "cases": [
+        {
+          "name": "00-B02-DS026-T029",
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 5,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 30,
+          "candidate_vs_default_opaque_wrong": 30,
+          "default_vs_cpu_mask_pixels_different": 196,
+          "raw_default_vs_cpu_pixels_different": 17,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                173,
+                110,
+                78,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "independent_expected_rgb": [
+                174,
+                111,
+                78
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                147,
+                96,
+                72,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                36,
+                36,
+                44,
+                64
+              ],
+              "independent_expected_rgb": [
+                148,
+                97,
+                72
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                115,
+                78,
+                62,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                127
+              ],
+              "independent_expected_rgb": [
+                115,
+                78,
+                63
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                88,
+                62,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                24,
+                28,
+                36,
+                127
+              ],
+              "independent_expected_rgb": [
+                88,
+                62,
+                53
+              ],
+              "maximum_rgb_error": 1
+            }
+          ]
+        },
+        {
+          "name": "01-B02-DS035-T002",
+          "selection": {
+            "shirtId": "DS035",
+            "state": "T002",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 5,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 21,
+          "candidate_vs_default_opaque_wrong": 30,
+          "default_vs_cpu_mask_pixels_different": 196,
+          "raw_default_vs_cpu_pixels_different": 17,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                173,
+                110,
+                78,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "independent_expected_rgb": [
+                174,
+                111,
+                78
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                147,
+                96,
+                72,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                36,
+                36,
+                44,
+                64
+              ],
+              "independent_expected_rgb": [
+                148,
+                97,
+                72
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                115,
+                78,
+                62,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                127
+              ],
+              "independent_expected_rgb": [
+                115,
+                78,
+                63
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                88,
+                62,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                24,
+                28,
+                36,
+                127
+              ],
+              "independent_expected_rgb": [
+                88,
+                62,
+                53
+              ],
+              "maximum_rgb_error": 1
+            }
+          ]
+        },
+        {
+          "name": "02-B02-DS001-NO_TIE",
+          "selection": {
+            "shirtId": "DS001",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 5,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 21,
+          "candidate_vs_default_opaque_wrong": 30,
+          "default_vs_cpu_mask_pixels_different": 196,
+          "raw_default_vs_cpu_pixels_different": 17,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                190,
+                188,
+                191,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                162,
+                160,
+                165,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                36,
+                36,
+                44,
+                64
+              ]
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                128,
+                128,
+                133,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                127
+              ]
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                98,
+                99,
+                104,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                24,
+                28,
+                36,
+                127
+              ]
+            }
+          ]
+        },
+        {
+          "name": "03-B02-DS013-NO_TIE",
+          "selection": {
+            "shirtId": "DS013",
+            "state": "NO_TIE",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 5,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 29,
+          "candidate_vs_default_opaque_wrong": 29,
+          "default_vs_cpu_mask_pixels_different": 196,
+          "raw_default_vs_cpu_pixels_different": 17,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                141,
+                139,
+                134,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                103,
+                103,
+                101,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                36,
+                36,
+                44,
+                64
+              ]
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                71,
+                71,
+                71,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                127
+              ]
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                48,
+                50,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                24,
+                28,
+                36,
+                127
+              ]
+            }
+          ]
+        },
+        {
+          "name": "04-B03-DS026-T029",
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B03"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 5,
+          "canonical_effective_opaque_pixels": 60538,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 0,
+          "candidate_vs_default_opaque_wrong": 0,
+          "default_vs_cpu_mask_pixels_different": 0,
+          "raw_default_vs_cpu_pixels_different": 58,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                128,
+                114,
+                109,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                107,
+                115,
+                122,
+                178
+              ],
+              "default_oracle_foreground": [
+                107,
+                115,
+                122,
+                178
+              ]
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                148,
+                133,
+                128,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                135,
+                142,
+                151,
+                176
+              ],
+              "default_oracle_foreground": [
+                135,
+                142,
+                151,
+                176
+              ]
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                167,
+                152,
+                148,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                164,
+                171,
+                179,
+                177
+              ],
+              "default_oracle_foreground": [
+                164,
+                171,
+                179,
+                177
+              ]
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                171,
+                145,
+                135,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                171,
+                178,
+                185,
+                139
+              ],
+              "default_oracle_foreground": [
+                171,
+                178,
+                185,
+                139
+              ]
+            }
+          ]
+        },
+        {
+          "name": "05-B02-DS026-T029",
+          "selection": {
+            "shirtId": "DS026",
+            "state": "T029",
+            "shoeId": "shoe-8",
+            "watchId": null,
+            "pantId": "PG002",
+            "blazerId": "B02"
+          },
+          "captured_pixel_files_verified": 22,
+          "raw_rgba_fallbacks": 5,
+          "canonical_effective_opaque_pixels": 90691,
+          "candidate_vs_canonical_opaque_wrong": 0,
+          "unchanged_old_new_gate_with_cpu_wrong": 0,
+          "old_new_gate_with_default_wrong": 30,
+          "candidate_vs_default_opaque_wrong": 30,
+          "default_vs_cpu_mask_pixels_different": 196,
+          "raw_default_vs_cpu_pixels_different": 17,
+          "cpu_variant_differences": {
+            "independent_full_bitmap_cpu": 0,
+            "actual_helper_collar_cpu": 0,
+            "actual_helper_shoulder_cpu": 0,
+            "oracle_cpu": 0,
+            "mask_collar_cpu": 0,
+            "mask_shoulder_cpu": 0
+          },
+          "literal_controls": [
+            {
+              "xy": [
+                392,
+                407
+              ],
+              "actual": [
+                173,
+                110,
+                78,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                51,
+                51,
+                51,
+                5
+              ],
+              "default_oracle_foreground": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "independent_expected_rgb": [
+                174,
+                111,
+                78
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                408
+              ],
+              "actual": [
+                147,
+                96,
+                72,
+                255
+              ],
+              "original_avatar": [
+                176,
+                112,
+                79,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                35,
+                35,
+                45,
+                51
+              ],
+              "default_oracle_foreground": [
+                36,
+                36,
+                44,
+                64
+              ],
+              "independent_expected_rgb": [
+                148,
+                97,
+                72
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                409
+              ],
+              "actual": [
+                115,
+                78,
+                62,
+                255
+              ],
+              "original_avatar": [
+                172,
+                109,
+                78,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                30,
+                32,
+                40,
+                102
+              ],
+              "default_oracle_foreground": [
+                30,
+                32,
+                40,
+                127
+              ],
+              "independent_expected_rgb": [
+                115,
+                78,
+                63
+              ],
+              "maximum_rgb_error": 1
+            },
+            {
+              "xy": [
+                392,
+                410
+              ],
+              "actual": [
+                88,
+                62,
+                52,
+                255
+              ],
+              "original_avatar": [
+                171,
+                107,
+                76,
+                255
+              ],
+              "canonical_cpu_foreground": [
+                25,
+                28,
+                35,
+                145
+              ],
+              "default_oracle_foreground": [
+                24,
+                28,
+                36,
+                127
+              ],
+              "independent_expected_rgb": [
+                88,
+                62,
+                53
+              ],
+              "maximum_rgb_error": 1
+            }
+          ]
+        }
+      ],
+      "first_failing_case_disputed_pixels": [
+        {
+          "xy": [
+            389,
+            396
+          ],
+          "baseline": [
+            18,
+            20,
+            26,
+            255
+          ],
+          "current": [
+            34,
+            35,
+            43,
+            255
+          ],
+          "canonical_cpu_source": [
+            18,
+            20,
+            26,
+            226
+          ],
+          "default_oracle_source": [
+            18,
+            20,
+            26,
+            255
+          ],
+          "cpu_mask_alpha": 226,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            390,
+            402
+          ],
+          "baseline": [
+            18,
+            21,
+            29,
+            255
+          ],
+          "current": [
+            22,
+            24,
+            31,
+            255
+          ],
+          "canonical_cpu_source": [
+            18,
+            21,
+            29,
+            250
+          ],
+          "default_oracle_source": [
+            18,
+            21,
+            29,
+            255
+          ],
+          "cpu_mask_alpha": 250,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            391,
+            407
+          ],
+          "baseline": [
+            24,
+            26,
+            35,
+            255
+          ],
+          "current": [
+            27,
+            27,
+            35,
+            255
+          ],
+          "canonical_cpu_source": [
+            24,
+            26,
+            35,
+            250
+          ],
+          "default_oracle_source": [
+            24,
+            26,
+            35,
+            255
+          ],
+          "cpu_mask_alpha": 250,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            392,
+            413
+          ],
+          "baseline": [
+            25,
+            28,
+            37,
+            255
+          ],
+          "current": [
+            31,
+            33,
+            42,
+            255
+          ],
+          "canonical_cpu_source": [
+            25,
+            28,
+            37,
+            247
+          ],
+          "default_oracle_source": [
+            25,
+            28,
+            37,
+            255
+          ],
+          "cpu_mask_alpha": 247,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            393,
+            420
+          ],
+          "baseline": [
+            19,
+            24,
+            30,
+            255
+          ],
+          "current": [
+            35,
+            39,
+            44,
+            255
+          ],
+          "canonical_cpu_source": [
+            19,
+            24,
+            30,
+            230
+          ],
+          "default_oracle_source": [
+            19,
+            24,
+            30,
+            255
+          ],
+          "cpu_mask_alpha": 230,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            394,
+            428
+          ],
+          "baseline": [
+            25,
+            28,
+            35,
+            255
+          ],
+          "current": [
+            33,
+            34,
+            41,
+            255
+          ],
+          "canonical_cpu_source": [
+            25,
+            28,
+            35,
+            224
+          ],
+          "default_oracle_source": [
+            25,
+            28,
+            35,
+            255
+          ],
+          "cpu_mask_alpha": 224,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            394,
+            429
+          ],
+          "baseline": [
+            25,
+            28,
+            35,
+            255
+          ],
+          "current": [
+            26,
+            29,
+            35,
+            255
+          ],
+          "canonical_cpu_source": [
+            25,
+            28,
+            35,
+            251
+          ],
+          "default_oracle_source": [
+            25,
+            28,
+            35,
+            255
+          ],
+          "cpu_mask_alpha": 251,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            395,
+            438
+          ],
+          "baseline": [
+            23,
+            26,
+            34,
+            255
+          ],
+          "current": [
+            24,
+            27,
+            35,
+            255
+          ],
+          "canonical_cpu_source": [
+            23,
+            26,
+            34,
+            245
+          ],
+          "default_oracle_source": [
+            23,
+            26,
+            34,
+            255
+          ],
+          "cpu_mask_alpha": 245,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            396,
+            447
+          ],
+          "baseline": [
+            22,
+            25,
+            35,
+            255
+          ],
+          "current": [
+            25,
+            28,
+            38,
+            255
+          ],
+          "canonical_cpu_source": [
+            22,
+            25,
+            35,
+            235
+          ],
+          "default_oracle_source": [
+            22,
+            25,
+            35,
+            255
+          ],
+          "cpu_mask_alpha": 235,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            397,
+            457
+          ],
+          "baseline": [
+            33,
+            35,
+            44,
+            255
+          ],
+          "current": [
+            36,
+            37,
+            46,
+            255
+          ],
+          "canonical_cpu_source": [
+            33,
+            35,
+            44,
+            242
+          ],
+          "default_oracle_source": [
+            33,
+            35,
+            44,
+            255
+          ],
+          "cpu_mask_alpha": 242,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            398,
+            467
+          ],
+          "baseline": [
+            38,
+            40,
+            48,
+            255
+          ],
+          "current": [
+            40,
+            42,
+            50,
+            255
+          ],
+          "canonical_cpu_source": [
+            38,
+            40,
+            48,
+            242
+          ],
+          "default_oracle_source": [
+            38,
+            40,
+            48,
+            255
+          ],
+          "cpu_mask_alpha": 242,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            399,
+            476
+          ],
+          "baseline": [
+            26,
+            30,
+            39,
+            255
+          ],
+          "current": [
+            37,
+            38,
+            48,
+            255
+          ],
+          "canonical_cpu_source": [
+            27,
+            30,
+            39,
+            221
+          ],
+          "default_oracle_source": [
+            26,
+            30,
+            39,
+            255
+          ],
+          "cpu_mask_alpha": 221,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            399,
+            477
+          ],
+          "baseline": [
+            25,
+            29,
+            39,
+            255
+          ],
+          "current": [
+            27,
+            30,
+            40,
+            255
+          ],
+          "canonical_cpu_source": [
+            25,
+            29,
+            39,
+            251
+          ],
+          "default_oracle_source": [
+            25,
+            29,
+            39,
+            255
+          ],
+          "cpu_mask_alpha": 251,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            400,
+            485
+          ],
+          "baseline": [
+            31,
+            34,
+            44,
+            255
+          ],
+          "current": [
+            44,
+            45,
+            53,
+            255
+          ],
+          "canonical_cpu_source": [
+            31,
+            34,
+            43,
+            223
+          ],
+          "default_oracle_source": [
+            31,
+            34,
+            44,
+            255
+          ],
+          "cpu_mask_alpha": 223,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            400,
+            486
+          ],
+          "baseline": [
+            31,
+            34,
+            45,
+            255
+          ],
+          "current": [
+            33,
+            35,
+            46,
+            255
+          ],
+          "canonical_cpu_source": [
+            31,
+            34,
+            45,
+            251
+          ],
+          "default_oracle_source": [
+            31,
+            34,
+            45,
+            255
+          ],
+          "cpu_mask_alpha": 251,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            401,
+            494
+          ],
+          "baseline": [
+            36,
+            39,
+            50,
+            255
+          ],
+          "current": [
+            47,
+            47,
+            57,
+            255
+          ],
+          "canonical_cpu_source": [
+            36,
+            39,
+            50,
+            225
+          ],
+          "default_oracle_source": [
+            36,
+            39,
+            50,
+            255
+          ],
+          "cpu_mask_alpha": 225,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            401,
+            495
+          ],
+          "baseline": [
+            35,
+            37,
+            48,
+            255
+          ],
+          "current": [
+            36,
+            38,
+            49,
+            255
+          ],
+          "canonical_cpu_source": [
+            35,
+            37,
+            48,
+            251
+          ],
+          "default_oracle_source": [
+            35,
+            37,
+            48,
+            255
+          ],
+          "cpu_mask_alpha": 251,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            402,
+            503
+          ],
+          "baseline": [
+            32,
+            34,
+            44,
+            255
+          ],
+          "current": [
+            38,
+            39,
+            50,
+            255
+          ],
+          "canonical_cpu_source": [
+            31,
+            34,
+            44,
+            235
+          ],
+          "default_oracle_source": [
+            32,
+            34,
+            44,
+            255
+          ],
+          "cpu_mask_alpha": 235,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            403,
+            511
+          ],
+          "baseline": [
+            38,
+            40,
+            49,
+            255
+          ],
+          "current": [
+            51,
+            50,
+            58,
+            255
+          ],
+          "canonical_cpu_source": [
+            39,
+            40,
+            49,
+            225
+          ],
+          "default_oracle_source": [
+            38,
+            40,
+            49,
+            255
+          ],
+          "cpu_mask_alpha": 225,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            403,
+            512
+          ],
+          "baseline": [
+            35,
+            38,
+            46,
+            255
+          ],
+          "current": [
+            36,
+            39,
+            47,
+            255
+          ],
+          "canonical_cpu_source": [
+            35,
+            38,
+            46,
+            254
+          ],
+          "default_oracle_source": [
+            35,
+            38,
+            46,
+            255
+          ],
+          "cpu_mask_alpha": 254,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            404,
+            520
+          ],
+          "baseline": [
+            38,
+            41,
+            50,
+            255
+          ],
+          "current": [
+            42,
+            45,
+            53,
+            255
+          ],
+          "canonical_cpu_source": [
+            38,
+            41,
+            50,
+            246
+          ],
+          "default_oracle_source": [
+            38,
+            41,
+            50,
+            255
+          ],
+          "cpu_mask_alpha": 246,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            405,
+            528
+          ],
+          "baseline": [
+            29,
+            31,
+            42,
+            255
+          ],
+          "current": [
+            40,
+            41,
+            52,
+            255
+          ],
+          "canonical_cpu_source": [
+            29,
+            31,
+            42,
+            235
+          ],
+          "default_oracle_source": [
+            29,
+            31,
+            42,
+            255
+          ],
+          "cpu_mask_alpha": 235,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            406,
+            536
+          ],
+          "baseline": [
+            25,
+            29,
+            38,
+            255
+          ],
+          "current": [
+            38,
+            41,
+            51,
+            255
+          ],
+          "canonical_cpu_source": [
+            25,
+            29,
+            39,
+            225
+          ],
+          "default_oracle_source": [
+            25,
+            29,
+            38,
+            255
+          ],
+          "cpu_mask_alpha": 225,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            406,
+            537
+          ],
+          "baseline": [
+            22,
+            27,
+            36,
+            255
+          ],
+          "current": [
+            23,
+            27,
+            37,
+            255
+          ],
+          "canonical_cpu_source": [
+            22,
+            27,
+            36,
+            254
+          ],
+          "default_oracle_source": [
+            22,
+            27,
+            36,
+            255
+          ],
+          "cpu_mask_alpha": 254,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            407,
+            545
+          ],
+          "baseline": [
+            34,
+            36,
+            47,
+            255
+          ],
+          "current": [
+            38,
+            40,
+            50,
+            255
+          ],
+          "canonical_cpu_source": [
+            34,
+            36,
+            47,
+            246
+          ],
+          "default_oracle_source": [
+            34,
+            36,
+            47,
+            255
+          ],
+          "cpu_mask_alpha": 246,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            408,
+            553
+          ],
+          "baseline": [
+            33,
+            37,
+            46,
+            255
+          ],
+          "current": [
+            37,
+            40,
+            50,
+            255
+          ],
+          "canonical_cpu_source": [
+            33,
+            37,
+            46,
+            247
+          ],
+          "default_oracle_source": [
+            33,
+            37,
+            46,
+            255
+          ],
+          "cpu_mask_alpha": 247,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            409,
+            560
+          ],
+          "baseline": [
+            26,
+            30,
+            42,
+            255
+          ],
+          "current": [
+            34,
+            38,
+            50,
+            255
+          ],
+          "canonical_cpu_source": [
+            26,
+            30,
+            42,
+            230
+          ],
+          "default_oracle_source": [
+            26,
+            30,
+            42,
+            255
+          ],
+          "cpu_mask_alpha": 230,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            410,
+            567
+          ],
+          "baseline": [
+            34,
+            37,
+            46,
+            255
+          ],
+          "current": [
+            43,
+            44,
+            53,
+            255
+          ],
+          "canonical_cpu_source": [
+            34,
+            37,
+            46,
+            237
+          ],
+          "default_oracle_source": [
+            34,
+            37,
+            46,
+            255
+          ],
+          "cpu_mask_alpha": 237,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            411,
+            573
+          ],
+          "baseline": [
+            33,
+            37,
+            47,
+            255
+          ],
+          "current": [
+            38,
+            41,
+            51,
+            255
+          ],
+          "canonical_cpu_source": [
+            33,
+            37,
+            47,
+            244
+          ],
+          "default_oracle_source": [
+            33,
+            37,
+            47,
+            255
+          ],
+          "cpu_mask_alpha": 244,
+          "default_mask_alpha": 255
+        },
+        {
+          "xy": [
+            412,
+            580
+          ],
+          "baseline": [
+            22,
+            26,
+            37,
+            255
+          ],
+          "current": [
+            28,
+            32,
+            43,
+            255
+          ],
+          "canonical_cpu_source": [
+            22,
+            26,
+            37,
+            237
+          ],
+          "default_oracle_source": [
+            22,
+            26,
+            37,
+            255
+          ],
+          "cpu_mask_alpha": 237,
+          "default_mask_alpha": 255
+        }
+      ],
+      "B02_repeat_full_frame_exact": true,
+      "repeat_rgba_sha256": "7f22afc4196cc7e5fbdbee1dcc74c1b5366cdda4e61cc26f0dd89c69e3aa51d3"
+    }
+  ],
+  "disposition": "Repair only the independent jacket reference contexts to request willReadFrequently:true, matching the unchanged production and original continuous jacket mask path. Keep every existing assertion and add an exact B02 current-vs-effective-opaque-source check. No runtime, contour, fixture or tolerance change is justified.",
+  "limits": "Twelve diagnostic captures establish this reference defect and the narrow repair. They do not approve the complete matrix or production release.",
+  "independent_verifier_sha256": "e0d87fcae721a4dd4b59165cf45b14b92f55d96254558ed0b383be3ec99d7ce1"
+}

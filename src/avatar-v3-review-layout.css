@@ -1,0 +1,7 @@
+/* WebKit includes hidden native-select text in the containing label's
+ * scrollable overflow. Bound that paint at the native select itself while
+ * preserving its original dimensions, menu, text and keyboard focus outline.
+ */
+.rd-dialog .rd-label select {
+  contain: paint;
+}

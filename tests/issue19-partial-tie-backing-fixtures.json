@@ -1,0 +1,1219 @@
+{
+  "schema": "hewrs.issue19.partial-tie-backing-fixed-points.v1",
+  "status": "THREE_LITERAL_POINTS_EXACT18_SUIT_SCOPES_ALL13_PERMITTED_BLAZERS_NEGATIVE_NATIVE_ONLY",
+  "purpose": "Keep partial-tie backing exceptions limited to independently observed fixed pixels, without changing original830 jacket-gap fixtures.",
+  "fixture_count": 3,
+  "native_diagnostic_only": true,
+  "browser_approval": false,
+  "runtime_provenance": {
+    "fit5": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+    "current": "10c1ff79c2d4c5ac245ada33635802aca600c79e4733f3d9b75d27465a816911",
+    "geometry_extension_current": "b5f1f249ebc40c46381f60870cc42f79b7bc7b60879db93b6b8620e94c6498b8"
+  },
+  "source_plan": {
+    "path": "evidence/issue19/audits/pass-1-partial-tie-source-plan.json",
+    "sha256": "9b04387caa416dc140f7e1f2c2abd47a7446993b66d0d84ae9fb483e0f209e70",
+    "runtime_sha256": "10c1ff79c2d4c5ac245ada33635802aca600c79e4733f3d9b75d27465a816911"
+  },
+  "original830_gap_fixture_sha256": "581ef30105c61435e7ad9abcb0404e9edc51e75c9e2281ab31e912001369e85d",
+  "observed_projected_tie": {
+    "state": "T001",
+    "target_end": 1211,
+    "path": "/workspace/scratch/0cdc41552466/pass-1-all50-aperture-10c1/current/T001-actual-projected-1211.png",
+    "png_sha256": "93cb62a0a70fa0d68d936a224a88973b5e40b836edfbf153cacccb4a7f676349",
+    "rgba_sha256": "1ac32a499fa3f1939ac3f3b55efd0f1a80be433408f216285a5432a31f5f637e",
+    "old_current_rgba_equal": true
+  },
+  "geometry_scope": {
+    "suit_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18"
+    ],
+    "native_dimensions": [
+      996,
+      2748
+    ],
+    "projection_target_end": 1211,
+    "extension_policy": "Only the exact listed per-shirt suit scopes at the original three literal coordinates are permitted. No blazer, shirt-only or new-pixel exception. Further scope requires independent source/projection, topology and source-over evidence.",
+    "per_shirt_suit_ids": {
+      "DS027": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "DS037": [
+        "S02",
+        "S03",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18"
+      ]
+    }
+  },
+  "all47_projected_verification": {
+    "status": "VERIFIED_BY_INDEPENDENT_AUDIT3_NATIVE_ONLY",
+    "requested_points": [
+      [
+        537,
+        689
+      ],
+      [
+        538,
+        699
+      ]
+    ],
+    "scope": "actual S02 projected masks at target_end1211; exactly three fixed points",
+    "ties_checked": 47,
+    "actual_outfit_plans_checked": 94,
+    "verified_points": [
+      {
+        "shirt": "DS027",
+        "xy": [
+          458,
+          699
+        ],
+        "projected_alpha_values": [
+          70
+        ],
+        "ties_checked": 47
+      },
+      {
+        "shirt": "DS037",
+        "xy": [
+          537,
+          689
+        ],
+        "projected_alpha_values": [
+          156
+        ],
+        "ties_checked": 47
+      },
+      {
+        "shirt": "DS037",
+        "xy": [
+          538,
+          699
+        ],
+        "projected_alpha_values": [
+          70
+        ],
+        "ties_checked": 47
+      }
+    ],
+    "verified_input_fixture_sha256": "d86701f852df5c4243cf57a75b14a2ef6258e73dea3b64967283e8a0d3338056",
+    "projection_proof": {
+      "path": "evidence/issue19/audits/pass-3-partial-tie-projected-proof.json",
+      "sha256": "794aa7bc4655dd9bf581dffd0894a28f220403e99c9b1a1ad7d106e7e2f3b9cb",
+      "status": "ALL47_ACTUAL_S02_PROJECTIONS_VERIFIED_NATIVE_DIAGNOSTIC"
+    },
+    "source_and_compositing_proof": {
+      "path": "evidence/issue19/audits/pass-3-partial-tie-fixed-point-proof.json",
+      "sha256": "f0d8d0d91159e86b2b051eec65df41a6597ffad075b56a21a601261a17fcf0e3",
+      "status": "THREE_FIXED_POINTS_SOURCE_PROJECTION_AND_COMPOSITING_VERIFIED_NATIVE_ONLY"
+    },
+    "scope_disposition": "All47 actual S02 ties have a partial projected edge at each literal point. These three fixed S02 points may be backed only when prior completed alpha is partial and final alpha255, with original premultiplied contribution preserved. This proof does not authorize arbitrary partial tie exceptions or extend the fixture to any other geometry. Opaque tie/knot pixels remain exact.",
+    "limitations": [
+      "Native source projection and retained native frames are diagnostic; final actual Chromium/WebKit checks remain mandatory.",
+      "DS037 two-point RGB is unchanged because original alpha254 leaves only one part in255 of new cloth backing. This is a coverage repair, not evidence permitting general tie-color changes."
+    ]
+  },
+  "fixtures": [
+    {
+      "id": "DS027-S02-partial-tie-458-699",
+      "shirt": "DS027",
+      "mode": "suit",
+      "suit_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "state_classes": [
+        "tied"
+      ],
+      "observed_state": "T001",
+      "xy": [
+        458,
+        699
+      ],
+      "expected_alpha": 255,
+      "observed_old_rgba": [
+        107,
+        96,
+        91,
+        245
+      ],
+      "observed_current_rgba": [
+        112,
+        101,
+        97,
+        255
+      ],
+      "observed_projected_tie_alpha": 70,
+      "projected_tie_target_end": 1211,
+      "permission": "Only this fixed point in the listed shirt/suit geometry may receive selected-shirt backing beneath an actually partial projected tie. Old output must be partial, new output opaque, old premultiplied foreground contribution retained. Opaque tie and knot pixels remain exact.",
+      "topology": {
+        "method": "independent full996x2748 eight-connected alpha<255 flood from the changed pixel in rejected f39",
+        "component_bbox_xyxy": [
+          458,
+          699,
+          459,
+          700
+        ],
+        "component_pixels": 1,
+        "exterior": false,
+        "whole_component_filled": true
+      },
+      "native_capture": {
+        "old": {
+          "path": "/workspace/scratch/0cdc41552466/pass-1-all50-aperture-10c1/fit5/native/S02-DS027-T001.png",
+          "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+          "rgba_sha256": "19e89744dfc99f2aaf5a2db6da44988d0e40150a9fd695b9cd19cacbadeda8bf"
+        },
+        "current": {
+          "path": "/workspace/scratch/0cdc41552466/pass-1-all50-aperture-10c1/current/native/S02-DS027-T001.png",
+          "png_sha256": "b4f52ff3485d617613e0036f44e07e8df617e2407db582f31126b02099909a65",
+          "rgba_sha256": "4d6d5125cb36e1fafae9fe4132e30ef4fa469b00b645c3099871a8bf9440e186"
+        },
+        "old_and_current_source_bindings_equal": true
+      },
+      "source_samples": {
+        "body": {
+          "descriptor": {
+            "url": "assets/original_ids/DS027/tied/DS027_BODY.png",
+            "role": "body",
+            "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "alpha_bounds": [
+              106,
+              372,
+              918,
+              836
+            ]
+          },
+          "verified_asset_path": "assets/f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305.png",
+          "rgba": [
+            232,
+            217,
+            232,
+            128
+          ]
+        },
+        "rear": {
+          "descriptor": {
+            "url": "assets/original_ids/DS027/tied/DS027_REAR.png",
+            "role": "rear",
+            "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "alpha_bounds": null
+          },
+          "verified_asset_path": "assets/99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "left": {
+          "descriptor": {
+            "url": "assets/original_ids/DS027/tied/DS027_LEFT.png",
+            "role": "left",
+            "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "alpha_bounds": [
+              385,
+              374,
+              497,
+              527
+            ]
+          },
+          "verified_asset_path": "assets/57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "right": {
+          "descriptor": {
+            "url": "assets/original_ids/DS027/tied/DS027_RIGHT.png",
+            "role": "right",
+            "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "alpha_bounds": [
+              500,
+              372,
+              617,
+              527
+            ]
+          },
+          "verified_asset_path": "assets/11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "avatar": {
+          "descriptor": {
+            "url": "assets/4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93.png",
+            "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "AVATAR_V3_SOURCE_AVATAR"
+          },
+          "verified_asset_path": "assets/4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93.png",
+          "rgba": [
+            166,
+            106,
+            73,
+            108
+          ]
+        },
+        "jacket": {
+          "descriptor": {
+            "url": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png",
+            "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "REGISTERED_GARMENT_RGBA",
+            "source_path": "static/layers/S02/JACKET.png",
+            "display_alpha_mask": {
+              "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+              "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+              "rect": [
+                0,
+                0,
+                996,
+                2748
+              ],
+              "role": "S05_NECK_JUNCTION_KEEP"
+            }
+          },
+          "verified_asset_path": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png",
+          "rgba": [
+            94,
+            84,
+            80,
+            208
+          ]
+        },
+        "tie": {
+          "descriptor": {
+            "url": "assets/e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a.png",
+            "sha256": "e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "T001_NON_SUIT_DIRECT_SOURCE_TEXTURE",
+            "avatar_v3_tie_fit": {
+              "revision": "AVATAR_V3_TIE_FIT_1",
+              "target_end": 1211
+            }
+          },
+          "verified_asset_path": "assets/e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a.png",
+          "rgba": [
+            122,
+            111,
+            99,
+            255
+          ]
+        },
+        "jacket_display_mask": {
+          "descriptor": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          },
+          "verified_asset_path": "assets/c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545.png",
+          "rgba": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "historical_observation_suit": "S02",
+      "observed_S02_old_composite_alpha": 245,
+      "observed_T001_original_composite_alpha_by_suit": {
+        "S01": 229,
+        "S02": 245,
+        "S03": 245,
+        "S04": 229,
+        "S05": 229,
+        "S06": 245,
+        "S07": 245,
+        "S08": 245,
+        "S09": 245,
+        "S10": 245,
+        "S11": 245,
+        "S12": 245,
+        "S13": 245,
+        "S14": 245,
+        "S15": 245,
+        "S16": 229,
+        "S17": 245,
+        "S18": 245
+      },
+      "geometry_extension_proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125"
+    },
+    {
+      "id": "DS037-S02-partial-tie-537-689",
+      "shirt": "DS037",
+      "mode": "suit",
+      "suit_ids": [
+        "S02",
+        "S03",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18"
+      ],
+      "state_classes": [
+        "tied"
+      ],
+      "observed_state": "T001",
+      "xy": [
+        537,
+        689
+      ],
+      "expected_alpha": 255,
+      "observed_old_rgba": [
+        124,
+        105,
+        93,
+        254
+      ],
+      "observed_current_rgba": [
+        124,
+        105,
+        93,
+        255
+      ],
+      "observed_projected_tie_alpha": 156,
+      "projected_tie_target_end": 1211,
+      "permission": "Only this fixed point in the listed shirt/suit geometry may receive selected-shirt backing beneath an actually partial projected tie. Old output must be partial, new output opaque, old premultiplied foreground contribution retained. Opaque tie and knot pixels remain exact.",
+      "topology": {
+        "method": "independent full996x2748 eight-connected alpha<255 flood from the changed pixel in rejected f39",
+        "component_bbox_xyxy": [
+          536,
+          615,
+          566,
+          710
+        ],
+        "component_pixels": 1057,
+        "exterior": false,
+        "whole_component_filled": true
+      },
+      "native_capture": {
+        "old": {
+          "path": "/workspace/scratch/0cdc41552466/pass-1-all50-aperture-10c1/fit5/native/S02-DS037-T001.png",
+          "png_sha256": "814c873a663f12af2b69109dc9abceee3afb8e769835ee49b667a14b84d41283",
+          "rgba_sha256": "b9c12b388d281831f7b61bd221a8a87f6fdc9e3c517b1e4010cc7230f3d86c41"
+        },
+        "current": {
+          "path": "/workspace/scratch/0cdc41552466/pass-1-all50-aperture-10c1/current/native/S02-DS037-T001.png",
+          "png_sha256": "b6c90b2408a04094975aed7b1f5e5860123206193fee2e07b051b11c40e44f3e",
+          "rgba_sha256": "8426458873e6f3ccfce6092d2cfc064f5b381a4060439b5e94c1baccf2406417"
+        },
+        "old_and_current_source_bindings_equal": true
+      },
+      "source_samples": {
+        "body": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_BODY.png",
+            "sha256": "cff32f70d864c77891bc4176a3444864a64ffe25985809ac9b930414470e1535",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_BODY"
+          },
+          "verified_asset_path": "assets/cff32f70d864c77891bc4176a3444864a64ffe25985809ac9b930414470e1535.png",
+          "rgba": [
+            153,
+            123,
+            110,
+            253
+          ]
+        },
+        "rear": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_REAR_COLLAR.png",
+            "sha256": "5da222384a47751cfdcaf1089017b5e0dde891eda73595a216ac5e4d32debc68",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_REAR_COLLAR"
+          },
+          "verified_asset_path": "assets/5da222384a47751cfdcaf1089017b5e0dde891eda73595a216ac5e4d32debc68.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "left": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_FRONT_COLLAR_LEFT.png",
+            "sha256": "4c4356e2a250be9d1430bc9829eb0028e720bc8a9426951a618b949b968c4758",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_FRONT_COLLAR_LEFT"
+          },
+          "verified_asset_path": "assets/4c4356e2a250be9d1430bc9829eb0028e720bc8a9426951a618b949b968c4758.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "right": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_FRONT_COLLAR_RIGHT.png",
+            "sha256": "c2406785636c6a9a42e423136316752a31252a234f35d93688c38ee7194c587f",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_FRONT_COLLAR_RIGHT"
+          },
+          "verified_asset_path": "assets/c2406785636c6a9a42e423136316752a31252a234f35d93688c38ee7194c587f.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "avatar": {
+          "descriptor": {
+            "url": "assets/4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93.png",
+            "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "AVATAR_V3_SOURCE_AVATAR"
+          },
+          "verified_asset_path": "assets/4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "jacket": {
+          "descriptor": {
+            "url": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png",
+            "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "REGISTERED_GARMENT_RGBA",
+            "source_path": "static/layers/S02/JACKET.png",
+            "display_alpha_mask": {
+              "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+              "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+              "rect": [
+                0,
+                0,
+                996,
+                2748
+              ],
+              "role": "S05_NECK_JUNCTION_KEEP"
+            }
+          },
+          "verified_asset_path": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "tie": {
+          "descriptor": {
+            "url": "assets/e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a.png",
+            "sha256": "e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "T001_NON_SUIT_DIRECT_SOURCE_TEXTURE",
+            "avatar_v3_tie_fit": {
+              "revision": "AVATAR_V3_TIE_FIT_1",
+              "target_end": 1211
+            }
+          },
+          "verified_asset_path": "assets/e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a.png",
+          "rgba": [
+            167,
+            155,
+            143,
+            255
+          ]
+        },
+        "jacket_display_mask": {
+          "descriptor": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          },
+          "verified_asset_path": "assets/c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545.png",
+          "rgba": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "historical_observation_suit": "S02",
+      "observed_S02_old_composite_alpha": 254,
+      "observed_T001_original_composite_alpha_by_suit": {
+        "S02": 254,
+        "S03": 254,
+        "S06": 254,
+        "S07": 254,
+        "S08": 254,
+        "S09": 254,
+        "S10": 254,
+        "S11": 254,
+        "S12": 254,
+        "S13": 254,
+        "S14": 254,
+        "S15": 254,
+        "S17": 254,
+        "S18": 254
+      },
+      "geometry_extension_proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125"
+    },
+    {
+      "id": "DS037-S02-partial-tie-538-699",
+      "shirt": "DS037",
+      "mode": "suit",
+      "suit_ids": [
+        "S02",
+        "S03",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18"
+      ],
+      "state_classes": [
+        "tied"
+      ],
+      "observed_state": "T001",
+      "xy": [
+        538,
+        699
+      ],
+      "expected_alpha": 255,
+      "observed_old_rgba": [
+        139,
+        113,
+        100,
+        254
+      ],
+      "observed_current_rgba": [
+        139,
+        113,
+        100,
+        255
+      ],
+      "observed_projected_tie_alpha": 70,
+      "projected_tie_target_end": 1211,
+      "permission": "Only this fixed point in the listed shirt/suit geometry may receive selected-shirt backing beneath an actually partial projected tie. Old output must be partial, new output opaque, old premultiplied foreground contribution retained. Opaque tie and knot pixels remain exact.",
+      "topology": {
+        "method": "independent full996x2748 eight-connected alpha<255 flood from the changed pixel in rejected f39",
+        "component_bbox_xyxy": [
+          536,
+          615,
+          566,
+          710
+        ],
+        "component_pixels": 1057,
+        "exterior": false,
+        "whole_component_filled": true
+      },
+      "native_capture": {
+        "old": {
+          "path": "/workspace/scratch/0cdc41552466/pass-1-all50-aperture-10c1/fit5/native/S02-DS037-T001.png",
+          "png_sha256": "814c873a663f12af2b69109dc9abceee3afb8e769835ee49b667a14b84d41283",
+          "rgba_sha256": "b9c12b388d281831f7b61bd221a8a87f6fdc9e3c517b1e4010cc7230f3d86c41"
+        },
+        "current": {
+          "path": "/workspace/scratch/0cdc41552466/pass-1-all50-aperture-10c1/current/native/S02-DS037-T001.png",
+          "png_sha256": "b6c90b2408a04094975aed7b1f5e5860123206193fee2e07b051b11c40e44f3e",
+          "rgba_sha256": "8426458873e6f3ccfce6092d2cfc064f5b381a4060439b5e94c1baccf2406417"
+        },
+        "old_and_current_source_bindings_equal": true
+      },
+      "source_samples": {
+        "body": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_BODY.png",
+            "sha256": "cff32f70d864c77891bc4176a3444864a64ffe25985809ac9b930414470e1535",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_BODY"
+          },
+          "verified_asset_path": "assets/cff32f70d864c77891bc4176a3444864a64ffe25985809ac9b930414470e1535.png",
+          "rgba": [
+            146,
+            116,
+            103,
+            253
+          ]
+        },
+        "rear": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_REAR_COLLAR.png",
+            "sha256": "5da222384a47751cfdcaf1089017b5e0dde891eda73595a216ac5e4d32debc68",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_REAR_COLLAR"
+          },
+          "verified_asset_path": "assets/5da222384a47751cfdcaf1089017b5e0dde891eda73595a216ac5e4d32debc68.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "left": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_FRONT_COLLAR_LEFT.png",
+            "sha256": "4c4356e2a250be9d1430bc9829eb0028e720bc8a9426951a618b949b968c4758",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_FRONT_COLLAR_LEFT"
+          },
+          "verified_asset_path": "assets/4c4356e2a250be9d1430bc9829eb0028e720bc8a9426951a618b949b968c4758.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "right": {
+          "descriptor": {
+            "url": "assets/shirts/DS037/tied/DS037_FRONT_COLLAR_RIGHT.png",
+            "sha256": "c2406785636c6a9a42e423136316752a31252a234f35d93688c38ee7194c587f",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "DS037_FRONT_COLLAR_RIGHT"
+          },
+          "verified_asset_path": "assets/c2406785636c6a9a42e423136316752a31252a234f35d93688c38ee7194c587f.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "avatar": {
+          "descriptor": {
+            "url": "assets/4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93.png",
+            "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "AVATAR_V3_SOURCE_AVATAR"
+          },
+          "verified_asset_path": "assets/4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93.png",
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "jacket": {
+          "descriptor": {
+            "url": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png",
+            "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "REGISTERED_GARMENT_RGBA",
+            "source_path": "static/layers/S02/JACKET.png",
+            "display_alpha_mask": {
+              "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+              "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+              "rect": [
+                0,
+                0,
+                996,
+                2748
+              ],
+              "role": "S05_NECK_JUNCTION_KEEP"
+            }
+          },
+          "verified_asset_path": "assets/678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5.png",
+          "rgba": [
+            95,
+            83,
+            75,
+            4
+          ]
+        },
+        "tie": {
+          "descriptor": {
+            "url": "assets/e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a.png",
+            "sha256": "e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "T001_NON_SUIT_DIRECT_SOURCE_TEXTURE",
+            "avatar_v3_tie_fit": {
+              "revision": "AVATAR_V3_TIE_FIT_1",
+              "target_end": 1211
+            }
+          },
+          "verified_asset_path": "assets/e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a.png",
+          "rgba": [
+            127,
+            115,
+            103,
+            255
+          ]
+        },
+        "jacket_display_mask": {
+          "descriptor": {
+            "url": "assets/shared/S05_NECK_JUNCTION_KEEP.png",
+            "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+            "rect": [
+              0,
+              0,
+              996,
+              2748
+            ],
+            "role": "S05_NECK_JUNCTION_KEEP"
+          },
+          "verified_asset_path": "assets/c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545.png",
+          "rgba": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "historical_observation_suit": "S02",
+      "observed_S02_old_composite_alpha": 254,
+      "observed_T001_original_composite_alpha_by_suit": {
+        "S02": 254,
+        "S03": 254,
+        "S06": 254,
+        "S07": 254,
+        "S08": 254,
+        "S09": 254,
+        "S10": 254,
+        "S11": 254,
+        "S12": 254,
+        "S13": 254,
+        "S14": 254,
+        "S15": 254,
+        "S17": 254,
+        "S18": 254
+      },
+      "geometry_extension_proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125"
+    }
+  ],
+  "geometry_extension_verification": {
+    "status": "PASS_NATIVE_EXACT18_SUIT_SCOPES_ALL13_PERMITTED_BLAZERS_NEGATIVE",
+    "runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+    "runtime_comparison": "The original62-pair geometry proof used b5 with only its collar wrapper omitted. Runtime442 was independently revalidated for the exact B02 collar repair. Runtimeed326 is revalidated below as an exact cuff-only compiled change; original tie projections and all literal collar points are outside the cuff bounds. The current162-case browser contract must rerun on runtimeed326.",
+    "source_projection_proof_sha256": "dcea568c966ffbaf3f1a44fd5b232369ef85d8a8dca8624fb91b1da4d98ce1dd",
+    "render_proof_sha256": "1c4772cdd25a573879feb30476151d451a5fe027a8b78e6b052c3aa22661aaf4",
+    "reproduction_script_sha256": "a80fe8868e613e88297ca9ed1e944f4190deac782e35d325306236caf34f268e",
+    "all33_source_plans": 3102,
+    "actual_native_pairs": 62,
+    "suit_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18"
+    ],
+    "permitted_blazer_ids": [
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B12",
+      "B13",
+      "B14",
+      "B15"
+    ],
+    "static_only_owner_excluded_tied_routes": [
+      "B01",
+      "B11"
+    ],
+    "suit_alpha_groups": [
+      {
+        "suit_ids": [
+          "S01",
+          "S04",
+          "S05",
+          "S16"
+        ],
+        "effective_jacket_alpha_sha256": "0e00d28e721fc77ab9c51a12ebd4b044821a1dae22c3fefa3977f0dcbec46a03",
+        "native_fixed_point_alpha_samples": [
+          {
+            "shirt": "DS027",
+            "xy": [
+              458,
+              699
+            ],
+            "original_composite_alpha": 229,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 128,
+            "original_avatar_alpha": 108,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 128,
+            "receives_backing": true
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              537,
+              689
+            ],
+            "original_composite_alpha": 255,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 255,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 156,
+            "original_body_alpha": 253,
+            "receives_backing": false
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              538,
+              699
+            ],
+            "original_composite_alpha": 255,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 255,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 253,
+            "receives_backing": false
+          }
+        ]
+      },
+      {
+        "suit_ids": [
+          "S02",
+          "S03",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S10",
+          "S11",
+          "S12",
+          "S13",
+          "S14",
+          "S15",
+          "S17",
+          "S18"
+        ],
+        "effective_jacket_alpha_sha256": "f4d54dde0669cc88a29ff93762eb46f2e11b2ff5c9a4a6cca76a7f7b8e34ba79",
+        "native_fixed_point_alpha_samples": [
+          {
+            "shirt": "DS027",
+            "xy": [
+              458,
+              699
+            ],
+            "original_composite_alpha": 245,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 208,
+            "original_avatar_alpha": 108,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 128,
+            "receives_backing": true
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              537,
+              689
+            ],
+            "original_composite_alpha": 254,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 0,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 156,
+            "original_body_alpha": 253,
+            "receives_backing": true
+          },
+          {
+            "shirt": "DS037",
+            "xy": [
+              538,
+              699
+            ],
+            "original_composite_alpha": 254,
+            "current_composite_alpha": 255,
+            "original_effective_jacket_alpha": 4,
+            "original_avatar_alpha": 0,
+            "independent_projected_tie_alpha": 70,
+            "original_body_alpha": 253,
+            "receives_backing": true
+          }
+        ]
+      }
+    ],
+    "independent_projection_groups": [
+      {
+        "target_end": 1211,
+        "original_ties_independently_projected": 47,
+        "full_projected_alpha_sha256": "da64470ae9ba5962682a2c6cbc2191c4115f960f69cc987886378cb7e76ad616"
+      },
+      {
+        "target_end": 1251,
+        "original_ties_independently_projected": 47,
+        "full_projected_alpha_sha256": "39e060ad7c479d045ebf6d7435a3560061c8d7757eeeb5327ca6d539fdb2d780"
+      }
+    ],
+    "all13_permitted_blazer_controls": "Every selected tie pixel exact; every literal point originally opaque, unchanged, original BODY alpha255, projected tie alpha0. No blazer fixture permission.",
+    "browser_contract": "94 actual S02 selections plus 68 actual T001/T047 selections on other17 suits; source/endpoint plans and all47 projected mask equality support geometry equivalence only",
+    "proof_sha256": "6cfa686381397d6ba4ce6247e4f5684239014e700e7873f97fb2442842400125",
+    "browser_approval": false,
+    "proof_path": "/workspace/scratch/4197e9f551ea/audits/partial-all33/geometry-scope-proof.json",
+    "source_projection_proof_path": "/workspace/scratch/4197e9f551ea/audits/partial-all33/projection-source-proof.json",
+    "render_proof_path": "/workspace/scratch/4197e9f551ea/audits/partial-all33/all31-t001-render-proof.json",
+    "historical_geometry_runtime_sha256": "b5f1f249ebc40c46381f60870cc42f79b7bc7b60879db93b6b8620e94c6498b8",
+    "runtime_revalidation": {
+      "status": "PASS_NATIVE_CUFF_ONLY_EQUIVALENCE_FOR_PARTIAL_TIE_SCOPE_CURRENT_BROWSER_RERUN_REQUIRED",
+      "runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+      "prior_runtime_sha256": "44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12",
+      "proof_sha256": "951a5d7d2c5b507d6181fc1b8701ef167421e050a25990e5c5dfb7e4e2fe8570",
+      "proof_path": "release/issue19/CUFF_TIE_SCOPE_REVALIDATION.json",
+      "compiled_delta": "Exactly one cuff module block replaced; exact omission makes the complete runtimes byte-identical.",
+      "omitted_cuff_runtime_sha256": "9e4a4b01768b6c10e7430bbf95bcd17a37629726ba2d8e99748b061da19b9bf1",
+      "unchanged_collar_source_sha256": "49eeb2268fd308a87392fa6cdd6321e4b4b86d12005fc65a46d26a8363c18827",
+      "unchanged_tie_source_sha256": "b2fc34f245e852591f9d120de6d99270633d6f57f5a53f790f6be22411ca9f93",
+      "all18_suit_paths_same_no_mask_branch": true,
+      "selected_source_projection_plans": 1692,
+      "actual_old_new_comparisons": 4,
+      "complete_frame_equivalence": false,
+      "equivalence_scope": "DS027/DS037 withT001 onS02/S05; whole frames differ only in the declared cuff rectangles. Entire central strip x260..735, including selected ties, knots and all fixed collar backing points, remains byte-exact.",
+      "original_full_tie_sources_rehashed": 47,
+      "historical_actual_engine_projection_crops_checked": 94,
+      "all_selected_tie_support_disjoint_from_cuff_bounds": true,
+      "literal_backing_points_unchanged": true,
+      "required_current_browser_cases_per_engine": 162,
+      "browser_approval": false
+    },
+    "runtime_revalidation_history": [
+      {
+        "status": "PASS_NATIVE_SOURCE_EQUIVALENCE_CURRENT_BROWSER_RERUN_REQUIRED",
+        "runtime_sha256": "44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12",
+        "prior_runtime_sha256": "b5f1f249ebc40c46381f60870cc42f79b7bc7b60879db93b6b8620e94c6498b8",
+        "proof_sha256": "6f7d09062e71710481c91b0e9e73c446ffb66e846fa74952295c22a05d7b6e21",
+        "proof_path": "/workspace/scratch/4197e9f551ea/audits/partial-442/RUNTIME_EQUIVALENCE_PROOF.json",
+        "compiled_delta": "exactly one collar module block replaced; exact omission leaves byte-identical complete runtime",
+        "unchanged_tie_source_sha256": "b2fc34f245e852591f9d120de6d99270633d6f57f5a53f790f6be22411ca9f93",
+        "all18_suit_paths_same_no_mask_branch": true,
+        "selected_source_projection_plans": 1692,
+        "actual_old_new_comparisons": 8,
+        "complete_frame_equivalence": "DS027/DS037 withT001 onS02,S05,B15:6 whole frames byte-exact",
+        "B02_scope": "Two intentional left-collar display corrections preserve every selected tie pixel, the complete knot, and all3 literal backing points. No blazer exception added.",
+        "actual_frame_proof_sha256": "cef6e097783fc2c699a0ae030c5e14790fe10839ff8c88f7909053d030afa966",
+        "source_over_positives": "Four inherited independently calculated source-over positives remain exact in current442 frames.",
+        "required_current_browser_cases_per_engine": 162,
+        "browser_approval": false
+      }
+    ]
+  }
+}

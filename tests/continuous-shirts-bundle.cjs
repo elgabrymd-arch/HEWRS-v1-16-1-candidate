@@ -14,7 +14,10 @@ const code=fs.readFileSync(path.join(ROOT,metadata.runtime),'utf8');assert.equal
 for(const [name,sha]of Object.entries(baseline.modules))assert.equal(digest(fs.readFileSync(path.join(ROOT,name))),sha,'compiled module is current: '+name);
 const application='/* PREVIEW SOURCE: src/outfit-refill-application.js */',end=code.indexOf(application);assert.ok(end>0&&code.indexOf(application,end+1)<0,'unique compiled application boundary');
 const markers=['/* SOURCE: src/mixed-renderer.js */','/* CONTINUOUS SHIRT SOURCE: data/continuous-shirts.js */','/* CONTINUOUS SHIRT SOURCE: src/continuous-shirts.js */','/* SOURCE: src/owner-feedback-integration.js */','/* SOURCE: src/tie-fidelity.js */'];
-if(metadata.kind==='avatar-v3')markers.splice(3,0,'/* ISOLATED AVATAR_V3 SOURCE: src/avatar-v3.js */','/* V3 SOURCE-BOUND COLLAR FIT: src/avatar-v3-collar-fit.js */','/* ISOLATED V3 POSE: src/avatar-v3-pose.js */');
+if(metadata.kind==='avatar-v3'){
+ markers.splice(3,0,'/* ISOLATED AVATAR_V3 SOURCE: src/avatar-v3.js */','/* V3 SOURCE-BOUND COLLAR FIT: src/avatar-v3-collar-fit.js */');
+ markers.push('/* V3 ISSUE 19 SOURCE: src/avatar-v3-tie-fit.js */','/* V3 ISSUE 19 SOURCE: src/avatar-v3-shirt-collar-fit.js */','/* ISOLATED V3 POSE: src/avatar-v3-pose.js */','/* V3 ISSUE 19 SOURCE: src/avatar-v3-cuff-fit.js */');
+}
 const positions=markers.map(marker=>code.indexOf(marker));assert.ok(positions.every((p,i)=>p>=0&&p<end&&(!i||p>positions[i-1])),'real wrapper dependency order');
 let native;try{native=require('@napi-rs/canvas');}catch(_){native=require(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES||'/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules','@napi-rs/canvas'));}
 const {createCanvas,Image,ImageData}=native;function canvas(){const c=createCanvas(996,2748);c.dataset={};return c;}

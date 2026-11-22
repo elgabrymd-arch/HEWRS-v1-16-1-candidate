@@ -1,0 +1,2035 @@
+{
+  "schema": "hewrs.issue19.cuff-quantized-source-audit.v1",
+  "status": "PASS_EXACT_ORIGINAL_SOURCE_REPLAY_NOT_RELEASE_ACCEPTANCE",
+  "head_sha": "9d8c6ac4491dbc2ba259ef8ca45c3b6d73f7c953",
+  "runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+  "failed_ci_run_id": 44976325608,
+  "rejected_runtime_sha256": "44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12",
+  "rejected_cuff_source_sha256": "b0702dcf242f60250fa0b0f4942c20f18d30139fa4934e503fb876dfe7704806",
+  "approved_pose_source_sha256": "2de18380a4ac99677d2fb38bb88ea32336fe64e4ccd597a81b57d25af095dbf4",
+  "unchanged_cuff_fixture_sha256": "309f4f83473efb130fa3090a136ab3a7859c2c9701727c567e643a1f37a1f655",
+  "full33_strict_inventory_sha256": "5c8b3aa38d8e3d066b89b03b8cfcaa0f606a9509c37f33d7004605464c94e3d2",
+  "independent_original_domain_audit_sha256": "86856a69cdcfe5f84f8bad7ec3bce0b7f48496e596729bb1083dcc18cb8908a0",
+  "original_domain_provenance_sha256": "b12481d9c97bd6184123f605895573ac43b87a7935ad147c61e6d66a9cb4ece3",
+  "raw_source_replay_script_sha256": "ee86bbd50ddcd6b158dcf71546d44ac33826253fb1185abd68acb293a57281b1",
+  "method": [
+    "Extract the hash-pinned rejected b070 cuff function; a read-only callback records its raw fitted foreground before the first canvas write.",
+    "Hash and decode the selected original jacket, trousers and both hands independently; apply the unchanged approved pose once. Source bytes match the rejected callback.",
+    "Verify all controls are on the torso side of the original registered jacket seam, using immutable rejected geometry, with original jacket alpha255.",
+    "Compute straight-alpha old fitted foreground over original jacket, retaining Uint8ClampedArray conversion, then independently replay the original hand order and selected trousers on a one-pixel canvas.",
+    "Compare the resulting exact RGBA with separately captured candidate pixels only after expectation construction. No candidate pixel or RGB tolerance defines an expected value."
+  ],
+  "findings": {
+    "routes": 7,
+    "controls": 17,
+    "true_opaque_fitted_or_hand_sources_reclassified": 0,
+    "old_opaque_preservation_false_premise_points": 17,
+    "no_pants_preservation_false_premise_points": 2,
+    "independent_expected_rgba_mismatches": 0,
+    "rgb_or_alpha_tolerance": 0,
+    "all_original_jacket_sources_opaque": true,
+    "all_controls_inside_original_torso_side": true,
+    "old_true_alpha_range": [
+      254.5529411764706,
+      254.95294117647057
+    ],
+    "old_displayed_alpha": 255
+  },
+  "case_proofs": [
+    {
+      "mode": "S11",
+      "file": "S11-EXACT_SOURCE_REPLAY.json",
+      "sha256": "6ee3b43ad7399c9cf890e7a354078ce1ddfff451d5a63f50fd34e9f1e4881888",
+      "old_actual_rgba_sha256": "8c23bbb84f40ec5d4c253297983436756555422d23e60d59c0761777f95a21ac",
+      "current_actual_rgba_sha256": "690a450840c3acb7e54cec20084601d1bd5f5333cbc6d5cb908de4d6e6eb81fb",
+      "old_raw_fitted_plane_sha256": "41d7ca960d21ec18f3493ad6e1699340147257061aa7668988cfe0b2b011dbae",
+      "controls": 1
+    },
+    {
+      "mode": "S13",
+      "file": "S13-EXACT_SOURCE_REPLAY.json",
+      "sha256": "30be8983e62232a13d01eaf6cfeee7ed78e0b8b0cdcef7edaafd5097a5f7bb14",
+      "old_actual_rgba_sha256": "793d8f80f128c105baefc79a9c1fa6fa224bf44cf2e15c85d90893c831ea831d",
+      "current_actual_rgba_sha256": "711a17cefb8aaa98f1daf734e9a8a6dfe6b2795fc0ff19588578ccef7a2055b3",
+      "old_raw_fitted_plane_sha256": "b0ff31087d6063e01ac1302b3dfdb2385b9f3b7ff66eafc9395bb88613acd5b8",
+      "controls": 1
+    },
+    {
+      "mode": "B06",
+      "file": "B06-EXACT_SOURCE_REPLAY.json",
+      "sha256": "6e1ae85b43bdff3815b324e34f13466b283238b34312fdd659c47d8b80eeb98b",
+      "old_actual_rgba_sha256": "3cc441af61f017a3877a764991665699bfb93aa092e805821a39d8afe49867cb",
+      "current_actual_rgba_sha256": "48a416258246be6177fd01ad3bd1824e6279e6078689a7bca1bea3cec6422ffe",
+      "old_raw_fitted_plane_sha256": "68b82773ed5c5fb3cef7990f106b75a378e27837169841974dc60f3ba463c16f",
+      "controls": 3
+    },
+    {
+      "mode": "B07",
+      "file": "B07-EXACT_SOURCE_REPLAY.json",
+      "sha256": "b191c607788bf9a456343aac95539b65177da4b0c2c2758da292d65241ba3fd8",
+      "old_actual_rgba_sha256": "76dd8ad6f76867d80071acc8bd43dd6aba5f944bf1cb1158ffac93c50dade185",
+      "current_actual_rgba_sha256": "d9b8dcaa62dbc4be61fcbd162bbf4ee60e536dd2edc6a155b006414f974e6ba6",
+      "old_raw_fitted_plane_sha256": "57ca65e05a2ac5b5c3ccaa0de2292fa8f2f57771eda3e3541d350af7ea50acdd",
+      "controls": 2
+    },
+    {
+      "mode": "B08",
+      "file": "B08-EXACT_SOURCE_REPLAY.json",
+      "sha256": "0378de5c871f3cabd322021ba49cc2e6391d003940e6fd230b54e03360f7b57d",
+      "old_actual_rgba_sha256": "108bd072142245166e971867d23726b1eb9ff06919a8d41a481414da38ed5d42",
+      "current_actual_rgba_sha256": "792702c80ba4cbd46a3adf2626a725199e172757835898091faed6cb12ad7a20",
+      "old_raw_fitted_plane_sha256": "ee7c5c5ae2728d4f84ad1f65cfc374d3514cde7ff4d583d80688843608b65722",
+      "controls": 2
+    },
+    {
+      "mode": "B09",
+      "file": "B09-EXACT_SOURCE_REPLAY.json",
+      "sha256": "04185d46c5d642738ef88759c03def87e21b784f242767ebbf34e6e74710eaae",
+      "old_actual_rgba_sha256": "5e44487a281d428ac0ccc2b5df3ae7b6a6f74e928ec1118d161e6e6eb8674694",
+      "current_actual_rgba_sha256": "1bf4b3f605608d0008557b7f5b98408065f2a195d6dda7cdab7de829ab053b7c",
+      "old_raw_fitted_plane_sha256": "cb7b1c08149925d83c71c72fccdc279a9f099e4b7e935c543b4d30b8117050d7",
+      "controls": 2
+    },
+    {
+      "mode": "B10",
+      "file": "B10-EXACT_SOURCE_REPLAY.json",
+      "sha256": "fdd1cc94aa6e3b55bac63e759e0769057f2007d5c9aedd7d2a92431222f3623d",
+      "old_actual_rgba_sha256": "76b8851c63f50f947c2a20f72592f401a39e5ae5dc82a485e52dc823608ba064",
+      "current_actual_rgba_sha256": "76c1f9702a0f4aaef90135affa3f63a1137818405c56f639a3c25ecd7d8d4363",
+      "old_raw_fitted_plane_sha256": "5fec6985e25ac350e888572ae107da10e504d14b37a4076d81adaec0a1d4ca56",
+      "controls": 6
+    }
+  ],
+  "controls": [
+    {
+      "mode": "S11",
+      "xy": [
+        779,
+        1373
+      ],
+      "original_source_hashes": {
+        "jacket": "f8b9003a5bc194b642f996c0fadcf1c2e8e97dba0cfc3c6260e5555ee0835ba4",
+        "pants": "c5dab4db1db4b6b64e73fd0bc468fa8b234b5f74abb4a797f5a7b4fd1fb8f53f",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        138,
+        134,
+        130,
+        223
+      ],
+      "original_raw_jacket_rgba": [
+        117,
+        113,
+        109,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        141,
+        137,
+        134,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          132,
+          80,
+          56,
+          252
+        ]
+      ],
+      "source_domain": {
+        "side": "right",
+        "source_inner_x": 784.5870967741936,
+        "fitted_inner_x": 767.1376917236303,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.6235294117647,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          131,
+          80,
+          56,
+          255
+        ],
+        "final": [
+          131,
+          80,
+          56,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          131,
+          80,
+          56,
+          255
+        ],
+        "final": [
+          131,
+          80,
+          56,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        135,
+        131,
+        127,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        132,
+        81,
+        56,
+        255
+      ],
+      "observed_candidate_rgba": [
+        132,
+        81,
+        56,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "S13",
+      "xy": [
+        779,
+        1373
+      ],
+      "original_source_hashes": {
+        "jacket": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
+        "pants": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        39,
+        45,
+        65,
+        223
+      ],
+      "original_raw_jacket_rgba": [
+        34,
+        39,
+        58,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        31,
+        37,
+        53,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          132,
+          80,
+          56,
+          252
+        ]
+      ],
+      "source_domain": {
+        "side": "right",
+        "source_inner_x": 784.5870967741936,
+        "fitted_inner_x": 767.1376917236303,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.6235294117647,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          130,
+          79,
+          56,
+          255
+        ],
+        "final": [
+          130,
+          79,
+          56,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          130,
+          79,
+          56,
+          255
+        ],
+        "final": [
+          130,
+          79,
+          56,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        38,
+        44,
+        64,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        130,
+        80,
+        56,
+        255
+      ],
+      "observed_candidate_rgba": [
+        130,
+        80,
+        56,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B06",
+      "xy": [
+        201,
+        1371
+      ],
+      "original_source_hashes": {
+        "jacket": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        201,
+        205,
+        188,
+        164
+      ],
+      "original_raw_jacket_rgba": [
+        190,
+        191,
+        175,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        95,
+        97,
+        99,
+        248
+      ],
+      "original_raw_hands_rgba": [
+        [
+          206,
+          136,
+          106,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.43937708565073,
+        "fitted_inner_x": 217.648636708144,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.64313725490197,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          206,
+          136,
+          106,
+          255
+        ],
+        "final": [
+          206,
+          136,
+          106,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          206,
+          136,
+          106,
+          255
+        ],
+        "final": [
+          206,
+          136,
+          106,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        197,
+        200,
+        183,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        206,
+        136,
+        107,
+        255
+      ],
+      "observed_candidate_rgba": [
+        206,
+        136,
+        107,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B06",
+      "xy": [
+        203,
+        1372
+      ],
+      "original_source_hashes": {
+        "jacket": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        198,
+        202,
+        185,
+        146
+      ],
+      "original_raw_jacket_rgba": [
+        193,
+        193,
+        177,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        99,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          198,
+          129,
+          100,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.3893214682981,
+        "fitted_inner_x": 217.7562687487375,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.57254901960783,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          197,
+          128,
+          100,
+          255
+        ],
+        "final": [
+          197,
+          128,
+          100,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          197,
+          128,
+          100,
+          255
+        ],
+        "final": [
+          197,
+          128,
+          100,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        196,
+        198,
+        182,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        198,
+        129,
+        101,
+        255
+      ],
+      "observed_candidate_rgba": [
+        198,
+        129,
+        101,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B06",
+      "xy": [
+        213,
+        1385
+      ],
+      "original_source_hashes": {
+        "jacket": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        199,
+        203,
+        186,
+        141
+      ],
+      "original_raw_jacket_rgba": [
+        134,
+        138,
+        115,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          190,
+          125,
+          95,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 168.73859844271414,
+        "fitted_inner_x": 218.76396958412337,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.5529411764706,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          189,
+          125,
+          95,
+          255
+        ],
+        "final": [
+          189,
+          125,
+          95,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          189,
+          125,
+          95,
+          255
+        ],
+        "final": [
+          189,
+          125,
+          95,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        170,
+        174,
+        154,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        190,
+        126,
+        96,
+        255
+      ],
+      "observed_candidate_rgba": [
+        190,
+        126,
+        96,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B07",
+      "xy": [
+        189,
+        1370
+      ],
+      "original_source_hashes": {
+        "jacket": "173f09f986b00d56b06062ae91d6388445245980d9bde907a1655c61f7870e05",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        140,
+        135,
+        125,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        141,
+        84,
+        46,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_raw_hands_rgba": [
+        [
+          203,
+          146,
+          117,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.48943270300333,
+        "fitted_inner_x": 217.53694491216862,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.90980392156862,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed",
+        "no_pants_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          202,
+          145,
+          117,
+          255
+        ],
+        "final": [
+          202,
+          145,
+          117,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          202,
+          145,
+          117,
+          255
+        ],
+        "final": [
+          202,
+          145,
+          117,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        140,
+        130,
+        118,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        203,
+        146,
+        117,
+        255
+      ],
+      "observed_candidate_rgba": [
+        203,
+        146,
+        117,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B07",
+      "xy": [
+        199,
+        1370
+      ],
+      "original_source_hashes": {
+        "jacket": "173f09f986b00d56b06062ae91d6388445245980d9bde907a1655c61f7870e05",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        142,
+        137,
+        127,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        86,
+        48,
+        21,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        39
+      ],
+      "original_raw_hands_rgba": [
+        [
+          196,
+          132,
+          98,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.48943270300333,
+        "fitted_inner_x": 217.53694491216862,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.90980392156862,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          196,
+          131,
+          98,
+          255
+        ],
+        "final": [
+          196,
+          131,
+          98,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          196,
+          131,
+          98,
+          255
+        ],
+        "final": [
+          196,
+          131,
+          98,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        137,
+        129,
+        117,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        196,
+        132,
+        98,
+        255
+      ],
+      "observed_candidate_rgba": [
+        196,
+        132,
+        98,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B08",
+      "xy": [
+        203,
+        1372
+      ],
+      "original_source_hashes": {
+        "jacket": "583f5629a6afb4be9543a107029bdca8d38defde3a6af907ca714209d41652ad",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        228,
+        224,
+        219,
+        146
+      ],
+      "original_raw_jacket_rgba": [
+        215,
+        205,
+        196,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        99,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          198,
+          129,
+          100,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.3893214682981,
+        "fitted_inner_x": 217.7562687487375,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.57254901960783,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          198,
+          129,
+          100,
+          255
+        ],
+        "final": [
+          198,
+          129,
+          100,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          198,
+          129,
+          100,
+          255
+        ],
+        "final": [
+          198,
+          129,
+          100,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        222,
+        216,
+        209,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        198,
+        129,
+        101,
+        255
+      ],
+      "observed_candidate_rgba": [
+        198,
+        129,
+        101,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B08",
+      "xy": [
+        213,
+        1385
+      ],
+      "original_source_hashes": {
+        "jacket": "583f5629a6afb4be9543a107029bdca8d38defde3a6af907ca714209d41652ad",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        218,
+        215,
+        208,
+        141
+      ],
+      "original_raw_jacket_rgba": [
+        216,
+        207,
+        197,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          190,
+          125,
+          95,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 168.73859844271414,
+        "fitted_inner_x": 218.76396958412337,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.5529411764706,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          189,
+          125,
+          95,
+          255
+        ],
+        "final": [
+          189,
+          125,
+          95,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          189,
+          125,
+          95,
+          255
+        ],
+        "final": [
+          189,
+          125,
+          95,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        217,
+        211,
+        203,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        190,
+        126,
+        96,
+        255
+      ],
+      "observed_candidate_rgba": [
+        190,
+        126,
+        96,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B09",
+      "xy": [
+        210,
+        1380
+      ],
+      "original_source_hashes": {
+        "jacket": "9d02e00bfb127bac799c04bbcd2d105ffc5559a1d7369af855e8d0720fe469d4",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        150,
+        150,
+        139,
+        192
+      ],
+      "original_raw_jacket_rgba": [
+        127,
+        122,
+        116,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          195,
+          127,
+          94,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 168.98887652947718,
+        "fitted_inner_x": 218.46535112301328,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.75294117647059,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          194,
+          127,
+          94,
+          255
+        ],
+        "final": [
+          194,
+          127,
+          94,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          194,
+          127,
+          94,
+          255
+        ],
+        "final": [
+          194,
+          127,
+          94,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        144,
+        143,
+        133,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        195,
+        128,
+        95,
+        255
+      ],
+      "observed_candidate_rgba": [
+        195,
+        128,
+        95,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B09",
+      "xy": [
+        780,
+        1372
+      ],
+      "original_source_hashes": {
+        "jacket": "9d02e00bfb127bac799c04bbcd2d105ffc5559a1d7369af855e8d0720fe469d4",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        129,
+        124,
+        118,
+        251
+      ],
+      "original_raw_jacket_rgba": [
+        42,
+        34,
+        23,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          136,
+          80,
+          57,
+          252
+        ]
+      ],
+      "source_domain": {
+        "side": "right",
+        "source_inner_x": 806.5032258064516,
+        "fitted_inner_x": 767.4425512614554,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.95294117647057,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          135,
+          80,
+          57,
+          255
+        ],
+        "final": [
+          135,
+          80,
+          57,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          135,
+          80,
+          57,
+          255
+        ],
+        "final": [
+          135,
+          80,
+          57,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        128,
+        123,
+        117,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        136,
+        80,
+        57,
+        255
+      ],
+      "observed_candidate_rgba": [
+        136,
+        80,
+        57,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        189,
+        1370
+      ],
+      "original_source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        177,
+        152,
+        134,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        123,
+        108,
+        95,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_raw_hands_rgba": [
+        [
+          203,
+          146,
+          117,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.48943270300333,
+        "fitted_inner_x": 217.53694491216862,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.90980392156862,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed",
+        "no_pants_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          203,
+          146,
+          117,
+          255
+        ],
+        "final": [
+          203,
+          146,
+          117,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          203,
+          146,
+          117,
+          255
+        ],
+        "final": [
+          203,
+          146,
+          117,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        172,
+        148,
+        130,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        203,
+        146,
+        118,
+        255
+      ],
+      "observed_candidate_rgba": [
+        203,
+        146,
+        118,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        199,
+        1370
+      ],
+      "original_source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        159,
+        134,
+        116,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        100,
+        86,
+        72,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        39
+      ],
+      "original_raw_hands_rgba": [
+        [
+          196,
+          132,
+          98,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.48943270300333,
+        "fitted_inner_x": 217.53694491216862,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.90980392156862,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          196,
+          131,
+          98,
+          255
+        ],
+        "final": [
+          196,
+          131,
+          98,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          196,
+          131,
+          98,
+          255
+        ],
+        "final": [
+          196,
+          131,
+          98,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        154,
+        130,
+        112,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        196,
+        132,
+        98,
+        255
+      ],
+      "observed_candidate_rgba": [
+        196,
+        132,
+        98,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        201,
+        1371
+      ],
+      "original_source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        167,
+        142,
+        124,
+        164
+      ],
+      "original_raw_jacket_rgba": [
+        112,
+        98,
+        82,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        95,
+        97,
+        99,
+        248
+      ],
+      "original_raw_hands_rgba": [
+        [
+          206,
+          136,
+          106,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.43937708565073,
+        "fitted_inner_x": 217.648636708144,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.64313725490197,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          205,
+          135,
+          106,
+          255
+        ],
+        "final": [
+          205,
+          135,
+          106,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          205,
+          135,
+          106,
+          255
+        ],
+        "final": [
+          205,
+          135,
+          106,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        147,
+        126,
+        109,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        206,
+        135,
+        106,
+        255
+      ],
+      "observed_candidate_rgba": [
+        206,
+        135,
+        106,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        203,
+        1372
+      ],
+      "original_source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        174,
+        149,
+        131,
+        146
+      ],
+      "original_raw_jacket_rgba": [
+        116,
+        98,
+        83,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        99,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          198,
+          129,
+          100,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 169.3893214682981,
+        "fitted_inner_x": 217.7562687487375,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.57254901960783,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          197,
+          128,
+          100,
+          255
+        ],
+        "final": [
+          197,
+          128,
+          100,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          197,
+          128,
+          100,
+          255
+        ],
+        "final": [
+          197,
+          128,
+          100,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        149,
+        127,
+        110,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        198,
+        128,
+        100,
+        255
+      ],
+      "observed_candidate_rgba": [
+        198,
+        128,
+        100,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        210,
+        1380
+      ],
+      "original_source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        156,
+        131,
+        113,
+        192
+      ],
+      "original_raw_jacket_rgba": [
+        132,
+        105,
+        89,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          195,
+          127,
+          94,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 168.98887652947718,
+        "fitted_inner_x": 218.46535112301328,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.75294117647059,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          194,
+          127,
+          94,
+          255
+        ],
+        "final": [
+          194,
+          127,
+          94,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          194,
+          127,
+          94,
+          255
+        ],
+        "final": [
+          194,
+          127,
+          94,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        150,
+        125,
+        107,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        195,
+        127,
+        94,
+        255
+      ],
+      "observed_candidate_rgba": [
+        195,
+        127,
+        94,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        213,
+        1385
+      ],
+      "original_source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "old_raw_fitted_rgba": [
+        161,
+        135,
+        116,
+        141
+      ],
+      "original_raw_jacket_rgba": [
+        134,
+        107,
+        93,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          190,
+          125,
+          95,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_domain": {
+        "side": "left",
+        "source_inner_x": 168.73859844271414,
+        "fitted_inner_x": 218.76396958412337,
+        "original_torso_side": true,
+        "fitted_torso_side": false,
+        "inside_source_retention_domain": true
+      },
+      "unrounded_old_combined_alpha": 254.5529411764706,
+      "displayed_old_alpha": 255,
+      "original_assertion_flags": [
+        "old_opaque_foreground_changed"
+      ],
+      "old_replay": {
+        "afterHands": [
+          189,
+          125,
+          95,
+          255
+        ],
+        "final": [
+          189,
+          125,
+          95,
+          255
+        ]
+      },
+      "pants_only_replay": {
+        "afterHands": [
+          189,
+          125,
+          95,
+          255
+        ],
+        "final": [
+          189,
+          125,
+          95,
+          255
+        ]
+      },
+      "independently_expected_fitted_over_jacket_rgba": [
+        149,
+        122,
+        106,
+        255
+      ],
+      "independently_expected_final_rgba": [
+        190,
+        125,
+        95,
+        255
+      ],
+      "observed_candidate_rgba": [
+        190,
+        125,
+        95,
+        255
+      ],
+      "rgba_error": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "candidate_used_to_construct_expected": false
+    }
+  ],
+  "proposed_oracle_change": "Use a separate 17-point source-bound positive fixture. Verify exact original-source composition at those controls before excluding them from the generic finished-alpha255 preservation count; exclude the two no-pants controls only after the same exact original-jacket proof. Preserve every existing zero assertion and every true opaque hand/foreground control. Existing S03/B15/frozen-corridor fixture remains byte-identical.",
+  "limits": [
+    "Native source proof only; not browser or visual approval.",
+    "Failed head9d CI is not retroactively accepted.",
+    "Production runtime and all original sources remain unchanged.",
+    "New full native, browser, matrix and visual gates are required before pre-merge acceptance."
+  ]
+}

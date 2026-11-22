@@ -1,0 +1,5285 @@
+{
+  "schema": "hewrs.issue19.outer-shoulder-independent-fixtures.v1",
+  "purpose": "Conceal the visually confirmed distant original BODY strip while retaining independently observed near-neck collar reveal.",
+  "approved_plan_sha256": "dd6d789699a5f68ff7f499d2572d0a4ee110f65a7f650f1c9bac33ef4db61f77",
+  "coordinate_system": "Unscaled996x2748 native canvas; actual browser pair candidate coordinate is(x-248+500,y-300).",
+  "concealment_points": [
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        280,
+        470
+      ],
+      "prior_native_rgba": [
+        224,
+        196,
+        217,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          224,
+          196,
+          217,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 473,
+      "avatar_edge_x_at_jacket_row": 397,
+      "distance_from_avatar_edge": 117,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            532,
+            170
+          ],
+          "rgb": [
+            216,
+            194,
+            207
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            532,
+            170
+          ],
+          "rgb": [
+            218,
+            196,
+            209
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        290,
+        464
+      ],
+      "prior_native_rgba": [
+        211,
+        183,
+        206,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          211,
+          183,
+          206,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 467,
+      "avatar_edge_x_at_jacket_row": 396,
+      "distance_from_avatar_edge": 106,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            542,
+            164
+          ],
+          "rgb": [
+            203,
+            182,
+            199
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            542,
+            164
+          ],
+          "rgb": [
+            206,
+            185,
+            202
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        300,
+        461
+      ],
+      "prior_native_rgba": [
+        214,
+        178,
+        204,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          214,
+          178,
+          204,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 464,
+      "avatar_edge_x_at_jacket_row": 395,
+      "distance_from_avatar_edge": 95,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            552,
+            161
+          ],
+          "rgb": [
+            211,
+            177,
+            201
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            552,
+            161
+          ],
+          "rgb": [
+            212,
+            179,
+            200
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        310,
+        456
+      ],
+      "prior_native_rgba": [
+        211,
+        177,
+        201,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          211,
+          177,
+          201,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 459,
+      "avatar_edge_x_at_jacket_row": 394,
+      "distance_from_avatar_edge": 84,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            562,
+            156
+          ],
+          "rgb": [
+            211,
+            180,
+            198
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            562,
+            156
+          ],
+          "rgb": [
+            212,
+            179,
+            198
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        320,
+        450
+      ],
+      "prior_native_rgba": [
+        203,
+        168,
+        194,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          203,
+          168,
+          194,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 456,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 69,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            572,
+            150
+          ],
+          "rgb": [
+            204,
+            168,
+            194
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            572,
+            150
+          ],
+          "rgb": [
+            203,
+            167,
+            193
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        329,
+        449
+      ],
+      "prior_native_rgba": [
+        200,
+        165,
+        190,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          200,
+          165,
+          190,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 452,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 60,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            581,
+            149
+          ],
+          "rgb": [
+            201,
+            163,
+            188
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            581,
+            149
+          ],
+          "rgb": [
+            199,
+            161,
+            186
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        300,
+        463
+      ],
+      "prior_native_rgba": [
+        150,
+        129,
+        133,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          230,
+          192,
+          218,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          101,
+          90,
+          80,
+          158
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 464,
+      "avatar_edge_x_at_jacket_row": 395,
+      "distance_from_avatar_edge": 95,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            552,
+            163
+          ],
+          "rgb": [
+            150,
+            124,
+            137
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            552,
+            163
+          ],
+          "rgb": [
+            149,
+            123,
+            134
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        101,
+        90,
+        80,
+        158
+      ],
+      "expected_alpha": 158,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        320,
+        455
+      ],
+      "prior_native_rgba": [
+        121,
+        107,
+        106,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          236,
+          202,
+          229,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          93,
+          83,
+          76,
+          205
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 456,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 69,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            572,
+            155
+          ],
+          "rgb": [
+            122,
+            106,
+            109
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            572,
+            155
+          ],
+          "rgb": [
+            121,
+            105,
+            108
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        93,
+        83,
+        76,
+        205
+      ],
+      "expected_alpha": 205,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        335,
+        448
+      ],
+      "prior_native_rgba": [
+        128,
+        109,
+        114,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          213,
+          179,
+          204,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          86,
+          76,
+          69,
+          158
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 449,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 54,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            587,
+            148
+          ],
+          "rgb": [
+            131,
+            112,
+            116
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            587,
+            148
+          ],
+          "rgb": [
+            129,
+            110,
+            114
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        86,
+        76,
+        69,
+        158
+      ],
+      "expected_alpha": 158,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        280,
+        470
+      ],
+      "prior_native_rgba": [
+        224,
+        196,
+        217,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          224,
+          196,
+          217,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 473,
+      "avatar_edge_x_at_jacket_row": 397,
+      "distance_from_avatar_edge": 117,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            532,
+            170
+          ],
+          "rgb": [
+            216,
+            194,
+            207
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            532,
+            170
+          ],
+          "rgb": [
+            218,
+            196,
+            209
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        290,
+        464
+      ],
+      "prior_native_rgba": [
+        211,
+        183,
+        206,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          211,
+          183,
+          206,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 467,
+      "avatar_edge_x_at_jacket_row": 396,
+      "distance_from_avatar_edge": 106,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            542,
+            164
+          ],
+          "rgb": [
+            203,
+            182,
+            199
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            542,
+            164
+          ],
+          "rgb": [
+            206,
+            185,
+            202
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        300,
+        461
+      ],
+      "prior_native_rgba": [
+        214,
+        178,
+        204,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          214,
+          178,
+          204,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 464,
+      "avatar_edge_x_at_jacket_row": 395,
+      "distance_from_avatar_edge": 95,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            552,
+            161
+          ],
+          "rgb": [
+            211,
+            177,
+            201
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            552,
+            161
+          ],
+          "rgb": [
+            212,
+            179,
+            200
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        310,
+        456
+      ],
+      "prior_native_rgba": [
+        211,
+        177,
+        201,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          211,
+          177,
+          201,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 459,
+      "avatar_edge_x_at_jacket_row": 394,
+      "distance_from_avatar_edge": 84,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            562,
+            156
+          ],
+          "rgb": [
+            211,
+            180,
+            198
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            562,
+            156
+          ],
+          "rgb": [
+            212,
+            179,
+            198
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        320,
+        450
+      ],
+      "prior_native_rgba": [
+        203,
+        168,
+        194,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          203,
+          168,
+          194,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 456,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 69,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            572,
+            150
+          ],
+          "rgb": [
+            204,
+            168,
+            194
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            572,
+            150
+          ],
+          "rgb": [
+            203,
+            167,
+            193
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        329,
+        449
+      ],
+      "prior_native_rgba": [
+        200,
+        165,
+        190,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          200,
+          165,
+          190,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 452,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 60,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            581,
+            149
+          ],
+          "rgb": [
+            201,
+            163,
+            188
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            581,
+            149
+          ],
+          "rgb": [
+            199,
+            161,
+            186
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_alpha": 0,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        300,
+        463
+      ],
+      "prior_native_rgba": [
+        150,
+        129,
+        133,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          230,
+          192,
+          218,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          101,
+          90,
+          80,
+          158
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 464,
+      "avatar_edge_x_at_jacket_row": 395,
+      "distance_from_avatar_edge": 95,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            552,
+            163
+          ],
+          "rgb": [
+            150,
+            124,
+            137
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            552,
+            163
+          ],
+          "rgb": [
+            149,
+            123,
+            134
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        101,
+        90,
+        80,
+        158
+      ],
+      "expected_alpha": 158,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        320,
+        455
+      ],
+      "prior_native_rgba": [
+        121,
+        107,
+        106,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          236,
+          202,
+          229,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          93,
+          83,
+          76,
+          205
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 456,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 69,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            572,
+            155
+          ],
+          "rgb": [
+            122,
+            106,
+            109
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            572,
+            155
+          ],
+          "rgb": [
+            121,
+            105,
+            108
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        93,
+        83,
+        76,
+        205
+      ],
+      "expected_alpha": 205,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        335,
+        448
+      ],
+      "prior_native_rgba": [
+        128,
+        109,
+        114,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          213,
+          179,
+          204,
+          255
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          86,
+          76,
+          69,
+          158
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 449,
+      "avatar_edge_x_at_jacket_row": 389,
+      "distance_from_avatar_edge": 54,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            587,
+            148
+          ],
+          "rgb": [
+            131,
+            112,
+            116
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            587,
+            148
+          ],
+          "rgb": [
+            129,
+            110,
+            114
+          ]
+        }
+      ],
+      "expected_kind": "effective_original_jacket_rgba",
+      "jacket_source_sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+      "jacket_display_mask_sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+      "expected_encoded_original_jacket_rgba": [
+        86,
+        76,
+        69,
+        158
+      ],
+      "expected_alpha": 158,
+      "requires_selected_original_body_coverage": true,
+      "exact_rgba_oracle": "Decode the immutable selected original jacket through the same engine, apply its immutable display mask, and compare final RGBA exactly. The encoded source sample is provenance; partial-alpha RGB may quantize during engine decode."
+    }
+  ],
+  "retained_reveal_points": [
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace/native/S02-DS027-NO_TIE.png",
+        "png_sha256": "26ee82aac18d06a0fa4ecc1677fa8300c468480372d2047b03158966c0414685",
+        "manifest_sha256": "d87c25a5822a8956798b4eae4823c05a2669b63f4186b15d566c3f40c972bc85",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "db3d24fada4eec21c34919245c2acd6d416e1e745959c9c74935cb06023a928c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-NO_TIE.jpg",
+          "sha256": "c4d08556357819c88c72f46164a3cbf7824d405606dda996b0b374644df2bdb5",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        385,
+        417
+      ],
+      "prior_native_rgba": [
+        172,
+        141,
+        160,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          147,
+          102,
+          126,
+          249
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 420,
+      "avatar_edge_x_at_jacket_row": 390,
+      "distance_from_avatar_edge": 5,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            637,
+            117
+          ],
+          "rgb": [
+            162,
+            141,
+            150
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            637,
+            117
+          ],
+          "rgb": [
+            163,
+            142,
+            151
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        172,
+        141,
+        160,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/pass-3-s02-f39eace-tied-point/S02-DS027-T001.png",
+        "png_sha256": "c27ad3701351e1a6d224320f1b4b74bd0b68cbd8723cd5939adedf4f23367212",
+        "manifest_sha256": "4d0cc87953cd2336410977319d81b87a16aec765992946e70a05403ac21bb9b4",
+        "runtime_sha256": "f39eace65c2a874a0b6436afe904bdc6f0059530ea858ceb8c8f4878af4def43",
+        "kind": "EXACT_SHIPPED_RUNTIME_PREFIX"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723454868/collar/S02-DS027-T001.jpg",
+          "sha256": "5aa19c14a9dd377e169e90039f7101efa9a260fb684ce219e209d564da301a7b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723534785/RESULT.json",
+          "report_sha256": "5e4ce9854bbea7ec9b89f916460d2122b4897fdc67720940670f02933ca80af6"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723499436/collar/S02-DS027-T001.jpg",
+          "sha256": "59999942cdd228525b35a09c62d0cd390a6f1598ec0eb4d791f0e29a8d5b107f",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723754055/RESULT.json",
+          "report_sha256": "4499216f91145b0dddb896fb8c98063687ed5775a46f956f396bb864fc757495"
+        }
+      ],
+      "xy": [
+        385,
+        417
+      ],
+      "prior_native_rgba": [
+        172,
+        141,
+        160,
+        255
+      ],
+      "original_source_rgba": {
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          147,
+          102,
+          126,
+          249
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "jacket_first_opaque_y": 420,
+      "avatar_edge_x_at_jacket_row": 390,
+      "distance_from_avatar_edge": 5,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            637,
+            117
+          ],
+          "rgb": [
+            162,
+            141,
+            150
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            637,
+            117
+          ],
+          "rgb": [
+            163,
+            142,
+            151
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        172,
+        141,
+        160,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "f397327e2aedfdba6d6e7986f92b8a354e179ae48413bdbf1a5c147687aadd9f",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "20016d9c4f41cd79c7fec2ab2655c9bd0df66ca58f21bb8a129dfc243b55df04",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "7b51a547a5fda590d69e6638758146e80ef83dd8ba85a7161bfb5a1fc027abd2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/outer-shoulder-native-proof-v2/B06-DS019-NO_TIE-before.png",
+        "png_sha256": "e716e5de68f22c9cfe35b6a34987505e67f704dec1a6f91308b85b9723afc98c",
+        "manifest_sha256": "f370a04c7a4d34d3c02db44d6be63e370084947e23e69df7898873cfcdb7c602",
+        "runtime_sha256": "474448af59bcb46b18f95bee2164be1fcc2582d056604975445b05defb9b1ce0",
+        "kind": "EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723583192/collar/B06-DS019-NO_TIE.jpg",
+          "sha256": "274a27265ba1424824128964e32a316958f166a5fb82bad253257090bed5c46b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723303949/RESULT.json",
+          "report_sha256": "8f2e7aa335e773ce012bfeb245a491063b82fb27c4420284bec0c33913b557aa"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724641357/collar/B06-DS019-NO_TIE.jpg",
+          "sha256": "3e3c2152aa4c94978afb4d231f301bbf96181d9f8375ddeab3aa50a8a1aba2fb",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724392682/RESULT.json",
+          "report_sha256": "826757aa66a3826b973c19122d9c9aa2abe824c5b7b4a2a63a56c297828a7262"
+        }
+      ],
+      "xy": [
+        374,
+        403
+      ],
+      "prior_native_rgba": [
+        98,
+        65,
+        49,
+        255
+      ],
+      "original_source_rgba": {
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "jacket_first_opaque_y": 408,
+      "avatar_edge_x_at_jacket_row": 390,
+      "distance_from_avatar_edge": 16,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            626,
+            103
+          ],
+          "rgb": [
+            96,
+            68,
+            54
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            626,
+            103
+          ],
+          "rgb": [
+            96,
+            67,
+            53
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        98,
+        65,
+        49,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "f397327e2aedfdba6d6e7986f92b8a354e179ae48413bdbf1a5c147687aadd9f",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "20016d9c4f41cd79c7fec2ab2655c9bd0df66ca58f21bb8a129dfc243b55df04",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "7b51a547a5fda590d69e6638758146e80ef83dd8ba85a7161bfb5a1fc027abd2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/outer-shoulder-native-proof-v2/B06-DS019-NO_TIE-before.png",
+        "png_sha256": "e716e5de68f22c9cfe35b6a34987505e67f704dec1a6f91308b85b9723afc98c",
+        "manifest_sha256": "f370a04c7a4d34d3c02db44d6be63e370084947e23e69df7898873cfcdb7c602",
+        "runtime_sha256": "474448af59bcb46b18f95bee2164be1fcc2582d056604975445b05defb9b1ce0",
+        "kind": "EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723583192/collar/B06-DS019-NO_TIE.jpg",
+          "sha256": "274a27265ba1424824128964e32a316958f166a5fb82bad253257090bed5c46b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723303949/RESULT.json",
+          "report_sha256": "8f2e7aa335e773ce012bfeb245a491063b82fb27c4420284bec0c33913b557aa"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724641357/collar/B06-DS019-NO_TIE.jpg",
+          "sha256": "3e3c2152aa4c94978afb4d231f301bbf96181d9f8375ddeab3aa50a8a1aba2fb",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724392682/RESULT.json",
+          "report_sha256": "826757aa66a3826b973c19122d9c9aa2abe824c5b7b4a2a63a56c297828a7262"
+        }
+      ],
+      "xy": [
+        377,
+        400
+      ],
+      "prior_native_rgba": [
+        99,
+        66,
+        50,
+        255
+      ],
+      "original_source_rgba": {
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "jacket_first_opaque_y": 405,
+      "avatar_edge_x_at_jacket_row": 391,
+      "distance_from_avatar_edge": 14,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            629,
+            100
+          ],
+          "rgb": [
+            95,
+            67,
+            55
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            629,
+            100
+          ],
+          "rgb": [
+            98,
+            66,
+            55
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        99,
+        66,
+        50,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "no_tie",
+      "reference_state": "NO_TIE",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "f397327e2aedfdba6d6e7986f92b8a354e179ae48413bdbf1a5c147687aadd9f",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "20016d9c4f41cd79c7fec2ab2655c9bd0df66ca58f21bb8a129dfc243b55df04",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "7b51a547a5fda590d69e6638758146e80ef83dd8ba85a7161bfb5a1fc027abd2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/outer-shoulder-native-proof-v2/B06-DS019-NO_TIE-before.png",
+        "png_sha256": "e716e5de68f22c9cfe35b6a34987505e67f704dec1a6f91308b85b9723afc98c",
+        "manifest_sha256": "f370a04c7a4d34d3c02db44d6be63e370084947e23e69df7898873cfcdb7c602",
+        "runtime_sha256": "474448af59bcb46b18f95bee2164be1fcc2582d056604975445b05defb9b1ce0",
+        "kind": "EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723583192/collar/B06-DS019-NO_TIE.jpg",
+          "sha256": "274a27265ba1424824128964e32a316958f166a5fb82bad253257090bed5c46b",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723303949/RESULT.json",
+          "report_sha256": "8f2e7aa335e773ce012bfeb245a491063b82fb27c4420284bec0c33913b557aa"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724641357/collar/B06-DS019-NO_TIE.jpg",
+          "sha256": "3e3c2152aa4c94978afb4d231f301bbf96181d9f8375ddeab3aa50a8a1aba2fb",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724392682/RESULT.json",
+          "report_sha256": "826757aa66a3826b973c19122d9c9aa2abe824c5b7b4a2a63a56c297828a7262"
+        }
+      ],
+      "xy": [
+        383,
+        395
+      ],
+      "prior_native_rgba": [
+        94,
+        60,
+        45,
+        255
+      ],
+      "original_source_rgba": {
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "jacket_first_opaque_y": 400,
+      "avatar_edge_x_at_jacket_row": 392,
+      "distance_from_avatar_edge": 9,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            635,
+            95
+          ],
+          "rgb": [
+            86,
+            62,
+            50
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            635,
+            95
+          ],
+          "rgb": [
+            87,
+            63,
+            51
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        94,
+        60,
+        45,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "64816fbe58e048dccf057991ce86a52c692af4e92b54fa427df771888b6947af",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "7d2717e97db1b7b3e967fb42ba178b0ab3963510c817310c6054842075d9a246",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "d1f87e7e922ea1c30c5c2f96f5a8f6a808d5367f24e32cb278d48f0a6e45b853",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/outer-shoulder-native-proof-v2/B06-DS019-T001-before.png",
+        "png_sha256": "97c91d140ac87123bb82d685a0c7d90e8b96159ce8f54b17a7c28ea15989d95a",
+        "manifest_sha256": "f370a04c7a4d34d3c02db44d6be63e370084947e23e69df7898873cfcdb7c602",
+        "runtime_sha256": "474448af59bcb46b18f95bee2164be1fcc2582d056604975445b05defb9b1ce0",
+        "kind": "EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723583192/collar/B06-DS019-T001.jpg",
+          "sha256": "99aa7958f9b08293caacc12ee10c74bce7691b9cde96503df435d93c4895e33c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723303949/RESULT.json",
+          "report_sha256": "8f2e7aa335e773ce012bfeb245a491063b82fb27c4420284bec0c33913b557aa"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724641357/collar/B06-DS019-T001.jpg",
+          "sha256": "3fc7dd318de24238db23671e5a43774a856ace4f3a264786e688088a6c5c73f2",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724392682/RESULT.json",
+          "report_sha256": "826757aa66a3826b973c19122d9c9aa2abe824c5b7b4a2a63a56c297828a7262"
+        }
+      ],
+      "xy": [
+        374,
+        403
+      ],
+      "prior_native_rgba": [
+        100,
+        66,
+        50,
+        255
+      ],
+      "original_source_rgba": {
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "jacket_first_opaque_y": 408,
+      "avatar_edge_x_at_jacket_row": 390,
+      "distance_from_avatar_edge": 16,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            626,
+            103
+          ],
+          "rgb": [
+            96,
+            67,
+            53
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            626,
+            103
+          ],
+          "rgb": [
+            99,
+            67,
+            54
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        100,
+        66,
+        50,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "64816fbe58e048dccf057991ce86a52c692af4e92b54fa427df771888b6947af",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "7d2717e97db1b7b3e967fb42ba178b0ab3963510c817310c6054842075d9a246",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "d1f87e7e922ea1c30c5c2f96f5a8f6a808d5367f24e32cb278d48f0a6e45b853",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/outer-shoulder-native-proof-v2/B06-DS019-T001-before.png",
+        "png_sha256": "97c91d140ac87123bb82d685a0c7d90e8b96159ce8f54b17a7c28ea15989d95a",
+        "manifest_sha256": "f370a04c7a4d34d3c02db44d6be63e370084947e23e69df7898873cfcdb7c602",
+        "runtime_sha256": "474448af59bcb46b18f95bee2164be1fcc2582d056604975445b05defb9b1ce0",
+        "kind": "EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723583192/collar/B06-DS019-T001.jpg",
+          "sha256": "99aa7958f9b08293caacc12ee10c74bce7691b9cde96503df435d93c4895e33c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723303949/RESULT.json",
+          "report_sha256": "8f2e7aa335e773ce012bfeb245a491063b82fb27c4420284bec0c33913b557aa"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724641357/collar/B06-DS019-T001.jpg",
+          "sha256": "3fc7dd318de24238db23671e5a43774a856ace4f3a264786e688088a6c5c73f2",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724392682/RESULT.json",
+          "report_sha256": "826757aa66a3826b973c19122d9c9aa2abe824c5b7b4a2a63a56c297828a7262"
+        }
+      ],
+      "xy": [
+        377,
+        400
+      ],
+      "prior_native_rgba": [
+        91,
+        61,
+        45,
+        255
+      ],
+      "original_source_rgba": {
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "jacket_first_opaque_y": 405,
+      "avatar_edge_x_at_jacket_row": 391,
+      "distance_from_avatar_edge": 14,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            629,
+            100
+          ],
+          "rgb": [
+            92,
+            60,
+            49
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            629,
+            100
+          ],
+          "rgb": [
+            92,
+            60,
+            49
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        91,
+        61,
+        45,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "tied",
+      "reference_state": "T001",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "64816fbe58e048dccf057991ce86a52c692af4e92b54fa427df771888b6947af",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "7d2717e97db1b7b3e967fb42ba178b0ab3963510c817310c6054842075d9a246",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "d1f87e7e922ea1c30c5c2f96f5a8f6a808d5367f24e32cb278d48f0a6e45b853",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      },
+      "prior_native": {
+        "path": "/workspace/scratch/0cdc41552466/outer-shoulder-native-proof-v2/B06-DS019-T001-before.png",
+        "png_sha256": "97c91d140ac87123bb82d685a0c7d90e8b96159ce8f54b17a7c28ea15989d95a",
+        "manifest_sha256": "f370a04c7a4d34d3c02db44d6be63e370084947e23e69df7898873cfcdb7c602",
+        "runtime_sha256": "474448af59bcb46b18f95bee2164be1fcc2582d056604975445b05defb9b1ce0",
+        "kind": "EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC"
+      },
+      "actual_browser_negative_control": [
+        {
+          "engine": "chromium",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723583192/collar/B06-DS019-T001.jpg",
+          "sha256": "99aa7958f9b08293caacc12ee10c74bce7691b9cde96503df435d93c4895e33c",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14723303949/RESULT.json",
+          "report_sha256": "8f2e7aa335e773ce012bfeb245a491063b82fb27c4420284bec0c33913b557aa"
+        },
+        {
+          "engine": "webkit",
+          "path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724641357/collar/B06-DS019-T001.jpg",
+          "sha256": "3fc7dd318de24238db23671e5a43774a856ace4f3a264786e688088a6c5c73f2",
+          "report_path": "/workspace/scratch/0cdc41552466/remote-evidence/final3072/14724392682/RESULT.json",
+          "report_sha256": "826757aa66a3826b973c19122d9c9aa2abe824c5b7b4a2a63a56c297828a7262"
+        }
+      ],
+      "xy": [
+        383,
+        395
+      ],
+      "prior_native_rgba": [
+        96,
+        62,
+        47,
+        255
+      ],
+      "original_source_rgba": {
+        "avatar": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "jacket_mask": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "body": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rear": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "left": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "jacket_first_opaque_y": 400,
+      "avatar_edge_x_at_jacket_row": 392,
+      "distance_from_avatar_edge": 9,
+      "all47_projected_tie_alpha": 0,
+      "browser_candidate_pixel_samples": [
+        {
+          "engine": "chromium",
+          "candidate_pair_xy": [
+            635,
+            95
+          ],
+          "rgb": [
+            88,
+            64,
+            52
+          ]
+        },
+        {
+          "engine": "webkit",
+          "candidate_pair_xy": [
+            635,
+            95
+          ],
+          "rgb": [
+            87,
+            63,
+            51
+          ]
+        }
+      ],
+      "expected_kind": "retain_registered_near_neck_reveal",
+      "minimum_alpha": 248,
+      "expected_pinned_native_rgba": [
+        96,
+        62,
+        47,
+        255
+      ],
+      "compare_same_engine_before_after_helper_exactly": true,
+      "reason": "This visible collar lies next to the approved neck and only slightly above the selected jacket. It is a retained reveal, not the distant original BODY shoulder leak."
+    }
+  ],
+  "cases": [
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "no_tie",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      }
+    },
+    {
+      "mode": "S02",
+      "shirt": "DS027",
+      "state_class": "tied",
+      "original_sources": {
+        "rear": {
+          "sha256": "99f9ddd5ce32639cfba77841a8a7bd12062106fbe8d16288557ecc3d9f5699f0",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "body": {
+          "sha256": "f27980630f7f9896aa72461684938169714531c9019d0ad56d2a5dddf6c9c305",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "left": {
+          "sha256": "57f82bfed81ff3fbb7b0e191d0644ddbe9d24b7726db93def8243f3d5d81cc5e",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "11d799800b5f0df9d08376745639b520ed114d6642a12159f85dd23fdb680710",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "678456893ede4f2260f6937c4ef03605a846d905bfaf77d38d95a11e78929da5",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": {
+          "sha256": "c100c1ed484446a8b41d0a677c7e695a7a30daa331bdb33483105246c4509545",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      }
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "no_tie",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "f397327e2aedfdba6d6e7986f92b8a354e179ae48413bdbf1a5c147687aadd9f",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "20016d9c4f41cd79c7fec2ab2655c9bd0df66ca58f21bb8a129dfc243b55df04",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "7b51a547a5fda590d69e6638758146e80ef83dd8ba85a7161bfb5a1fc027abd2",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      }
+    },
+    {
+      "mode": "B06",
+      "shirt": "DS019",
+      "state_class": "tied",
+      "original_sources": {
+        "avatar": {
+          "sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket": {
+          "sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "jacket_mask": null,
+        "body": {
+          "sha256": "64816fbe58e048dccf057991ce86a52c692af4e92b54fa427df771888b6947af",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "rear": null,
+        "left": {
+          "sha256": "7d2717e97db1b7b3e967fb42ba178b0ab3963510c817310c6054842075d9a246",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        },
+        "right": {
+          "sha256": "d1f87e7e922ea1c30c5c2f96f5a8f6a808d5367f24e32cb278d48f0a6e45b853",
+          "rect": [
+            0,
+            0,
+            996,
+            2748
+          ]
+        }
+      }
+    }
+  ],
+  "all47_tie_sources": [
+    {
+      "id": "T001",
+      "sha256": "e5ffb8196f19de6be80fcf86cb09817f67e01348e168d625282bcff382a1f26a"
+    },
+    {
+      "id": "T002",
+      "sha256": "ed1a3300734eddb7897ba648274f25cec4ae3c423991b5c2783c566bf3fa33ae"
+    },
+    {
+      "id": "T003",
+      "sha256": "b78675e095798ca87c9fcd7ee6cbe26ab32e14a05ba2bce4dca6058d46e4a675"
+    },
+    {
+      "id": "T004",
+      "sha256": "df3bb0971fb26291fd458ad1d1848f03de8d727b37eeb752a0de1f32134a7b9b"
+    },
+    {
+      "id": "T005",
+      "sha256": "47365f1a35d963d1a65558d6550c4e338b35f57b5f1cc3c2b55caaccf8f96bf8"
+    },
+    {
+      "id": "T006",
+      "sha256": "7771d02e2946632e72bad87a51bd7bce9ee20c0e583729643cdc2636f3e6bb60"
+    },
+    {
+      "id": "T007",
+      "sha256": "e010e59d39a2dc67c6f337df61b977969663ad4f9d5e68720da17ea297651c11"
+    },
+    {
+      "id": "T008",
+      "sha256": "61bd708b3ea29f4910143a0cdef9a1d5a36689ca8aaa5a6c783d7cd0a9b96eab"
+    },
+    {
+      "id": "T009",
+      "sha256": "215f12df1f3d51f0b29190a4758fa85b44e3e369b157d4151b011cad7a0491f3"
+    },
+    {
+      "id": "T010",
+      "sha256": "b7860cc381632eaa77c95bf1a6f1156700dff4addbe49be07fd70ee1ae02384b"
+    },
+    {
+      "id": "T011",
+      "sha256": "27dd6c31b89cf0ba5855e39e728eb0156d55dbc522dd03dde1ad786ecdbc2066"
+    },
+    {
+      "id": "T012",
+      "sha256": "1d2a9d1401b338f98ed37b63d9f90ddf3da0b42cd7098dfc593f7bff04553812"
+    },
+    {
+      "id": "T013",
+      "sha256": "8b6d274c276fe20c4cce8facbcd22413ffed858755ba95f61b8c6d47cd48e97f"
+    },
+    {
+      "id": "T014",
+      "sha256": "b977e136c94315c88c4e72ebdd9ec52f2d1d0b245449fdb0c60759e8f2712f33"
+    },
+    {
+      "id": "T015",
+      "sha256": "6c6a72076f9100ecd3f5edf2be6de56ac2d49860586f9e8783355cdac1c59691"
+    },
+    {
+      "id": "T016",
+      "sha256": "92d7599950606e6cdb59e6917f5273e7a1052cf7cba682f2672d153af549f8cd"
+    },
+    {
+      "id": "T017",
+      "sha256": "c3f352c5d46049d280c1ae953eb5d808d89750ba3828102656b08080ea948db3"
+    },
+    {
+      "id": "T018",
+      "sha256": "1df9cb5690cea126ff0051b218cde1829df322522be322d0e58159018ec8cc94"
+    },
+    {
+      "id": "T019",
+      "sha256": "4fed246861dac93b15f25c2e1c379bdb9c50db4c4dbb534c4518f91758679acd"
+    },
+    {
+      "id": "T020",
+      "sha256": "ee31c3db0f8058aae3a6d45dc02c991ada3d3b1489e6b44e17c483ecbb1c7e8e"
+    },
+    {
+      "id": "T021",
+      "sha256": "2406bd830bd4448dc8d1966bdae8b117b81bf155f8d963051059822e6bd44abe"
+    },
+    {
+      "id": "T022",
+      "sha256": "c7ee5eea3a22054caf6bf78a454c8d8f0d3bdf99716d7b243bb888b33645548b"
+    },
+    {
+      "id": "T023",
+      "sha256": "84f437f6f357c969b4ad1a2c67c23df1fe855f15158a8cd33ef123aedcfe900f"
+    },
+    {
+      "id": "T024",
+      "sha256": "15f8c7e6866167a3587072f0f2e5f0c54f289096d926d5ac7b60b0d314fadc36"
+    },
+    {
+      "id": "T025",
+      "sha256": "57c9857622adbc9ed163cb2c4232ae3134483605286f3056a8d78c9bf4aa11d5"
+    },
+    {
+      "id": "T026",
+      "sha256": "c99f7e675b1882158abce3b94f27f4141285835d15fbedd10531f78db296bbe6"
+    },
+    {
+      "id": "T027",
+      "sha256": "b3c4ac7fd8fa6d3c2c7653ad54c7a6be9fe013fa89ce75f8accc6e89d087c5f0"
+    },
+    {
+      "id": "T028",
+      "sha256": "fa62ceadf8725065377c1799a98930590507f2f6be62e56cd426fee19a38f7a3"
+    },
+    {
+      "id": "T029",
+      "sha256": "b406b03a8fa612232ded248f6f378611e36fb2575f238534c565d861d11bd3d8"
+    },
+    {
+      "id": "T030",
+      "sha256": "ad86b2f3f7ed28f2c3783324dfa53754faea6ac4b2a72bd3858a693aa64b6df4"
+    },
+    {
+      "id": "T031",
+      "sha256": "9d512ed2cbb288b31623a9343d2ae3cf995ed15d42f1512f193c25797ab56c12"
+    },
+    {
+      "id": "T032",
+      "sha256": "261dd69b348534f6fdae63cc6f185e03d6c5462bbe93de8c7f5d57d7fc6a49cf"
+    },
+    {
+      "id": "T033",
+      "sha256": "1645ccb0b0596cda0d8ceb271492ebc0474e7508d92b47e811e70a8eb0701cf1"
+    },
+    {
+      "id": "T034",
+      "sha256": "9777840170eefed50980470e12532c3ba810b30a6c4c04f68c1f5f27983b1f25"
+    },
+    {
+      "id": "T035",
+      "sha256": "f78cabebf298d057b084e64085003146b732822a653f95f86c8406dbff65753e"
+    },
+    {
+      "id": "T036",
+      "sha256": "eea30555953ecc8c66795d9c35b81d5cedbcecc296bfde70999070e0f62919af"
+    },
+    {
+      "id": "T037",
+      "sha256": "39ee295d7db406248e63429b96aa47dda877b911fffba8ed7a1791a8eea66c11"
+    },
+    {
+      "id": "T038",
+      "sha256": "ffb3fdd9fd8aee52f62c4a93e816d5a551a0eb6215df53f7134ebd5a9cbb9d8d"
+    },
+    {
+      "id": "T039",
+      "sha256": "d804852668c08a450ab7d64d9fe15e1370f331e2bcae56dea9f6fe8a3a991753"
+    },
+    {
+      "id": "T040",
+      "sha256": "f671bf2683d93a101e5617328b34f2b4ca106b5665756a908d04d150ffc5e57e"
+    },
+    {
+      "id": "T041",
+      "sha256": "9dd1079be6a7bacb6a2bf15126a61e55f4eeacbc39a3d134a9ef53cb4aba1452"
+    },
+    {
+      "id": "T042",
+      "sha256": "0346bac360a5b60fbd167230b2a6621755f7b7a04b7a9e21098f148b7ce2e131"
+    },
+    {
+      "id": "T043",
+      "sha256": "b1fb9eb8b3ca25d124003fc53dcc3b0672b74ad634fcd3c8b8fd82d42620bcad"
+    },
+    {
+      "id": "T044",
+      "sha256": "175d6b0bf504c343f97783fdff63f87fd870b18ba81db28b6fc33ab1b253ec4c"
+    },
+    {
+      "id": "T045",
+      "sha256": "039e6fd6cacd65e26157cabceb6c537f882a5bfb2245e5de41630849fb0445b2"
+    },
+    {
+      "id": "T046",
+      "sha256": "e9349b3f50558116f43b5279d8992db81d16e32a4b05d7f7bc5ea2748e00f593"
+    },
+    {
+      "id": "T047",
+      "sha256": "8afe6b521e4336e504f288ba679d467576d047ea8cc3f54ee2b00330bdd9faa8"
+    }
+  ],
+  "tie_projection_proof": "Every fixed point lies above row530. All47 original full tie sources have alpha0 at every point; the actual projector copies0..529 unscaled for both1211/1251 targets.",
+  "classification_correction": "DS019/B06 initial visual suspicion was independently measured as a legitimate near-neck6\u20138px reveal within4\u201322px of the avatar edge. It supplies retained controls, not concealment-positive points.",
+  "limits": [
+    "B06 pinned native evidence is explicitly diagnostic until matched to a frozen exact compiled capture; actual Chromium and WebKit JPEGs independently show its geometry.",
+    "No helper-inferred mask or helper changed-pixel list selects these points. All source bytes are immutable and individually rehashed.",
+    "Positive coverage is DS027/S02; the broad source-based all-route gate and final browser matrix remain necessary."
+  ]
+}
