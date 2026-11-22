@@ -1,0 +1,58 @@
+{
+  "schema": "hewrs.issue19.B02-source-bound-mask-controls.v1",
+  "mode": "B02",
+  "scope": "All50 active shirts; NO_TIE and every permitted tie. Eight continuous routes restore the approved mask;42 legacy routes intentionally receive the same foreign-strip display correction.",
+  "jacket_source_sha256": "a28e524a79fe8c0699e6cf19a819b29ce7be99d7616706669259b469db467095",
+  "avatar_source_sha256": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+  "data_path": "data/continuous-shirts.json",
+  "data_sha256": "3a095d140565b3670bac673d7d058e55c243f828bddf70bdcd3ada97d03d6033",
+  "erase_contours": [[[389.5,378],[389.5,392],[389.8,396],[390.5,400],[392.5,410],[394.5,425],[397.2,450],[399.7,475],[402.5,500],[405.5,525],[408.5,550],[410.5,565],[412.2,575],[413,581],[413.5,584],[421,584],[421,378]]],
+  "canonical_erase_contours_sha256": "6e858c1a1fbe5b660f66387880a7531c20a97a8c63a5bea63c138d245f82dd67",
+  "upper_neck_point": {
+    "xy": [395,384],
+    "expected_alpha": 255,
+    "maximum_rgb_distance_from_original_avatar": 1,
+    "forbidden_raw_jacket_rgba": [21,22,27,255],
+    "observed_native_avatar_rgba": [166,109,80,255],
+    "qualification": "94/96 native states equal original avatar exactly. DS013/NO_TIE and DS027/NO_TIE have source-owned fitted alpha fringes of1 and3 respectively. Independent inverse registration and native source-over reproduce the one-value RGB changes exactly. This bounded point is not a claim of universal exact avatar equality; separate neck-slot preservation stays exact."
+  },
+  "cleared_cloth_points": [
+    {"xy":[400,450],"expected_alpha":255,"forbidden_raw_jacket_rgba":[96,96,102,255]},
+    {"xy":[405,500],"expected_alpha":255,"forbidden_raw_jacket_rgba":[99,100,108,255]},
+    {"xy":[410,550],"expected_alpha":255,"forbidden_raw_jacket_rgba":[83,86,96,255]}
+  ],
+  "opaque_navy_points": [
+    {"xy":[380,420],"expected_alpha":255},
+    {"xy":[390,500],"expected_alpha":255},
+    {"xy":[400,550],"expected_alpha":255}
+  ],
+  "partial_edge_source_over": {
+    "state_class": "tied",
+    "points": [[392,407],[392,408],[392,409],[392,410]],
+    "foreground": "Independently decoded original B02 photograph after the literal approved erase contour",
+    "background": "Independently decoded original opaque V3 avatar",
+    "native_maximum_rgb_error": 0,
+    "browser_maximum_rgb_error": 1,
+    "browser_quantization_bound": "One channel value permits only quantization of independently decoded8-bit premultiplied source pixels in the browser source-over operation. Alpha must remain255; effective source alpha must be partial. Actual errors are retained in every report.",
+    "native_observation": "All184 points in46 tied native frames equal independent source-over arithmetic exactly."
+  },
+  "source_pixel_support": {
+    "affected_source_pixels": 1815,
+    "originally_opaque_pixels": 1641,
+    "fully_removed_originally_opaque_pixels": 1441,
+    "originally_opaque_partial_edge_pixels": 200,
+    "bounds_xyxy_inclusive": [389,380,413,583],
+    "qualification": "These describe the masked source only. Corrected collar registration may also change selected cloth inside the existing left correction strip. Partial edge RGB can legitimately equal raw RGB after quantization; no blanket color-inequality assertion is permitted."
+  },
+  "exterior_qualification": "The three observed transparent notch coordinates390,389 /390,390 /391,390 connect to exterior canvas space. Do not force opacity throughout the erased region; fixed interior coverage and independent full-frame exterior analysis are separate controls.",
+  "cloth_ownership_qualification": "Opaque alpha and rejecting the forbidden raw gray are regression controls, not an independent proof of photographic identity. Selected original shirt bindings and bounded source registration remain separately verified.",
+  "provenance": {
+    "runtime_sha256": "44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12",
+    "all96_source_pixel_proof_sha256": "81107efbbbdf9823b3107dadfac32543d428a63a1768f412739bc365c16d9351",
+    "all96_measurements_sha256": "3e0af34dd66c41e52bf7254f24df267a70a9d83a91225740c0b3eb4d440b24b9",
+    "upper_fitted_source_cause_sha256": "0a242ec5de340fa8dd59d567f046fd4eccbc0065c8a175ff672efc471bd4afab",
+    "source_crop_equivalence_sha256": "cedf6ecf5790c7bb5c59431098a4128e5801f2f4ae1eaa6119f1d7af0c316ea6",
+    "negative_control": "Actual rejected b5 B02/DS035/T002 restores all1641 affected raw opaque pixels and fails every partial-mask/source-avatar positive control.",
+    "browser_approval": false
+  }
+}

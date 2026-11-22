@@ -53,6 +53,8 @@ SHOULDERS = json.loads((ROOT / 'tests/issue19-shoulder-contour-fixtures.json').r
 JACKET_GAPS = json.loads((ROOT / 'tests/issue19-jacket-gap-fixtures.json').read_text())
 PARTIAL_TIES = json.loads((ROOT / 'tests/issue19-partial-tie-backing-fixtures.json').read_text())
 SHOULDER_EDGES = json.loads((ROOT / 'tests/issue19-outer-shoulder-fixtures.json').read_text())
+B02_MASK = json.loads((ROOT / 'tests/issue19-b02-mask-fixtures.json').read_text())
+assert hashlib.sha256((ROOT / B02_MASK['data_path']).read_bytes()).hexdigest() == B02_MASK['data_sha256']
 
 spec = importlib.util.spec_from_file_location('existing_v3_fit', ROOT / 'tests/avatar-v3-fit-browser.py')
 FIT = importlib.util.module_from_spec(spec)
@@ -245,20 +247,50 @@ JACKET_SHOULDER_SOURCE = r'''async s=>{
  const c=HEWRSApp.connection,p=HEWRSApp.renderer.plan(s);
  const d=Array.isArray(p)?c.assemblies.forSelection(s.suitId,s.shoeId,s.shirtId).static.jacket:p.jacket;
  if(!d)throw Error('Missing selected original jacket');
+ // B02's immutable source record explicitly identifies this contour as
+ // foreign gray material. The all-shirt fit now reuses that same contour
+ // on every B02 route; other masks retain their original plan scope.
+ const mask=s.blazerId==='B02'?c.continuousShirts.jacket_masks.B02:p.jacketMask||null;
+ if(mask&&mask.source_sha256!==d.sha256)throw Error('Original jacket mask source differs');
+ function path(ctx,lines){ctx.beginPath();for(const line of lines){ctx.moveTo(...line[0]);for(const point of line.slice(1))ctx.lineTo(...point);ctx.closePath();}}
  const canvas=document.createElement('canvas');canvas.width=996;canvas.height=250;
  // Retain the protected, previously approved V3 B15 registration as well as
- // each original photograph. This loader does not apply the new fit wrapper.
+ // each original photograph and its existing source-bound jacket mask.
+ // Construct the effective source independently of the new fit wrapper.
  const loader=HEWRSRenderImageLoader.create({resolveUrl:HEWRSApp.resolveUrl,width:996,height:2748,limit:2});
- const ctx=canvas.getContext('2d'),image=await loader.load(d);ctx.drawImage(image,0,-350);
- if(d.display_alpha_mask){const mask=new Image();mask.src=HEWRSApp.resolveUrl(d.display_alpha_mask);await mask.decode();ctx.globalCompositeOperation='destination-in';ctx.drawImage(mask,0,-350);}
+ const bitmap=document.createElement('canvas');bitmap.width=996;bitmap.height=2748;
+ const bc=bitmap.getContext('2d'),image=await loader.load(d);bc.drawImage(image,0,0);
+ if(d.display_alpha_mask){const alpha=new Image();alpha.src=HEWRSApp.resolveUrl(d.display_alpha_mask);await alpha.decode();bc.globalCompositeOperation='destination-in';bc.drawImage(alpha,0,0);}
+ const effective=document.createElement('canvas');effective.width=996;effective.height=2748;
+ const ec=effective.getContext('2d');ec.save();
+ if(mask?.keep_contours){path(ec,mask.keep_contours);ec.clip('evenodd');}
+ ec.drawImage(bitmap,0,0);ec.restore();
+ if(mask?.erase_contours){ec.save();ec.globalCompositeOperation='destination-out';path(ec,mask.erase_contours);ec.fill('evenodd');ec.restore();}
+ canvas.getContext('2d').drawImage(effective,0,-350);bitmap.width=bitmap.height=effective.width=effective.height=1;
  return canvas.toDataURL('image/png');
+}'''
+
+JACKET_SHOULDER_IDENTITY = r'''s=>{
+ const c=HEWRSApp.connection,p=HEWRSApp.renderer.plan(s);
+ const d=Array.isArray(p)?c.assemblies.forSelection(s.suitId,s.shoeId,s.shirtId).static.jacket:p.jacket;
+ if(!d)throw Error('Missing selected original jacket');
+ const mask=s.blazerId==='B02'?c.continuousShirts.jacket_masks.B02:p.jacketMask||null;
+ return JSON.stringify({source:d,mask});
 }'''
 
 
 def jacket_shoulder_source(page, selected, cache):
     if selected.get('shirtOnly'):
         return None
-    key = selected.get('suitId') or selected.get('blazerId')
+    # Bind the cache to the independently selected effective source, including
+    # the exact existing B02 contour now reused across all active shirts.
+    key = page.evaluate(JACKET_SHOULDER_IDENTITY, selected)
+    if selected.get('blazerId') == 'B02':
+        identity = json.loads(key)
+        assert identity['source']['sha256'] == B02_MASK['jacket_source_sha256']
+        assert identity['mask']['source_sha256'] == B02_MASK['jacket_source_sha256']
+        assert identity['mask']['erase_contours'] == B02_MASK['erase_contours'], 'Literal B02 erase contour differs'
+        assert not identity['source'].get('display_alpha_mask') and not identity['mask'].get('keep_contours')
     if key not in cache:
         png = page.evaluate(JACKET_SHOULDER_SOURCE, selected)
         cache[key] = Image.open(io.BytesIO(base64.b64decode(png.split(',', 1)[1]))).convert('RGBA')
@@ -389,6 +421,38 @@ def partial_tie_backing_samples(image, selected):
         rgba = list(image.getpixel(tuple(row['xy'])))
         assert rgba[3] == row['expected_alpha'], (selected, 'partial tie backing', row['xy'], rgba)
         result.append({'xy': row['xy'], 'rgba': rgba})
+    return result
+
+
+def b02_mask_samples(image, selected, jacket, avatar):
+    if selected.get('blazerId') != 'B02':
+        return []
+    result = []
+    upper = B02_MASK['upper_neck_point']; xy = tuple(upper['xy'])
+    rgba = image.getpixel(xy); approved = avatar.getpixel(xy)
+    assert jacket.getpixel((xy[0], xy[1] - 350))[3] == 0
+    assert approved[3] == 255 and rgba[3] == upper['expected_alpha']
+    assert max(abs(rgba[k] - approved[k]) for k in range(3)) <= upper['maximum_rgb_distance_from_original_avatar'], (selected, 'B02 upper avatar point', rgba, approved)
+    assert list(rgba) != upper['forbidden_raw_jacket_rgba']
+    result.append({'kind': 'upper_neck', 'xy': xy, 'rgba': rgba, 'original_avatar_rgba': approved})
+    for row in B02_MASK['cleared_cloth_points']:
+        x, y = row['xy']; rgba = image.getpixel((x, y))
+        assert jacket.getpixel((x, y - 350))[3] == 0
+        assert rgba[3] == row['expected_alpha'] and list(rgba) != row['forbidden_raw_jacket_rgba'], (selected, 'B02 cleared shirt coverage', row['xy'], rgba)
+        result.append({'kind': 'cleared_cloth', 'xy': row['xy'], 'rgba': rgba})
+    for row in B02_MASK['opaque_navy_points']:
+        x, y = row['xy']; rgba = image.getpixel((x, y)); source = jacket.getpixel((x, y - 350))
+        assert source[3] == 255 and rgba == source, (selected, 'B02 true navy cloth', row['xy'], rgba, source)
+        result.append({'kind': 'opaque_navy', 'xy': row['xy'], 'rgba': rgba})
+    if selected['state'] != 'NO_TIE':
+        for x, y in B02_MASK['partial_edge_source_over']['points']:
+            rgba = image.getpixel((x, y)); fg = jacket.getpixel((x, y - 350)); bg = avatar.getpixel((x, y))
+            assert 0 < fg[3] < 255 and bg[3] == rgba[3] == 255
+            expected = [math.floor((fg[k] * fg[3] + bg[k] * (255 - fg[3])) / 255 + .5) for k in range(3)]
+            error = max(abs(rgba[k] - expected[k]) for k in range(3))
+            assert error <= B02_MASK['partial_edge_source_over']['browser_maximum_rgb_error'], (selected, 'B02 independent partial source-over', x, y, rgba, expected)
+            result.append({'kind': 'partial_source_over', 'xy': [x, y], 'rgba': rgba,
+                           'effective_jacket_rgba': fg, 'original_avatar_rgba': bg, 'expected_rgb': expected, 'max_rgb_error': error})
     return result
 
 
@@ -640,6 +704,9 @@ def run(args):
                               and target['sha256'] == new['issue19']['same_tie_full_sha256']
                               and target['revision'] == 'AVATAR_V3_TIE_FIT_1' for target in targets), targets)
                 original_shoulder = jacket_shoulder_source(after, selected, original_shoulders)
+                b02_samples = b02_mask_samples(new_image, selected, original_shoulder, avatar_source)
+                if b02_samples:
+                    check(name + ': fixed B02 neck, shirt coverage, navy and source-over controls pass', True, b02_samples)
                 differences = change_check(old_image, new_image, selected, hand_mask, avatar_source, original_shoulder)
                 check(name + ': corrections stay inside independent fit boundaries', differences['outside_allowed_pixels'] == 0, differences)
                 check(name + ': approved opaque hand pixels remain exact', differences['opaque_hand_pixels_changed'] == 0, differences)
@@ -738,6 +805,7 @@ def run(args):
                                  'shoulder_contour_regressions': shoulder_samples,
                                  'jacket_aperture_regressions': jacket_samples,
                                  'partial_tie_backing_regressions': partial_tie_samples,
+                                 'b02_source_mask_regressions': b02_samples,
                                  'shoulder_edge_regressions': edge_samples,
                                  'differences': differences, **details})
                 if index % 12 == 0 or index == len(rows) - 1:

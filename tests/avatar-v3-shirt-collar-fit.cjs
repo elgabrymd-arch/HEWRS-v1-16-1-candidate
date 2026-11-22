@@ -14,6 +14,8 @@ const SHOULDERS=JSON.parse(fs.readFileSync(path.join(__dirname,'issue19-shoulder
 const JACKET_GAPS=JSON.parse(fs.readFileSync(path.join(__dirname,'issue19-jacket-gap-fixtures.json'),'utf8'));
 const PARTIAL_TIES=JSON.parse(fs.readFileSync(path.join(__dirname,'issue19-partial-tie-backing-fixtures.json'),'utf8'));
 const SHOULDER_EDGES=JSON.parse(fs.readFileSync(path.join(__dirname,'issue19-outer-shoulder-fixtures.json'),'utf8'));
+const B02_MASK=JSON.parse(fs.readFileSync(path.join(__dirname,'issue19-b02-mask-fixtures.json'),'utf8'));
+assert.equal(digest(fs.readFileSync(path.join(ROOT,B02_MASK.data_path))),B02_MASK.data_sha256,'immutable B02 contour data');
 const SHOULDER_POINTS=[...SHOULDERS.fixtures,...(SHOULDERS.antialias_fixtures||[]),...(SHOULDERS.enclosed_fixtures||[])];
 const STRIPS=[[330,355,92,260],[575,355,91,260]],TOP_CENTER=[422,420,153,47],LOWER_CENTER=[422,530,153,85],CORRIDOR=[422,467,153,63],FACE=[422,0,153,420];
 const NECK_CORNERS=[[422,401,19,19],[560,405,15,15]];
@@ -35,6 +37,17 @@ for(const shirt of ['DS027','DS048'])CASES.push([shirt,'T047','S18']);
 for(const mode of ['S02','S05','B02','B03','B06','B15'])for(const state of ['NO_TIE','T001'])CASES.push(['DS013',state,mode]);
 for(const state of ['T001','T047'])CASES.push(['DS037',state,'S02']);
 for(const state of ['NO_TIE','T001'])CASES.push(['DS019',state,'B06']);
+// Every continuous B02 route must preserve its pre-existing erased foreign
+// strip. The actual browser regression first surfaced on DS035/T002.
+for(const shirt of ['DS001','DS014','DS017','DS023','DS034','DS035','DS036','DS051'])
+ for(const state of ['NO_TIE','T001'])CASES.push([shirt,state,'B02']);
+CASES.push(['DS035','T002','B02']);
+// Representative fallback colors and the no-tie-only class independently
+// exercise the newly consistent B02 source correction. The actual browser
+// matrix and separate native visual sweep cover all96 legal B02 states.
+for(const shirt of ['DS002','DS013','DS019','DS027','DS038','DS040','DS048'])
+ for(const state of shirt==='DS040'?['NO_TIE']:['NO_TIE','T001'])
+  if(!CASES.some(row=>row[0]===shirt&&row[1]===state&&row[2]==='B02'))CASES.push([shirt,state,'B02']);
 for(const row of SHOULDER_POINTS){
  const args=[row.shirt,row.state,row.mode];
  if(!CASES.some(item=>item.every((value,index)=>value===args[index])))CASES.push(args);
@@ -81,9 +94,22 @@ async function single(index){
   // The approved V3 B15 registration is part of the unchanged baseline.
   // Decode through that protected loader instead of comparing its unregistered photo.
   const baselineLoader=before.g.HEWRSRenderImageLoader.create({resolveUrl:before.resolveUrl,width:W,height:H,limit:2});
-  const c=after.makeCanvas(),ctx=c.getContext('2d');ctx.drawImage(await baselineLoader.load(descriptor),0,0);
-  if(descriptor.display_alpha_mask){ctx.globalCompositeOperation='destination-in';ctx.drawImage(await imageFrom(descriptor.display_alpha_mask),0,0);}
-  jacketPixels=ctx.getImageData(0,0,W,H).data;c.width=c.height=1;
+  const bitmap=after.makeCanvas(),bc=bitmap.getContext('2d');bc.drawImage(await baselineLoader.load(descriptor),0,0);
+  if(descriptor.display_alpha_mask){bc.globalCompositeOperation='destination-in';bc.drawImage(await imageFrom(descriptor.display_alpha_mask),0,0);}
+  const mask=s.blazerId==='B02'?after.connection.continuousShirts.jacket_masks.B02:
+   Array.isArray(fitted.plan)?null:fitted.plan.jacketMask;
+  if(mask)assert.equal(mask.source_sha256,descriptor.sha256,'approved jacket contour binds its exact source');
+  if(s.blazerId==='B02'){
+   assert.equal(descriptor.sha256,B02_MASK.jacket_source_sha256,'literal B02 source identity');
+   assert.deepEqual(plain(mask.erase_contours),B02_MASK.erase_contours,'literal approved B02 erase contour is not widened');
+   assert.equal(digest(Buffer.from(JSON.stringify(mask.erase_contours))),B02_MASK.canonical_erase_contours_sha256);
+   assert.ok(!descriptor.display_alpha_mask&&!mask.keep_contours,'B02 has no additional alpha/keep mask');
+  }
+  const c=after.makeCanvas(),ctx=c.getContext('2d');
+  const contour=lines=>{ctx.beginPath();for(const line of lines){ctx.moveTo(...line[0]);for(const point of line.slice(1))ctx.lineTo(...point);ctx.closePath();}};
+  ctx.save();if(mask?.keep_contours){contour(mask.keep_contours);ctx.clip('evenodd');}ctx.drawImage(bitmap,0,0);ctx.restore();
+  if(mask?.erase_contours){ctx.save();ctx.globalCompositeOperation='destination-out';contour(mask.erase_contours);ctx.fill('evenodd');ctx.restore();}
+  jacketPixels=ctx.getImageData(0,0,W,H).data;bitmap.width=bitmap.height=c.width=c.height=1;
  }
  if(s.state!=='NO_TIE'){
   let descriptor=null;
@@ -97,6 +123,36 @@ async function single(index){
   ctx.drawImage(image,0,0,W,530,0,0,W,530);
   ctx.drawImage(image,0,530,W,658,0,530,W,descriptor.avatar_v3_tie_fit.target_end-530);
   tiePixels=ctx.getImageData(0,0,W,H).data;mask.width=mask.height=1;
+ }
+ const b02Samples=[];
+ if(s.blazerId==='B02'){
+  const pixel=(pixels,xy)=>Array.from(pixels.subarray((xy[1]*W+xy[0])*4,(xy[1]*W+xy[0])*4+4));
+  const upper=B02_MASK.upper_neck_point,rgba=pixel(fitted.rgba,upper.xy),approved=pixel(avatarPixels,upper.xy);
+  assert.equal(pixel(jacketPixels,upper.xy)[3],0,'foreign top cap is fully erased in the independent source');
+  assert.equal(approved[3],255);assert.equal(rgba[3],upper.expected_alpha);
+  assert.ok(rgba.slice(0,3).every((value,k)=>Math.abs(value-approved[k])<=upper.maximum_rgb_distance_from_original_avatar),'fixed B02 neck point restores original avatar within the inspected fitted-edge bound');
+  assert.notDeepEqual(rgba,upper.forbidden_raw_jacket_rgba,'foreign B02 top cap must not return');
+  b02Samples.push({kind:'upper_neck',xy:upper.xy,rgba,original_avatar_rgba:approved});
+  for(const row of B02_MASK.cleared_cloth_points){
+   const value=pixel(fitted.rgba,row.xy);assert.equal(pixel(jacketPixels,row.xy)[3],0);
+   assert.equal(value[3],row.expected_alpha,'cleared interior strip retains opaque selected shirt coverage');
+   assert.notDeepEqual(value,row.forbidden_raw_jacket_rgba,'fixed original gray-strip pixel must not return');
+   b02Samples.push({kind:'cleared_cloth',xy:row.xy,rgba:value});
+  }
+  for(const row of B02_MASK.opaque_navy_points){
+   const value=pixel(fitted.rgba,row.xy),source=pixel(jacketPixels,row.xy);
+   assert.equal(source[3],255);assert.deepEqual(value,source,'adjacent true navy cloth remains exact');
+   b02Samples.push({kind:'opaque_navy',xy:row.xy,rgba:value});
+  }
+  if(s.state!=='NO_TIE')for(const xy of B02_MASK.partial_edge_source_over.points){
+   const value=pixel(fitted.rgba,xy),fg=pixel(jacketPixels,xy),bg=pixel(avatarPixels,xy);
+   assert.ok(fg[3]>0&&fg[3]<255);assert.equal(bg[3],255);assert.equal(value[3],255);
+   assert.equal(pixel(tiePixels,xy)[3],0,'literal partial B02 edge is outside every selected projected tie');
+   const expected=fg.slice(0,3).map((v,k)=>Math.round((v*fg[3]+bg[k]*(255-fg[3]))/255));
+   const error=Math.max(...expected.map((v,k)=>Math.abs(value[k]-v)));
+   assert.ok(error<=B02_MASK.partial_edge_source_over.native_maximum_rgb_error,'partial B02 navy edge retains independent source-over contribution');
+   b02Samples.push({kind:'partial_source_over',xy,rgba:value,effective_jacket_rgba:fg,original_avatar_rgba:bg,expected_rgb:expected,max_rgb_error:error});
+  }
  }
  const seamSamples=SEAMS.fixtures.filter(row=>row.shirt===args[0]&&row.state===args[1]&&row.mode===args[2]).map(row=>{
   const [x,y]=row.xy,rgba=Array.from(fitted.rgba.subarray((y*W+x)*4,(y*W+x)*4+4));
@@ -227,7 +283,7 @@ async function single(index){
  console.log('COLLAR_CASE='+JSON.stringify({selection:s,changed_pixels:changed,outside_strip_changes:outside,
   protected_knot_sha256:cropHash(after,CORRIDOR),protected_face_sha256:faceHash(after),source_hashes:expected,source_capture:stats.source_capture,
   stand_top_rows:stats.stand_top_rows,front_source_top_rows:stats.front_source_top_rows,
-  runtime_sha256:after.metadata.runtime_sha256,seam_regressions:seamSamples,
+  runtime_sha256:after.metadata.runtime_sha256,seam_regressions:seamSamples,b02_source_mask_regressions:b02Samples,
   shoulder_contour_regressions:shoulderSamples,restored_body_contour_pixels:stats.restored_shirt_only_body_contour_pixels,
   jacket_gap_regressions:jacketGapSamples,jacket_interior_backing_pixels:stats.jacket_interior_backing_pixels,
   transparent_exterior_controls:exteriorControls,opaque_jacket_control_pixels:opaqueJacketControls,

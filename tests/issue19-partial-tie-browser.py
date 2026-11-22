@@ -202,6 +202,12 @@ def run(args):
         (shirt, tuple(row['xy'])) for shirt, rows in POINTS.items() for row in rows}
     geometry = fixture['geometry_extension_verification']
     assert geometry['runtime_sha256'] == digest(runtime), 'Expanded scope belongs to different runtime bytes'
+    revalidation = geometry['runtime_revalidation']
+    assert revalidation['runtime_sha256'] == digest(runtime)
+    assert revalidation['unchanged_tie_source_sha256'] == release['source_modules']['src/avatar-v3-tie-fit.js']
+    assert revalidation['all18_suit_paths_same_no_mask_branch'] is True
+    assert revalidation['selected_source_projection_plans'] == 1692
+    assert revalidation['required_current_browser_cases_per_engine'] == 162
     assert sorted(geometry['suit_ids']) == SUITS, 'All 18 exact suit geometries require evidence'
     assert sorted(suit for group in geometry['suit_alpha_groups'] for suit in group['suit_ids']) == SUITS
     assert all(set(row['suit_ids']).issubset(SUITS) for row in fixture['fixtures']), 'No unverified fixture route'

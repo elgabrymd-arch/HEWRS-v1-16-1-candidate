@@ -113,6 +113,59 @@ in the same browser engine to verify that the near-neck reveal remains exact.
 Those reference contexts are diagnostics and cannot replace the delivered
 candidate or the live application.
 
+### B02's source-bound foreign-strip correction
+
+The full replacement matrix rejected runtime `b5f1f249…`: its collar wrapper
+recomposited B02's raw photograph and restored a gray strip that the approved
+continuous-shirt renderer had erased. Both browser engines reproduced the
+failure. Independent source inspection identified 1,815 affected source pixels,
+including 1,641 originally opaque pixels, inside x389–413 / y380–583. The
+original immutable data explicitly describes this region as foreign photographic
+material and traces the real navy-cloth boundary with a 17-point contour.
+The source is `assets/a28e524a79fe8c0699e6cf19a819b29ce7be99d7616706669259b469db467095.png`;
+the unchanged contour is `jacket_masks.B02.erase_contours` in
+`data/continuous-shirts.json`. Its native bounds are `[389.5,378,421,584]`
+in XYXY coordinates, with the original one-pixel tracing uncertainty.
+
+The correction preserves every existing plan mask and applies that exact B02
+erase contour consistently to all 50 active shirts. On the eight continuous
+shirts this restores the approved behavior. On the 42 fallback shirts it is an
+intentional display correction, rather than a claim of unchanged baseline
+pixels inside the foreign-strip region. The original B02 photograph, contour,
+real navy fabric, opening/button state and all other jacket sources remain
+unchanged. The contour is not widened. The fit uses the effective jacket
+surface for both neckline registration and shoulder ownership.
+The resulting collar registration can change selected-shirt pixels beyond the
+1,815 masked source pixels, but remains inside the already declared left collar
+strip `[330,355,92,260]`. This does not authorize a larger jacket erase region.
+
+The native and browser oracles independently construct that effective source
+from the immutable photograph and contour, using the original keep/bitmap/erase
+order. Browser caching includes the exact source and mask identity. Original
+effective-opaque jacket pixels remain unconditional preservation checks. The
+fixed controls distinguish removal of foreign material from accidental loss of
+shirt, avatar or real navy jacket coverage:
+
+| Control | Native coordinates | Required result |
+| --- | --- | --- |
+| Fully erased source interior | `(400,450)`, `(405,500)`, `(410,550)` | The original opaque gray source becomes transparent in the independently constructed jacket plane; the finished outfit retains its intended opaque shirt/avatar coverage. Relocated shirt colors are not pinned to the old baseline. |
+| Upper neck cap | `(395,384)` | The cleared jacket reveals the decoded original avatar within one RGB channel value, with alpha exactly 255. Native measurements are exact in 94 of 96 selections; DS013/NO_TIE and DS027/NO_TIE retain a one-value fitted-edge contribution. This point does not relax the separate exact neck-slot checks. |
+| Tied partial jacket edge | `(392,407)`, `(392,408)`, `(392,409)`, `(392,410)` | The final pixel equals the independently masked jacket composited over the original opaque avatar, with no selected-shirt or projected-tie contribution at these fixed points. Native RGB error must be zero; the browser permits at most one channel value for source-over quantization and retains actual errors. Alpha remains exactly 255, and each engine constructs its own original source plane. |
+| Opaque adjacent navy | `(380,420)`, `(390,500)`, `(400,550)` | Exact original RGBA: `[30,33,44,255]`, `[30,34,44,255]`, `[36,39,51,255]`, respectively. |
+
+The cleared top-edge pixels `(390,389)`, `(390,390)` and `(391,390)` connect to
+the full-frame exterior; they must not be filled merely to make every erased
+source point opaque. Partially masked pixels can legitimately retain the same
+RGB after quantization, so a blanket ban on raw-color matches is not an oracle.
+Their source-over contribution, coverage and source ownership remain checked.
+
+All 96 legal B02 no-tie/T001 shirt selections require fresh native visual
+inspection and actual Chromium/WebKit coverage. All 2,212 permitted B02
+selections (50 no-tie plus 46 shirts with 47 ties) separately retain the same
+source and contour; plan checks are not additional raster captures.
+The literal source hashes, contour and controls are recorded in
+[`tests/issue19-b02-mask-fixtures.json`](../../tests/issue19-b02-mask-fixtures.json).
+
 ### Concealed jacket cuffs
 
 `src/avatar-v3-cuff-fit.js` executes after the unchanged approved arm/hand pose.
@@ -174,6 +227,18 @@ reversing the declared replacements and restoring the original pose position
 must reproduce the unchanged application body; the independent audits check
 this compiled delta, not just source filenames.
 
+The independent source audit was repeated for B02 rebuild runtime
+`44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12`:
+all 1,995 protected files and all 89 original modules remained exact, with zero
+source exceptions. Its complete compiled delta from rejected runtime
+`b5f1f249ebc40c46381f60870cc42f79b7bc7b60879db93b6b8620e94c6498b8`
+is one collar-module replacement. Reversing the three declared compatibility
+anchors, removing the three fit wrappers and restoring the unchanged pose
+position reproduces approved baseline runtime
+`491cd6018b9acaf098cd1086497e299e37ff3229e4336689f504bcf42311251c`
+byte for byte. This source result does not replace the new runtime's required
+browser, visual or production verification.
+
 The roster is DS001–DS048, DS050 and DS051. DS049 stays retired. DS040–DS043
 remain no-tie-only. B01 and B11 retain their owner rules; B01's supported reviewed
 route uses PT006 and the summer-weekend-dinner context. No rule is relaxed to
@@ -186,6 +251,9 @@ The [Issue 19 workflow](../../.github/workflows/issue19-validation.yml) runs:
 
 - Deterministic integration, source/behavior preservation and negative delivery
   tests, followed by native source, tie, collar, cuff and cancellation checks.
+  The collar contract includes 141 compiled cases, including the observed B02
+  failure, every affected continuous-shirt state and representative fallback
+  colors and no-tie-only behavior.
 - Existing application, all rejection scopes, finite search, tie-only
   replacement, exports, persistence, failed-read and cross-tab recovery tests.
 - Chromium and WebKit functional tests for state, tie feedback, reasons and
@@ -279,14 +347,20 @@ the live entrypoint and downloaded runtime hashes match the merged release
 manifest. Do not describe a merged commit or a queued deployment as verified
 production. Close Issue 19 only after the production result is established.
 
-The live workflow additionally runs all50 shirts in both legal states on S02,
-B06 and B15 in Chromium and WebKit:288 paired native frames per engine. It
-fetches the actual live HTTPS application into isolated profiles and compares
+The live workflow additionally runs all 50 shirts in their permitted no-tie/T001
+states on S02, B02, B06 and B15 in Chromium and WebKit: 384 paired native frames
+per engine. B02's 96 selections exercise the repaired source mask on the actual
+publication. The workflow fetches the actual live HTTPS application into
+isolated profiles and compares
 the original source controls, corrected gaps and mobile presentation against
 the retained approved V3 baseline. All startup files, including the additive
 mobile stylesheet, must first match the exact merged checkout hashes.
 
 ## Limits
+
+The owner deferred three suit color mismatches to the next phase. Their designs
+and cuts are accepted. This fit release preserves their existing photographs,
+display colors and color metadata; correcting those colors is separate work.
 
 Chromium/WebKit mobile viewports are automated browser coverage, not physical
 iPhone/Android device testing. Original photographic textures, differing source

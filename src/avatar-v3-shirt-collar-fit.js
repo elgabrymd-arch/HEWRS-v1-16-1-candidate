@@ -8,10 +8,12 @@ const prior=root.HEWRSAtomicRenderer,W=996,H=2748;
 const X=330,Y=355,CW=336,CH=260,BOTTOM=Y+CH;
 const BACKING_BOTTOM=850,BACKING_HEIGHT=BACKING_BOTTOM-Y;
 const SHOULDER_Y=350,SHOULDER_HEIGHT=250;
+const B02_SOURCE='a28e524a79fe8c0699e6cf19a819b29ce7be99d7616706669259b469db467095';
 const IDS=Object.freeze(Array.from({length:51},(_,n)=>'DS'+String(n+1).padStart(3,'0')).filter(id=>id!=='DS049'));
 const SPEC=Object.freeze({revision:'AVATAR_V3_ALL_SHIRT_COLLAR_FIT_6',active_ids:IDS,
  bounds:Object.freeze([X,Y,CW,CH]),native_canvas:Object.freeze([W,H]),jacket_lower_opening_backing_bounds:Object.freeze([422,615,153,235]),
  jacket_outer_shoulder_bounds:Object.freeze([[0,350,330,250],[666,350,330,250]]),jacket_inner_shoulder_neck_distance:50,
+ jacket_neckline_display_masks:Object.freeze({B02:Object.freeze({source_sha256:B02_SOURCE,contour_source:'continuousShirts.jacket_masks.B02.erase_contours',active_shirt_scope:'all50',geometry:'unchanged_existing_source_bound_foreign_strip_contour'})}),
  neckband_reveal:7,knot_anchor:Object.freeze([498,467]),
  method:'continuous selected-shirt-source collar registration to selected jacket neck',
  modified_strips:Object.freeze([[330,355,92,260],[575,355,91,260]]),top_center_bounds:Object.freeze([422,420,153,47]),tied_neck_corner_cleanup:Object.freeze([[422,401,19,19],[560,405,15,15]]),shirt_only_body_contour_bounds:Object.freeze([[330,420,92,195],[575,420,91,195]]),shirt_only_body_contour_leaf_guard:Object.freeze({opaque_body_alpha:255,front_leaf_alpha_below:128}),shirt_only_body_contour_method:'original_body_coverage_outside_avatar_preserving_leaf_core_opaque_composite_and_tie',shirt_only_enclosed_join_method:'eight_connected_interior_backing_with_same_shirt_cloth_after_body_restoration',lower_center_backing_bounds:Object.freeze([422,530,153,85]),protected_knot_corridor:Object.freeze([422,467,153,63]),tie_pixel_preservation:'exact_opaque_and_knot_pixels_partial_foreground_contribution_preserved_under_enclosed_backing',original_sources_modified:false,avatar_geometry_modified:false});
@@ -41,7 +43,17 @@ function create(visible,connection,options={}){
   let jacket=p.jacket||null,tie=p.tie||null,parts=[];
   if(Array.isArray(p)){const m=connection.assemblies.forSelection(s.suitId,s.shoeId,s.shirtId),r=m.shirts[s.shirtId].states[mode];jacket=m.static.jacket;tie=s.state==='NO_TIE'?null:m.ties[s.state].display_layer;parts=[r.body,r.left,r.right].filter(Boolean);}
   else if(!continuous){parts=[p.body,...(p.leaves||[])].filter(Boolean);need(parts.length>0,'unrecognized selected shirt source route');}
-  return {continuous,mode,topwear,avatar,jacket,tie,parts,source_profile:s.suitId?'suit':'non-suit'};
+  let jacketMask=continuous?p.jacketMask||null:null;
+  if(topwear==='B02'){
+   const approved=connection.continuousShirts.jacket_masks?.B02;
+   need(jacket?.sha256===B02_SOURCE&&approved?.source_sha256===B02_SOURCE&&approved.erase_contours,'B02 neckline mask is not bound to its original photograph');
+   // This exact contour already identifies the foreign ribbed strip in B02.
+   // Reuse only its erase geometry for legacy shirts; their original photo
+   // files and the selected jacket's remaining navy cloth are unchanged.
+   if(!jacketMask)jacketMask={source_sha256:B02_SOURCE,erase_contours:approved.erase_contours};
+   else need(JSON.stringify(jacketMask.erase_contours)===JSON.stringify(approved.erase_contours),'B02 plan differs from its approved neckline contour');
+  }
+  return {continuous,mode,topwear,avatar,jacket,tie,parts,jacketMask,source_profile:s.suitId?'suit':'non-suit'};
  }
  async function loadAll(descriptors){const unique=[...new Map(descriptors.map(d=>[d.sha256,d])).values()],images=await Promise.all(unique.map(d=>loads.load(d)));return new Map(unique.map((d,i)=>[d.sha256,images[i]]));}
  function draw(ctx,d,images,height=CH){if(!d)return;const image=images.get(d.sha256);need(image,'missing registered source '+d.sha256);if(!d.display_alpha_mask){ctx.drawImage(image,-X,-Y);return;}
@@ -51,6 +63,22 @@ function create(visible,connection,options={}){
   if(!d.display_alpha_mask){ctx.drawImage(image,0,-SHOULDER_Y);return;}
   const c=canvas(W,SHOULDER_HEIGHT),cc=c.getContext('2d');cc.drawImage(image,0,-SHOULDER_Y);
   cc.globalCompositeOperation='destination-in';cc.drawImage(images.get(d.display_alpha_mask.sha256),0,-SHOULDER_Y);ctx.drawImage(c,0,0);release(c);
+ }
+ function drawJacket(ctx,fit,images,shoulder=false){
+  if(!fit.jacket)return;
+  const mask=fit.jacketMask,paint=()=>shoulder?drawShoulder(ctx,fit.jacket,images):draw(ctx,fit.jacket,images);
+  if(!mask?.keep_contours&&!mask?.erase_contours){paint();return;}
+  need(mask.source_sha256===fit.jacket.sha256,'selected jacket geometry belongs to another source');
+  const ox=shoulder?0:X,oy=shoulder?SHOULDER_Y:Y;
+  const path=contours=>{ctx.beginPath();for(const points of contours){ctx.moveTo(points[0][0]-ox,points[0][1]-oy);for(const point of points.slice(1))ctx.lineTo(point[0]-ox,point[1]-oy);ctx.closePath();}};
+  // Preserve the original continuous renderer's registered jacket surface:
+  // keep clip, original bitmap/display mask, then the approved erase clip.
+  // Build each fresh crop from this plan; masked and unmasked routes never
+  // share a cached effective jacket, even when their photograph is the same.
+  ctx.save();
+  if(mask.keep_contours){path(mask.keep_contours);ctx.clip('evenodd');}
+  paint();ctx.restore();
+  if(mask.erase_contours){ctx.save();ctx.globalCompositeOperation='destination-out';path(mask.erase_contours);ctx.fill('evenodd');ctx.restore();}
  }
  function cleanNativeMatte(ctx,fit,images,shirtId){
   // These four solid dark shirts share a registered-photo matte defect:
@@ -91,7 +119,7 @@ function create(visible,connection,options={}){
  }
  function fitPatch(frame,cloth,fit,images){
   const avatar=canvas(CW,CH),ac=avatar.getContext('2d',{willReadFrequently:true});draw(ac,fit.avatar,images);const av=ac.getImageData(0,0,CW,CH).data;
-  const jacket=canvas(CW,CH),jc=jacket.getContext('2d',{willReadFrequently:true});draw(jc,fit.jacket,images);const ja=jc.getImageData(0,0,CW,CH).data;
+  const jacket=canvas(CW,CH),jc=jacket.getContext('2d',{willReadFrequently:true});drawJacket(jc,fit,images);const ja=jc.getImageData(0,0,CW,CH).data;
   const tieMask=canvas(CW,CH),tc=tieMask.getContext('2d',{willReadFrequently:true});draw(tc,fit.tie,images);const ta=tc.getImageData(0,0,CW,CH).data;
   const raw=cloth.pixels.data,clean=new Uint8ClampedArray(raw),boundaries=[[],[]],tops=[];
   const index=(x,y)=>((y-Y)*CW+x-X)*4;
@@ -449,7 +477,7 @@ function create(visible,connection,options={}){
   const fc=frame.getContext('2d'),pixels=fc.getImageData(0,SHOULDER_Y,W,SHOULDER_HEIGHT),data=pixels.data;
   const planes={};
   for(const [name,descriptor]of [['avatar',fit.avatar],['jacket',fit.jacket],['tie',fit.tie]]){
-   const c=canvas(W,SHOULDER_HEIGHT),ctx=c.getContext('2d',{willReadFrequently:true});drawShoulder(ctx,descriptor,images);
+   const c=canvas(W,SHOULDER_HEIGHT),ctx=c.getContext('2d',{willReadFrequently:true});if(name==='jacket')drawJacket(ctx,fit,images,true);else drawShoulder(ctx,descriptor,images);
    planes[name]=ctx.getImageData(0,0,W,SHOULDER_HEIGHT).data;release(c);
   }
   const av=planes.avatar,ja=planes.jacket,ta=planes.tie,raw=cloth.outerShoulderPixels.data,changed=[];
