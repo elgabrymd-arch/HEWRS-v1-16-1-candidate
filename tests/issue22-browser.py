@@ -96,15 +96,28 @@ ELIGIBILITY = r'''async ({id,style,occasion}) => {
 RENDER_GUARD = r'''async () => {
  const app=HEWRSApp,c=document.getElementById('avatar'),before=c.toDataURL(),last=JSON.stringify(app.renderer.last());
  const saved=JSON.stringify({wear:app.store.snapshot(),favorites:app.favorites.snapshot(),feedback:app.ownerFeedback.snapshot().events});
+ // The visible renderer has the original rejection-database gate outside the
+ // Issue22 guard. That gate correctly rejects before the inner render method
+ // runs, and deliberately uses its established user-facing Error message.
+ // Independently exercise the raw atomic API, which owns the typed error.
+ const detached=document.createElement('canvas');detached.width=996;detached.height=2748;
+ const atomic=HEWRSAtomicRenderer.create(detached,app.connection,{resolveUrl:app.resolveUrl});
  const ties=Object.keys(app.connection.manifest.ties).sort(),records=[];
+ const snapshot=app.state(),context={...snapshot.context,requiredFormality:snapshot.context.formality};
  for(const id of ['B01','B06','B10'])for(const tie of ties){
   const s={blazerId:id,pantId:id==='B01'?'PT006':'PG002',shirtId:'DS001',state:tie,shoeId:'shoe-8',watchId:null};
-  let planError=null,renderError=null;
+  const owner=app.ownerFeedback.match(s,context);
+  if(owner.allowed||!owner.reasons.some(r=>r.id==='OWNER-'+id+'-NO-TIE'))throw Error('Visible owner gate lacks exact linen prohibition '+id+'/'+tie);
+  let planError=null,atomicError=null,renderError=null;
   try{app.renderer.plan(s);}catch(error){planError=error.code;}
-  try{await app.renderer.render(s);}catch(error){renderError=error.code;}
-  if(planError!=='HEWRS_LINEN_NO_TIE'||renderError!=='HEWRS_LINEN_NO_TIE')throw Error('Linen render guard failed for '+id+'/'+tie);
-  records.push({id,tie,plan_error:planError,render_error:renderError});
+  try{await atomic.render(s);}catch(error){atomicError=error.code;}
+  try{await app.renderer.render(s);}catch(error){renderError={code:error.code||null,message:error.message};}
+  const visibleRejected=renderError&&(renderError.code==='HEWRS_LINEN_NO_TIE'||renderError.message==='This outfit was rejected. Undo its rejection or choose another combination.');
+  if(planError!=='HEWRS_LINEN_NO_TIE'||atomicError!=='HEWRS_LINEN_NO_TIE'||!visibleRejected)
+   throw Error('Linen render guard failed for '+id+'/'+tie+': '+JSON.stringify({planError,atomicError,renderError}));
+  records.push({id,tie,owner_reason_ids:owner.reasons.map(r=>r.id),plan_error:planError,atomic_render_error:atomicError,visible_render_error:renderError});
  }
+ atomic.cancel();detached.width=detached.height=1;
  return {cases:records.length,tie_ids:ties,records,
   frame_preserved:before===c.toDataURL(),last_preserved:last===JSON.stringify(app.renderer.last()),
   data_preserved:saved===JSON.stringify({wear:app.store.snapshot(),favorites:app.favorites.snapshot(),feedback:app.ownerFeedback.snapshot().events})};
@@ -314,7 +327,7 @@ def run(args):
                 capture(row)
             guard = after.evaluate(RENDER_GUARD)
             report['render_guard'] = guard
-            check('All 47 ties rejected by both renderer plan and render on all three linen blazers', guard['cases'] == 141 and len(guard['tie_ids']) == 47)
+            check('All 47 ties rejected by plan, raw atomic render and visible owner gate on all three linen blazers', guard['cases'] == 141 and len(guard['tie_ids']) == 47)
             check('Rejected tied linen preserves committed frame, selection and saved data', guard['frame_preserved'] and guard['last_preserved'] and guard['data_preserved'])
             for query in contexts:
                 result = after.evaluate(ELIGIBILITY, query)

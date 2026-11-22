@@ -31,8 +31,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Fetch the exact approved source checkpoint
-        run: git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
+      - name: Fetch exact approved and retained builder checkpoints
+        run: |
+          git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          git fetch --depth=1 origin 1d5529c4a1a2f87b1212ac68392af1b4dc87d7bb
       - name: Install pinned verification dependencies
         run: |
           npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
@@ -126,6 +129,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Fetch the immutable tie-engine comparison checkpoint
+        run: git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
       - name: Install isolated IndexedDB verification dependency
         run: npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8
       - name: Run the complete five-round application suite and rejection regressions

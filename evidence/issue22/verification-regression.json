@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.issue22.independent-regression-verification.v1",
-  "status": "PASS_PRE_CI_REVIEW",
+  "status": "PASS_SOURCE_REVIEW_CI_RETRY_REQUIRED",
   "review_date": "2026-11-22",
   "reviewer": "integration_audit agent",
   "independence": "This pass independently reviews the root-authored delivery/build/verifier/workflow/native-matrix changes and integration of the other agents material/matching code. This reviewer authored B08 and the browser harness; their visual/matching acceptance is covered by the other independent reviews. This report does not self-certify browser execution.",
@@ -42,7 +42,7 @@
     },
     {
       "path": "tests/issue22-browser.py",
-      "sha256": "fd5554e54ce92cce1d69feb824cca6950f287fb08ca8f04178f1641149cc6b26"
+      "sha256": "b0cc89afe0f334f10149a4828e56aa24c2ddfdd74b2037dbac78ff3755734f91"
     },
     {
       "path": "tests/issue22-retained-source-baseline.cjs",
@@ -50,7 +50,7 @@
     },
     {
       "path": ".github/workflows/issue22-validation.yml",
-      "sha256": "22e3cb2fa1a2be492ff31c4f8f13565c1f3e657eb0669e061882b47b6de1ef1c"
+      "sha256": "4c4835f85cf06d87f5e225b1b0f8c336fd4b981783294f3bac273ba85ab9a9cd"
     },
     {
       "path": "src/issue22-materials.js",
@@ -192,6 +192,20 @@
       "check": "Whitespace and syntax",
       "status": "PASS",
       "details": "Python compile and native matrix/worker/preload JavaScript syntax checks pass. git diff --check passed for previously tracked modifications. The final staged generated runtime retains one pre-existing trailing space from the immutable src/outfit-refill-application.js source; no source whitespace is changed to silence that inherited generated-code warning."
+    },
+    {
+      "check": "First actual Chromium/WebKit fixed-render CI execution and artifact review",
+      "status": "PASS_PARTIAL_SCOPE",
+      "fixed_capture_pairs_per_engine": 41,
+      "unrelated_exact_full_frame_controls_per_engine": 12,
+      "styling_contexts_executed_per_engine": 0,
+      "details": "All four browser shards completed all assigned fixed captures, source-bound geometry, complete head, full alpha silhouette, card image loading, and nonempty saved-data invariance checks before the harness error at the first tied-linen visible render. The 84-context engine matrix and reviewed-browser step were not reached. Independently downloaded WebKit shard 1 and Chromium shard 2 artifacts match GitHub SHA256; their reports contain 390 and 373 successful checks respectively, zero failed assertions before the boundary error, and no page errors, bad asset requests, or external requests. Full avatars for all seven garments in both engines, B01 phone UI, and paired B08 waist crops were visually inspected; no new rendering or continuity defect was found."
+    },
+    {
+      "check": "Strict render-guard boundary correction against actual visible wrapper",
+      "status": "PASS_NATIVE_PREFLIGHT_NOT_BROWSER",
+      "cases": 141,
+      "details": "Ran the exact corrected browser RENDER_GUARD JavaScript against the compiled runtime with immutable outfit-rejection-core attached to the real visible renderer. Every 3 blazers x 47 ties case reports an explicit owner NO-TIE reason, typed plan and detached-render rejection, and the exact visible owner-gate rejection. Full frame, last selection and saved data are preserved."
     }
   ],
   "confirmed_defects_resolved": [
@@ -214,18 +228,28 @@
     {
       "finding": "B01 mobile screenshot could show controls above the rendered avatar",
       "resolution": "Scroll the actual rd-canvas into view before the screenshot; full native capture remains exact."
+    },
+    {
+      "finding": "The browser harness incorrectly required the typed Issue22 error from the pre-existing visible rejection wrapper, which legitimately rejects before the inner guard with its established user-facing Error.",
+      "resolution": "Boundary-specific assertions now require the exact OWNER-Bxx-NO-TIE prohibition, typed HEWRS_LINEN_NO_TIE from plan and detached raw atomic render, and either that typed code or the exact unchanged owner-gate message from visible render. The committed frame, last selection and nonempty saved data must all remain exact. All 141 cases pass in an actual compiled-runtime preflight including the immutable rejection-core visible wrapper. No product guard, source, or runtime pin changed.",
+      "execution_status": "FIXED_AND_NATIVE_PREFLIGHT_PASSED_BROWSER_RERUN_PENDING"
+    },
+    {
+      "finding": "Shallow CI checkout omitted exact historical Git objects required by unchanged deterministic builders and tie-engine oracle.",
+      "resolution": "Workflow fetches f114d7dbedab3430761a29d77328ae80ac0882e4 and 1d5529c4a1a2f87b1212ac68392af1b4dc87d7bb for source replay, and febe4148fc0b27ee2018d84408714ee1fe712015 for the historical tie-engine comparison. The tests, baseline oracles and production code remain unchanged.",
+      "execution_status": "WORKFLOW_FIX_REVIEWED_CI_RERUN_PENDING"
     }
   ],
   "unresolved_confirmed_code_defects": [],
   "execution_limitations": [
-    "Local Chromium launch is blocked before loading the application: chrome process_singleton_posix.cc socket() returns Operation not permitted. No local browser pass is claimed.",
-    "Complete 746-case native render matrix, Chromium/WebKit full browser matrices, CI aggregate and repository approval gates are pending at this pre-CI checkpoint. The root workflow must verify them before merging.",
-    "This report is an independent regression/source review checkpoint, not authorization to merge failing or unverified changes."
+    "Local Chromium launch is blocked before loading the application: chrome process_singleton_posix.cc socket() returns Operation not permitted. Actual browser execution is through CI.",
+    "The first CI run completed 41 fixed render/control pairs per engine, but all browser shards stopped at a confirmed test-boundary expectation error before the styling-context matrix and reviewed-browser step. The strict harness correction passed native preflight and awaits a complete browser rerun.",
+    "Complete 746-case native matrix, full 84-context matrices, reviewed-browser cases, CI aggregate, and repository approval gates remain pending. This checkpoint is not authorization to merge failing or unverified changes."
   ],
   "merge_target": "integration/issue22-v3",
   "production_deployment_authorized": false,
-  "ci_status": "PENDING",
-  "browser_status": "PENDING_CI",
+  "ci_status": "RETRY_REQUIRED",
+  "browser_status": "41_FIXED_CAPTURE_PAIRS_PER_ENGINE_PASS_FULL_CONTEXT_RERUN_PENDING",
   "additional_independent_browser_fixture_review": {
     "reviewer": "reference_audit agent",
     "status": "PASS_NATIVE_API_PREFLIGHT_NOT_BROWSER",
@@ -234,5 +258,59 @@
     "eligible_contexts": 60,
     "explained_exclusions": 24,
     "expected_capture_pairs_per_browser": 101
+  },
+  "ci_checkpoint": {
+    "run_id": 44998107134,
+    "run_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44998107134",
+    "tested_head": "bbc8375b55e050b5f7575f307a79b39c0b82506b",
+    "observed_status": "RUNNING_NATIVE_JOBS_WITH_CONFIRMED_HARNESS_AND_SHALLOW_HISTORY_FAILURES",
+    "browser_jobs": [
+      {
+        "engine": "chromium",
+        "shard": 1,
+        "job_id": 137133479303,
+        "fixed_captures_completed": 21
+      },
+      {
+        "engine": "chromium",
+        "shard": 2,
+        "job_id": 137133479367,
+        "fixed_captures_completed": 20
+      },
+      {
+        "engine": "webkit",
+        "shard": 1,
+        "job_id": 137133479216,
+        "fixed_captures_completed": 21
+      },
+      {
+        "engine": "webkit",
+        "shard": 2,
+        "job_id": 137133479354,
+        "fixed_captures_completed": 20
+      }
+    ],
+    "protected_ui_and_storage_jobs_passed": 9,
+    "functional_suite": {
+      "passed": 266,
+      "failed": 1,
+      "failure": "Missing historical febe4148 Git object in shallow checkout; workflow fetch added, rerun pending."
+    },
+    "native_shards_status": "FOUR_IN_PROGRESS_AT_CHECKPOINT",
+    "artifacts_independently_downloaded": [
+      {
+        "artifact_id": 14743948583,
+        "engine": "webkit",
+        "shard": 1,
+        "sha256": "abfed8200ee001b04dbed62c28078d9e9cf9efb3b1a9017bf043bec826b4a22f"
+      },
+      {
+        "artifact_id": 14744901243,
+        "engine": "chromium",
+        "shard": 2,
+        "sha256": "f24239bfe771beabab4b84659df7a4633206ec1be734d93d79e5a4c03f842903"
+      }
+    ],
+    "full_browser_and_ci_pass_claimed": false
   }
 }
