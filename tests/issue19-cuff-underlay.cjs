@@ -16,8 +16,17 @@ catch (_) { native = require(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MO
 const {Image} = native;
 const fixture = JSON.parse(fs.readFileSync(path.join(__dirname, 'issue19-cuff-underlay-fixtures.json'), 'utf8'));
 const regions = fixture.cuff_bounds_xywh;
+const quantizedFixture = JSON.parse(fs.readFileSync(path.join(__dirname, 'issue19-cuff-quantized-source-fixtures.json'), 'utf8'));
+assert.equal(digest(fs.readFileSync(path.join(__dirname, 'issue19-cuff-underlay-fixtures.json'))), quantizedFixture.unchanged_cuff_fixture_sha256, 'original S03/B15/corridor fixture remains exact');
+assert.equal(quantizedFixture.controls.length, 17, 'literal complete independently adjudicated source controls');
+assert.equal(new Set(quantizedFixture.controls.map(p => p.mode)).size, 7, 'literal seven original jacket sources');
+assert.equal(new Set(quantizedFixture.controls.map(p => p.mode + ':' + p.xy.join(','))).size, 17, 'unique literal source controls');
+assert.equal(digest(fs.readFileSync(path.join(ROOT, quantizedFixture.source_proof.path))), quantizedFixture.source_proof.sha256, 'durable independent original-source replay proof');
+for (const key of ['baseline_runtime_sha256', 'rejected_runtime_sha256', 'rejected_cuff_source_sha256', 'approved_pose_source_sha256'])
+  assert.equal(quantizedFixture[key], fixture[key], 'quantized control original reference identity: ' + key);
 const approved = load({entrypoint: 'avatar-v3-issue19-baseline.html'});
 const current = load();
+assert.equal(current.metadata.runtime_sha256, quantizedFixture.candidate_runtime_sha256, 'source-control proof binds the actual unchanged candidate runtime');
 const diagnostic = load({omitFitModules: ['src/avatar-v3-cuff-fit.js']});
 assert.equal(approved.metadata.runtime_sha256, fixture.baseline_runtime_sha256, 'literal approved source/pose runtime');
 assert.equal(digest(fs.readFileSync(path.join(ROOT, 'src/avatar-v3-pose.js'))), fixture.approved_pose_source_sha256, 'unchanged approved pose source');
@@ -32,7 +41,21 @@ const stop = rejectedCode.indexOf(stopMarker, start);
 assert.ok(start > 0 && stop > start && rejectedCode.indexOf(startMarker, start + 1) < 0, 'unique immutable cuff source boundaries');
 const rejectedCuff = rejectedCode.slice(start + startMarker.length, stop);
 assert.equal(digest(rejectedCuff), fixture.rejected_cuff_source_sha256, 'literal rejected cuff source');
-vm.runInContext(rejectedCuff, diagnostic.g, {filename: rejectedPath + '#explicit-rejected-cuff-diagnostic'});
+// Observe only immutable rejected raw foreground. Candidate pixels never supply
+// this oracle, and the callback does not alter the rejected ImageData or draw.
+const rejectedRawControls = new Map();
+diagnostic.g.__issue19ObserveRejectedForeground = (patch, sourceHash) => {
+  const points = quantizedFixture.controls.filter(p => p.source_hashes.jacket === sourceHash);
+  if (!points.length) return;
+  rejectedRawControls.set(sourceHash, new Map(points.map(p => {
+    const [x, y] = p.xy, at = (y * W + x) * 4;
+    return [y * W + x, Array.from(patch.data.subarray(at, at + 4))];
+  })));
+};
+const rawObserverMarker = 'ctx.putImageData(patch,0,0);';
+assert.equal(rejectedCuff.split(rawObserverMarker).length, 2, 'unique immutable rejected foreground observation boundary');
+const observedRejectedCuff = rejectedCuff.replace(rawObserverMarker, 'root.__issue19ObserveRejectedForeground(patch,sourceHash);' + rawObserverMarker);
+vm.runInContext(observedRejectedCuff, diagnostic.g, {filename: rejectedPath + '#read-only-rejected-foreground-observer'});
 const rejectedCanvas = diagnostic.makeCanvas();
 const rejectedRenderer = diagnostic.g.HEWRSAtomicRenderer.create(rejectedCanvas, diagnostic.connection, {resolveUrl: diagnostic.resolveUrl});
 const c = approved.connection;
@@ -105,6 +128,54 @@ function frozenCorridor(mode, jacketSha) {
   }
   equal(count, record.source_owned_interior_pixels, mode + ' complete frozen original-source domain');
   return {record, mask};
+}
+function originalSourceOver(foreground, background) {
+  const f = foreground[3] / 255, b = background[3] / 255 * (1 - f), alpha = f + b;
+  return Array.from(new Uint8ClampedArray([...(alpha ? foreground.slice(0, 3).map((v, k) => (v * f + background[k] * b) / alpha) : [0, 0, 0]), alpha * 255]));
+}
+function replayOriginalPoint(fitted, hands, pants) {
+  function tiny(rgba) {
+    const c = native.createCanvas(1, 1), ctx = c.getContext('2d', {willReadFrequently: true}), frame = ctx.createImageData(1, 1);
+    frame.data.set(rgba); ctx.putImageData(frame, 0, 0); return c;
+  }
+  const c = tiny(fitted), ctx = c.getContext('2d', {willReadFrequently: true});
+  for (const rgba of hands) { const layer = tiny(rgba); ctx.drawImage(layer, 0, 0); layer.width = layer.height = 1; }
+  if (pants) { const layer = tiny(pants); ctx.globalCompositeOperation = 'destination-over'; ctx.drawImage(layer, 0, 0); layer.width = layer.height = 1; }
+  const rgba = Array.from(ctx.getImageData(0, 0, 1, 1).data); c.width = c.height = 1; return rgba;
+}
+function exactQuantizedSourceControls(s, binding, corridor, jacketRaw, pantsRaw, handsRaw, before, after, label) {
+  const controls = quantizedFixture.controls.filter(p => p.mode === (s.suitId || s.blazerId)), verified = new Set(), rows = [];
+  for (const control of controls) {
+    const [x, y] = control.xy, at = y * W + x;
+    const actualHashes = {jacket: binding.jacket.sha256, pants: binding.pants.sha256, hands: binding.hands.map(d => d.sha256)};
+    equal(plain(actualHashes), control.source_hashes, label + ' literal quantized control original source identities');
+    ok(regions.some(([left, top, width, height]) => x >= left && x < left + width && y >= top && y < top + height), 'literal quantized control stays inside the original wrist envelope');
+    equal(corridor.mask[at], 0, 'literal rounded-alpha control is separate from the unchanged alpha-less-than255 corridor fixture');
+    const g = corridor.record.source_geometry.find(g => g.side === control.original_source_side);
+    ok(g && y > g.source_bottom_row, 'control uses the original extrapolated separated-sleeve boundary');
+    const sourceInner = g.source_seam_anchor[1] + g.source_seam_slope * (y - g.source_seam_anchor[0]);
+    ok(g.side === 'left' ? x > sourceInner + 1 : x < sourceInner - 1, label + ' literal control belongs to the original jacket torso side');
+    const fitted = rejectedRawControls.get(binding.jacket.sha256)?.get(at);
+    equal(fitted, control.rejected_raw_fitted_rgba, label + ' immutable rejected raw fitted foreground at literal control');
+    const jacket = pixel(jacketRaw, x, y), pants = pixel(pantsRaw, x, y), hands = handsRaw.map(h => pixel(h, x, y));
+    equal(jacket, control.original_raw_jacket_rgba, 'literal control independently decoded original jacket');
+    equal(pants, control.original_raw_pants_rgba, 'literal control independently decoded original trousers');
+    equal(hands, control.original_raw_hands_rgba, 'literal control independently decoded original hands before canvas quantization');
+    equal(jacket[3], 255, 'literal correction has opaque original jacket backing');
+    ok(fitted[3] > 0 && fitted[3] < 255 && hands.every(h => h[3] < 255) && hands.some(h => h[3] > 0), 'no true opaque fitted foreground or original hand is excluded from preservation');
+    let trueAlpha = fitted[3]; for (const hand of hands) trueAlpha = hand[3] + trueAlpha * (255 - hand[3]) / 255;
+    ok(trueAlpha < 255 && Math.round(trueAlpha) === 255, 'finished alpha255 is only a quantized partial-source composite');
+    const oldExpected = replayOriginalPoint(fitted, hands, null);
+    equal(pixel(before, x, y), oldExpected, label + ' exact raw-source replay of the rejected finished pixel');
+    equal(oldExpected[3], 255, 'literal prior finished control rounds to alpha255');
+    const expected = replayOriginalPoint(originalSourceOver(fitted, jacket), hands, pants);
+    equal(expected[3], 255, 'original opaque jacket produces complete control coverage');
+    ok(expected.some((v, k) => v !== oldExpected[k]), 'literal positive control actually rejects omission of original jacket backing');
+    equal(pixel(after, x, y), expected, label + ' exact original J/F/H/P composition without RGB or alpha tolerance');
+    verified.add(at); rows.push({xy: [x, y], original_jacket_sha256: binding.jacket.sha256, rejected_raw_fitted_rgba: fitted, original_raw_hands_rgba: hands, true_old_alpha: trueAlpha, original_pants_alpha: pants[3], expected_rgba: expected, actual_rgba: pixel(after, x, y)});
+  }
+  equal(verified.size, controls.length, label + ' complete literal quantized source-over control set');
+  return {verified, rows};
 }
 function originalSelection(s) {
   const p = approved.plan(s);
@@ -188,6 +259,7 @@ async function main() {
   if (limited) ok(limited.every(mode => allModes.includes(mode)), 'explicit limited diagnostic modes');
   const {avatar, proof} = await proveOriginalScope(limited);
   const hands = await Promise.all([c.manifest.static.left_hand, c.manifest.static.right_hand].map(d => plane([d])));
+  const handsRaw = await Promise.all([c.manifest.static.left_hand, c.manifest.static.right_hand].map(d => plane([d], true, false)));
   async function verify(s, label) {
     const binding = originalSelection(s), pantsRaw = await plane([binding.pants], true, false), pants = await plane([binding.pants]);
     const jacketRaw = await plane([binding.jacket], true, false), jacket = await plane([binding.jacket]);
@@ -201,6 +273,7 @@ async function main() {
     }
     const before = await capture(rejectedRenderer, rejectedCanvas, diagnostic.storage, s);
     const after = await capture(current.renderer, current.canvas, current.storage, s);
+    const quantized = exactQuantizedSourceControls(s, binding, corridor, jacketRaw, pantsRaw, handsRaw, before, after, label);
     const count = {changed_pixels: 0, outside_bounds_changed: 0, old_opaque_foreground_pixels: 0, old_opaque_foreground_changed: 0, original_pants_opaque_pixels: 0, original_pants_coverage_lost: 0, pure_underlay_pixels: 0, pure_underlay_wrong: 0, no_pants_pixels: 0, no_pants_foreground_changed: 0, opaque_hand_pixels: 0, opaque_hand_pixels_changed: 0, transparent_exterior_pixels: 0, seam_source_pixels: 0, seam_source_zero_foreground_pixels: 0, seam_source_wrong: 0, frozen_domain_bad_source: 0};
     const inBounds = (x, y) => regions.some(([left, top, width, height]) => x >= left && x < left + width && y >= top && y < top + height);
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -214,10 +287,10 @@ async function main() {
         if (!jacket[i + 3] || before[i + 3] === 255) count.frozen_domain_bad_source++;
         if (before[i + 3] === 0) { count.seam_source_zero_foreground_pixels++; if (!samePixel(after, originalJacketOverPants, i)) count.seam_source_wrong++; }
       }
-      if (before[i + 3] === 255) { count.old_opaque_foreground_pixels++; if (changed) count.old_opaque_foreground_changed++; }
+      if (before[i + 3] === 255) { count.old_opaque_foreground_pixels++; if (changed && !quantized.verified.has(i / 4)) count.old_opaque_foreground_changed++; }
       if (pants[i + 3] === 255) { count.original_pants_opaque_pixels++; if (after[i + 3] !== 255) count.original_pants_coverage_lost++; }
       if (before[i + 3] === 0 && pants[i + 3] > 0 && !seam) { count.pure_underlay_pixels++; if (!samePixel(after, pants, i)) count.pure_underlay_wrong++; }
-      if (!pants[i + 3] && !seam) { count.no_pants_pixels++; if (changed) count.no_pants_foreground_changed++; if (!before[i + 3]) count.transparent_exterior_pixels++; }
+      if (!pants[i + 3] && !seam) { count.no_pants_pixels++; if (changed && !quantized.verified.has(i / 4)) count.no_pants_foreground_changed++; if (!before[i + 3]) count.transparent_exterior_pixels++; }
       if (hands.some(hand => hand[i + 3] === 255)) { count.opaque_hand_pixels++; if (changed) count.opaque_hand_pixels_changed++; }
     });
     for (const key of ['outside_bounds_changed', 'old_opaque_foreground_changed', 'original_pants_coverage_lost', 'pure_underlay_wrong', 'no_pants_foreground_changed', 'opaque_hand_pixels_changed', 'seam_source_wrong', 'frozen_domain_bad_source']) equal(count[key], 0, label + ' ' + key);
@@ -269,7 +342,7 @@ async function main() {
         equal(pixel(after, x, y), pixel(before, x, y), label + ' excludes newly exposed avatar skin');
       }
     }
-    const item = {label, selection: s, original_pants_sha256: binding.pants.sha256, original_order: binding.order.map(d => d.sha256), original_plan: binding.legacy ? 'legacy-array' : 'continuous-object', before_rgba_sha256: digest(before), after_rgba_sha256: digest(after), cuff_rgba_sha256: cuffDigest(after), ...count};
+    const item = {label, selection: s, original_pants_sha256: binding.pants.sha256, original_order: binding.order.map(d => d.sha256), original_plan: binding.legacy ? 'legacy-array' : 'continuous-object', before_rgba_sha256: digest(before), after_rgba_sha256: digest(after), cuff_rgba_sha256: cuffDigest(after), quantized_original_source_controls: quantized.rows.length, quantized_no_pants_original_jacket_controls: quantized.rows.filter(r => r.original_pants_alpha === 0).length, quantized_source_over_records: quantized.rows, ...count};
     records.push(item); console.log('CUFF_UNDERLAY_CASE=' + JSON.stringify(item));
     if (global.gc) global.gc();
     return item;

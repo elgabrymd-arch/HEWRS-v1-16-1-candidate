@@ -88,7 +88,6 @@ jobs:
 
   mobile-preflight:
     name: Pinned B01 mobile presentation — ${{ matrix.browser }}
-    needs: native-source-and-application
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
@@ -124,7 +123,6 @@ jobs:
 
   partial-tie-preservation:
     name: Fixed partial tie foreground — ${{ matrix.browser }}
-    needs: native-source-and-application
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     strategy:
@@ -151,7 +149,6 @@ jobs:
 
   cuff-source-preflight:
     name: Original cuff underlay and jacket seam — ${{ matrix.browser }}
-    needs: native-source-and-application
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
@@ -180,7 +177,7 @@ jobs:
 
   exhaustive-fit:
     name: All garment routes — ${{ matrix.browser }} — ${{ matrix.suite }} — ${{ matrix.shard }}
-    needs: [native-source-and-application, cuff-source-preflight]
+    needs: cuff-source-preflight
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     strategy:
@@ -240,7 +237,6 @@ jobs:
 
   browser-functional:
     name: Protected app behavior — ${{ matrix.browser }} — ${{ matrix.section }}
-    needs: native-source-and-application
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     strategy:
@@ -279,7 +275,6 @@ jobs:
           retention-days: 30
 
   home-and-storage-recovery:
-    needs: native-source-and-application
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     container:

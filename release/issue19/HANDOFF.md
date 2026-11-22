@@ -257,6 +257,32 @@ and exact selected source. They cannot exempt arbitrary cuff-region changes.
 The earlier passing cuff-contact checks did not cover these failures and do
 not approve the rejected runtime.
 
+The first complete native run on `9d8c6ac` exposed an incorrect opacity
+premise in the added regression: a final alpha byte of 255 does not prove that
+the underlying fitted cloth and hand sources were individually opaque. A
+complete 33-jacket diagnostic found 17 such case-pixels across S11, S13 and
+B06–B10. Their actual combined alpha before quantization is 254.55294–254.95294;
+the unchanged original hands have alpha 252 or 254. The retained original
+jacket beneath them can correctly change a displayed channel by one value.
+
+`CUFF_QUANTIZED_SOURCE_AUDIT.json` records independent exact source-over replays
+for all 17 points, including two points with no trouser contribution. Every
+point lies on the torso side of the original registered jacket seam and has
+opaque original jacket backing. The expected value is constructed from the
+hash-pinned rejected raw fitted cloth and independently decoded original
+jacket, hands and trousers; candidate RGB never supplies the expectation.
+All 17 original-source results match exactly, and omitting the original jacket
+fails every positive control.
+
+The native test now verifies these literal source controls before classifying
+them separately from truly opaque foreground. It adds no RGB or alpha tolerance.
+All other foreground, true opaque hands, exterior, trouser and source-corridor
+assertions remain strict. The existing S03/B15 and frozen 33-jacket fixture is
+byte-identical. This correction changes the test oracle only; delivered runtime
+`ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1`
+and every production file remain unchanged. The failed run stays failed and
+requires a new complete validation run.
+
 Shirt-only and reference outfits pass through without cuff changes. The wrapper
 uses a bounded cache and retains the last complete frame on cancellation or a
 failed replacement.
@@ -347,6 +373,12 @@ non-suit source registrations.
 ## Required verification
 
 The [Issue 19 workflow](../../.github/workflows/issue19-validation.yml) runs:
+
+Independent native, mobile, partial-tie, behavior and storage jobs run in
+parallel from their own exact checkouts. They exchange no generated inputs or
+artifacts. The exhaustive image matrix still waits for both cuff-source
+preflights. Every native and browser job must succeed before merge; changing
+the start order does not waive a failed or missing gate.
 
 - Deterministic integration, source/behavior preservation and negative delivery
   tests, followed by native source, tie, collar, cuff and cancellation checks.

@@ -1,0 +1,832 @@
+{
+  "schema": "hewrs.issue19.cuff-quantized-source-controls.v1",
+  "purpose": "Exact original-source composition at literal partial fitted-cloth/hand pixels whose old finished alpha rounds to255. No expected candidate RGB is stored or sampled from the repair.",
+  "candidate_runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+  "baseline_runtime_sha256": "491cd6018b9acaf098cd1086497e299e37ff3229e4336689f504bcf42311251c",
+  "rejected_runtime_sha256": "44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12",
+  "rejected_cuff_source_sha256": "b0702dcf242f60250fa0b0f4942c20f18d30139fa4934e503fb876dfe7704806",
+  "approved_pose_source_sha256": "2de18380a4ac99677d2fb38bb88ea32336fe64e4ccd597a81b57d25af095dbf4",
+  "unchanged_cuff_fixture_sha256": "309f4f83473efb130fa3090a136ab3a7859c2c9701727c567e643a1f37a1f655",
+  "source_proof": {
+    "path": "release/issue19/CUFF_QUANTIZED_SOURCE_AUDIT.json",
+    "sha256": "f76a0e3c3962162993f37568742991e7405e16d73ad53877dc1bb0707ea33ee9"
+  },
+  "controls": [
+    {
+      "mode": "S11",
+      "xy": [
+        779,
+        1373
+      ],
+      "source_hashes": {
+        "jacket": "f8b9003a5bc194b642f996c0fadcf1c2e8e97dba0cfc3c6260e5555ee0835ba4",
+        "pants": "c5dab4db1db4b6b64e73fd0bc468fa8b234b5f74abb4a797f5a7b4fd1fb8f53f",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        138,
+        134,
+        130,
+        223
+      ],
+      "original_raw_jacket_rgba": [
+        117,
+        113,
+        109,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        141,
+        137,
+        134,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          132,
+          80,
+          56,
+          252
+        ]
+      ],
+      "original_source_side": "right"
+    },
+    {
+      "mode": "S13",
+      "xy": [
+        779,
+        1373
+      ],
+      "source_hashes": {
+        "jacket": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
+        "pants": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        39,
+        45,
+        65,
+        223
+      ],
+      "original_raw_jacket_rgba": [
+        34,
+        39,
+        58,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        31,
+        37,
+        53,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          132,
+          80,
+          56,
+          252
+        ]
+      ],
+      "original_source_side": "right"
+    },
+    {
+      "mode": "B06",
+      "xy": [
+        201,
+        1371
+      ],
+      "source_hashes": {
+        "jacket": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        201,
+        205,
+        188,
+        164
+      ],
+      "original_raw_jacket_rgba": [
+        190,
+        191,
+        175,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        95,
+        97,
+        99,
+        248
+      ],
+      "original_raw_hands_rgba": [
+        [
+          206,
+          136,
+          106,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B06",
+      "xy": [
+        203,
+        1372
+      ],
+      "source_hashes": {
+        "jacket": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        198,
+        202,
+        185,
+        146
+      ],
+      "original_raw_jacket_rgba": [
+        193,
+        193,
+        177,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        99,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          198,
+          129,
+          100,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B06",
+      "xy": [
+        213,
+        1385
+      ],
+      "source_hashes": {
+        "jacket": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        199,
+        203,
+        186,
+        141
+      ],
+      "original_raw_jacket_rgba": [
+        134,
+        138,
+        115,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          190,
+          125,
+          95,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B07",
+      "xy": [
+        189,
+        1370
+      ],
+      "source_hashes": {
+        "jacket": "173f09f986b00d56b06062ae91d6388445245980d9bde907a1655c61f7870e05",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        140,
+        135,
+        125,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        141,
+        84,
+        46,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_raw_hands_rgba": [
+        [
+          203,
+          146,
+          117,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B07",
+      "xy": [
+        199,
+        1370
+      ],
+      "source_hashes": {
+        "jacket": "173f09f986b00d56b06062ae91d6388445245980d9bde907a1655c61f7870e05",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        142,
+        137,
+        127,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        86,
+        48,
+        21,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        39
+      ],
+      "original_raw_hands_rgba": [
+        [
+          196,
+          132,
+          98,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B08",
+      "xy": [
+        203,
+        1372
+      ],
+      "source_hashes": {
+        "jacket": "583f5629a6afb4be9543a107029bdca8d38defde3a6af907ca714209d41652ad",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        228,
+        224,
+        219,
+        146
+      ],
+      "original_raw_jacket_rgba": [
+        215,
+        205,
+        196,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        99,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          198,
+          129,
+          100,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B08",
+      "xy": [
+        213,
+        1385
+      ],
+      "source_hashes": {
+        "jacket": "583f5629a6afb4be9543a107029bdca8d38defde3a6af907ca714209d41652ad",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        218,
+        215,
+        208,
+        141
+      ],
+      "original_raw_jacket_rgba": [
+        216,
+        207,
+        197,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          190,
+          125,
+          95,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B09",
+      "xy": [
+        210,
+        1380
+      ],
+      "source_hashes": {
+        "jacket": "9d02e00bfb127bac799c04bbcd2d105ffc5559a1d7369af855e8d0720fe469d4",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        150,
+        150,
+        139,
+        192
+      ],
+      "original_raw_jacket_rgba": [
+        127,
+        122,
+        116,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          195,
+          127,
+          94,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B09",
+      "xy": [
+        780,
+        1372
+      ],
+      "source_hashes": {
+        "jacket": "9d02e00bfb127bac799c04bbcd2d105ffc5559a1d7369af855e8d0720fe469d4",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        129,
+        124,
+        118,
+        251
+      ],
+      "original_raw_jacket_rgba": [
+        42,
+        34,
+        23,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          136,
+          80,
+          57,
+          252
+        ]
+      ],
+      "original_source_side": "right"
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        189,
+        1370
+      ],
+      "source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        177,
+        152,
+        134,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        123,
+        108,
+        95,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_raw_hands_rgba": [
+        [
+          203,
+          146,
+          117,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        199,
+        1370
+      ],
+      "source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        159,
+        134,
+        116,
+        232
+      ],
+      "original_raw_jacket_rgba": [
+        100,
+        86,
+        72,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        0,
+        0,
+        0,
+        39
+      ],
+      "original_raw_hands_rgba": [
+        [
+          196,
+          132,
+          98,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        201,
+        1371
+      ],
+      "source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        167,
+        142,
+        124,
+        164
+      ],
+      "original_raw_jacket_rgba": [
+        112,
+        98,
+        82,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        95,
+        97,
+        99,
+        248
+      ],
+      "original_raw_hands_rgba": [
+        [
+          206,
+          136,
+          106,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        203,
+        1372
+      ],
+      "source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        174,
+        149,
+        131,
+        146
+      ],
+      "original_raw_jacket_rgba": [
+        116,
+        98,
+        83,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        99,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          198,
+          129,
+          100,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        210,
+        1380
+      ],
+      "source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        156,
+        131,
+        113,
+        192
+      ],
+      "original_raw_jacket_rgba": [
+        132,
+        105,
+        89,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        97,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          195,
+          127,
+          94,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    },
+    {
+      "mode": "B10",
+      "xy": [
+        213,
+        1385
+      ],
+      "source_hashes": {
+        "jacket": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+        "pants": "c03a0a7bd871255b9938cc821c11b34b1c2496c7da77276f292ae7a1f8bf4739",
+        "hands": [
+          "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+          "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+        ]
+      },
+      "rejected_raw_fitted_rgba": [
+        161,
+        135,
+        116,
+        141
+      ],
+      "original_raw_jacket_rgba": [
+        134,
+        107,
+        93,
+        255
+      ],
+      "original_raw_pants_rgba": [
+        96,
+        98,
+        100,
+        255
+      ],
+      "original_raw_hands_rgba": [
+        [
+          190,
+          125,
+          95,
+          254
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "original_source_side": "left"
+    }
+  ]
+}
