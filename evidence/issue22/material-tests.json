@@ -1,0 +1,189 @@
+{
+  "schema": "hewrs.issue22.material-tests.v1",
+  "status": "PASS",
+  "checks": 189,
+  "layers": [
+    {
+      "id": "S06",
+      "layer": "jacket",
+      "source_sha256": "65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935",
+      "display_sha256": "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 2452,
+      "changed_rgb_pixels": 742023,
+      "linen_mean_delta": null
+    },
+    {
+      "id": "S06",
+      "layer": "trousers",
+      "source_sha256": "aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861",
+      "display_sha256": "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 0,
+      "changed_rgb_pixels": 572571,
+      "linen_mean_delta": null
+    },
+    {
+      "id": "S13",
+      "layer": "jacket",
+      "source_sha256": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
+      "display_sha256": "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 2452,
+      "changed_rgb_pixels": 743386,
+      "linen_mean_delta": null
+    },
+    {
+      "id": "S13",
+      "layer": "trousers",
+      "source_sha256": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
+      "display_sha256": "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 0,
+      "changed_rgb_pixels": 573287,
+      "linen_mean_delta": null
+    },
+    {
+      "id": "S14",
+      "layer": "jacket",
+      "source_sha256": "527d35bdda91922b1467e7ce171dec13d100330b16c5a6ee3b048e59896c9e64",
+      "display_sha256": "bb717e2606224a5dabf28f00f8b1fee2a5dc1bf87c891259e187bb369e5d8fd6",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 2452,
+      "changed_rgb_pixels": 744441,
+      "linen_mean_delta": null
+    },
+    {
+      "id": "S14",
+      "layer": "trousers",
+      "source_sha256": "ed8dc4d60dc595d27d6f9b1466b7a3fa3fd8e247a801362a36fd9f8879e5685e",
+      "display_sha256": "42507467e8e0affe0b82be5ccc25901582433e4991141b89322ad9fa2b695fc2",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 0,
+      "changed_rgb_pixels": 573551,
+      "linen_mean_delta": null
+    },
+    {
+      "id": "B01",
+      "layer": "jacket",
+      "source_sha256": "7e772b95f1268946fc0f23ba9d12428869117d086167636d470350008edb2387",
+      "display_sha256": "cee158709a72028923cad4e8cf31c5430ec602c5b62ecf827aeb58144f3c69c4",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 0,
+      "changed_rgb_pixels": 657183,
+      "linen_mean_delta": [
+        -0.003,
+        -0.004,
+        -0.005
+      ]
+    },
+    {
+      "id": "B06",
+      "layer": "jacket",
+      "source_sha256": "ef403e9b23af535609ecd03c6cc59915a56821c6521c7c3d940d55bd22dd709b",
+      "display_sha256": "dacc6584f84f0aacaa9fa620bb33b2b0618bfd6b3a412d4cc771b2842777f683",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 4806,
+      "changed_rgb_pixels": 676390,
+      "linen_mean_delta": [
+        0.236,
+        0.236,
+        0.236
+      ]
+    },
+    {
+      "id": "B10",
+      "layer": "jacket",
+      "source_sha256": "9d28b2d2d679cc0a8cb5bb0ce59a3f253ab70cdd973c1515901302baf772a2ea",
+      "display_sha256": "da9987823fe8436c3baab5ee06c4d10574ff2c7d3b5396f7ba6c97fff521728a",
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 1175,
+      "changed_rgb_pixels": 682473,
+      "linen_mean_delta": [
+        0.183,
+        0.183,
+        0.183
+      ]
+    }
+  ],
+  "renders": [
+    {
+      "id": "S06",
+      "changed": true,
+      "before_rgba_sha256": "2fa403ec0abed49b70d9340852f65ea9a40f938ec9da52b00320056ad52214f6",
+      "after_rgba_sha256": "3f31e4b72db2f6ecf20b92517672e48d1d7d133d039a9143b56d0147f45f711e",
+      "head_identical": true
+    },
+    {
+      "id": "S13",
+      "changed": true,
+      "before_rgba_sha256": "ff25569c598be8d9d06a63f836d263acdb20928d9a6e527ad52f5d105dc6bc67",
+      "after_rgba_sha256": "1c380d40b5124d5868649bd1b73889344ac70126c8abe47e62fec640539efa95",
+      "head_identical": true
+    },
+    {
+      "id": "S14",
+      "changed": true,
+      "before_rgba_sha256": "dea658a81a57042ba44de557edd61469c54353f90f70fa84cdcc18d37a970e89",
+      "after_rgba_sha256": "3a908df03dcd52306462286af3c7a83509f0cd66bde8770ba030c99ff2f00ec7",
+      "head_identical": true
+    },
+    {
+      "id": "B01",
+      "changed": true,
+      "before_rgba_sha256": "93e9f6ecd8208ad6460aa2ffa5793e3d1e17181307e95b6ed9715ddcd7468de8",
+      "after_rgba_sha256": "e61db4f8124f7347f2d5b008da96a372e9cdf16667c2794e147ec3c6b2950aeb",
+      "head_identical": true
+    },
+    {
+      "id": "B06",
+      "changed": true,
+      "before_rgba_sha256": "cef94aced53a964a6b5f55ce52bd9cdab74d849e1dbe37bc655f43813bb190e4",
+      "after_rgba_sha256": "d8ccc7b8b8d9070e0dcd42540dea79e060dac74f0bc113c43bbbe8daf0e97692",
+      "head_identical": true
+    },
+    {
+      "id": "B10",
+      "changed": true,
+      "before_rgba_sha256": "1ac0784d3cb3069fcef3878f9c927ef01394f729be4a297a93c287c62f47a168",
+      "after_rgba_sha256": "db0d22789947a8e9d587a937380467adfb6c1d0f4b3003ba6c0bdad0b8a8f466",
+      "head_identical": true
+    },
+    {
+      "id": "S05",
+      "changed": false,
+      "before_rgba_sha256": "41a05e80ac96ffe9451ea9ddb845411cd90cb768372601479dab6825c0b986bc",
+      "after_rgba_sha256": "41a05e80ac96ffe9451ea9ddb845411cd90cb768372601479dab6825c0b986bc",
+      "head_identical": true
+    },
+    {
+      "id": "B03",
+      "changed": false,
+      "before_rgba_sha256": "95f70c36b12dbde23c52dbe143d399abe3f6c666a3224e07fe35475f8ef8020b",
+      "after_rgba_sha256": "95f70c36b12dbde23c52dbe143d399abe3f6c666a3224e07fe35475f8ef8020b",
+      "head_identical": true
+    },
+    {
+      "id": "B08",
+      "changed": false,
+      "before_rgba_sha256": "5dc1dd6379f6a77429c4828ee2e186ccc41016a0bed33ab83bc263a6661e4d92",
+      "after_rgba_sha256": "5dc1dd6379f6a77429c4828ee2e186ccc41016a0bed33ab83bc263a6661e4d92",
+      "head_identical": true
+    },
+    {
+      "id": "shirt-only",
+      "changed": false,
+      "before_rgba_sha256": "585f29689cb78e982076a2d935c92e7095f7db60fb085c65549fb60c7381a113",
+      "after_rgba_sha256": "585f29689cb78e982076a2d935c92e7095f7db60fb085c65549fb60c7381a113",
+      "head_identical": true
+    }
+  ],
+  "scope": [
+    "S06",
+    "S13",
+    "S14",
+    "B01",
+    "B06",
+    "B10"
+  ]
+}

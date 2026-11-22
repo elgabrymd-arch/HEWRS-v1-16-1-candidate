@@ -1,0 +1,40 @@
+{
+  "schema": "hewrs.s06-neutral-delivery-review.v3",
+  "status": "PASS",
+  "validation_scope": "local delivered-source, native appearance, DNA and source-lock verification; remote CI and publication pending",
+  "baseline_commit": "f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9",
+  "runtime": "runtime/avatar-v3-candidate-14e5819a66ce1af14ed3.js",
+  "runtime_sha256": "14e5819a66ce1af14ed31c080ddd60e1c4ab1a0d5e00cee2fdf612f0458370f9",
+  "runtime_diff": "exact embedded DNA and material-manifest replacements only",
+  "reviewed_panel": {
+    "path": "src/issue22-reviewed-panel-a9d953556b6f8099d105.js",
+    "sha256": "a9d953556b6f8099d1052ceeb847a11adca5329f695fc95e8289b6584ab2d565"
+  },
+  "panel_diff": "exact embedded reviewed overlay replacement only",
+  "changed_picker_images": [
+    "S06"
+  ],
+  "unchanged_picker_images": 6,
+  "protected_source_changes": 0,
+  "protected_original_files": 2180,
+  "avatar_layer_hashes": {
+    "avatar": "4959b08a7ae11a28da972e92caa9c1d74c4bfe9f89fd2721a64938f6b2aaff93",
+    "left_hand": "26af452854f6f89c86617d83e9848ae71922d2ff4701877e7903f59c55ebb2b8",
+    "right_hand": "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
+  },
+  "production_deployment_authorized": true,
+  "merge_target": "main",
+  "material_evidence": "evidence/s06-neutral-20261122/material-verification.json",
+  "final_visual_review": {
+    "normal_distance": "near-solid neutral grey; broad source checks and downsampling moire suppressed",
+    "native_detail": "fine low-contrast weave remains; original folds, seams, hardware and source geometry retained",
+    "actual_runtime_native_rgba_sha256": "3f31e4b72db2f6ecf20b92517672e48d1d7d133d039a9143b56d0147f45f711e",
+    "current_picker": "ui/issue22/cb788dc7ddb42c53f31f042b6e0df54a0a5d9992623f92b5305475e652b9709f.png",
+    "authority": "independent rendering inspection; no new owner whole-outfit approval inferred"
+  },
+  "independent_review_scopes": [
+    "material appearance and protected geometry",
+    "current/live browser picker, tie and release gate source bindings",
+    "whole-release source lock and standalone workflow compatibility"
+  ]
+}

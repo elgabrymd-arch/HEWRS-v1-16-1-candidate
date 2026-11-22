@@ -1,0 +1,430 @@
+{
+  "schema": "hewrs.s06-neutral-dna-verification.v1",
+  "status": "PASS",
+  "baselineCommit": "f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9",
+  "revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
+  "preservedDnaRecords": 5,
+  "preservedIndexGroups": 101,
+  "preservedIndexRows": 110180,
+  "allS06CacheRowsReevaluated": 2212,
+  "changedS06CacheRows": 0,
+  "cacheStatuses": {
+    "new_ensemble_estimate": 1968,
+    "requires_review": 67,
+    "rejected": 16,
+    "premise_mismatch": 96,
+    "conflict": 65
+  },
+  "fullUniverse": {
+    "activeShirts": 50,
+    "tiedStates": 47,
+    "noTieStates": 1,
+    "evaluationsPerVersion": 2400,
+    "cachedPaths": 2212,
+    "uncachedPaths": 188,
+    "changedNumericResults": 0,
+    "changedStatuses": 0,
+    "changedEligibility": 0,
+    "currentStatuses": {
+      "new_ensemble_estimate": 1968,
+      "requires_review": 67,
+      "premise_mismatch": 96,
+      "conflict": 65,
+      "rejected": 16,
+      "excluded": 188
+    },
+    "uncachedStatuses": {
+      "excluded": 188
+    },
+    "uncachedReasonCodes": {
+      "OWNER_NO_TIE_RULE": 188
+    }
+  },
+  "neutralSemanticPaths": [
+    "effective-feature",
+    "raw-engine",
+    "public-engine",
+    "heuristic-preference",
+    "research-preference",
+    "reviewed-catalogue",
+    "discovery-features"
+  ],
+  "accessoryResults": [
+    {
+      "model": "heuristic",
+      "clothingCases": 2,
+      "registeredShoes": 51,
+      "checkedShoes": 102,
+      "changedShoes": 16,
+      "shoeScoreDeltas": [
+        -0.105
+      ],
+      "shoeExample": {
+        "id": "shoe-11",
+        "state": "NO_TIE",
+        "before": 9.2725,
+        "after": 9.1675,
+        "delta": -0.105
+      },
+      "unchangedShoeExample": {
+        "id": "shoe-0",
+        "state": "NO_TIE",
+        "score": 8.9275
+      },
+      "identifiedWatches": 49,
+      "checkedWatches": 98,
+      "changedWatches": 22,
+      "watchScoreDeltas": [
+        -0.12
+      ],
+      "watchExample": {
+        "id": "watch-AP03",
+        "state": "NO_TIE",
+        "before": 8.64,
+        "after": 8.52,
+        "delta": -0.12
+      }
+    },
+    {
+      "model": "research",
+      "clothingCases": 2,
+      "registeredShoes": 51,
+      "checkedShoes": 102,
+      "changedShoes": 0,
+      "shoeScoreDeltas": [],
+      "shoeExample": null,
+      "unchangedShoeExample": {
+        "id": "shoe-0",
+        "state": "NO_TIE",
+        "score": 9.028
+      },
+      "identifiedWatches": 49,
+      "checkedWatches": 98,
+      "changedWatches": 22,
+      "watchScoreDeltas": [
+        -0.12
+      ],
+      "watchExample": {
+        "id": "watch-AP03",
+        "state": "NO_TIE",
+        "before": 8.64,
+        "after": 8.52,
+        "delta": -0.12
+      }
+    }
+  ],
+  "generationCases": 36,
+  "verifiedOptions": 603,
+  "generation": [
+    {
+      "style": "AUTO",
+      "occasion": "work",
+      "tie": "any",
+      "returned": 20,
+      "tied": 18,
+      "noTie": 2
+    },
+    {
+      "style": "AUTO",
+      "occasion": "work",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "AUTO",
+      "occasion": "work",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "AUTO",
+      "occasion": "dinner",
+      "tie": "any",
+      "returned": 20,
+      "tied": 18,
+      "noTie": 2
+    },
+    {
+      "style": "AUTO",
+      "occasion": "dinner",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "AUTO",
+      "occasion": "dinner",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "AUTO",
+      "occasion": "weekend",
+      "tie": "any",
+      "returned": 20,
+      "tied": 18,
+      "noTie": 2
+    },
+    {
+      "style": "AUTO",
+      "occasion": "weekend",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "AUTO",
+      "occasion": "weekend",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "work",
+      "tie": "any",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "work",
+      "tie": "none",
+      "returned": 0,
+      "tied": 0,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "work",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "dinner",
+      "tie": "any",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "dinner",
+      "tie": "none",
+      "returned": 0,
+      "tied": 0,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "dinner",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "weekend",
+      "tie": "any",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "weekend",
+      "tie": "none",
+      "returned": 0,
+      "tied": 0,
+      "noTie": 0
+    },
+    {
+      "style": "CLASSIC",
+      "occasion": "weekend",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "work",
+      "tie": "any",
+      "returned": 20,
+      "tied": 18,
+      "noTie": 2
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "work",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "work",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "dinner",
+      "tie": "any",
+      "returned": 20,
+      "tied": 18,
+      "noTie": 2
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "dinner",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "dinner",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "weekend",
+      "tie": "any",
+      "returned": 20,
+      "tied": 18,
+      "noTie": 2
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "weekend",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "HYBRID",
+      "occasion": "weekend",
+      "tie": "T022",
+      "returned": 20,
+      "tied": 20,
+      "noTie": 0
+    },
+    {
+      "style": "MODERN",
+      "occasion": "work",
+      "tie": "any",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "MODERN",
+      "occasion": "work",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "MODERN",
+      "occasion": "work",
+      "tie": "T022",
+      "returned": 1,
+      "tied": 1,
+      "noTie": 0
+    },
+    {
+      "style": "MODERN",
+      "occasion": "dinner",
+      "tie": "any",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "MODERN",
+      "occasion": "dinner",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "MODERN",
+      "occasion": "dinner",
+      "tie": "T022",
+      "returned": 1,
+      "tied": 1,
+      "noTie": 0
+    },
+    {
+      "style": "MODERN",
+      "occasion": "weekend",
+      "tie": "any",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "MODERN",
+      "occasion": "weekend",
+      "tie": "none",
+      "returned": 20,
+      "tied": 0,
+      "noTie": 20
+    },
+    {
+      "style": "MODERN",
+      "occasion": "weekend",
+      "tie": "T022",
+      "returned": 1,
+      "tied": 1,
+      "noTie": 0
+    }
+  ],
+  "historicalS06Preserved": true,
+  "savedDataWrites": 0,
+  "limitation": "Numerical and source-contract validation; no new visual approval or physical colour measurement is claimed.",
+  "validation_environment": "Local isolated test processes; no personal browser storage",
+  "source_hashes": {
+    "data/issue22-garment-dna.json": "5a302e118a57b945b8cf80ba617fc2e28b22f2019d0a9ba521a1a73d9da91d4f",
+    "data/issue22-garment-dna.js": "fbe07c745271d928279f4fe9dd2af7bc0c17fd4f174ac4a1673aadcd8120694b",
+    "data/issue22-materials.json": "6da3a0dc1b41bbc1f76bc8f07215457ae2b7d66c15b11f5a4017c1844b9f06ee",
+    "data/issue22-materials.js": "2c810cff41f759a21aaa424b55243aae58dfd269c6606f1f646eec1dce738401",
+    "data/issue22-option-index.json": "e60ed8c7ff6646e9a6576138595f0589846a72bebba4dd6d407739cac78f488d",
+    "data/issue22-option-index.js": "6f6b46a3538cd28a8a67a272e6e0fb48b4726e2bc42da22a3d1d7b1cebbbe1d8",
+    "data/issue22-reviewed-overlay.json": "da08a9da0716fef826184e9f6ff97ef3ae734110c942d7526a037b213f2131d5",
+    "data/issue22-reviewed-overlay.js": "a8972569634220669d187f1f84ae122f4770c140aeec44282ad13db835a5a833",
+    "data/issue22-picker-images.json": "e9fc5214bc824b4c99f8dc5cc5b190dec51582d26db167be0521147d459d542d",
+    "data/issue22-picker-images.js": "f52e359ac61381d3ebb7b1ce912d58ca76275467ae35eeb2967f5af4535e7c4c",
+    "tests/s06-neutral-dna.cjs": "94bc9d40cfc76ea4b46f06d4215f63b40a6f7708869b108bb6001e66b60c129b",
+    "tests/s06-neutral-material.cjs": "9e91e29c1dd0a684a626a57b0f11932a9d0d2a8650c1449eb09fc069bc328632",
+    "tests/issue22-source-lock.py": "be689c75545b7921adae3dde062ebef04e5bd2a969eeb5e0c7a70e81a1ca8bf9",
+    "tools/audit_continuous_source_lock.py": "e03a44423b1c018513509fc58df568ec77bd71d2e56011272aa0febc87e7d7ca",
+    "runtime/avatar-v3-candidate-14e5819a66ce1af14ed3.js": "14e5819a66ce1af14ed31c080ddd60e1c4ab1a0d5e00cee2fdf612f0458370f9",
+    "src/issue22-reviewed-panel-a9d953556b6f8099d105.js": "a9d953556b6f8099d1052ceeb847a11adca5329f695fc95e8289b6584ab2d565"
+  }
+}

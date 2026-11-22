@@ -1,0 +1,329 @@
+name: Issue 22 garment fidelity and regression validation
+
+on:
+  push:
+    branches: [fix/issue22-garment-fidelity-20261122]
+  pull_request:
+    branches: [integration/issue22-v3, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: issue22-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  source-and-matching:
+    name: Immutable sources, deterministic delivery and matching
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch exact approved and retained builder checkpoints
+        run: |
+          git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
+          git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          git fetch --depth=1 origin 1d5529c4a1a2f87b1212ac68392af1b4dc87d7bb
+          git fetch --depth=1 origin f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9
+      - name: Install pinned verification dependencies
+        run: |
+          npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
+          python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Reproduce the materials, current compatibility index and picker previews
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          node tools/build_issue22_materials.cjs
+          node tools/build_issue22_index.cjs
+          node tools/build_issue22_reviewed.cjs
+          node tools/build_issue22_previews.cjs
+          python tools/integrate_avatar_v3.py --write
+          git diff --exit-code
+      - name: Verify source preservation and actual shipped delivery
+        run: |
+          python tools/verify_active_delivery.py --check --syntax
+          python tests/issue22-source.py
+          python tests/issue22-source-lock.py
+          python tests/active-delivery-audit.py
+          python -m py_compile tests/issue22-browser.py tools/issue22_delivery.py tools/issue22_reviewed.py
+      - name: Verify all mode and occasion policies, exact scoring scope and historical records
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/ci
+          node tests/issue22-matching.cjs | tee evidence/issue22/ci/matching.log
+          node tests/s06-neutral-dna.cjs | tee evidence/issue22/ci/s06-neutral-dna.log
+          node tests/s06-neutral-material.cjs | tee evidence/issue22/ci/s06-neutral-material.log
+          node tests/issue22-reviewed.cjs | tee evidence/issue22/ci/reviewed.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_SOURCE_AND_MATCHING
+          path: |
+            evidence/issue22/source.json
+            evidence/issue22/ci/
+          if-no-files-found: error
+          retention-days: 30
+
+  native-visual:
+    name: Full-avatar native visual regression — ${{ matrix.shard }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned native rendering dependencies
+        run: npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
+      - name: Verify material fidelity contracts and B08 continuity
+        if: matrix.shard == 1
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/ci
+          node --expose-gc --test --test-concurrency=1 tests/issue22-materials.cjs tests/issue22-b08-seam.cjs | tee evidence/issue22/ci/material-contracts.log
+      - name: Render every target against every shirt and check unchanged garment controls
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/ci
+          node --expose-gc tests/issue22-render-matrix.cjs --shard '${{ matrix.shard }}' --shards 4 | tee evidence/issue22/ci/native-matrix.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_NATIVE_VISUAL_${{ matrix.shard }}
+          path: |
+            evidence/issue22/native/
+            evidence/issue22/ci/
+          if-no-files-found: error
+          retention-days: 30
+
+  retained-fit:
+    name: Retained collar, tie, cuff and V2 contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned native rendering dependencies
+        run: npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
+      - name: Verify current source ownership, full historical collar coverage and retained V2
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/retained-fit
+          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs | tee evidence/issue22/retained-fit/current-fit.log
+          NODE_OPTIONS=--require=./tests/issue22-retained-source-baseline.cjs node --expose-gc tests/avatar-v3-shirt-collar-fit.cjs | tee evidence/issue22/retained-fit/historical-collar-contract.log
+          node --expose-gc tests/continuous-shirts-bundle.cjs | tee evidence/issue22/retained-fit/retained-v2.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_RETAINED_FIT
+          path: evidence/issue22/retained-fit/
+          if-no-files-found: error
+          retention-days: 30
+
+  retained-cuff:
+    name: Complete retained cuff source and cache contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned native rendering dependencies
+        run: npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
+      - name: Verify all 27 original trouser sources, all 33 garments, cache restoration and shirt-only controls
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/retained-cuff
+          python3 tests/issue22-retained-cuff.py | tee evidence/issue22/retained-cuff/full-source-contract.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_RETAINED_CUFF
+          path: evidence/issue22/retained-cuff/
+          if-no-files-found: error
+          retention-days: 30
+
+  functional:
+    name: Existing application and saved-state regressions
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch the immutable tie-engine comparison checkpoint
+        run: git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
+      - name: Install isolated IndexedDB verification dependency
+        run: npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8
+      - name: Run the complete five-round application suite and rejection regressions
+        env:
+          NODE_PATH: /tmp/hewrs-issue22-deps/node_modules
+        run: |
+          mkdir -p evidence/issue22/ci
+          node --test --test-concurrency=2 tests/five-round-*.cjs tests/rejection-status-ui.cjs tests/all-rejections-core.cjs tests/all-rejections-ui.cjs tests/all-rejections-engine.cjs tests/all-rejections-entrypoints.cjs tests/all-rejections-export-context.cjs tests/rejection-database.cjs tests/rejection-read-failure.cjs tests/rejection-cumulative-refill.cjs tests/rejection-same-generation-guard.cjs tests/tie-feedback.cjs tests/tie-only-replacement.cjs tests/tie-engine-integration.cjs | tee evidence/issue22/ci/application.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_APPLICATION
+          path: evidence/issue22/ci/
+          if-no-files-found: error
+          retention-days: 30
+
+  browser-visual:
+    name: Full-avatar modes and occasions — ${{ matrix.browser }} — ${{ matrix.shard }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        shard: [1, 2]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0 numpy==2.2.6
+      - name: Exercise all four modes and all three occasions in the shipped application
+        run: python tests/issue22-browser.py --browser '${{ matrix.browser }}' --shard '${{ matrix.shard }}' --shards 2 --output evidence/issue22/browser
+      - name: Verify current reviewed assessments and corrected image boards
+        if: matrix.shard == 1
+        run: python tests/issue22-reviewed-browser.py --browser '${{ matrix.browser }}' --output evidence/issue22/browser/reviewed
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_BROWSER_${{ matrix.browser }}_${{ matrix.shard }}
+          path: evidence/issue22/browser/
+          if-no-files-found: error
+          retention-days: 30
+
+  current-partial-tie:
+    name: Current runtime exact tie and knot preservation — ${{ matrix.browser }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser and image drivers
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Prove retained fit sources and material alpha, then check all 162 current partial-tie cases
+        run: python tests/issue19-partial-tie-browser.py --browser '${{ matrix.browser }}' --output evidence/issue22/current-partial-tie
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_CURRENT_PARTIAL_TIE_${{ matrix.browser }}
+          path: evidence/issue22/current-partial-tie/
+          if-no-files-found: error
+          retention-days: 30
+
+  browser-functional:
+    name: Protected UI behavior — ${{ matrix.browser }} — ${{ matrix.section }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        section: [state, tie, reasons, lifecycle]
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
+      - name: Exercise the shipped UI with isolated saved records
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/issue22-app-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          target_url=http://127.0.0.1:8765/index.html
+          case '${{ matrix.section }}' in
+            state) python tests/five-round-state-browser.py --url "$target_url" --browser '${{ matrix.browser }}' ;;
+            tie) python tests/tie-reason-scope-browser.py --url "$target_url" --browser '${{ matrix.browser }}' ;;
+            reasons|lifecycle) python tests/all-rejections-browser.py --url "$target_url" --browser '${{ matrix.browser }}' --section '${{ matrix.section }}' ;;
+          esac
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_UI_${{ matrix.browser }}_${{ matrix.section }}
+          path: |
+            evidence/five_round_20261119/browser/
+            evidence/tie_reason_scope/
+            evidence/all_rejections/
+          if-no-files-found: error
+          retention-days: 30
+
+  storage-recovery:
+    name: Home, Favorites and failed-read recovery
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+      options: --init --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install matching browser driver
+        run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - name: Verify Home preferences and persisted state separation
+        run: python tests/stage10-home-preferences-browser.py
+      - name: Verify failed reads and multi-tab recovery
+        run: python tests/rejection-database-read-failure-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: HEWRS_ISSUE22_STORAGE
+          path: evidence/rejection_storage/
+          if-no-files-found: error
+          retention-days: 30
+
+  issue22-required:
+    name: Issue 22 required validation
+    if: always()
+    needs: [source-and-matching, native-visual, retained-fit, retained-cuff, functional, browser-visual, current-partial-tie, browser-functional, storage-recovery]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require every validation job to succeed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          python - <<'PY'
+          import json, os
+          results = json.loads(os.environ['RESULTS'])
+          failed = {name: job['result'] for name, job in results.items() if job['result'] != 'success'}
+          if failed:
+              raise SystemExit('Issue 22 verification incomplete: ' + json.dumps(failed, sort_keys=True))
+          print('Every Issue 22 validation job passed. No deployment job is defined.')
+          PY

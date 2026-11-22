@@ -1,0 +1,28 @@
+{
+  "schema": "hewrs.issue22.local-validation.v1",
+  "scope": "Completed local checks; complete matrix and both browser engines are mandatory CI gates",
+  "checks": {
+    "existing_application_and_rejection_tests": {
+      "passed": 267,
+      "failed": 0
+    },
+    "material_checks": {
+      "passed": 189,
+      "derived_layers": 9,
+      "full_avatar_renders": 10
+    },
+    "material_deterministic_replay": {
+      "byte_identical_files": 12
+    },
+    "original_source_guard": {
+      "unchanged_original_files": 2180
+    },
+    "shipped_delivery_rebuild_and_syntax": "PASS",
+    "native_batch_smoke": {
+      "target_pairs": 8,
+      "no_tie_guard_cases": 141,
+      "status": "PASS"
+    },
+    "local_browser": "BLOCKED: Chromium required Unix socket creation is unavailable; no browser pass claimed"
+  }
+}

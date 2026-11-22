@@ -1,4 +1,11 @@
-name: Issue 19 complete V3 replacement validation
+name: Retained Issue 19 contracts and current V3 regression validation
+
+# Issue 22 preserves all original source files but changes seven display
+# materials and B06/B10 tie eligibility. The original RGB/tie/runtime oracles
+# run below against their exact released checkpoint, without changing any
+# assertion. Current source/native/functional jobs remain on the PR checkout;
+# issue22-validation.yml independently runs its full current-browser matrix
+# for the same main PR, including the new materials and hard no-tie policies.
 
 on:
   push:
@@ -48,6 +55,7 @@ jobs:
           git fetch --depth=1 origin ee6bdb7c0986597e569056499ff9eedca1ec3c98
           git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
           git fetch --depth=1 origin febe4148fc0b27ee2018d84408714ee1fe712015
+          git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
       - name: Install isolated native verification dependencies
         run: |
           npm install --prefix /tmp/hewrs-issue19-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
@@ -55,7 +63,7 @@ jobs:
       - name: Verify exact sources, protected behavior and deterministic integration
         run: |
           python tools/verify_active_delivery.py --check --syntax
-          python tests/issue19-source.py
+          python tests/issue22-source.py
           python tests/active-delivery-audit.py
           python -m py_compile tests/issue19-browser.py tests/issue19-source.py tests/issue19-partial-tie-browser.py
           node --check tests/avatar-v3-fit-runtime.cjs
@@ -65,7 +73,9 @@ jobs:
           NODE_PATH: /tmp/hewrs-issue19-deps/node_modules
         run: |
           mkdir -p evidence/issue19/native
-          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs tests/avatar-v3-shirt-collar-fit.cjs tests/issue19-cuff-underlay.cjs | tee evidence/issue19/native/fit-contracts.log
+          node --expose-gc --test --test-concurrency=1 tests/avatar-v3-collar-fit.cjs tests/avatar-v3-tie-fit.cjs tests/avatar-v3-cuff-fit.cjs | tee evidence/issue19/native/current-fit-contracts.log
+          NODE_OPTIONS=--require=./tests/issue22-retained-source-baseline.cjs node --expose-gc tests/avatar-v3-shirt-collar-fit.cjs | tee evidence/issue19/native/retained-collar-contract.log
+          python tests/issue22-retained-cuff.py | tee evidence/issue19/native/complete-retained-cuff-contract.log
           node --expose-gc tests/continuous-shirts-bundle.cjs | tee evidence/issue19/native/compiled-runtime.log
       - name: Run complete existing five-round application regressions
         env:
@@ -87,7 +97,7 @@ jobs:
           retention-days: 30
 
   mobile-preflight:
-    name: Pinned B01 mobile presentation — ${{ matrix.browser }}
+    name: Retained Issue 19 B01 mobile presentation — ${{ matrix.browser }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
@@ -99,6 +109,8 @@ jobs:
       options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: 95d14073e33f2b699bdb0cdbd42504b1a1be2274
       - name: Install matching browser and image drivers
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
       - name: Capture settled reviewed outfit at all four viewport widths
@@ -122,7 +134,7 @@ jobs:
           retention-days: 30
 
   partial-tie-preservation:
-    name: Fixed partial tie foreground — ${{ matrix.browser }}
+    name: Retained Issue 19 partial tie foreground — ${{ matrix.browser }}
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     strategy:
@@ -134,6 +146,8 @@ jobs:
       options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: 95d14073e33f2b699bdb0cdbd42504b1a1be2274
       - name: Install matching browser and image drivers
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
       - name: Compare all 47 ties on DS027 and DS037 against the same-engine collar-only diagnostic
@@ -148,7 +162,7 @@ jobs:
           retention-days: 30
 
   cuff-source-preflight:
-    name: Original cuff underlay and jacket seam — ${{ matrix.browser }}
+    name: Retained Issue 19 cuff and jacket seam — ${{ matrix.browser }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
@@ -160,6 +174,8 @@ jobs:
       options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: 95d14073e33f2b699bdb0cdbd42504b1a1be2274
       - name: Install matching browser and image drivers
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
       - name: Check original S03 trousers in both legacy collar states
@@ -176,7 +192,7 @@ jobs:
           retention-days: 30
 
   exhaustive-fit:
-    name: All garment routes — ${{ matrix.browser }} — ${{ matrix.suite }} — ${{ matrix.shard }}
+    name: Retained Issue 19 routes — ${{ matrix.browser }} — ${{ matrix.suite }} — ${{ matrix.shard }}
     needs: cuff-source-preflight
     runs-on: ubuntu-24.04
     timeout-minutes: 55
@@ -191,6 +207,8 @@ jobs:
       options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: 95d14073e33f2b699bdb0cdbd42504b1a1be2274
       - name: Install matching native browser and image drivers
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0
       - name: Render complete Cartesian shirt matrix and all exact tie sources

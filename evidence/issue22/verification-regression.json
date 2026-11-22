@@ -1,0 +1,316 @@
+{
+  "schema": "hewrs.issue22.independent-regression-verification.v1",
+  "status": "PASS_SOURCE_REVIEW_CI_RETRY_REQUIRED",
+  "review_date": "2026-11-22",
+  "reviewer": "integration_audit agent",
+  "independence": "This pass independently reviews the root-authored delivery/build/verifier/workflow/native-matrix changes and integration of the other agents material/matching code. This reviewer authored B08 and the browser harness; their visual/matching acceptance is covered by the other independent reviews. This report does not self-certify browser execution.",
+  "baseline_commit": "95d14073e33f2b699bdb0cdbd42504b1a1be2274",
+  "runtime": "runtime/avatar-v3-candidate-66617ee8cb0a8017d508.js",
+  "runtime_sha256": "66617ee8cb0a8017d508e4f5e5fc575eb14238d00e6758f43d122d7151a1a742",
+  "reviewed_files": [
+    {
+      "path": "tools/issue22_delivery.py",
+      "sha256": "5389855422813ce029f941e1053ff9468e030f234b891de27bdb0b4ab57e839a"
+    },
+    {
+      "path": "tools/issue22_reviewed.py",
+      "sha256": "5c4d780b7fc77392e5ecafb81bb8cd5d89eb2513157eed4fab793b91366c3e97"
+    },
+    {
+      "path": "tools/build_avatar_v3_candidate.py",
+      "sha256": "bc17d23366494fd81be3bd65f3d3ebab1027f5f8da1f85d52da4e7db87813b00"
+    },
+    {
+      "path": "tools/integrate_avatar_v3.py",
+      "sha256": "d13a37248df11b737f49c48a0b0ebddfe8e92a405b425c804f2621dd65a6d46d"
+    },
+    {
+      "path": "tools/verify_active_delivery.py",
+      "sha256": "6373940e7c6a338c06f4a7b1c150d43c88985d950669549d4c62d18493981944"
+    },
+    {
+      "path": "tests/issue22-source.py",
+      "sha256": "8ef61d3fc7fcb4534a17814866dcfce129f379d6165cfe3244a391a76ec6417a"
+    },
+    {
+      "path": "tests/issue22-render-matrix.cjs",
+      "sha256": "c2e8dcfd727d96d67ba4d74035486ffd154b4352777c646099ab7b3f468bc17f"
+    },
+    {
+      "path": "tests/issue22-render-matrix-worker.cjs",
+      "sha256": "87da168fbb8cfe6722e7278409f10ad4bee94dee840727a5b7270445b125e027"
+    },
+    {
+      "path": "tests/issue22-browser.py",
+      "sha256": "b0cc89afe0f334f10149a4828e56aa24c2ddfdd74b2037dbac78ff3755734f91"
+    },
+    {
+      "path": "tests/issue22-retained-source-baseline.cjs",
+      "sha256": "41f0d1ae4d2a615252e374300702e22262b614d091ca89c3afa3e10161db6477"
+    },
+    {
+      "path": ".github/workflows/issue22-validation.yml",
+      "sha256": "4c4835f85cf06d87f5e225b1b0f8c336fd4b981783294f3bac273ba85ab9a9cd"
+    },
+    {
+      "path": "src/issue22-materials.js",
+      "sha256": "ea2e4c6d8fdac9ed2b84a6d1c51bb4d2e4eb661e238032f456a7ac56f26509c6"
+    },
+    {
+      "path": "src/issue22-matching.js",
+      "sha256": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f"
+    },
+    {
+      "path": "src/issue22-render-guard.js",
+      "sha256": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc"
+    },
+    {
+      "path": "src/issue22-reviewed-data.js",
+      "sha256": "b95bfe77dbfccee90ac55ed1304a5b2c6fc2536ef9a915d0f892ecea7c28d432"
+    }
+  ],
+  "checks_performed": [
+    {
+      "check": "Actual delivery verifier --check --syntax",
+      "status": "PASS",
+      "command": "python tools/verify_active_delivery.py --check --syntax"
+    },
+    {
+      "check": "Original source preservation replay",
+      "status": "PASS",
+      "command": "python tests/issue22-source.py",
+      "protected_original_files": 2180,
+      "original_sources_changed": 0,
+      "approved_avatar_and_both_hands_exact": true
+    },
+    {
+      "check": "Complete diff of previously existing files",
+      "status": "PASS",
+      "changed_files": [
+        "AVATAR_V3_RELEASE.json",
+        "AVATAR_V3_REVIEW_BUILD.json",
+        "app.html",
+        "avatar-v3-review.html",
+        "index.html",
+        "tools/build_avatar_v3_candidate.py",
+        "tools/integrate_avatar_v3.py",
+        "tools/verify_active_delivery.py"
+      ],
+      "scope": "Three integration/verifier tools, three generated entrypoints, two generated release/build records; all other pre-existing files exact."
+    },
+    {
+      "check": "V3 module placement and lazy resource pins",
+      "status": "PASS",
+      "details": "Matching is installed before connection creation and raw engine construction. Material/B08/render guards install before application startup. Index, previews, compiled runtime and reviewed panel are independently content-pinned. Original dependency count/order/SRI checks remain, with only the verified V3 panel substituted into its old dependency slot."
+    },
+    {
+      "check": "Legacy public plan API regression fix",
+      "status": "PASS",
+      "actual_compiled_runtime_cases": 3,
+      "details": "DS013 with S06/S13/S14 keeps Array.isArray(plan), array length and every original serialized source descriptor. Material metadata is additive."
+    },
+    {
+      "check": "Current compiled linen plan guard",
+      "status": "PASS",
+      "cases": 3,
+      "details": "B01/B06/B10 plus T001 reject with HEWRS_LINEN_NO_TIE."
+    },
+    {
+      "check": "Native matrix independent assignment enumeration",
+      "status": "PASS",
+      "target_cases": 534,
+      "unrelated_control_cases": 212,
+      "unique_cases": 746,
+      "shards": [
+        {
+          "shard": 1,
+          "target": 134,
+          "controls": 53,
+          "total": 187
+        },
+        {
+          "shard": 2,
+          "target": 134,
+          "controls": 53,
+          "total": 187
+        },
+        {
+          "shard": 3,
+          "target": 133,
+          "controls": 53,
+          "total": 186
+        },
+        {
+          "shard": 4,
+          "target": 133,
+          "controls": 53,
+          "total": 186
+        }
+      ],
+      "details": "Independent Python enumeration proves all target/control IDs occur exactly once across the four shards and eight-case process batches. Worker failures, runtime changes, missing cases and duplicates cause the aggregator to fail. This is assignment verification, not a claim that the complete render matrix has finished."
+    },
+    {
+      "check": "Historical test oracle isolation",
+      "status": "PASS",
+      "actual_cases": [
+        "B03/DS013/T001",
+        "B06/DS013/T001"
+      ],
+      "details": "Original collar test and its assertions run unchanged against the exact ed326c1f released baseline. The explicit preload is restricted to the two legacy source-oracle tests and refuses other tests. Current Issue22 guards are never disabled."
+    },
+    {
+      "check": "Browser fixture syntax and data-schema preflight",
+      "status": "PASS",
+      "details": "All five JS snippets parse; synthetic history/session/favorite APIs produce one nonempty event and one valid favorite. Python compiles and both browser shards enumerate the complete 84-context/41-fixed-fixture matrix."
+    },
+    {
+      "check": "Actual source-engine eligibility preflight for browser contexts",
+      "status": "PASS",
+      "contexts": 84,
+      "eligible": 60,
+      "intentional_exclusions": 24,
+      "details": "B01 Home requests retain the existing work/use-case restrictions in all 12 contexts. B06 and B10 retain Classic/Hybrid classification exclusions in six contexts each. No eligibility guard was relaxed. This preflight ran the JS against the real source connection, not a browser."
+    },
+    {
+      "check": "Component-card and initial script local asset inventory",
+      "status": "PASS",
+      "unique_paths_checked": 85,
+      "missing_paths": 0,
+      "details": "Both baseline and candidate entrypoints, all 50 open-collar shirt cards across target and control modes, and their image paths were checked."
+    },
+    {
+      "check": "Saved-data and stale-review behavior source audit",
+      "status": "PASS",
+      "details": "No storage schema migration or rewriting of saved wear/favorites/reviews. Tied linen records remain readable but their rendering is rejected. Changed-source reviews remain historical and cannot be promoted as current approval; unrelated source-bound records retain validation."
+    },
+    {
+      "check": "CI merge-gate and production-scope review",
+      "status": "PASS",
+      "details": "New workflow triggers only the dedicated feature push, integration-target PR, or manual dispatch; contents permission is read. It contains no production deployment job. The aggregate required job fails unless every source/matching/native/application/browser/storage job succeeds, including every matrix shard."
+    },
+    {
+      "check": "Whitespace and syntax",
+      "status": "PASS",
+      "details": "Python compile and native matrix/worker/preload JavaScript syntax checks pass. git diff --check passed for previously tracked modifications. The final staged generated runtime retains one pre-existing trailing space from the immutable src/outfit-refill-application.js source; no source whitespace is changed to silence that inherited generated-code warning."
+    },
+    {
+      "check": "First actual Chromium/WebKit fixed-render CI execution and artifact review",
+      "status": "PASS_PARTIAL_SCOPE",
+      "fixed_capture_pairs_per_engine": 41,
+      "unrelated_exact_full_frame_controls_per_engine": 12,
+      "styling_contexts_executed_per_engine": 0,
+      "details": "All four browser shards completed all assigned fixed captures, source-bound geometry, complete head, full alpha silhouette, card image loading, and nonempty saved-data invariance checks before the harness error at the first tied-linen visible render. The 84-context engine matrix and reviewed-browser step were not reached. Independently downloaded WebKit shard 1 and Chromium shard 2 artifacts match GitHub SHA256; their reports contain 390 and 373 successful checks respectively, zero failed assertions before the boundary error, and no page errors, bad asset requests, or external requests. Full avatars for all seven garments in both engines, B01 phone UI, and paired B08 waist crops were visually inspected; no new rendering or continuity defect was found."
+    },
+    {
+      "check": "Strict render-guard boundary correction against actual visible wrapper",
+      "status": "PASS_NATIVE_PREFLIGHT_NOT_BROWSER",
+      "cases": 141,
+      "details": "Ran the exact corrected browser RENDER_GUARD JavaScript against the compiled runtime with immutable outfit-rejection-core attached to the real visible renderer. Every 3 blazers x 47 ties case reports an explicit owner NO-TIE reason, typed plan and detached-render rejection, and the exact visible owner-gate rejection. Full frame, last selection and saved data are preserved."
+    }
+  ],
+  "confirmed_defects_resolved": [
+    {
+      "finding": "Material metadata converted legacy array-shaped plans into plain objects",
+      "resolution": "Preserve arrays with p.slice() plus additive properties; independently replayed on three actual compiled suit plans."
+    },
+    {
+      "finding": "Legacy source-oracle CI fixtures require the released runtime and formerly legal B06 ties",
+      "resolution": "Explicit hash-pinned historical runner retains every old assertion; current visual/no-tie tests stay on the actual new application."
+    },
+    {
+      "finding": "New browser pixel comparisons require NumPy",
+      "resolution": "CI browser dependency install includes pinned numpy 2.2.6."
+    },
+    {
+      "finding": "Browser seed favorite ID did not use the required prefix",
+      "resolution": "Fixture uses favorite_issue22_preserved; real storage validator preflight passes."
+    },
+    {
+      "finding": "B01 mobile screenshot could show controls above the rendered avatar",
+      "resolution": "Scroll the actual rd-canvas into view before the screenshot; full native capture remains exact."
+    },
+    {
+      "finding": "The browser harness incorrectly required the typed Issue22 error from the pre-existing visible rejection wrapper, which legitimately rejects before the inner guard with its established user-facing Error.",
+      "resolution": "Boundary-specific assertions now require the exact OWNER-Bxx-NO-TIE prohibition, typed HEWRS_LINEN_NO_TIE from plan and detached raw atomic render, and either that typed code or the exact unchanged owner-gate message from visible render. The committed frame, last selection and nonempty saved data must all remain exact. All 141 cases pass in an actual compiled-runtime preflight including the immutable rejection-core visible wrapper. No product guard, source, or runtime pin changed.",
+      "execution_status": "FIXED_AND_NATIVE_PREFLIGHT_PASSED_BROWSER_RERUN_PENDING"
+    },
+    {
+      "finding": "Shallow CI checkout omitted exact historical Git objects required by unchanged deterministic builders and tie-engine oracle.",
+      "resolution": "Workflow fetches f114d7dbedab3430761a29d77328ae80ac0882e4 and 1d5529c4a1a2f87b1212ac68392af1b4dc87d7bb for source replay, and febe4148fc0b27ee2018d84408714ee1fe712015 for the historical tie-engine comparison. The tests, baseline oracles and production code remain unchanged.",
+      "execution_status": "WORKFLOW_FIX_REVIEWED_CI_RERUN_PENDING"
+    }
+  ],
+  "unresolved_confirmed_code_defects": [],
+  "execution_limitations": [
+    "Local Chromium launch is blocked before loading the application: chrome process_singleton_posix.cc socket() returns Operation not permitted. Actual browser execution is through CI.",
+    "The first CI run completed 41 fixed render/control pairs per engine, but all browser shards stopped at a confirmed test-boundary expectation error before the styling-context matrix and reviewed-browser step. The strict harness correction passed native preflight and awaits a complete browser rerun.",
+    "Complete 746-case native matrix, full 84-context matrices, reviewed-browser cases, CI aggregate, and repository approval gates remain pending. This checkpoint is not authorization to merge failing or unverified changes."
+  ],
+  "merge_target": "integration/issue22-v3",
+  "production_deployment_authorized": false,
+  "ci_status": "RETRY_REQUIRED",
+  "browser_status": "41_FIXED_CAPTURE_PAIRS_PER_ENGINE_PASS_FULL_CONTEXT_RERUN_PENDING",
+  "additional_independent_browser_fixture_review": {
+    "reviewer": "reference_audit agent",
+    "status": "PASS_NATIVE_API_PREFLIGHT_NOT_BROWSER",
+    "checks": "Both original and corrected reviewed data return exactly one unreviewed B01 possibility for DS001, DS013 and DS040 with PT006/shoe-8/NO_TIE and the explicit summer_weekend_dinner use case. Native selection, clothing/footwear counts and false owner_approved match the browser fixture; 47 tie IDs confirmed.",
+    "eligibility_contexts": 84,
+    "eligible_contexts": 60,
+    "explained_exclusions": 24,
+    "expected_capture_pairs_per_browser": 101
+  },
+  "ci_checkpoint": {
+    "run_id": 44998107134,
+    "run_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/actions/runs/44998107134",
+    "tested_head": "bbc8375b55e050b5f7575f307a79b39c0b82506b",
+    "observed_status": "RUNNING_NATIVE_JOBS_WITH_CONFIRMED_HARNESS_AND_SHALLOW_HISTORY_FAILURES",
+    "browser_jobs": [
+      {
+        "engine": "chromium",
+        "shard": 1,
+        "job_id": 137133479303,
+        "fixed_captures_completed": 21
+      },
+      {
+        "engine": "chromium",
+        "shard": 2,
+        "job_id": 137133479367,
+        "fixed_captures_completed": 20
+      },
+      {
+        "engine": "webkit",
+        "shard": 1,
+        "job_id": 137133479216,
+        "fixed_captures_completed": 21
+      },
+      {
+        "engine": "webkit",
+        "shard": 2,
+        "job_id": 137133479354,
+        "fixed_captures_completed": 20
+      }
+    ],
+    "protected_ui_and_storage_jobs_passed": 9,
+    "functional_suite": {
+      "passed": 266,
+      "failed": 1,
+      "failure": "Missing historical febe4148 Git object in shallow checkout; workflow fetch added, rerun pending."
+    },
+    "native_shards_status": "FOUR_IN_PROGRESS_AT_CHECKPOINT",
+    "artifacts_independently_downloaded": [
+      {
+        "artifact_id": 14743948583,
+        "engine": "webkit",
+        "shard": 1,
+        "sha256": "abfed8200ee001b04dbed62c28078d9e9cf9efb3b1a9017bf043bec826b4a22f"
+      },
+      {
+        "artifact_id": 14744901243,
+        "engine": "chromium",
+        "shard": 2,
+        "sha256": "f24239bfe771beabab4b84659df7a4633206ec1be734d93d79e5a4c03f842903"
+      }
+    ],
+    "full_browser_and_ci_pass_claimed": false
+  }
+}

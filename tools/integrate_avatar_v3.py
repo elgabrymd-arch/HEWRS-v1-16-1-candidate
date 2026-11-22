@@ -12,6 +12,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+import issue22_delivery
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE = ROOT / 'AVATAR_V3_RELEASE.json'
@@ -66,6 +67,7 @@ def record(html):
         'browser_storage_migration': 'none',
         'authority': 'owner_requested_source_avatar_update_and_continuation_through_integration',
         'visual_acceptance': 'not_inferred_from_automated_tests',
+        'issue22': issue22_delivery.record(),
     }
 
 

@@ -1,8 +1,8 @@
 {
   "schema": "hewrs.avatar-v3-preview.v1",
   "preview_entrypoint": "avatar-v3-review.html",
-  "runtime": "runtime/avatar-v3-candidate-ed326c1f8f1b513a3a96.js",
-  "runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+  "runtime": "runtime/avatar-v3-candidate-14e5819a66ce1af14ed3.js",
+  "runtime_sha256": "14e5819a66ce1af14ed31c080ddd60e1c4ab1a0d5e00cee2fdf612f0458370f9",
   "base_runtime": "runtime/continuous-shirts-4fae538c1847c9f7d1e9.js",
   "base_entrypoint": "avatar-v2-reference.html",
   "base_runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
@@ -33,5 +33,53 @@
     "right_hand": "cfca4394b3d208184fef4f267671af834432ac2f6bd89acea83242a9e118863b"
   },
   "app_production_entrypoints_unchanged": false,
-  "approval": "ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN"
+  "approval": "ISOLATED_PREVIEW_ONLY_NOT_APPROVED_FOR_MAIN",
+  "issue22": {
+    "schema": "hewrs.issue22.delivery.v1",
+    "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
+    "baseline_commit": "95d14073e33f2b699bdb0cdbd42504b1a1be2274",
+    "baseline_entrypoint": "avatar-v3-issue22-baseline.html",
+    "baseline_entrypoint_sha256": "dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba",
+    "garment_ids": [
+      "S06",
+      "S13",
+      "S14",
+      "B01",
+      "B06",
+      "B10",
+      "B08"
+    ],
+    "modules": {
+      "data/issue22-garment-dna.js": "fbe07c745271d928279f4fe9dd2af7bc0c17fd4f174ac4a1673aadcd8120694b",
+      "src/issue22-matching.js": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f",
+      "data/issue22-materials.js": "2c810cff41f759a21aaa424b55243aae58dfd269c6606f1f646eec1dce738401",
+      "src/issue22-materials.js": "ea2e4c6d8fdac9ed2b84a6d1c51bb4d2e4eb661e238032f456a7ac56f26509c6",
+      "src/issue22-b08.js": "d76bf8bffc41bc2a595600180c8fc74311064bab24655b3be6314727e308c8be",
+      "src/issue22-render-guard.js": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc",
+      "data/issue22-reviewed-overlay.js": "a8972569634220669d187f1f84ae122f4770c140aeec44282ad13db835a5a833",
+      "src/issue22-reviewed-data.js": "b95bfe77dbfccee90ac55ed1304a5b2c6fc2536ef9a915d0f892ecea7c28d432"
+    },
+    "matching_index": {
+      "path": "data/issue22-option-index.js",
+      "sha256": "6f6b46a3538cd28a8a67a272e6e0fb48b4726e2bc42da22a3d1d7b1cebbbe1d8"
+    },
+    "picker_previews": {
+      "path": "data/issue22-picker-images.js",
+      "sha256": "f52e359ac61381d3ebb7b1ce912d58ca76275467ae35eeb2967f5af4535e7c4c"
+    },
+    "reviewed_panel": {
+      "path": "src/issue22-reviewed-panel-a9d953556b6f8099d105.js",
+      "sha256": "a9d953556b6f8099d1052ceeb847a11adca5329f695fc95e8289b6584ab2d565"
+    },
+    "original_sources": "unchanged; separate source-bound display materials and versioned DNA",
+    "browser_storage_migration": "none",
+    "merge_target": "main",
+    "integration_branch": "integration/issue22-v3",
+    "production_deployment_authorized": true,
+    "production_authorization": {
+      "date": "2026-11-22",
+      "authority": "explicit_owner_instruction",
+      "scope": "complete S06 appearance, DNA and compatibility validation; merge into the primary application and publish"
+    }
+  }
 }

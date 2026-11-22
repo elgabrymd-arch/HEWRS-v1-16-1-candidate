@@ -1,0 +1,69 @@
+{
+  "schema": "hewrs.issue22.material-provenance.v1",
+  "issue": 22,
+  "generated_linen": {
+    "path": "provenance/issue22/natural-linen-material-v1.png",
+    "sha256": "bae8dcc0f117ba6cef83f3610e7b85f844b661d8a2a83a2c345655fb26df8f27",
+    "purpose": "Neutral fine matte natural flax linen material; no garment design or avatar generated",
+    "tool": "built-in image_gen",
+    "prompt": "Square straight-on macro fine natural matte linen cloth, neutral light gray, subtle slubs and tiny soft crinkles, low contrast uniform lighting, no garment edges, seams, labels, logos or coarse holes."
+  },
+  "photographs": {
+    "IMG_1741.jpeg": {
+      "path": "provenance/issue22/IMG_1741.jpeg",
+      "sha256": "84e6fe08ba808b6aad8c3ca87aad4aff1767c523725325514848bb4005575f1c",
+      "role": "owner-supplied-garment-photo",
+      "id": "S13"
+    },
+    "IMG_1745.jpeg": {
+      "path": "provenance/issue22/IMG_1745.jpeg",
+      "sha256": "d3fab84c8171e8587c504f3fa8673f8bf9e7ee1961d6c8b0d89ff053da56a6c0",
+      "role": "owner-supplied-garment-photo",
+      "id": "S13"
+    },
+    "IMG_1747.jpeg": {
+      "path": "provenance/issue22/IMG_1747.jpeg",
+      "sha256": "1559d2901dc790e9a7d4630364e775fe211ca0783e30093fab7cac38bbe7876c",
+      "role": "owner-supplied-garment-photo",
+      "id": "S14"
+    },
+    "IMG_1748.jpeg": {
+      "path": "provenance/issue22/IMG_1748.jpeg",
+      "sha256": "32758dc9bb273d4f3c9860ba9594a68847a24f8d710dc74090342bc7e9d2d770",
+      "role": "owner-supplied-garment-photo",
+      "id": "S14"
+    }
+  },
+  "source_alpha_locked": true,
+  "source_files_unchanged": true,
+  "generated_fabrics": {
+    "S06": {
+      "path": "provenance/issue22/s06-approved-fabric-preview.png",
+      "sha256": "3c2730b546f08b77b2c1d0764a6b69e5c96dd0085c00023d222dac438c825d51",
+      "source_type": "owner-approved-generated-fabric-reference",
+      "approval_scope": "fabric appearance only; not a new garment geometry or avatar approval",
+      "panel": "normal view (left); close-up panel excluded from projection",
+      "sample_rect": [
+        80,
+        140,
+        620,
+        740
+      ],
+      "sampled_median_rgb": [
+        101,
+        100,
+        101
+      ],
+      "target_rgb": [
+        100,
+        100,
+        100
+      ],
+      "color_policy": "equal RGB channels from rounded sample median luminance",
+      "texture_filter": "periodic_binomial_3x3",
+      "source_shading_policy": "24-pixel alpha-normalized smoothing suppresses old coarse plaid; original seams and hardware retain their existing protection masks; no residual original fabric detail is reintroduced",
+      "tool": "built-in image_gen",
+      "purpose": "Project the approved subtle neutral-gray textile onto the existing registered jacket and paired trousers"
+    }
+  }
+}

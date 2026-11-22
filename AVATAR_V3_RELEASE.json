@@ -7,8 +7,8 @@
   "baseline_manifest_sha256": "c2ebff6341b4c1b23eb08f3524f57d3640ad80e732c540b26f0ea0d189de6de8",
   "continuous_runtime": "runtime/continuous-shirts-4fae538c1847c9f7d1e9.js",
   "continuous_runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
-  "runtime": "runtime/avatar-v3-candidate-ed326c1f8f1b513a3a96.js",
-  "runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+  "runtime": "runtime/avatar-v3-candidate-14e5819a66ce1af14ed3.js",
+  "runtime_sha256": "14e5819a66ce1af14ed31c080ddd60e1c4ab1a0d5e00cee2fdf612f0458370f9",
   "source_specification": "data/avatar-v3-candidate.json",
   "source_specification_sha256": "9f0a135ab18ea14b467c44930068ff274cc70a573a83c9dac4a22b1a96b70c3e",
   "source_modules": {
@@ -50,12 +50,60 @@
     "right_hand": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9"
   },
   "entrypoints": {
-    "index.html": "dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba",
-    "app.html": "dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba"
+    "index.html": "630dff4981658686c168a6d20eca2f63763c2ba94406737f0a358ffceddb4f5b",
+    "app.html": "630dff4981658686c168a6d20eca2f63763c2ba94406737f0a358ffceddb4f5b"
   },
   "rollback_entrypoint": "avatar-v2-reference.html",
   "garments_and_scoring": "original_sources_preserved_v3_all_shirt_collar_cuff_and_tie_display_registration",
   "browser_storage_migration": "none",
   "authority": "owner_requested_source_avatar_update_and_continuation_through_integration",
-  "visual_acceptance": "not_inferred_from_automated_tests"
+  "visual_acceptance": "not_inferred_from_automated_tests",
+  "issue22": {
+    "schema": "hewrs.issue22.delivery.v1",
+    "issue_url": "https://github.com/elgabrymd-arch/HEWRS-v1-16-1-candidate/issues/22",
+    "baseline_commit": "95d14073e33f2b699bdb0cdbd42504b1a1be2274",
+    "baseline_entrypoint": "avatar-v3-issue22-baseline.html",
+    "baseline_entrypoint_sha256": "dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba",
+    "garment_ids": [
+      "S06",
+      "S13",
+      "S14",
+      "B01",
+      "B06",
+      "B10",
+      "B08"
+    ],
+    "modules": {
+      "data/issue22-garment-dna.js": "fbe07c745271d928279f4fe9dd2af7bc0c17fd4f174ac4a1673aadcd8120694b",
+      "src/issue22-matching.js": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f",
+      "data/issue22-materials.js": "2c810cff41f759a21aaa424b55243aae58dfd269c6606f1f646eec1dce738401",
+      "src/issue22-materials.js": "ea2e4c6d8fdac9ed2b84a6d1c51bb4d2e4eb661e238032f456a7ac56f26509c6",
+      "src/issue22-b08.js": "d76bf8bffc41bc2a595600180c8fc74311064bab24655b3be6314727e308c8be",
+      "src/issue22-render-guard.js": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc",
+      "data/issue22-reviewed-overlay.js": "a8972569634220669d187f1f84ae122f4770c140aeec44282ad13db835a5a833",
+      "src/issue22-reviewed-data.js": "b95bfe77dbfccee90ac55ed1304a5b2c6fc2536ef9a915d0f892ecea7c28d432"
+    },
+    "matching_index": {
+      "path": "data/issue22-option-index.js",
+      "sha256": "6f6b46a3538cd28a8a67a272e6e0fb48b4726e2bc42da22a3d1d7b1cebbbe1d8"
+    },
+    "picker_previews": {
+      "path": "data/issue22-picker-images.js",
+      "sha256": "f52e359ac61381d3ebb7b1ce912d58ca76275467ae35eeb2967f5af4535e7c4c"
+    },
+    "reviewed_panel": {
+      "path": "src/issue22-reviewed-panel-a9d953556b6f8099d105.js",
+      "sha256": "a9d953556b6f8099d1052ceeb847a11adca5329f695fc95e8289b6584ab2d565"
+    },
+    "original_sources": "unchanged; separate source-bound display materials and versioned DNA",
+    "browser_storage_migration": "none",
+    "merge_target": "main",
+    "integration_branch": "integration/issue22-v3",
+    "production_deployment_authorized": true,
+    "production_authorization": {
+      "date": "2026-11-22",
+      "authority": "explicit_owner_instruction",
+      "scope": "complete S06 appearance, DNA and compatibility validation; merge into the primary application and publish"
+    }
+  }
 }
