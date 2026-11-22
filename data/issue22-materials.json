@@ -1,6 +1,6 @@
 {
   "schema": "hewrs.issue22.materials.v1",
-  "revision": "ISSUE22_S06_APPROVED_FABRIC_20261122_2",
+  "revision": "ISSUE22_S06_PHONE_CHECK_20261122_3",
   "canvas": [
     996,
     2748
@@ -16,8 +16,8 @@
   "alpha_policy": "exact_source_alpha",
   "avatar_policy": "no_avatar_asset_or_geometry_access",
   "assetPaths": {
-    "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444": "assets/issue22-materials/S06-jacket-28a90f89c50c10a8.png",
-    "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169": "assets/issue22-materials/S06-trousers-14073a9d35557250.png",
+    "0018cc94b26cd3add75770d8e209a8e0b9f8912cc298411823f90a2f8555408e": "assets/issue22-materials/S06-jacket-0018cc94b26cd3ad.png",
+    "506a5fb5056936cd094da0a0f6015775ba183ca741c907950ca84517b3ff2c1b": "assets/issue22-materials/S06-trousers-506a5fb5056936cd.png",
     "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107": "assets/issue22-materials/S13-jacket-48a38b7f615ab203.png",
     "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8": "assets/issue22-materials/S13-trousers-71315979b9cf914e.png",
     "bb717e2606224a5dabf28f00f8b1fee2a5dc1bf87c891259e187bb369e5d8fd6": "assets/issue22-materials/S14-jacket-bb717e2606224a5d.png",
@@ -32,8 +32,8 @@
       "layer": "jacket",
       "source_sha256": "65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935",
       "source_url": "assets/65ba3284276b3b99c1ec53e4bcd0bec6c5abaed2ca6dd7c19cf04d52440a6935.png",
-      "display_sha256": "28a90f89c50c10a8d1b84fa1097b5db94fedc4a1860ed03d2f3a3705d0542444",
-      "display_url": "assets/issue22-materials/S06-jacket-28a90f89c50c10a8.png",
+      "display_sha256": "0018cc94b26cd3add75770d8e209a8e0b9f8912cc298411823f90a2f8555408e",
+      "display_url": "assets/issue22-materials/S06-jacket-0018cc94b26cd3ad.png",
       "rect": [
         0,
         0,
@@ -48,12 +48,12 @@
           105.722
         ],
         "display_mean_rgb": [
-          99.901,
-          99.884,
-          99.884
+          99.946,
+          99.929,
+          99.929
         ],
         "alpha_changed_pixels": 0,
-        "changed_rgb_pixels": 746405,
+        "changed_rgb_pixels": 746463,
         "protected_hardware_pixels": 2452,
         "opaque_pixels": 731386
       }
@@ -63,8 +63,8 @@
       "layer": "trousers",
       "source_sha256": "aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861",
       "source_url": "assets/aea4f48752eb664abf5a6b7c327585e097dc539f37835f30a46890812e855861.png",
-      "display_sha256": "14073a9d355572502de1e0c392c6616aa5506952035b0c16c024562aebaa4169",
-      "display_url": "assets/issue22-materials/S06-trousers-14073a9d35557250.png",
+      "display_sha256": "506a5fb5056936cd094da0a0f6015775ba183ca741c907950ca84517b3ff2c1b",
+      "display_url": "assets/issue22-materials/S06-trousers-506a5fb5056936cd.png",
       "rect": [
         0,
         0,
@@ -79,12 +79,12 @@
           95.624
         ],
         "display_mean_rgb": [
-          100.007,
-          100.007,
-          100.007
+          100.099,
+          100.099,
+          100.099
         ],
         "alpha_changed_pixels": 0,
-        "changed_rgb_pixels": 573149,
+        "changed_rgb_pixels": 573212,
         "protected_hardware_pixels": 0,
         "opaque_pixels": 561454
       }
@@ -331,8 +331,8 @@
           740
         ],
         "neutralize_color": true,
-        "texture_scale": 1,
-        "texture_gain": 0.72,
+        "texture_scale": 1.6,
+        "texture_gain": 1.55,
         "texture_filter": "periodic_binomial_3x3",
         "blur": 24,
         "detail": 0,
