@@ -558,7 +558,7 @@ B01_REVIEW_AUDIT = r'''async selected => {
    anchors:{topwear:o.topwear,pants:o.pants,shirt:o.shirt,tie:null,shoe:o.shoe}};
   return {shoeId,already_reviewed:known.has(key),
    owner_allowed:HEWRSOutfitFeedback.ownerRuleCheck(s,{context}).allowed,
-   source_constraints_pass:bridge.inspect(o,context).hard_constraints.status==='pass'};
+   source_constraints_pass:bridge.inspect(o,{style:context.style,occasion:context.occasion,mode:context.mode,formality:context.formality,anchors:context.anchors}).hard_constraints.status==='pass'};
  });
 }'''
 
