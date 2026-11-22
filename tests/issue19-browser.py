@@ -46,7 +46,7 @@ JACKET_OUTER_SHOULDER_RECTS = ((0, 350, 330, 600), (666, 350, 996, 600))
 TIED_NECK_CORNER_RECTS = ((422, 401, 441, 420), (560, 405, 575, 420))
 TIE_RECT = (422, 467, 575, 1251)
 CUFF_RECTS = ((20, 1180, 260, 1426), (736, 1180, 976, 1426))
-DETAILS = {'collar': (248, 300, 748, 800), 'cuffs': (75, 1250, 921, 1625),
+DETAILS = {'collar': (248, 300, 748, 800), 'cuffs': (0, 1120, 996, 1625),
            'tie': (350, 430, 646, 1250), 'shoulders': (0, 355, 996, 615)}
 SEAMS = json.loads((ROOT / 'tests/issue19-collar-seam-fixtures.json').read_text())
 SHOULDERS = json.loads((ROOT / 'tests/issue19-shoulder-contour-fixtures.json').read_text())

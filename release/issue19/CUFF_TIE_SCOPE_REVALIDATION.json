@@ -1,0 +1,68 @@
+{
+  "schema": "hewrs.issue19.partial-tie-runtime-revalidation.v2",
+  "status": "PASS_NATIVE_CUFF_ONLY_EQUIVALENCE_FOR_PARTIAL_TIE_SCOPE_CURRENT_BROWSER_RERUN_REQUIRED",
+  "reviewed_head": "00af4730bc7bb48b837336fcfb6f2a4e0c7d7eb4",
+  "runtime_sha256": "ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1",
+  "prior_runtime_sha256": "44233e6c33a9bb02c1e04ab47d0312115908ba19cfcb9cc08f16b8b1cc1a1f12",
+  "compiled_delta": "Exactly one cuff module block replaced; exact omission makes the complete runtimes byte-identical.",
+  "omitted_cuff_runtime_sha256": "9e4a4b01768b6c10e7430bbf95bcd17a37629726ba2d8e99748b061da19b9bf1",
+  "unchanged_collar_source_sha256": "49eeb2268fd308a87392fa6cdd6321e4b4b86d12005fc65a46d26a8363c18827",
+  "unchanged_tie_source_sha256": "b2fc34f245e852591f9d120de6d99270633d6f57f5a53f790f6be22411ca9f93",
+  "unchanged_pose_source_sha256": "2de18380a4ac99677d2fb38bb88ea32336fe64e4ccd597a81b57d25af095dbf4",
+  "all18_suit_paths_same_no_mask_branch": true,
+  "selected_source_projection_plans": 1692,
+  "source_binding_comparisons_exact": 1692,
+  "full_tie_original_pngs_rehashed": 47,
+  "historical_actual_browser_projection_crops_rechecked": 94,
+  "all_full_original_tie_alpha_support_x_half_open": [
+    422,
+    575
+  ],
+  "tie_projection_changes_only_y": true,
+  "cuff_bounds_xywh": [
+    [
+      20,
+      1180,
+      240,
+      246
+    ],
+    [
+      736,
+      1180,
+      240,
+      246
+    ]
+  ],
+  "actual_old_new_comparisons": 4,
+  "actual_comparison_scope": "DS027/DS037 withT001 onS02/S05; whole frames differ only in the declared cuff rectangles. Entire central strip x260..735, including selected ties, knots and all fixed collar backing points, remains byte-exact.",
+  "actual_changed_pixels_by_case": {
+    "S02-DS027-T001": 1306,
+    "S02-DS037-T001": 1306,
+    "S05-DS027-T001": 5694,
+    "S05-DS037-T001": 5694
+  },
+  "outside_declared_cuff_pixels_changed": 0,
+  "literal_point_comparisons": 6,
+  "literal_points_equal_and_alpha255": true,
+  "complete_frame_equivalence": false,
+  "required_current_browser_cases_per_engine": 162,
+  "browser_approval": false,
+  "historical_browser_evidence_note": "All47 original full-tie PNGs rehashed and their complete alpha support measured. Documented projection changes onlyY (x and width unchanged). All94 actual historical projection crops x422..574 were decoded and selected-pixel counts verified. Saved crops are not mislabeled as full projection images. Current162-case-per-engine browser gates still required.",
+  "native_proof": {
+    "path": "/workspace/scratch/4197e9f551ea/audits/e65-independent-review/PARTIAL_TIE_ED326_NATIVE_REVALIDATION.json",
+    "sha256": "d3592af3298ec14674b21e76ee57dbdef0ba23c69939910c5a0da3f150b4abb9"
+  },
+  "projection_nonoverlap_proof": {
+    "path": "/workspace/scratch/4197e9f551ea/audits/e65-independent-review/PARTIAL_TIE_PROJECTED_MASK_NONOVERLAP.json",
+    "sha256": "af565152d58052b590069c653e6cc2ee33334d7acde7c93ac51cbea0f0221826"
+  },
+  "native_reproduction_script": {
+    "path": "/workspace/scratch/4197e9f551ea/audits/e65-independent-review/prove-partial-tie-cuff-only-equivalence.cjs",
+    "sha256": "9543c2b001538c7d186fcdb2f5d1fc25476e0b455c2ccda05edf4aa06f7ee6af"
+  },
+  "limitations": [
+    "This is scoped source/runtime equivalence, not full cuff acceptance.",
+    "The complete current-head Chromium/WebKit162-case contracts must run with the exact current runtime.",
+    "Historic b5 and442 source-over geometry evidence remains identified as historical; no claim that repaired full frames equal rejected frames."
+  ]
+}

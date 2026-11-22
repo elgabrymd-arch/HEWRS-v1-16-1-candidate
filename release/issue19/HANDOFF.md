@@ -276,6 +276,24 @@ waistline. The original selected jacket remains the final occluder: closed
 jackets conceal the continuing tie naturally and open jackets retain their
 approved opening.
 
+### Cuff-only runtime revalidation of partial tie fixtures
+
+`CUFF_TIE_SCOPE_REVALIDATION.json` binds the partial tie fixture to runtime
+`ed326c1f8f1b513a3a960ebf508c27e80df688ff41c9aad756e63fa35c34d8f1`.
+Removing the exact cuff-module block from this runtime and the previous runtime
+makes their remaining bytes identical. An independent check compared 1,692
+source/projection plans, rehashed all 47 original full tie photographs and
+rechecked 94 historical actual-browser projection crops. The complete projected
+tie support lies outside both cuff correction rectangles.
+
+Four native before/after frames additionally preserve the entire central tie
+strip and all six literal backing-point comparisons exactly. Those full frames
+intentionally differ at the corrected cuffs; this is no full-frame equivalence
+claim. The fixture retains the earlier runtime revalidation verbatim as history,
+keeps every source, geometry, point and tolerance unchanged, and requires fresh
+162-case Chromium and 162-case WebKit runs on the current runtime. The committed
+scope report itself does not grant browser approval.
+
 ### Reviewed-outfit mobile controls
 
 The exhaustive B01 test exposed hidden native-select text contributing to the
@@ -398,7 +416,8 @@ selected tie pixel. A passing capture is still subject to independent visual
 inspection on light and dark backgrounds.
 
 Every matrix case retains exact native RGBA hashes and paired collar, cuff,
-tie and full-width shoulder details. Numbered contact sheets and a manifest index cover those details.
+tie and full-width shoulder details. Cuff detail images span the full native
+width and y1120–1625, including the complete upper correction boundary at y1180. Numbered contact sheets and a manifest index cover those details.
 Selected full native PNGs supplement the complete detail set. Reports/phone
 screens, core details, shoulder details and full native PNGs are uploaded separately so archive
 size cannot make the reports inaccessible. Artifact retention is 30 days; the
@@ -433,8 +452,8 @@ manifest. Do not describe a merged commit or a queued deployment as verified
 production. Close Issue 19 only after the production result is established.
 
 The live workflow additionally runs all 50 shirts in their permitted no-tie/T001
-states on S02, B02, B06 and B15 in Chromium and WebKit: 384 paired native frames
-per engine. B02's 96 selections exercise the repaired source mask on the actual
+states on S02, S03, B02, B06 and B15 in Chromium and WebKit: 480 paired native
+frames per engine (960 total). S03 exercises the corrected trouser component. B02's 96 selections exercise the repaired source mask on the actual
 publication. The workflow fetches the actual live HTTPS application into
 isolated profiles and compares
 the original source controls, corrected gaps and mobile presentation against
