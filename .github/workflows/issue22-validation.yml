@@ -38,6 +38,7 @@ jobs:
           git fetch --depth=1 origin 1d5529c4a1a2f87b1212ac68392af1b4dc87d7bb
           git fetch --depth=1 origin f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9
           git fetch --depth=1 origin 457774146fa7d4a5494ceec553f187e27b126983
+          git fetch --depth=1 origin f648cda6e577aa1b6ce7b75df1e71437eb5e6aae
       - name: Install pinned verification dependencies
         run: |
           npm install --prefix /tmp/hewrs-issue22-deps --no-audit --no-fund fake-indexeddb@6.2.8 @napi-rs/canvas@0.1.100
@@ -68,6 +69,7 @@ jobs:
           node tests/s06-neutral-dna.cjs | tee evidence/issue22/ci/s06-neutral-dna.log
           node tests/s06-neutral-material.cjs | tee evidence/issue22/ci/s06-neutral-material.log
           node --expose-gc tests/s14-material.cjs | tee evidence/issue22/ci/s14-material.log
+          node --expose-gc tests/s13-material.cjs | tee evidence/issue22/ci/s13-material.log
           S06_CONTOURS_OUTPUT=evidence/issue22/ci/s06-contours node --expose-gc tests/s06-contours.cjs | tee evidence/issue22/ci/s06-contours.log
           node tests/issue22-reviewed.cjs | tee evidence/issue22/ci/reviewed.log
       - uses: actions/upload-artifact@v4

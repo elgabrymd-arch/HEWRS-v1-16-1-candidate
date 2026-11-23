@@ -195,7 +195,7 @@ def sheets(output, captures):
 
 def verify_current_picker(page, output, check, garment_id):
     """Check the real picker DOM and fetched image, without applying a choice."""
-    assert garment_id in {'S06', 'S14'}, 'Only the explicitly corrected current suits are inspected'
+    assert garment_id in {'S06', 'S13', 'S14'}, 'Only the explicitly corrected current suits are inspected'
     expected = json.loads((ROOT / 'data/issue22-picker-images.json').read_text())['items'][garment_id]
     check(garment_id + ' picker expected PNG matches its independent checkout hash',
           digest((ROOT / expected['src']).read_bytes()) == expected['sha256'])
@@ -371,7 +371,7 @@ def run(args):
                           for key in ('raw_pattern', 'preference_pattern')), s06)
             expected_materials = json.loads((ROOT / 'data/issue22-materials.json').read_text())
             current_material_sources = {}
-            for garment_id in ('S06', 'S14'):
+            for garment_id in ('S06', 'S13', 'S14'):
                 registered = [row for row in expected_materials['bindings'].values()
                               if row['garment_id'] == garment_id]
                 expected_bytes = [{'layer': row['layer'], 'url': row['display_url'], 'sha256': row['display_sha256']}
@@ -399,7 +399,7 @@ def run(args):
                 report[garment_id.lower() + '_current_materials'] = actual_bytes
             report['s06_current_dna'] = s06
             if args.shard == 1:
-                for garment_id in ('S06', 'S14'):
+                for garment_id in ('S06', 'S13', 'S14'):
                     report[garment_id.lower() + '_current_picker'] = verify_current_picker(after, output, check, garment_id)
                 # Retain the actual current 50-shirt photo-picker coverage
                 # when the original whole-outfit RGB audit runs historically.

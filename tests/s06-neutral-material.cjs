@@ -18,6 +18,7 @@ catch (_) { native = require(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MO
 const {createCanvas, loadImage} = native;
 const BASE = 'f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9';
 const PRE_S14 = '457774146fa7d4a5494ceec553f187e27b126983';
+const PRE_S13 = 'f648cda6e577aa1b6ce7b75df1e71437eb5e6aae';
 const APPROVED_FABRIC_SHA256 = '3c2730b546f08b77b2c1d0764a6b69e5c96dd0085c00023d222dac438c825d51';
 const bytes = file => fs.readFileSync(path.join(ROOT, file));
 const read = file => JSON.parse(bytes(file));
@@ -25,6 +26,8 @@ const priorBytes = file => execFileSync('git', ['show', BASE + ':' + file], {cwd
 const prior = file => JSON.parse(priorBytes(file));
 const preS14Bytes = file => execFileSync('git', ['show', PRE_S14 + ':' + file], {cwd: ROOT, maxBuffer: 64 * 1024 * 1024});
 const preS14 = file => JSON.parse(preS14Bytes(file));
+const preS13Bytes = file => execFileSync('git', ['show', PRE_S13 + ':' + file], {cwd: ROOT, maxBuffer: 64 * 1024 * 1024});
+const preS13 = file => JSON.parse(preS13Bytes(file));
 const plain = value => JSON.parse(JSON.stringify(value));
 
 async function pixels(file) {
@@ -127,6 +130,7 @@ async function main() {
   const materials = read('data/issue22-materials.json'), oldMaterials = prior('data/issue22-materials.json');
   const picker = read('data/issue22-picker-images.json'), oldPicker = prior('data/issue22-picker-images.json');
   const preS14Materials = preS14('data/issue22-materials.json'), preS14Picker = preS14('data/issue22-picker-images.json');
+  const preS13Materials = preS13('data/issue22-materials.json'), preS13Picker = preS13('data/issue22-picker-images.json');
   const release = read('AVATAR_V3_RELEASE.json'), oldRelease = prior('AVATAR_V3_RELEASE.json');
   const provenance = read('provenance/issue22/material-provenance.json');
   A.notEqual(materials.revision, oldMaterials.revision, 'New displayed material has a distinct revision');
@@ -147,7 +151,7 @@ async function main() {
   A.match(approved.approval_scope, /not.*avatar approval/i);
 
   const changedLayers = [];
-  let preservedMaterialLayers = 0, retainedHistoricalS14Layers = 0;
+  let preservedMaterialLayers = 0, retainedHistoricalS14Layers = 0, retainedHistoricalS13Layers = 0;
   for (const [sourceHash, row] of Object.entries(materials.bindings)) {
     const old = oldMaterials.bindings[sourceHash];
     A.equal(row.source_sha256, sourceHash);
@@ -166,6 +170,16 @@ async function main() {
       A.deepEqual(frozen, old, 'Frozen S06 release preserved the S14 binding');
       A.ok(preS14Bytes(frozen.display_url).equals(priorBytes(old.display_url)), 'Frozen S06 release preserved exact S14 material bytes');
       retainedHistoricalS14Layers++;
+      continue;
+    }
+    if (row.garment_id === 'S13') {
+      // The completed S06/S14 releases preserved S13 exactly. Keep that proof
+      // at the immutable pre-S13 checkpoint; s13-material.cjs owns the newly
+      // authorized current S13 pixels and every current non-S13 control.
+      const frozen = preS13Materials.bindings[sourceHash];
+      A.deepEqual(frozen, old, 'Frozen S06/S14 releases preserved the S13 binding');
+      A.ok(preS13Bytes(frozen.display_url).equals(priorBytes(old.display_url)), 'Frozen S06/S14 releases preserved exact S13 material bytes');
+      retainedHistoricalS13Layers++;
       continue;
     }
     if (row.garment_id !== 'S06') {
@@ -196,11 +210,12 @@ async function main() {
       changed_rgb_pixels: changedRgbPixels, alpha_changed_pixels: alphaChanges, transparent_changed_pixels: transparentChanges});
   }
   A.equal(changedLayers.length, 2, 'Exactly the two S06 display layers change');
-  A.equal(preservedMaterialLayers, 5);
+  A.equal(preservedMaterialLayers, 3);
   A.equal(retainedHistoricalS14Layers, 2);
+  A.equal(retainedHistoricalS13Layers, 2);
 
   A.deepEqual(Object.keys(picker.items), Object.keys(oldPicker.items));
-  let preservedPickers = 0, retainedHistoricalS14Pickers = 0;
+  let preservedPickers = 0, retainedHistoricalS14Pickers = 0, retainedHistoricalS13Pickers = 0;
   for (const [id, current] of Object.entries(picker.items)) {
     const old = oldPicker.items[id];
     A.equal(digest(bytes(current.src)), current.sha256);
@@ -219,14 +234,21 @@ async function main() {
       A.deepEqual(withoutRevision(frozen), withoutRevision(old), 'Frozen S06 release preserved the S14 picker record');
       A.ok(preS14Bytes(frozen.src).equals(priorBytes(old.src)), 'Frozen S06 release preserved exact S14 picker bytes');
       retainedHistoricalS14Pickers++;
+    } else if (id === 'S13') {
+      const frozen = preS13Picker.items.S13;
+      const withoutRevision = value => Object.fromEntries(Object.entries(value).filter(([key]) => key !== 'issue22_revision'));
+      A.deepEqual(withoutRevision(frozen), withoutRevision(old), 'Frozen S06/S14 releases preserved the S13 picker record');
+      A.ok(preS13Bytes(frozen.src).equals(priorBytes(old.src)), 'Frozen S06/S14 releases preserved exact S13 picker bytes');
+      retainedHistoricalS13Pickers++;
     } else {
       for (const key of ['src', 'sha256', 'rgba_sha256']) A.equal(current[key], old[key], 'Unrelated picker image ' + id + '/' + key);
       A.ok(bytes(current.src).equals(priorBytes(old.src)), 'Unrelated picker PNG remains byte-exact: ' + id);
       preservedPickers++;
     }
   }
-  A.equal(preservedPickers, 5);
+  A.equal(preservedPickers, 4);
   A.equal(retainedHistoricalS14Pickers, 1);
+  A.equal(retainedHistoricalS13Pickers, 1);
 
   // Avatar sources and every fit module remain the prior approved contracts.
   for (const key of ['layer_hashes', 'immutable_v2_hashes', 'source_modules', 'issue19_fit_modules', 'source_specification_sha256']) {
@@ -299,11 +321,12 @@ async function main() {
   A.deepEqual(plain(current.storage.snapshot()), []);
   const report = {
     schema: 'hewrs.s06-neutral-material-verification.v1', status: 'PASS', baseline_commit: BASE,
-    verification_scope: 'Current S06 appearance and frozen original S06 isolation; current S14 changes are independently checked by tests/s14-material.cjs',
+    verification_scope: 'Current S06 appearance and frozen original S06 isolation; current S14/S13 changes are independently checked by their material gates',
     material_revision: materials.revision, approved_generated_reference_sha256: APPROVED_FABRIC_SHA256,
     changed_layers: changedLayers, preserved_material_layers: preservedMaterialLayers,
     changed_picker_ids: ['S06'], preserved_picker_images: preservedPickers,
     retained_historical_s14: {checkpoint: PRE_S14, material_layers: retainedHistoricalS14Layers, picker_images: retainedHistoricalS14Pickers, current_gate: 'tests/s14-material.cjs'},
+    retained_historical_s13: {checkpoint: PRE_S13, material_layers: retainedHistoricalS13Layers, picker_images: retainedHistoricalS13Pickers, current_gate: 'tests/s13-material.cjs'},
     runtime: current.metadata.runtime, runtime_sha256: current.metadata.runtime_sha256,
     before_native_rgba_sha256: beforeFrame.rgba_sha256, after_native_rgba_sha256: afterFrame.rgba_sha256,
     protected_head_pixels: protectedHeadPixels, active_material_bindings_verified: 2,

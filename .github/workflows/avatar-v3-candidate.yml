@@ -36,6 +36,10 @@ jobs:
       - name: Verify exact original and derived sources with no asset rewriting
         run: |
           git fetch --depth=1 origin f114d7dbedab3430761a29d77328ae80ac0882e4
+          git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
+          git fetch --depth=1 origin f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9
+          git fetch --depth=1 origin 457774146fa7d4a5494ceec553f187e27b126983
+          git fetch --depth=1 origin f648cda6e577aa1b6ce7b75df1e71437eb5e6aae
           python tools/audit_continuous_source_lock.py
           python tools/verify_active_delivery.py --check --syntax
           python tests/active-delivery-audit.py

@@ -1,0 +1,117 @@
+{
+  "schema": "hewrs.s13-visual-review.v1",
+  "status": "assistant_visual_review",
+  "owner_approval_inferred": false,
+  "baseline_commit": "f648cda6e577aa1b6ce7b75df1e71437eb5e6aae",
+  "garment_id": "S13",
+  "date": "2026-11-23",
+  "generated_texture_sha256": "33a031d98760728b645d3bbac580d950711cf119351e091836fb1c4de99b6181",
+  "before_native_rgba_sha256": "1c380d40b5124d5868649bd1b73889344ac70126c8abe47e62fec640539efa95",
+  "after_native_rgba_sha256": "785476751f33c3a37174e8100731ae7fcc22b0b899fa8634e292a18b6580e523",
+  "reviewed_parameters": {
+    "texture_scale": 0.24,
+    "texture_gain": 0.55,
+    "texture_filter": "periodic_binomial_3x3",
+    "texture_mapping": "s13_lapel_seams_v1",
+    "blur": 12,
+    "detail": 0,
+    "shade_gain": 0.92,
+    "target_rgb": [
+      44,
+      48,
+      58
+    ]
+  },
+  "reviewers": [
+    "implementing assistant",
+    "independent visual review agent",
+    "root independent review"
+  ],
+  "accepted_findings": [
+    "Selected v2 scale 0.24 / gain 0.55 after comparing four actual native-render trials with supplied front and rear photographs",
+    "Crossed check groups remain clear at phone size without the dense regular band count of the superseded reconstruction",
+    "Lapel sampling follows existing seams; no artificial chest UV join",
+    "Photographic color target, native folds, original garment geometry and approved avatar retained",
+    "Final compiled runtime native frame exactly equals the selected diagnostic trial"
+  ],
+  "rejected_trials": [
+    {
+      "texture_scale": 0.2,
+      "texture_gain": 1.0,
+      "reason": "Over-strong surface and conspicuous horizontal ribbing at phone size.",
+      "texture_asset": "s13-reference-check-v1.png"
+    },
+    {
+      "texture_scale": 0.32,
+      "texture_gain": 1.0,
+      "reason": "Crosshatch too pronounced; the legacy rectangular lapel mapping exposed a false horizontal chest join.",
+      "texture_asset": "s13-reference-check-v1.png"
+    },
+    {
+      "texture_scale": 0.45,
+      "texture_gain": 1.0,
+      "reason": "Check groups too large and pronounced at phone size.",
+      "texture_asset": "s13-reference-check-v1.png"
+    },
+    {
+      "texture_asset": "s13-reference-check-v1.png",
+      "texture_scale": 0.32,
+      "texture_gain": 0.6,
+      "reason": "Re-review found over-regular horizontal bands and compressed rectangular check groups at phone size."
+    },
+    {
+      "texture_asset": "s13-reference-check-v2.png",
+      "texture_scale": 0.18,
+      "texture_gain": 0.55,
+      "reason": "Crossed groups compressed into too many busy bands at phone size."
+    },
+    {
+      "texture_asset": "s13-reference-check-v2.png",
+      "texture_scale": 0.3,
+      "texture_gain": 0.55,
+      "reason": "Main check groups larger than the selected photographic match."
+    },
+    {
+      "texture_asset": "s13-reference-check-v2.png",
+      "texture_scale": 0.24,
+      "texture_gain": 0.4,
+      "reason": "Fine pattern visibility was insufficient at phone size."
+    }
+  ],
+  "reference_roles": {
+    "front": "Existing IMG_1745.jpeg; newly supplied bytes identical; color and front jacket/trouser relationship",
+    "rear": "Existing IMG_1741.jpeg; newly supplied bytes identical; crossed thread detail",
+    "studio": "Owner-supplied IMG_1739.jpeg composite; normal-view pattern scale",
+    "nested_rear": "Repeated rear-shoulder screenshot; not independent lighting evidence",
+    "additional_details": "Owner-supplied rear shoulder textile and tighter interlocking-check crop; digests recorded in generated-texture provenance"
+  },
+  "limitations": [
+    "Uncalibrated phone screenshots do not establish physical textile color or fibre composition",
+    "Generated reconstruction supplies luminance texture only",
+    "Visual review is separate from functional and publication validation",
+    "Exact reviewed-image pins prevent reversion to the rejected native snapshot; they are not a general plaid or banding detector."
+  ],
+  "rejected_material_control": {
+    "texture_path": "provenance/issue22/s13-reference-check-v1.png",
+    "texture_sha256": "4764afe02cca287e360fde6dce6c9ee72fee98097927ba3d6af4a243d5b8ee38",
+    "native_frame_path": "evidence/s13-material-20261123/rejected-v1-native.png",
+    "native_png_sha256": "e2d8486df98b8440e099e28d44917b5b29583189736084270fe9709252f97aec",
+    "native_rgba_sha256": "eb12e3a34fc4b6190a6def902f290a98a5d5e211fae810f1f05cb8a9d2344a48",
+    "projection": {
+      "texture_scale": 0.32,
+      "texture_gain": 0.6,
+      "texture_filter": "periodic_binomial_3x3",
+      "texture_mapping": "s13_lapel_seams_v1",
+      "blur": 12,
+      "detail": 0,
+      "shade_gain": 0.92
+    },
+    "source_commit": "9488fbb6937e868831f910aaafe264ec8fb0ed5f",
+    "meaning": "Actual rejected native appearance snapshot; the exact reviewed-image gate must reject it, not a claim of general automatic banding detection."
+  },
+  "final_runtime": {
+    "path": "runtime/avatar-v3-candidate-0e76259b86a320f469c8.js",
+    "sha256": "0e76259b86a320f469c8d99a0aaf36dca84b1104009d90ce78a8d0debe73a7a6",
+    "native_rgba_sha256": "785476751f33c3a37174e8100731ae7fcc22b0b899fa8634e292a18b6580e523"
+  }
+}

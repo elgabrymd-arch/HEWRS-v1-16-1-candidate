@@ -33,6 +33,7 @@ on:
       - 'tests/issue19-browser.py'
       - 'tests/issue22-browser.py'
       - 'tests/s06-neutral-*'
+      - 'tests/s13-*'
       - 'tests/s14-*'
       - 'tests/issue19-b02-mask-fixtures.json'
       - 'tests/issue19-jacket-gap-fixtures.json'
@@ -194,7 +195,7 @@ jobs:
           retention-days: 30
 
   audit-live-issue22:
-    name: Live current S06/S14 materials, retained DNA and all contexts — ${{ matrix.browser }} — ${{ matrix.shard }}
+    name: Live current S06/S13/S14 materials, retained DNA and all contexts — ${{ matrix.browser }} — ${{ matrix.shard }}
     needs: verify-live
     runs-on: ubuntu-24.04
     timeout-minutes: 45
@@ -210,7 +211,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install matching browser and image drivers
         run: python -m pip install --disable-pip-version-check playwright==1.56.0 Pillow==11.3.0 numpy==2.2.6
-      - name: Verify live S06/S14 picker and material bytes, retained scoring and all contexts
+      - name: Verify live S06/S13/S14 picker and material bytes, retained scoring and all contexts
         run: python tests/issue22-browser.py --url https://elgabrymd-arch.github.io/HEWRS-v1-16-1-candidate/ --browser '${{ matrix.browser }}' --shard '${{ matrix.shard }}' --shards 2 --output evidence/issue22/live
       - name: Preserve current live material, eligibility and pixel evidence
         uses: actions/upload-artifact@v4

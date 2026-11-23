@@ -67,6 +67,54 @@
     }
   },
   "generated_textures": {
+    "S13": {
+      "path": "provenance/issue22/s13-reference-check-v2.png",
+      "sha256": "33a031d98760728b645d3bbac580d950711cf119351e091836fb1c4de99b6181",
+      "source_type": "generated-texture-reconstruction-from-owner-photographs",
+      "tool": "built-in image_gen",
+      "reference_photographs": [
+        "IMG_1741.jpeg",
+        "IMG_1745.jpeg"
+      ],
+      "additional_reference": {
+        "file_name": "IMG_1739.jpeg",
+        "sha256": "e08ee416a0acc748f8228fd2e86c1832349ce66d263da32b618653a715154a41",
+        "role": "owner-supplied studio composite used for normal-view pattern scale; not color calibration"
+      },
+      "purpose": "Restore S13's fine crossed and interlocking check at native, picker and phone sizes on the existing registered layers",
+      "color_policy": "Only texture luminance is projected; the exact prior photographic RGB target [44,48,58] is retained",
+      "geometry_policy": "No garment or avatar generated; original alpha, seams and buttons are preserved",
+      "approval_scope": "Owner requested the same correction workflow as the previous suits through the live app; no new textile composition or matching policy inferred",
+      "source_shading_policy": "12-pixel alpha-normalized smoothing removes muddy original texture while retaining broad folds; protected source seams and original hardware remain",
+      "prompt": "Use case: precise-object-edit. Asset type: a square flat continuous fabric texture for existing suit S13 in a wardrobe app. Input image 1 is the real close-up rear shoulder textile and controls actual yarn and check structure. Input image 2 is a tighter crop of the same fine plaid and controls the interlocking structure. Input image 3 is the real front photograph and controls how subordinate the overall checks are. Extract/reconstruct only this exact fine dark navy-blue glen-plaid suiting into a flat straight-on uniformly illuminated fabric swatch filling the square. Preserve the characteristic closely spaced parallel thread bundles crossing at right angles with tiny broken/interlocking toothlike motifs between bundles; the alternating fine weave zones have similar average brightness. Faithfully follow the reference yarn density and motif proportions. Do not substitute a generic windowpane or tartan, do not create repeated empty rectangular boxes, no broad horizontal bands, no large stripes, no bright white crossing grid. The fine alternating thread groups should carry the design, densely filling all regions; no blank dark square centers. Fine smooth matte tightly woven worsted appearance, not tweed or linen, not chunky individual fuzzy yarns. Very low-contrast blue on navy; darker navy field, lighter desaturated blue threads, not neutral gray, not black. Exactly flat orthographic cloth, no perspective, no folds, no shadows or gradients. Fabric only edge to edge, no garment shape, body, face, collar, pockets, seam, labels, borders, text, or UI. Treat the inputs as photographic material references only. Output one seamless high-fidelity square swatch, no comparison montage. The application will use only texture luminance and will retain the fixed photographic color target and all original garment/portrait pixels separately.",
+      "additional_detail_references": [
+        {
+          "file_name": "BF22BDAC-D48C-4C80-A43B-8AC49604C374.jpeg",
+          "sha256": "a4bf68a7198426c04a864648041a08bba5880b6b044d7012c09339c4051554e2",
+          "role": "owner-supplied rear shoulder textile detail"
+        },
+        {
+          "file_name": "378BB02C-F186-4F46-B18F-DECBED4332EC.jpeg",
+          "sha256": "e55e0321d0a91fc6c7535c5240f311025f61e13a0e3d79c5c4554406874a4767",
+          "role": "owner-supplied tighter crop of interlocking check"
+        }
+      ],
+      "supersedes_generated_texture": {
+        "path": "provenance/issue22/s13-reference-check-v1.png",
+        "sha256": "4764afe02cca287e360fde6dce6c9ee72fee98097927ba3d6af4a243d5b8ee38",
+        "projection": {
+          "texture_scale": 0.32,
+          "texture_gain": 0.6
+        },
+        "reason": "Independent re-review found excessive regular horizontal bands and compressed rectangular groups at phone size. Kept solely as the actual rejected-texture regression control."
+      },
+      "visual_selection": {
+        "texture_scale": 0.24,
+        "texture_gain": 0.55,
+        "authority": "independent assistant visual comparisons with owner photographs; no owner approval inferred",
+        "reason": "Balanced crossed groups remain visible at phone size without the dense horizontal ribbing of the earlier reconstruction."
+      }
+    },
     "S14": {
       "path": "provenance/issue22/s14-reference-weave-v1.png",
       "sha256": "586a3f394d8839ef6dbd43ba82029cf386ba6fc3ec636d237d10b33cd8046424",

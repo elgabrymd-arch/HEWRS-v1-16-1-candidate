@@ -7,13 +7,15 @@
 const A = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const {spawnSync} = require('node:child_process');
+const vm = require('node:vm');
+const {spawnSync, execFileSync} = require('node:child_process');
 const {load, selection, crop, digest, ROOT, WIDTH: W, HEIGHT: H} = require('./avatar-v3-fit-runtime.cjs');
 
 const MODULE = 'src/issue22-s06-contours.js';
 const BASELINE = process.env.S06_CONTOURS_BASELINE || 'tests/fixtures/s06-contour-baseline.html';
 const BASELINE_HTML_SHA256 = '4491513167b22306f75fcd873a344bf05f714a8036f97d52d6fbf0177911548d';
 const BASELINE_RUNTIME_SHA256 = 'eedd8842c32e842479775df4fdabefd27d88f9ef00e9606b569cfd5f395769c0';
+const PRE_S13 = 'f648cda6e577aa1b6ce7b75df1e71437eb5e6aae';
 const OUTPUT = path.resolve(process.env.S06_CONTOURS_OUTPUT || path.join(ROOT, '..', 's06-contours-review'));
 const WORKER = process.env.S06_CONTOURS_WORKER ? JSON.parse(process.env.S06_CONTOURS_WORKER) : null;
 const workerLabel = worker => [worker.topwear, worker.shirt, worker.state].join('-');
@@ -54,6 +56,118 @@ function saveReport() {
 
 function read(file) { return fs.readFileSync(path.join(ROOT, file)); }
 function plain(value) { return JSON.parse(JSON.stringify(value)); }
+const preS13Bytes = file => execFileSync('git', ['show', PRE_S13 + ':' + file], {cwd: ROOT, maxBuffer: 64 * 1024 * 1024});
+
+function preS13Runtime() {
+  // Keep the original full-frame contour control at the final release before
+  // S13's intentional material correction. As in s13-material.cjs, substitute
+  // only the exact historical HTML; execute its retained runtime and real
+  // prerequisites without modifying the shared renderer harness.
+  const html = preS13Bytes('index.html').toString('utf8');
+  const release = JSON.parse(preS13Bytes('AVATAR_V3_RELEASE.json'));
+  const scripts = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"[^>]*>/g)].map(match => match[1].split('?')[0]);
+  const runtimeIndex = scripts.findIndex(file => file.startsWith('runtime/'));
+  A.ok(runtimeIndex > 0, 'Frozen S13 entrypoint binds its historical runtime');
+  for (const file of scripts.slice(0, runtimeIndex + 1)) {
+    A.ok(read(file).equals(preS13Bytes(file)), 'Pre-S13 runtime prerequisite remains exact: ' + file);
+  }
+  const filename = path.join(ROOT, 'tests/avatar-v3-fit-runtime.cjs'), mod = {exports: {}};
+  let reads = 0;
+  const isolatedFs = Object.freeze({...fs, readFileSync(file, ...options) {
+    if (typeof file === 'string' && path.resolve(file) === path.join(ROOT, 'index.html')) {
+      reads++;
+      return options[0] === 'utf8' || options[0]?.encoding === 'utf8' ? html : Buffer.from(html);
+    }
+    return fs.readFileSync(file, ...options);
+  }});
+  const context = vm.createContext({module: mod, exports: mod.exports,
+    __dirname: path.dirname(filename), __filename: filename,
+    require: name => name === 'node:fs' ? isolatedFs : require(name),
+    console, process, Buffer, setTimeout, clearTimeout, URL, URLSearchParams, AbortController, performance});
+  vm.runInContext(fs.readFileSync(filename, 'utf8'), context, {filename});
+  const result = mod.exports.load();
+  A.equal(reads, 1, 'Only the frozen entrypoint is virtually substituted');
+  A.equal(result.metadata.kind, 'EXACT_SHIPPED_RUNTIME_PREFIX');
+  A.equal(result.metadata.entrypoint_sha256, release.entrypoints['index.html']);
+  A.equal(result.metadata.runtime_sha256, release.runtime_sha256);
+  A.deepEqual(plain(result.connection.issue22Materials), JSON.parse(preS13Bytes('data/issue22-materials.json')));
+  return {...result, capture: selected => result.capture(vm.runInContext('(' + JSON.stringify(selected) + ')', context))};
+}
+
+async function currentS13Scope(original, current, before, after, material, label) {
+  A.deepEqual(plain(before.selection), plain(after.selection));
+  A.equal(after.selection.suitId, 'S13');
+  A.deepEqual(plain(before.dimensions), [W, H]); A.deepEqual(plain(after.dimensions), [W, H]);
+  A.deepEqual(plain(current.connection.issue22Materials), material, label + ': current runtime binds the current material manifest');
+  const rows = Object.values(material.bindings).filter(row => row.garment_id === 'S13');
+  A.deepEqual(rows.map(row => row.layer).sort(), ['jacket', 'trousers']);
+  const expected = rows.map(row => ({garment_id: row.garment_id, layer: row.layer,
+    geometry_source: {sha256: row.source_sha256, url: row.source_url, rect: row.rect},
+    display_source: {sha256: row.display_sha256, url: row.display_url, rect: row.rect},
+    alpha_sha256: row.alpha_sha256}));
+  for (const frame of [after.plan, after.result]) {
+    A.equal(frame.issue22_material_revision, material.revision, label + ': current material revision');
+    A.deepEqual(plain(frame.issue22_material_sources), expected, label + ': exact current jacket and trouser bindings');
+    A.equal(frame.s06_contours, undefined, label + ': no S06 contour application to S13');
+  }
+  A.deepEqual(plain(current.g.HEWRSAvatarV3ArmPose.spec), plain(original.g.HEWRSAvatarV3ArmPose.spec));
+  A.deepEqual(plain(current.g.HEWRSAvatarV3ArmPose.controls), plain(original.g.HEWRSAvatarV3ArmPose.controls));
+  A.deepEqual(plain(current.g.HEWRSAvatarV3CuffFit.spec), plain(original.g.HEWRSAvatarV3CuffFit.spec));
+  let native;
+  try { native = require('@napi-rs/canvas'); }
+  catch (_) { native = require(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES || '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules', '@napi-rs/canvas')); }
+  const posedMask = {data: new Uint8ClampedArray(W * H * 4)};
+  for (const row of rows) {
+    const old = original.connection.issue22Materials.bindings[row.source_sha256];
+    for (const key of ['garment_id', 'layer', 'source_sha256', 'source_url', 'rect', 'alpha_sha256']) {
+      A.deepEqual(plain(row[key]), plain(old[key]), label + ': frozen registered geometry ' + row.layer + '/' + key);
+    }
+    A.ok(read(row.source_url).equals(preS13Bytes(row.source_url)), label + ': original S13 source bytes remain exact');
+    A.equal(digest(read(row.source_url)), row.source_sha256);
+    A.equal(digest(read(row.display_url)), row.display_sha256);
+    A.equal(current.connection.assetPaths[row.display_sha256], row.display_url);
+    const image = await native.loadImage(path.join(ROOT, row.source_url));
+    A.deepEqual([image.width, image.height], [W, H]);
+    const canvas = original.makeCanvas(), context = canvas.getContext('2d');
+    context.drawImage(image, 0, 0);
+    const source = context.getImageData(0, 0, W, H).data, alpha = Buffer.alloc(W * H);
+    for (let pixel = 0; pixel < W * H; pixel++) {
+      const offset = pixel * 4 + 3;
+      alpha[pixel] = source[offset];
+      posedMask.data[offset] = Math.max(posedMask.data[offset], alpha[pixel]);
+    }
+    A.equal(digest(alpha), row.alpha_sha256, label + ': frozen source alpha defines ' + row.layer + ' scope');
+    canvas.width = canvas.height = 1;
+  }
+  // Use only the frozen pose and cuff bounds to define permitted cloth RGB
+  // changes. Current declarations cannot enlarge this acceptance region.
+  original.g.HEWRSAvatarV3ArmPose.apply(posedMask);
+  const cuffBounds = plain(original.g.HEWRSAvatarV3CuffFit.spec.bounds);
+  const insideCuff = (x, y) => cuffBounds.some(([left, top, width, height]) => x >= left && x < left + width && y >= top && y < top + height);
+  let changed = 0, alphaChanged = 0, outside = 0, outsideChanged = 0;
+  for (let pixel = 0; pixel < W * H; pixel++) {
+    const offset = pixel * 4;
+    const differs = !after.rgba.subarray(offset, offset + 4).equals(before.rgba.subarray(offset, offset + 4));
+    if (differs) changed++;
+    if (after.rgba[offset + 3] !== before.rgba[offset + 3]) alphaChanged++;
+    if (posedMask.data[offset + 3] === 0 && !insideCuff(pixel % W, Math.floor(pixel / W))) {
+      outside++;
+      if (differs) outsideChanged++;
+    }
+  }
+  A.ok(changed > 0, label + ': current S13 fabric changes actual rendered pixels');
+  A.equal(alphaChanged, 0, label + ': every completed native-frame alpha byte remains exact');
+  A.equal(outsideChanged, 0, label + ': pixels outside the frozen S13 pose and cuff bounds remain exact');
+  A.ok(outside > 1000000, label + ': outside-garment comparison retains its full native scope');
+  A.deepEqual(plain(original.storage.snapshot()), [], label + ': frozen S13 render never writes synthetic saved data');
+  A.deepEqual(plain(current.storage.snapshot()), [], label + ': current S13 render never writes synthetic saved data');
+  return {before_rgba_sha256: before.rgba_sha256, after_rgba_sha256: after.rgba_sha256,
+    boundary_source_commit: PRE_S13, cuff_bounds: cuffBounds,
+    changed_pixels: changed, changed_alpha_pixels: alphaChanged, unchanged_frame_alpha_pixels: W * H,
+    exact_pixels_outside_s13: outside, changed_outside_scope: outsideChanged,
+    current_material_revision: material.revision, current_material_sources: expected,
+    s06_contours_applied: false, saved_data_writes: 0};
+}
 
 function allowedPixels() {
   const mask = new Uint8Array(W * H);
@@ -249,10 +363,36 @@ async function main() {
   for (const selected of [selection('DS039', 'NO_TIE', 'S05'), selection('DS001', 'T001', 'S13'), selection('DS051', 'NO_TIE', 'B08')]) {
     if (WORKER.kind !== 'control' || (selected.suitId || selected.blazerId) !== WORKER.topwear) continue;
     const label = [selected.suitId || selected.blazerId, selected.shirtId, selected.state].join('-');
-    const before = await baseline.capture(selected), after = await candidate.capture(selected);
+    const historical = selected.suitId === 'S13' ? preS13Runtime() : null;
+    const before = await baseline.capture(selected), after = await (historical || candidate).capture(selected);
     A.equal(after.rgba_sha256, before.rgba_sha256, label + ': complete unrelated frame stays exact');
     A.ok(before.rgba.equals(after.rgba), label + ': no hidden unrelated pixel changes');
-    report.controls.push({label, selection: selected, rgba_sha256: after.rgba_sha256, changed_pixels: 0});
+    const control = {label, selection: selected, rgba_sha256: after.rgba_sha256, changed_pixels: 0};
+    if (historical) {
+      A.deepEqual(plain(historical.g.HEWRSS06Contours.spec), report.candidate_spec, label + ': historical control includes the same S06 contour correction');
+      const current = await candidate.capture(selected);
+      Object.assign(control, {comparison: 'frozen_pre_s13_vs_original_pre_contour',
+        frozen_commit: PRE_S13, frozen_runtime: historical.metadata,
+        current_s13: await currentS13Scope(historical, candidate, after, current, material, label)});
+      // Independently isolate the contour wrapper against the exact current
+      // S13 materials. A cloth-scope comparison alone would permit unintended
+      // changes inside S13; this on/off control permits no changed pixel.
+      const withoutContours = load({omitContourModules: [MODULE]});
+      A.equal(withoutContours.metadata.kind, 'EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC');
+      A.equal(withoutContours.metadata.entrypoint_sha256, candidate.metadata.entrypoint_sha256, label + ': current entrypoint is identical');
+      A.equal(withoutContours.metadata.runtime_sha256, candidate.metadata.runtime_sha256, label + ': current compiled runtime is identical before the one diagnostic omission');
+      A.deepEqual(withoutContours.metadata.overlays, [{path: MODULE, sha256: digest(read(MODULE)), diagnostic_action: 'omit_only_this_contour_wrapper'}], label + ': only the exact S06 contour wrapper is omitted');
+      A.equal(withoutContours.g.HEWRSS06Contours, undefined, label + ': diagnostic omits the contour wrapper');
+      A.deepEqual(plain(withoutContours.connection.issue22Materials), plain(candidate.connection.issue22Materials), label + ': both current renders use the same current materials');
+      const currentWithoutContours = await withoutContours.capture(selected);
+      A.equal(current.rgba_sha256, currentWithoutContours.rgba_sha256, label + ': current S13 frame is identical with or without S06 contours');
+      A.ok(current.rgba.equals(currentWithoutContours.rgba), label + ': current contour wrapper has no hidden S13 pixel effects');
+      A.deepEqual(plain(withoutContours.storage.snapshot()), [], label + ': diagnostic S13 render never writes synthetic saved data');
+      control.current_contour_isolation = {comparison: 'current_runtime_contour_enabled_vs_omitted',
+        reference: withoutContours.metadata, rgba_sha256: current.rgba_sha256,
+        changed_pixels: 0, saved_data_writes: 0};
+    }
+    report.controls.push(control);
     saveReport();
     console.log('S06_CONTOURS_CONTROL=' + JSON.stringify({label, status: 'PASS'}));
     if (global.gc) global.gc();
