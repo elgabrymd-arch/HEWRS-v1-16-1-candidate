@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Reject altered or unregistered Issue 22 assets without changing real files."""
+import copy
 import json
 import sys
 import unittest
@@ -21,18 +22,28 @@ class Issue22AdditionScope(unittest.TestCase):
         old = json.loads(source_lock.subprocess.check_output(
             ['git', 'show', source_lock.ISSUE22_INTEGRATION + ':data/issue22-materials.json'], cwd=ROOT))
         picker = json.loads((ROOT / 'data/issue22-picker-images.json').read_bytes())
+        cls.materials, cls.picker = materials, picker
+        cls.pre_s14_materials = json.loads(source_lock.subprocess.check_output(
+            ['git', 'show', source_lock.ISSUE22_PRE_S14 + ':data/issue22-materials.json'], cwd=ROOT))
+        cls.pre_s14_picker = json.loads(source_lock.subprocess.check_output(
+            ['git', 'show', source_lock.ISSUE22_PRE_S14 + ':data/issue22-picker-images.json'], cwd=ROOT))
+        s14 = next(value for value in materials['bindings'].values() if value['garment_id'] == 'S14')
         row = next(value for value in materials['bindings'].values() if value['garment_id'] == 'S06')
         cls.targets = {
             'approved main original': row['source_url'],
             'retained integration image': old['bindings'][row['source_sha256']]['display_url'],
             'current S06 material': row['display_url'],
             'current S06 picker': picker['items']['S06']['src'],
+            'retained pre-S14 material': cls.pre_s14_materials['bindings'][s14['source_sha256']]['display_url'],
+            'retained pre-S14 picker': cls.pre_s14_picker['items']['S14']['src'],
+            'current S14 material': s14['display_url'],
+            'current S14 picker': picker['items']['S14']['src'],
         }
 
     def test_exact_current_and_retained_additions(self):
-        # Ten data files, nine retained material layers plus two current S06
-        # layers, and seven retained picker images plus the current S06 image.
-        self.assertEqual(len(self.allowed), 29)
+        # Ten data files; nine original material layers plus two approved S06
+        # and two current S14 layers; seven original pickers plus S06 and S14.
+        self.assertEqual(len(self.allowed), 32)
         self.assertNotIn(self.targets['approved main original'], self.allowed)
         self.assertTrue(all(self.targets[name] in self.allowed for name in self.targets
                             if name != 'approved main original'))
@@ -47,6 +58,50 @@ class Issue22AdditionScope(unittest.TestCase):
                 with patch.object(source_lock, 'file_bytes', side_effect=corrupted):
                     with self.assertRaisesRegex(ValueError, 'changed'):
                         source_lock.verify_issue22_sources(ROOT, self.active)
+
+    def test_s14_permission_cannot_replace_approved_s06_or_b06(self):
+        for garment_id in ('S06', 'S13', 'B01', 'B06', 'B10'):
+            with self.subTest(garment=garment_id):
+                changed = copy.deepcopy(self.materials)
+                row = next(row for row in changed['bindings'].values() if row['garment_id'] == garment_id)
+                # A registered, checksum-valid historical path is still outside
+                # the newly authorized S14-only scope.
+                row['display_url'] = row['source_url']
+                row['display_sha256'] = row['source_sha256']
+                with self.assertRaisesRegex(ValueError, 'non-S14 material binding'):
+                    source_lock.validate_s14_material_scope(changed, self.pre_s14_materials)
+                changed = copy.deepcopy(self.materials)
+                changed['garments'][garment_id]['parameters']['texture_gain'] += .01
+                with self.assertRaisesRegex(ValueError, 'non-S14 material specification'):
+                    source_lock.validate_s14_material_scope(changed, self.pre_s14_materials)
+
+    def test_s14_permission_cannot_change_source_registration_or_alpha(self):
+        for field, value in [('alpha_sha256', '0' * 64), ('source_url', 'assets/unregistered.png'),
+                             ('rect', [1, 0, 996, 2748]), ('garment_id', 'B06'),
+                             ('new_unregistered_field', True)]:
+            with self.subTest(field=field):
+                changed = copy.deepcopy(self.materials)
+                row = next(row for row in changed['bindings'].values() if row['garment_id'] == 'S14')
+                row[field] = value
+                with self.assertRaisesRegex(ValueError, 'native source registration or alpha'):
+                    source_lock.validate_s14_material_scope(changed, self.pre_s14_materials)
+
+    def test_every_other_picker_is_exact_and_s14_identity_stays_fixed(self):
+        for garment_id in self.picker['items']:
+            if garment_id == 'S14':
+                continue
+            with self.subTest(garment=garment_id):
+                changed = copy.deepcopy(self.picker)
+                changed['items'][garment_id]['src'] = self.picker['items']['S14']['src']
+                with self.assertRaisesRegex(ValueError, 'non-S14 picker'):
+                    source_lock.validate_s14_picker_scope(changed, self.pre_s14_picker)
+        for field, value in [('history_id', 'suit-99'), ('width', 391),
+                             ('owner_approved', True), ('issue22_revision', 'unregistered')]:
+            with self.subTest(field=field):
+                changed = copy.deepcopy(self.picker)
+                changed['items']['S14'][field] = value
+                with self.assertRaisesRegex(ValueError, 'picker identity or native layout'):
+                    source_lock.validate_s14_picker_scope(changed, self.pre_s14_picker)
 
     def test_directory_name_never_authorizes_extra_files(self):
         exact = {name: 'A' for name in self.allowed}

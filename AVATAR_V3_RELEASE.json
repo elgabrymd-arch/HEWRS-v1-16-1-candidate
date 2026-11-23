@@ -7,8 +7,8 @@
   "baseline_manifest_sha256": "c2ebff6341b4c1b23eb08f3524f57d3640ad80e732c540b26f0ea0d189de6de8",
   "continuous_runtime": "runtime/continuous-shirts-4fae538c1847c9f7d1e9.js",
   "continuous_runtime_sha256": "4fae538c1847c9f7d1e9fd2a1c4e478a5f3d230b68b60ba2b7f69c2c543d6470",
-  "runtime": "runtime/avatar-v3-candidate-ea9d6e4ffd053eedc72d.js",
-  "runtime_sha256": "ea9d6e4ffd053eedc72d4a6822f36b5e766d044baef925f6b89a0d1f94e6ee2f",
+  "runtime": "runtime/avatar-v3-candidate-bc4271aea98703c2e5ff.js",
+  "runtime_sha256": "bc4271aea98703c2e5ff2b7fdb8842f007f8a758c0e3c6f0f3df0494d70d4620",
   "source_specification": "data/avatar-v3-candidate.json",
   "source_specification_sha256": "9f0a135ab18ea14b467c44930068ff274cc70a573a83c9dac4a22b1a96b70c3e",
   "source_modules": {
@@ -50,8 +50,8 @@
     "right_hand": "3cd3d8ec5d3e66dcf9cd1e525e952e87a1057f968e846f453f314de65669d3d9"
   },
   "entrypoints": {
-    "index.html": "0774c3fecae8578053326574bce08893d1c9697e0d8312d892f8116c5266aaa0",
-    "app.html": "0774c3fecae8578053326574bce08893d1c9697e0d8312d892f8116c5266aaa0"
+    "index.html": "0ebdd493ac958219f9327762b887667b2c070982fe00c053cb5e86d957d4dd7b",
+    "app.html": "0ebdd493ac958219f9327762b887667b2c070982fe00c053cb5e86d957d4dd7b"
   },
   "rollback_entrypoint": "avatar-v2-reference.html",
   "garments_and_scoring": "original_sources_preserved_v3_all_shirt_collar_cuff_and_tie_display_registration",
@@ -76,12 +76,12 @@
     "modules": {
       "data/issue22-garment-dna.js": "fbe07c745271d928279f4fe9dd2af7bc0c17fd4f174ac4a1673aadcd8120694b",
       "src/issue22-matching.js": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f",
-      "data/issue22-materials.js": "b2335d3c053489d8dcecc0323c31f32ba27586d644f14a3d3a7d22a281e43e9c",
+      "data/issue22-materials.js": "567cab9ee4ce42dfd5b29fc7d6e4db488b68bfc940f89a244fd1a748c81eb7b2",
       "src/issue22-materials.js": "ea2e4c6d8fdac9ed2b84a6d1c51bb4d2e4eb661e238032f456a7ac56f26509c6",
       "src/issue22-b08.js": "d76bf8bffc41bc2a595600180c8fc74311064bab24655b3be6314727e308c8be",
       "src/issue22-render-guard.js": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc",
       "src/issue22-s06-contours.js": "ef2e7f3823d0156dd5dc5b7169dc1cc35c8f3e5dd3776ce34b32e27c9485bc99",
-      "data/issue22-reviewed-overlay.js": "3eb2dbb74cac0cf5525b4aea2bb81e682507e5a38efd2d03e190c46dbd2679ba",
+      "data/issue22-reviewed-overlay.js": "92fc22c36e914ec07e08094c36c605c94ec0152af7f52c9e706d1ffabc73850f",
       "src/issue22-reviewed-data.js": "b95bfe77dbfccee90ac55ed1304a5b2c6fc2536ef9a915d0f892ecea7c28d432"
     },
     "matching_index": {
@@ -90,11 +90,11 @@
     },
     "picker_previews": {
       "path": "data/issue22-picker-images.js",
-      "sha256": "9f5cdcd086ed251f5288a153c064dafcd36502d2dc8e72fbf16e1334dce871ba"
+      "sha256": "2a42c31bc5ed689207596c4ef505201a389d8074908b4164f425ec56b66e87a1"
     },
     "reviewed_panel": {
-      "path": "src/issue22-reviewed-panel-eb69880ef033802fb6a2.js",
-      "sha256": "eb69880ef033802fb6a28916d8227c04e9255574a5e01b2e72874c79af65e951"
+      "path": "src/issue22-reviewed-panel-ee14fac257ce45da0c9e.js",
+      "sha256": "ee14fac257ce45da0c9ea5b6b8b3a5b987565e99034a098320dc8f2992246069"
     },
     "original_sources": "unchanged; separate source-bound display materials and versioned DNA",
     "browser_storage_migration": "none",
@@ -105,6 +105,13 @@
       "date": "2026-11-22",
       "authority": "explicit_owner_instruction",
       "scope": "complete S06 appearance, DNA and compatibility validation; merge into the primary application and publish"
+    },
+    "continued_material_correction": {
+      "date": "2026-11-22",
+      "garment_id": "S14",
+      "authority": "owner_requested_app_image_update_and_confirmed_same_process_as_B06",
+      "baseline_commit": "457774146fa7d4a5494ceec553f187e27b126983",
+      "scope": "S14 display weave and its native picker; retain existing color, registered construction, garment facts, matching and all other garments"
     }
   }
 }

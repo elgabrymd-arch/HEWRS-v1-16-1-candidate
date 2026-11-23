@@ -65,5 +65,23 @@
       "tool": "built-in image_gen",
       "purpose": "Project the approved subtle neutral-gray textile onto the existing registered jacket and paired trousers"
     }
+  },
+  "generated_textures": {
+    "S14": {
+      "path": "provenance/issue22/s14-reference-weave-v1.png",
+      "sha256": "586a3f394d8839ef6dbd43ba82029cf386ba6fc3ec636d237d10b33cd8046424",
+      "source_type": "generated-texture-reconstruction-from-owner-photographs",
+      "tool": "built-in image_gen",
+      "reference_photographs": [
+        "IMG_1747.jpeg",
+        "IMG_1748.jpeg"
+      ],
+      "close_up_reference_sha256": "81f8a0781d5fc7485987f40ffc61b38d3271ce840fecfbe38398240a69a3b90f",
+      "purpose": "Restore the fine irregular vertically biased weave at native picker and phone sizes on the existing registered S14 layers",
+      "color_policy": "Only texture luminance is projected; the existing photographic color sample and source shading are retained",
+      "geometry_policy": "No garment or avatar generated; original alpha, seams and buttons are preserved",
+      "approval_scope": "Owner requested the B06 correction workflow for S14; no new textile composition or whole-outfit approval inferred",
+      "prompt_summary": "Flat straight-on continuous swatch of the supplied S14 jacket fabric: matte dense muted slate blue-gray suiting, fine irregular vertical woven grain with tiny broken lighter yarns and subtle cross-yarn interlocking; quiet near-solid from a distance. No plaid, herringbone, coarse slubs, holes, gloss, folds, seams, garment, labels or UI. The app uses luminance only."
+    }
   }
 }

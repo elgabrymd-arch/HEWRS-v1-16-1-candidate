@@ -1,0 +1,35 @@
+{
+  "schema": "hewrs.s14-visual-review.v1",
+  "date": "2026-11-22",
+  "baseline_commit": "457774146fa7d4a5494ceec553f187e27b126983",
+  "review_authority": "assistant_reference_comparison_not_owner_approval",
+  "material_revision": "S14_REFERENCE_WEAVE_20261122_1",
+  "runtime": "runtime/avatar-v3-candidate-bc4271aea98703c2e5ff.js",
+  "runtime_sha256": "bc4271aea98703c2e5ff2b7fdb8842f007f8a758c0e3c6f0f3df0494d70d4620",
+  "current_native_rgba_sha256": "5366c652bae38be58b2466427fabc8f9a21d5be33d8995ea9ae3e583c67fdb35",
+  "accepted_parameters": {
+    "texture_scale": 0.55,
+    "texture_gain": 0.75,
+    "texture_filter": "periodic_binomial_3x3"
+  },
+  "observations": [
+    "Fine irregular vertical weave with short crosswise detail is visible in jacket and trousers.",
+    "Normal phone-size appearance remains quiet and nearly solid.",
+    "No conspicuous grid, holes, repeated swatch boundaries or broad moire observed.",
+    "Existing photographic color target, source folds, seams, hardware and silhouette retained."
+  ],
+  "rejected_initial_projection": {
+    "texture_scale": 0.65,
+    "texture_gain": 1.05,
+    "reason": "Too coarse and pronounced on the thighs and lower jacket at phone size."
+  },
+  "images": {
+    "phone-before-after.png": "d71fdb90744cbe7291af0dfe53685ccda5c9abee7be57adfce8a78c014ec301a",
+    "cloth-before-after.png": "47be0d797f3828aad85ad6b68b88066075c5dc0e135372688ec8a2699fdaaba9"
+  },
+  "limitations": [
+    "The supplied photographs are not color calibrated.",
+    "Generated texture reconstructs visible weave; it does not establish textile composition.",
+    "Native renderer evidence supplements the browser verification and does not imply owner approval of a new avatar."
+  ]
+}
