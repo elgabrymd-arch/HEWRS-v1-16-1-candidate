@@ -66,6 +66,7 @@ jobs:
           node tests/issue22-matching.cjs | tee evidence/issue22/ci/matching.log
           node tests/s06-neutral-dna.cjs | tee evidence/issue22/ci/s06-neutral-dna.log
           node tests/s06-neutral-material.cjs | tee evidence/issue22/ci/s06-neutral-material.log
+          S06_CONTOURS_OUTPUT=evidence/issue22/ci/s06-contours node --expose-gc tests/s06-contours.cjs | tee evidence/issue22/ci/s06-contours.log
           node tests/issue22-reviewed.cjs | tee evidence/issue22/ci/reviewed.log
       - uses: actions/upload-artifact@v4
         if: always()

@@ -33,6 +33,9 @@ BASELINE_COMMIT = '95d14073e33f2b699bdb0cdbd42504b1a1be2274'
 BASELINE_SHA256 = 'dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba'
 GARMENTS = ['S06', 'S13', 'S14', 'B01', 'B06', 'B08', 'B10']
 LINEN = {'B01', 'B06', 'B10'}
+# Independent final-display bounds. The material PNG alpha contract remains
+# exact; only S06's source-bound display contours may change these pixels.
+S06_CONTOUR_BOUNDS = ((620, 410, 100, 90), (60, 460, 280, 720), (660, 460, 300, 720))
 STYLES = ['AUTO', 'CLASSIC', 'HYBRID', 'MODERN']
 OCCASIONS = ['work', 'dinner', 'weekend']
 AVATAR = {
@@ -276,6 +279,10 @@ def run(args):
               'application_url': live_origin,
               'candidate_response_source': 'live_https_only' if live_origin else 'local_checkout_http',
               'baseline_response_source': 'local_immutable_issue19_checkpoint',
+              'display_alpha_contract': {
+                  'S06': {'policy': 'bounded_contour_correction', 'bounds': S06_CONTOUR_BOUNDS},
+                  'other_garments': 'exact_baseline_alpha',
+                  'material_png_alpha': 'exact_source_alpha; independently verified by issue22-materials.cjs'},
               'visual_acceptance': 'requires_independent_inspection_of_actual_captures',
               'started_at': datetime.now(timezone.utc).isoformat()}
 
@@ -287,6 +294,7 @@ def run(args):
     def write_report():
         report['checks_passed'] = sum(row['passed'] for row in checks)
         report['checks_failed'] = sum(not row['passed'] for row in checks)
+        report['display_alpha_changed_pixels_total'] = sum(row['alpha_changed_pixels'] for row in captures)
         (output / 'RESULT.json').write_text(json.dumps(report, indent=2) + '\n')
 
     check('Frozen V3 baseline entrypoint SHA256', digest((ROOT / BASELINE).read_bytes()) == BASELINE_SHA256)
@@ -458,7 +466,19 @@ def run(args):
                 differences = np.any(a != b, axis=2)
                 changed = int(differences.sum())
                 check(name + ': immutable complete head region', old['head_sha256'] == current['head_sha256'])
-                check(name + ': exact full-avatar alpha silhouette', np.array_equal(a[:, :, 3], b[:, :, 3]))
+                alpha_differences = a[:, :, 3] != b[:, :, 3]
+                alpha_changed = int(alpha_differences.sum())
+                outside_alpha = alpha_differences.copy()
+                if selected.get('suitId') == 'S06':
+                    for left, top, width, height in S06_CONTOUR_BOUNDS:
+                        outside_alpha[top:top + height, left:left + width] = False
+                    check(name + ': S06 contour alpha bounded',
+                          alpha_changed > 0 and not bool(outside_alpha.any()),
+                          {'alpha_changed_pixels': alpha_changed,
+                           'alpha_changed_outside_authorized_contours': int(outside_alpha.sum()),
+                           'bounds': S06_CONTOUR_BOUNDS})
+                else:
+                    check(name + ': exact full-avatar alpha silhouette', alpha_changed == 0, alpha_changed)
                 old_sources = {(x['path'], x['sha256'], tuple(x['rect'] or [])) for x in old['source_bindings']}
                 new_sources = {(x['path'], x['sha256'], tuple(x['rect'] or [])) for x in current['source_bindings']}
                 check(name + ': original garment geometry bindings preserved', old_sources.issubset(new_sources))
@@ -477,7 +497,9 @@ def run(args):
                     pair.alpha_composite(left, (0, 0)); pair.alpha_composite(right, (left.width, 0))
                     pair.save(output / kind / (name + '.png'))
                 capture_row = {**row, 'context': context, 'baseline': old, 'candidate': current,
-                               'changed_rgba_pixels': changed, 'detail_pair_order': ['baseline', 'candidate']}
+                               'changed_rgba_pixels': changed, 'alpha_changed_pixels': alpha_changed,
+                               'alpha_changed_outside_authorized_contours': int(outside_alpha.sum()),
+                               'detail_pair_order': ['baseline', 'candidate']}
                 captures.append(capture_row)
                 write_report()
                 print(json.dumps({'capture': name, 'changed_pixels': changed}), flush=True)
