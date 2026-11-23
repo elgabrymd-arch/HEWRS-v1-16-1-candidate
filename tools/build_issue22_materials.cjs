@@ -3,8 +3,8 @@
 /* Issue #22 material projection, never a new garment or avatar.
  * All cut, alpha, seams and hardware come from the selected registered layer.
  * S06 uses the owner's approved generated fabric reference; the other suit
- * colors come from the owner's supplied photographs. S14 uses a generated
- * texture reconstruction of its reference weave, without changing its color.
+ * colors come from the owner's supplied photographs. S13 and S14 use generated
+ * texture reconstructions of their respective weaves, without changing color.
  * The linen swatch is explicitly generated material, not photographic evidence.
  */
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
@@ -27,7 +27,7 @@ const SOURCES={
 // do not remove the periodic texture antialias or touch the approved avatar.
 const SPECS={
  S06:{approved_fabric:'s06-approved-fabric-preview.png',color_rect:[80,140,620,740],texture_rect:[80,140,620,740],neutralize_color:true,texture_scale:1.6,texture_gain:1.55,texture_filter:'periodic_binomial_3x3',blur:24,detail:0,shade_gain:.85,description:'Neutral gray subtle Glen-check weave from the owner-approved generated fabric reference'},
- S13:{photo:'IMG_1745.jpeg',color_rect:[422,360,110,240],texture_photo:'IMG_1745.jpeg',texture_rect:[420,340,100,130],texture_scale:1.3,texture_gain:.62,blur:5,detail:.08,shade_gain:.92,reference_photos:['IMG_1741.jpeg','IMG_1745.jpeg'],description:'Dark blue-gray fine interlocking check'},
+ S13:{revision:'S13_REFERENCE_CHECK_20261123_1',photo:'IMG_1745.jpeg',color_rect:[422,360,110,240],generated_texture:'s13-reference-check-v1.png',texture_rect:[0,0,1254,1254],texture_scale:.32,texture_gain:.6,texture_filter:'periodic_binomial_3x3',texture_mapping:'s13_lapel_seams_v1',blur:12,detail:0,shade_gain:.92,reference_photos:['IMG_1741.jpeg','IMG_1745.jpeg'],description:'Dark blue-gray fine interlocking check'},
  S14:{revision:'S14_REFERENCE_WEAVE_20261122_1',photo:'IMG_1748.jpeg',color_rect:[520,720,112,260],generated_texture:'s14-reference-weave-v1.png',texture_rect:[0,0,1254,1254],texture_scale:.55,texture_gain:.75,texture_filter:'periodic_binomial_3x3',blur:12,detail:0,shade_gain:.93,reference_photos:['IMG_1747.jpeg','IMG_1748.jpeg'],description:'Medium blue-gray fine near-solid weave'},
  B01:{linen:true,texture_scale:.42,texture_gain:.36,blur:3,detail:.12,description:'Original navy color, fine natural matte linen'},
  B06:{linen:true,texture_scale:.42,texture_gain:.61,blur:6,detail:0,description:'Original very pale desaturated sage color and crest, fine natural matte linen'},
@@ -87,14 +87,32 @@ function protectedDetails(id,kind){
  return{lines:[[[289,511],[490,944]],[[715,530],[505,973]],[[643,693],[754,675]],[[235,1084],[350,1114],[358,1325],[250,1328]],[[651,1114],[787,1086],[801,1316],[712,1334]]],ellipses:[[511,965,21,22],...(id==='B06'?[[714,773,34,42]]:[])]};
 }
 function preserveWeight(x,y,shapes){let w=0;for(const [cx,cy,rx,ry]of shapes.ellipses){const d=Math.hypot((x-cx)/rx,(y-cy)/ry);w=Math.max(w,1-smooth((d-.9)/.4));}for(const line of shapes.lines)w=Math.max(w,1-smooth((polyDistance(x,y,line)-1.1)/2.6));return w;}
-function coordinates(id,kind,x,y,scale){let u=x,v=y;if(kind==='jacket'){if(x<235)u+=.06*(y-750);else if(x>775)u-=.06*(y-750);if(y<930&&x>285&&x<480){u=x*.88+(y-430)*.27;v=y*.93-x*.23;}else if(y<930&&x>520&&x<708){u=x*.88-(y-430)*.27;v=y*.93+x*.23;}}return[u/scale,v/scale];}
+function coordinates(id,kind,x,y,scale,mapping){
+ let u=x,v=y;
+ if(kind==='jacket'){
+  if(x<235)u+=.06*(y-750);else if(x>775)u-=.06*(y-750);
+  if(id==='S13'&&mapping==='s13_lapel_seams_v1'){
+   // Rotate S13's crossed yarn only on the actual lapel faces. The former
+   // rectangular upper-chest selector ended across unseamed body cloth at
+   // y=930, which a clearer check exposes as an invented horizontal join.
+   // These boundaries follow the immutable seam lines in protectedDetails;
+   // source alpha clips the inner shirt opening. No garment pixel is moved.
+   const left=y<=511?285:y<=854?285+(y-511)*221/343:506-(y-854)*7/80;
+   const right=y<=512?694:694-(y-512)*186/444;
+   if(y>=400&&y<=934&&x>=left&&x<=506){u=x*.88+(y-430)*.27;v=y*.93-x*.23;}
+   else if(y>=400&&y<=956&&x>=508&&x<=right){u=x*.88-(y-430)*.27;v=y*.93+x*.23;}
+  }else if(y<930&&x>285&&x<480){u=x*.88+(y-430)*.27;v=y*.93-x*.23;}
+  else if(y<930&&x>520&&x<708){u=x*.88-(y-430)*.27;v=y*.93+x*.23;}
+ }
+ return[u/scale,v/scale];
+}
 function project(source,id,kind,spec,texture,target){
  const {v,a}=scalar(source),low=blurScalar(v,a,W,H,spec.blur),output=new Uint8ClampedArray(source.data),details=protectedDetails(id,kind);
  let mean=0,n=0;for(let p=0;p<v.length;p++)if(a[p]>.99){mean+=low[p];n++;}mean/=n;
  const stats={source_mean_rgb:[0,0,0],display_mean_rgb:[0,0,0],alpha_changed_pixels:0,changed_rgb_pixels:0,protected_hardware_pixels:0,opaque_pixels:n};
  for(let p=0;p<v.length;p++){
   const i=p*4;if(!source.data[i+3])continue;
-  const x=p%W,y=Math.floor(p/W),preserve=preserveWeight(x,y,details),[u,vv]=coordinates(id,kind,x,y,spec.texture_scale),thread=clamp(texAt(texture,u,vv)*spec.texture_gain,-15,15);
+  const x=p%W,y=Math.floor(p/W),preserve=preserveWeight(x,y,details),[u,vv]=coordinates(id,kind,x,y,spec.texture_scale,spec.texture_mapping),thread=clamp(texAt(texture,u,vv)*spec.texture_gain,-15,15);
   const shade=low[p]-mean,detail=(v[p]-low[p])*spec.detail;
   let hardware=0;for(const [cx,cy,rx,ry]of details.ellipses){const d=Math.hypot((x-cx)/rx,(y-cy)/ry);hardware=Math.max(hardware,1-smooth((d-.9)/.4));}if(hardware===1)stats.protected_hardware_pixels++;
   for(let k=0;k<3;k++){
@@ -131,7 +149,9 @@ async function build(){
    for(const f of spec.reference_photos)provenance.photographs[f]={path:'provenance/issue22/'+f,sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/'+f))),role:'owner-supplied-garment-photo',id};
    if(spec.generated_texture){
     provenance.generated_textures??={};
-    provenance.generated_textures[id]={path:texturePath,sha256:sha(fs.readFileSync(path.join(ROOT,texturePath))),source_type:'generated-texture-reconstruction-from-owner-photographs',tool:'built-in image_gen',reference_photographs:spec.reference_photos,close_up_reference_sha256:'81f8a0781d5fc7485987f40ffc61b38d3271ce840fecfbe38398240a69a3b90f',purpose:'Restore the fine irregular vertically biased weave at native picker and phone sizes on the existing registered S14 layers',color_policy:'Only texture luminance is projected; the existing photographic color sample and source shading are retained',geometry_policy:'No garment or avatar generated; original alpha, seams and buttons are preserved',approval_scope:'Owner requested the B06 correction workflow for S14; no new textile composition or whole-outfit approval inferred',prompt_summary:'Flat straight-on continuous swatch of the supplied S14 jacket fabric: matte dense muted slate blue-gray suiting, fine irregular vertical woven grain with tiny broken lighter yarns and subtle cross-yarn interlocking; quiet near-solid from a distance. No plaid, herringbone, coarse slubs, holes, gloss, folds, seams, garment, labels or UI. The app uses luminance only.'};
+    if(id==='S14')provenance.generated_textures[id]={path:texturePath,sha256:sha(fs.readFileSync(path.join(ROOT,texturePath))),source_type:'generated-texture-reconstruction-from-owner-photographs',tool:'built-in image_gen',reference_photographs:spec.reference_photos,close_up_reference_sha256:'81f8a0781d5fc7485987f40ffc61b38d3271ce840fecfbe38398240a69a3b90f',purpose:'Restore the fine irregular vertically biased weave at native picker and phone sizes on the existing registered S14 layers',color_policy:'Only texture luminance is projected; the existing photographic color sample and source shading are retained',geometry_policy:'No garment or avatar generated; original alpha, seams and buttons are preserved',approval_scope:'Owner requested the B06 correction workflow for S14; no new textile composition or whole-outfit approval inferred',prompt_summary:'Flat straight-on continuous swatch of the supplied S14 jacket fabric: matte dense muted slate blue-gray suiting, fine irregular vertical woven grain with tiny broken lighter yarns and subtle cross-yarn interlocking; quiet near-solid from a distance. No plaid, herringbone, coarse slubs, holes, gloss, folds, seams, garment, labels or UI. The app uses luminance only.'};
+    else if(id==='S13')provenance.generated_textures[id]={path:texturePath,sha256:sha(fs.readFileSync(path.join(ROOT,texturePath))),...{"source_type":"generated-texture-reconstruction-from-owner-photographs","tool":"built-in image_gen","reference_photographs":["IMG_1741.jpeg","IMG_1745.jpeg"],"additional_reference":{"file_name":"IMG_1739.jpeg","sha256":"e08ee416a0acc748f8228fd2e86c1832349ce66d263da32b618653a715154a41","role":"owner-supplied studio composite used for normal-view pattern scale; not color calibration"},"purpose":"Restore S13's fine crossed and interlocking check at native, picker and phone sizes on the existing registered layers","color_policy":"Only texture luminance is projected; the exact prior photographic RGB target [44,48,58] is retained","geometry_policy":"No garment or avatar generated; original alpha, seams and buttons are preserved","approval_scope":"Owner requested the same correction workflow as the previous suits through the live app; no new textile composition or matching policy inferred","source_shading_policy":"12-pixel alpha-normalized smoothing removes muddy original texture while retaining broad folds; protected source seams and original hardware remain","prompt":"Use case: product-mockup. Asset type: one square continuous fabric texture for an existing wardrobe app suit S13. Reconstruct ONLY the actual suiting fabric visible in the three reference photographs into a flat, straight-on, uniformly lit swatch. Reference 1 (rear shoulder close-up) controls the fine crossed thread structure; reference 2 (front jacket and trousers) controls the subdued check organization; reference 3 (studio full outfit composite) controls the restrained normal-view pattern scale. Ignore all people, shirt, tie, garment edges, seams, buttons, background, and phone UI. Material appearance: dark desaturated slate-blue/blue-gray ground with closely spaced lighter muted blue-gray threads running in BOTH directions, organized into small irregular rectangular/interlocking check groups. The subtle group lines are subordinate to the dense fine woven threads. Show roughly 14–18 small check groups across the square, each containing many fine crossed yarns. The cloth must remain visibly but quietly checked at normal viewing scale, with crisp fine interwoven detail up close, not muddied dark blobs. Preserve the reference character; this is S13 crossed/interlocking check, NOT S14's predominantly vertical near-solid weave. Photorealistic matte tightly woven suiting under perfectly even soft diffuse light. Flat continuous texture filling the entire image edge to edge, no borders. No bright white grid, large bold windowpane plaid, broad dark bars, herringbone, tweedy pebbles, thick slubs, oversized yarn, coarse holes, gloss, folds, wrinkles, shadows, gradients, seams, clothing silhouette, person, labels, text or UI. This is a generated texture reconstruction from photographs, not a new garment. The app will use only its luminance detail and retain the existing S13 photographic color target."}};
+    else throw Error('Missing garment-specific generated texture provenance: '+id);
    }
   }
   manifest.garments[id]={description:spec.description,material:spec.linen?'linen':spec.approved_fabric?'owner-approved-generated-fabric':'photographic-suit-fabric',target_rgb:target,parameters:spec,source_layers:[],...(spec.revision?{revision:spec.revision}:{})};

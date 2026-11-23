@@ -1,0 +1,413 @@
+{
+  "schema": "hewrs.s13-material-verification.v1",
+  "status": "PASS",
+  "baseline_commit": "f648cda6e577aa1b6ce7b75df1e71437eb5e6aae",
+  "material_revision": "S13_REFERENCE_CHECK_20261123_1",
+  "changed_layers": [
+    {
+      "layer": "jacket",
+      "source_sha256": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
+      "before_display_sha256": "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107",
+      "after_display_sha256": "bf9d4a108e563092e5f29ad6c020f793950b7018ee639cf7fd045bad0e069cc7",
+      "changed_rgb_pixels": 703495,
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 2452,
+      "mean_rgb_delta": [
+        -0.07413160958965313,
+        -0.07158833613551661,
+        -0.07056552778423143
+      ]
+    },
+    {
+      "layer": "trousers",
+      "source_sha256": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
+      "before_display_sha256": "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8",
+      "after_display_sha256": "8091337b3df86fe4e31e263342cca4490f0f85b11e5c52e3313d8fa9538427eb",
+      "changed_rgb_pixels": 545821,
+      "alpha_changed_pixels": 0,
+      "protected_hardware_pixels": 0,
+      "mean_rgb_delta": [
+        -0.031221535370845738,
+        -0.031221535370845738,
+        -0.031221535370845738
+      ]
+    }
+  ],
+  "preserved_material_layers": 7,
+  "changed_picker_ids": [
+    "S13"
+  ],
+  "preserved_picker_images": 6,
+  "native_controls": [
+    {
+      "id": "S06",
+      "rgba_sha256": "9c48cb79c6cf6f5016b05c6244ece29bb2c5902d856a76abeed1a84b46daeba8"
+    },
+    {
+      "id": "S14",
+      "rgba_sha256": "5366c652bae38be58b2466427fabc8f9a21d5be33d8995ea9ae3e583c67fdb35"
+    },
+    {
+      "id": "B01",
+      "rgba_sha256": "e61db4f8124f7347f2d5b008da96a372e9cdf16667c2794e147ec3c6b2950aeb"
+    },
+    {
+      "id": "B06",
+      "rgba_sha256": "d8ccc7b8b8d9070e0dcd42540dea79e060dac74f0bc113c43bbbe8daf0e97692"
+    },
+    {
+      "id": "B10",
+      "rgba_sha256": "db0d22789947a8e9d587a937380467adfb6c1d0f4b3003ba6c0bdad0b8a8f466"
+    },
+    {
+      "id": "B08",
+      "rgba_sha256": "9568dbefaa044dff42530c1c8bf033ccaa8b89d37fb9f1804f71d7c691556cd9"
+    }
+  ],
+  "protected_hardware_pixels": 2452,
+  "protected_head_pixels": 104620,
+  "exact_pixels_outside_s13": 1516475,
+  "before_native_rgba_sha256": "1c380d40b5124d5868649bd1b73889344ac70126c8abe47e62fec640539efa95",
+  "after_native_rgba_sha256": "eb12e3a34fc4b6190a6def902f290a98a5d5e211fae810f1f05cb8a9d2344a48",
+  "runtime": "runtime/avatar-v3-candidate-be63900aef1fd6e340e1.js",
+  "runtime_sha256": "be63900aef1fd6e340e130f59d3785dce207df040def9455d5d735ea25ba3f05",
+  "active_material_bindings_verified": 2,
+  "dna_and_numeric_matching": "byte-identical",
+  "saved_data_writes": 0,
+  "phone_texture": [
+    {
+      "name": "chest",
+      "layer": "jacket",
+      "width": 360,
+      "rect": [
+        100,
+        277,
+        37,
+        46
+      ],
+      "mean_residual_luma": -0.06286721504112822,
+      "residual_rms_luma": 4.958125072546284,
+      "coarse_8px_rms_luma": 0.9690082821014742,
+      "coarse_to_total_ratio": 0.19543845060847412,
+      "maximum_absolute_residual_luma": 15
+    },
+    {
+      "name": "lower_jacket",
+      "layer": "jacket",
+      "width": 360,
+      "rect": [
+        115,
+        436,
+        34,
+        44
+      ],
+      "mean_residual_luma": 0.06082887700534782,
+      "residual_rms_luma": 4.694935872019412,
+      "coarse_8px_rms_luma": 1.3135421829565468,
+      "coarse_to_total_ratio": 0.2797785142891757,
+      "maximum_absolute_residual_luma": 14.999999999999993
+    },
+    {
+      "name": "chest",
+      "layer": "jacket",
+      "width": 390,
+      "rect": [
+        108,
+        300,
+        40,
+        50
+      ],
+      "mean_residual_luma": -0.16700000000000004,
+      "residual_rms_luma": 4.836539155222462,
+      "coarse_8px_rms_luma": 1.4968417453102625,
+      "coarse_to_total_ratio": 0.3094861216400953,
+      "maximum_absolute_residual_luma": 14.999999999999986
+    },
+    {
+      "name": "lower_jacket",
+      "layer": "jacket",
+      "width": 390,
+      "rect": [
+        125,
+        472,
+        37,
+        48
+      ],
+      "mean_residual_luma": 0.05630630630630704,
+      "residual_rms_luma": 4.353882067687365,
+      "coarse_8px_rms_luma": 0.9045750130965237,
+      "coarse_to_total_ratio": 0.2077628651933155,
+      "maximum_absolute_residual_luma": 15
+    },
+    {
+      "name": "left_thigh",
+      "layer": "trousers",
+      "width": 360,
+      "rect": [
+        119,
+        597,
+        37,
+        69
+      ],
+      "mean_residual_luma": -0.28828828828828834,
+      "residual_rms_luma": 4.809240836407494,
+      "coarse_8px_rms_luma": 1.4537259571714602,
+      "coarse_to_total_ratio": 0.30227763728659396,
+      "maximum_absolute_residual_luma": 14.000000000000007
+    },
+    {
+      "name": "right_thigh",
+      "layer": "trousers",
+      "width": 360,
+      "rect": [
+        205,
+        597,
+        35,
+        69
+      ],
+      "mean_residual_luma": -0.2894409937888198,
+      "residual_rms_luma": 4.846064367416463,
+      "coarse_8px_rms_luma": 1.2888253658542856,
+      "coarse_to_total_ratio": 0.2659530018874646,
+      "maximum_absolute_residual_luma": 14.000000000000007
+    },
+    {
+      "name": "left_thigh",
+      "layer": "trousers",
+      "width": 390,
+      "rect": [
+        129,
+        647,
+        40,
+        75
+      ],
+      "mean_residual_luma": 0.4726666666666667,
+      "residual_rms_luma": 4.485597643817624,
+      "coarse_8px_rms_luma": 1.6092547225221607,
+      "coarse_to_total_ratio": 0.35876038162721796,
+      "maximum_absolute_residual_luma": 15.000000000000007
+    },
+    {
+      "name": "right_thigh",
+      "layer": "trousers",
+      "width": 390,
+      "rect": [
+        222,
+        647,
+        38,
+        75
+      ],
+      "mean_residual_luma": 0.26035087719298255,
+      "residual_rms_luma": 4.828163707784348,
+      "coarse_8px_rms_luma": 1.1020002030757932,
+      "coarse_to_total_ratio": 0.22824416688669052,
+      "maximum_absolute_residual_luma": 14
+    }
+  ],
+  "prior_phone_texture": [
+    {
+      "name": "chest",
+      "layer": "jacket",
+      "width": 360,
+      "rect": [
+        100,
+        277,
+        37,
+        46
+      ],
+      "mean_residual_luma": 0.0029377203290243616,
+      "residual_rms_luma": 4.1609076361862805,
+      "coarse_8px_rms_luma": 0.6214248331392844,
+      "coarse_to_total_ratio": 0.14934838440895007,
+      "maximum_absolute_residual_luma": 13.999999999999993
+    },
+    {
+      "name": "lower_jacket",
+      "layer": "jacket",
+      "width": 360,
+      "rect": [
+        115,
+        436,
+        34,
+        44
+      ],
+      "mean_residual_luma": 0.022727272727273325,
+      "residual_rms_luma": 3.938296415741222,
+      "coarse_8px_rms_luma": 0.5406673348670025,
+      "coarse_to_total_ratio": 0.13728457124404744,
+      "maximum_absolute_residual_luma": 14.999999999999993
+    },
+    {
+      "name": "chest",
+      "layer": "jacket",
+      "width": 390,
+      "rect": [
+        108,
+        300,
+        40,
+        50
+      ],
+      "mean_residual_luma": -0.0010000000000002984,
+      "residual_rms_luma": 4.173008387242949,
+      "coarse_8px_rms_luma": 0.6872316395429483,
+      "coarse_to_total_ratio": 0.16468494087954447,
+      "maximum_absolute_residual_luma": 15
+    },
+    {
+      "name": "lower_jacket",
+      "layer": "jacket",
+      "width": 390,
+      "rect": [
+        125,
+        472,
+        37,
+        48
+      ],
+      "mean_residual_luma": 0.018018018018018514,
+      "residual_rms_luma": 3.9233523126332566,
+      "coarse_8px_rms_luma": 0.4198608038601073,
+      "coarse_to_total_ratio": 0.10701582993404617,
+      "maximum_absolute_residual_luma": 13
+    },
+    {
+      "name": "left_thigh",
+      "layer": "trousers",
+      "width": 360,
+      "rect": [
+        119,
+        597,
+        37,
+        69
+      ],
+      "mean_residual_luma": 0.02624363493928698,
+      "residual_rms_luma": 3.9064281430537746,
+      "coarse_8px_rms_luma": 0.6015781549175458,
+      "coarse_to_total_ratio": 0.15399698468465203,
+      "maximum_absolute_residual_luma": 15
+    },
+    {
+      "name": "right_thigh",
+      "layer": "trousers",
+      "width": 360,
+      "rect": [
+        205,
+        597,
+        35,
+        69
+      ],
+      "mean_residual_luma": -0.013664596273291798,
+      "residual_rms_luma": 3.9537988686995194,
+      "coarse_8px_rms_luma": 0.5450511491903902,
+      "coarse_to_total_ratio": 0.13785505213867089,
+      "maximum_absolute_residual_luma": 15.000000000000007
+    },
+    {
+      "name": "left_thigh",
+      "layer": "trousers",
+      "width": 390,
+      "rect": [
+        129,
+        647,
+        40,
+        75
+      ],
+      "mean_residual_luma": 0.004666666666666536,
+      "residual_rms_luma": 3.8880987070232096,
+      "coarse_8px_rms_luma": 0.5667892024377315,
+      "coarse_to_total_ratio": 0.1457754149641109,
+      "maximum_absolute_residual_luma": 14
+    },
+    {
+      "name": "right_thigh",
+      "layer": "trousers",
+      "width": 390,
+      "rect": [
+        222,
+        647,
+        38,
+        75
+      ],
+      "mean_residual_luma": 0.002807017543859856,
+      "residual_rms_luma": 4.033368604044404,
+      "coarse_8px_rms_luma": 0.5843587269553733,
+      "coarse_to_total_ratio": 0.14488106204065151,
+      "maximum_absolute_residual_luma": 14
+    }
+  ],
+  "lapel_mapping": {
+    "method": "smooth_vertical_constant_texture_minus_identical_zero_thread_control",
+    "diagnostic_texture_gain": 1,
+    "texture_scale": 0.32,
+    "current": [
+      {
+        "name": "left_unseamed_chest",
+        "native_rows": [
+          929,
+          930
+        ],
+        "native_x": [
+          320,
+          450
+        ],
+        "samples": 131,
+        "mean_absolute_jump": 0.32061068702290146,
+        "rms_jump": 0.5662249438367246,
+        "maximum_absolute_jump": 1.000000000000007
+      },
+      {
+        "name": "right_unseamed_chest",
+        "native_rows": [
+          929,
+          930
+        ],
+        "native_x": [
+          550,
+          660
+        ],
+        "samples": 111,
+        "mean_absolute_jump": 0.2792792792792794,
+        "rms_jump": 0.5284688063445931,
+        "maximum_absolute_jump": 1.000000000000007
+      }
+    ],
+    "legacy_rectangular_mapping": [
+      {
+        "name": "left_unseamed_chest",
+        "native_rows": [
+          929,
+          930
+        ],
+        "native_x": [
+          320,
+          450
+        ],
+        "samples": 131,
+        "mean_absolute_jump": 4.419847328244274,
+        "rms_jump": 5.027405808198234,
+        "maximum_absolute_jump": 8.999999999999986
+      },
+      {
+        "name": "right_unseamed_chest",
+        "native_rows": [
+          929,
+          930
+        ],
+        "native_x": [
+          550,
+          660
+        ],
+        "samples": 111,
+        "mean_absolute_jump": 4.315315315315316,
+        "rms_jump": 5.089292770208931,
+        "maximum_absolute_jump": 11
+      }
+    ],
+    "legacy_control_rejected": true
+  },
+  "retained_reference_evidence": [
+    "S06 approved fabric",
+    "S14 reference weave",
+    "prior blazer linen"
+  ],
+  "limitations": "Pixel and source regression, not calibrated physical colour matching or a new garment/avatar approval."
+}

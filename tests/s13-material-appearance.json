@@ -1,0 +1,152 @@
+{
+  "schema": "hewrs.s13-material-appearance.v1",
+  "status": "assistant_visual_review",
+  "date": "2026-11-23",
+  "baseline_commit": "f648cda6e577aa1b6ce7b75df1e71437eb5e6aae",
+  "measurement": "display_minus_zero_thread_projection",
+  "scope": "Phone-size fine interlocking crosshatch contrast on opaque jacket and trouser cloth, isolated from source shading and folds",
+  "authority": "Assistant visual comparison with the owner-supplied S13 photographs; not owner approval of a new swatch, garment or avatar",
+  "material_revision": "S13_REFERENCE_CHECK_20261123_1",
+  "generated_texture_sha256": "4764afe02cca287e360fde6dce6c9ee72fee98097927ba3d6af4a243d5b8ee38",
+  "preserved_target_rgb": [
+    44,
+    48,
+    58
+  ],
+  "previous_native_rgba_sha256": "1c380d40b5124d5868649bd1b73889344ac70126c8abe47e62fec640539efa95",
+  "accepted_native_rgba_sha256": "eb12e3a34fc4b6190a6def902f290a98a5d5e211fae810f1f05cb8a9d2344a48",
+  "accepted_projection": {
+    "texture_scale": 0.32,
+    "texture_gain": 0.6,
+    "texture_filter": "periodic_binomial_3x3",
+    "texture_mapping": "s13_lapel_seams_v1",
+    "blur": 12,
+    "detail": 0,
+    "shade_gain": 0.92
+  },
+  "bounds": [
+    {
+      "name": "chest",
+      "width": 360,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    },
+    {
+      "name": "lower_jacket",
+      "width": 360,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    },
+    {
+      "name": "chest",
+      "width": 390,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    },
+    {
+      "name": "lower_jacket",
+      "width": 390,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    },
+    {
+      "name": "left_thigh",
+      "width": 360,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    },
+    {
+      "name": "right_thigh",
+      "width": 360,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    },
+    {
+      "name": "left_thigh",
+      "width": 390,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    },
+    {
+      "name": "right_thigh",
+      "width": 390,
+      "minimum_rms_luma": 3.5,
+      "maximum_rms_luma": 5.8,
+      "maximum_coarse_8px_rms_luma": 1.9,
+      "maximum_coarse_to_total_ratio": 0.45
+    }
+  ],
+  "calibration": {
+    "previous_material_ranges": {
+      "residual_rms_luma": [
+        3.8880987070232096,
+        4.173008387242949
+      ],
+      "coarse_8px_rms_luma": [
+        0.4198608038601073,
+        0.6872316395429483
+      ],
+      "coarse_to_total_ratio": [
+        0.10701582993404617,
+        0.16468494087954447
+      ]
+    },
+    "accepted_material_ranges": {
+      "residual_rms_luma": [
+        4.353882067687365,
+        4.958125072546284
+      ],
+      "coarse_8px_rms_luma": [
+        0.9045750130965237,
+        1.6092547225221607
+      ],
+      "coarse_to_total_ratio": [
+        0.19543845060847412,
+        0.35876038162721796
+      ]
+    },
+    "previous_material_policy": "Retained comparison only. This residual removes the original source low-pass texture and cannot measure all old muddiness; the old material is not forced to fail these bounds.",
+    "rejected_initial_projections": [
+      {
+        "texture_scale": 0.2,
+        "texture_gain": 1.0,
+        "reason": "Over-strong surface and conspicuous horizontal ribbing at phone size."
+      },
+      {
+        "texture_scale": 0.32,
+        "texture_gain": 1.0,
+        "reason": "Crosshatch too pronounced; the legacy rectangular lapel mapping exposed a false horizontal chest join."
+      },
+      {
+        "texture_scale": 0.45,
+        "texture_gain": 1.0,
+        "reason": "Check groups too large and pronounced at phone size."
+      }
+    ],
+    "mapping_regression": "A smooth vertically constant diagnostic textile must stay continuous across native rows929/930 in unseamed body cloth. The actual legacy rectangular mapping must fail that same one-level rounding bound."
+  },
+  "visual_findings": [
+    "Fine crossed and interlocking yarn detail remains visible without changing the existing dark slate blue-grey color target.",
+    "The seam-following S13 mapping removes the invented horizontal upper-chest join from the clearer reconstruction.",
+    "The accepted gain keeps the normal-view pattern restrained; registered folds, leg form, seams, buttons and silhouette remain visible."
+  ],
+  "limitations": [
+    "The source photographs are not color calibrated and do not establish textile composition.",
+    "Residual texture statistics do not replace native/phone visual review or measure every source-pattern defect.",
+    "The native renderer hash pins the reviewed pixels; browser/UI and saved-state behavior are verified separately."
+  ]
+}

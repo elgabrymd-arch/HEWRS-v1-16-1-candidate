@@ -2,6 +2,7 @@
   "schema": "hewrs.s14-material-verification.v1",
   "status": "PASS",
   "baseline_commit": "457774146fa7d4a5494ceec553f187e27b126983",
+  "verification_scope": "Current released S14 appearance and original S14 isolation, with S13 isolation frozen at the completed S14 release",
   "material_revision": "S14_REFERENCE_WEAVE_20261122_1",
   "changed_layers": [
     {
@@ -33,34 +34,48 @@
       ]
     }
   ],
-  "preserved_material_layers": 7,
+  "preserved_material_layers": 5,
   "changed_picker_ids": [
     "S14"
   ],
-  "preserved_picker_images": 6,
+  "preserved_picker_images": 5,
+  "retained_historical_s13": {
+    "checkpoint": "f648cda6e577aa1b6ce7b75df1e71437eb5e6aae",
+    "material_layers": 2,
+    "picker_images": 1,
+    "native_frames": 1,
+    "current_gate": "tests/s13-material.cjs"
+  },
   "native_controls": [
     {
       "id": "S06",
+      "scope": "current",
       "rgba_sha256": "9c48cb79c6cf6f5016b05c6244ece29bb2c5902d856a76abeed1a84b46daeba8"
     },
     {
       "id": "S13",
+      "scope": "historical-before-S13-correction",
+      "checkpoint": "f648cda6e577aa1b6ce7b75df1e71437eb5e6aae",
       "rgba_sha256": "1c380d40b5124d5868649bd1b73889344ac70126c8abe47e62fec640539efa95"
     },
     {
       "id": "B01",
+      "scope": "current",
       "rgba_sha256": "e61db4f8124f7347f2d5b008da96a372e9cdf16667c2794e147ec3c6b2950aeb"
     },
     {
       "id": "B06",
+      "scope": "current",
       "rgba_sha256": "d8ccc7b8b8d9070e0dcd42540dea79e060dac74f0bc113c43bbbe8daf0e97692"
     },
     {
       "id": "B10",
+      "scope": "current",
       "rgba_sha256": "db0d22789947a8e9d587a937380467adfb6c1d0f4b3003ba6c0bdad0b8a8f466"
     },
     {
       "id": "B08",
+      "scope": "current",
       "rgba_sha256": "9568dbefaa044dff42530c1c8bf033ccaa8b89d37fb9f1804f71d7c691556cd9"
     }
   ],
@@ -69,8 +84,8 @@
   "exact_pixels_outside_s14": 1516475,
   "before_native_rgba_sha256": "3a908df03dcd52306462286af3c7a83509f0cd66bde8770ba030c99ff2f00ec7",
   "after_native_rgba_sha256": "5366c652bae38be58b2466427fabc8f9a21d5be33d8995ea9ae3e583c67fdb35",
-  "runtime": "runtime/avatar-v3-candidate-bc4271aea98703c2e5ff.js",
-  "runtime_sha256": "bc4271aea98703c2e5ff2b7fdb8842f007f8a758c0e3c6f0f3df0494d70d4620",
+  "runtime": "runtime/avatar-v3-candidate-be63900aef1fd6e340e1.js",
+  "runtime_sha256": "be63900aef1fd6e340e130f59d3785dce207df040def9455d5d735ea25ba3f05",
   "active_material_bindings_verified": 2,
   "dna_and_numeric_matching": "byte-identical",
   "saved_data_writes": 0,

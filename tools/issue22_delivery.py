@@ -122,6 +122,13 @@ def record():
             'baseline_commit':'457774146fa7d4a5494ceec553f187e27b126983',
             'scope':'S14 display weave and its native picker; retain existing color, registered construction, garment facts, matching and all other garments',
         },
+        'additional_material_corrections':[{
+            'date':'2026-11-23',
+            'garment_id':'S13',
+            'authority':'explicit_owner_request_for_the_same_prior_suit_correction_work_through_the_live_app',
+            'baseline_commit':'f648cda6e577aa1b6ce7b75df1e71437eb5e6aae',
+            'scope':'S13 fine crossed-check display texture and native picker; preserve photographic color, registered construction, garment DNA, matching rules, saved state and all prior garment corrections',
+        }],
     }
 
 

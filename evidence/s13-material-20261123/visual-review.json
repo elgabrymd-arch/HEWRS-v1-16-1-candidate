@@ -1,0 +1,75 @@
+{
+  "schema": "hewrs.s13-visual-review.v1",
+  "status": "assistant_visual_review",
+  "owner_approval_inferred": false,
+  "baseline_commit": "f648cda6e577aa1b6ce7b75df1e71437eb5e6aae",
+  "garment_id": "S13",
+  "date": "2026-11-23",
+  "generated_texture_sha256": "4764afe02cca287e360fde6dce6c9ee72fee98097927ba3d6af4a243d5b8ee38",
+  "before_native_rgba_sha256": "1c380d40b5124d5868649bd1b73889344ac70126c8abe47e62fec640539efa95",
+  "after_native_rgba_sha256": "eb12e3a34fc4b6190a6def902f290a98a5d5e211fae810f1f05cb8a9d2344a48",
+  "reviewed_parameters": {
+    "texture_scale": 0.32,
+    "texture_gain": 0.6,
+    "texture_filter": "periodic_binomial_3x3",
+    "texture_mapping": "s13_lapel_seams_v1",
+    "blur": 12,
+    "detail": 0,
+    "shade_gain": 0.92,
+    "target_rgb": [
+      44,
+      48,
+      58
+    ]
+  },
+  "reviewers": [
+    "implementing assistant",
+    "independent visual review agent"
+  ],
+  "accepted_findings": [
+    "Fine crossed and interlocking check remains visible but quiet at phone size",
+    "Close view retains crossed thread structure",
+    "Lapel sampling follows existing seams; artificial horizontal y930 chest join removed",
+    "Native knee and calf shading retained",
+    "Photographic color target and original silhouette retained"
+  ],
+  "rejected_trials": [
+    {
+      "scale": 0.2,
+      "gain": 1,
+      "reason": "Repeated horizontal ribbing after phone downsampling"
+    },
+    {
+      "scale": 0.32,
+      "gain": 1,
+      "reason": "Grid contrast too strong and generic rectangular UV boundary visible"
+    },
+    {
+      "scale": 0.45,
+      "gain": 1,
+      "reason": "Large conspicuous cells; artificial chest UV boundary"
+    }
+  ],
+  "trouser_form_support": {
+    "measurement": "5px-blurred vertical luminance profile p95-minus-p5; supporting image comparison, not calibrated physical measurement",
+    "left_lower_leg": {
+      "before": 13.267,
+      "after": 13.218
+    },
+    "right_lower_leg": {
+      "before": 11.275,
+      "after": 11.43
+    }
+  },
+  "reference_roles": {
+    "front": "Existing IMG_1745.jpeg; newly supplied bytes identical; color and front jacket/trouser relationship",
+    "rear": "Existing IMG_1741.jpeg; newly supplied bytes identical; crossed thread detail",
+    "studio": "Owner-supplied IMG_1739.jpeg composite; normal-view pattern scale",
+    "nested_rear": "Repeated rear-shoulder screenshot; not independent lighting evidence"
+  },
+  "limitations": [
+    "Uncalibrated phone screenshots do not establish physical textile color or fibre composition",
+    "Generated reconstruction supplies luminance texture only",
+    "Visual review is separate from functional and publication validation"
+  ]
+}

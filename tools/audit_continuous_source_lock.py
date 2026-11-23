@@ -35,6 +35,7 @@ V3_LAYERS = {
 ISSUE22_APPROVED_MAIN = '95d14073e33f2b699bdb0cdbd42504b1a1be2274'
 ISSUE22_INTEGRATION = 'f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9'
 ISSUE22_PRE_S14 = '457774146fa7d4a5494ceec553f187e27b126983'
+ISSUE22_PRE_S13 = 'f648cda6e577aa1b6ce7b75df1e71437eb5e6aae'
 ISSUE22_DATA = {
     'garment-dna': ('HEWRS_ISSUE22_GARMENT_DNA', 'hewrs.issue22.garment-dna.v1'),
     'materials': ('HEWRS_ISSUE22_MATERIALS', 'hewrs.issue22.materials.v1'),
@@ -200,6 +201,47 @@ def validate_s14_picker_scope(picker, before):
                     'S14 correction changed picker identity or native layout')
 
 
+def validate_s13_material_scope(materials, before):
+    """Allow only S13 display pixels after the exact published S14 release."""
+    require(materials.get('revision') == before['revision'],
+            'S13 correction cannot change the shared material revision')
+    require(set(materials.get('bindings', {})) == set(before['bindings']),
+            'S13 correction cannot change material source identities')
+    require(set(materials.get('garments', {})) == set(before['garments']),
+            'S13 correction cannot change garment identities')
+    for source_hash, old in before['bindings'].items():
+        row = materials['bindings'][source_hash]
+        if old['garment_id'] != 'S13':
+            require(row == old, 'A non-S13 material binding changed after the pre-S13 checkpoint')
+        else:
+            variable = {'display_sha256', 'display_url', 'measurements'}
+            require(set(row) == set(old) and
+                    {key: value for key, value in row.items() if key not in variable} ==
+                    {key: value for key, value in old.items() if key not in variable},
+                    'S13 correction changed native source registration or alpha')
+    for garment_id, old in before['garments'].items():
+        if garment_id != 'S13':
+            require(materials['garments'][garment_id] == old,
+                    'A non-S13 material specification changed after the pre-S13 checkpoint')
+    require(materials['garments']['S13'].get('target_rgb') == before['garments']['S13']['target_rgb'],
+            'S13 texture-only correction changed the registered photographic colour target')
+
+
+def validate_s13_picker_scope(picker, before):
+    """Preserve all published pickers except S13's display-only fields."""
+    require(set(picker.get('items', {})) == set(before['items']),
+            'S13 correction cannot change picker identities')
+    for garment_id, old in before['items'].items():
+        row = picker['items'][garment_id]
+        if garment_id != 'S13':
+            require(row == old, 'A non-S13 picker changed after the pre-S13 checkpoint')
+        else:
+            variable = {'src', 'sha256', 'rgba_sha256', 'source_note', 'material_revision'}
+            require({key: value for key, value in row.items() if key not in variable} ==
+                    {key: value for key, value in old.items() if key not in variable},
+                    'S13 correction changed picker identity or native layout')
+
+
 def verify_issue22_sources(root, active):
     """Authorize only source-bound current and immutable retained additions.
 
@@ -225,6 +267,7 @@ def verify_issue22_sources(root, active):
     approved_blobs = blob_index(ISSUE22_APPROVED_MAIN)
     retained_blobs = blob_index(ISSUE22_INTEGRATION)
     pre_s14_blobs = blob_index(ISSUE22_PRE_S14)
+    pre_s13_blobs = blob_index(ISSUE22_PRE_S13)
 
     def exact_blob(name, inventory, label):
         import hashlib
@@ -274,12 +317,16 @@ def verify_issue22_sources(root, active):
     previous = json.loads(at_commit(ISSUE22_INTEGRATION, 'data/issue22-materials.json'))
     materials = data['materials']
     pre_s14_materials = json.loads(at_commit(ISSUE22_PRE_S14, 'data/issue22-materials.json'))
-    validate_s14_material_scope(materials, pre_s14_materials)
+    pre_s13_materials = json.loads(at_commit(ISSUE22_PRE_S13, 'data/issue22-materials.json'))
+    validate_s14_material_scope(pre_s13_materials, pre_s14_materials)
+    validate_s13_material_scope(materials, pre_s13_materials)
     for stem in ('garment-dna', 'option-index'):
         for suffix in ('.json', '.js'):
             name = 'data/issue22-' + stem + suffix
-            require(file_bytes(root, name) == at_commit(ISSUE22_PRE_S14, name),
-                    'S14 material-only correction changed DNA or numeric matching: ' + name)
+            require(at_commit(ISSUE22_PRE_S13, name) == at_commit(ISSUE22_PRE_S14, name),
+                    'The frozen S14 correction changed DNA or numeric matching: ' + name)
+            require(file_bytes(root, name) == at_commit(ISSUE22_PRE_S13, name),
+                    'S13 material-only correction changed DNA or numeric matching: ' + name)
     require(materials.get('canvas') == previous['canvas'] == [996, 2748] and
             materials.get('scope') == previous['scope'] == ['S06', 'S13', 'S14', 'B01', 'B06', 'B10'] and
             set(materials.get('bindings', {})) == set(previous['bindings']) and
@@ -297,13 +344,15 @@ def verify_issue22_sources(root, active):
                 'Issue 22 original material source path differs')
         raw = exact_blob(row['source_url'], approved_blobs, 'Approved main material source changed')
         require(digest(raw) == source_hash, 'Issue 22 original material SHA differs')
-        # Preserve the complete historical S06 isolation contract as well as
-        # the current S14-only boundary; neither checkpoint is generalized.
+        # Preserve the completed S06 and S14 isolation contracts. Only the
+        # separate current S13 boundary permits another display correction.
         before_s14 = pre_s14_materials['bindings'][source_hash]
         if row['garment_id'] != 'S06':
             require(before_s14 == old, 'The frozen S06 checkpoint changed an unrelated material')
         exact_blob(before_s14['display_url'], pre_s14_blobs, 'Pre-S14 material bytes changed')
-        for binding in (old, row):
+        before_s13 = pre_s13_materials['bindings'][source_hash]
+        exact_blob(before_s13['display_url'], pre_s13_blobs, 'Pre-S13 material bytes changed')
+        for binding in (old, before_s14, before_s13, row):
             expected_path = 'assets/issue22-materials/' + binding['garment_id'] + '-' + binding['layer'] + '-' + binding['display_sha256'][:16] + '.png'
             require(binding['display_url'] == expected_path, 'Issue 22 display path is not bound to its garment and content')
             png(expected_path, binding['display_sha256'], materials['canvas'])
@@ -315,7 +364,9 @@ def verify_issue22_sources(root, active):
     previous_picker = json.loads(at_commit(ISSUE22_INTEGRATION, 'data/issue22-picker-images.json'))
     picker = data['picker-images']
     pre_s14_picker = json.loads(at_commit(ISSUE22_PRE_S14, 'data/issue22-picker-images.json'))
-    validate_s14_picker_scope(picker, pre_s14_picker)
+    pre_s13_picker = json.loads(at_commit(ISSUE22_PRE_S13, 'data/issue22-picker-images.json'))
+    validate_s14_picker_scope(pre_s13_picker, pre_s14_picker)
+    validate_s13_picker_scope(picker, pre_s13_picker)
     require(set(picker.get('items', {})) == set(previous_picker['items']) == set(materials['scope']) | {'B08'},
             'Issue 22 picker identity scope differs from the immutable integration')
     for garment_id, old in previous_picker['items'].items():
@@ -328,7 +379,9 @@ def verify_issue22_sources(root, active):
                     {key: value for key, value in old.items() if key != 'issue22_revision'},
                     'The frozen S06 checkpoint changed an unrelated picker')
         exact_blob(before_s14['src'], pre_s14_blobs, 'Pre-S14 picker bytes changed')
-        for item in (old, row):
+        before_s13 = pre_s13_picker['items'][garment_id]
+        exact_blob(before_s13['src'], pre_s13_blobs, 'Pre-S13 picker bytes changed')
+        for item in (old, before_s14, before_s13, row):
             require(item['src'] == 'ui/issue22/' + item['sha256'] + '.png', 'Issue 22 picker path is not content-addressed')
             png(item['src'], item['sha256'], (item['width'], item['height']))
             additions.add(item['src'])

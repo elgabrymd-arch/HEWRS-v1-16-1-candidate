@@ -18,8 +18,8 @@
   "assetPaths": {
     "0018cc94b26cd3add75770d8e209a8e0b9f8912cc298411823f90a2f8555408e": "assets/issue22-materials/S06-jacket-0018cc94b26cd3ad.png",
     "506a5fb5056936cd094da0a0f6015775ba183ca741c907950ca84517b3ff2c1b": "assets/issue22-materials/S06-trousers-506a5fb5056936cd.png",
-    "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107": "assets/issue22-materials/S13-jacket-48a38b7f615ab203.png",
-    "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8": "assets/issue22-materials/S13-trousers-71315979b9cf914e.png",
+    "bf9d4a108e563092e5f29ad6c020f793950b7018ee639cf7fd045bad0e069cc7": "assets/issue22-materials/S13-jacket-bf9d4a108e563092.png",
+    "8091337b3df86fe4e31e263342cca4490f0f85b11e5c52e3313d8fa9538427eb": "assets/issue22-materials/S13-trousers-8091337b3df86fe4.png",
     "f4172e473546aab762c035625bb599afb8290311f79d97b29d120954231b99b6": "assets/issue22-materials/S14-jacket-f4172e473546aab7.png",
     "08fe07e593b313aa03b24ff08d685fb266a0f6e313e4739816b65f59b8e51308": "assets/issue22-materials/S14-trousers-08fe07e593b313aa.png",
     "cee158709a72028923cad4e8cf31c5430ec602c5b62ecf827aeb58144f3c69c4": "assets/issue22-materials/B01-jacket-cee158709a720289.png",
@@ -94,8 +94,8 @@
       "layer": "jacket",
       "source_sha256": "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
       "source_url": "assets/1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537.png",
-      "display_sha256": "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107",
-      "display_url": "assets/issue22-materials/S13-jacket-48a38b7f615ab203.png",
+      "display_sha256": "bf9d4a108e563092e5f29ad6c020f793950b7018ee639cf7fd045bad0e069cc7",
+      "display_url": "assets/issue22-materials/S13-jacket-bf9d4a108e563092.png",
       "rect": [
         0,
         0,
@@ -110,12 +110,12 @@
           72.287
         ],
         "display_mean_rgb": [
-          44.007,
-          48.012,
-          58.043
+          43.931,
+          47.938,
+          57.97
         ],
         "alpha_changed_pixels": 0,
-        "changed_rgb_pixels": 747061,
+        "changed_rgb_pixels": 747086,
         "protected_hardware_pixels": 2452,
         "opaque_pixels": 731386
       }
@@ -125,8 +125,8 @@
       "layer": "trousers",
       "source_sha256": "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1",
       "source_url": "assets/3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1.png",
-      "display_sha256": "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8",
-      "display_url": "assets/issue22-materials/S13-trousers-71315979b9cf914e.png",
+      "display_sha256": "8091337b3df86fe4e31e263342cca4490f0f85b11e5c52e3313d8fa9538427eb",
+      "display_url": "assets/issue22-materials/S13-trousers-8091337b3df86fe4.png",
       "rect": [
         0,
         0,
@@ -141,9 +141,9 @@
           59.463
         ],
         "display_mean_rgb": [
-          44.004,
-          48.004,
-          58.004
+          43.969,
+          47.969,
+          57.969
         ],
         "alpha_changed_pixels": 0,
         "changed_rgb_pixels": 573606,
@@ -353,6 +353,7 @@
         58
       ],
       "parameters": {
+        "revision": "S13_REFERENCE_CHECK_20261123_1",
         "photo": "IMG_1745.jpeg",
         "color_rect": [
           422,
@@ -360,17 +361,19 @@
           110,
           240
         ],
-        "texture_photo": "IMG_1745.jpeg",
+        "generated_texture": "s13-reference-check-v1.png",
         "texture_rect": [
-          420,
-          340,
-          100,
-          130
+          0,
+          0,
+          1254,
+          1254
         ],
-        "texture_scale": 1.3,
-        "texture_gain": 0.62,
-        "blur": 5,
-        "detail": 0.08,
+        "texture_scale": 0.32,
+        "texture_gain": 0.6,
+        "texture_filter": "periodic_binomial_3x3",
+        "texture_mapping": "s13_lapel_seams_v1",
+        "blur": 12,
+        "detail": 0,
         "shade_gain": 0.92,
         "reference_photos": [
           "IMG_1741.jpeg",
@@ -381,7 +384,8 @@
       "source_layers": [
         "1e458591ade65aad760155323d1bebea30ffbeccf6238a2d7508b23476135537",
         "3889f11eb9a64e82df3feebba32b080b6e6891402bc6784774191fe697f44ec1"
-      ]
+      ],
+      "revision": "S13_REFERENCE_CHECK_20261123_1"
     },
     "S14": {
       "description": "Medium blue-gray fine near-solid weave",

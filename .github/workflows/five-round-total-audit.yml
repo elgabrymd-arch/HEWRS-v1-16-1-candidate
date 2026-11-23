@@ -57,6 +57,7 @@ jobs:
           git fetch --depth=1 origin 95d14073e33f2b699bdb0cdbd42504b1a1be2274
           git fetch --depth=1 origin f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9
           git fetch --depth=1 origin 457774146fa7d4a5494ceec553f187e27b126983
+          git fetch --depth=1 origin f648cda6e577aa1b6ce7b75df1e71437eb5e6aae
           python tools/audit_continuous_source_lock.py --base 59d9097f9a74104d6b4a1e6ff964f62c56a1ca03
           python tools/verify_active_delivery.py --check --verify-base --syntax
           python tools/audit_active_delivery.py

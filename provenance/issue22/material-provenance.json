@@ -67,6 +67,27 @@
     }
   },
   "generated_textures": {
+    "S13": {
+      "path": "provenance/issue22/s13-reference-check-v1.png",
+      "sha256": "4764afe02cca287e360fde6dce6c9ee72fee98097927ba3d6af4a243d5b8ee38",
+      "source_type": "generated-texture-reconstruction-from-owner-photographs",
+      "tool": "built-in image_gen",
+      "reference_photographs": [
+        "IMG_1741.jpeg",
+        "IMG_1745.jpeg"
+      ],
+      "additional_reference": {
+        "file_name": "IMG_1739.jpeg",
+        "sha256": "e08ee416a0acc748f8228fd2e86c1832349ce66d263da32b618653a715154a41",
+        "role": "owner-supplied studio composite used for normal-view pattern scale; not color calibration"
+      },
+      "purpose": "Restore S13's fine crossed and interlocking check at native, picker and phone sizes on the existing registered layers",
+      "color_policy": "Only texture luminance is projected; the exact prior photographic RGB target [44,48,58] is retained",
+      "geometry_policy": "No garment or avatar generated; original alpha, seams and buttons are preserved",
+      "approval_scope": "Owner requested the same correction workflow as the previous suits through the live app; no new textile composition or matching policy inferred",
+      "source_shading_policy": "12-pixel alpha-normalized smoothing removes muddy original texture while retaining broad folds; protected source seams and original hardware remain",
+      "prompt": "Use case: product-mockup. Asset type: one square continuous fabric texture for an existing wardrobe app suit S13. Reconstruct ONLY the actual suiting fabric visible in the three reference photographs into a flat, straight-on, uniformly lit swatch. Reference 1 (rear shoulder close-up) controls the fine crossed thread structure; reference 2 (front jacket and trousers) controls the subdued check organization; reference 3 (studio full outfit composite) controls the restrained normal-view pattern scale. Ignore all people, shirt, tie, garment edges, seams, buttons, background, and phone UI. Material appearance: dark desaturated slate-blue/blue-gray ground with closely spaced lighter muted blue-gray threads running in BOTH directions, organized into small irregular rectangular/interlocking check groups. The subtle group lines are subordinate to the dense fine woven threads. Show roughly 14–18 small check groups across the square, each containing many fine crossed yarns. The cloth must remain visibly but quietly checked at normal viewing scale, with crisp fine interwoven detail up close, not muddied dark blobs. Preserve the reference character; this is S13 crossed/interlocking check, NOT S14's predominantly vertical near-solid weave. Photorealistic matte tightly woven suiting under perfectly even soft diffuse light. Flat continuous texture filling the entire image edge to edge, no borders. No bright white grid, large bold windowpane plaid, broad dark bars, herringbone, tweedy pebbles, thick slubs, oversized yarn, coarse holes, gloss, folds, wrinkles, shadows, gradients, seams, clothing silhouette, person, labels, text or UI. This is a generated texture reconstruction from photographs, not a new garment. The app will use only its luminance detail and retain the existing S13 photographic color target."
+    },
     "S14": {
       "path": "provenance/issue22/s14-reference-weave-v1.png",
       "sha256": "586a3f394d8839ef6dbd43ba82029cf386ba6fc3ec636d237d10b33cd8046424",

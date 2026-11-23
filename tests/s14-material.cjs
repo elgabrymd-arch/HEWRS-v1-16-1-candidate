@@ -17,10 +17,13 @@ try { native = require('@napi-rs/canvas'); }
 catch (_) { native = require(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES || '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules', '@napi-rs/canvas')); }
 const {createCanvas, loadImage} = native;
 const BASE = '457774146fa7d4a5494ceec553f187e27b126983';
+const PRE_S13 = 'f648cda6e577aa1b6ce7b75df1e71437eb5e6aae';
 const bytes = file => fs.readFileSync(path.join(ROOT, file));
 const read = file => JSON.parse(bytes(file));
 const priorBytes = file => execFileSync('git', ['show', BASE + ':' + file], {cwd: ROOT, maxBuffer: 64 * 1024 * 1024});
 const prior = file => JSON.parse(priorBytes(file));
+const preS13Bytes = file => execFileSync('git', ['show', PRE_S13 + ':' + file], {cwd: ROOT, maxBuffer: 64 * 1024 * 1024});
+const preS13 = file => JSON.parse(preS13Bytes(file));
 const plain = value => JSON.parse(JSON.stringify(value));
 const luma = (data, offset) => .2126 * data[offset] + .7152 * data[offset + 1] + .0722 * data[offset + 2];
 
@@ -40,13 +43,13 @@ function scriptTags(html) {
   }));
 }
 
-function historicalRuntime(html) {
+function historicalRuntime(html, checkpointBytes = priorBytes) {
   // Retain the exact old runtime and its real prerequisites; only the old
   // entrypoint is substituted in this isolated harness instance.
   const tags = scriptTags(html), runtimeIndex = tags.findIndex(tag => tag.name.startsWith('runtime/'));
   A.ok(runtimeIndex > 0);
   for (const tag of tags.slice(0, runtimeIndex + 1)) {
-    A.ok(bytes(tag.name).equals(priorBytes(tag.name)), 'Pre-S14 runtime prerequisite remains exact: ' + tag.name);
+    A.ok(bytes(tag.name).equals(checkpointBytes(tag.name)), 'Frozen runtime prerequisite remains exact: ' + tag.name);
   }
   const filename = path.join(ROOT, 'tests/avatar-v3-fit-runtime.cjs'), mod = {exports: {}};
   let reads = 0;
@@ -145,6 +148,12 @@ async function main() {
   const picker = read('data/issue22-picker-images.json'), oldPicker = prior('data/issue22-picker-images.json');
   const release = read('AVATAR_V3_RELEASE.json'), oldRelease = prior('AVATAR_V3_RELEASE.json');
   const overlay = read('data/issue22-reviewed-overlay.json'), oldOverlay = prior('data/issue22-reviewed-overlay.json');
+  const preS13Materials = preS13('data/issue22-materials.json');
+  const preS13Picker = preS13('data/issue22-picker-images.json');
+  const preS13Overlay = preS13('data/issue22-reviewed-overlay.json');
+  A.deepEqual(materials.garments.S14, preS13Materials.garments.S14, 'The completed S14 material specification remains exact');
+  A.deepEqual(overlay.records.S14, preS13Overlay.records.S14, 'The completed S14 reviewed record remains exact');
+  A.deepEqual(overlay.features.S14, preS13Overlay.features.S14, 'The completed S14 reviewed feature remains exact');
   A.equal(materials.revision, oldMaterials.revision, 'S14 has a scoped revision; other garment evidence stays current');
   A.deepEqual(materials.scope, oldMaterials.scope);
   A.deepEqual(materials.canvas, [W, H]);
@@ -160,7 +169,7 @@ async function main() {
   for (const file of preservedFiles) A.ok(bytes(file).equals(priorBytes(file)), 'S14 display-only scope preserves ' + file);
 
   const changedLayers = [], sourceAlphas = [];
-  let preservedLayers = 0, protectedHardware = 0;
+  let preservedLayers = 0, protectedHardware = 0, retainedHistoricalS13Layers = 0;
   for (const [sourceHash, row] of Object.entries(materials.bindings)) {
     const old = oldMaterials.bindings[sourceHash];
     for (const key of ['garment_id', 'layer', 'source_sha256', 'source_url', 'rect', 'alpha_sha256']) A.deepEqual(row[key], old[key], 'Exact registered geometry: ' + row.garment_id + '/' + row.layer + '/' + key);
@@ -168,11 +177,20 @@ async function main() {
     A.equal(digest(bytes(row.display_url)), row.display_sha256);
     A.ok(bytes(old.display_url).equals(priorBytes(old.display_url)), 'Prior displayed bytes remain available');
     A.equal(materials.assetPaths[row.display_sha256], row.display_url);
+    if (row.garment_id === 'S13') {
+      // Preserve the original S14 isolation proof on its completed release.
+      // The new S13 gate checks the current S13 change and current S14 pixels.
+      const frozen = preS13Materials.bindings[sourceHash];
+      A.deepEqual(frozen, old, 'The completed S14 release preserved the S13 binding');
+      A.ok(preS13Bytes(frozen.display_url).equals(priorBytes(old.display_url)), 'The completed S14 release preserved exact S13 material bytes');
+      retainedHistoricalS13Layers++; continue;
+    }
     if (row.garment_id !== 'S14') {
       A.deepEqual(row, old, 'Every non-S14 material binding remains exact');
       A.ok(bytes(row.display_url).equals(priorBytes(old.display_url)), 'Every non-S14 material PNG remains exact');
       preservedLayers++; continue;
     }
+    A.deepEqual(row, preS13Materials.bindings[sourceHash], 'The completed S14 display binding remains exact');
     A.notEqual(row.display_sha256, old.display_sha256, 'Both S14 layers must change actual pixels');
     const [source, before, after] = await Promise.all([pixels(row.source_url), pixels(old.display_url), pixels(row.display_url)]);
     for (const frame of [source, before, after]) A.deepEqual([frame.width, frame.height], [W, H]);
@@ -204,11 +222,14 @@ async function main() {
       after_display_sha256: row.display_sha256, changed_rgb_pixels: changed, alpha_changed_pixels: 0,
       protected_hardware_pixels: hardware, mean_rgb_delta: meanDelta});
   }
-  A.equal(changedLayers.length, 2); A.equal(preservedLayers, 7);
+  A.equal(changedLayers.length, 2); A.equal(preservedLayers, 5); A.equal(retainedHistoricalS13Layers, 2);
   for (const id of Object.keys(materials.garments).filter(id => id !== 'S14')) {
-    A.deepEqual(materials.garments[id], oldMaterials.garments[id], 'Non-S14 material specification remains exact: ' + id);
-    A.deepEqual(overlay.records[id], oldOverlay.records[id], 'Non-S14 reviewed record and fingerprint remain exact: ' + id);
-    A.deepEqual(overlay.features[id], oldOverlay.features[id], 'Non-S14 reviewed feature remains exact: ' + id);
+    const materialControl = id === 'S13' ? preS13Materials : materials;
+    const overlayControl = id === 'S13' ? preS13Overlay : overlay;
+    const scope = id === 'S13' ? 'Frozen completed S14 release' : 'Current';
+    A.deepEqual(materialControl.garments[id], oldMaterials.garments[id], scope + ' non-S14 material specification remains exact: ' + id);
+    A.deepEqual(overlayControl.records[id], oldOverlay.records[id], scope + ' non-S14 reviewed record and fingerprint remain exact: ' + id);
+    A.deepEqual(overlayControl.features[id], oldOverlay.features[id], scope + ' non-S14 reviewed feature remains exact: ' + id);
   }
 
   A.deepEqual(Object.keys(picker.items), Object.keys(oldPicker.items));
@@ -216,7 +237,15 @@ async function main() {
     const old = oldPicker.items[id];
     A.equal(digest(bytes(row.src)), row.sha256);
     A.ok(bytes(old.src).equals(priorBytes(old.src)), 'Historical picker bytes are retained');
+    if (id === 'S13') {
+      const frozen = preS13Picker.items.S13;
+      A.deepEqual(frozen, old, 'The completed S14 release preserved the S13 picker record');
+      A.ok(preS13Bytes(frozen.src).equals(priorBytes(old.src)), 'The completed S14 release preserved exact S13 picker bytes');
+      for (const key of ['history_id', 'label', 'render_selection', 'source_kind', 'width', 'height', 'object_position', 'issue22_revision']) A.deepEqual(row[key], old[key], 'Current S13 picker identity preserved: ' + key);
+      continue;
+    }
     if (id !== 'S14') {A.deepEqual(row, old, 'Every non-S14 picker record remains exact'); continue;}
+    A.deepEqual(row, preS13Picker.items.S14, 'The completed S14 picker record remains exact');
     for (const key of ['history_id', 'label', 'render_selection', 'source_kind', 'width', 'height', 'object_position', 'issue22_revision']) A.deepEqual(row[key], old[key], 'S14 picker identity preserved: ' + key);
     A.notEqual(row.sha256, old.sha256); A.notEqual(row.rgba_sha256, old.rgba_sha256);
     A.notEqual(row.owner_approved, true, 'Reference workflow does not invent approval of a generated avatar');
@@ -246,6 +275,7 @@ async function main() {
   const before = await original.capture(selected), after = await current.capture(selected);
   A.equal(before.rgba_sha256, oldPicker.items.S14.rgba_sha256, 'Frozen picker agrees with its exact shipped native render');
   A.equal(after.rgba_sha256, picker.items.S14.rgba_sha256, 'Current picker agrees with its exact shipped native render');
+  A.equal(after.rgba_sha256, preS13Picker.items.S14.rgba_sha256, 'Current S14 native pixels remain the completed S14 release');
   A.notEqual(after.rgba_sha256, before.rgba_sha256);
   A.equal(digest(crop(current.canvas, [0, 0, W, H], 360)), picker.items.S14.sha256);
   A.equal(digest(crop(original.canvas, [0, 0, W, H], 360)), oldPicker.items.S14.sha256);
@@ -281,14 +311,21 @@ async function main() {
   }
   A.ok(headPixels > 1000); A.ok(outsideGarmentPixels > 1000000);
   const controls = [];
+  const beforeS13 = historicalRuntime(preS13Bytes('index.html').toString('utf8'), preS13Bytes);
+  A.equal(beforeS13.metadata.kind, 'EXACT_SHIPPED_RUNTIME_PREFIX');
+  A.equal(beforeS13.metadata.runtime_sha256, preS13('AVATAR_V3_RELEASE.json').runtime_sha256);
+  A.deepEqual(plain(beforeS13.connection.issue22Materials), preS13Materials);
   for (const [id, row] of Object.entries(picker.items).filter(([id]) => id !== 'S14')) {
-    const frame = await current.capture(row.render_selection);
-    A.equal(frame.rgba_sha256, oldPicker.items[id].rgba_sha256, 'Non-S14 shipped avatar pixels remain exact: ' + id);
-    A.equal(digest(crop(current.canvas, [0, 0, W, H], 360)), oldPicker.items[id].sha256);
-    controls.push({id, rgba_sha256: frame.rgba_sha256});
+    const harness = id === 'S13' ? beforeS13 : current;
+    const scope = id === 'S13' ? 'historical-before-S13-correction' : 'current';
+    const frame = await harness.capture(row.render_selection);
+    A.equal(frame.rgba_sha256, oldPicker.items[id].rgba_sha256, 'Non-S14 shipped avatar pixels remain exact (' + scope + '): ' + id);
+    A.equal(digest(crop(harness.canvas, [0, 0, W, H], 360)), oldPicker.items[id].sha256);
+    controls.push({id, scope, ...(id === 'S13' ? {checkpoint: PRE_S13} : {}), rgba_sha256: frame.rgba_sha256});
     if (global.gc) global.gc();
   }
   A.deepEqual(plain(original.storage.snapshot()), []); A.deepEqual(plain(current.storage.snapshot()), []);
+  A.deepEqual(plain(beforeS13.storage.snapshot()), []);
 
   const phoneTexture = await measurePhoneTexture(materials);
   console.log('S14_PHONE_TEXTURE=' + JSON.stringify(phoneTexture));
@@ -303,8 +340,10 @@ async function main() {
   const priorPhoneTexture = await measurePhoneTexture(oldMaterials);
   A.throws(() => assertPhoneTexture(priorPhoneTexture, acceptance), /texture remains visible/);
   const report = {schema: 'hewrs.s14-material-verification.v1', status: 'PASS', baseline_commit: BASE,
+    verification_scope: 'Current released S14 appearance and original S14 isolation, with S13 isolation frozen at the completed S14 release',
     material_revision: materials.garments.S14.revision, changed_layers: changedLayers,
-    preserved_material_layers: preservedLayers, changed_picker_ids: ['S14'], preserved_picker_images: controls.length,
+    preserved_material_layers: preservedLayers, changed_picker_ids: ['S14'], preserved_picker_images: controls.filter(row => row.scope === 'current').length,
+    retained_historical_s13: {checkpoint: PRE_S13, material_layers: retainedHistoricalS13Layers, picker_images: 1, native_frames: 1, current_gate: 'tests/s13-material.cjs'},
     native_controls: controls, protected_hardware_pixels: protectedHardware, protected_head_pixels: headPixels,
     exact_pixels_outside_s14: outsideGarmentPixels, before_native_rgba_sha256: before.rgba_sha256,
     after_native_rgba_sha256: after.rgba_sha256, runtime: current.metadata.runtime,

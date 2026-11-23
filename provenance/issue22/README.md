@@ -26,6 +26,16 @@ The owner requested that S14's app image receive the same fabric-correction proc
 
 The texture has a separate S14 revision so all other garment descriptors and reviewed records retain their previous identities. Original material PNGs remain available for the historical runtime. The before-correction checkpoint is `457774146fa7d4a5494ceec553f187e27b126983`; scope checks compare against that exact commit. Normal-size native renderer comparisons and texture-only residual measurements at 360px and 390px supplement visual inspection. Neither generated detail nor automated tests establish a calibrated physical-color or textile-composition match.
 
+## S13 reference-check correction
+
+The owner supplied four S13 reference images and the app thumbnail, then requested the same correction process as the preceding suits through the live app. The re-supplied front photograph and rear-shoulder photograph are byte-identical to the existing `IMG_1745.jpeg` and `IMG_1741.jpeg` sources. The nested rear-shoulder screenshot repeats the same view. The additional studio composite is used to check normal-view pattern scale; its digest is recorded without adding the personal screenshot to the repository.
+
+S13 has fine crossed and interlocking checks, distinct from S14's vertically biased near-solid weave. `s13-reference-check-v1.png` is a generated reconstruction from the supplied references. Only its luminance detail is projected; the photographic target `[44, 48, 58]` stays exact. The different illumination in the rear-shoulder view does not justify globally brightening the suit. The full generation prompt and reference roles are retained in `material-provenance.json`.
+
+The reconstruction replaces the small repeated photograph crop that muddied the visible check. Alpha-normalized source smoothing removes residual coarse texture while retaining broad folds, and the existing masks protect seam construction and original button RGB. A periodic material filter controls downsampling artifacts. Native and phone-size views are reviewed separately for quiet but visible crossed-thread structure, without broad windowpane bars or S14-like striping.
+
+S13 uses its own material revision. Its ID, color description, garment DNA, matching index, tie eligibility and saved-state contracts remain unchanged. The exact pre-S13 checkpoint is `f648cda6e577aa1b6ce7b75df1e71437eb5e6aae`; all other corrected materials, picker images and native renders are checked against that revision. Historical S06/S14 isolation proofs retain their original S13 frame at the frozen checkpoint, while the new S13 gate checks the current app. Generated texture is not evidence of textile composition or calibrated physical color.
+
 ## Reproduction and boundaries
 
 Run `node tools/build_issue22_materials.cjs`. The tool uses native canvas decoding and deterministic material projection. It does not modify any registered source, avatar, wardrobe ID, source geometry, or saved user state.

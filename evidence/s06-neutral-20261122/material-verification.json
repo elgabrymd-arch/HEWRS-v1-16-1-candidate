@@ -2,7 +2,7 @@
   "schema": "hewrs.s06-neutral-material-verification.v1",
   "status": "PASS",
   "baseline_commit": "f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9",
-  "verification_scope": "Current S06 appearance and frozen original S06 isolation; current S14 changes are independently checked by tests/s14-material.cjs",
+  "verification_scope": "Current S06 appearance and frozen original S06 isolation; current S14/S13 changes are independently checked by their material gates",
   "material_revision": "ISSUE22_S06_PHONE_CHECK_20261122_3",
   "approved_generated_reference_sha256": "3c2730b546f08b77b2c1d0764a6b69e5c96dd0085c00023d222dac438c825d51",
   "changed_layers": [
@@ -25,19 +25,25 @@
       "transparent_changed_pixels": 0
     }
   ],
-  "preserved_material_layers": 5,
+  "preserved_material_layers": 3,
   "changed_picker_ids": [
     "S06"
   ],
-  "preserved_picker_images": 5,
+  "preserved_picker_images": 4,
   "retained_historical_s14": {
     "checkpoint": "457774146fa7d4a5494ceec553f187e27b126983",
     "material_layers": 2,
     "picker_images": 1,
     "current_gate": "tests/s14-material.cjs"
   },
-  "runtime": "runtime/avatar-v3-candidate-bc4271aea98703c2e5ff.js",
-  "runtime_sha256": "bc4271aea98703c2e5ff2b7fdb8842f007f8a758c0e3c6f0f3df0494d70d4620",
+  "retained_historical_s13": {
+    "checkpoint": "f648cda6e577aa1b6ce7b75df1e71437eb5e6aae",
+    "material_layers": 2,
+    "picker_images": 1,
+    "current_gate": "tests/s13-material.cjs"
+  },
+  "runtime": "runtime/avatar-v3-candidate-be63900aef1fd6e340e1.js",
+  "runtime_sha256": "be63900aef1fd6e340e130f59d3785dce207df040def9455d5d735ea25ba3f05",
   "before_native_rgba_sha256": "e4ae327468c98a4317b6502fb7206656b3657973211f9d8a9ac47c14946b9fe5",
   "after_native_rgba_sha256": "9c48cb79c6cf6f5016b05c6244ece29bb2c5902d856a76abeed1a84b46daeba8",
   "protected_head_pixels": 104620,
