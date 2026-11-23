@@ -115,6 +115,13 @@ def record():
             'authority':'explicit_owner_instruction',
             'scope':'complete S06 appearance, DNA and compatibility validation; merge into the primary application and publish',
         },
+        'continued_material_correction':{
+            'date':'2026-11-22',
+            'garment_id':'S14',
+            'authority':'owner_requested_app_image_update_and_confirmed_same_process_as_B06',
+            'baseline_commit':'457774146fa7d4a5494ceec553f187e27b126983',
+            'scope':'S14 display weave and its native picker; retain existing color, registered construction, garment facts, matching and all other garments',
+        },
     }
 
 

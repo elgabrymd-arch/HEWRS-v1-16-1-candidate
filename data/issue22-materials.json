@@ -20,8 +20,8 @@
     "506a5fb5056936cd094da0a0f6015775ba183ca741c907950ca84517b3ff2c1b": "assets/issue22-materials/S06-trousers-506a5fb5056936cd.png",
     "48a38b7f615ab203a3dca2baba2d4bd8633bbd3f55ef7f77762ac9bf3889f107": "assets/issue22-materials/S13-jacket-48a38b7f615ab203.png",
     "71315979b9cf914e0fa45969c5664ecadf983535bc9f94cd375a73fd62d71dd8": "assets/issue22-materials/S13-trousers-71315979b9cf914e.png",
-    "bb717e2606224a5dabf28f00f8b1fee2a5dc1bf87c891259e187bb369e5d8fd6": "assets/issue22-materials/S14-jacket-bb717e2606224a5d.png",
-    "42507467e8e0affe0b82be5ccc25901582433e4991141b89322ad9fa2b695fc2": "assets/issue22-materials/S14-trousers-42507467e8e0affe.png",
+    "f4172e473546aab762c035625bb599afb8290311f79d97b29d120954231b99b6": "assets/issue22-materials/S14-jacket-f4172e473546aab7.png",
+    "08fe07e593b313aa03b24ff08d685fb266a0f6e313e4739816b65f59b8e51308": "assets/issue22-materials/S14-trousers-08fe07e593b313aa.png",
     "cee158709a72028923cad4e8cf31c5430ec602c5b62ecf827aeb58144f3c69c4": "assets/issue22-materials/B01-jacket-cee158709a720289.png",
     "dacc6584f84f0aacaa9fa620bb33b2b0618bfd6b3a412d4cc771b2842777f683": "assets/issue22-materials/B06-jacket-dacc6584f84f0aac.png",
     "da9987823fe8436c3baab5ee06c4d10574ff2c7d3b5396f7ba6c97fff521728a": "assets/issue22-materials/B10-jacket-da9987823fe8436c.png"
@@ -156,8 +156,8 @@
       "layer": "jacket",
       "source_sha256": "527d35bdda91922b1467e7ce171dec13d100330b16c5a6ee3b048e59896c9e64",
       "source_url": "assets/527d35bdda91922b1467e7ce171dec13d100330b16c5a6ee3b048e59896c9e64.png",
-      "display_sha256": "bb717e2606224a5dabf28f00f8b1fee2a5dc1bf87c891259e187bb369e5d8fd6",
-      "display_url": "assets/issue22-materials/S14-jacket-bb717e2606224a5d.png",
+      "display_sha256": "f4172e473546aab762c035625bb599afb8290311f79d97b29d120954231b99b6",
+      "display_url": "assets/issue22-materials/S14-jacket-f4172e473546aab7.png",
       "rect": [
         0,
         0,
@@ -172,9 +172,9 @@
           59.09
         ],
         "display_mean_rgb": [
-          78.808,
-          77.822,
-          89.786
+          78.588,
+          77.602,
+          89.566
         ],
         "alpha_changed_pixels": 0,
         "changed_rgb_pixels": 747234,
@@ -187,8 +187,8 @@
       "layer": "trousers",
       "source_sha256": "ed8dc4d60dc595d27d6f9b1466b7a3fa3fd8e247a801362a36fd9f8879e5685e",
       "source_url": "assets/ed8dc4d60dc595d27d6f9b1466b7a3fa3fd8e247a801362a36fd9f8879e5685e.png",
-      "display_sha256": "42507467e8e0affe0b82be5ccc25901582433e4991141b89322ad9fa2b695fc2",
-      "display_url": "assets/issue22-materials/S14-trousers-42507467e8e0affe.png",
+      "display_sha256": "08fe07e593b313aa03b24ff08d685fb266a0f6e313e4739816b65f59b8e51308",
+      "display_url": "assets/issue22-materials/S14-trousers-08fe07e593b313aa.png",
       "rect": [
         0,
         0,
@@ -203,9 +203,9 @@
           56.209
         ],
         "display_mean_rgb": [
-          79.002,
-          78.002,
-          90.002
+          78.799,
+          77.799,
+          89.799
         ],
         "alpha_changed_pixels": 0,
         "changed_rgb_pixels": 573607,
@@ -392,6 +392,7 @@
         90
       ],
       "parameters": {
+        "revision": "S14_REFERENCE_WEAVE_20261122_1",
         "photo": "IMG_1748.jpeg",
         "color_rect": [
           520,
@@ -399,15 +400,16 @@
           112,
           260
         ],
-        "texture_photo": "IMG_1748.jpeg",
+        "generated_texture": "s14-reference-weave-v1.png",
         "texture_rect": [
-          570,
-          850,
-          60,
-          160
+          0,
+          0,
+          1254,
+          1254
         ],
-        "texture_scale": 1.15,
-        "texture_gain": 0.7,
+        "texture_scale": 0.55,
+        "texture_gain": 0.75,
+        "texture_filter": "periodic_binomial_3x3",
         "blur": 12,
         "detail": 0,
         "shade_gain": 0.93,
@@ -420,7 +422,8 @@
       "source_layers": [
         "527d35bdda91922b1467e7ce171dec13d100330b16c5a6ee3b048e59896c9e64",
         "ed8dc4d60dc595d27d6f9b1466b7a3fa3fd8e247a801362a36fd9f8879e5685e"
-      ]
+      ],
+      "revision": "S14_REFERENCE_WEAVE_20261122_1"
     },
     "B01": {
       "description": "Original navy color, fine natural matte linen",

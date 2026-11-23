@@ -54,8 +54,13 @@ spec.loader.exec_module(FIT)
 FRAME = FIT.FRAME.replace('async ({selected,ignoredHashes})', 'async ({selected,ignoredHashes,context})')
 FRAME = FRAME.replace("origin:'manual',save:false,keepPreferences:true", "origin:'manual',save:false,keepPreferences:true,context")
 FRAME = FRAME.replace('if(reviewed)HEWRSReviewedIntegration.close();', '')
+FRAME = FRAME.replace('source_bindings:sourceBindings,',
+                      'material_plan_sources:plan.issue22_material_sources||null,'
+                      'material_render_sources:result.issue22_material_sources||null,'
+                      'source_bindings:sourceBindings,')
 assert 'async ({selected,ignoredHashes,context})' in FRAME
 assert "origin:'manual',save:false,keepPreferences:true,context" in FRAME
+assert 'material_render_sources:result.issue22_material_sources||null,' in FRAME
 PROTECTED = r'''() => ({wear:HEWRSApp.store.snapshot(),
  favorites:HEWRSApp.favorites.snapshot(),feedback:HEWRSApp.ownerFeedback.snapshot().events,
  saved_preferences:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith('hewrs:home-preferences:')).sort().map(k=>[k,localStorage.getItem(k)]))})'''
@@ -188,10 +193,11 @@ def sheets(output, captures):
     (output / 'VISUAL_REVIEW_INDEX.json').write_text(json.dumps(review, indent=2) + '\n')
 
 
-def verify_s06_picker(page, output, check):
+def verify_current_picker(page, output, check, garment_id):
     """Check the real picker DOM and fetched image, without applying a choice."""
-    expected = json.loads((ROOT / 'data/issue22-picker-images.json').read_text())['items']['S06']
-    check('S06 picker expected PNG matches its independent checkout hash',
+    assert garment_id in {'S06', 'S14'}, 'Only the explicitly corrected current suits are inspected'
+    expected = json.loads((ROOT / 'data/issue22-picker-images.json').read_text())['items'][garment_id]
+    check(garment_id + ' picker expected PNG matches its independent checkout hash',
           digest((ROOT / expected['src']).read_bytes()) == expected['sha256'])
     protected = page.evaluate(PROTECTED)
     selection = page.evaluate('()=>HEWRSApp.state().selection')
@@ -199,16 +205,16 @@ def verify_s06_picker(page, output, check):
     page.evaluate("()=>HEWRSApp.showPage('home')")
     page.locator('#pref-topwear').click()
     page.locator('#picker-type').select_option('suit')
-    page.locator('#picker-search').fill('S06')
-    button = page.locator('#picker-list [data-item-id="S06"]')
-    image = button.locator('img[data-source-id="S06"]')
+    page.locator('#picker-search').fill(garment_id)
+    button = page.locator(f'#picker-list [data-item-id="{garment_id}"]')
+    image = button.locator(f'img[data-source-id="{garment_id}"]')
     image.wait_for(state='visible')
     image.scroll_into_view_if_needed()
-    actual = button.evaluate("""async button=>{
-      const image=button.querySelector('img[data-source-id="S06"]');
+    actual = button.evaluate("""async (button,id)=>{
+      const image=button.querySelector('img[data-source-id="'+id+'"]');
       await image.decode();
       const response=await fetch(image.currentSrc,{cache:'no-store'});
-      if(!response.ok)throw Error('S06 picker image HTTP '+response.status);
+      if(!response.ok)throw Error(id+' picker image HTTP '+response.status);
       const bytes=await response.arrayBuffer(),sha256=Array.from(new Uint8Array(
         await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');
       const style=getComputedStyle(image),bounds=image.getBoundingClientRect();
@@ -222,28 +228,28 @@ def verify_s06_picker(page, output, check):
           &&bounds.width>0&&bounds.height>0,
         unavailable:!!button.querySelector('.hewrs-blazer-picker-image-failed'),
         label:button.querySelector('.fx-choice-name')?.textContent};
-    }""")
-    check('S06 topwear picker binds the current registered selection image',
-          actual['id'] == actual['source_id'] == 'S06'
+    }""", garment_id)
+    check(garment_id + ' topwear picker binds the current registered selection image',
+          actual['id'] == actual['source_id'] == garment_id
           and actual['src'] == expected['src']
           and actual['declared_sha256'] == expected['sha256']
           and actual['current_src'] == actual['expected_current_src']
           and actual['label'] == expected['label'], actual)
-    check('S06 picker fetched PNG bytes match the current corrected image',
+    check(garment_id + ' picker fetched PNG bytes match the current corrected image',
           actual['http_status'] == 200 and actual['bytes'] > 0
           and actual['fetched_sha256'] == expected['sha256']
           and actual['response_url'] == actual['current_src'], actual)
-    check('S06 picker image decodes visibly at its registered dimensions',
+    check(garment_id + ' picker image decodes visibly at its registered dimensions',
           actual['dimensions'] == [expected['width'], expected['height']]
           and actual['displayed'] and not actual['disabled'] and not actual['unavailable'], actual)
-    actual['screenshot'] = 'phone/S06-current-picker.png'
+    actual['screenshot'] = f'phone/{garment_id}-current-picker.png'
     button.screenshot(path=str(output / actual['screenshot']))
     page.locator('#fx-sheet-close').click()
-    check('S06 picker inspection preserves current selection and unapplied preferences',
+    check(garment_id + ' picker inspection preserves current selection and unapplied preferences',
           page.evaluate('()=>HEWRSApp.state().selection') == selection
           and page.evaluate('()=>HEWRSApp.ui.snapshot()') == preferences
           and page.evaluate('()=>HEWRSApp.ui.draft()') is None)
-    check('S06 picker inspection preserves seeded records and saved preferences',
+    check(garment_id + ' picker inspection preserves seeded records and saved preferences',
           page.evaluate(PROTECTED) == protected)
     return actual
 
@@ -364,26 +370,37 @@ def run(args):
                   and all(s06[key]['family'] == 'grid' and s06[key]['quiet']
                           for key in ('raw_pattern', 'preference_pattern')), s06)
             expected_materials = json.loads((ROOT / 'data/issue22-materials.json').read_text())
-            expected_s06_materials = [{'layer': row['layer'], 'url': row['display_url'], 'sha256': row['display_sha256']}
-                                      for row in expected_materials['bindings'].values() if row['garment_id'] == 'S06']
-            actual_s06_materials = after.evaluate("""async()=>{
-              const rows=Object.values(HEWRS_ISSUE22_MATERIALS.bindings).filter(row=>row.garment_id==='S06'),out=[];
-              for(const row of rows){
-                const response=await fetch(row.display_url,{cache:'no-store'});
-                if(!response.ok)throw Error('S06 material HTTP '+response.status);
-                const bytes=await response.arrayBuffer(),hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');
-                if(hash!==row.display_sha256)throw Error('S06 material bytes differ from registered source');
-                out.push({layer:row.layer,url:row.display_url,sha256:hash});
-              }
-              return out;
-            }""")
-            check('S06 served jacket and trousers match the registered corrected image bytes',
-                  actual_s06_materials == expected_s06_materials and len(actual_s06_materials) == 2,
-                  actual_s06_materials)
+            current_material_sources = {}
+            for garment_id in ('S06', 'S14'):
+                registered = [row for row in expected_materials['bindings'].values()
+                              if row['garment_id'] == garment_id]
+                expected_bytes = [{'layer': row['layer'], 'url': row['display_url'], 'sha256': row['display_sha256']}
+                                  for row in registered]
+                current_material_sources[garment_id] = [
+                    {'garment_id': garment_id, 'layer': row['layer'],
+                     'geometry_source': {'sha256': row['source_sha256'], 'url': row['source_url'], 'rect': row['rect']},
+                     'display_source': {'sha256': row['display_sha256'], 'url': row['display_url'], 'rect': row['rect']},
+                     'alpha_sha256': row['alpha_sha256']}
+                    for row in registered]
+                actual_bytes = after.evaluate("""async id=>{
+                  const rows=Object.values(HEWRS_ISSUE22_MATERIALS.bindings).filter(row=>row.garment_id===id),out=[];
+                  for(const row of rows){
+                    const response=await fetch(row.display_url,{cache:'no-store'});
+                    if(!response.ok)throw Error(id+' material HTTP '+response.status);
+                    const bytes=await response.arrayBuffer(),hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');
+                    if(hash!==row.display_sha256)throw Error(id+' material bytes differ from registered source');
+                    out.push({layer:row.layer,url:row.display_url,sha256:hash});
+                  }
+                  return out;
+                }""", garment_id)
+                check(garment_id + ' served jacket and trousers match the registered corrected image bytes',
+                      actual_bytes == expected_bytes and {row['layer'] for row in actual_bytes} == {'jacket', 'trousers'}
+                      and len(actual_bytes) == 2, actual_bytes)
+                report[garment_id.lower() + '_current_materials'] = actual_bytes
             report['s06_current_dna'] = s06
-            report['s06_current_materials'] = actual_s06_materials
             if args.shard == 1:
-                report['s06_current_picker'] = verify_s06_picker(after, output, check)
+                for garment_id in ('S06', 'S14'):
+                    report[garment_id.lower() + '_current_picker'] = verify_current_picker(after, output, check, garment_id)
                 # Retain the actual current 50-shirt photo-picker coverage
                 # when the original whole-outfit RGB audit runs historically.
                 # Expected photographs come from the preserved catalogue and
@@ -446,6 +463,11 @@ def run(args):
                           and layout['right'] <= layout['viewport'] + 1 and layout['height'] > 0, layout)
                     check(name + ': ' + label + ' exact shirt and tie card identities', frame['card_shirt'] == selected['shirtId']
                           and frame['card_tie'] == (None if selected['state'] == 'NO_TIE' else selected['state']))
+                    if label == 'candidate' and selected.get('suitId') in current_material_sources:
+                        expected_sources = current_material_sources[selected['suitId']]
+                        check(name + ': actual plan and completed render use the current registered material layers',
+                              frame['material_plan_sources'] == frame['material_render_sources'] == expected_sources,
+                              {'plan': frame['material_plan_sources'], 'render': frame['material_render_sources']})
                     raw = base64.b64decode(frame.pop('png').split(',', 1)[1])
                     image = Image.open(io.BytesIO(raw)).convert('RGBA')
                     check(name + ': ' + label + ' decoded capture equals browser canvas', digest(image.tobytes()) == frame['full_sha256'])

@@ -3,7 +3,8 @@
 /* Issue #22 material projection, never a new garment or avatar.
  * All cut, alpha, seams and hardware come from the selected registered layer.
  * S06 uses the owner's approved generated fabric reference; the other suit
- * colors and fine textile signals come from the owner's supplied photographs.
+ * colors come from the owner's supplied photographs. S14 uses a generated
+ * texture reconstruction of its reference weave, without changing its color.
  * The linen swatch is explicitly generated material, not photographic evidence.
  */
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
@@ -27,7 +28,7 @@ const SOURCES={
 const SPECS={
  S06:{approved_fabric:'s06-approved-fabric-preview.png',color_rect:[80,140,620,740],texture_rect:[80,140,620,740],neutralize_color:true,texture_scale:1.6,texture_gain:1.55,texture_filter:'periodic_binomial_3x3',blur:24,detail:0,shade_gain:.85,description:'Neutral gray subtle Glen-check weave from the owner-approved generated fabric reference'},
  S13:{photo:'IMG_1745.jpeg',color_rect:[422,360,110,240],texture_photo:'IMG_1745.jpeg',texture_rect:[420,340,100,130],texture_scale:1.3,texture_gain:.62,blur:5,detail:.08,shade_gain:.92,reference_photos:['IMG_1741.jpeg','IMG_1745.jpeg'],description:'Dark blue-gray fine interlocking check'},
- S14:{photo:'IMG_1748.jpeg',color_rect:[520,720,112,260],texture_photo:'IMG_1748.jpeg',texture_rect:[570,850,60,160],texture_scale:1.15,texture_gain:.7,blur:12,detail:0,shade_gain:.93,reference_photos:['IMG_1747.jpeg','IMG_1748.jpeg'],description:'Medium blue-gray fine near-solid weave'},
+ S14:{revision:'S14_REFERENCE_WEAVE_20261122_1',photo:'IMG_1748.jpeg',color_rect:[520,720,112,260],generated_texture:'s14-reference-weave-v1.png',texture_rect:[0,0,1254,1254],texture_scale:.55,texture_gain:.75,texture_filter:'periodic_binomial_3x3',blur:12,detail:0,shade_gain:.93,reference_photos:['IMG_1747.jpeg','IMG_1748.jpeg'],description:'Medium blue-gray fine near-solid weave'},
  B01:{linen:true,texture_scale:.42,texture_gain:.36,blur:3,detail:.12,description:'Original navy color, fine natural matte linen'},
  B06:{linen:true,texture_scale:.42,texture_gain:.61,blur:6,detail:0,description:'Original very pale desaturated sage color and crest, fine natural matte linen'},
  B10:{linen:true,texture_scale:.42,texture_gain:.52,blur:12,detail:0,description:'Original camel color, fine natural matte linen'}
@@ -123,8 +124,17 @@ async function build(){
    target=spec.neutralize_color?Array(3).fill(Math.round(lum(...sampled))):sampled;texture=sampleTexture(reference,spec.texture_rect);
    if(spec.texture_filter==='periodic_binomial_3x3')texture=antialiasTexture(texture);
    provenance.generated_fabrics??={};provenance.generated_fabrics[id]={path:referencePath,sha256:sha(fs.readFileSync(path.join(ROOT,referencePath))),source_type:'owner-approved-generated-fabric-reference',approval_scope:'fabric appearance only; not a new garment geometry or avatar approval',panel:'normal view (left); close-up panel excluded from projection',sample_rect:spec.texture_rect,sampled_median_rgb:sampled,target_rgb:target,color_policy:'equal RGB channels from rounded sample median luminance',texture_filter:spec.texture_filter,source_shading_policy:'24-pixel alpha-normalized smoothing suppresses old coarse plaid; original seams and hardware retain their existing protection masks; no residual original fabric detail is reintroduced',tool:'built-in image_gen',purpose:'Project the approved subtle neutral-gray textile onto the existing registered jacket and paired trousers'};
-  }else if(!spec.linen){const color=await image('provenance/issue22/'+spec.photo),sample=await image('provenance/issue22/'+spec.texture_photo);target=medianRGB(color,spec.color_rect);texture=sampleTexture(sample,spec.texture_rect);for(const f of spec.reference_photos)provenance.photographs[f]={path:'provenance/issue22/'+f,sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/'+f))),role:'owner-supplied-garment-photo',id};}
-  manifest.garments[id]={description:spec.description,material:spec.linen?'linen':spec.approved_fabric?'owner-approved-generated-fabric':'photographic-suit-fabric',target_rgb:target,parameters:spec,source_layers:[]};
+  }else if(!spec.linen){
+   const color=await image('provenance/issue22/'+spec.photo),texturePath='provenance/issue22/'+(spec.generated_texture||spec.texture_photo),sample=await image(texturePath);
+   target=medianRGB(color,spec.color_rect);texture=sampleTexture(sample,spec.texture_rect);
+   if(spec.texture_filter==='periodic_binomial_3x3')texture=antialiasTexture(texture);
+   for(const f of spec.reference_photos)provenance.photographs[f]={path:'provenance/issue22/'+f,sha256:sha(fs.readFileSync(path.join(ROOT,'provenance/issue22/'+f))),role:'owner-supplied-garment-photo',id};
+   if(spec.generated_texture){
+    provenance.generated_textures??={};
+    provenance.generated_textures[id]={path:texturePath,sha256:sha(fs.readFileSync(path.join(ROOT,texturePath))),source_type:'generated-texture-reconstruction-from-owner-photographs',tool:'built-in image_gen',reference_photographs:spec.reference_photos,close_up_reference_sha256:'81f8a0781d5fc7485987f40ffc61b38d3271ce840fecfbe38398240a69a3b90f',purpose:'Restore the fine irregular vertically biased weave at native picker and phone sizes on the existing registered S14 layers',color_policy:'Only texture luminance is projected; the existing photographic color sample and source shading are retained',geometry_policy:'No garment or avatar generated; original alpha, seams and buttons are preserved',approval_scope:'Owner requested the B06 correction workflow for S14; no new textile composition or whole-outfit approval inferred',prompt_summary:'Flat straight-on continuous swatch of the supplied S14 jacket fabric: matte dense muted slate blue-gray suiting, fine irregular vertical woven grain with tiny broken lighter yarns and subtle cross-yarn interlocking; quiet near-solid from a distance. No plaid, herringbone, coarse slubs, holes, gloss, folds, seams, garment, labels or UI. The app uses luminance only.'};
+   }
+  }
+  manifest.garments[id]={description:spec.description,material:spec.linen?'linen':spec.approved_fabric?'owner-approved-generated-fabric':'photographic-suit-fabric',target_rgb:target,parameters:spec,source_layers:[],...(spec.revision?{revision:spec.revision}:{})};
   for(const[kind,hash]of Object.entries(layers)){
    const sourcePath='assets/'+hash+'.png',bytes=fs.readFileSync(path.join(ROOT,sourcePath));if(sha(bytes)!==hash)throw Error('Source hash differs '+id+'/'+kind);
    const source=await image(sourcePath);if(source.width!==W||source.height!==H)throw Error('Native source dimensions differ');

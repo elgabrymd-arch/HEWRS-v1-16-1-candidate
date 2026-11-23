@@ -34,6 +34,7 @@ V3_LAYERS = {
 }
 ISSUE22_APPROVED_MAIN = '95d14073e33f2b699bdb0cdbd42504b1a1be2274'
 ISSUE22_INTEGRATION = 'f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9'
+ISSUE22_PRE_S14 = '457774146fa7d4a5494ceec553f187e27b126983'
 ISSUE22_DATA = {
     'garment-dna': ('HEWRS_ISSUE22_GARMENT_DNA', 'hewrs.issue22.garment-dna.v1'),
     'materials': ('HEWRS_ISSUE22_MATERIALS', 'hewrs.issue22.materials.v1'),
@@ -161,6 +162,44 @@ def verify_avatar_v3_sources(root, active):
     return {V3_DATA, *images}
 
 
+
+def validate_s14_material_scope(materials, before):
+    """Allow only S14 display pixels after the exact approved S06 checkpoint."""
+    require(set(materials.get('bindings', {})) == set(before['bindings']),
+            'S14 correction cannot change material source identities')
+    require(set(materials.get('garments', {})) == set(before['garments']),
+            'S14 correction cannot change garment identities')
+    for source_hash, old in before['bindings'].items():
+        row = materials['bindings'][source_hash]
+        if old['garment_id'] != 'S14':
+            require(row == old, 'A non-S14 material binding changed after the pre-S14 checkpoint')
+        else:
+            variable = {'display_sha256', 'display_url', 'measurements'}
+            require(set(row) == set(old) and
+                    {key: value for key, value in row.items() if key not in variable} ==
+                    {key: value for key, value in old.items() if key not in variable},
+                    'S14 correction changed native source registration or alpha')
+    for garment_id, old in before['garments'].items():
+        if garment_id != 'S14':
+            require(materials['garments'][garment_id] == old,
+                    'A non-S14 material specification changed after the pre-S14 checkpoint')
+
+
+def validate_s14_picker_scope(picker, before):
+    """Keep all other picker records exact, including the approved S06 image."""
+    require(set(picker.get('items', {})) == set(before['items']),
+            'S14 correction cannot change picker identities')
+    for garment_id, old in before['items'].items():
+        row = picker['items'][garment_id]
+        if garment_id != 'S14':
+            require(row == old, 'A non-S14 picker changed after the pre-S14 checkpoint')
+        else:
+            variable = {'src', 'sha256', 'rgba_sha256', 'source_note', 'material_revision'}
+            require({key: value for key, value in row.items() if key not in variable} ==
+                    {key: value for key, value in old.items() if key not in variable},
+                    'S14 correction changed picker identity or native layout')
+
+
 def verify_issue22_sources(root, active):
     """Authorize only source-bound current and immutable retained additions.
 
@@ -185,6 +224,7 @@ def verify_issue22_sources(root, active):
 
     approved_blobs = blob_index(ISSUE22_APPROVED_MAIN)
     retained_blobs = blob_index(ISSUE22_INTEGRATION)
+    pre_s14_blobs = blob_index(ISSUE22_PRE_S14)
 
     def exact_blob(name, inventory, label):
         import hashlib
@@ -233,6 +273,13 @@ def verify_issue22_sources(root, active):
 
     previous = json.loads(at_commit(ISSUE22_INTEGRATION, 'data/issue22-materials.json'))
     materials = data['materials']
+    pre_s14_materials = json.loads(at_commit(ISSUE22_PRE_S14, 'data/issue22-materials.json'))
+    validate_s14_material_scope(materials, pre_s14_materials)
+    for stem in ('garment-dna', 'option-index'):
+        for suffix in ('.json', '.js'):
+            name = 'data/issue22-' + stem + suffix
+            require(file_bytes(root, name) == at_commit(ISSUE22_PRE_S14, name),
+                    'S14 material-only correction changed DNA or numeric matching: ' + name)
     require(materials.get('canvas') == previous['canvas'] == [996, 2748] and
             materials.get('scope') == previous['scope'] == ['S06', 'S13', 'S14', 'B01', 'B06', 'B10'] and
             set(materials.get('bindings', {})) == set(previous['bindings']) and
@@ -250,8 +297,12 @@ def verify_issue22_sources(root, active):
                 'Issue 22 original material source path differs')
         raw = exact_blob(row['source_url'], approved_blobs, 'Approved main material source changed')
         require(digest(raw) == source_hash, 'Issue 22 original material SHA differs')
+        # Preserve the complete historical S06 isolation contract as well as
+        # the current S14-only boundary; neither checkpoint is generalized.
+        before_s14 = pre_s14_materials['bindings'][source_hash]
         if row['garment_id'] != 'S06':
-            require(row == old, 'A non-S06 material binding changed after integration')
+            require(before_s14 == old, 'The frozen S06 checkpoint changed an unrelated material')
+        exact_blob(before_s14['display_url'], pre_s14_blobs, 'Pre-S14 material bytes changed')
         for binding in (old, row):
             expected_path = 'assets/issue22-materials/' + binding['garment_id'] + '-' + binding['layer'] + '-' + binding['display_sha256'][:16] + '.png'
             require(binding['display_url'] == expected_path, 'Issue 22 display path is not bound to its garment and content')
@@ -263,16 +314,20 @@ def verify_issue22_sources(root, active):
 
     previous_picker = json.loads(at_commit(ISSUE22_INTEGRATION, 'data/issue22-picker-images.json'))
     picker = data['picker-images']
+    pre_s14_picker = json.loads(at_commit(ISSUE22_PRE_S14, 'data/issue22-picker-images.json'))
+    validate_s14_picker_scope(picker, pre_s14_picker)
     require(set(picker.get('items', {})) == set(previous_picker['items']) == set(materials['scope']) | {'B08'},
             'Issue 22 picker identity scope differs from the immutable integration')
     for garment_id, old in previous_picker['items'].items():
         row = picker['items'][garment_id]
         for key in ('history_id', 'render_selection', 'source_kind', 'width', 'height'):
             require(row.get(key) == old[key], 'Issue 22 picker identity or native layout changed: ' + garment_id)
+        before_s14 = pre_s14_picker['items'][garment_id]
         if garment_id != 'S06':
-            require({key: value for key, value in row.items() if key != 'issue22_revision'} ==
+            require({key: value for key, value in before_s14.items() if key != 'issue22_revision'} ==
                     {key: value for key, value in old.items() if key != 'issue22_revision'},
-                    'A non-S06 picker changed after integration')
+                    'The frozen S06 checkpoint changed an unrelated picker')
+        exact_blob(before_s14['src'], pre_s14_blobs, 'Pre-S14 picker bytes changed')
         for item in (old, row):
             require(item['src'] == 'ui/issue22/' + item['sha256'] + '.png', 'Issue 22 picker path is not content-addressed')
             png(item['src'], item['sha256'], (item['width'], item['height']))
