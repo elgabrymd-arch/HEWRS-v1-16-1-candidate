@@ -192,6 +192,16 @@ function assertLapelBoundary(measurements) {
   }
 }
 
+function assertReviewedAppearance(candidate, acceptance) {
+  A.equal(candidate.native_rgba_sha256, acceptance.accepted_native_rgba_sha256,
+    'Shipped native pixels equal the visually reviewed S13 reconstruction');
+  A.equal(candidate.generated_texture_sha256, acceptance.generated_texture_sha256,
+    'Shipped texture equals the visually reviewed S13 reconstruction');
+  for (const [key, value] of Object.entries(acceptance.accepted_projection)) {
+    A.deepEqual(candidate.projection[key], value, 'Current projection retains the visually reviewed setting: ' + key);
+  }
+}
+
 async function main() {
   const materials = read('data/issue22-materials.json'), oldMaterials = prior('data/issue22-materials.json');
   const picker = read('data/issue22-picker-images.json'), oldPicker = prior('data/issue22-picker-images.json');
@@ -357,13 +367,28 @@ async function main() {
   A.equal(acceptance.material_revision, materials.garments.S13.revision);
   A.deepEqual(materials.garments.S13.target_rgb, acceptance.preserved_target_rgb);
   A.equal(before.rgba_sha256, acceptance.previous_native_rgba_sha256, 'Visual comparison uses the exact pre-S13 native frame');
-  A.equal(after.rgba_sha256, acceptance.accepted_native_rgba_sha256, 'Shipped native pixels equal the visually reviewed S13 reconstruction');
   const generatedTexture = provenance.generated_textures.S13;
-  A.equal(generatedTexture.sha256, acceptance.generated_texture_sha256);
   A.equal(digest(bytes(generatedTexture.path)), generatedTexture.sha256);
   for (const key of ['texture_scale', 'texture_gain', 'texture_filter', 'texture_mapping']) A.ok(Object.hasOwn(acceptance.accepted_projection, key), 'Accepted visual projection records ' + key);
-  for (const [key, value] of Object.entries(acceptance.accepted_projection)) A.deepEqual(materials.garments.S13.parameters[key], value, 'Current projection retains the visually reviewed setting: ' + key);
+  assertReviewedAppearance({native_rgba_sha256: after.rgba_sha256,
+    generated_texture_sha256: generatedTexture.sha256, projection: materials.garments.S13.parameters}, acceptance);
   assertPhoneTexture(phoneTexture, acceptance);
+  // Preserve the actual rejected v1 native render as a negative snapshot.
+  // These exact reviewed-pixel pins prevent reverting to that appearance;
+  // neither the snapshot nor the contrast bounds claim general plaid/banding
+  // detection. The original v1 swatch remains available as provenance only.
+  const rejected = acceptance.rejected_material_control;
+  A.equal(rejected.texture_path, 'provenance/issue22/s13-reference-check-v1.png');
+  A.equal(rejected.texture_sha256, '4764afe02cca287e360fde6dce6c9ee72fee98097927ba3d6af4a243d5b8ee38');
+  A.equal(digest(bytes(rejected.texture_path)), rejected.texture_sha256);
+  A.equal(digest(bytes(rejected.native_frame_path)), rejected.native_png_sha256);
+  const rejectedPixels = await pixels(rejected.native_frame_path);
+  A.deepEqual([rejectedPixels.width, rejectedPixels.height], [W, H]);
+  A.equal(digest(Buffer.from(rejectedPixels.data)), rejected.native_rgba_sha256,
+    'The negative snapshot is the actual rejected S13 native frame');
+  A.throws(() => assertReviewedAppearance({native_rgba_sha256: rejected.native_rgba_sha256,
+    generated_texture_sha256: rejected.texture_sha256, projection: rejected.projection}, acceptance),
+    /Shipped native pixels equal the visually reviewed S13 reconstruction/);
   // Retain the old residual as evidence, not a forced negative control: this
   // measurement subtracts each version's source shading and therefore does
   // not capture all muddiness in the old rendered cloth. The reviewed swatch
@@ -382,6 +407,9 @@ async function main() {
     runtime_sha256: current.metadata.runtime_sha256, active_material_bindings_verified: 2,
     dna_and_numeric_matching: 'byte-identical', saved_data_writes: 0, phone_texture: phoneTexture,
     prior_phone_texture: priorPhoneTexture,
+    rejected_material_control: {texture_sha256: rejected.texture_sha256,
+      native_rgba_sha256: rejected.native_rgba_sha256, rejected_by_reviewed_appearance_gate: true,
+      limitation: 'Exact rejected-appearance snapshot, not a general banding detector'},
     lapel_mapping: {...lapelMapping, legacy_control_rejected: true},
     retained_reference_evidence: ['S06 approved fabric', 'S14 reference weave', 'prior blazer linen'],
     limitations: 'Pixel and source regression, not calibrated physical colour matching or a new garment/avatar approval.'};

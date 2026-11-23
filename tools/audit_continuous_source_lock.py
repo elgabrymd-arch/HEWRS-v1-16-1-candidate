@@ -36,6 +36,17 @@ ISSUE22_APPROVED_MAIN = '95d14073e33f2b699bdb0cdbd42504b1a1be2274'
 ISSUE22_INTEGRATION = 'f3c3a10151c9fb9d7868c50b52f9cf7f33cc02f9'
 ISSUE22_PRE_S14 = '457774146fa7d4a5494ceec553f187e27b126983'
 ISSUE22_PRE_S13 = 'f648cda6e577aa1b6ce7b75df1e71437eb5e6aae'
+# Exact rejected-v1 artifacts from PR #28 commits 9488fbb6937e868831f910aaafe264ec8fb0ed5f
+# and 7c11e33547c13e087d899d249fe6cd5ecaccbebe. Retain their original bytes as
+# evidence only; these literal paths grant no permission to other additions.
+ISSUE22_RETAINED_S13_V1 = {
+    'assets/issue22-materials/S13-jacket-bf9d4a108e563092.png':
+        ('bf9d4a108e563092e5f29ad6c020f793950b7018ee639cf7fd045bad0e069cc7', (996, 2748)),
+    'assets/issue22-materials/S13-trousers-8091337b3df86fe4.png':
+        ('8091337b3df86fe4e31e263342cca4490f0f85b11e5c52e3313d8fa9538427eb', (996, 2748)),
+    'ui/issue22/d66238a1704dd4f8438ad4e22f0b0c62916e9a3db181fd7b082ad9c1849bbdce.png':
+        ('d66238a1704dd4f8438ad4e22f0b0c62916e9a3db181fd7b082ad9c1849bbdce', (360, 993)),
+}
 ISSUE22_DATA = {
     'garment-dna': ('HEWRS_ISSUE22_GARMENT_DNA', 'hewrs.issue22.garment-dna.v1'),
     'materials': ('HEWRS_ISSUE22_MATERIALS', 'hewrs.issue22.materials.v1'),
@@ -242,6 +253,20 @@ def validate_s13_picker_scope(picker, before):
                     'S13 correction changed picker identity or native layout')
 
 
+def validate_retained_s13_v1_inactive(materials, picker):
+    """Historical retention never authorizes reactivating rejected pixels."""
+    retained_paths = set(ISSUE22_RETAINED_S13_V1)
+    retained_hashes = {value[0] for value in ISSUE22_RETAINED_S13_V1.values()}
+    active_paths = ({row['display_url'] for row in materials['bindings'].values()} |
+                    set(materials['assetPaths'].values()) |
+                    {row['src'] for row in picker['items'].values()})
+    active_hashes = ({row['display_sha256'] for row in materials['bindings'].values()} |
+                     set(materials['assetPaths']) |
+                     {row['sha256'] for row in picker['items'].values()})
+    require(not retained_paths.intersection(active_paths) and not retained_hashes.intersection(active_hashes),
+            'Retained rejected S13 v1 assets cannot become active material or picker bindings')
+
+
 def verify_issue22_sources(root, active):
     """Authorize only source-bound current and immutable retained additions.
 
@@ -386,6 +411,10 @@ def verify_issue22_sources(root, active):
             png(item['src'], item['sha256'], (item['width'], item['height']))
             additions.add(item['src'])
         exact_blob(old['src'], retained_blobs, 'Retained integration picker bytes changed')
+    validate_retained_s13_v1_inactive(materials, picker)
+    for name, (expected, dimensions) in ISSUE22_RETAINED_S13_V1.items():
+        png(name, expected, dimensions)
+        additions.add(name)
     require(not (additions & set(approved_blobs)), 'Issue 22 may only add paths absent from the approved main tree')
     return additions
 

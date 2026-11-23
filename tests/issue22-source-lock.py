@@ -48,11 +48,15 @@ class Issue22AdditionScope(unittest.TestCase):
             'current S13 material': s13['display_url'],
             'current S13 picker': picker['items']['S13']['src'],
         }
+        cls.targets.update({'retained rejected S13 v1 ' + name: name
+                            for name in source_lock.ISSUE22_RETAINED_S13_V1})
 
     def test_exact_current_and_retained_additions(self):
         # Ten data files; nine original material layers plus two each for
-        # S06, S14 and S13; seven original pickers plus S06, S14 and S13.
-        self.assertEqual(len(self.allowed), 35)
+        # S06, S14 and S13; seven original pickers plus S06, S14 and S13;
+        # exactly three immutable rejected-v1 S13 artifacts retained as evidence.
+        self.assertEqual(len(self.allowed), 38)
+        self.assertEqual(len(source_lock.ISSUE22_RETAINED_S13_V1), 3)
         self.assertNotIn(self.targets['approved main original'], self.allowed)
         self.assertTrue(all(self.targets[name] in self.allowed for name in self.targets
                             if name != 'approved main original'))
@@ -186,6 +190,23 @@ class Issue22AdditionScope(unittest.TestCase):
             with self.subTest(path=name):
                 with self.assertRaisesRegex(ValueError, 'exact continuous allowlist'):
                     source_lock.validate_protected_changes({**exact, name: status}, exact)
+
+    def test_retained_rejected_v1_assets_cannot_be_reactivated(self):
+        for name, (expected, _) in source_lock.ISSUE22_RETAINED_S13_V1.items():
+            with self.subTest(retained=name):
+                materials, picker = copy.deepcopy(self.materials), copy.deepcopy(self.picker)
+                if name.startswith('assets/'):
+                    layer = 'jacket' if 'S13-jacket-' in name else 'trousers'
+                    row = next(row for row in materials['bindings'].values()
+                               if row['garment_id'] == 'S13' and row['layer'] == layer)
+                    del materials['assetPaths'][row['display_sha256']]
+                    row['display_url'], row['display_sha256'] = name, expected
+                    materials['assetPaths'][expected] = name
+                else:
+                    picker['items']['S13']['src'] = name
+                    picker['items']['S13']['sha256'] = expected
+                with self.assertRaisesRegex(ValueError, 'cannot become active'):
+                    source_lock.validate_retained_s13_v1_inactive(materials, picker)
 
     def test_executable_picker_installer_cannot_expand_the_exception(self):
         original = source_lock.file_bytes

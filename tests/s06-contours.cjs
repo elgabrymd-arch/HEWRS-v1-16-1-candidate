@@ -374,6 +374,23 @@ async function main() {
       Object.assign(control, {comparison: 'frozen_pre_s13_vs_original_pre_contour',
         frozen_commit: PRE_S13, frozen_runtime: historical.metadata,
         current_s13: await currentS13Scope(historical, candidate, after, current, material, label)});
+      // Independently isolate the contour wrapper against the exact current
+      // S13 materials. A cloth-scope comparison alone would permit unintended
+      // changes inside S13; this on/off control permits no changed pixel.
+      const withoutContours = load({omitContourModules: [MODULE]});
+      A.equal(withoutContours.metadata.kind, 'EXPLICIT_SOURCE_OVERLAY_DIAGNOSTIC');
+      A.equal(withoutContours.metadata.entrypoint_sha256, candidate.metadata.entrypoint_sha256, label + ': current entrypoint is identical');
+      A.equal(withoutContours.metadata.runtime_sha256, candidate.metadata.runtime_sha256, label + ': current compiled runtime is identical before the one diagnostic omission');
+      A.deepEqual(withoutContours.metadata.overlays, [{path: MODULE, sha256: digest(read(MODULE)), diagnostic_action: 'omit_only_this_contour_wrapper'}], label + ': only the exact S06 contour wrapper is omitted');
+      A.equal(withoutContours.g.HEWRSS06Contours, undefined, label + ': diagnostic omits the contour wrapper');
+      A.deepEqual(plain(withoutContours.connection.issue22Materials), plain(candidate.connection.issue22Materials), label + ': both current renders use the same current materials');
+      const currentWithoutContours = await withoutContours.capture(selected);
+      A.equal(current.rgba_sha256, currentWithoutContours.rgba_sha256, label + ': current S13 frame is identical with or without S06 contours');
+      A.ok(current.rgba.equals(currentWithoutContours.rgba), label + ': current contour wrapper has no hidden S13 pixel effects');
+      A.deepEqual(plain(withoutContours.storage.snapshot()), [], label + ': diagnostic S13 render never writes synthetic saved data');
+      control.current_contour_isolation = {comparison: 'current_runtime_contour_enabled_vs_omitted',
+        reference: withoutContours.metadata, rgba_sha256: current.rgba_sha256,
+        changed_pixels: 0, saved_data_writes: 0};
     }
     report.controls.push(control);
     saveReport();

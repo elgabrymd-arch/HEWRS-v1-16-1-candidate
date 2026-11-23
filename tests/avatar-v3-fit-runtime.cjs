@@ -45,7 +45,7 @@ function sourceBindings(plan) {
   visit(plan, 'plan');
   return rows;
 }
-function load({root = ROOT, entrypoint = 'index.html', extraModules = [], modulesBeforePose = [], omitFitModules = []} = {}) {
+function load({root = ROOT, entrypoint = 'index.html', extraModules = [], modulesBeforePose = [], omitFitModules = [], omitContourModules = []} = {}) {
   root = path.resolve(root);
   const html = fs.readFileSync(path.join(root, entrypoint), 'utf8');
   const tags = [...html.matchAll(/<script\b([^>]*\bsrc="([^"]+)"[^>]*)>/g)];
@@ -81,6 +81,14 @@ function load({root = ROOT, entrypoint = 'index.html', extraModules = [], module
     assert.equal(prefix.split(block).length, 2, 'exact current compiled source wrapper diagnostic omission');
     prefix = prefix.replace(block, '');
     overlay.push({path: filename, sha256: digest(data), diagnostic_action: 'omit_only_this_fit_wrapper'});
+  }
+  for (const filename of omitContourModules) {
+    assert.equal(filename, 'src/issue22-s06-contours.js', 'only the named S06 contour wrapper may be omitted in a diagnostic');
+    const data = fs.readFileSync(path.resolve(root, filename));
+    const block = '/* V3 ISSUE 22 SOURCE: ' + filename + ' */\n' + data.toString('utf8') + '\n;\n';
+    assert.equal(prefix.split(block).length, 2, 'exact current compiled contour wrapper diagnostic omission');
+    prefix = prefix.replace(block, '');
+    overlay.push({path: filename, sha256: digest(data), diagnostic_action: 'omit_only_this_contour_wrapper'});
   }
   if (modulesBeforePose.length) {
     if (modulesBeforePose.includes('src/avatar-v3-shirt-collar-fit.js')) {
