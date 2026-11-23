@@ -17,7 +17,8 @@ BASELINE_ENTRYPOINT = 'avatar-v3-issue22-baseline.html'
 BASELINE_ENTRYPOINT_SHA256 = 'dd7c401d29ab12cf3fb2d9d2938ddd9753291c42982d60f326c3bf367dd9afba'
 MATCHING_MODULES = ('data/issue22-garment-dna.js', 'src/issue22-matching.js')
 RENDER_MODULES = ('data/issue22-materials.js', 'src/issue22-materials.js',
-                  'src/issue22-b08.js', 'src/issue22-render-guard.js')
+                  'src/issue22-b08.js', 'src/issue22-render-guard.js',
+                  'src/issue22-s06-contours.js')
 INDEX = 'data/issue22-option-index.js'
 PREVIEWS = 'data/issue22-picker-images.js'
 REVIEWED_MODULES = issue22_reviewed.MODULES

@@ -6,7 +6,18 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {load,selection,digest,crop,ROOT,WIDTH,HEIGHT}=require('./avatar-v3-fit-runtime.cjs');
 const TARGETS=['S06','S13','S14','B01','B06','B10','B08'],LINEN=new Set(['B01','B06','B10']);
-function alphaDifference(a,b){let count=0;for(let i=3;i<a.length;i+=4)if(a[i]!==b[i])count++;return count;}
+// The material PNGs retain their original alpha. Only the S06 display
+// contour correction may differ in the final frame, inside these exact
+// independently declared rectangles; all other garments remain exact.
+const S06_CONTOUR_BOUNDS=[[620,410,100,90],[60,460,280,720],[660,460,300,720]];
+function alphaDifference(a,b,allowed=[]){
+ let changed=0,outside=0;
+ for(let i=3;i<a.length;i+=4)if(a[i]!==b[i]){
+  changed++;const pixel=(i-3)/4,x=pixel%WIDTH,y=Math.floor(pixel/WIDTH);
+  if(!allowed.some(([left,top,width,height])=>x>=left&&x<left+width&&y>=top&&y<top+height))outside++;
+ }
+ return {changed,outside};
+}
 function pixelDifference(a,b){let count=0;for(let i=0;i<a.length;i+=4)if(a[i]!==b[i]||a[i+1]!==b[i+1]||a[i+2]!==b[i+2]||a[i+3]!==b[i+3])count++;return count;}
 const region=(rgba,start,end)=>rgba.subarray(start*WIDTH*4,end*WIDTH*4);
 async function main(){
@@ -26,13 +37,18 @@ async function main(){
    if(!assigned(targetIndex++))continue;
    const s=selection(shirt,state,top),before=await old.capture(s),after=await now.capture(s);
    assert.deepEqual(JSON.parse(JSON.stringify(after.selection)),s);
-   assert.equal(alphaDifference(before.rgba,after.rgba),0,top+'/'+shirt+'/'+state+' final alpha');
+   const alpha=alphaDifference(before.rgba,after.rgba,top==='S06'?S06_CONTOUR_BOUNDS:[]);
+   if(top==='S06'){
+    assert.ok(alpha.changed>0,top+'/'+shirt+'/'+state+' S06 contour correction must change final alpha');
+    assert.equal(alpha.outside,0,top+'/'+shirt+'/'+state+' S06 contour alpha bounded');
+   }else assert.equal(alpha.changed,0,top+'/'+shirt+'/'+state+' exact final alpha');
    assert.ok(region(before.rgba,0,350).equals(region(after.rgba,0,350)),top+' frozen head');
    assert.ok(region(before.rgba,2600,HEIGHT).equals(region(after.rgba,2600,HEIGHT)),top+' footwear');
    if(top.startsWith('B'))assert.ok(region(before.rgba,1700,HEIGHT).equals(region(after.rgba,1700,HEIGHT)),top+' unchanged trousers and shoes');
    const count=pixelDifference(before.rgba,after.rgba);assert.ok(count>0,top+' correction must visibly change actual frame');changes+=count;
    rows.push({selection:s,rgba_sha256:after.rgba_sha256,baseline_rgba_sha256:before.rgba_sha256,changed_pixels:count,
-    alpha_changed_pixels:0,head_unchanged:true,footwear_unchanged:true,elapsed_ms:after.elapsed_ms});
+    alpha_changed_pixels:alpha.changed,alpha_changed_outside_authorized_contours:alpha.outside,
+    head_unchanged:true,footwear_unchanged:true,elapsed_ms:after.elapsed_ms});
    if(shirt==='DS001'||shirt==='DS013'){
     const label=[top,shirt,state].join('-');
     for(const [name,png]of [['before',before.png],['after',after.png]]){
@@ -66,7 +82,9 @@ async function main(){
  const result={schema:'hewrs.issue22.native-render-matrix.v1',status:'PASS',runtime:now.metadata,
   shard:options.shard,shards:options.shards,offset:options.offset,limit:options.limit,total_target_cases:targetIndex,total_control_cases:controlIndex,
   target_renders:rows.length,unrelated_control_renders:controls.length,prohibited_tie_render_cases:denials,
-  unchanged_original_alpha:true,unchanged_avatar_head:true,unchanged_footwear:true,
+  display_alpha_contract:{S06:{policy:'bounded_contour_correction',bounds:S06_CONTOUR_BOUNDS},other_garments:'exact_baseline_alpha',
+   material_png_alpha:'exact_source_alpha; independently verified by issue22-materials.cjs'},
+  unchanged_avatar_head:true,unchanged_footwear:true,
   corrected_pixels_total:changes,rows,controls,visual_acceptance:'separate independent review of captured full avatars'};
  fs.writeFileSync(path.join(output,'batch-'+String(options.offset).padStart(4,'0')+'.json'),JSON.stringify(result,null,2)+'\n');
  console.log(JSON.stringify({status:result.status,target_renders:rows.length,unrelated_control_renders:controls.length,prohibited_tie_render_cases:denials}));
