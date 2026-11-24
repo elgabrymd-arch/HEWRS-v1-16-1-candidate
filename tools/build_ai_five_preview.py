@@ -3,7 +3,8 @@
 
 Never writes index.html, app.html, an approved runtime, or browser records.
 The fixture endpoint is intentionally unresolvable and only browser tests
-intercept it. The default candidate remains disabled.
+intercept it. The default candidate remains disabled. Explicit trial mode uses
+the real service; authentication and per-request consent remain required.
 """
 import argparse
 import base64
@@ -24,7 +25,9 @@ def tag(path):
     sri = base64.b64encode(bytes.fromhex(sha)).decode()
     return f'<script defer src="{path}?v={sha[:16]}" integrity="sha256-{sri}"></script>'
 
-def build(fixture=False):
+def build(fixture=False, trial=False):
+    if fixture and trial:
+        raise ValueError("Fixture and trial modes are mutually exclusive.")
     release = json.loads((ROOT / "AVATAR_V3_RELEASE.json").read_text())
     binding = json.loads(BINDING.read_text())
     assert binding["runtime_sha256"] == release["runtime_sha256"] == digest(ROOT / release["runtime"])
@@ -50,14 +53,22 @@ def build(fixture=False):
                                      .replace("https://hewrs-ai-service.onrender.com", "https://ai-five-contract-fixture.invalid"))
         html = html.replace("connect-src 'self' ", "connect-src 'self' https://ai-five-contract-fixture.invalid ", 1)
         target = ROOT / "ai-five-fixture.html"
+    elif trial:
+        paths[3] = "data/ai-five-trial-config.js"
+        (ROOT / paths[3]).write_text(config.replace("enabled:false", "enabled:true"))
+        target = ROOT / "ai-five-trial.html"
     # Original defer scripts appear at the end of body, so append after all of them.
     html = html.replace("</body>", "\n".join(tag(path) for path in paths) + "\n</body>")
     target.write_text(html)
     print(json.dumps({"entrypoint": target.name, "sha256": digest(target),
                       "base_runtime": release["runtime_sha256"], "catalogue_fingerprint": fingerprint,
-                      "fixture": fixture, "production_files_modified": False}))
+                      "mode": "fixture" if fixture else "trial" if trial else "disabled",
+                      "fixture": fixture, "trial": trial, "production_files_modified": False}))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--fixture", action="store_true")
-    build(parser.parse_args().fixture)
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--fixture", action="store_true")
+    modes.add_argument("--trial", action="store_true")
+    args = parser.parse_args()
+    build(fixture=args.fixture, trial=args.trial)
