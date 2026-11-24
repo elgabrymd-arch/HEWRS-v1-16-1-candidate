@@ -1,0 +1,37 @@
+name: Preference source recovery verification
+on:
+  push:
+    branches: [repair/reconcile-36-preferences-20261124]
+  pull_request:
+    paths:
+      - 'preference-repair.html'
+      - 'tests/preference-source-repair.cjs'
+      - 'tests/preference-source-repair-browser.py'
+      - '.github/workflows/preference-source-repair.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/preference-source-repair.cjs
+  browser:
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --disable-pip-version-check playwright==1.56.0
+      - run: python tests/preference-source-repair-browser.py
+        env:
+          HEWRS_BROWSER: ${{ matrix.browser }}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>HEWRS preference compatibility repair</title>
+<style>body{margin:0;padding:22px;background:#09101a;color:#f3e9d3;font:16px/1.55 system-ui,sans-serif}main{max-width:650px;margin:auto}h1{font:32px Georgia,serif;margin:0;color:#e8b858}h2{font-size:20px;line-height:1.35}p{margin:12px 0}section,details{background:#101c2b;border:1px solid #2b3c50;border-radius:14px;padding:16px;margin:18px 0}button,.action{display:block;box-sizing:border-box;background:#e7b659;color:#09101a;font:600 16px/1.4 system-ui,sans-serif;border:0;border-radius:9px;padding:14px;width:100%;margin:14px 0;text-align:center;text-decoration:none}button:disabled{opacity:.4}label{display:flex;align-items:flex-start;gap:10px}input{width:20px;height:20px;flex-shrink:0}small{color:#b8c0ce}[hidden]{display:none!important}a{color:#e8b858}strong{color:#f8deb0}</style></head>
+<body><main><h1>HEWRS</h1><p>Preference source compatibility repair</p>
+<section><h2 id="status" role="status">Checking your original comparisons…</h2><p id="details"></p><button id="backup" disabled>Save original preference backup</button><small>Exact original JSON, saved to your device only. No upload, no AI request.</small></section>
+<section id="before" hidden><h2>Review the proposed repair</h2><p>Keep <strong>all 36 original votes</strong> byte-for-byte in a separate local archive. Copy 26 unaffected comparisons into the active source-compatible preference store, preserving their vote metadata. Keep 10 comparisons involving corrected garments out of the current fit pending review.</p><p>The original archive retains the historical source revision. The compatible copies change only their source revision; the store revision increases by one. The avatar, garment sources, matching rules, explicit rejections, Favorites and wear records are not edited.</p><label><input type="checkbox" id="agree">I authorize this local archival and source reconciliation.</label><button id="apply" disabled>Preserve all 36 and repair preferences</button></section>
+<section id="after" hidden><h2>Repair complete</h2><p>Reopen the trial and generate the regular outfits. AI Five must remain disabled until native generation is verified.</p><a class="action" href="ai-five-trial.html?v=preference-repair">Open AI Five trial</a></section>
+<details id="rollback" hidden><summary>Restore original archive (only before any newer vote)</summary><p>Restoring the original archive returns the original revision mismatch. This is a recovery option, not a required step. The restore refuses to overwrite newer preferences.</p><label><input type="checkbox" id="restore-agree">Restore the exact original preference archive.</label><button id="restore" disabled>Restore original 36 records</button></details>
+<p>Open in the same Safari browser where your preferences were saved. All reads and repairs are local to that browser. No server credentials are involved.</p></main>
+<script id="repair-core">(function(root){
+'use strict';
+const KEY='hewrs:outfit-preferences:v1';
+const ARCHIVE='hewrs:outfit-preferences:source-recovery:2026-11-24:original';
+const LOCK='3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516';
+const OLD='hewrs.owner-source.s02.2026-09-29.v1';
+const CURRENT=OLD+'+hewrs.issue22.garment-fidelity.2026-11-22.v2';
+const AFFECTED=new Set(['S06','S13','S14','B01','B06','B10','B08']);
+const REASONS=new Set(['no_reason','tie_dominant','palette_disconnected','patterns_compete','shoe_choice','layers_not_distinct','other']);
+const BANK=[{"id":"PILOT_S01_1","a":{"suitId":"S01","shirtId":"DS029","state":"T019","shoeId":"shoe-4","watchId":"watch-P05"},"b":{"suitId":"S01","shirtId":"DS029","state":"T024","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S01_2","a":{"suitId":"S01","shirtId":"DS029","state":"T024","shoeId":"shoe-4","watchId":"watch-P05"},"b":{"suitId":"S01","shirtId":"DS029","state":"T024","shoeId":"shoe-49","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S03_1","a":{"suitId":"S03","shirtId":"DS006","state":"T033","shoeId":"shoe-4","watchId":"watch-P05"},"b":{"suitId":"S03","shirtId":"DS006","state":"T046","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S03_2","a":{"suitId":"S03","shirtId":"DS006","state":"T033","shoeId":"shoe-8","watchId":"watch-P05"},"b":{"suitId":"S03","shirtId":"DS006","state":"T033","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S05_1","a":{"suitId":"S05","shirtId":"DS029","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S05","shirtId":"DS029","state":"T029","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S05_2","a":{"suitId":"S05","shirtId":"DS029","state":"T029","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S05","shirtId":"DS029","state":"T029","shoeId":"shoe-49","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S10_1","a":{"suitId":"S10","shirtId":"DS009","state":"T039","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S10","shirtId":"DS009","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S10_2","a":{"suitId":"S10","shirtId":"DS009","state":"T039","shoeId":"shoe-49","watchId":"watch-P05"},"b":{"suitId":"S10","shirtId":"DS009","state":"T039","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B01_1","a":{"blazerId":"B01","pantId":"PG003","shirtId":"DS005","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B01","pantId":"PG003","shirtId":"DS005","state":"T015","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B01_2","a":{"blazerId":"B01","pantId":"PG003","shirtId":"DS005","state":"T015","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B01","pantId":"PG003","shirtId":"DS005","state":"T015","shoeId":"shoe-15","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B03_1","a":{"blazerId":"B03","pantId":"PB001","shirtId":"DS006","state":"T033","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B03","pantId":"PB001","shirtId":"DS006","state":"T046","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B03_2","a":{"blazerId":"B03","pantId":"PB001","shirtId":"DS006","state":"T033","shoeId":"shoe-15","watchId":"watch-P05"},"b":{"blazerId":"B03","pantId":"PB001","shirtId":"DS006","state":"T033","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B06_1","a":{"blazerId":"B06","pantId":"PB001","shirtId":"DS019","state":"T046","shoeId":"shoe-13","watchId":"watch-P05"},"b":{"blazerId":"B06","pantId":"PB001","shirtId":"DS019","state":"NO_TIE","shoeId":"shoe-13","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B06_2","a":{"blazerId":"B06","pantId":"PB001","shirtId":"DS019","state":"NO_TIE","shoeId":"shoe-13","watchId":"watch-P05"},"b":{"blazerId":"B06","pantId":"PB001","shirtId":"DS019","state":"NO_TIE","shoeId":"shoe-49","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B08_1","a":{"blazerId":"B08","pantId":"PB001","shirtId":"DS019","state":"NO_TIE","shoeId":"shoe-13","watchId":"watch-P05"},"b":{"blazerId":"B08","pantId":"PB001","shirtId":"DS019","state":"T046","shoeId":"shoe-13","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_B08_2","a":{"blazerId":"B08","pantId":"PB001","shirtId":"DS019","state":"NO_TIE","shoeId":"shoe-49","watchId":"watch-P05"},"b":{"blazerId":"B08","pantId":"PB001","shirtId":"DS019","state":"NO_TIE","shoeId":"shoe-13","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"PILOT_S12_1","a":{"suitId":"S12","shirtId":"DS014","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S12","shirtId":"DS014","state":"T017","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"PILOT_S12_2","a":{"suitId":"S12","shirtId":"DS014","state":"T017","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S12","shirtId":"DS014","state":"T017","shoeId":"shoe-49","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"PILOT_S16_1","a":{"suitId":"S16","shirtId":"DS035","state":"T039","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S16","shirtId":"DS035","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"PILOT_S16_2","a":{"suitId":"S16","shirtId":"DS035","state":"T039","shoeId":"shoe-49","watchId":"watch-P05"},"b":{"suitId":"S16","shirtId":"DS035","state":"T039","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"PILOT_B09_1","a":{"blazerId":"B09","pantId":"PG002","shirtId":"DS014","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B09","pantId":"PG002","shirtId":"DS014","state":"T025","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"PILOT_B09_2","a":{"blazerId":"B09","pantId":"PG002","shirtId":"DS014","state":"T025","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B09","pantId":"PG002","shirtId":"DS014","state":"T025","shoeId":"shoe-15","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"PILOT_B13_1","a":{"blazerId":"B13","pantId":"PG002","shirtId":"DS005","state":"T022","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B13","pantId":"PG002","shirtId":"DS005","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"PILOT_B13_2","a":{"blazerId":"B13","pantId":"PG002","shirtId":"DS005","state":"T022","shoeId":"shoe-15","watchId":"watch-P05"},"b":{"blazerId":"B13","pantId":"PG002","shirtId":"DS005","state":"T022","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"FOLLOWUP_1230_01","a":{"suitId":"S01","shirtId":"DS029","state":"T024","shoeId":"shoe-4","watchId":"watch-P05"},"b":{"suitId":"S01","shirtId":"DS035","state":"T024","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_02","a":{"suitId":"S03","shirtId":"DS006","state":"T033","shoeId":"shoe-4","watchId":"watch-P05"},"b":{"suitId":"S03","shirtId":"DS017","state":"T033","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_03","a":{"blazerId":"B01","pantId":"PG003","shirtId":"DS005","state":"T015","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B01","pantId":"PG003","shirtId":"DS021","state":"T015","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_04","a":{"blazerId":"B06","pantId":"PB001","shirtId":"DS019","state":"NO_TIE","shoeId":"shoe-13","watchId":"watch-P05"},"b":{"blazerId":"B06","pantId":"PB001","shirtId":"DS006","state":"NO_TIE","shoeId":"shoe-13","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_05","a":{"suitId":"S05","shirtId":"DS029","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S10","shirtId":"DS022","state":"T030","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_06","a":{"suitId":"S10","shirtId":"DS009","state":"T017","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S10","shirtId":"DS017","state":"T025","shoeId":"shoe-49","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_07","a":{"blazerId":"B03","pantId":"PB001","shirtId":"DS006","state":"T033","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B08","pantId":"PB001","shirtId":"DS005","state":"NO_TIE","shoeId":"shoe-15","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_08","a":{"blazerId":"B08","pantId":"PB001","shirtId":"DS019","state":"T046","shoeId":"shoe-13","watchId":"watch-P05"},"b":{"blazerId":"B08","pantId":"PG002","shirtId":"DS024","state":"T022","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"training"},{"id":"FOLLOWUP_1230_09","a":{"suitId":"S12","shirtId":"DS014","state":"T017","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S12","shirtId":"DS021","state":"T017","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"FOLLOWUP_1230_10","a":{"suitId":"S16","shirtId":"DS035","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"suitId":"S16","shirtId":"DS022","state":"T019","shoeId":"shoe-1","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"FOLLOWUP_1230_11","a":{"blazerId":"B09","pantId":"PG002","shirtId":"DS014","state":"T025","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B09","pantId":"PB001","shirtId":"DS024","state":"T022","shoeId":"shoe-4","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"},{"id":"FOLLOWUP_1230_12","a":{"blazerId":"B13","pantId":"PG002","shirtId":"DS005","state":"T022","shoeId":"shoe-1","watchId":"watch-P05"},"b":{"blazerId":"B13","pantId":"PN002","shirtId":"DS022","state":"T015","shoeId":"shoe-49","watchId":"watch-P05"},"context":{"occasion":"clinic","requiredFormality":"any"},"partition":"validation"}];
+const refs=new Map(BANK.map(r=>[r.id,r]));
+const need=(ok,msg)=>{if(!ok)throw Error(msg);};
+const exact=(v,keys)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===keys.length&&keys.every(k=>Object.hasOwn(v,k));
+function stable(v){if(Array.isArray(v))return '['+v.map(stable).join(',')+']';if(v&&typeof v==='object')return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}';return JSON.stringify(v);}
+const occasion=x=>['work','clinic','hospital','office'].includes(x)?'work':x;
+function prepare(raw){
+ need(typeof raw==='string'&&raw.length<=2500000,'The original comparison archive is unavailable or too large.');
+ let data;try{data=JSON.parse(raw);}catch{throw Error('Original preference archive is not valid JSON. Nothing was changed.');}
+ need(exact(data,['schema','source_lock','revision','enabled','comparisons'])&&data.schema==='hewrs.outfit-preferences.v1'&&data.source_lock===LOCK,'Wardrobe identity or archive format differs.');
+ need(Number.isSafeInteger(data.revision)&&data.revision>=0&&data.revision<Number.MAX_SAFE_INTEGER&&typeof data.enabled==='boolean','Invalid preference revision or learning switch.');
+ need(Array.isArray(data.comparisons)&&data.comparisons.length===36,'The archive no longer contains the diagnosed 36 comparisons. No repair was attempted.');
+ need(BANK.length===36&&refs.size===36,'Reference comparison bank is invalid.');
+ const ids=new Set(),pairs=new Set(),retained=[],held=[];
+ for(const r of data.comparisons){
+  need(exact(r,['id','created_at','a','b','vote','reason','partition','pilot_id','context','source_revision']),'Unexpected comparison fields.');
+  need(typeof r.id==='string'&&/^pref_[A-Za-z0-9_-]{1,100}$/.test(r.id)&&!ids.has(r.id),'Invalid or repeated original vote ID.');ids.add(r.id);
+  need(typeof r.created_at==='string'&&/^\d{4}-\d{2}-\d{2}T.*Z$/.test(r.created_at)&&Number.isFinite(Date.parse(r.created_at)),'Invalid original vote date.');
+  need(['A','B','both','neither'].includes(r.vote)&&REASONS.has(r.reason),'Unknown vote or reason.');
+  need(r.source_revision===OLD,'Unexpected source revision. Do not rebind mixed or unknown records.');
+  const ref=refs.get(r.pilot_id);
+  need(ref&&!pairs.has(r.pilot_id),'A comparison does not match the original pilot/follow-up bank or is duplicated.');pairs.add(r.pilot_id);
+  need(stable(r.a)===stable(ref.a)&&stable(r.b)===stable(ref.b),'The original outfit pair differs from its verified reference.');
+  need(r.partition===ref.partition&&['training','validation'].includes(r.partition),'The original training/validation partition differs.');
+  need(exact(r.context,['occasion','requiredFormality'])&&['work','clinic','hospital','office','dinner','weekend'].includes(r.context.occasion)&&occasion(r.context.occasion)===occasion(ref.context.occasion)&&r.context.requiredFormality===ref.context.requiredFormality,'The original comparison context differs.');
+  if([r.a,r.b].some(s=>AFFECTED.has(s.suitId||s.blazerId)))held.push(r.pilot_id);
+  else retained.push({...r,source_revision:CURRENT});
+ }
+ need(pairs.size===36&&retained.length===26&&held.length===10,'The archive differs from the diagnosed 26 unaffected and 10 affected records.');
+ const proposed=JSON.stringify({...data,revision:data.revision+1,comparisons:retained});
+ return Object.freeze({proposed,original:raw,retained:retained.length,held:Object.freeze(held.slice()),total:36,enabled:data.enabled});
+}
+function apply(storage,expectedRaw){
+ const raw=storage.getItem(KEY);
+ need(raw===expectedRaw,'Preferences changed since inspection. Reload and review; nothing was changed.');
+ const plan=prepare(raw);
+ const existing=storage.getItem(ARCHIVE);
+ need(existing===null||existing===raw,'A different original backup already exists. Stop to protect it.');
+ if(existing===null)storage.setItem(ARCHIVE,raw);
+ need(storage.getItem(ARCHIVE)===raw,'Original 36-record archive could not be verified. Active preferences were not replaced.');
+ need(storage.getItem(KEY)===raw,'Preferences changed during backup. Active preferences were not replaced.');
+ storage.setItem(KEY,plan.proposed);
+ need(storage.getItem(KEY)===plan.proposed&&storage.getItem(ARCHIVE)===raw,'Repair verification incomplete. Preserve the original archive and do not retry blindly.');
+ return plan;
+}
+function restore(storage,expectedOriginal){
+ const raw=storage.getItem(ARCHIVE);
+ need(raw===expectedOriginal,'Original archive changed. Restore refused.');
+ const p=prepare(raw);
+ need(storage.getItem(KEY)===p.proposed,'Current preferences changed after repair. Restore refused to protect new votes.');
+ storage.setItem(KEY,raw);
+ need(storage.getItem(KEY)===raw,'Original archive retained; active restore could not be verified.');
+ return p;
+}
+const api=Object.freeze({KEY,ARCHIVE,LOCK,OLD,CURRENT,bank:()=>JSON.parse(JSON.stringify(BANK)),prepare,apply,restore});
+if(typeof module==='object'&&module.exports)module.exports=api;else root.HEWRSPreferenceRepair=api;
+})(globalThis);</script>
+<script>(function(){
+'use strict';
+const R=globalThis.HEWRSPreferenceRepair,by=id=>document.getElementById(id);
+const status=by('status'),details=by('details'),applyButton=by('apply'),restoreButton=by('restore'),backup=by('backup'),agree=by('agree'),restoreAgree=by('restore-agree');
+let original=null,plan=null,running=false,mode=null;
+function setStatus(s){status.textContent=s;}
+function inspect(){
+ mode=null;plan=null;original=null;applyButton.disabled=restoreButton.disabled=backup.disabled=true;by('after').hidden=true;by('before').hidden=true;by('rollback').hidden=true;agree.checked=restoreAgree.checked=false;
+ try{
+  const raw=localStorage.getItem(R.KEY),archived=localStorage.getItem(R.ARCHIVE);
+  original=archived??raw;
+  backup.disabled=original===null;
+  if(archived!==null){
+   const preserved=R.prepare(archived);
+   if(raw===preserved.proposed){plan=preserved;mode='repaired';setStatus('Repair verified: 26 current comparisons, all 36 originals preserved.');details.textContent='The 10 affected comparisons remain in the original archive. Existing rejection, wear, Favorites and Home data were not modified by this repair.';by('after').hidden=false;by('rollback').hidden=false;return;}
+   if(raw!==archived){setStatus('Original 36-record backup retained.');details.textContent='The active preference archive has since changed. No repair or rollback will overwrite your newer records.';return;}
+  }
+  plan=R.prepare(raw);
+  mode='ready';setStatus('Verified: all 36 comparisons match their original source pairs.');
+  details.textContent='26 unaffected comparisons can be rebound without changing any vote, date, ID, reason, context or partition. The 10 affected records will remain in the exact original backup and will not enter current learning.';
+  by('before').hidden=false;
+  if(!navigator.locks?.request){setStatus('Safe repair unavailable in this browser.');details.textContent='Cross-tab locking is unavailable. No changes were made. Save the original backup.';}
+ }catch(e){setStatus('Repair not available: '+e.message);details.textContent='No automatic changes were made. Save the original backup if available.';}
+}
+agree.onchange=()=>{applyButton.disabled=running||mode!=='ready'||!agree.checked||!navigator.locks?.request;};
+restoreAgree.onchange=()=>{restoreButton.disabled=running||mode!=='repaired'||!restoreAgree.checked||!navigator.locks?.request;};
+backup.onclick=()=>{if(original===null)return;const a=document.createElement('a'),url=URL.createObjectURL(new Blob([original],{type:'application/json'}));a.href=url;a.download='HEWRS_ORIGINAL_36_PREFERENCES.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);};
+applyButton.onclick=async()=>{
+ if(running||mode!=='ready'||!agree.checked||!plan)return;
+ running=true;applyButton.disabled=true;const expected=plan.original;
+ try{await navigator.locks.request(R.KEY,{mode:'exclusive'},()=>R.apply(localStorage,expected));inspect();}
+ catch(e){setStatus('Repair stopped: '+e.message);details.textContent='Do not clear browser storage or repeat blindly. The original archive is retained if its backup write succeeded.';}
+ finally{running=false;}
+};
+restoreButton.onclick=async()=>{
+ if(running||mode!=='repaired'||!restoreAgree.checked||!plan)return;
+ running=true;restoreButton.disabled=true;const expected=plan.original;
+ try{await navigator.locks.request(R.KEY,{mode:'exclusive'},()=>R.restore(localStorage,expected));inspect();setStatus('Original 36-record archive restored.');}
+ catch(e){setStatus('Restore stopped: '+e.message);}
+ finally{running=false;}
+};
+inspect();
+})();</script>
+</body></html>
