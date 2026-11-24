@@ -1,13 +1,15 @@
 name: AI Five trial credential compatibility
 on:
   push:
-    branches: [fix/ai-five-existing-token-20261124]
+    branches: [fix/ai-five-existing-token-20261124, fix/ai-five-trial-readiness-20261124]
   pull_request:
     paths:
       - 'src/ai-five-client.js'
+      - 'src/ai-five-panel.js'
       - 'ai-five-trial.html'
       - 'src/ai-five-trial-config.js'
       - 'tests/ai-five-client.test.cjs'
+      - 'tests/ai-five-panel-readiness.test.cjs'
       - '.github/workflows/ai-five-trial-auth.yml'
 permissions:
   contents: read
@@ -20,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/ai-five-client.test.cjs
+      - run: node --test tests/ai-five-client.test.cjs tests/ai-five-panel-readiness.test.cjs
       - name: Verify trial script integrity and unchanged primary application
         run: |
           python3 - <<'PY'
@@ -32,6 +34,10 @@ jobs:
           p=pathlib.Path('src/ai-five-trial-config.js')
           h=hashlib.sha256(p.read_bytes()).digest()
           expected=f'src/ai-five-trial-config.js?v={h.hex()[:16]}" integrity="sha256-{base64.b64encode(h).decode()}"'
+          assert expected in pathlib.Path('ai-five-trial.html').read_text()
+          p=pathlib.Path('src/ai-five-panel.js')
+          h=hashlib.sha256(p.read_bytes()).digest()
+          expected=f'src/ai-five-panel.js?v={h.hex()[:16]}" integrity="sha256-{base64.b64encode(h).decode()}"'
           assert expected in pathlib.Path('ai-five-trial.html').read_text()
           assert not pathlib.Path('data/ai-five-trial-config.js').exists()
           assert 'ai-five-client.js' not in pathlib.Path('index.html').read_text()
