@@ -33,12 +33,12 @@ try:
   assert page.evaluate('(k)=>localStorage.getItem(k)',ARCHIVE) is None
   page.locator('#agree').check()
   page.locator('#apply').click()
-  page.wait_for_function("document.getElementById('status').textContent.startsWith('Repair verified')")
+  page.locator('#status').filter(has_text='Repair verified').wait_for()
   assert page.evaluate('(k)=>localStorage.getItem(k)',ARCHIVE)==raw
   compatible=page.evaluate('(k)=>localStorage.getItem(k)',KEY)
   assert len(json.loads(compatible)['comparisons'])==26
   page.locator('#after a').click()
-  page.wait_for_function('globalThis.HEWRS_READY === true && globalThis.HEWRSAIFivePanel && HEWRSApp.rejection',timeout=120000)
+  page.wait_for_function('()=>globalThis.HEWRS_READY === true && !!globalThis.HEWRSAIFivePanel && !!HEWRSApp.rejection',timeout=120000)
   state=page.evaluate('()=>HEWRSApp.learning.model({occasion:"work",requiredFormality:"any"}).state')
   assert len(state['comparisons'])==26
   page.evaluate("""()=>{HEWRSApp.ui.reset();HEWRSApp.setMode('engine');HEWRSApp.connection.hybrid.setMode('research');HEWRSApp.showPage('home');}""")
