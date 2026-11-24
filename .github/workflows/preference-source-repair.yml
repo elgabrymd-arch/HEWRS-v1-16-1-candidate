@@ -20,9 +20,18 @@ jobs:
         with:
           node-version: '22'
       - run: node --test tests/preference-source-repair.cjs
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+  browser:
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.56.0-noble
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
       - run: python -m pip install --disable-pip-version-check playwright==1.56.0
-      - run: python -m playwright install --with-deps chromium
       - run: python tests/preference-source-repair-browser.py
+        env:
+          HEWRS_BROWSER: ${{ matrix.browser }}

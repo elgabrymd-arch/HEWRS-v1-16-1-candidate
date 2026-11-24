@@ -1,5 +1,5 @@
 """Real published V3 app, synthetic preference archive only. No provider requests."""
-import functools, json, threading
+import functools, json, os, threading
 from pathlib import Path
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from playwright.sync_api import sync_playwright
@@ -17,7 +17,8 @@ threading.Thread(target=server.serve_forever,daemon=True).start()
 origin='http://127.0.0.1:'+str(server.server_address[1])
 try:
  with sync_playwright() as p:
-  browser=p.chromium.launch(headless=True,args=['--no-sandbox'])
+  name=os.environ.get('HEWRS_BROWSER','chromium')
+  browser=getattr(p,name).launch(headless=True,**({'args':['--no-sandbox']} if name=='chromium' else {}))
   page=browser.new_page(viewport={'width':390,'height':844})
   errors=[];external=[]
   page.on('pageerror',lambda e:errors.append(str(e)))
@@ -50,7 +51,7 @@ try:
   assert page.evaluate('(k)=>localStorage.getItem(k)',ARCHIVE)==raw
   assert not errors, errors
   assert not any('/v1/ai-five/generate' in url for url in external)
-  print('PASS: browser repair + actual V3 native generation, 20 options, exact 36-record archive and 26 current votes preserved, zero AI requests.')
+  print('PASS '+name+': browser repair + actual V3 native generation, 20 options, exact 36-record archive and 26 current votes preserved, zero AI requests.')
   browser.close()
 finally:
  server.shutdown();server.server_close()
