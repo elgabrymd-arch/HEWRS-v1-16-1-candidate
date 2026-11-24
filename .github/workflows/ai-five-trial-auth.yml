@@ -6,6 +6,7 @@ on:
     paths:
       - 'src/ai-five-client.js'
       - 'ai-five-trial.html'
+      - 'src/ai-five-trial-config.js'
       - 'tests/ai-five-client.test.cjs'
       - '.github/workflows/ai-five-trial-auth.yml'
 permissions:
@@ -28,6 +29,11 @@ jobs:
           h=hashlib.sha256(p.read_bytes()).digest()
           expected=f'src/ai-five-client.js?v={h.hex()[:16]}" integrity="sha256-{base64.b64encode(h).decode()}"'
           assert expected in pathlib.Path('ai-five-trial.html').read_text()
+          p=pathlib.Path('src/ai-five-trial-config.js')
+          h=hashlib.sha256(p.read_bytes()).digest()
+          expected=f'src/ai-five-trial-config.js?v={h.hex()[:16]}" integrity="sha256-{base64.b64encode(h).decode()}"'
+          assert expected in pathlib.Path('ai-five-trial.html').read_text()
+          assert not pathlib.Path('data/ai-five-trial-config.js').exists()
           assert 'ai-five-client.js' not in pathlib.Path('index.html').read_text()
           assert 'ai-five-client.js' not in pathlib.Path('app.html').read_text()
           print('Trial integrity verified; normal app does not load trial client.')
