@@ -27,9 +27,14 @@
   credentials.append(tokenInput);
   const connect = make('button', 'Connect');
   connect.type = 'button'; connect.id = 'ai-five-connect';
+  const refresh = make('button', 'Refresh connection');
+  refresh.type = 'button'; refresh.id = 'ai-five-refresh';
   const disconnect = make('button', 'Disconnect');
   disconnect.type = 'button'; disconnect.id = 'ai-five-disconnect';
-  settings.append(settingsTitle, credentials, connect, disconnect);
+  settings.append(settingsTitle, credentials, connect, refresh, disconnect);
+  const readinessInfo = make('p', 'Not connected.', 'fx-caption');
+  readinessInfo.id = 'ai-five-readiness';
+  readinessInfo.setAttribute('role', 'status'); readinessInfo.setAttribute('aria-live', 'polite');
   const consentLabel = make('label', undefined, 'fx-check-row');
   const consent = make('input');
   consent.type = 'checkbox'; consent.id = 'ai-five-consent';
@@ -53,26 +58,46 @@
   close.style.marginBottom = '10px';
   close.onclick = () => preview.close();
   preview.append(previewTitle, close, previewImage);
-  section.append(heading, intro, settings, consentLabel, button, cancel, info, listing, preview);
+  section.append(heading, intro, settings, readinessInfo, consentLabel, button, cancel, info, listing, preview);
   host.append(section);
 
   const feedback = app.outfitFeedback || app.ownerFeedback;
   let native, service, flow;
   let epoch = 0, last = null, pendingStamp = null, running = false;
+  let connectionEpoch = 0, connected = false, checkingConnection = false, readiness = null;
   try {
     native = Native.create({app, feedback});
     service = Client.create({config:root.HEWRS_AI_FIVE_SERVICE_CONFIG});
     flow = Flow.create({read:native.read, service, validate:native.validate,
       ownerAllows:native.ownerAllows, rotationAllows:native.rotationAllows, verifyCurrent:native.assertCurrentAsync});
   } catch (error) {
-    button.disabled = connect.disabled = true;
+    button.disabled = connect.disabled = refresh.disabled = disconnect.disabled = true;
     info.textContent = 'AI Five unavailable: ' + error.message;
     return;
   }
+  function validBudget(status) {
+    return Number.isInteger(status?.total_call_limit) && status.total_call_limit >= 1 && status.total_call_limit <= 100 &&
+      Number.isInteger(status.remaining_calls) && status.remaining_calls >= 0 && status.remaining_calls <= status.total_call_limit;
+  }
+  function canGenerate() {
+    return connected && service.ready() && readiness?.authenticated === true && validBudget(readiness) &&
+      readiness.remaining_calls > 0 && readiness.busy === false;
+  }
+  function showReadiness() {
+    if (!readiness) {
+      readinessInfo.textContent = connected ? 'Connection status is not verified. Refresh connection before generating.' : 'Not connected.';
+      return;
+    }
+    const model = typeof readiness.model === 'string' && readiness.model ? readiness.model : 'not selected';
+    const budget = validBudget(readiness) ? readiness.remaining_calls + ' of ' + readiness.total_call_limit : 'not verified';
+    readinessInfo.textContent = 'Authenticated. Model: ' + model + '. Attempts remaining at last check: ' + budget + '.';
+  }
   function buttons() {
-    button.disabled = running || !service.configured();
-    connect.disabled = running || !service.configured();
-    tokenInput.disabled = !service.configured();
+    button.disabled = running || checkingConnection || !canGenerate();
+    connect.disabled = running || checkingConnection || !service.configured();
+    refresh.disabled = running || checkingConnection || !connected || !service.configured();
+    disconnect.disabled = !connected && !checkingConnection;
+    tokenInput.disabled = running || checkingConnection || !service.configured();
     consent.disabled = !service.configured();
     cancel.hidden = !running;
   }
@@ -125,36 +150,65 @@
     info.textContent = message; buttons();
   }
   function checkCurrent() {
+    buttons();
     if (!last && !pendingStamp) return;
     let now;
     try { now = Flow.signature(native.read()); } catch { now = null; }
     if (now !== (last?.base_signature || pendingStamp))
       clear('The outfits, occasion, weather or saved records changed. Generate AI Five again.');
   }
-  connect.onclick = async () => {
-    const value = tokenInput.value; tokenInput.value = '';
-    connect.disabled = true;
+  async function checkConnection(value, reconnect) {
+    if (running || checkingConnection || !service.configured() || (!reconnect && !connected)) return;
+    const ticket = ++connectionEpoch;
+    checkingConnection = true; readiness = null;
+    readinessInfo.textContent = 'Checking connection…'; buttons();
     try {
-      const health = await service.connect(value);
-      info.textContent = health.configured ? 'AI generation connected. Generate the native outfits, then select Generate AI Five.' :
-        'Connected; generation is unavailable: ' + health.blocked_by.join(', ');
-    } catch (error) { info.textContent = 'AI connection unavailable: ' + error.message; }
-    finally { buttons(); }
+      const health = reconnect ? await service.connect(value) : await service.check();
+      if (ticket !== connectionEpoch) return;
+      if (health.authenticated !== true) {
+        service.disconnect(); connected = false;
+        throw Error('The private service access token was not accepted.');
+      }
+      connected = true; readiness = health; showReadiness();
+      info.textContent = !health.configured ? 'Connected; generation is unavailable: ' + health.blocked_by.join(', ') :
+        !validBudget(health) ? 'Connected; the AI attempt budget is not verified.' :
+        health.remaining_calls === 0 ? 'Connected; no AI attempts remain.' :
+        health.busy !== false ? 'Connected; the service is busy or its readiness is not verified. Refresh connection before generating.' :
+        'AI generation connected. Generate the native outfits, then select Generate AI Five.';
+    } catch (error) {
+      if (ticket !== connectionEpoch) return;
+      if (reconnect) { service.disconnect(); connected = false; }
+      readiness = null; showReadiness();
+      info.textContent = 'AI connection unavailable: ' + error.message;
+    } finally { if (ticket === connectionEpoch) { checkingConnection = false; buttons(); } }
+  }
+  connect.onclick = () => {
+    const value = tokenInput.value; tokenInput.value = '';
+    return checkConnection(value, true);
   };
+  refresh.onclick = () => checkConnection(undefined, false);
   disconnect.onclick = () => {
-    service.disconnect(); consent.checked = false;
+    connectionEpoch++; checkingConnection = false; connected = false; readiness = null;
+    service.disconnect(); tokenInput.value = ''; consent.checked = false; showReadiness();
     clear('AI generation disconnected.');
   };
   cancel.onclick = () => clear('AI generation cancelled. A request already sent may still incur usage.');
 
   async function generate() {
-    if (running) return;
+    if (running || checkingConnection) return;
+    if (!canGenerate()) {
+      info.textContent = 'Connect or refresh a ready AI service with a remaining attempt before generating.';
+      buttons(); return;
+    }
     const ticket = ++epoch;
     last = null; listing.replaceChildren();
     if (preview.open) preview.close();
     running = true; buttons();
     try {
       if (!consent.checked) throw Error('Allow the paid request before generating AI Five.');
+      // An attempted generation can consume the durable budget even if it fails.
+      // Require an explicit read-only refresh before permitting another attempt.
+      readiness = null; showReadiness();
       const initial=await native.synchronize();
       if(ticket!==epoch)return;
       pendingStamp = Flow.signature(initial);
@@ -233,7 +287,7 @@
   if (!service.configured()) info.textContent = 'AI generation is not enabled in this development build.';
   root.HEWRSAIFivePanel = Object.freeze({
     generate, cancel:cancel.onclick,
-    diagnostics:() => ({hasResult:!!last, configured:service.configured(), available:service.ready(),
+    diagnostics:() => ({hasResult:!!last, configured:service.configured(), available:canGenerate(),
       running, count:last?.options.length || 0, live_ai_used:last?.live_ai_used === true}),
     revision:'ai-five-independent-v3-bound'
   });
