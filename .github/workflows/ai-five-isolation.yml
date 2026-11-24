@@ -1,0 +1,102 @@
+name: AI Five V3 isolated integration
+on:
+  push:
+    branches: [integration/ai-five-v3-20261123]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: frontend
+      - uses: actions/checkout@v4
+        with:
+          repository: elgabrymd-arch/HEWRS-AI-service
+          ref: 706b45260e5a7820307a2d5a822b5467960eede1
+          path: backend
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify current approved V3 release and isolated preview
+        run: |
+          python tools/verify_active_delivery.py --describe
+          python tools/build_ai_five_preview.py
+          python -m py_compile tools/build_ai_five_preview.py tests/ai-five-browser.py
+          cmp data/ai-five-wardrobe-binding.json ../backend/data/ai-five-wardrobe-binding.json
+          for file in src/ai-five-*.js data/ai-five-service-config.js; do node --check "$file"; done
+          git diff --exit-code -- index.html app.html AVATAR_V3_RELEASE.json
+      - name: Frontend protocol, exact finite exclusions, immutable flow and native gates
+        run: |
+          node tests/ai-five-exclusion.test.cjs
+          node tests/ai-five-flow.test.cjs
+          node tests/ai-five-client.test.cjs
+          node tests/ai-five-native.test.cjs
+          node tests/ai-five-real20.integration.test.cjs
+      - name: Backend source pins and injected provider integration
+        working-directory: backend
+        env:
+          HEWRS_FRONTEND_ROOT: ${{ github.workspace }}/frontend
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run check
+          npm test
+          npm run test:integration
+      - uses: actions/upload-artifact@v4
+        with:
+          name: disabled-ai-five-preview
+          path: frontend/ai-five-preview.html
+          retention-days: 7
+  rendered:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: frontend
+      - uses: actions/checkout@v4
+        with:
+          repository: elgabrymd-arch/HEWRS-AI-service
+          ref: 706b45260e5a7820307a2d5a822b5467960eede1
+          path: backend
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare fixture-only local entrypoint
+        run: |
+          python tools/build_ai_five_preview.py --fixture
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Current V3 browser integration, inventory, rejection and storage verification
+        env:
+          AI_FIVE_BROWSER: ${{ matrix.browser }}
+          HEWRS_AI_FIVE_BACKEND_ROOT: ${{ github.workspace }}/backend
+          AI_FIVE_SCREENSHOT_DIR: ${{ runner.temp }}/ai-five-browser
+        run: python tests/ai-five-browser.py
+      - name: Retain isolated fixture evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-five-v3-${{ matrix.browser }}
+          path: ${{ runner.temp }}/ai-five-browser
+          if-no-files-found: ignore
+          retention-days: 7

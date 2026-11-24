@@ -1,0 +1,80 @@
+{
+  "schema": "hewrs.ai-five.wardrobe-binding.v2",
+  "frontend_baseline": "db68a076dcf6bdb5d47b2fa3e081b91a01d0a703",
+  "source_lock": "3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516",
+  "base_catalogue_fingerprint": "38a4a61d788fa2e985b68abed1d5643b699fe8f82c1374399d0027aca28c7c14",
+  "runtime_sha256": "0e76259b86a320f469c8d99a0aaf36dca84b1104009d90ce78a8d0debe73a7a6",
+  "entrypoints": {
+    "index.html": "e5c9cbae7dab415634d9ad7e4986a37ce9da3f8529fd476f2938eff1c81bc6b0",
+    "app.html": "e5c9cbae7dab415634d9ad7e4986a37ce9da3f8529fd476f2938eff1c81bc6b0"
+  },
+  "issue22_modules": {
+    "data/issue22-garment-dna.js": "fbe07c745271d928279f4fe9dd2af7bc0c17fd4f174ac4a1673aadcd8120694b",
+    "src/issue22-matching.js": "52294c129f9bfdf9d740278a44f96b5ab10383552e0f735f06d7c9d22fa8207f",
+    "data/issue22-materials.js": "cf1c58bf347322d8c0d0bd717d0e0912dbd76df15b457456e36bcf464fb71d11",
+    "src/issue22-materials.js": "ea2e4c6d8fdac9ed2b84a6d1c51bb4d2e4eb661e238032f456a7ac56f26509c6",
+    "src/issue22-b08.js": "d76bf8bffc41bc2a595600180c8fc74311064bab24655b3be6314727e308c8be",
+    "src/issue22-render-guard.js": "3bcb26e76c63b052a84786bc194f48c2c09040882d184bca884768e5080457dc",
+    "src/issue22-s06-contours.js": "ef2e7f3823d0156dd5dc5b7169dc1cc35c8f3e5dd3776ce34b32e27c9485bc99",
+    "data/issue22-reviewed-overlay.js": "fea12de6e411094380f268fcba8442d45aa24ac1e4d72533d4d0666d226db100",
+    "src/issue22-reviewed-data.js": "b95bfe77dbfccee90ac55ed1304a5b2c6fc2536ef9a915d0f892ecea7c28d432"
+  },
+  "matching_index": {
+    "path": "data/issue22-option-index.js",
+    "sha256": "6f6b46a3538cd28a8a67a272e6e0fb48b4726e2bc42da22a3d1d7b1cebbbe1d8"
+  },
+  "picker_previews": {
+    "path": "data/issue22-picker-images.js",
+    "sha256": "70846c5f8083a9d204c35b6081fc84dfe089b6ebd2c914b004f42ec78074e48c"
+  },
+  "description_revision": "hewrs.issue22.garment-fidelity.2026-11-22.v2",
+  "corrections": {
+    "S06": {
+      "description": "Neutral medium-dark grey suit with fine low-contrast Glen check; near-solid at distance",
+      "primary_text": "Neutral medium-dark grey",
+      "secondary_text": "Tonal charcoal grey; light neutral grey",
+      "pattern_text": "Fine low-contrast interlocking Glen / houndstooth check; near-solid at distance",
+      "texture_text": "Fine matte woven texture"
+    },
+    "S13": {
+      "description": "Dark slate blue-grey suit with fine interlocking check",
+      "primary_text": "Dark muted slate blue-grey",
+      "secondary_text": "Tonal blue-grey; charcoal",
+      "pattern_text": "Fine interlocking check; subtle streaked weave",
+      "texture_text": "Fine matte woven crosshatch texture"
+    },
+    "S14": {
+      "description": "Medium slate / steel blue-grey suit with near-solid fine weave",
+      "primary_text": "Medium muted slate blue-grey",
+      "secondary_text": "Tonal steel blue-grey",
+      "pattern_text": "Near-solid fine weave",
+      "texture_text": "Fine matte woven texture"
+    },
+    "B01": {
+      "description": "medium navy, medium-weight linen, visible natural slub, patch pockets; natural matte linen",
+      "texture_text": "Medium-weight natural matte linen weave; subtle slubs and soft wrinkles",
+      "fibre_composition": "Linen; exact fibre percentage or blend not supplied"
+    },
+    "B06": {
+      "description": "very pale highly desaturated sage, very thin lightweight cloth; natural matte linen",
+      "texture_text": "Very thin lightweight natural matte linen weave; subtle slubs and soft wrinkles",
+      "fibre_composition": "Linen; exact fibre percentage or blend not supplied"
+    },
+    "B10": {
+      "description": "Light Camel / Warm Taupe-Beige Near-Solid Textured Blazer; natural matte linen",
+      "texture_text": "Moderately textured natural matte linen weave; subtle slubs and soft wrinkles",
+      "fibre_composition": "Linen; exact fibre percentage or blend not supplied"
+    }
+  },
+  "no_tie_topwear": [
+    "B01",
+    "B06",
+    "B10"
+  ],
+  "no_tie_shirts": [
+    "DS040",
+    "DS041",
+    "DS042",
+    "DS043"
+  ]
+}
