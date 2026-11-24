@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>HEWRS preference recovery check</title>
+<style>body{margin:0;padding:22px;background:#09101a;color:#f3e9d3;font:16px/1.5 system-ui,sans-serif}main{max-width:660px;margin:auto}h1{font:32px Georgia,serif;margin:0;color:#e8b858}h2{font-size:19px}p{margin:12px 0}section{background:#101c2b;border:1px solid #2b3c50;border-radius:14px;padding:16px;margin:18px 0}dl{margin:0}dt{color:#c8bca7;font-size:14px;margin-top:12px}dd{margin:2px 0;overflow-wrap:anywhere;font-weight:600}button{background:#e7b659;color:#09101a;font:600 16px system-ui,sans-serif;border:0;border-radius:9px;padding:14px;width:100%;margin-top:12px}button:disabled{opacity:.45}small{color:#b8c0ce}a{color:#e8b858}</style></head>
+<body><main><h1>HEWRS</h1><p>Saved preference recovery check</p>
+<section><h2 id="status" role="status">Checking your saved comparison records…</h2><p>This page reads only your local comparison archive. It does not change, clear, import or transmit your records, and does not contact the AI service.</p><dl id="report"></dl><button id="backup" disabled>Save original preference backup</button><small>The backup is saved to your device only. Nothing is uploaded.</small></section>
+<p>Open this page in the same browser as your HEWRS app. Send a screenshot of the summary, not a token. No records will be modified.</p></main>
+<script>
+'use strict';
+const KEY='hewrs:outfit-preferences:v1';
+const LOCK='3e60ce18a0295c6801983ce91dda296efec458b275f523523dee1e3915db7516';
+const BASE='hewrs.owner-source.s02.2026-09-29.v1';
+const CURRENT=BASE+'+hewrs.issue22.garment-fidelity.2026-11-22.v2';
+const affected=new Set(['S06','S13','S14','B01','B06','B10','B08']);
+const knownPrior=new Set([BASE,BASE+'+hewrs.issue22.garment-fidelity.2026-11-22.v1']);
+const summary=document.getElementById('report'),status=document.getElementById('status'),button=document.getElementById('backup');
+function row(k,v){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=String(v);summary.append(dt,dd);}
+let original=null;
+function inspect(){
+ try{original=localStorage.getItem(KEY);}catch{status.textContent='Browser storage unavailable';return;}
+ if(original===null){status.textContent='No comparison archive found in this browser';return;}
+ button.disabled=false;let d;
+ try{d=JSON.parse(original);}catch{status.textContent='Saved archive is not valid JSON';row('Original archive','Retained; backup available');return;}
+ if(!d||typeof d!=='object'||d.schema!=='hewrs.outfit-preferences.v1'||!Array.isArray(d.comparisons)){status.textContent='Unexpected archive structure';row('Original archive','Retained; backup available');return;}
+ let total=d.comparisons.length,current=0,older=0,unknown=0,affectedOlder=0,badPartition=0,malformed=0;
+ const revisions=new Map();
+ for(const x of d.comparisons){
+  if(!x||typeof x!=='object'){malformed++;continue;}
+  const rev=typeof x.source_revision==='string'&&x.source_revision.length<=180&&/^[A-Za-z0-9._+\-]+$/.test(x.source_revision)?x.source_revision:'Unrecognized revision format';
+  revisions.set(rev,(revisions.get(rev)||0)+1);
+  if(!['training','validation'].includes(x.partition))badPartition++;
+  if(!x.a||typeof x.a!=='object'||!x.b||typeof x.b!=='object')malformed++;
+  if(rev===CURRENT)current++;
+  else if(knownPrior.has(rev)){older++;if([x.a,x.b].some(s=>s&&affected.has(s.suitId||s.blazerId)))affectedOlder++;}
+  else unknown++;
+ }
+ status.textContent=older||unknown||badPartition||malformed?'Saved comparisons require source reconciliation':'No revision mismatch detected in this archive';
+ row('Wardrobe identity matches current release',d.source_lock===LOCK?'Yes':'No');
+ row('Total saved comparisons',total);
+ row('Current revision comparisons',current);
+ row('Recognized earlier revision comparisons',older);
+ row('Earlier comparisons involving corrected garments',affectedOlder);
+ row('Unknown revision comparisons',unknown);
+ row('Invalid comparison partitions',badPartition);
+ row('Malformed comparison records',malformed);
+ for(const [rev,count] of revisions)row('Saved source revision ('+count+')',rev);
+ row('Current source revision',CURRENT);
+ row('Data changed by this check','None');
+}
+button.addEventListener('click',()=>{if(original===null)return;const blob=new Blob([original],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='HEWRS_ORIGINAL_PREFERENCE_BACKUP.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);});
+inspect();
+</script></body></html>
