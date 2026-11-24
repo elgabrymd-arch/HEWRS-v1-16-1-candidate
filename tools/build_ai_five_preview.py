@@ -38,7 +38,7 @@ def build(fixture=False):
         assert digest(ROOT / row["path"]) == row["sha256"], name
     html = (ROOT / "index.html").read_text()
     assert html == (ROOT / "app.html").read_text()
-    assert html.count("</head>") == 1 and not any(path in html for path in MODULES)
+    assert html.count("</body>") == 1 and not any(path in html for path in MODULES)
     fingerprint = hashlib.sha256(json.dumps(binding, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
     config = (ROOT / MODULES[3]).read_text()
     assert config.count("enabled:false") == 1 and fingerprint in config and binding["source_lock"] in config
@@ -50,7 +50,8 @@ def build(fixture=False):
                                      .replace("https://hewrs-ai-service.onrender.com", "https://ai-five-contract-fixture.invalid"))
         html = html.replace("connect-src 'self' ", "connect-src 'self' https://ai-five-contract-fixture.invalid ", 1)
         target = ROOT / "ai-five-fixture.html"
-    html = html.replace("</head>", "\n".join(tag(path) for path in paths) + "\n</head>")
+    # Original defer scripts appear at the end of body, so append after all of them.
+    html = html.replace("</body>", "\n".join(tag(path) for path in paths) + "\n</body>")
     target.write_text(html)
     print(json.dumps({"entrypoint": target.name, "sha256": digest(target),
                       "base_runtime": release["runtime_sha256"], "catalogue_fingerprint": fingerprint,
