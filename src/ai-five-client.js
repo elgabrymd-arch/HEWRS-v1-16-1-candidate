@@ -174,7 +174,7 @@
     async function connect(serviceToken,opts={}) {
       usable();idle();
       insist(typeof serviceToken==='string' && serviceToken.length>=32 && serviceToken.length<=512 &&
-        /^[A-Za-z0-9._~+\/-]+=*$/.test(serviceToken) && !/^sk-/i.test(serviceToken),
+        !/[^\x21-\x7e]/.test(serviceToken) && !/^sk-/i.test(serviceToken),
         'AI_FIVE_TOKEN','Enter the private service access token, not a provider API key.');
       epoch++;token=serviceToken;health=null;
       try {
