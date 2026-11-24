@@ -252,6 +252,16 @@ def main():
             assert "T017" in displayed[0] and "NO_TIE" in displayed[1]
             assert all("shoe-3" in text for text in displayed[:2])
             assert page.evaluate(SNAPSHOT) == before, "AI generation changed native state, avatar or saved data"
+            # Independent styling must not weaken the native comparison gate.
+            for selection in fixtures["selected"][:2]:
+                comparison = page.evaluate("""async ({selection,occasion}) => {
+                  try {
+                    await HEWRSApp.renderForPreference(selection,()=>false,
+                      {occasion,requiredFormality:'any'});
+                    return {rejected:false};
+                  } catch(error) { return {rejected:true,message:error.message}; }
+                }""", {"selection": selection, "occasion": occasion})
+                assert comparison["rejected"] and "rejected for its occasion" in comparison["message"], comparison
             wait_until(page, "[...document.querySelectorAll('#ai-five-results img')].every(i=>i.complete && i.naturalWidth===420 && i.naturalHeight===1160)")
 
             for preview_index in (0, 1):
@@ -271,6 +281,7 @@ def main():
             findings.append({"occasion": occasion, "native": 20, "independent_fixture_options": 5,
                 "duplicate_watch_variants_removed": 2, "full_avatar_preview": "unchanged native state/pixels/storage",
                 "legacy_B11_and_remaining_B01_rules_exempted_only_for_AI": True,
+                "native_preference_gate_unchanged": True,
                 "current_linen_no_tie_guard_preserved": True,
                 "explicit_fixture_label": True})
             print("AI_FIVE_BROWSER", json.dumps(findings[-1]), flush=True)

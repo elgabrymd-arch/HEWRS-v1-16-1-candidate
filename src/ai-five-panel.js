@@ -87,6 +87,36 @@
         native.rotationAllows(selection, native.read().request);
     } catch { return false; }
   }
+  async function renderPreview(selection, result, initial, ticket) {
+    // Preference comparisons use the native styling gate. AI Five has its own
+    // scoped exemptions, so render on a detached canvas with the same approved
+    // renderer and asset resolver, while retaining every AI eligibility guard.
+    const canvas = doc.createElement('canvas');
+    const off = root.HEWRSAtomicRenderer.create(canvas, app.connection, {resolveUrl:app.resolveUrl});
+    const assertEligible = () => {
+      if (ticket !== epoch || !eligible(result, selection))
+        throw Error('The outfit context changed during preview.');
+    };
+    const cancellation = root.setInterval(() => { if (ticket !== epoch) off.cancel(); }, 50);
+    try {
+      await native.withCurrent(initial, assertEligible);
+      const rendered = await off.render(selection);
+      if (rendered?.cancelled) throw Error('AI outfit preview cancelled.');
+      return await native.withCurrent(initial, () => {
+        assertEligible();
+        const picture = doc.createElement('canvas');
+        picture.width = 420; picture.height = 1160;
+        try {
+          const context = picture.getContext('2d');
+          context.fillStyle = '#060e19'; context.fillRect(0, 0, 420, 1160);
+          context.drawImage(canvas, 0, 0, 996, 2748, 0, 0, 420, 1160);
+          return {full:picture.toDataURL('image/jpeg', .9)};
+        } finally { picture.width = picture.height = 1; }
+      });
+    } finally {
+      root.clearInterval(cancellation); off.cancel(); canvas.width = canvas.height = 1;
+    }
+  }
   function clear(message) {
     epoch++; service.cancel(); last = null; pendingStamp = null; running = false;
     listing.replaceChildren();
@@ -137,7 +167,7 @@
         if (ticket !== epoch || !eligible(result, item.selection))
           throw Error('An outfit is no longer eligible.');
         info.textContent = 'Preparing outfit ' + (i + 1) + ' of ' + result.options.length + '…';
-        const picture = await app.renderForPreference(item.selection, () => ticket !== epoch);
+        const picture = await renderPreview(item.selection, result, initial, ticket);
         if (ticket !== epoch || !eligible(result, item.selection))
           throw Error('The outfit context changed during preview.');
         if (typeof picture?.full !== 'string' || !picture.full.startsWith('data:image/'))
