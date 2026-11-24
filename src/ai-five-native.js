@@ -11,7 +11,7 @@
   'use strict';
   const copy = value => structuredClone(value);
   const need = (ok, message) => { if (!ok) throw Error(message); };
-  // The AI Five brief supersedes these seven old B01/B11 styling instructions
+  // The AI Five brief supersedes these six remaining old B01/B11 styling instructions
   // only for independent AI choices. This does not alter the native gate or its
   // data. Explicit outfit rejections (including OWNER-REVIEW-10), saved hides,
   // historical Neither records, owner_core and temporary skips remain vetoes.

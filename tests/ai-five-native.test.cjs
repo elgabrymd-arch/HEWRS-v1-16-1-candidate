@@ -34,7 +34,7 @@ function harness(events = []) {
     constructor(callback){this.callback=callback;this.records=[];mutationObserver=this;}
     observe(){} takeRecords(){const out=this.records;this.records=[];return out;} disconnect(){}
   }
-  const app = {state:()=>clone(state),connection,store,ownerFeedback:feedback,
+  const app = {state:()=>clone(state),connection:{...connection,controller:{...connection.controller,verifyOptionSet:undefined}},store,ownerFeedback:feedback,
     weather:{request:()=>clone(environment)}};
   const native = Native.create({app,feedback,logic:root.HEWRSLogic,rotationPolicy:policy,
     document:{getElementById:()=>({})},MutationObserver:Observer});
